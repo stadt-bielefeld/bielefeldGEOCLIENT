@@ -2,8 +2,6 @@
 
 Munimap is an interactive online map with ability to export map extract.
 
-[TODO ADD LICENSE]
-
 ## Features
 
 * Easy configuration using yaml files
@@ -80,6 +78,6 @@ Will be coming soon.
 
 ## Development
 
-The source code is available at: TODO
+The source code is available at: https://github.com/stadt-bielefeld/bielefeldGEOCLIENT
 
-You can report any issues at: TODO
+You can report any issues at: https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/issues
