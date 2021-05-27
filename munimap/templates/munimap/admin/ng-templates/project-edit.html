@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-xs-12">
+        <form name="form" ng-submit="submit()" ng-keydown="submitViaKeypress($event)" novalidate>
+            <h3 ng-if="project.name">{{ project.name }}</h3>
+            <div ng-show="loading">
+                {$ _('Loading ...') $}
+            </div>
+            <div ng-show="!loading">
+              <input type="hidden" name="id" id="id" ng-model="project.name" ng-if="project.name"/>
+
+              <div class="form-group" ng-if="!project.name" ng-class="{'has-error': form.name.$invalid && form.name.$dirty}">
+                  <label for="name">{$ _('name') $}*</label>
+                  <input type="text" name="name" id="name" class="form-control" 
+                    ng-model="project.new" required />
+                  <span class="help-block" ng-show="form.name.$error.required && form.name.$touched">
+                      {$ _('This field is required') $}
+                  </span>
+              </div>
+
+              <div class="form-group" ng-class="{'has-error': form.descripton.$invalid && form.desciption.$dirty}">
+                  <label for="code">{$ _('Code') $}</label>
+                  <div ng-style="{height: hgt+ 'px'}"required ng-model="project.code" 
+                    ui-ace="{
+                      useWrapMode : false,
+                      showPrintMargin: false,
+                      showGutter: true,
+                      theme:'textmate',
+                      mode: 'yaml',
+                      firstLineNumber: 1,
+                      onLoad: aceLoaded,
+                      onChange: aceChanged
+                    }"></div>
+              </div>
+              <div class="button-bar">
+                <div ng-show="errors" class="alert alert-warning" role="alert">
+                  <pre>
+  {{ errors }}
+                  </pre>
+                </div>
+                <div class="pull-right">
+                  <a class="btn btn-default btn-sm" href="/admin/projects/list">
+                      {$ _('back') $}
+                  </a>
+                  <button class="btn btn-sm btn-success" type="submit"
+                      ng-disabled="form.$invalid">
+                      {$ _('Save') $}
+                  </button>
+                </div>
+              </div>
+            </div>
+        </form>
+    </div>
+</div>

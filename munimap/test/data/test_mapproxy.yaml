@@ -1,0 +1,31 @@
+services:
+  demo:
+  wmts:
+  wms:
+    srs: ['EPSG:3857', 'EPSG:25832', 'EPSG:4326']
+    md:
+      title: WMS/WMTS Test
+
+layers:
+  - name: osm
+    title: Omniscale OSM WMS - osm.omniscale.net
+    sources: [osm_cache]
+
+caches:
+  osm_cache:
+    grids: [EPSG25832]
+    sources: [osm_wms]
+    disable_storage: true
+
+sources:
+  osm_wms:
+    type: wms
+    req:
+      url: http://osm.omniscale.net/proxy/service?
+      layers: osm
+grids:
+    EPSG25832:
+        base: GLOBAL_MERCATOR
+        srs: "EPSG:25832"
+        bbox: [243900, 4427757, 756099, 6655205]
+        origin: nw

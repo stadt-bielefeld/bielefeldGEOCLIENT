@@ -1,0 +1,135 @@
+app:
+    title: 'Stadtplan'
+    headerLogoLink: ''
+    tooltipDelay: 50
+    showNoBackground: false
+    versionString: ''
+    showLogin: false
+    hideMetadata: true
+    
+map:
+    center:
+        - 468152.5616
+        - 5764386.17546
+    centerProjection: "EPSG:25832"
+    zoom: 8
+    projection: "EPSG:25832"
+    projectionExtent: [-46133.17, 5048875.26857567, 1206211.10142433, 6301219.54]
+    maxExtent:
+        - 371030.56
+        - 5672454.87
+        - 562875.71
+        - 5818346.28
+    minZoom: 6
+    maxZoom: 15
+
+
+backgrounds:
+    explicit:
+        - stadtplan_bi
+
+components:
+    serviceButton: true
+    search: true
+    print: true
+    layerswitcher: true
+    legend: true
+    geolocation: true
+    scaleLine: true
+    overviewmap: false
+    saveSettings: false
+    alkis: false 
+    measureLabelSegments: true
+    #searchDropdown: true
+
+searchConfig:
+    - name: adress_search
+      title: Adresse
+      geocoder: Solr
+      selected: true
+      geocoderOptions:
+          viewbox:
+              - 8.34154267980772
+              - 51.905836372029
+              - 8.72247497339103
+              - 52.1276204795065
+          url: "/proxy/cors/solr/?maxresults=20"
+          method: get
+      zoom: 14
+      resultMarkerVisible: 0
+      urlMarkerColor: E2001A
+      autoSearchChars: 3
+      resultMarker: 
+          graphicFile: 'geocoder-marker.svg'
+          graphicWidth: 32
+          graphicHeight: 50
+          graphicYAnchor: 50
+          graphicScale: 0.75
+         
+geolocationConfig:
+    zoom: 14
+    tracking: False
+    style:
+        strokeColor: "#E2001A"
+
+
+printConfig:
+    chooseCells: True
+    chooseStreetIndex: True
+    conditionsOfUse: True
+    downloadPrefix: bielefeldKarte-
+    availableScales:
+        - 500
+        - 1000
+        - 2500
+        - 5000
+        - 10000
+        - 15000
+    availablePageLayouts:
+        "a0-portrait":
+            label: A0
+            icon: "glyphicon-resize-vertical"
+            mapElementSize: [2344, 3310]
+        "a0-landscape":
+            label: A0
+            icon: "glyphicon-resize-horizontal"
+            mapElementSize: [3330, 2324]
+        "a1-portrait":
+            label: A1
+            icon: "glyphicon-resize-vertical"
+            mapElementSize: [1644, 2324]
+        "a1-landscape":
+            label: A1
+            icon: "glyphicon-resize-horizontal"
+            mapElementSize: [2344, 1624]
+        "a2-portrait":
+            label: A2
+            icon: "glyphicon-resize-vertical"
+            mapElementSize: [1151, 1624]
+        "a2-landscape":
+            label: A2
+            icon: "glyphicon-resize-horizontal"
+            mapElementSize: [1644, 1131]
+        "a3-portrait":
+            label: A3
+            icon: "glyphicon-resize-vertical"
+            mapElementSize: [802, 1131]
+        "a3-landscape":
+            label: A3
+            icon: "glyphicon-resize-horizontal"
+            mapElementSize: [1151, 782]
+        "a4-portrait":
+            label: A4
+            icon: "glyphicon-resize-vertical"
+            mapElementSize: [555, 782]
+        "a4-landscape":
+            label: A4
+            icon: "glyphicon-resize-horizontal"
+            mapElementSize: [802, 535]
+    pageLayouts:
+        - "a3-portrait"
+        - "a3-landscape"
+        - "a4-portrait"
+        - "a4-landscape"
+    minPageSize: 419
+    maxPageSize: 3371

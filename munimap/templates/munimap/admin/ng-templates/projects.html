@@ -1,0 +1,10 @@
+{% from "munimap/admin/macros/list.html" import list %}
+
+<div class="row">
+    <div class="col-xs-4 element-select">
+        {$ list(_('Projects'), 'project') $}
+    </div>
+    <div class="col-xs-8">
+        <div ng-include="subpage"></div>
+    </div>
+</div>

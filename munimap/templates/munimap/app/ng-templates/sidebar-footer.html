@@ -1,0 +1,37 @@
+<ul class="list-unstyled">
+  <li>
+    <a href="{$ url_for('frontend.pages', name='nutzungsbedingungen') $}"
+       target="_blank">
+      Nutzungsbedingungen
+    </a>
+
+    {% if app_config['app']['feedbackButton'] %}
+    <a id="feedback-button" 
+      class="feedback-button pull-right"
+      ng-href="{{ openFeedbackMail(
+        '{$ app_config['app']['feedbackButton']['email'] $}',
+        '{$ app_config['app']['feedbackButton']['subject'] $}',
+        '{$ app_config['app']['feedbackButton']['body'] $}'
+      ) }}">
+      <span 
+        class="glyphicon glyphicon-envelope" aria-hidden="true"
+        alt="Feedback senden"
+        title="Feedback senden">
+      </span>
+   </a>
+   {% endif %}
+
+  </li>
+</ul>
+
+{% if current_user.is_authenticated %}
+  <div>{$ _('Logged in as:') $} {$ current_user.name $}</div>
+  <div>
+    <a href="{$ url_for('user.logout') $}">{$ _('Logout') $}</a>
+    <a class="pull-right" href="{$ url_for('user.projects') $}">{$ _('Project list') $}</a>
+  </div>
+{% else %}
+  {% if app_config['app']['showLogin'] != False %}
+  <div><a href="{$ url_for('user.login') $}">{$ _('Login') $}</a></div>
+  {% endif %}
+{% endif %}

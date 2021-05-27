@@ -1,0 +1,45 @@
+<div class="anol-settings">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <div class="row">
+                <div ng-if="projectSettings.length == 0" class="col-sm-12">
+                    {$ _('No settings for project saved.') $}
+                </div>
+
+                <div ng-if="projectSettings.length > 0" class="col-sm-12">
+                    <table id="load-projects" class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="col-sm-10">{$ _('Name') $}</th>
+                                <th class="col-sm-2">#</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr ng-repeat="settings in projectSettings | orderBy: 'name' ">
+                            <td ng-click=load(settings.id) class="project-name">
+                                <span>{{ settings.name }}</span>
+                            </td>
+                            <td>
+                                <confirm class="text-danger pull-left pointer remove-feature"
+                                        on-confirm="delete(settings.id)"
+                                        confirm-title="{$ _('Realy remove project settings?') $}"
+                                        ok-label="{$ _('Remove') $}"
+                                        cancel-label="{$ _('Cancel') $}"
+                                        placement="top"
+                                        icon="glyphicon glyphicon-remove-circle"
+                                ></confirm>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <input class="btn btn-sm btn-default" type="button" ng-click="close()" value="{$ _('Close') $}" />
+                </div>
+            </div>            
+        </div>
+    </form>
+</div>

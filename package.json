@@ -1,0 +1,70 @@
+{
+  "name": "munimap",
+  "version": "1.0.0",
+  "description": "Munimap is an interactive online map with ability to export map extract.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.config.js --mode production",
+    "start": "webpack --watch --mode development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/Omniscale/munimap.git"
+  },
+  "keywords": [],
+  "author": "terestris GmbH & Co. KG <info@terrestris.de>",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/Omniscale/munimap#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2015-ie": "^6.7.0",
+    "eslint": "^5.5.0",
+    "eslint-config-angular": "^0.5.0",
+    "eslint-plugin-angular": "^3.3.0",
+    "raw-loader": "^4.0.2",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.8.7",
+    "@priotas/angular-bootstrap-slider": "^1.1.26",
+    "@types/angular-sanitize": "^1.3.7",
+    "@types/angular-ui-bootstrap": "^0.13.47",
+    "@types/bootstrap-slider": "^9.9.0",
+    "ace-builds": "^1.4.1",
+    "angular": "^1.7.3",
+    "angular-route": "^1.7.3",
+    "angular-sanitize": "^1.7.3",
+    "angular-schema-form": "^0.8.14",
+    "angular-schema-form-bootstrap": "^0.2.0",
+    "angular-spectrum-colorpicker": "^1.4.5",
+    "angular-touch": "^1.7.3",
+    "angular-translate": "^2.18.1",
+    "angular-ui-ace": "^0.2.3",
+    "angular-ui-bootstrap": "^2.5.6",
+    "angular-ui-sortable": "^0.19.0",
+    "angular-ui-switch": "^0.1.1",
+    "anol": "file:../anol",
+    "babel-preset-flow": "^6.23.0",
+    "bootstrap-slider": "^10.2.0",
+    "bootstrap-tour": "^0.12.0",
+    "bootstrap3": "^3.3.5",
+    "feiertagejs": "^1.2.2",
+    "file-loader": "^6.2.0",
+    "html-loader": "^0.5.5",
+    "jquery": "^3.3.1",
+    "jquery-ui": "^1.12.1",
+    "ngstorage": "^0.3.11",
+    "ol": "^5.2.0",
+    "ol-ext": "^3.0.1",
+    "proj4": "^2.4.4",
+    "spectrum-colorpicker": "^1.8.0",
+    "uglifyjs-webpack-plugin": "^2.1.3"
+  }
+}

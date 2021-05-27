@@ -1,0 +1,55 @@
+<div class="modal-header">
+    <button type="button" class="close" aria-label="Close" ng-click="close()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">{$ _('Alkis Legitimate') $}</h4>
+</div>
+
+<div class="modal-body">
+    <form ng-submit="processLegitmationForm()">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="company">{$ _('Company') $}</label>
+              <input type="text" class="form-control" id="company" ng-model="data.company" ng-required=true>
+            </div>
+          </div>
+
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="company">{$ _('reference') $}</label>
+              <input type="text" class="form-control" id="reference" ng-model="data.reference" ng-required=true>
+            </div>
+          </div>
+        
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="company">{$ _('person') $}</label>
+              <input type="text" class="form-control" id="person" ng-model="data.person" ng-required=true>
+            </div>
+          </div>
+        
+          <div class="col-sm-12">
+            <div class="form-group">
+                <label for="kind">{$ _('kind') $}</label>   
+                <select ng-required=true name="kind" class="form-control" ng-model="data.kind">
+                    <option value="">{$ _('Please select option') $}</option>
+                    <option ng-repeat="item in kindItems" value="{{ item }}">
+                        {{ item }}
+                    </option>
+                </select>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <button type="submit" class="btn btn-success pull-right">{$ _('Next') $}</button>
+                <button type="button" class="btn btn-default" ng-click="close()">
+                    {$ _('Close') $}
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

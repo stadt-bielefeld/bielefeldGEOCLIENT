@@ -1,0 +1,81 @@
+{% extends "munimap/base.html" %}
+
+
+{% block body %}
+
+  {% block navbar %}
+  <header class="header">
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="{$ url_for('munimap.index') $}" class="navbar-brand">
+            <img class="header-logo" src="{$ url_for('static', filename='img/logo.png') $}" alt="Logo">
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+  {% endblock %}
+
+  {% block page_title %}
+  <div class="page-title">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-6">
+          <h2>{$ pagetitle $}</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+
+  {% block container %}
+  {% endblock %}
+
+  {% block footer %}
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-6">
+          <p class="text-muted">
+            Copyright &copy; 2016 <strong>Omniscale GmbH &amp; Co. KG</strong>
+          </p>
+        </div>
+
+        <div class="col-xs-6">
+          <ul class="list-unstyled footer-menu text-muted pull-right">
+            {% if not current_user.is_anonymous %}
+              <li>
+                <a href="{$ url_for('user.logout') $}">
+                  {$ _('Logout') $}
+                </a>
+                ({$ current_user.name $})
+              </li>
+            {% endif %}
+            <li>
+            <a href="{$ url_for('frontend.pages', name='about') $}">
+              {$ _('About') $}
+            </a>
+            </li>
+            <li>
+              <a href="{$ url_for('frontend.pages', name='nutzungsbedingungen') $}">
+                {$ _('Terms of Use') $}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  {% endblock %}
+{% endblock %}
+
+{% block javascript %}
+  {$ super() $}
+  {% assets "vendor-libs-js" %}
+     <script type="text/javascript" src="{$ ASSET_URL $}"></script>
+  {% endassets %}
+  {% assets "static-app-js" %}
+      <script type="text/javascript" src="{$ ASSET_URL $}"></script>
+  {% endassets %}    
+{% endblock %}

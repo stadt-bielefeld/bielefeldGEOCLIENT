@@ -1,0 +1,82 @@
+libs-css:
+  output: libs.css
+  contents:
+    - css/bootstrap.css
+    - css/ol.css
+    - css/anol.css
+    - css/bootstrap-tour.css
+    - css/angular-ui-switch.css
+
+app-css:
+  # files are written to assets/app.css so that relative
+  # path to ../img etc still work
+  output: app.css
+  filters: libsass
+  depends:
+    - sass/helpers/*.sass
+    - sass/components/*.sass
+  contents:
+    - sass/helpers/_variables.sass
+    - sass/helpers/_mixins.sass
+    - sass/helpers/_placeholders.sass
+    - sass/helpers/_media_queries.sass
+    - sass/components/_general.sass
+    - sass/components/_pages.sass
+    - sass/components/_map.sass
+    - sass/components/_sidebar.sass
+    - sass/components/_timetable.sass
+    - sass/components/_geoeditor.sass
+    - sass/main.sass
+    - sass/digitize.sass
+    - sass/transport.sass
+    - sass/admin.sass
+
+draw-libs-css:
+  output: draw-libs.css
+  contents:
+    - css/draw/bootstrap-slider.css
+    - css/draw/bootstrap.vertical-tabs.css
+    - css/draw/spectrum.css
+
+
+vendor-libs-js:
+  output: vendor-libs.js
+  contents:
+    - dist/vendor.bundle.js
+
+app-js:
+  output: app.js
+  contents:
+    - dist/runtime~app.bundle.js
+    - dist/app.bundle.js
+
+transport-js:
+  output: transport.js
+  contents:
+    - dist/runtime~transport.bundle.js
+    - dist/transport.bundle.js
+
+digitize-js:
+  output: digitize.js
+  contents:
+    - dist/runtime~digitize.bundle.js
+    - dist/digitize.bundle.js
+
+digitize-admin-js:
+  output: digitize_admin.js
+  contents:
+    - dist/runtime~digitize_admin.bundle.js
+    - dist/digitize_admin.bundle.js
+
+static-app-js:
+  output: static_app.js
+  contents:
+    - dist/runtime~static_app.bundle.js
+    - dist/static_app.bundle.js
+
+admin-js:
+  output: admin.js
+  contents:
+    - dist/runtime~admin.bundle.js
+    - dist/admin.bundle.js
+

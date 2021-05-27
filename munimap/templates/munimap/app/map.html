@@ -1,0 +1,292 @@
+<div anol-map class="map">
+  <div anol-url-markers></div>
+  <div anol-attribution
+       tooltip-delay="{{ tooltipDelay}}">
+  </div>
+  {% include 'munimap/app/draw-popup.html' %}
+  {% include 'munimap/app/geoeditor-popup.html' %}
+  <div anol-zoom
+       ng-style="hasTouch ? mobileZoomButtonsPosition : desktopZoomButtonsPosition"
+       tooltip-delay="{{ tooltipDelay}}">
+  </div>
+  <div anol-rotation
+       ng-style="hasTouch ? mobileRotationButtonPosition : desktopRotationButtonPosition"
+       tooltip-delay="{{ tooltipDelay }}">
+  </div>
+
+  <div ng-if="searchEnabled"
+       template-url="munimap/searchbox.html"
+       anol-geocoder-searchbox
+       show-search-dropdown="searchDropdown"
+       graphic-file-url="{$ url_for('static', filename='img/') $}"
+       to-url-marker="true"
+      >
+  </div>
+
+  <div anol-get-feature-info
+       ng-if="!disableFeatureInfo"
+       custom-target-filled="featureInfoCallback"
+       before-request="featureInfoBeforeRequest"
+       popup-opening-direction="bottom"
+       waiting-marker-src="{$ url_for('static', filename='img/get-featureinfo-loading.svg') $}"
+       waiting-marker-offset="[-14, -14]"
+       exclude-layers="popupLayers">
+  </div>
+
+  <div anol-feature-popup multiselect open-for="openPopupFor" exclude-layers="popupLayers">
+    <div anol-feature-properties selects="$parent.selects" feature="$parent.feature" layer="$parent.layer"></div>
+  </div>
+
+  {% if app_config['components']['timetable'] %}
+  <div anol-feature-popup close-on-zoom="true" opening-direction="bottom" layers="stationPopupLayers" multiselect mobile-fullscreen="false" allow-drag="true" class="station-layer-popup">
+    <div anol-feature-properties selects="$parent.selects" template-url="munimap-transport/station-properties.html"></div>
+  </div>
+
+  <div anol-drag-popup>
+    <div anol-feature-properties selects="$parent.selects" template-url="munimap-transport/station-properties.html"></div>
+  </div>
+  {% endif %}
+
+  <div ng-if="geolocationEnabled"
+       ng-style="hasTouch ? mobileGeolocationButtonPosition : desktopGeolocationButtonPosition"
+       anol-geolocation="{{geolocationConfig.tracking}}"
+       highlight="{{geolocationConfig.resultVisible}}"
+       result-style="{
+          strokeColor: geolocationConfig.style.strokeColor,
+          strokeWidth: geolocationConfig.style.strokeWidth,
+          fillColor: geolocationConfig.style.fillColor,
+          externalGraphic: '{$ url_for('static', filename='img/') $}' + geolocationConfig.style.graphicFile,
+          graphicWidth: geolocationConfig.style.graphicWidth,
+          graphicHeight: geolocationConfig.style.graphicHeight,
+          graphicYAnchor: geolocationConfig.style.graphicYAnchor,
+          graphicScale: geolocationConfig.style.graphicScale
+       }"
+       zoom="{{geolocationConfig.zoom}}"
+       tooltip-delay="{{tooltipDelay}}">
+  </div>
+  <div ng-if="overviewMapEnabled"
+       anol-overview-map
+       tooltip-placement="right"
+       tooltip-delay="{{tooltipDelay}}">
+  </div>
+  <div anol-scale-line
+       ng-if="scaleLineEnabled">
+  </div>
+  <div ng-if="menuButtonEnabled"
+       ng-style="hasTouch ? mobileMenuButtonPosition : desktopMenuButtonPosition"
+       class="ol-control menu-control">
+    <button ng-click="toggleMenu()"
+            uib-tooltip="{{ sidebar.open ? '{$ _('Close menu') $}' : '{$ _('Open menu') $}' }}"
+            tooltip-placement="right"
+            tooltip-popup-delay="{{ tooltipDelay }}"
+            tooltip-trigger="mouseenter"
+            tooltip-enable="showTooltip">
+      <span class="glyphicon glyphicon-menu-hamburger"></span>
+    </button>
+  </div>
+  <div ng-if="homeButtonEnabled"
+       ng-style="hasTouch ? mobileHomeButtonPosition : desktopHomeButtonPosition"
+       class="ol-control home-control">
+    <button ng-click="goHome()"
+            uib-tooltip="{$ _('Startposition') $}"
+            tooltip-placement="right"
+            tooltip-popup-delay="{{tooltipDelay}}"
+            tooltip-trigger="mouseenter"
+            tooltip-enable="showTooltip">
+      <span class="glyphicon glyphicon-home"></span>
+    </button>
+  </div>
+  <service-button ng-if="serviceButtonEnabled"
+                  ng-style="hasTouch ? mobileServiceButtonPosition : desktopServiceButtonPosition"
+                  menu-style="hasTouch ? mobileServiceMenuPosition : desktopServiceMenuPosition"
+                  >
+    <a anol-measure="point"
+       geodesic="false"
+       title="Koordinate"
+       label-segments="measureLabelSegmentsEnabled"
+       add-to-map="false"
+       class="list-group-item"
+       measure-result-callback="measureCallback"
+       deactivate="$parent.$parent.deactivatePointMeasure"
+       deactivated-callback="$parent.$parent.onPointMeasureDeactivated"
+       activated-callback="$parent.$parent.onPointMeasureActivated">
+    </a>
+    <a anol-measure="line"
+       geodesic="false"
+       title="Strecke"
+       label-segments="measureLabelSegmentsEnabled"
+       add-to-map="false"
+       class="list-group-item"
+       deactivate="$parent.$parent.$parent.deactivateLineMeasure"
+       deactivated-callback="$parent.$parent.onLineMeasureDeactivated"
+       activated-callback="$parent.$parent.onLineMeasureActivated">
+    </a>
+    <a anol-measure="area"
+       geodesic="false"
+       title="Fläche"
+       auto-disable="true"
+       label-segments="measureLabelSegmentsEnabled"
+       add-to-map="false"
+       class="list-group-item"
+       deactivate="$parent.$parent.$parent.deactivateAreaMeasure"
+       deactivated-callback="$parent.$parent.onAreaMeasureDeactivated"
+       activated-callback="$parent.$parent.onAreaMeasureActivated">
+    </a>
+    {% if not current_user.is_anonymous %}
+    <a ng-click="openSaveSettingsModal()" class="list-group-item" ng-if="saveSettingsEnabled">
+      Einstellungen speichern
+    </a>
+    <a ng-click="openLoadSettingsModal()" class="list-group-item" ng-if="saveSettingsEnabled">
+      Einstellungen laden
+    </a>
+    <a href="{$ url_for('user.change_password') $}" class="list-group-item">
+      Passwort ändern
+    </a>
+    {% endif %}
+    <a ng-if="hasTour"
+       class="list-group-item pointer"
+       ng-click="restartTour()">
+      Hilfe starten
+    </a>
+  </service-button>
+  <alkis-button ng-if="alkisButtonEnabled"
+      ng-style="hasTouch ? mobileServiceButtonPosition : desktopServiceButtonPosition"
+      menu-style="hasTouch ? mobileServiceMenuPosition : desktopServiceMenuPosition">
+
+    {% if app_config.get('components').get('alkis') and  app_config.get('components').get('alkis').get('simple') %}
+    <a alkis-simple
+       legimation-modal={$ current_user.alkis_legimation_modal | tojson $}
+       template-url="munimap/alkis-simple.html"
+       class="list-group-item"
+       url="{$ url_for('alkis.info') $}"
+       waiting-marker-src="{$ url_for('static', filename='img/get-featureinfo-loading.svg') $}"
+       waiting-marker-offset="[-14, -14]"">
+    </a>
+    {% endif %}
+
+    {% if app_config.get('components').get('alkis') and  app_config.get('components').get('alkis').get('selection') %}
+    <a alkis-selection
+       legimation-modal={$ current_user.alkis_legimation_modal | tojson $}
+       template-url="munimap/alkis-selection.html"
+       class="list-group-item"
+       url="{$ url_for('alkis.selection') $}">
+    </a>
+    {% endif %}
+
+    {% if app_config.get('components',{}).get('alkis') and app_config.get('components',{}).get('alkis',{}).get('pdf') %}
+    <a alkis-pdf
+       legimation-modal={$ current_user.alkis_legimation_modal | tojson $}
+       template-url="munimap/alkis-pdf.html"
+       class="list-group-item"
+       url="{$ url_for('alkis.pdf') $}"
+       waiting-marker-src="{$ url_for('static', filename='img/get-featureinfo-loading.svg') $}"
+       waiting-marker-offset="[-14, -14]">
+    </a>
+    {% endif %}
+
+    {% if current_user.with_alkis_official %}
+      {% if app_config.get('components').get('alkis') and  app_config.get('components').get('alkis').get('official') %}
+      <a alkis-official
+        legimation-modal={$ current_user.alkis_legimation_modal | tojson $}
+        template-url="munimap/alkis-official.html"
+        class="list-group-item"
+        url="{$ url_for('alkis.official') $}"
+        waiting-marker-src="{$ url_for('static', filename='img/get-featureinfo-loading.svg') $}"
+        waiting-marker-offset="[-14, -14]">
+      </a>
+      {% endif %}
+    {% endif %}
+  </alkis-button>
+
+  <div class="ol-control measure-point-result"
+       ng-show="$parent.measurePointResultVisible"
+       ng-style="hasTouch ? mobilePointMeasureResultPosition : desktopPointMeasureResultPosition">
+    <span class="closer pointer">
+      <i class="glyphicon glyphicon-remove"
+         ng-click="$parent.measurePointResultVisible=false;deactivatePointMeasure()">
+      </i>
+    </span>
+    <div class="row">
+      <div class="col-xs-10">
+        <select class="form-control input-sm" ng-model="$parent.pointMeasureResultSrs">
+          <option value="EPSG:25832">{$ _('UTM 32') $}</option>
+          <option value="EPSG:4326">{$ _('WGS 84') $}</option>
+          <option value="EPSG:3857">{$ _('Web Mercator') $}</option>
+        </select>
+      </div>
+    </div>
+    <div class="selectable mt-0-5">
+      <span ng-bind="pointMeasureResult.lat"></span>, <span ng-bind="pointMeasureResult.lon"></span>
+    </div>
+  </div>
+
+  {% if app_config['components']['timetable'] %}
+  <div class="ol-control timetable-control visible-xs">
+    <button
+            ng-show="$root.timetableActive"
+            ng-click='toggleTimetable(showTimetable)'
+            uib-tooltip="{$ _('Open Timetable') $}"
+            tooltip-placement="right"
+            tooltip-popup-delay="{{tooltipDelay}}"
+            tooltip-trigger="mouseenter"
+            tooltip-enable="showTooltip">
+      <span class="glyphicon glyphicon-time"></span>
+    </button>
+  </div>
+  {% include 'transport/app/timetable.html' %}
+  {% endif %}
+</div>
+
+<script type="text/ng-template" id="munimap/searchbox.html">
+  {% include 'munimap/app/ng-templates/searchbox.html' %}
+</script>
+<script type="text/ng-template" id="munimap/servicebutton.html">
+  {% include 'munimap/app/ng-templates/servicebutton.html' %}
+</script>
+<script type="text/ng-template" id="munimap/feature-style-editor.html">
+    {% include 'munimap/app/ng-templates/feature-style-editor.html' %}
+</script>
+<script type="text/ng-template" id="munimap/feature-label-editor.html">
+    {% include 'munimap/app/ng-templates/feature-label-editor.html' %}
+</script>
+<script type="text/ng-template" id="munimap/feature-icons.html">
+    {% include 'munimap/app/ng-templates/feature-icons.html' %}
+</script>
+<script type="text/ng-template" id="munimap/alkisbutton.html">
+  {% include 'munimap/app/ng-templates/alkisbutton.html' %}
+</script>
+
+{% if app_config['components']['timetable'] %}
+<script type="text/ng-template" id="munimap-transport/station-properties.html">
+    {% include 'transport/app/ng-templates/station-properties.html' %}
+</script>
+{% endif %}
+
+{% if app_config.get('components').get('alkis') and app_config.get('components').get('alkis').get('simple') %}
+<script type="text/ng-template" id="munimap/alkis-simple.html">
+  {% include 'munimap/app/ng-templates/alkis/simple.html' %}
+</script>
+{% endif %}
+
+{% if app_config.get('components').get('alkis') and  app_config.get('components').get('alkis').get('pdf') %}
+<script type="text/ng-template" id="munimap/alkis-pdf.html">
+  {% include 'munimap/app/ng-templates/alkis/pdf.html' %}
+</script>
+{% endif %}
+
+{% if app_config.get('components').get('alkis') and  app_config.get('components').get('alkis').get('selection') %}
+<script type="text/ng-template" id="munimap/alkis-selection.html">
+  {% include 'munimap/app/ng-templates/alkis/selection.html' %}
+</script>
+<script type="text/ng-template" id="munimap/alkis-selection-content.html">
+  {% include 'munimap/app/ng-templates/alkis/selection-content.html' %}
+</script>
+{% endif %}
+
+{% if current_user.with_alkis_official %}
+  {% if app_config.get('components').get('alkis') and  app_config.get('components').get('alkis').get('official') %}
+  <script type="text/ng-template" id="munimap/alkis-official.html">
+    {% include 'munimap/app/ng-templates/alkis/official.html' %}
+  </script>
+{% endif %}
+{% endif %}

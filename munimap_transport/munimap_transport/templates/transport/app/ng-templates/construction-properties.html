@@ -1,0 +1,7 @@
+<div ng-if="propertiesCollection.length > 0" ng-repeat="properties in propertiesCollection">
+    <h4>{{ layer.title }}</h4>
+    <div class="construction-content">
+        <strong>{{ properties.name.value }}</strong>
+        <p>{{ properties.description.value }}</p>
+    </div>
+</div>

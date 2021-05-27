@@ -1,0 +1,44 @@
+<div anol-map class="map">
+  <div anol-zoom></div>
+  <!-- TODO readd when anol-feature-popups don't influence each other
+  <div anol-feature-popup multiselect>
+    <div anol-feature-properties selects="$parent.selects"></div>
+  </div>-->
+  {% include 'digitize/app/popup.html' %}
+  <div class="ol-control menu-control">
+    <button ng-click="toggleMenu()"
+            uib-tooltip="{{ sidebar.open ? '{$ _('Close menu') $}' : '{$ _('Open menu') $}' }}"
+            tooltip-placement="right"
+            tooltip-popup-delay="{{tooltipDelay}}"
+            tooltip-trigger="mouseenter"
+            tooltip-enable="showTooltip">
+      <span class="glyphicon glyphicon-menu-hamburger"></span>
+    </button>
+  </div>
+  <div class="ol-control home-control">
+    <button ng-click="goHome()"
+            uib-tooltip="{$ _('Startposition') $}"
+            tooltip-placement="right"
+            tooltip-popup-delay="{{tooltipDelay}}"
+            tooltip-trigger="mouseenter"
+            tooltip-enable="showTooltip">
+      <span class="glyphicon glyphicon-home"></span>
+    </button>
+  </div>
+</div>
+
+<script type="text/ng-template" id="munimap-digitize/feature-properties-editor.html">
+    {% include 'digitize/app/ng-templates/feature-properties-editor.html' %}
+</script>
+
+<script type="text/ng-template" id="munimap-digitize/feature-style-editor.html">
+    {% include 'digitize/app/ng-templates/feature-style-editor.html' %}
+</script>
+
+<script type="text/ng-template" id="munimap-digitize/feature-label-editor.html">
+    {% include 'digitize/app/ng-templates/feature-label-editor.html' %}
+</script>
+
+<script type="text/ng-template" id="munimap-digitize/feature-icons.html">
+    {% include 'digitize/app/ng-templates/feature-icons.html' %}
+</script>

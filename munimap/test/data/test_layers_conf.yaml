@@ -1,0 +1,163 @@
+backgrounds:
+  - omniscale
+  - omniscale_gray
+  - omniscale_wmts
+  - wms_protected
+  - wmts_protected
+
+groups:
+  - name: omniscale
+    title: Omniscale
+    layers:
+      - omniscale_roads
+      - garden
+      - busstop
+      - station
+  - name: second
+    title: Second
+    layers:
+      - garden
+  - name: third
+    title: Third
+    status: inactive
+    layers:
+      - parks
+  - name: variable_protocol
+    title: Variable protocol
+    status: inactive
+    layers:
+      - omniscale_variable_wms_protocol
+      - omniscale_variable_wmts_protocol
+
+layers:
+  - name: omniscale
+    title: OSM Omniscale
+    type: wms
+    source:
+      url: "http://maps.omniscale.net/wms/mapsosc-b697cf5a/default/service?"
+      format: "image/png"
+      layers:
+        - osm
+      srs: "EPSG:25832"
+  - name: omniscale_gray
+    title: OSM Omniscale Grayscale
+    base: omniscale
+    source:
+      url: "http://maps.omniscale.net/wms/mapsosc-b697cf5a/grayscale/service?"
+  - name: omniscale_wmts
+    title: Omniscale WMTS
+    type: wmts
+    source:
+      url : "http://localhost:8080/wmts/"
+      format: "image/png"
+      layer: 'osm'
+      srs: 'EPSG:25832'
+      levels: 20
+      extent: [243900, 4427757, 756099, 6655205]
+      matrixSet: 'EPSG25832'
+  - name: osm
+    title: OSM
+    type: wms
+    source:
+      url: "http://localhost:8080/service?"
+      format: "image/png"
+      layers:
+        - osm
+      srs: "EPSG:25832"
+  - name: osm_print
+    title: OSM
+    base: osm
+    source:
+      layers:
+        - osm_print
+  - name: omniscale_roads
+    title: OSM Omniscale Roads
+    base: omniscale
+    source:
+      url: "http://maps.omniscale.net/wms/mapsosc-b697cf5a/default/service?"
+      layers:
+      - roads
+  - name: omniscale_variable_wms_protocol
+    title: OSM Omniscale
+    type: wms
+    source:
+      url: "//maps.omniscale.net/wms/mapsosc-b697cf5a/default/service?"
+      format: "image/png"
+      layers:
+        - osm
+      srs: "EPSG:25832"
+  - name: omniscale_variable_wmts_protocol
+    title: Omniscale WMTS
+    type: wmts
+    source:
+      url : "//localhost:8080/wmts/"
+      format: "image/png"
+      layer: 'osm'
+      srs: 'EPSG:25832'
+      levels: 20
+      extent: [243900, 4427757, 756099, 6655205]
+      matrixSet: 'EPSG25832'
+  - name: wms_protected
+    title: Protected WMS
+    base: omniscale
+  - name: wmts_protected
+    title: Protected WMTS
+    base: omniscale_wmts
+  - name: busstop
+    title: Bus stops
+    type: postgis
+    source:
+      type: point
+      query: "select * from munimaptest.osm_transport_points where geometry && !bbox! and type='bus_stop'"
+      srid: 4326
+    style:
+      type: simple
+      externalGraphic: 'bus-18.svg'
+      graphicWidth: 18
+      graphicHeight: 18
+    legend:
+      type: icon
+      src: 'bus-18.svg'
+    featureinfo:
+      target: _popup
+      properties:
+        - name
+        - type
+  - name: station
+    title: Stations
+    base: busstop
+    source:
+      query: "select * from munimaptest.osm_transport_points where geometry && !bbox! and type='station'"
+    style:
+      externalGraphic: 'rail-18.svg'
+  - name: garden
+    title: Garden
+    type: postgis
+    source:
+      type: polygon
+      query: "select * from munimaptest.osm_landusages where ST_Intersects(geometry, !bbox!) and type='garden'"
+      srid: 4326
+    style:
+      type: simple
+      fillColor: '#0f0'
+      strokeColor: '#f00'
+      strokeWidth: 1
+  - name: parks
+    title: Parks
+    type: postgis
+    status: inactive
+    source:
+      type: polygon
+      query: "select * from munimaptest.osm_landusages where ST_Intersects(geometry, !bbox!) and type='park'"
+      srid: 4326
+    style:
+      type: simple
+      fillColor: '#00f'
+      strokeColor: '#0f0'
+      strokeWidth: 1
+  # layers from test_db.sql
+  - name: osm_bus_stops
+    title: Bus stops
+    base: busstop
+    source:
+      query: "select * from munimaptest.osm_transport_points where ST_Intersects(geometry, !bbox!) and type='bus_stop'"

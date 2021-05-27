@@ -1,0 +1,12 @@
+<div class="side-bar"
+     ng-show="sidebar.open === true">
+  <div class="sidebar-header" 
+    ng-class="{'with-scale': $parent.$parent.scaleTextEnabled, 'hide-link': $parent.$parent.hideLink }"
+    ng-include="'munimap/sidebar-header.html'"></div>
+  <div class="sidebar-content" ng-class="{'with-scale': $parent.scaleTextEnabled, 'hide-link': $parent.hideLink }">
+    <div class="panel-group">
+      <ng-transclude></ng-transclude>
+    </div>
+  </div>
+  <div class="sidebar-footer" ng-include="'munimap/sidebar-footer.html'"></div>
+</div>

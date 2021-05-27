@@ -1,0 +1,59 @@
+<div ng-if="propertiesCollection.length > 0" ng-repeat="properties in propertiesCollection" ng-controller="routeController">
+    <h4 class="station-properties-header">
+        {{ properties.name.value }}
+    </h4>
+    <div class="select-station-content" ng-mousedown="$event.stopPropagation();">
+        <ul class="list-unstyled">
+            <li ng-click='$root.timetableOrigin = properties.name.value; 
+                $root.timetableOriginCity = properties.city.value;
+                $root.showTimetable = true' 
+                class="pointer">
+                {$ _('Select station as start') $}
+            </li>
+            <li ng-click='
+                $root.timetableDestination = properties.name.value; 
+                $root.timetableDestinationCity = properties.city.value;
+                $root.showTimetable = true' 
+                class="pointer">
+                {$ _('Select station as stop') $}
+            </li>
+        </ul>
+    </div>
+    <div class="transport-content" ng-if="properties.routes.value.length > 2" ng-mousedown="$event.stopPropagation();">
+
+        <ul class="list-inline">
+            <li class="pointer"
+                ng-class="{active: selectedRef == route.ref }"
+                ng-repeat="route in properties.routes.value">
+                <span class="badge ref-badge"
+                    ng-class="{
+                        'tram' : route.type === 'tram' || route.type === 'light_rail',
+                        'bus': route.type === 'bus',
+                        'night': route.ref[0] === 'N',
+                        'other-operator': route.operator != '{$ config['TRANSPORT_OPERATOR'] $}'
+                    }"
+                    ng-click="toggleRef(route.ref)">
+                    {{ route.ref }}
+                </span>
+            </li>
+        </ul>
+    </div>
+    <div class="subroute-content" ng-show="properties.routes.value.length <= 2 || selectedRef !== undefined" ng-mousedown="$event.stopPropagation();">
+        <div ng-repeat="route in properties.routes.value" ng-show="properties.routes.value.length <= 2 || selectedRef == route.ref">
+            <span class="badge ref-badge"
+                ng-class="{
+                    'tram' : route.type == 'tram' || route.type === 'light_rail',
+                    'bus': route.type == 'bus',
+                    'night': route.ref[0] === 'N',
+                    'other-operator': route.operator != '{$ config['TRANSPORT_OPERATOR'] $}'
+                }">
+                {{ route.ref }}</span>
+                <span class="ref-operator" ng-if="route.operator && route.operator != 'moBiel GmbH'">({{ route.operator }})</span>
+            <ul class="list-unstyled">
+                <li class="pointer" ng-repeat="subroutes in route.subroutes" ng-click="toggleRoute(subroutes.id)">
+                    {{ subroutes.description }}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

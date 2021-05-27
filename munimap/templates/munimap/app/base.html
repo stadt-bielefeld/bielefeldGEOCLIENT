@@ -1,0 +1,10 @@
+{% extends "munimap/base.html" %}
+
+{% block javascript %}
+    <script type="text/javascript" src="{$ url_for('static', filename='translations/de_DE.js') $}"></script>
+    <script type="text/javascript" src="{$ url_for('static', filename='translations/de_DE_feature_properties.js') $}"></script>
+
+    {% assets "vendor-libs-js" %}
+        <script type="text/javascript" src="{$ ASSET_URL $}"></script>
+    {% endassets %}
+{% endblock %}

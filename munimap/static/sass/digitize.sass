@@ -1,0 +1,363 @@
+.text-white
+  color: $white
+
+.tooltip-info
+  font-size:12px
+  vertical-align: super
+  cursor: pointer
+
+.form-horizontal
+  margin: 0px 15px 0px
+  fieldset
+    border-bottom: 1px solid $grey-lighter
+    padding-bottom: 1em
+    padding-top: 1em
+    legend
+      font-size: 1.2em
+      font-weight: bold
+      margin-bottom: 0
+      padding-top: 5px
+      border: none
+      color: $grey
+    .checkbox
+      .control-label
+        padding-top: 0;
+    .control-label, .checkbox
+      font-weight: bold
+    .checkbox input[type="checkbox"]
+      margin-left: 0;
+    .form-group
+      padding: 0
+      margin-top: 5px
+      margin-bottom: 5px
+      .control-label
+        // padding-top: 0
+        font-weight: bold
+      .form-control-feedback
+        top: 15px
+        right: 5px
+      .help-block
+        position: absolute
+        margin-top: 0
+        right: 15px
+      .slider.slider-horizontal
+        width: 100%
+        height: 30px
+      .slider-value-label
+        color: $text-color
+        background-color: $popup-digitize-background-color
+        border: 1px solid lighten($text-color, 80%)
+        font-weight: normal
+        min-width: 30px
+        text-align: center
+        font-size: 10px
+        border-radius: 4px
+  .form-group
+    button
+      margin-top: 10px
+
+/* index page */
+
+.list-group-item 
+  cursor: pointer
+  &:hover
+    color: #555;
+    text-decoration: none;
+    background-color: #f5f5f5;
+
+.list-group-item a
+  margin-right: 10px
+  line-height: 1
+  cursor: pointer
+  color: #555;
+  &:hover
+    cursor: pointer
+    color: #555;
+    text-decoration: none;
+    background-color: #f5f5f5;
+
+/* side bar */
+.sidebar-header
+  .back-to-index
+    position: absolute
+    right: 3px
+    bottom: 3px
+.sidebar-content
+  .editable-layer
+    .layer-title
+      display: inline-block
+      max-width: 75%
+    &.inactive
+      .layer-title
+        .glyphicon
+          opacity: 0.4
+
+/* map */
+
+.munimap-digitize-popup
+  &.anol-popup
+    background-color: $popup-digitize-background-color
+    padding: 0
+
+    &.top:after
+      border-top-color: $popup-digitize-background-color
+
+    .anol-popup-closer
+      color: white
+      font-size: 18px
+      right: 10px
+      top: 10px
+
+    .anol-popup-content
+      .popup-header
+        padding: 10px
+        background-color: $popup-digitize-header-color
+        color: $popup-digitize-header-text-color
+        h4
+          margin: 0
+
+      .popup-content
+        @media (min-width: $screen-xs)
+          .nav-tabs
+            position: absolute
+            left: -44px
+            bottom: 38px
+            border: none
+            li
+              border-radius: 4px
+              @include full-box-shadow(-4px, -1px, 8px, -4px, $shadow-color)
+              a
+                border: none
+                background-color: $popup-digitize-background-color
+                &:hover
+                  border: none
+                &:focus
+                  border: none
+                  outline: none
+
+              &:not(.active)
+                a
+                  background-color: darken($popup-digitize-background-color, 5%)
+                  &:hover
+                    background-color: $popup-digitize-background-color
+
+        .tab-content
+          font-size: 0.8em
+          min-width: 250px
+          min-height: 160px
+          position: relative
+
+          .properties
+            .form-horizontal
+              fieldset
+                border-bottom: none
+            .no-feature-properties
+              display: none
+              position: absolute
+              text-align: center
+              top: 0
+              left: 0
+              width: 100%
+            .form-horizontal:empty + .no-feature-properties
+                display: block
+
+          .style
+            .form-horizontal
+              width: 300px
+
+          .marker
+            margin: 10px 15px 0px
+            padding-bottom: 10px
+            .marker-icon
+              max-width: 30px
+            img
+              padding: 3px
+              &.selected
+                padding: 1px
+                border: 2px solid $green-border
+      .popup-footer
+        height: 40px
+        margin: 0px 15px 0px 15px
+        padding-top: 5px
+        border-top: 1px solid $grey-lighter
+        .remove-feature
+          padding-top: 8px
+          font-size: 0.8em
+          &:hover
+            text-decoration: none
+
+$slider-track-height: 6px
+$slider-handle-width: 6px
+$slider-handle-height: $slider-track-height * 2
+.slider.slider-horizontal
+  .slider-track
+    height: $slider-track-height
+    margin-top: -($slider-track-height / 3)
+  .slider-selection
+    background-image: none
+    box-shadow: none
+  .slider-handle
+    width: $slider-handle-width
+    height: $slider-handle-height
+    margin-left: 0
+    margin-top: 8px
+    border-radius: 33%
+    background-image: none
+    background-color: $text-color
+    @include background-linear-gradient(lighten($text-color, 90%), $text-color)
+    &:before
+      content: ''
+
+.marker
+  .form-horizontal
+    fieldset
+      border: none
+      padding: 0
+      .form-group
+        text-align: left
+  .symbol-container
+    max-height: 250px
+    overflow: auto
+
+.anol-draw
+  h5
+    font-weight: bold
+    margin-top: 15px
+
+  .activ-layer-container
+    margin-bottom: 1em
+
+  .btn-group + .btn
+    margin-top: 0.5em
+
+  .save-button
+    margin-top: 1.5em
+    width: 100%
+    &.btn-success
+      .glyphicon
+        color: white
+
+  .draw-point,
+  .draw-line,
+  .draw-polygon,
+  .draw-modify
+    padding: 5px
+
+  .draw-icon
+    background-image: url('../img/draw-toolbar-spritesheet-black.svg')
+    background-size: 200px auto
+    height: 12px
+    width: 10px
+    display: inline-block
+
+  .draw-point
+    .draw-icon
+      background-position: -96px 18px
+
+  .draw-line
+    .draw-icon
+      background-position: -6px 18px
+
+  .draw-polygon
+    .draw-icon
+      background-position: -28px 18px
+
+  .draw-remove
+    .draw-icon
+      background-position: -140px 18px
+
+  .draw-modify
+    &.active
+      .control-on
+        display: inline
+      .control-off
+        display: none
+    &:not(.active)
+      .control-on
+        display: none
+      .control-off
+        display: inline
+
+/* Colorpicker */
+$sp-border-color: #ccc
+$sp-background-color: white
+
+.sp-replacer
+  border-color: $sp-border-color
+  border-radius: 4px
+  background-color: $sp-background-color
+  height: 30px
+  &:hover, &:focus, &.sp-active
+    border-color: $sp-border-color
+
+  .sp-dd
+    font-size: 9px
+
+.sp-container
+  border-color: $sp-border-color
+  background-color: $sp-background-color
+  .sp-palette
+    max-width: 120px
+
+  .sp-picker-container .sp-top .sp-top-inner
+    .sp-color,
+    .sp-clear,
+    .sp-hue
+      border-color: $sp-border-color
+      border-radius: 4px
+    .sp-hue
+      top: 31px
+
+  .sp-input-container
+    /* applied bootstrap input style */
+    .sp-input
+      background-color: $sp-background-color
+      background-image: none
+      border: 1px solid $sp-border-color
+      border-radius: 4px
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset
+      color: #555
+      display: block
+      font-size: 14px
+      height: 34px
+      line-height: 1.42857
+      padding: 6px 12px
+      transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s
+      width: 100%
+
+  /* applied bootstrap button style */
+  .sp-button-container
+    float: none
+    .sp-choose, .sp-cancel
+      -moz-user-select: none
+      background-image: none
+      border: 1px solid transparent
+      border-radius: 3px
+      cursor: pointer
+      display: inline-block
+      font-size: 12px
+      font-weight: normal
+      line-height: 1.5
+      margin-bottom: 0
+      padding: 5px 10px
+      text-align: center
+      vertical-align: middle
+      white-space: nowrap
+      text-shadow: none
+
+    .sp-choose
+      background-color: #5cb85c
+      border-color: #4cae4c
+      color: #fff
+      float: right
+
+    .sp-cancel
+      background-color: #d9534f
+      border-color: #d43f3a
+      color: #fff !important
+      &:hover
+        text-decoration: none
+
+/* Admin area */
+.line-height-3em
+  line-height: 3em

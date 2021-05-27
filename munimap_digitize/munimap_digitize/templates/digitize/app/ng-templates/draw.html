@@ -1,0 +1,66 @@
+<div class="activ-layer-container">
+    <div ng-if="activeLayer" class="label label-success">{$ _('Current active group:') $} {{ activeLayer.title }}</div>
+    <div ng-if="!activeLayer" class="label label-default">{$ _('No group active') $}</div>
+</div>
+<h5>{$ _('Add geometry') $}</h5>
+<div class="btn-group">
+    <button ng-click="drawPoint()"
+            class="btn btn-default btn-sm draw-point"
+            uib-tooltip="{$ _('anol.draw.TOOLTIP_POINT') $}"
+            tooltip-placement="top"
+            tooltip-append-to-body="true"
+            tooltip-popup-delay="{{ tooltipDelay }}"
+            tooltip-enable="{{ tooltipEnable }}"
+            tooltip-trigger="mouseenter">
+        <div class="draw-icon"></div>
+        {$ _('Draw point') $}
+    </button>
+    <button ng-click="drawLine()"
+            class="btn btn-default btn-sm draw-line"
+            uib-tooltip="{$ _('anol.draw.TOOLTIP_LINE') $}"
+            tooltip-placement="top"
+            tooltip-append-to-body="true"
+            tooltip-popup-delay="{{ tooltipDelay }}"
+            tooltip-enable="{{ tooltipEnable }}"
+            tooltip-trigger="mouseenter">
+        <div class="draw-icon"></div>
+        {$ _('Draw line') $}
+    </button>
+    <button ng-click="drawPolygon()"
+            class="btn btn-default btn-sm draw-polygon"
+            uib-tooltip="{$ _('anol.draw.TOOLTIP_POLYGON') $}"
+            tooltip-placement="top"
+            tooltip-append-to-body="true"
+            tooltip-popup-delay="{{ tooltipDelay }}"
+            tooltip-enable="{{ tooltipEnable }}"
+            tooltip-trigger="mouseenter">
+        <div class="draw-icon"></div>
+        {$ _('Draw polygon') $}
+    </button>
+    <button ng-click="$parent.drawText(drawCustom)"
+            class="btn btn-default btn-sm draw-text"
+            ng-class="{'disabled': $parent.drawTextDisabled, 'active': $parent.drawTextActive}"
+            uib-tooltip="{$ _('anol.draw.TOOLTIP_TEXT') $}"
+            tooltip-placement="top"
+            tooltip-append-to-body="true"
+            tooltip-popup-delay="{{ tooltipDelay }}"
+            tooltip-enable="{{ tooltipEnable }}"
+            tooltip-trigger="mouseenter">
+        <span class="glyphicon glyphicon-text-size"></span>
+        {$ _('Draw text') $}
+    </button>
+</div>
+<h5>{$ _('Modify or shift geometry') $}</h5>
+<button ng-click="modify()"
+        class="btn btn-default btn-sm draw-modify">
+    <span class="control-on">{$ _('Deactivate') $}</span>
+    <span class="control-off">{$ _('Activate') $}</span>
+</button>
+
+<button class="btn btn-default btn-sm save-button"
+        ng-class="{'btn-success': $parent.hasChanges()}"
+        ng-disabled="!$parent.hasChanges()"
+        ng-click="$parent.saveChanges()">
+    <div class="glyphicon glyphicon-save"></div>
+    {$ _('Save') $}
+</button>

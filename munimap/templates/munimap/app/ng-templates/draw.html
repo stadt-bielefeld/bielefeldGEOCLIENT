@@ -1,0 +1,67 @@
+<h5>{$ _('Add geometry') $}</h5>
+<div class="btn-group">
+    <button ng-click="drawPoint()"
+            class="btn btn-default btn-sm draw-point"
+            uib-tooltip="{$ _('anol.draw.TOOLTIP_POINT') $}"
+            tooltip-placement="top"
+            tooltip-append-to-body="true"
+            tooltip-popup-delay="{{ tooltipDelay }}"
+            tooltip-enable="{{ tooltipEnable }}"
+            tooltip-trigger="mouseenter">
+        <div class="draw-icon"></div>
+        {$ _('Draw point') $}
+    </button>
+    <button ng-click="drawLine()"
+            class="btn btn-default btn-sm draw-line"
+            uib-tooltip="{$ _('anol.draw.TOOLTIP_LINE') $}"
+            tooltip-placement="top"
+            tooltip-append-to-body="true"
+            tooltip-popup-delay="{{ tooltipDelay }}"
+            tooltip-enable="{{ tooltipEnable }}"
+            tooltip-trigger="mouseenter">
+        <div class="draw-icon"></div>
+        {$ _('Draw line') $}
+    </button>
+    <button ng-click="drawPolygon()"
+            class="btn btn-default btn-sm draw-polygon"
+            uib-tooltip="{$ _('anol.draw.TOOLTIP_POLYGON') $}"
+            tooltip-placement="top"
+            tooltip-append-to-body="true"
+            tooltip-popup-delay="{{ tooltipDelay }}"
+            tooltip-enable="{{ tooltipEnable }}"
+            tooltip-trigger="mouseenter">
+        <div class="draw-icon"></div>
+        {$ _('Draw polygon') $}
+    </button>
+    <button ng-click="$parent.drawText(drawCustom)"
+            class="btn btn-default btn-sm draw-text"
+            ng-class="{'disabled': $parent.drawTextDisabled, 'active': $parent.drawTextActive}"
+            uib-tooltip="{$ _('anol.draw.TOOLTIP_TEXT') $}"
+            tooltip-placement="top"
+            tooltip-append-to-body="true"
+            tooltip-popup-delay="{{ tooltipDelay }}"
+            tooltip-enable="{{ tooltipEnable }}"
+            tooltip-trigger="mouseenter">
+        <span class="glyphicon glyphicon-text-size"></span>
+        {$ _('Draw text') $}
+    </button>
+</div>
+<div class="mt-1 mb-1">
+    <h5>{$ _('Modify or shift geometry') $}</h5>
+    <strong>Aus</strong>
+    <switch id="enabled"
+            name="enabled"
+            class="green small"
+            ng-model="enabled"
+            ng-state="modifyActive"
+            ng-change="modify">
+    </switch>
+    <strong>An</strong>
+</div>
+
+<div anol-featureexchange
+     layer="activeLayer"
+     pre-download="$parent.preDownload"
+     post-upload="$parent.extractPermalinkFromImport"
+     template-url="munimap/featureexchange.html">
+</div>

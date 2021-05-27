@@ -1,0 +1,13 @@
+{% extends "munimap/errors/base.html" %}
+
+{% set pagetitle = 'Error' %}
+
+{% block error_text %}
+ <h2>Error in {$ error.filename $}</h2>
+ {% if error.position is not none and error.reason is not none %}
+    <h3>{$ error.reason $} at line {$ error.position[0] $}, column {$ error.position[1] $}</h3>
+ {% elif error.reason is not none %}
+    <h3>{$ error.reason $}</h3>
+ {% endif %}
+ <h2>Pleace check your config file.</h2>
+{% endblock %}

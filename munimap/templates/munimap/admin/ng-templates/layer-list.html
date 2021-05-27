@@ -1,0 +1,90 @@
+<div class="row">
+  <div class="col-xs-12">
+    <table class="table table-striped-double">
+      <thead>
+        <tr>
+          <th>{$ _('name') $}</th>
+          <th>{$ _('title') $}</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id="{{ layer.name }}"
+            ng-repeat-start="layer in layers | filter:listSearch"
+            ng-switch on="layerStatus(layer)"
+            ng-class="{'danger': layer.missingConfig}">
+          <td>
+            <a ng-href="/admin/layers?id={{ layer.id }}"
+               ng-if="layer.id !== undefined">
+              {{ layer.name }}
+            </a>
+            <span ng-if="layer.id === undefined">{{ layer.name }}</span>
+          </td>
+          <td>{{ layer.title }}</td>
+          <td ng-switch-when="protected">
+            <confirm class="btn btn-default btn-xs"
+                     on-confirm="unprotect(protectedLayers[layer.name])"
+                     confirm-title="{$ _('When layer is unprotected all assignments of this layer will be lost?') $}"
+                     ok-label="{$ _('Unprotect') $}"
+                     cancel-label="{$ _('Cancel') $}"
+                     placement="left"
+                     text="{$ _('Unprotect') $}"
+            ></confirm>
+          </td>
+          <td ng-switch-when="missing">
+            <confirm class="btn btn-default btn-xs"
+                     on-confirm="unprotect(protectedLayers[layer.name])"
+                     confirm-title="{$ _('When layer is removed all assignments of this layer will be lost') $}"
+                     ok-label="{$ _('Remove') $}"
+                     cancel-label="{$ _('Cancel') $}"
+                     placement="left"
+                     text="{$ _('Remove') $}"
+            ></confirm>
+          </td>
+          <td ng-switch-default>
+            <confirm class="btn btn-default btn-xs"
+              on-confirm="protect(layer)"
+              confirm-title="{$ _('Protect layer?') $}"
+              ok-label="{$ _('protect') $}"
+              cancel-label="{$ _('Cancel') $}"
+              placement="left"
+              text="{$ _('protect') $}"
+            ></confirm>
+          </td>
+          <td>
+            <button class="btn btn-xs btn-default" ng-click="updateOpenStatus(layer)">
+              <i class="glyphicon" ng-class="{'glyphicon-chevron-right': !layer.isOpen, 'glyphicon-chevron-down': layer.isOpen}"></i>
+            </button>
+          </td>
+        </tr>
+        <tr ng-repeat-end>
+          <td colspan="4" ng-show="layer.isOpen">
+            <div class="row">
+              <dl class="col-xs-3">
+                <dt>{$ _('Type') $}</dt>
+                <dd>{{ layer.type}}</dd>
+                <dt ng-show="layer.format">{$ _('Format') $}</dt>
+                <dd ng-show="layer.format">{{ layer.format }}</dd>
+              </dl>
+              <dl class="col-xs-3">
+                <dt>{$ _('Status') $}</dt>
+                <dd>{{ layer.status }}</dd>
+                <dt ng-show="layer.layers">{$ _('Layer') $}</dt>
+                <dd ng-show="layer.layers">
+                  <ul class="list-unstyled">
+                    <li ng-repeat="l in layer.layers">{{ l }}</li>
+                  </ul>
+                </dd>
+              </dl>
+              <dl class="col-xs-6">
+                <dt ng-show="layer.url">{$ _('Url') $}</dt>
+                <dd ng-show="layer.url">{{ layer.url }}</dd>
+              </dl>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

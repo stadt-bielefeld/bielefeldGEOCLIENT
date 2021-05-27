@@ -1,0 +1,62 @@
+{% extends "munimap/pages/base.html" %}
+
+{% set pagetitle = _('Digitize') %}
+
+{% block container %}
+<section class="page-slice">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-7">
+        <p>{$ _('Please select a layer to edit. If you logged in as administrator you can edit layers properties.') $}</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-4">
+        <h4>{$ _('Layers') $}</h4>
+      </div>
+
+      {% if is_admin() %}
+      <div class="col-xs-3">
+        <div class="pull-right">
+          <a href="{$ url_for('digitize_admin.add_layer') $}" class="btn btn-default btn-sm pull-right">
+            {$ _('Add Layer') $}
+          </a>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+
+    <idv class="row">
+      <div class="col-xs-7">
+        <ul class="list-group">
+          {% if not layers %}
+             <li class="list-group-item">{$ _('No Layers available') $}</li>
+          {% endif %}
+
+          {% for layer in layers %}
+          <li class="list-group-item">
+              <strong>{$ layer.title $}</strong>
+
+              {% if is_admin() %}
+              <a href="{$ url_for('digitize_admin.admin', name=layer.name) $}" class="btn btn-default btn-sm pull-right">
+                {$ _('Administrate') $}
+              </a>
+              {% endif %}
+
+              <a href="{$ url_for('digitize.digitizer', name=layer.name) $}" class="btn btn-default btn-sm pull-right">
+                {$ _('Edit in map') $}
+              </a>
+
+          </li>
+          {% endfor %}
+        </ul>
+
+
+      </div>
+
+    </div>
+  </div>
+<section>
+{% endblock %}
+

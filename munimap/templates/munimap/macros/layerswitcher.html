@@ -1,0 +1,64 @@
+{% macro background_layer_item(layer) %}
+<div class="background-layer-item pointer"
+     ng-click="setBackgroundLayerByName('{$ layer['name'] $}')">
+  <img src="{$ url_for('static', filename='img/background_preview/' + layer['name'] + '.png') $}" />
+  <div class="background-layer-title"
+       ng-class="{'active': layerIsVisibleByName('{$ layer['name'] $}')}">
+    {$ layer['title'] $}
+  </div>
+</div>
+{% endmacro %}
+
+{% macro layers_group_item(group) %}
+<div class="group-item"
+     ng-class="{'inactive': !groupIsVisibleByName('{$ group['name'] $}')}"
+     ng-init="{$ group['name'] $}IsCollapsed=true">
+  <span class="pointer"
+        ng-class="{'open-layer-group': {$ group['name'] $}IsCollapsed, 'close-layer-group': !{$ group['name'] $}IsCollapsed}"
+        ng-click="{$ group['name'] $}IsCollapsed=!{$ group['name'] $}IsCollapsed">
+  </span>
+    
+  {% if group['metadataUrl'] %}
+  <a target="_blank" href="{$ group['metadataUrl'] $}">
+      <span class="glyphicon glyphicon-info-sign"></span>                    
+  </a>
+  {% else %}
+    <span class="glyphicon glyphicon-none"></span>                    
+  {%- endif -%}  
+  
+  <div class="layer-title"
+       ng-click="toggleGroupVisibleByName('{$ group['name'] $}')">
+    {$ group['title'] $}
+  </div>
+  {% for layer in group['layers'] %}
+    <div class="group-layers-container"
+       ng-if="!{$ group['name'] $}IsCollapsed"
+       ng-class="{'inactive': !layerIsVisibleByName('{$ layer['name'] $}')}">
+    
+    {% if layer['metadataUrl'] %}
+    <a target="_blank" href="{$ layer['metadataUrl'] $}">
+        <span class="glyphicon glyphicon-info-sign"></span>                    
+    </a>
+    {% else %}
+      <span class="glyphicon glyphicon-none"></span>                    
+    {%- endif -%}
+  
+    {$ layer_item(layer, 2) $}
+    </div>
+  {% endfor %}
+</div>
+{% endmacro %}
+
+{% macro layer_group_item(group) %}
+  <div class="single-item"
+       ng-class="{'inactive': !layerIsVisibleByName('{$ group['layers'][0]['name'] $}')}">
+    {$ layer_item(group['layers'][0], 1) $}
+  </div>
+{% endmacro %}
+
+{% macro layer_item(layer, depth) %}
+  <div class="layer-title"
+       ng-click="toggleLayerVisibleByName('{$ layer['name'] $}')">
+    {$ layer['title'] $}
+  </div>
+{% endmacro %}

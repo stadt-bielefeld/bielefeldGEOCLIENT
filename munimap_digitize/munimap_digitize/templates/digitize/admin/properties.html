@@ -1,0 +1,59 @@
+{% extends "digitize/admin/base.html" %}
+
+{% from "munimap/macros/forms.html" import input %}
+
+{% block digitize_admin_content %}
+
+<h3>{$ _('Properties for %(layer_title)s', layer_title=layer.title) $}</h3>
+<hr>
+
+<div class="row">
+  <div class="col-xs-7">
+    <form method="POST" action="{$ url_for('.edit_properties', name=layer.name) $}">
+      {$ edit_form.csrf_token $}
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>{$ _('Name') $}</th>
+            <th>{$ _('Title') $}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for key in property_keys %}
+          <tr>
+            <td>{$ key $}</td>
+            <td>{$ edit_form[key](class="form-control") $}</td>
+            <td>
+              <a href="#" ng-click="openDeleteModal('{$ url_for('.remove_property', name=layer.name, key=key) $}', '{$ _('Really delete property %(key)s?', key=key) $}')" class="btn btn-sm btn-danger">
+                  {$ _('Remove') $}
+              </a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <button type="submit" class="btn btn-success">{$ _('Update') $}</button>
+    </form>
+  </div>
+
+  <div class="col-xs-4 col-xs-offset-1">
+    <div class="panel panel-default">
+      <div class="panel-heading">{$ _('Add new property') $}</div>
+      <div class="panel-body">
+
+        <form method="POST" action="{$ url_for('.add_property', name=layer.name) $}">
+          {$ add_form.csrf_token $}
+          {% for field in add_form if field.widget.input_type != 'hidden' %}
+            {$ input(field, class="form-control") $}
+          {% endfor %}
+          <button type="submit" class="btn btn-success">{$ _('Add') $}</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+

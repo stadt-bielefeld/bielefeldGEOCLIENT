@@ -1,0 +1,150 @@
+<div sidebar="sidebar">
+  <div sidebar-item="background"
+       exclusive
+       ng-if="layerswitcherEnabled"
+       item-title="Hintergrundkarten">
+    <div anol-layerswitcher template-url="munimap/layerswitcher-backgrounds.html"></div>
+  </div>
+  <div sidebar-item="overlay"
+       exclusive
+       ng-if="layerswitcherEnabled"
+       item-title="Themen | Inhalte">
+    <div anol-layerswitcher
+      remove-layer-enabled=removeLayerEnabled
+      template-url="munimap/layerswitcher-overlays.html" class="overlay-layerswitcher"></div>
+    <button id="open-catalog-button" type="button" class="btn btn-success btn-block" ng-click="openCatalog()" ng-if="catalogEnabled">{$ _('Catalog') $}</button>
+  </div>
+  <div sidebar-item="legend"
+       exclusive
+       ng-if="legendEnabled"
+       item-title="Legende">
+    <div anol-legend template-url="munimap/legend.html"></div>
+  </div>
+  <div sidebar-item="draw"
+       exclusive
+       ng-if="drawEnabled"
+       item-title="{$ _('Draw controls') $}">
+    <div anol-draw
+         template-url="munimap-digitize/draw.html"
+         post-draw-action="openDrawPopup(layer, feature)">
+    </div>
+  </div>
+  <div sidebar-item="geoeditor"
+       exclusive
+       ng-if="geoeditorEnabled"
+       item-title="{$ _('Editor controls') $}">
+    <div anol-draw
+         template-url="munimap/geoeditor-draw.html"
+         geometries="geoeditor.geometries"
+         post-draw-action="openGeoeditorPopup(layer, feature)"
+         post-delete-action="onDelete(layer, feature)"
+         on-modify-select="onModifySelect()"
+         live-measure="geoeditor.displayMeasurements">
+    </div>
+  </div>
+  <div sidebar-item="print"
+       exclusive
+       ng-if="printEnabled"
+       item-title="Drucken | PDF">
+    <div anol-print
+         show-print-area="!$parent.collapse">
+      <div class="checkbox"
+           ng-if="printConfig.chooseStreetIndex">
+        <label>
+          <input ng-model="$parent.$parent.printAttributes.streetIndex"
+                 type="checkbox">
+            Straßenverzeichnis erzeugen
+        </label>
+      </div>
+      <div class="form-group"
+           ng-if="printConfig.chooseCells"
+           ng-show="$parent.$parent.printAttributes.streetIndex">
+        <label>Anzahl Gitterzellen</label>
+        <div class="row"
+             ng-init="$parent.$parent.printAttributes.cellsX = printConfig.cells[0]; $parent.$parent.printAttributes.cellsY = printConfig.cells[1]">
+          <div class="col-xs-6">
+            <span>Waagerecht&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></span>
+            <input ng-model="$parent.$parent.printAttributes.cellsX"
+                   placeholder="{$ _('CellsX') $}"
+                   type="number"
+                   class="form-control" />
+          </div>
+          <div class="col-xs-6">
+            <span>Senkrecht&nbsp;<span class="glyphicon glyphicon-arrow-down"></span></span>
+            <input ng-model="$parent.$parent.printAttributes.cellsY"
+                   placeholder="{$ _('CellsY') $}"
+                   type="number"
+                   class="form-control" />
+          </div>
+        </div>
+      </div>
+      <div class="checkbox"
+           ng-show="printConfig.conditionsOfUse"
+           ng-init="$parent.isPrintableAttributes.termOfUse = !printConfig.conditionsOfUse">
+        <label>
+          <input type="checkbox"
+                 ng-model="$parent.isPrintableAttributes.termOfUse" />
+            <a href="{$ url_for('frontend.pages', name='nutzungsbedingungen') $}"
+               class="text-danger"
+               target="_blank">Nutzungsbedingungen</a>&nbsp;zustimmen
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/ng-template" id="munimap/sidebar.html">
+  {% include 'munimap/app/ng-templates/sidebar.html' %}
+</script>
+
+<script type="text/ng-template" id="munimap/sidebar-item.html">
+  {% include 'munimap/app/ng-templates/sidebar-item.html' %}
+</script>
+
+<script type="text/ng-template" id="munimap/sidebar-header.html">
+  {% include 'munimap/app/ng-templates/sidebar-header.html' %}
+</script>
+
+<script type="text/ng-template" id="munimap/sidebar-footer.html">
+  {% include 'munimap/app/ng-templates/sidebar-footer.html' %}
+</script>
+
+<script type="text/ng-template" id="munimap/layerswitcher-backgrounds.html">
+  {% include 'munimap/app/ng-templates/layerswitcher-backgrounds.html' %}
+</script>
+
+<script type="text/ng-template" id="munimap/layerswitcher-overlays.html">
+  {% include 'munimap/app/ng-templates/layerswitcher-overlays.html' %}
+</script>
+
+<script type="text/ng-template" id="munimap-digitize/draw.html">
+    {% include 'munimap/app/ng-templates/draw.html' %}
+</script>
+
+<script type="text/ng-template" id="munimap/geoeditor-draw.html">
+  {% include 'munimap/app/ng-templates/geoeditor-draw.html' %}
+</script>
+
+<script type="text/ng-template" id="munimap/featureexchange.html">
+    {% include 'munimap/app/ng-templates/featureexchange.html' %}
+</script>
+
+<script type="text/ng-template" id="munimap/settings-load.html">
+  {% include 'munimap/app/ng-templates/settings-load.html' %}
+</script>
+
+<script type="text/ng-template" id="munimap/settings-save.html">
+  {% include 'munimap/app/ng-templates/settings-save.html' %}
+</script>
+
+<script type="text/ng-template" id="munimap/catalog.html">
+  {% include 'munimap/app/ng-templates/catalog.html' %}
+</script>
+
+<script type="text/ng-template" id="munimap/catalog-active-layers.html">
+  {% include 'munimap/app/ng-templates/catalog-active-layers.html' %}
+</script>
+
+<script type="text/ng-template" id="munimap/legend.html">
+  {% include 'munimap/app/ng-templates/legend.html' %}
+</script>

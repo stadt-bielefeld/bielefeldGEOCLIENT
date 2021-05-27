@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    {% block meta %}
+      {% include 'munimap/meta.html' %}
+    {% endblock %}
+
+    {% block header %}
+      {% assets "libs-css" %}
+        <link href="{$ ASSET_URL $}" rel="stylesheet" type="text/css">
+      {% endassets %}
+      {% assets "app-css" %}
+        <link href="{$ ASSET_URL $}" rel="stylesheet" type="text/css">
+      {% endassets %}
+      {% assets "draw-libs-css" %}
+        <link href="{$ ASSET_URL $}" rel="stylesheet" type="text/css">
+      {% endassets %}
+    {% endblock %}
+
+  </head>
+    <body>
+      <div id="munimap-embedded"" class="embed-responsive">
+        <iframe class="embed-responsive-item" src="{$ iframe_url $}" allowfullscreen></iframe>
+      </div>
+      {% if current_user.is_authenticated %}
+        <a href="{$ url_for('user.projects') $}" class="iframe-project-link">
+          {$ _('Project list') $}
+        </a>
+      {% endif %}
+    </body>
+
+    <script>
+      document.getElementById("munimap-embedded").style.height = window.innerHeight + "px";
+      window.onresize = function(event) {
+        document.getElementById("munimap-embedded").style.height = window.innerHeight + "px";
+      };
+    </script>
+</html>
+

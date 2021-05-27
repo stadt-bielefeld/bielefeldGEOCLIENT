@@ -1,0 +1,60 @@
+<div class="row">
+    <div class="col-xs-6">
+        <div class="element-container">
+            <div class="element-container-header">
+                <h4>{$ _('Assigned groups') $}</h4>
+                <div class="input-group input-group-sm">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                    <input type="text" class="element-search form-control" ng-model="assignedGroupSearch" placeholder="{$ _('search') $}">
+                </div>
+            </div>
+            <ul class="list-group element-container-content" ng-show="assignedGroups.length > 0" ng-style="{'max-height': containerMaxHeight}">
+                <li class="list-group-item element"
+                    ng-repeat="group in assignedGroups | filter:assignedGroupSearch"
+                >
+                    <i class="pull-left glyphicon glyphicon-warning-sign text-danger pointer"
+                       ng-if="group.missingConfig"
+                       ng-click="showGroup(group)"
+                       uib-tooltip="{$ _('Configuration missing') $}"
+                       tooltip-placement="top"
+                       tooltip-popup-delay="50"
+                       tooltip-trigger="mouseenter"
+                       tooltip-append-to-body="true"></i>
+                    <span>{{ group.name }}</span>
+                    <button class="btn btn-default btn-xs pull-right" ng-click="deassignGroup(group)">
+                        <i class="glyphicon glyphicon-chevron-right"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div class="element-container">
+            <div class="element-container-header">
+                <h4>{$ _('Available groups') $}</h4>
+                <div class="input-group input-group-sm">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                    <input type="text" class="element-search form-control" ng-model="availableGroupSearch" placeholder="{$ _('search') $}">
+                </div>
+            </div>
+            <ul class="list-group element-container-content" ng-show="availableGroups.length > 0" ng-style="{'max-height': containerMaxHeight}">
+                <li class="list-group-item element"
+                    ng-repeat="group in availableGroups | filter:availableGroupSearch"
+                >
+                    <button class="btn btn-default btn-xs pull-left" ng-click="assignGroup(group)">
+                        <i class="glyphicon glyphicon-chevron-left"></i>
+                    </button>
+                    <span>{{ group.name }}</span>
+                    <i class="pull-right glyphicon glyphicon-warning-sign text-danger pointer"
+                       ng-if="group.missingConfig"
+                       ng-click="showGroup(group)"
+                       uib-tooltip="{$ _('Configuration missing') $}"
+                       tooltip-placement="left"
+                       tooltip-popup-delay="50"
+                       tooltip-trigger="mouseenter"
+                       tooltip-append-to-body="true"></i>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

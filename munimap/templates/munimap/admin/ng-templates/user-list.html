@@ -1,0 +1,81 @@
+<div>
+  <div>
+    <table class="table table-striped table-responsive">
+      <thead>
+        <tr>
+          <th ng-click='sortByColumn("name")' class="pointer">
+              {$ _('name') $}
+              <i ng-if="orderByCol === 'name'" 
+                ng-class="reverse ? 'glyphicon-triangle-top' : 'glyphicon-triangle-bottom'"
+                class="glyphicon"></i>
+          </th>
+          <th ng-click='sortByColumn("email")' class="pointer">
+              {$ _('email') $}
+              <i ng-if="orderByCol === 'email'" 
+                ng-class="reverse ? 'glyphicon-triangle-top' : 'glyphicon-triangle-bottom'"
+                class="glyphicon"></i>
+            </th>
+          <th ng-click='sortByColumn("groups")' class="pointer">
+            {$ _('groups') $}
+            <i ng-if="orderByCol === 'groups'" 
+            ng-class="reverse ? 'glyphicon-triangle-top' : 'glyphicon-triangle-bottom'"
+            class="glyphicon"></i>
+          </th>
+          <th ng-click='sortByColumn("status")' class="pointer">
+            {$ _('status') $}
+            <i ng-if="orderByCol === 'status'" 
+            ng-class="reverse ? 'glyphicon-triangle-top' : 'glyphicon-triangle-bottom'"
+            class="glyphicon"></i>
+          </th>
+          <th ng-click='sortByColumn("valid_to")' class="pointer">
+            <div>{$ _('valid_to') $}
+            <i ng-if="orderByCol === 'valid_to'" 
+            ng-class="reverse ? 'glyphicon-triangle-top' : 'glyphicon-triangle-bottom'"
+            class="glyphicon"></i>
+          </div>
+          </th>
+          <th ng-click='sortByColumn("department")' class="pointer">
+            {$ _('department') $}
+            <i ng-if="orderByCol === 'department'" 
+            ng-class="reverse ? 'glyphicon-triangle-top' : 'glyphicon-triangle-bottom'"
+            class="glyphicon"></i>
+          </th>
+          <th>
+            <a href="/admin/users/add" class="btn btn-default btn-xs">{$ _('Add user') $}</a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in users | filter:listSearch">
+          <td class="col-break">{{ user.name }}</td>
+          <td class="col-break">{{ user.email }}</td>
+          <td class="col-break">
+            <span class="badge" ng-repeat="group in user.groups">{{ group.name }}</span>
+          </td>
+          <td>
+            <span ng-if=user.status>
+              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+            </span>
+            <span ng-if=!user.status>
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            </span>
+          </td>
+          <td>{{ user.valid_to }}</td>
+          <td class="col-break">{{ user.department }}</td>
+          <td class="col-button">
+            <a href="/admin/users/duplicate/{{ user.id }}" class="btn btn-default btn-xs">{$ _('Duplicate') $}</a><br>
+            <a href="/admin/users/edit/{{ user.id }}" class="btn btn-default btn-xs">{$ _('Edit') $}</a><br>
+            <confirm class="btn btn-danger btn-xs"
+                     on-confirm="removeUser(user)"
+                     confirm-title="{$ _('Realy remove user?') $}"
+                     ok-label="{$ _('Remove') $}"
+                     cancel-label="{$ _('Cancel') $}"
+                     placement="top"
+                     text="{$ _('Remove') $}"
+            ></confirm>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

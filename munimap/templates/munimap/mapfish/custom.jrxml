@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.0.final using JasperReports Library version 6.1.0  -->
+<!-- 2015-08-19T10:40:06 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="a0_landscape" pageWidth="{$ page_width $}" pageHeight="{$ page_height $}" columnWidth="{$ column_width $}" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a81f90ec-af24-4643-849a-7adafaf99a2e">
+    <style name="fontStyle" fontSize="5">
+        <conditionalStyle>
+            <conditionExpression><![CDATA[{$ page_width $} >= 595]]></conditionExpression>
+            <style fontSize="7" />
+        </conditionalStyle>
+        <conditionalStyle>
+            <conditionExpression><![CDATA[{$ page_width $} >= 842]]></conditionExpression>
+            <style fontSize="8" />
+        </conditionalStyle>
+    </style>
+    <parameter name="mapSubReportOutput" class="java.lang.String"/>
+    <parameter name="scale" class="java.lang.String"/>
+    <parameter name="scalebarSubReport" class="java.lang.String"/>
+    <queryString>
+        <![CDATA[]]>
+    </queryString>
+    <detail>
+        <band height="{$ map_height $}" splitType="Stretch">
+            <subreport>
+                <reportElement x="0" y="0" width="{$ column_width $}" height="{$ map_height $}" uuid="76be56f0-d946-49a5-995a-c066ecaddc23">
+                    <property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+                </reportElement>
+                <subreportExpression><![CDATA[$P{mapSubReportOutput}]]></subreportExpression>
+            </subreport>
+            <subreport>
+                <reportElement x="{$ column_width - 200 $}" y="{$ map_height - 30 $}" width="200" height="30" uuid="fa145068-76a5-4834-98ed-ce65b1976b3d"/>
+                <subreportExpression><![CDATA[$P{scalebarSubReport}]]></subreportExpression>
+            </subreport>
+        </band>
+        <band height="20" splitType="Stretch">
+            <textField>
+                <reportElement x="0" y="8" width="{$ column_width $}" height="12" uuid="76be56f0-d946-49a5-995a-c066ecaddc24" style="fontStyle">
+                    <property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+                </reportElement>
+                <textFieldExpression><![CDATA["Kartengrundlage: bielefeldKarte © Amt für Geoinformation und Kataster (CC BY 4.0), OpenStreetMap (ODbL)"]]></textFieldExpression>
+            </textField>
+           <textField>
+                <reportElement x="-100" y="8" width="{$ column_width $}" height="12" uuid="76be56f0-d946-49a5-995a-c066ecaddc25"  style="fontStyle">
+                    <property name="com.jaspersoft.studio.unit.width" value="pixel" />
+                    <printWhenExpression><![CDATA[ {$ page_width $} >= 842 ]]></printWhenExpression>
+                </reportElement>
+                <textElement textAlignment="Right"></textElement>
+                <textFieldExpression><![CDATA["Aktualität: " + (new java.text.SimpleDateFormat("dd.MM.yyyy")).format(new java.util.Date()) ]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="-75" y="8" width="{$ column_width $}" height="12" uuid="76be56f0-d946-49a5-995a-c066ecaddc26"  style="fontStyle">
+                    <property name="com.jaspersoft.studio.unit.width" value="pixel" />
+                    <printWhenExpression><![CDATA[ {$ page_width $} >= 595 && {$ page_width $} < 842 ]]></printWhenExpression>
+                </reportElement>
+                <textElement textAlignment="Right"></textElement>
+                <textFieldExpression><![CDATA["Aktualität: " + (new java.text.SimpleDateFormat("dd.MM.yyyy")).format(new java.util.Date()) ]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="-50" y="8" width="{$ column_width $}" height="12" uuid="76be56f0-d946-49a5-995a-c066ecaddc27"  style="fontStyle">
+                    <property name="com.jaspersoft.studio.unit.width" value="pixel" />
+                    <printWhenExpression><![CDATA[ {$ page_width $} < 595 ]]></printWhenExpression>
+                </reportElement>
+                <textElement textAlignment="Right"></textElement>
+                <textFieldExpression><![CDATA["Aktualität: " + (new java.text.SimpleDateFormat("dd.MM.yyyy")).format(new java.util.Date()) ]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="0" y="8" width="{$ column_width $}" height="12" uuid="76be56f0-d946-49a5-995a-c066ecaddc28" style="fontStyle">
+                    <property name="com.jaspersoft.studio.unit.width" value="pixel" />
+                </reportElement>
+                <textElement textAlignment="Right"></textElement>
+                <textFieldExpression><![CDATA[$P{scale}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+</jasperReport>

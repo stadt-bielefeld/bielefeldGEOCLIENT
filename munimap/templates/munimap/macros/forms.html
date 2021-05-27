@@ -1,0 +1,67 @@
+
+{% macro input(field) -%}
+<div class="form-group  {% if field.errors %} has-error {% endif %}">
+  <label class="control-label" for="{$ field.id $}">
+    <span>
+      {$ field.label.text|safe $}:
+    </span>
+  </label>
+  {$ field(**kwargs) $}
+
+  {% if field.errors %}
+  <span class="help-block">
+    {% for error in field.errors %}
+      {$ error $}
+      {% if not loop.last %}<br>{% endif %}
+    {% endfor  %}
+  </span>
+  {% endif %}
+</div>
+{%- endmacro %}
+
+
+{% macro input_no_required(field) -%}
+<div class="form-group  {% if field.errors %} has-error {% endif %}">
+  <label class="control-label"  for="{$ field.id $}">
+    <span>
+      {$ field.label.text|safe $}:
+    </span>
+  </label>
+  {$ field(**kwargs) $}
+
+  {% if field.errors %}
+  <span class="help-block">
+    {% for error in field.errors %}
+      {$ error $}
+      {% if not loop.last %}<br>{% endif %}
+    {% endfor  %}
+  </span>
+  {% endif %}
+</div>
+{%- endmacro %}
+
+{% macro splitted_datetime_input(date_field, time_field) -%}
+<div class="form-group {% if date_field.errors %}has-error{% endif %}">
+  <label class="control-label" for="{$ date_field.id $}">
+    <span>
+      {$ date_field.label.text | safe $}
+    </span>
+  </label>
+  <div class="row">
+    <div class="col-xs-6">
+      {$ date_field(**kwargs) $}
+    </div>
+    <div class="col-xs-6">
+      {$ time_field(value=time_field.data if time_field.date is not none else '', **kwargs) $}
+    </div>
+  </div>
+  {% if date_field.errors %}
+    <span class="help-block">
+      {% for error in date_field.errors %}
+        {$ error $}
+        {% if not loop.last %}<br>{% endif %}
+      {% endfor %}
+    </span>
+  {% endif %}
+</div>
+{%- endmacro %}

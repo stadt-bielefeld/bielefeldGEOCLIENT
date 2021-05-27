@@ -1,0 +1,51 @@
+
+{% from "munimap/admin/macros/forms.html" import macro_input, macro_checkbox, macro_date %}
+
+<div class="row">
+    <div class="col-xs-8">
+        <form name="form" ng-submit="submit()" class="form-horizontal">
+            <fieldset>
+                {$ macro_input(_('Username'), 'mb_user_name', true) $}
+                {$ macro_input(_('Firstname'), 'mb_user_firstname', true) $}
+                {$ macro_input(_('Lastname'), 'mb_user_lastname', true) $}
+                {$ macro_input(_('Academictitle'), 'mb_user_academictitle') $}
+            </fieldset>
+
+            <fieldset>
+                {$ macro_input(_('Password'), 'mb_user_password', false, 64, 'password') $}
+                {$ macro_input(_('E-Mail'), 'mb_user_email', true) $}
+                {$ macro_input(_('Description'), 'mb_user_description', false, 1000) $}
+                {$ macro_input(_('Phone'), 'mb_user_phone') $}
+                {$ macro_input(_('Facsimile'), 'mb_user_facsimile') $}
+            </fieldset>
+          
+            <fieldset>
+                {$ macro_input(_('Street'), 'mb_user_street') $}
+                {$ macro_input(_('Housenumber'), 'mb_user_housenumber') $}
+                {$ macro_input(_('Delivery Point'), 'mb_user_delivery_point') $}
+                {$ macro_input(_('Postal Code'), 'mb_user_postal_code') $}
+                {$ macro_input(_('City'), 'mb_user_city') $}
+                {$ macro_input(_('Kundennummer'), 'mb_user_organisation_name') $}
+                {$ macro_input(_('Department'), 'mb_user_department') $}
+                {$ macro_input(_('Position'), 'mb_user_position_name') $}
+                {$ macro_input(_('Country'), 'mb_user_country') $}
+                {$ macro_input(_('Dienstkey'), 'mb_user_dienstkey', false, 16) $}
+            </fieldset>
+
+            <fieldset>
+                {$ macro_checkbox(_('Active'), 'mb_user_active') $}
+                {$ macro_checkbox(_('IDM Managed'), 'mb_user_idm_managed') $}
+                {$ macro_date(_('Valid to'), 'mb_user_valid_to') $}
+                {$ macro_input(_('Login Count'), 'mb_user_login_count') $}
+            </fieldset>
+            <fieldset>
+                <div class="row">
+                    <div class="col-sm-8 col-md-push-4">
+                        <a class="btn btn-default btn-sm" href="/admin/users/list">{$ _('back') $}</a>
+                        <button class="btn btn-sm btn-success pull-right" type="submit" ng-disabled="form.$invalid">{$ _('save') $}</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

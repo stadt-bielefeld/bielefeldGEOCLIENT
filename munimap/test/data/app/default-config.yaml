@@ -1,0 +1,13 @@
+app:
+    title: 'Default test app'
+map:
+    center:
+        - 8.2175
+        - 53.1512
+    centerProjection: "EPSG:4326"
+    zoom: 10
+
+backgrounds:
+    explicit:
+        - omniscale
+        - omniscale_gray

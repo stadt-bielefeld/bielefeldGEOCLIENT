@@ -1,0 +1,57 @@
+{% extends "digitize/admin/base.html" %}
+
+{% from "munimap/macros/forms.html" import input %}
+
+{% block header %}
+    {$ super() $}
+    {% assets "digitize-libs-css" %}
+        <link href="{$ ASSET_URL $}" rel="stylesheet" type="text/css">
+    {% endassets %}
+{% endblock %}
+
+{% block javascript %}
+    {$ super() $}
+    <script type="text/javascript">
+        angular.module('munimap')
+        .controller('LayerStyleController', ['$scope', function($scope) {
+            $scope.style = {$ layer.style | tojson $};
+            $scope.schema = {$ schema | tojson $};
+            $scope.formOptions = {$ form_options | tojson $};
+            $scope.submitForm = function() {
+                angular.forEach($scope.style, function(value, key) {
+                    var field = $('[name="' + key + '"]');
+                    // look for select field and add scope value as selected option;
+                    if(field.find('option').length > 0) {
+                        field.empty();
+                        var option = $('<option></option>');
+                        option.prop('value', value || '');
+                        option.prop('selected', 'selected');
+                        field.append(option);
+                    } else {
+                        field.val(value);
+                    }
+                });
+                $('form.style-form').submit();
+            };
+        }]);
+    </script>
+{% endblock %}
+
+{% block digitize_admin_content %}
+<h3>{$ _('Style for %(layer_title)s', layer_title=layer.title) $}</h3>
+<hr>
+<div class="row">
+    <div class="col-xs-8">
+        <div ng-controller="LayerStyleController" ng-cloak>
+            <form class="form-horizontal style-form"
+                  sf-schema="schema"
+                  sf-form="formOptions"
+                  sf-model="style"
+                  method="POST"
+                  action="{$ request.script_root + request.path $}" >
+                  {$ form.csrf_token() $}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

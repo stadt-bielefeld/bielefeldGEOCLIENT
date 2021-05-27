@@ -1,0 +1,50 @@
+{% for layer in draw_layers %}
+  <div class="overlay-item">
+    <div class="single-item editable-layer"
+         ng-class="{'inactive': !layerIsVisibleByName('{$ layer['name'] $}')}">
+      <div class="layer-title pointer"
+            ng-click="toggleLayerVisibleByName('{$ layer['name'] $}')">
+        {% if layer['active'] %}
+        <span class="glyphicon glyphicon-warning-sign text-warning"
+              uib-tooltip="{$ _('This is an active group') $}"
+              tooltip-placement="right"
+              tooltip-append-to-body="true"
+              tooltip-popup-delay="{{ tooltipDelay }}"
+              tooltip-enable="{{ tooltipEnable }}"
+              tooltip-trigger="mouseenter">
+        </span>
+        {% endif %}
+        {$ layer['title'] $}
+      </div>
+      <div class="btn-toolbar pull-right">
+        <div class="btn-group">
+          <button class="btn btn-xs btn-default"
+                  ng-class="{'btn-success': '{$ layer['name'] $}' === $parent.activeLayer.name}"
+                  ng-disabled="!layerIsVisibleByName('{$ layer['name'] $}')"
+                  ng-click="$parent.editLayer(layerByName('{$ layer['name'] $}'))"
+                  uib-tooltip="{$ _('Edit group') $}"
+                  tooltip-placement="top"
+                  tooltip-append-to-body="true"
+                  tooltip-popup-delay="{{ tooltipDelay }}"
+                  tooltip-enable="{{ tooltipEnable }}"
+                  tooltip-trigger="mouseenter">
+            <span class="glyphicon glyphicon-pencil"></span>
+          </button>
+        </div>
+        <div class="btn-group">
+          <button class="btn btn-xs btn-default"
+                  ng-disabled="!layerIsVisibleByName('{$ layer['name'] $}')"
+                  ng-click="zoomToLayerExtent(layerByName('{$ layer['name'] $}'))"
+                  uib-tooltip="{$ _('Center map on group') $}"
+                  tooltip-placement="top"
+                  tooltip-append-to-body="true"
+                  tooltip-popup-delay="{{ tooltipDelay }}"
+                  tooltip-enable="{{ tooltipEnable }}"
+                  tooltip-trigger="mouseenter">
+            <span class="glyphicon glyphicon-fullscreen"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}

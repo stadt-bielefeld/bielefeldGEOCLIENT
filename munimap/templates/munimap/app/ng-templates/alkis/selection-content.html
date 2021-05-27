@@ -1,0 +1,151 @@
+<div ng-show="loading" class="loading-overlay">
+  <div class="text">{$ _('Loading ...') $}</div>
+</div>
+
+<uib-tabset class="alkis-tabs">
+    <uib-tab index="0" heading="{$ _('Parcel') $}" deselect="changeTab()">
+      <form ng-submit="processPlotForm()">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+                <label for="district">{$ _('District') $}</label>   
+                <select name="district" class="form-control" 
+                    ng-model="plot.district">
+                    <option ng-repeat="item in gemarkungen.items" value="{{item.value}}">{{item.label}}</option>
+                </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="flur">{$ _('Flur') $}</label>
+              <input type="text" class="form-control" id="flur" ng-model="plot.flur">
+            </div>
+          </div>
+          <div class="col-sm-6">
+             <div class="form-group">
+                <label for="plotName">{$ _('Parcel') $}</label>
+                <input type="text" class="form-control" id="plotName" 
+                  ng-model="plot.name">
+              </div>
+            </div>
+          </div>        
+          <button type="submit" class="btn btn-default">{$ _('Search parcels') $}</button>
+          <button type="button" class="btn btn-default" ng-click="clearPlotForm()">{$ _('Reset') $}</button>
+        </form>
+    </uib-tab>
+
+    <uib-tab index="1" heading="{$ _('Address') $}" deselect="changeTab()">
+      <form ng-submit="processAddressForm()">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+                <label for="street">{$ _('Street') $}</label>            
+                <select name="street" class="form-control" 
+                    ng-model="address.street">
+                    <option ng-repeat="item in strassen.items" value="{{item.value}}">{{item.label}}</option>
+                </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="housenumber">{$ _('Housenumber') $}</label>
+              <input type="text" class="form-control" id="housenumber" ng-model="address.housenumber">
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="additonal">{$ _('Additional') $}</label>
+              <input type="text" class="form-control" id="additonal" ng-model="address.additonal">
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-default">{$ _('Search parcels') $}</button>
+        <button type="button" class="btn btn-default" ng-click="clearAddressForm()">{$ _('Reset') $}</button>
+      </form>
+     </uib-tab>
+
+    {% if current_user.with_alkis_owner %}    
+    <uib-tab index="2" heading="{$ _('Owner') $}" deselect="changeTab()">
+      <form ng-submit="processSearchOwnerForm()">
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="name">{$ _('Name / Company') $}</label>
+              <input type="text" class="form-control" id="name" ng-model="owner.name">
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="firstname">{$ _('Firstname') $}</label>
+              <input type="text" class="form-control" id="firstname" ng-model="owner.firstname">
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="surname">{$ _('Name component') $}</label>
+              <input type="text" class="form-control" id="nameComponent" ng-model="owner.component">
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-default">{$ _('Search owner') $}</button>
+        <button type="button" class="btn btn-default" ng-click="clearOwnerForm()">{$ _('Reset') $}</button>
+      </form>
+    </uib-tab>
+    {% endif %}
+</uib-tabset>
+
+<div class="owner-content" ng-show="ownerData.items">
+  <div class="info" ng-show="ownerData.items">
+    <span>{$ _('Number') $}: {{ ownerData.items.length }}</span>
+  </div>
+  
+  <table class="table">
+    <tr ng-repeat="item in ownerData.items" ng-class-odd="'striped'">
+      <td>{{ item[ownerData.label] }}</td> 
+      <td>
+        <button type="submit" class="btn btn-default btn-sm" 
+          ng-click="searchByOwner(item[ownerData.identifier])">
+            {$ _('Search parcels') $}
+        </button>
+      </td> 
+    </tr>
+  </table>
+</div>
+
+<hr class="alkis">
+
+<div ng-if="preLoader">
+  <div class="text">{$ _('Loading ...') $}</div>
+</div>
+
+<div class="alkis-content">
+  <div class="info" ng-show="responseData.items">
+    <span>{$ _('Number') $}: {{ responseData.items.length }}</span>
+    <div class="btn btn-default btn-xs pull-right" 
+      ng-click="showAllFeatures()" ng-show="responseData.items.length > 1">{$ _('Show all parcels') $}</div>
+  </div>
+  <table class="table">
+    <tr ng-repeat="item in responseData.items" ng-class-odd="'striped'">
+      <td>{{ item[responseData.label] }}</td> 
+      <td>
+          <a ng-click="showFeatureInMap(item['flurstuecksnummer_alk'])" 
+            class="btn btn-default btn-sm">{$ _('Map') $}</a>
+
+          <a ng-click="requestInfoPopup('/alkis/info', item['alkis_id'])" 
+            class="btn btn-default btn-sm">{$ _('Info') $}</a>
+
+          <a ng-click="requestPDFInfoPopup('/alkis/pdf', item['flurstuecksnummer_alb'], item['alkis_id'])" 
+            class="btn btn-default btn-sm">{$ _('PDF') $}</a>
+          
+          {% if current_user.with_alkis_official %}
+          <a ng-click="requestInfoPopup('/alkis/official', item['flurstuecksnummer_alkis'], item['flurstuecksnummer_alk'])" 
+            class="btn btn-default btn-sm">{$ _('Official') $}</a>
+          {% endif %}
+        </td>
+    </tr>
+  </table>
+</div>

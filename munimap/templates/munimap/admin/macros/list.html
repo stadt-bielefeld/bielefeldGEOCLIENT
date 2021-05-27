@@ -1,0 +1,31 @@
+{% macro list(title, element) %}
+    <div class="element-container element-list">
+        <div class="element-container-header">
+            <h4>{$ title $}</h4>
+            <div class="input-group input-group-sm">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                <input type="text" class="element-search form-control" ng-model="{$ element $}Search" placeholder="{$ _('search') $}">
+            </div>
+        </div>
+        <ul id="{$ element $}-list" class="list-group element-container-content" ng-show="{$ element $}s.length > 0" ng-style="{'max-height': containerMaxHeight}">
+            <li class="list-group-item element pointer"
+                 ng-class="{'active': {$ element $} === selected{$ element | title $}}"
+                 ng-click="select{$ element | title $}({$ element $})"
+                 ng-repeat="{$ element $} in {$ element $}s | filter:{$ element $}Search"
+            >
+                {{ {$ element $}.name }}
+                <br ng-if="'{$ element $}' === 'user'" />
+                <span ng-if="'{$ element $}' === 'user'">({{ {$ element $}.email }})</span>
+                <i class="pull-right glyphicon glyphicon-warning-sign text-danger pointer"
+                   ng-if="{$ element $}.missingConfig"
+                   ng-click="show{$ element | title $}({$ element $})"
+                   uib-tooltip="{$ _('Configuration missing') $}"
+                   tooltip-placement="top"
+                   tooltip-popup-delay="50"
+                   tooltip-trigger="mouseenter"
+                   tooltip-append-to-body="true"></i>
+            </li>
+        </ul>
+        <a href="/admin/{$ element $}s/list" class="btn btn-default btn-block">{$ _('Manage') $}</a>
+    </div>
+{% endmacro %}

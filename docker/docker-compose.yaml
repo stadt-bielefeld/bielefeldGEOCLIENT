@@ -1,0 +1,20 @@
+version: '3.7'
+services:
+  munimap-postgis:
+    image: mdillon/postgis:11-alpine
+    ports:
+      - 5555:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    #command: ["postgres", "-c", "log_statement=all"]
+    volumes:
+      - ./postgres/postgresql_init_data:/docker-entrypoint-initdb.d
+      - ./postgres/postgresql_data:/var/lib/postgresql/data:Z
+  munimap-print:
+    image: docker.terrestris.de/camptocamp/mapfish_print:3.28@sha256:dd97cd8cfd7212b2e24708d392b9dbff81e7756e29d99d3d08333c88e4597496
+    ports:
+      - 20081:8080
+    volumes:
+      - ./munimap-print/print-apps:/usr/local/tomcat/webapps/ROOT/print-apps:Z
+      - ./tmp:/tmp:Z

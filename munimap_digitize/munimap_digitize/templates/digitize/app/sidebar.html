@@ -1,0 +1,55 @@
+<div sidebar="sidebar">
+  <div sidebar-item="background"
+       ng-if="layerswitcherConfig !== false"
+       item-title="{$ _('Background layers') $}">
+    <div anol-layerswitcher template-url="munimap/layerswitcher-backgrounds.html"></div>
+  </div>
+  <div sidebar-item="overlay"
+       ng-if="layerswitcherConfig !== false"
+       item-title="{$ _('Overlay layers') $}">
+    <div anol-layerswitcher template-url="munimap-digitize/layerswitcher-overlays.html" class="overlay-layerswitcher"></div>
+  </div>
+  <div sidebar-item="groups"
+       item-title="{$ _('Groups') $}">
+    <div anol-layerswitcher template-url="munimap-digitize/layerswitcher-groups.html"></div>
+  </div>
+  <div sidebar-item="draw"
+       item-title="{$ _('Draw controls') $}">
+    <div anol-draw
+         template-url="munimap-digitize/draw.html"
+         post-draw-action="openPopup(layer, feature)">
+    </div>
+  </div>
+</div>
+
+<script type="text/ng-template" id="munimap/sidebar.html">
+  {% include 'munimap/app/ng-templates/sidebar.html' %}
+</script>
+
+<script type="text/ng-template" id="munimap/sidebar-item.html">
+  {% include 'munimap/app/ng-templates/sidebar-item.html' %}
+</script>
+
+<script type="text/ng-template" id="munimap/sidebar-header.html">
+  {% include 'digitize/app/ng-templates/sidebar-header.html' %}
+</script>
+
+<script type="text/ng-template" id="munimap/sidebar-footer.html">
+  {% include 'digitize/app/ng-templates/sidebar-footer.html' %}
+</script>
+
+<script type="text/ng-template" id="munimap/layerswitcher-backgrounds.html">
+  {% include 'munimap/app/ng-templates/layerswitcher-backgrounds.html' %}
+</script>
+
+<script type="text/ng-template" id="munimap-digitize/layerswitcher-overlays.html">
+    {% include 'munimap/app/ng-templates/layerswitcher-overlays.html' %}
+</script>
+
+<script type="text/ng-template" id="munimap-digitize/layerswitcher-groups.html">
+    {% include 'digitize/app/ng-templates/layerswitcher-groups.html' %}
+</script>
+
+<script type="text/ng-template" id="munimap-digitize/draw.html">
+    {% include 'digitize/app/ng-templates/draw.html' %}
+</script>
