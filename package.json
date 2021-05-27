@@ -15,7 +15,7 @@
     "url": "git+ssh://git@bitbucket.org/Omniscale/munimap.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "terestris GmbH & Co. KG <info@terrestris.de>",
   "license": "ISC",
   "homepage": "https://bitbucket.org/Omniscale/munimap#readme",
   "devDependencies": {

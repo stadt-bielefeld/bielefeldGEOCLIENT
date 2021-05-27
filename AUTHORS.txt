@@ -1,0 +1,13 @@
+Maintenance
+-----------
+
+This project is currently maintained by terrestris GmbH & Co. KG <info@terrestris.de>
+
+Authors
+-------
+
+Dominik Helle <support@omniscale.de>
+Jan Suleiman <jsuleiman@terrestris.de>
+Simon Seyock <sseyock@terrestris.de>
+Markus Schneider <mschneider@terrestris.de>
+
