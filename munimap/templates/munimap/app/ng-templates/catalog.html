@@ -1,0 +1,180 @@
+<div class="anol-catalog">
+    <uib-tabset class="catalog-tabs">
+        <div class="toggle-variant-button" ng-click="toggleVariant()" ng-class="{'active': variant == 'mouseover'}">
+            <span class="glyphicon glyphicon-th-large"></span>                    
+        </div>
+        <div class="toggle-variant-button second" ng-click="toggleVariant()" ng-class="{'active': variant == 'abstract'}">
+            <span class="glyphicon glyphicon-align-justify"></span>                    
+        </div>
+
+        <uib-tab index="0" heading="{$ _('Groups') $}" deselect="changeTab()">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-sm-1" for="catalog-filter">{$ _('Filter') $}</label>
+                    <div class="col-sm-6">
+                        <input 
+                            ng-model="filterCatalog"
+                            class="form-control col-sm-6" 
+                            name="catalog-filter"
+                            id="catalog-filter">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div ng-repeat="group in sortedGroups" class="col-sm-12">
+                            <div class="row">
+                                <div ng-repeat="layer in group.layers | orderBy:'title' | catalogFilter:filterCatalog:variant" 
+                                    ng-init="abstractLimit=defaultAbstractLimit"
+                                    ng-class="{'col-sm-12': variant == 'abstract'}" >
+                                    <div ng-class="{'row': variant == 'abstract'}" >
+                                        <div class="col-sm-12" ng-if='$first'>
+                                            <h3>{{group.title}}</h3>
+                                        </div>
+                                    </div>
+                                   
+                                    <div ng-class-odd="{'striped': variant == 'abstract'}" class="catalog-div" 
+                                        ng-class="{'row': variant == 'abstract', 'col-sm-4 catalog-mouse-over': variant == 'mouseover'}" >
+                                        <div ng-class-odd="{'striped': variant == 'mouseover'}" 
+                                            ng-class="{'col-sm-4': variant == 'abstract'}">
+                                            <div class="catalog-title">
+                                                <a class="btn btn-xs btn-default float" target="_blank" 
+                                                    href="{{ layer.metadataUrl }}" ng-if="layer.metadataUrl">
+                                                    <span class="glyphicon glyphicon-info-sign"></span>                    
+                                                </a>
+                                                <a class="btn-none float" target="_blank" ng-if="!layer.metadataUrl">
+                                                    <span class="glyphicon glyphicon-none"></span>                    
+                                                </a>
+                                                <div class="inline-padding"
+                                                    uib-popover="{{ layer.abstract }}" 
+                                                    popover-trigger="'mouseenter'"
+                                                    popover-append-to-body=true
+                                                    popover-popup-delay=200
+                                                    popover-enable=popoverEnabled
+                                                    >
+                                                    <a ng-click="addGroupToMap(layer)" 
+                                                       ng-show="addedGroups.indexOf(layer.name) === -1">
+                                                        {{ layer.title }}
+                                                    </a>
+                                                    <a ng-show="addedGroups.indexOf(layer.name) !== -1" class="added">
+                                                        {{ layer.title }}
+                                                    </a> 
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-8 catalog-abstract" ng-if="variant == 'abstract'">
+                                            <div ng-if="layer.abstract">
+                                                {{  layer.abstract | limitTo:abstractLimit }}{{ layer.abstract.length > abstractLimit ? '...' : ''}}
+
+                                                <a class="btn btn-xs btn-default" 
+                                                    ng-click="abstractLimit = layer.abstract.length" 
+                                                    ng-hide="abstractLimit == layer.abstract.length || abstractLimit > layer.abstract.length">
+                                                    <span class="glyphicon glyphicon glyphicon-chevron-down"></span>                    
+                                                </a>
+
+                                                <a class="btn btn-xs btn-default"
+                                                    ng-hide="abstractLimit < layer.abstract.length || abstractLimit > layer.abstract.length"
+                                                    ng-click="abstractLimit = defaultAbstractLimit" >
+                                                    <span class="glyphicon glyphicon glyphicon-chevron-up"></span>                    
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" ng-if="!(($index + 1) % 3) && variant == 'mouseover'" ></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </uib-tab>
+
+        <uib-tab index="1" heading="{$ _('Layers') $}" deselect="changeTab()" ng-if="showLayers">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-sm-1" for="catalog-filter">{$ _('Filter') $}</label>
+                    <div class="col-sm-6">
+                        <input 
+                            ng-model="filterCatalog"
+                            class="form-control col-sm-6"
+                            name="catalog-filter"
+                            id="catalog-filter">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div ng-repeat="group in sortedLayers" class="col-sm-12">
+                            <div class="row">
+                                <div ng-repeat="layer in group.layers | orderBy:'catalog.title' | catalogFilter:filterCatalog:variant" 
+                                    ng-init="abstractLimit=defaultAbstractLimit"
+                                    ng-class="{'col-sm-12': variant == 'abstract'}" >
+                                    <div ng-class="{'row': variant == 'abstract'}" >
+                                        <div class="col-sm-12" ng-if='$first'>
+                                            <h3>{{group.title}}</h3>
+                                        </div>
+                                    </div>
+                                       
+                                    <div ng-class-odd="{'striped': variant == 'abstract'}" class="catalog-div" 
+                                        ng-class="{'row': variant == 'abstract', 'col-sm-4 catalog-mouse-over': variant == 'mouseover'}" >
+                                        <div ng-class-odd="{'striped': variant == 'mouseover'}" 
+                                            ng-class="{'col-sm-4': variant == 'abstract'}">
+                                            <div class="catalog-title">
+                                                <a class="btn btn-xs btn-default float" target="_blank" href="{{ layer.metadataUrl }}" ng-if="layer.metadataUrl">
+                                                    <span class="glyphicon glyphicon-info-sign"></span>                    
+                                                </a>
+                                                <a class="btn-none float" target="_blank" ng-if="!layer.metadataUrl">
+                                                    <span class="glyphicon glyphicon-none"></span>                    
+                                                </a>
+
+                                                <div class="inline-padding"
+                                                    uib-popover="{{ layer.abstract }}" 
+                                                    popover-trigger="'mouseenter'"
+                                                    popover-append-to-body=true
+                                                    popover-popup-delay=200
+                                                    popover-enable=popoverEnabled
+                                                    >
+                                                    <a ng-click="addToMap(layer)" ng-show="addedLayers.indexOf(layer.name) === -1">
+                                                        {{ layer.title }}
+                                                    </a>
+                                                    <a ng-show="addedLayers.indexOf(layer.name) !== -1" class="added">
+                                                        {{ layer.title }}
+                                                    </a> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-8 catalog-abstract" ng-if="variant == 'abstract'">
+                                            <div ng-if="layer.abstract">
+                                                {{  layer.abstract | limitTo:abstractLimit }}{{ layer.abstract.length > abstractLimit ? '...' : ''}}
+
+                                                <a class="btn btn-xs btn-default" 
+                                                    ng-click="abstractLimit = layer.abstract.length" 
+                                                    ng-hide="abstractLimit == layer.abstract.length || abstractLimit > layer.abstract.length">
+                                                    <span class="glyphicon glyphicon glyphicon-chevron-down"></span>                    
+                                                </a>
+
+                                                <a class="btn btn-xs btn-default"
+                                                    ng-hide="abstractLimit < layer.abstract.length || abstractLimit > layer.abstract.length"
+                                                    ng-click="abstractLimit = defaultAbstractLimit" >
+                                                    <span class="glyphicon glyphicon glyphicon-chevron-up"></span>                    
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" ng-if="!(($index + 1) % 3) && variant == 'mouseover'" ></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        </uib-tab>
+           
+    </uib-tabset>
+
+
+
+</div>

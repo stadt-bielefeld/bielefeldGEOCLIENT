@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding="ISO-8859-1" ?>
+<wfs:FeatureCollection
+   xmlns:ms="http://mapserver.gis.umn.edu/mapserver"
+   xmlns:wfs="http://www.opengis.net/wfs"
+   xmlns:gml="http://www.opengis.net/gml"
+   xmlns:ogc="http://www.opengis.net/ogc"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd
+                       http://mapserver.gis.umn.edu/mapserver http://localhost/umn2/ms565/mapserv.exe?map=mapfiles/alkis/alkis_arbeitsausgabe.map&amp;SERVICE=WFS&amp;VERSION=1.0.0&amp;REQUEST=DescribeFeatureType&amp;TYPENAME=Flurstuecke&amp;OUTPUTFORMAT=XMLSCHEMA">
+      <gml:boundedBy>
+        <gml:Box srsName="EPSG:25832">
+          <gml:coordinates>464768.245000,5759333.522000 464801.375000,5759365.163000</gml:coordinates>
+        </gml:Box>
+      </gml:boundedBy>
+    <gml:featureMember>
+      <ms:Flurstuecke>
+        <gml:boundedBy>
+          <gml:Box srsName="EPSG:25832">
+            <gml:coordinates>464768.252000,5759333.526000 464801.375000,5759365.156000</gml:coordinates>
+          </gml:Box>
+        </gml:boundedBy>
+        <ms:msGeometry>
+        <gml:Polygon srsName="EPSG:25832">
+          <gml:outerBoundaryIs>
+            <gml:LinearRing>
+              <gml:coordinates>464772.888000,5759345.706000 464768.252000,5759349.598000 464778.808000,5759362.188000 464780.730000,5759363.857000 464783.111000,5759364.906000 464785.652000,5759365.156000 464788.213000,5759364.595000 464801.375000,5759360.050000 464799.673000,5759355.217000 464797.769000,5759349.811000 464795.392000,5759343.063000 464787.395000,5759333.526000 464783.642000,5759336.677000 464772.888000,5759345.706000 </gml:coordinates>
+            </gml:LinearRing>
+          </gml:outerBoundaryIs>
+        </gml:Polygon>
+        </ms:msGeometry>
+        <ms:nasoid>110442</ms:nasoid>
+        <ms:id>DENW13AL000056g0</ms:id>
+        <ms:lebenszeitintervall_beginnt>2017-10-18 10:27:02</ms:lebenszeitintervall_beginnt>
+        <ms:lebenszeitintervall_endet></ms:lebenszeitintervall_endet>
+        <ms:anlass1>300500</ms:anlass1>
+        <ms:anlass2></ms:anlass2>
+        <ms:urn>urn:adv:crs:ETRS89_UTM32</ms:urn>
+        <ms:gemarkungschluessel>052854</ms:gemarkungschluessel>
+        <ms:zaehler>802</ms:zaehler>
+        <ms:nenner></ms:nenner>
+        <ms:flurstueckskennzeichen>05285401700802______</ms:flurstueckskennzeichen>
+        <ms:infotext>FS0528540170080200000</ms:infotext>
+        <ms:amtlicheflaeche>606.00000000</ms:amtlicheflaeche>
+        <ms:flurnummer>17</ms:flurnummer>
+        <ms:flurstuecksfolge></ms:flurstuecksfolge>
+        <ms:abweichenderrechtszustand>0</ms:abweichenderrechtszustand>
+        <ms:zweifelhafterflurstuecksnachw>0</ms:zweifelhafterflurstuecksnachw>
+        <ms:rechtsbehelfsverfahren>0</ms:rechtsbehelfsverfahren>
+        <ms:okx>464790.20800000</ms:okx>
+        <ms:oky>5759355.51900000</ms:oky>
+        <ms:zeitpunktderentstehung>1972-01-01 00:00:00</ms:zeitpunktderentstehung>
+        <ms:gemeindezugehoerigkeit>05711000</ms:gemeindezugehoerigkeit>
+        <ms:istgebucht>DENW13AL00005qER</ms:istgebucht>
+        <ms:signaturnr>2028</ms:signaturnr>
+        <ms:signaturtext>Flurstück</ms:signaturtext>
+        <ms:dlkm>1</ms:dlkm>
+        <ms:dkkm500>0</ms:dkkm500>
+        <ms:dkkm1000>0</ms:dkkm1000>
+        <ms:dkkm2000>0</ms:dkkm2000>
+        <ms:dkkm5000>0</ms:dkkm5000>
+        <ms:sonstigesmodell></ms:sonstigesmodell>
+        <ms:herkunft>598</ms:herkunft>
+        <ms:herkunft_ende>-1</ms:herkunft_ende>
+        <ms:aktuell>1</ms:aktuell>
+        <ms:cadtype></ms:cadtype>
+        <ms:refname></ms:refname>
+        <ms:lyrname></ms:lyrname>
+        <ms:lyrlinewt></ms:lyrlinewt>
+        <ms:color></ms:color>
+      </ms:Flurstuecke>
+    </gml:featureMember>
+</wfs:FeatureCollection>
+

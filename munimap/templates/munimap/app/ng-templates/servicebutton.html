@@ -1,0 +1,20 @@
+<div class="tools-control-container">
+  <div class="ol-control tools-control" ng-style="ngStyle">
+    <button ng-click="toggle()"
+            uib-tooltip="{$ _('Tools') $}"
+            tooltip-placement="right"
+            tooltip-popup-delay="{{tooltipDelay}}"
+            tooltip-trigger="mouseenter"
+            tooltip-enable="showTooltip">
+      <span class="glyphicon glyphicon-wrench"></span>
+    </button>
+  </div>
+  <div class="ol-control tools-container-control list-group"
+       ng-style="menuStyle">
+    <ng-transclude></ng-transclude>
+  </div>
+</div>
+
+
+
+

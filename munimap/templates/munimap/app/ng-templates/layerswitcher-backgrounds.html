@@ -1,0 +1,21 @@
+{% from "munimap/macros/layerswitcher.html" import background_layer_item %}
+
+{% if layers_def['backgroundLayer'] | length > 0 %}
+  <div class="background-layer-container">
+  {% for layer in layers_def['backgroundLayer'] %}
+    {$ background_layer_item(layer) $}
+  {% endfor %}
+  {% if app_config['app']['showNoBackground'] != False %}
+    <div class="background-layer-item pointer"
+         ng-click="removeBackgroundLayer()">
+      <div class="no-background-layer"></div>
+      <div class="background-layer-title"
+           ng-class="{'active': backgroundLayer === undefined}">
+        {$ _('No background layer') $}
+      </div>
+    </div>
+  {% endif %}
+  </div>
+{% else %}
+  <div>{$ _('No background layers available') $}</div>
+{% endif %}

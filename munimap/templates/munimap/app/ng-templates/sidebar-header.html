@@ -1,0 +1,30 @@
+<div class="sidebar-closer pointer"
+     ng-click="toggleMenu()"
+     uib-tooltip="{$ _('Close menu') $}"
+     tooltip-placement="left"
+     tooltip-popup-delay="{{ $parent.$parent.tooltipDelay }}"
+     tooltip-enable="$parent.$parent.showTooltip">
+    <span class="glyphicon glyphicon-remove"></span>
+</div>
+
+<div ng-show="$parent.$parent.headerLogoURL">
+    <div>
+        <a href="{{ $parent.$parent.headerLogoLink }}" target="_blank">
+            <img class="single-app-link-logo" src="{{ $parent.$parent.headerLogoURL }}">
+        </a>
+    </div>
+</div>
+
+<div ng-show="!$parent.$parent.headerLogoURL">
+    <div>
+        <img class="top-logo" src="{$ url_for('static', filename='img/logo_bielefeld.svg') $}">
+        <span class="title">{{ $parent.$parent.headerTitle }}</span>
+    </div>
+
+    <a href="{{ $parent.$parent.headerLogoLink }}" target="_blank" ng-show="!$parent.$parent.hideLink">
+        <img class="app-link-logo" src="{$ url_for('static', filename='img/button_auswahl_onlinekarten.svg')$}" width="200px">
+    </a>
+</div>
+
+<div anol-scale-text ng-if="$parent.$parent.scaleTextEnabled"></div>
+

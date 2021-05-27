@@ -1,0 +1,95 @@
+{% extends "digitize/admin/base.html" %}
+
+{% from "munimap/macros/forms.html" import input %}
+
+{% block digitize_admin_content %}
+  <h3>
+    {$ _('Layers') $}
+    <span class="tooltip-info glyphicon glyphicon-question-sign"
+          uib-tooltip="{$ _('DIGITIZE ADMIN INFOTEXT - LAYERS') $}"
+          tooltip-popup-delay="2000"
+          tooltip-trigger="mouseenter">
+    </span>
+    <a href="{$ url_for('.add_layer') $}" class="btn btn-default btn-sm pull-right">
+      {$ _('Add Layer') $}
+    </a>
+  </h3>
+  {% if not layers %}
+  <p>{$ _('No Layers available') $}.</p>
+  {% endif %}
+
+  {% for layer in layers %}
+  <div class="panel panel-default" ng-init="show{$ layer.name $}={% if layer.name == name %}true{%else%}false{%endif%};">
+    <div class="panel-heading pointer" ng-click="show{$ layer.name $}=!show{$ layer.name $}">
+      <span class="glyphicon" ng-class="{'glyphicon-minus': show{$ layer.name $}, 'glyphicon-plus': !show{$ layer.name $}}"></span>
+      <strong>{$ layer.title $}</strong>
+    </div>
+    <div class="row panel-body" ng-show="show{$ layer.name $}">
+      <div class="col-xs-6 line-height-3em">
+        <h5>{$ _('Actions') $}</h5>
+        <a href="{$ url_for('digitize.digitizer', name=layer.name) $}" class="btn btn-default btn-sm">
+          {$ _('Edit in map') $}
+        </a>
+        <a href="{$ url_for('.properties', name=layer.name) $}" class="btn btn-default btn-sm">
+          {$ _('Edit Properties') $}
+        </a>
+        <a href="{$ url_for('.edit_style', name=layer.name) $}" class="btn btn-default btn-sm">
+          {$ _('Edit Style') $}
+        </a>
+        <a href="{$ url_for('.edit_layer', name=layer.name) $}" class="btn btn-default btn-sm">
+          {$ _('Edit layer') $}
+        </a>
+        <button ng-click="openDeleteModal('{$ url_for('.remove_layer', name=layer.name) $}', '{$ _('Really delete layer %(title)s?', title=layer.title) $}')" class="btn btn-default btn-sm">
+          {$ _('Remove') $}
+        </button>
+        </div>
+      <div class="col-xs-6">
+        <h5>
+          {$ _('Groups') $}
+          <span class="tooltip-info glyphicon glyphicon-question-sign"
+                uib-tooltip="{$ _('DIGITIZE ADMIN INFOTEXT - GROUPS') $}"
+                tooltip-popup-delay="2000"
+                tooltip-trigger="mouseenter">
+          </span>
+        </h5>
+        <ul class="list-group">
+          {% for group in layer.feature_groups %}
+          <li  class="list-group-item">
+            <span>{$ group.title $}</span>
+            <div class="pull-right">
+              {% if not group.has_daterange %}
+                <a href="{$ url_for('.toggle_group', id=group.id) $}">
+                  {% if group.active %} {$ _('Deactivate') $} {% else %} {$ _('Activate') $}{% endif %}
+                </a>
+              {% else %}
+                {% if not group.active and not group.finished  %}
+                  {$ _('activated at') $} {$ group.start_date | format_datetime $}
+                {% elif not group.active and group.finished %}
+                  {$ _('Deactivated') $}
+                {% else %}
+                  {$ _('active till') $} {$ group.end_date | format_datetime $}
+                {% endif %}
+              {% endif %}
+              <a href="{$ url_for('.edit_group', name=layer.name, id=group.id) $}">{$ _('Edit') $}</a>
+              <a href="#" ng-click="openDeleteModal('{$ url_for('.remove_group', id=group.id) $}', '{$ _('Really delete group %(title)s?', title=group.title) $}')">
+                {$ _('Remove') $}
+              </a>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+        <a href="{$ url_for('.add_group', name=layer.name) $}" class="btn btn-default btn-sm">
+          {$ _('Add Group') $}
+        </a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+{% endblock %}
+
+{% block footer_content %}
+  <a href="{$ url_for('digitize.index', name=name) $}" class="btn btn-default">
+    {$ _('Back to startpage') $}
+  </a>
+{% endblock %}

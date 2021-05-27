@@ -1,0 +1,15 @@
+<div class="modal-header modal-draggable">
+    <button type="button" class="close" aria-label="Close" ng-click="close()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">
+        {$ _('Alkis Selection Settings') $}
+    </h4>
+</div>
+<div class="modal-body">
+    <div alkis-selection-content 
+        gemarkungen=gemarkungen 
+        strassen=strassen 
+        template-url="munimap/alkis-selection-content.html"
+        modal-call-back="registerCallBack(callback)"></div>
+</div>

@@ -1,0 +1,261 @@
+{% extends "munimap/base.html" %}
+
+{% block javascript %}
+    {$ super() $}
+    {% assets "vendor-libs-js" %}
+        <script type="text/javascript" src="{$ ASSET_URL $}"></script>
+    {% endassets %}
+
+    {% assets "admin-js" %}
+        <script type="text/javascript" src="{$ ASSET_URL $}"></script>
+    {% endassets %}
+    <script type="text/javascript">
+        angular.module('munimapAdmin')
+        .constant('CSRFToken', '{$ group_form.csrf_token.current_token $}')
+        .constant('GroupAddUserUrl', '{$ url_for('admin.group_add_user') $}')
+        .constant('GroupRemoveUserUrl', '{$ url_for('admin.group_remove_user') $}')
+        .constant('GroupAddLayerUrl', '{$ url_for('admin.group_add_layer') $}')
+        .constant('GroupRemoveLayerUrl', '{$ url_for('admin.group_remove_layer') $}')
+        .constant('GroupAddProjectUrl', '{$ url_for('admin.group_add_project') $}')
+        .constant('GroupRemoveProjectUrl', '{$ url_for('admin.group_remove_project') $}')
+        .constant('ProtectProjectUrl', '{$ url_for('admin.protect_project') $}')
+        .constant('UnprotectProjectUrl', '{$ url_for('admin.unprotect_project') $}')
+        .constant('ProtectLayerUrl', '{$ url_for('admin.protect_layer') $}')
+        .constant('UnprotectLayerUrl', '{$ url_for('admin.unprotect_layer') $}')
+        .constant('TransferProjectConfigUrl', '{$ url_for('admin.transfer_project_config') $}')
+        .constant('RenameProjectConfigUrl', '{$ url_for('admin.rename_project_config') $}')
+        .constant('RemoveGroupUrl', '{$ url_for('admin.remove_group') $}')
+        .constant('AddGroupUrl', '{$ url_for('admin.add_group') $}')
+        .constant('EditGroupUrl', '{$ url_for('admin.edit_group') $}')
+        .constant('RemoveProjectUrl', '{$ url_for('admin.remove_project') $}')
+        .constant('AddProjectUrl', '{$ url_for('admin.add_project') $}')
+        .constant('EditProjectUrl', '{$ url_for('admin.edit_project') $}')
+        .constant('LoadProjectUrl', '{$ url_for('admin.load_project') $}')
+        .constant('LoadMapConfigUrl', '{$ url_for('admin.load_map_config') $}')
+        .constant('AddMapConfigUrl', '{$ url_for('admin.add_map_config') $}')
+        .constant('UpdateMapConfigUrl', '{$ url_for('admin.edit_map_config') $}')
+        .constant('RemoveMapConfigUrl', '{$ url_for('admin.remove_map_config') $}')
+        .constant('LoadLayersUrl', '{$ url_for('admin.load_layers') $}')
+        .constant('RemoveLogUrl', '{$ url_for('admin.remove_alkis_log_config') $}')
+        .constant('TransferMapConfigUrl', '{$ url_for('admin.transfer_map_config') $}')
+        .constant('RenameMapConfigUrl', '{$ url_for('admin.rename_map_config') $}')
+        .constant('RemoveUserUrl', '{$ url_for('admin.remove_user') $}')
+        .constant('EditUserUrl', '{$ url_for('admin.edit_user') $}')
+        .constant('AddUserUrl', '{$ url_for('admin.add_user') $}')
+        .constant('LoadUserUrl', '{$ url_for('admin.load_user') $}')
+        .constant('LoadSelectionlistUrl', '{$ url_for('admin.load_selectionlist') $}')
+        .constant('EditSelectionlistUrl', '{$ url_for('admin.edit_selectionlist') $}')
+        .constant('AddSelectionlistUrl', '{$ url_for('admin.add_selectionlist') $}')
+        .constant('RemoveSelectionlistUrl', '{$ url_for('admin.remove_selectionlist') $}')
+        .constant('RenameSelectionlistConfigUrl', '{$ url_for('admin.rename_selectionlist_config') $}')
+        .constant('LoadPluginUrl', '{$ url_for('admin.load_plugin') $}')
+        .constant('EditPluginUrl', '{$ url_for('admin.edit_plugin') $}')
+        .constant('AddPluginUrl', '{$ url_for('admin.add_plugin') $}')
+        .constant('RemovePluginUrl', '{$ url_for('admin.remove_plugin') $}')
+        .constant('RenamePluginConfigUrl', '{$ url_for('admin.rename_plugin_config') $}')
+        .config(['ModelServiceProvider', function(ModelServiceProvider) {
+            ModelServiceProvider.initModel({
+                layers: {$ layers | tojson $},
+                protectedLayers: {$ protected_layers | tojson $},
+                projects: {$ projects | tojson $},
+                protectedProjects: {$ protected_projects | tojson $},
+                groups: {$ groups | tojson $},
+                users: {$ users | tojson $},
+                configs: {$ map_configs | tojson $},
+                logs: {$ logs | tojson $},
+                enviroment: '{$ enviroment $}',
+                selectionlists: {$ selectionlists | tojson $},
+                plugins: {$ plugins | tojson $}
+            });
+        }]);
+    </script>
+{% endblock %}
+
+{% block notifications %}
+{% endblock %}
+
+{% block body %}
+    <base href="{$ url_for('admin.index', path='') $}" />
+    <div id="sidebar" class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="header">
+                <a href="{$ url_for('munimap.index') $}" class="brand">
+                    <img class="logo" src="{$ url_for('static', filename='img/logo-sitebar-stadtplan.svg') $}" alt="Logo">
+                </a>
+            </div>
+            <ul class=" nav nav-pills nav-stacked">
+                <li ng-class="{'active': path.indexOf('/groups') === 0}">
+                    <a href="/admin/groups">{$ _('Groups') $}</a>
+                </li>
+                <li ng-class="{'active': path.indexOf('/layers') === 0}">
+                    <a href="/admin/layers">{$ _('Layers') $}</a>
+                </li>
+                <li ng-class="{'active': path.indexOf('/projects') === 0}">
+                    <a href="/admin/projects">{$ _('Projects') $}</a>
+                </li>
+                <li ng-class="{'active': path.indexOf('/users') === 0}">
+                    <a href="/admin/users">{$ _('Users') $}</a>
+                </li>
+                <li ng-class="{'active': path.indexOf('/maps') === 0}">
+                    <a href="/admin/maps/list">{$ _('Maps') $}</a>
+                </li>
+                <li ng-class="{'active': path.indexOf('/selectionlists') === 0}">
+                    <a href="/admin/selectionlists/list">{$ _('Selectionlists') $}</a>
+                </li>
+                <li ng-class="{'active': path.indexOf('/plugins') === 0}">
+                    <a href="/admin/plugins/list">{$ _('Plugins') $}</a>
+                </li>
+                <li ng-class="{'active': path.indexOf('/logs') === 0}">
+                    <a href="/admin/logs/alkis">{$ _('Logs') $}</a>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <div>{$ _('Logged in as:') $} {$ current_user.name $}</div>
+                <div>
+                  <a href="{$ url_for('user.logout') $}">{$ _('Logout') $}</a>
+                  <a class="pull-right" href="{$ url_for('user.projects') $}">{$ _('Project list') $}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="content">
+        <nav class="navbar navbar-default" ng-cloak>
+            <div class="notifications admin-notifications" notifications></div>
+            <div class="navbar-header">
+                <span class="navbar-brand" ng-show="path.indexOf('/groups') === 0">{$ _('Groups') $}</span>
+                <span class="navbar-brand" ng-show="path.indexOf('/layers') === 0">{$ _('Layers') $}</span>
+                <span class="navbar-brand" ng-show="path.indexOf('/projects') === 0">{$ _('Projects') $}</span>
+                <span class="navbar-brand" ng-show="path.indexOf('/users') === 0">{$ _('Users') $}</span>
+                <span class="navbar-brand" ng-show="path.indexOf('/maps') === 0">{$ _('Maps') $}</span>
+                <span class="navbar-brand" ng-show="path.indexOf('/logs') === 0">{$ _('Logs') $}</span>
+                <span class="navbar-brand" ng-show="path.indexOf('/selectionlists') === 0">{$ _('Selectionlists') $}</span>
+                <span class="navbar-brand" ng-show="path.indexOf('/plugins') === 0">{$ _('Plugins') $}</span>
+                <i class="navbar-brand glyphicon glyphicon-arrow-right" ng-show="path.indexOf('/list') === -1"></i>
+                <span class="navbar-brand" ng-show="path.indexOf('/list') === -1 && subpage === 'group-users.html'">{$ _('Users') $}</span>
+                <span class="navbar-brand" ng-show="path.indexOf('/list') === -1 && subpage === 'group-layers.html'">{$ _('Layers') $}</span>
+                <span class="navbar-brand" ng-show="path.indexOf('/list') === -1 && subpage === 'group-projects.html'">{$ _('Projects') $}</span>
+                <span class="navbar-brand" ng-show="path.indexOf('/maps') === -1 && path.indexOf('/list') === -1 && subpage.indexOf('groups.html') > -1">
+                    {$ _('Groups') $}
+                </span>
+                <span class="navbar-brand" ng-show="path.indexOf('/maps/add') === 0">{$ _('Add') $}</span>
+                <span class="navbar-brand" ng-show="path.indexOf('/maps/edit') === 0">{$ _('Edit') $}</span>
+                <span class="navbar-brand" ng-show="path.indexOf('/projects/edit') === 0">{$ _('Edit') $}</span>
+                <span class="navbar-brand" ng-show="path.indexOf('/projects/add') === 0">{$ _('Add') $}</span>
+                <span class="navbar-brand" ng-show="path.indexOf('/groups/add') === 0">{$ _('Add') $}</span>
+                <span class="navbar-brand" ng-show="path.indexOf('/users/add') === 0">{$ _('Add') $}</span>
+                <span class="navbar-brand" ng-show="path.indexOf('/users/edit') === 0">{$ _('Edit') $}</span>
+                <span class="navbar-brand" ng-show="path.indexOf('/users/duplicate') === 0">{$ _('Duplicate') $}</span>
+                <span class="navbar-brand" ng-show="path.indexOf('/logs/alkis') === 0">{$ _('Alkis') $}</span>
+                <span class="navbar-brand" ng-show="path.indexOf('/selectionlists/add') === 0">{$ _('Add') $}</span>
+                <span class="navbar-brand" ng-show="path.indexOf('/selectionlists/edit') === 0">{$ _('Edit') $}</span>
+                <span class="navbar-brand" ng-show="path.indexOf('/plugins/add') === 0">{$ _('Add') $}</span>
+                <span class="navbar-brand" ng-show="path.indexOf('/plugins/edit') === 0">{$ _('Edit') $}</span>
+            </div>
+            <ul class="nav navbar-nav pull-right" ng-show="showSubpageNav">
+                <li ng-class="{'active': subpage === 'group-users.html'}">
+                    <a href="#" ng-click="setSubpage('group-users')">{$ _('Users') $}</a>
+                </li>
+                <li ng-class="{'active': subpage === 'group-layers.html'}">
+                    <a href="#" ng-click="setSubpage('group-layers')">{$ _('Layers') $}</a>
+                </li>
+                <li ng-class="{'active': subpage === 'group-projects.html'}">
+                    <a href="#" ng-click="setSubpage('group-projects')">{$ _('Projects') $}</a>
+                </li>
+            </ul>
+            <div class="navbar-form" ng-show="path.indexOf('/list') > -1">
+                <div class="form-group">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                        <input class="form-control" placeholder="{$ _('search') $}" ng-model="listSearch" />
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <ng-view></ng-view>
+        </div>
+    </div>
+
+    <script type="text/ng-template" id="group-list.html">
+      {% include 'munimap/admin/ng-templates/group-list.html' %}
+    </script>
+    <script type="text/ng-template" id="group-form.html">
+      {% include 'munimap/admin/ng-templates/group-form.html' %}
+    </script>
+    <script type="text/ng-template" id="group-users.html">
+      {% include 'munimap/admin/ng-templates/group-users.html' %}
+    </script>
+    <script type="text/ng-template" id="group-layers.html">
+      {% include 'munimap/admin/ng-templates/group-layers.html' %}
+    </script>
+    <script type="text/ng-template" id="group-projects.html">
+      {% include 'munimap/admin/ng-templates/group-projects.html' %}
+    </script>
+    <script type="text/ng-template" id="layer-groups.html">
+      {% include 'munimap/admin/ng-templates/_-groups.html' %}
+    </script>
+    <script type="text/ng-template" id="project-groups.html">
+      {% include 'munimap/admin/ng-templates/_-groups.html' %}
+    </script>
+    <script type="text/ng-template" id="user-groups.html">
+      {% include 'munimap/admin/ng-templates/_-groups.html' %}
+    </script>
+    <script type="text/ng-template" id="groups.html">
+      {% include 'munimap/admin/ng-templates/groups.html' %}
+    </script>
+    <script type="text/ng-template" id="layer-list.html">
+      {% include 'munimap/admin/ng-templates/layer-list.html' %}
+    </script>
+    <script type="text/ng-template" id="layers.html">
+      {% include 'munimap/admin/ng-templates/layers.html' %}
+    </script>
+    <script type="text/ng-template" id="project-edit.html">
+      {% include 'munimap/admin/ng-templates/project-edit.html' %}
+    </script>
+    <script type="text/ng-template" id="project-list.html">
+      {% include 'munimap/admin/ng-templates/project-list.html' %}
+    </script>
+    <script type="text/ng-template" id="projects.html">
+      {% include 'munimap/admin/ng-templates/projects.html' %}
+    </script>
+    <script type="text/ng-template" id="user-list.html">
+      {% include 'munimap/admin/ng-templates/user-list.html' %}
+    </script>
+    <script type="text/ng-template" id="user-edit.html">
+      {% include 'munimap/admin/ng-templates/user-edit.html' %}
+    </script>
+    <script type="text/ng-template" id="user-duplicate.html">
+      {% include 'munimap/admin/ng-templates/user-duplicate.html' %}
+    </script>
+    <script type="text/ng-template" id="user-add.html">
+      {% include 'munimap/admin/ng-templates/user-add.html' %}
+    </script>
+    <script type="text/ng-template" id="users.html">
+      {% include 'munimap/admin/ng-templates/users.html' %}
+    </script>
+    <script type="text/ng-template" id="maps-list.html">
+      {% include 'munimap/admin/ng-templates/maps-list.html' %}
+    </script>
+    <script type="text/ng-template" id="maps-edit.html">
+      {% include 'munimap/admin/ng-templates/maps-edit.html' %}
+    </script>
+    <script type="text/ng-template" id="alkis-logs.html">
+      {% include 'munimap/admin/ng-templates/alkis-logs.html' %}
+    </script>
+    <script type="text/ng-template" id="selectionlists-list.html">
+        {% include 'munimap/admin/ng-templates/selectionlists-list.html' %}
+    </script>
+    <script type="text/ng-template" id="selectionlists-edit.html">
+        {% include 'munimap/admin/ng-templates/selectionlists-edit.html' %}
+    </script>
+    <script type="text/ng-template" id="plugins-list.html">
+        {% include 'munimap/admin/ng-templates/plugins-list.html' %}
+    </script>
+    <script type="text/ng-template" id="plugins-edit.html">
+        {% include 'munimap/admin/ng-templates/plugins-edit.html' %}
+    </script>
+{% endblock %}
+
+{% block flash %}
+    {% include 'munimap/admin/flash.html' %}
+{% endblock %}

@@ -1,0 +1,230 @@
+.timetable-informations
+  right: 10px
+  top: 10px
+  padding: 0
+  background-color: white
+  width: 230px
+  &:hover
+    background-color: white
+
+  h4
+    background-color: $popup-transport-header-background-color
+    color: white
+    margin-top: 0px
+    margin-bottom: 0px
+
+  .closer
+    color: white
+
+  h4,form
+    padding: 10px
+
+  .row
+    margin-bottom: 10px
+
+  label
+    margin-bottom: 0px
+
+@media (max-width: $screen-sm)
+  .timetable-informations.form-xs-hidden
+    display: none
+
+  .timetable-informations.form-xs-visible
+    top: 0px
+    right: 0px
+    width: 100%
+    height: 100%
+    z-index: 10
+
+  .timetable-informations .row
+    margin-left: 0
+    margin-right: 0
+
+
+.app-content:not(.show) + .loading
+  .logo-transport
+    background: url('../img/logo_transport.png') no-repeat center center fixed
+
+.transport-map
+    .timetable-control
+        top: 10.5em
+        left: 0.5em
+
+    .ol-touch
+      .timetable-control
+        top: 16.5em
+
+    .button-layer-wrapper
+        bottom: 10px
+        position: absolute
+        text-align: center
+        width: 100%
+        pointer-events: none;
+
+        @media (max-width: $screen-sm)
+          text-align: left
+          margin-left: 10px
+
+        button
+          background-color: $button-layer-background-color
+          color: $button-layer-text-color
+          box-shadow: none
+          outline: none !important
+          pointer-events: auto
+          cursor: pointer
+
+          &.active
+            background-color: #F8F7F2
+            color:  $button-layer-active-color
+            box-shadow: none
+            border-color: $button-layer-active-color
+            span
+              color:  $button-layer-active-color
+
+          @media (min-width: $screen-sm)
+            &:hover
+              background-color: #F8F7F2
+              color:  $button-layer-active-color
+              box-shadow: none
+              border-color: $button-layer-active-color
+              span
+                color:  $button-layer-active-color
+
+        .overlay-layer
+          margin-right: 15px
+
+    .anol-popup
+      width: 250px
+      &.station-layer
+        padding: 0
+
+        .anol-popup-closer
+          color: white
+          top: 10px
+          right: 10px
+          font-size: 18px
+
+      z-index: 2001
+      &.bottom
+        &:after
+          border-bottom-color: $popup-transport-header-background-color
+      &.top
+        &:after
+          border-top-color: white
+
+      .anol-popup-content
+        white-space: normal
+
+        .transport-content
+          background-color: $popup-transport-content-background-color
+
+        .ref-badge
+          border-radius: 4px
+
+        .ref-operator
+          font-size: 11px
+          font-style: italic
+          line-height: 30px 
+        
+        .badge.bus
+          background-color: $bus-badge-color
+
+        .badge.tram
+          background-color: $tram-badge-color
+
+        .badge.night
+          background-color: $night-badge-color
+        
+        .badge.other-operator
+          background-color: $other-operator-badge-color !important
+
+        h4,
+        .transport-content,
+        .subroute-content,
+        .select-station-content,
+        .construction-content
+          padding: 10px
+
+        h4
+          background-color: $popup-transport-header-background-color
+          color: white
+          margin-top: 0px
+          margin-bottom: 0px
+          cursor: default
+          &.station-properties-header
+            cursor: pointer
+
+        .select-station-content
+          background-color: $popup-subroute-content-background-color
+          padding-top: 5px
+          padding-bottom: 5px
+
+        .subroute-content,
+        .construction-content
+          background-color: $popup-subroute-content-background-color
+
+          li
+            color: gray
+            margin-bottom: 5px
+            &::before
+              content: " "
+              border-color: transparent $popup-transport-header-background-color
+              border-style: solid
+              border-width: 4px 0 4px 6px
+              display: inline-block
+              height: 0
+              width: 0
+              top: 0
+              position: relative
+
+        .subroute-content
+          max-height: 250px
+          overflow: auto
+
+        .timetable-content
+          border-top: 1px solid $popup-transport-content-background-color
+          border-bottom: 1px solid $popup-transport-content-background-color
+          padding-top: 5px
+          padding-bottom: 5px
+          ul
+            margin: 0
+            margin-top: 5px
+            margin-bottom: 5px
+
+        .timetable-content, .select-station-content
+          li
+            &::before
+              content: " "
+              border-color: transparent #002857
+              border-style: solid
+              border-width: 4px 0 4px 6px
+              display: inline-block
+              height: 0
+              width: 0
+              top: 0
+              position: relative
+          a, a:hover a:visited
+            color: gray
+            margin-bottom: 5px
+
+
+          &.has-subroute-element
+            margin-bottom: 20px
+
+        .list-inline
+          margin-bottom: 0px
+          margin-left: 0px
+          li
+            padding-right: 3px
+            padding-left: 0px
+            margin-left: 0px
+
+.map-logo
+  img
+    width: 140px
+    height: 40px
+
+@media (max-width: $screen-sm)
+  .map-logo
+    bottom: 50px
+    

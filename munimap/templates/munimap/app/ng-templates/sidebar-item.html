@@ -1,0 +1,15 @@
+<div class="panel panel-default"
+     ng-class="{'panel-open': !collapse}">
+  <div class="panel-heading"
+       ng-click="toggle()">
+    <span class="panel-title">{{ title }}</span>
+    <span class="glyphicon pull-right"
+          ng-class="{'glyphicon-menu-left': collapse, 'glyphicon-menu-down': !collapse}">
+    </span>
+  </div>
+    <div class="panel-collapse collapse" uib-collapse="collapse">
+    <div class="panel-body">
+      <ng-transclude></ng-transclude>
+    </div>
+  </div>
+</div>

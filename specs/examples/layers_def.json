@@ -1,0 +1,104 @@
+{
+    "backgroundLayer": [{
+        "url": "http://maps.omniscale.net/wms/demo/default/service?",
+        "layer": "omniscale",
+        "format": "image/png",
+        "title": "OSM Omniscale",
+        "params": {
+            "layers": "osm",
+            "srs": "EPSG:3857"
+        }
+    }, {
+        "url": "http://maps.omniscale.net/wms/demo/grayscale/service?",
+        "layer": "omniscale_gray",
+        "format": "image/png",
+        "title": "OSM Omniscale Grayscale",
+        "params": {
+            "layers": "osm",
+            "srs": "EPSG:3857"
+        }
+    }],
+    "overlays": [
+        {
+            "name": "transport",
+            "title": "Transport",
+            "layers": [{
+                "layer": "busstop",
+                "title": "Bus stops",
+                "type": "feature",
+                "style": {
+                    "mode": "simple",
+                    "type": "icon",
+                    "src": "busstop_icon.png"
+                },
+                "featureinfo": {
+                    "target": "_popup",
+                    "properties": ["name"]
+                },
+                "legend": {
+                    "type": "icon",
+                    "src": "busstop_icon.png"
+                }
+            }, {
+                "layer": "stations",
+                "title": "Stations",
+                "type": "feature",
+                "style": {
+                    "mode": "simple",
+                    "type": "icon",
+                    "src": "stations_icon.png"
+                },
+                "featureinfo": {
+                    "target": "_popup",
+                    "properties": ["name"]
+                },
+                "legend": {
+                    "type": "icon",
+                    "src": "stations_icon.png"
+                }
+            }]
+        }, {
+            "name": "recreation",
+            "title": "Recreation",
+            "layers": [{
+                "layer": "garden",
+                "title": "Garden",
+                "type": "feature",
+                "style": {
+                    "mode": "simple",
+                    "type": "symbolizer",
+                    "fill_color": "#0f0",
+                    "stroke_color": "#f00",
+                    "stroke_width": 1
+                },
+                "featureinfo": {
+                    "target": "_popup",
+                    "properties": ["name"]
+                },
+                "legend": {
+                    "type": "icon",
+                    "src": "garden_icon.png"
+                }
+            }, {
+                "layer": "park",
+                "title": "Park",
+                "type": "feature",
+                "style": {
+                    "mode": "simple",
+                    "type": "symbolizer",
+                    "fill_color": "#f00",
+                    "stroke_color": "#0f0",
+                    "stroke_width": 1
+                },
+                "featureinfo": {
+                    "target": "_popup",
+                    "properties": ["name"]
+                },
+                "legend": {
+                    "type": "icon",
+                    "src": "park_icon.png"
+                }
+            }]
+        }
+    ]
+}

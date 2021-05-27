@@ -1,0 +1,16 @@
+<div class="alkis-control-container">
+  <div class="ol-control alkis-control" ng-style="ngStyle">
+    <button ng-click="toggle()"
+            uib-tooltip="{$ _('Alkis Tools') $}"
+            tooltip-placement="right"
+            tooltip-popup-delay="{{tooltipDelay}}"
+            tooltip-trigger="mouseenter"
+            tooltip-enable="showTooltip">
+      <span class="glyphicon alkis-icon"></span>
+    </button>
+  </div>
+  <div class="ol-control alkis-container-control list-group"
+       ng-style="menuStyle">
+    <ng-transclude></ng-transclude>
+  </div>
+</div>

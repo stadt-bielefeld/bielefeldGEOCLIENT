@@ -1,0 +1,10 @@
+<div class="anol-catalog">
+    <div ng-repeat="layer in addedLayers" ng-class="{'inactive': !layer.getVisible()}">
+        <a ng-if="layer.metadataUrl" target="_blank" ng-href="{{ layer.metadataUrl }}">
+            <span class="glyphicon glyphicon-info-sign"></span>                    
+        </a>
+        <span ng-if="!layer.metadataUrl" class="glyphicon glyphicon-none"></span>      
+        <span class="pointer layer-title" ng-click="toggleLayerVisible(layer)">{{ layer.catalog.title }}</span>
+        <i class="glyphicon glyphicon-remove pull-right pointer" ng-click="removeFromMap(layer)"></i>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="sidebar-closer pointer"
+     ng-click="toggleMenu()"
+     uib-tooltip="{$ _('Close menu') $}"
+     tooltip-placement="left"
+     tooltip-popup-delay="{{ $parent.$parent.tooltipDelay }}"
+     tooltip-trigger="mouseenter"
+     tooltip-enable="$parent.$parent.showTooltip">
+    <span class="glyphicon glyphicon-remove"></span>
+</div>
+
+<a href="{$ url_for('munimap.index') $}">
+    <img class="header-logo" ng-src="{{ $parent.$parent.headerLogoURL }}">
+</a>
+<a class="back-to-index" href="{$ url_for('digitize.index') $}">{$ _('Back to startpage') $}</a>

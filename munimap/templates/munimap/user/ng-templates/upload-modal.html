@@ -1,0 +1,22 @@
+<div class="modal-header">
+    <h3 class="modal-title">
+	    <button type="button" class="close" aria-label="Close" ng-click="close()"><span aria-hidden="true">&times;</span></button>
+    	{$ _('Import Settings') $}
+    </h3>
+</div>
+
+<div class="modal-body">
+  <form method="POST" class="form-inline">
+    <input type="file" file-model="myFile"/>
+  </form>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="uploadFile()">
+    	{$ _('Import Config') $}
+    </button>
+    
+    <button class="btn btn-warning" type="button" ng-click="close()">
+    	{$ _('Cancel') $}
+    </button>
+</div>

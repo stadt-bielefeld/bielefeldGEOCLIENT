@@ -1,0 +1,70 @@
+<div class="row">
+    <div class="col-xs-6">
+        <div class="element-container">
+            <div class="element-container-header">
+                <h4>{$ _('Assigned users') $}</h4>
+                <div class="input-group input-group-sm">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                  <input type="text" class="element-search form-control" ng-model="assignedUserSearch" placeholder="{$ _('search') $}">
+                </div>
+            </div>
+            <ul class="list-group element-container-content" ng-show="assignedUsers.length > 0" ng-style="{'max-height': containerMaxHeight}">
+                <li class="list-group-item element"
+                    ng-repeat="user in assignedUsers | filter:assignedUserSearch"
+                >
+                    <i class="pull-left glyphicon glyphicon-warning-sign text-danger pointer"
+                       ng-if="user.missingConfig"
+                       ng-click="showUser(user)"
+                       uib-tooltip="{$ _('Configuration missing') $}"
+                       tooltip-placement="top"
+                       tooltip-popup-delay="50"
+                       tooltip-trigger="mouseenter"
+                       tooltip-append-to-body="true"></i>
+                    <span>
+                      {{ user.name }}
+                    </span>
+                    <button class="btn btn-default btn-xs pull-right" ng-click="deassignUser(user)">
+                        <i class="glyphicon glyphicon-chevron-right"></i>
+                    </button>
+                    <br>
+                    <span>({{ user.email }})</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div class="element-container">
+            <div class="element-container-header">
+                <h4>{$ _('Available users') $}</h4>
+                <div class="input-group input-group-sm">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                  <input type="text" class="element-search form-control" ng-model="availableUserSearch" placeholder="{$ _('search') $}">
+                </div>
+            </div>
+            <ul class="list-group element-container-content" ng-show="availableUsers.length > 0" ng-style="{'max-height': containerMaxHeight}">
+                <li class="list-group-item element"
+                    ng-repeat="user in availableUsers | filter:availableUserSearch"
+                >
+                    <button class="btn btn-default btn-xs pull-left" ng-click="assignUser(user)">
+                        <i class="glyphicon glyphicon-chevron-left"></i>
+                    </button>
+                    <span>
+                      {{ user.name }}
+                    </span>
+                      <br>
+                    <span>
+                      ({{ user.email }})
+                    </span>
+                    <i class="pull-right glyphicon glyphicon-warning-sign text-danger pointer"
+                       ng-if="user.missingConfig"
+                       ng-click="showUser(user)"
+                       uib-tooltip="{$ _('Configuration missing') $}"
+                       tooltip-placement="left"
+                       tooltip-popup-delay="50"
+                       tooltip-trigger="mouseenter"
+                       tooltip-append-to-body="true"></i>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

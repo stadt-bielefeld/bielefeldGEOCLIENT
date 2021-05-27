@@ -1,0 +1,180 @@
+{% extends "munimap/app/base.html" %}
+{% from "munimap/macros/layers.html" import create_layers %}
+
+{% block meta %}
+  {% include 'munimap/meta.html' %}
+  {% set og_image = url_for('static', filename='img/og_image_bielefeld.jpg', _external=True) %}
+  {% if app_config and app_config['app'] and app_config['app']['ogImage'] %}
+    {% set og_image = app_config['app']['ogImage'] %}
+  {% endif %}
+  <meta property="og:image" content="{$ og_image $}">
+{% endblock %}
+
+{% block body %}
+  <div ng-show="applicationError"
+       class="alert alert-danger text-center"
+       ng-cloak>
+    <pre>{{ applicationError }}</pre>
+  </div>
+  <div class="app-content hide"
+       ng-controller="transportController"
+       ng-class="{'show': appReady === true}">
+
+    <!-- featureinfo target -->
+    <div class="featureinfo-container"
+         ng-show="showFeatureInfo">
+      <span class="featureinfo-popup-closer glyphicon glyphicon-remove pointer"
+            ng-click="showFeatureInfo = false">
+      </span>
+      <div class="featureinfo-fullscreen-closer pointer"
+           ng-click="showFeatureInfo = false">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      </div>
+      <div class="featureinfo-target"></div>
+    </div>
+
+    <script type="text/ng-template" id="catalogModalContent.html">
+      {% include 'munimap/modals/base-catalog-modal.html' %}
+    </script>
+
+    <script type="text/ng-template" id="saveSettingsModalContent.html">
+      {% include 'munimap/modals/base-save-settings-modal.html' %}
+    </script>
+
+    <script type="text/ng-template" id="loadSettingsModalContent.html">
+      {% include 'munimap/modals/base-load-settings-modal.html' %}
+    </script>
+
+    <script type="text/ng-template" id="loadAlkisSelection.html">
+      {% include 'munimap/modals/alkis-selection.html' %}
+    </script>
+
+    <script type="text/ng-template" id="loadLegitimateInterestModal.html">
+      {% include 'munimap/modals/alkis-legitimate.html' %}
+    </script>
+
+    {% block sidebar %}
+      {% include 'munimap/app/sidebar.html' %}
+    {% endblock%}
+
+    {% block map %}
+      {% include 'munimap/app/map.html' %}
+    {% endblock %}
+  </div>
+  <!-- loading image -->
+  <div class="loading">
+    <div class="logo"></div>
+  </div>
+{% endblock %}
+
+{% block javascript %}
+
+  <script type="text/javascript">
+    window.postMessagePlugins = {};
+    window.registerCommunicationPlugin = function (action, callback) {
+        var pluginName = document.currentScript.dataset.plugin;
+
+        if (typeof action !== 'string' || action === '') {
+            return;
+        }
+
+        if (typeof callback !== 'function') {
+            return;
+        }
+
+        window.postMessagePlugins[pluginName] = {
+            event: action,
+            callback: callback
+        };
+        console.info('Plugin ' + pluginName + ' registered');
+    };
+  </script>
+
+  {% if app_config.get('communication') and app_config['communication'] %}
+    {% for plugin in app_config['communication'].get('plugins', []) %}
+      {% if plugin is string %}
+        <script type="text/javascript" src="{$ url_for('frontend.plugins', name=plugin) $}" data-plugin="{$ plugin $}"></script>
+      {% elif plugin['name'] is defined %}
+        <script type="text/javascript" src="{$ url_for('frontend.plugins', name=plugin['name']) $}" data-plugin="{$ plugin['name'] $}"></script>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+  <script type="text/javascript">
+    var appConfig = {$ app_config | tojson $};
+    var printUrl = '{$ url_for("export.print_post") $}';
+    var streetIndexLayer = '{$ street_index_layer $}';
+    var imageUrl = '{$ url_for("static", filename="img/") $}';
+  </script>
+  {$ super() $}
+
+  {% assets "app-js" %}
+     <script type="text/javascript" src="{$ ASSET_URL $}"></script>
+  {% endassets %}
+
+  <script type="text/javascript">
+    var selectedSettings = {$ settings|tojson $};
+
+    angular.module('munimapBase')
+    .constant('KeyZoomText', '{$ _('Use ctrl + wheel to zoom') $}')
+    .constant('TwoFingersPinchDragText', '{$ _('Use two fingers to move the map') $}')
+    .constant('ProjectSettings', {$ project_settings | tojson $});
+
+    {% if app_config['components']['timetable'] %}
+    angular.module('munimapBase')
+    .constant('routesUrl', '{$ url_for("transport.route") $}')
+    .constant('stationLayerURL', '{$ url_for("transport.stations") $}')
+    .constant('stationPointLayerURL', '{$ url_for("transport.station_points") $}');
+    {% else %}
+    angular.module('munimapBase')
+    .constant('routesUrl', '')
+    .constant('stationLayerURL', '')
+    .constant('stationPointLayerURL', '');
+    {% endif %}
+
+    {% if app_config['components']['alkis'] %}
+    angular.module('munimapBase')
+    .constant('AlkisSelectionUrl', '{$ url_for("alkis.selection") $}')
+    .constant('AlkisSelectionByParcelUrl', '{$ url_for("alkis.select_by_parcel") $}')
+    .constant('AlkisSelectionSearchOwnerUrl',  '{$ url_for("alkis.search_owner") $}')
+    .constant('AlkisSelectionByOwnerUrl',  '{$ url_for("alkis.select_by_owner") $}')
+    .constant('AlkisSelectionByAddressUrl',  '{$ url_for("alkis.select_by_address") $}')
+    .constant('AlkisWFSUrl', '{$ base_config.get('ALKIS_WFS_URL') $}')
+    .constant('AlkisWFSParameter', '{$ base_config.get('ALKIS_WFS_PARAMETER') $}')
+    {% endif %}
+
+    angular.module('munimapDraw')
+    .value('StyleSchema', {$ style_schema | tojson $})
+    .value('StyleSchemaFormOptions', {$ style_schema_form_options | tojson $})
+    .value('LabelSchema', {$ label_schema | tojson $})
+    .value('LabelSchemaFormOptions', {$ label_schema_form_options | tojson $})
+    .value('DrawIconsPrefix', '{$ url_for("munimap.draw_icons", filename="") $}');
+
+    angular.module('munimap')
+    .config(['LayersServiceProvider', 'CatalogServiceProvider', 'SaveSettingsServiceProvider',
+      function(LayersServiceProvider, CatalogServiceProvider, SaveSettingsServiceProvider) {
+        LayersServiceProvider.setLayers({$ create_layers(layers_def) $});
+        CatalogServiceProvider.setLoadUrl('{$ url_for("munimap.catalog_names", config=project_name) $}');
+        SaveSettingsServiceProvider.setSaveUrl('{$ url_for("user.save_settings") $}');
+        SaveSettingsServiceProvider.setLoadUrl('{$ url_for("user.load_settings") $}');
+        SaveSettingsServiceProvider.setDeleteUrl('{$ url_for("user.delete_settings") $}');
+        SaveSettingsServiceProvider.setProjectName('{$ project_name $}');
+      }]
+    );
+  </script>
+
+  {% if app_config['app']['tour'] %}
+    {% include 'munimap/app/tours/' + app_config['app']['tour'] %}
+  {% endif %}
+
+  {% if app_config.get('app',{})['contextMenu'] %}
+    {% if app_config.get('app',{})['contextMenu'] is string %}
+      {% include 'munimap/app/context/' + app_config.get('app',{})['contextMenu'] %}
+    {% else %}
+      {% include 'munimap/app/context/index.html' %}
+    {% endif %}
+  {% endif %}
+
+{% endblock %}
+
+

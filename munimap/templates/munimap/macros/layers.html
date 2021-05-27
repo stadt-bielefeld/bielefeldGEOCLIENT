@@ -1,0 +1,52 @@
+{% macro create_group(group) %}
+new anol.layer.Group({
+    layers: [
+    {% for layer in group['layers'] %}
+        {$ create_layer(layer) $}{% if loop.last == False %},{% endif %}
+    {% endfor %}
+    ],
+    {% if group['catalog'] -%}
+    catalog: {$ group['catalog'] | tojson | safe $},
+    {%- endif %}
+    {% if group['catalogLayer'] -%}
+    catalogLayer: {$ group['catalogLayer'] | tojson | safe $},
+    {%- endif %}    
+    showGroup: {$ group['showGroup'] | tojson | safe $},
+    metadataUrl: '{$ group['metadataUrl'] $}',
+    abstract: '{$ group['abstract'] $}',
+    collapsed: true,
+    singleSelect: {$ group['singleSelect'] | tojson | safe $},
+    singleSelectGroup: {$ group['singleSelectGroup'] | tojson | safe $},
+    name: '{$ group['name'] $}',
+    title: '{$ group['title'] $}',
+    legend: {$ group['legend'] | tojson | safe $}
+})
+{% endmacro %}
+
+{% macro create_layer(layer) %}
+    {% if layer['type'] == 'wms' %}
+        new anol.layer.SingleTileWMS({$ layer | tojson $})
+    {% elif layer['type'] == 'tiledwms' %}
+        new anol.layer.TiledWMS({$ layer | tojson $})
+    {% elif layer['type'] == 'wmts' %}
+        new anol.layer.WMTS({$ layer | tojson $})
+    {% elif layer['type'] == 'dynamic_geojson' %}
+        new anol.layer.DynamicGeoJSON({$ layer | tojson $})
+    {% elif layer['type'] in ('static_geojson', 'digitize') %}
+        new anol.layer.StaticGeoJSON({$ layer | tojson $})
+    {% endif %}
+{% endmacro %}
+
+
+{% macro create_layers(layers_def) %}
+[
+    {% for background_layer in layers_def['backgroundLayer'] %}
+        {$ create_layer(background_layer) $}
+
+        {% if loop.last == False or layers_def['overlays'] | length > 0 %},{% endif %}
+    {% endfor %}
+    {% for group in layers_def['overlays'] %}
+        {$ create_group(group) $}{% if loop.last == False %},{% endif %}
+    {% endfor %}
+]
+{% endmacro %}

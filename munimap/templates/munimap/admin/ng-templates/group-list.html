@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-xs-12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>{$ _('name') $}</th>
+          <th>{$ _('title') $}</th>
+          <th>{$ _('description') $}</th>
+          <th>
+            <a ng-href="/admin/groups/add" class="btn btn-default btn-xs">{$ _('Add group') $}</a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="group in groups | filter:listSearch">
+          <td>
+            <a ng-href="/admin/groups?id={{ group.id }}">
+              {{ group.name }}
+            </a>
+          </td>
+          <td>{{ group.title }}</td>
+          <td>{{ group.description }}</td>
+          <td>
+            <a ng-href="/admin/groups/edit/{{ group.id }}" class="btn btn-default btn-xs">{$ _('Edit') $}</a>
+            <confirm class="btn btn-danger btn-xs"
+                     on-confirm="removeGroup(group)"
+                     confirm-title="{$ _('Realy remove group?') $}"
+                     ok-label="{$ _('Remove') $}"
+                     cancel-label="{$ _('Cancel') $}"
+                     placement="top"
+                     text="{$ _('Remove') $}"
+            ></confirm>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="row">
+    <div class="col-xs-6">
+        <div class="element-container">
+            <div class="element-container-header">
+                <h4>{$ _('Assigned layers') $}</h4>
+                <div class="input-group input-group-sm">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                    <input type="text" class="element-search form-control" ng-model="assignedLayerSearch" placeholder="{$ _('search') $}">
+                </div>
+            </div>
+            <ul class="list-group element-container-content" ng-show="assignedLayers.length > 0" ng-style="{'max-height': containerMaxHeight}">
+                <li class="list-group-item element"
+                    ng-repeat="layer in assignedLayers | filter:assignedLayerSearch"
+                >
+                    <i class="pull-left glyphicon glyphicon-warning-sign text-danger pointer"
+                       ng-if="layer.missingConfig"
+                       ng-click="showLayer(layer)"
+                       uib-tooltip="{$ _('Configuration missing') $}"
+                       tooltip-placement="top"
+                       tooltip-popup-delay="50"
+                       tooltip-trigger="mouseenter"
+                       tooltip-append-to-body="true"></i>
+                    <span>{{ layer.name }}</span>
+                    <button class="btn btn-default btn-xs pull-right" ng-click="deassignLayer(layer)">
+                        <i class="glyphicon glyphicon-chevron-right"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div class="element-container">
+            <div class="element-container-header">
+                <h4>{$ _('Available layers') $}</h4>
+                <div class="input-group input-group-sm">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                    <input type="text" class="element-search form-control" ng-model="availableLayerSearch" placeholder="{$ _('search') $}">
+                </div>
+            </div>
+            <ul class="list-group element-container-content" ng-show="availableLayers.length > 0" ng-style="{'max-height': containerMaxHeight}">
+                <li class="list-group-item element"
+                    ng-repeat="layer in availableLayers | filter:availableLayerSearch"
+                >
+                    <button class="btn btn-default btn-xs pull-left" ng-click="assignLayer(layer)">
+                        <i class="glyphicon glyphicon-chevron-left"></i>
+                    </button>
+                    <span>{{ layer.name }}</span>
+                    <i class="pull-right glyphicon glyphicon-warning-sign text-danger pointer"
+                       ng-if="layer.missingConfig"
+                       ng-click="showLayer(layer)"
+                       uib-tooltip="{$ _('Configuration missing') $}"
+                       tooltip-placement="left"
+                       tooltip-popup-delay="50"
+                       tooltip-trigger="mouseenter"
+                       tooltip-append-to-body="true"></i>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

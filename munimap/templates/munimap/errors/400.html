@@ -1,0 +1,9 @@
+{% extends "munimap/errors/base.html" %}
+
+{% set pagetitle = 'Bad Request' %}
+
+{% block error_text %}
+ <h2>Request was not correct</h2>
+ <h1>400</h1>
+ <p>Unfortunately, the requested page is not available.<br>If you have typed this web address by hand, then please check the spelling and try reentering it again.</p>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "munimap/errors/base.html" %}
+
+{% set pagetitle = 'Forbidden' %}
+
+{% block error_text %}
+  <h2>Access not allowed</h2>
+  <h1>403</h1>
+  <p>Actually you have no permission to view this site. <a href="{$ url_for('user.login') $}">Login</a> and visit this site again.</p>
+{% endblock %}

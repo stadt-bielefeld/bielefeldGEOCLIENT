@@ -1,0 +1,18 @@
+Sehr geehrte/r Benutzer/in {$ user.name $},
+ 
+Sie haben Ihr Passwort vergessen?
+Kein Problem. Mit dem unten stehenden Link können Sie ein neues Passwort vergeben.
+ 
+Sollten Sie diese E-Mail nicht angefordert haben, dann müssen Sie nichts unternehmen.
+Um ein neues Passwort für Ihren Zugang zu setzen, klicken Sie auf den folgenden Link und folgen den Anweisungen auf der Seite:
+ 
+{$ recover.url $}
+ 
+Der Link ist 24 Stunden gültig und läuft danach ab. 
+ 
+Mit freundlichen Grüßen,
+Ihr Team vom onlineKARTENdienst
+ 
+Amt für Geoinformation und Kataster
+620.12 Geodatenmanagement
+

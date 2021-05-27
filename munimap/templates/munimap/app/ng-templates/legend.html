@@ -1,0 +1,56 @@
+<div class="anol-legend-container">
+    <div class="anol-legend-items">
+        <div ng-repeat="layer in legendLayers">
+            <!-- Groups with legend - show group legend only -->
+            <div ng-if="layer.group.legend && layer.group.getVisible()">
+                <div ng-show="layer.group.legend.type == 'link'">
+                    <a target="_blank" href="{{ layer.group.legend.href }}" title="{{ layer.group.legend.title }}">
+                        {{ layer.group.legend.text }}</a>
+                </div>
+            </div>
+
+            <!-- Layer in Groups -->
+            <strong ng-show="layer.group.getVisible() && !layer.group.legend">
+                {{ layer.group.title }}
+            </strong>
+            <div ng-repeat="clayer in layer.content" ng-if="!layer.group.legend">
+                <div ng-show="clayer.getVisible()">
+                    <span ng-hide="layer.group.options.showGroup === false">
+                        <strong ng-if="clayer.legend.showLayerTitle">{{ clayer.title }}</strong>
+                    </span>
+
+                    <div ng-show="clayer.legend.type != 'link'" anol-legend-image="clayer"
+                        size="[15, 15]"
+                        prepend="clayer.legend && (clayer.type == 'static_geojson' || clayer.type == 'dynamic_geojson')">
+                    </div>
+                    <span class="anol-legend-item-title" ng-if="clayer.legend.url !== undefined || clayer.isVector">{{ clayer.title }}</span>
+                    <div ng-show="clayer.legend.type == 'link'">
+                        <a target="_blank" href="{{ clayer.legend.href }}" title="{{ clayer.legend.title }}">{{ clayer.legend.text }}</a>
+                    </div>
+                 </div>
+            </div>
+
+            <!-- Layer without Groups -->
+            <div ng-if="layer.legend !== undefined || layer.isVector">
+                <strong ng-show="layer.getVisible() && layer.legend.type != 'link'">{{ layer.title }}</strong>
+                <div ng-show="layer.getVisible()">
+                    <div ng-show="layer.legend.type != 'link'" anol-legend-image="layer"
+                        size="[15, 15]"
+                        prepend="layer.legend && (layer.type == 'static_geojson' || layer.type == 'dynamic_geojson')">
+                    </div>
+                    <span class="anol-legend-item-title" ng-if="layer.legend.url !== undefined || layer.isVector">
+                        {{ layer.title }}
+                    </span>
+                    <div ng-show="layer.legend.type == 'link'">
+                        <a target="_blank" href="{{ layer.legend.href }}" title="{{ layer.legend.title }}">{{ layer.legend.text }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-hide="visibleLayerNames.length">
+            <p>
+                {$ _('No overlay with legend active.') $} 
+            </p>
+        </div>
+    </div>
+</div>

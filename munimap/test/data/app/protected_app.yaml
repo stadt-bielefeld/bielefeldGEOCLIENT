@@ -1,0 +1,7 @@
+app:
+    title: 'Protected app'
+
+backgrounds:
+    explicit:
+        - wms_protected
+        - wmts_protected

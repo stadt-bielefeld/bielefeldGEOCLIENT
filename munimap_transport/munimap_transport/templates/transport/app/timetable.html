@@ -1,0 +1,86 @@
+<div class="ol-control container-fluid timetable-informations"
+  ng-show="$root.timetableActive"
+  ng-class="showTimetable ? 'form-xs-visible' : 'form-xs-hidden'">
+  <h4 class="pointer" ng-click="toggleTimetable(showTimetable)">{$ _('Timetable') $}
+    <span
+      class="glyphicon closer pointer pull-right hidden-xs"
+      ng-class="showTimetable ? 'glyphicon-minus' : 'glyphicon-plus'"
+     >
+    </span>
+    <span class="glyphicon glyphicon-remove closer pointer pull-right visible-xs"></span>
+  </h4>
+  <form target="_blank"
+        accept-charset="UTF-8"
+        method="POST"
+        action="{$ config['TIMETABLE_SERVICE_URL'] $}"
+        ng-show="showTimetable"
+        ng-submit="addCharset('UTF-8')"
+        ng-controller="TimetableController">
+    <input 
+        type="hidden"
+        name="place_destination" 
+        ng-value=timetableInformation.placeDestination  />
+    
+    <input 
+        type="hidden"
+        name="place_origin"
+        ng-value=timetableInformation.placeOrigin />
+   
+    <input type="hidden" name="itdDate" value="{{ formattedJourneyDate() }}" />
+    {% for static_field in config['TIMETABLE_STATIC_FIELDS'] %}
+    <input type="hidden" name="{$ static_field[0] $}" value="{$ static_field[1] $}" />
+    {% endfor %}
+
+    <div class="row">
+      <div class="col-xs-12">
+        <label for="name_origin">{$ _('From') $}</label>
+        <input type="text"
+        autocomplete="off"
+        placeholder="{$ _('Station') $}"
+        class="form-control input-sm"
+        ng-model="timetableInformation.origin"
+        name="name_origin">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <label for="name_destination">{$ _('To') $}</label>
+        <input type="text"
+        class="form-control input-sm"
+        autocomplete="off"
+        placeholder="{$ _('Station') $}"
+        ng-model="timetableInformation.destination"
+        name="name_destination">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-7">
+          <label for="date-input">{$ _('Date') $}</label>
+          <input
+            class="form-control input-sm"
+            type="text"
+            ng-model="timetableInformation.date"
+            value={{timetableInformation.date}}
+            name="date-input">
+      </div>
+      <div class="col-xs-5">
+          <label for="itdTime">{$ _('Time') $}</label>
+          <input
+            class="form-control input-sm"
+            type="text"
+            ng-model="timetableInformation.time"
+            value={{timetableInformation.time}}
+            name="itdTime">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-6">
+        <input type="submit" class="btn btn-default btn-sm" value="{$ _('Search connection') $}"/>
+      </div>
+    </div>
+
+  </form>
+</div>

@@ -1,0 +1,120 @@
+layers:
+  - name: busstop
+    title: Bus stops
+    type: point
+    source:
+      type: osm
+      query: "select * from osm_transport_points where %(bbox)s and type='bus_stop'"
+    style:
+      mode: simple
+      type: icon
+      src: 'bus-18.svg'
+    legend:
+      type: icon
+      src: 'bus-18.svg'
+    featureinfo:
+      target: _popup
+      properties:
+        - name
+  - name: stations
+    title: Stations
+    type: point
+    source:
+      type: osm
+      query: "select * from osm_transport_points where %(bbox)s and type='station'"
+    style:
+      mode: simple
+      type: icon
+      src: 'rail-18.svg'
+    legend:
+      type: icon
+      src: 'rail-18.svg'
+    featureinfo:
+      target: _popup
+      properties:
+        - name
+  - name: garden
+    title: Garden
+    type: polygon
+    source:
+      type: osm
+      query: "select * from osm_landusages where %(bbox)s and type='garden'"
+    style:
+      mode: simple
+      type: symbolizer
+      fill_color: '#0f0'
+      stroke_color: '#f00'
+      stroke_width: 1
+    legend:
+      type: icon
+      src: 'garden_icon.png'
+    featureinfo:
+      target: _popup
+      properties:
+        - name
+  - name: park
+    title: Park
+    type: polygon
+    source:
+      type: osm
+      query: "select * from osm_landusages where %(bbox)s and type='park'"
+    style:
+      mode: simple
+      type: symbolizer
+      fill_color: '#f00'
+      stroke_color: '#0f0'
+      stroke_width: 1
+    legend:
+      type: icon
+      src: 'park_icon.png'
+    featureinfo:
+      target: _popup
+      properties:
+        - name
+  - name: omniscale
+    title: OSM Omniscale
+    type: raster
+    source:
+      type: wms
+      url: "http://maps.omniscale.net/wms/demo/default/service?"
+      format: "image/png"
+      layers:
+        - osm
+      srs: "EPSG:3857"
+  - name: omniscale_gray
+    title: OSM Omniscale Grayscale
+    type: raster
+    source:
+      type: wms
+      url: "http://maps.omniscale.net/wms/demo/grayscale/service?"
+      format: "image/png"
+      layers:
+        - osm
+      srs: "EPSG:3857"
+
+
+groups:
+  - name: transport
+    title: Transport
+    layers:
+      - busstop
+      - stations
+    status: active
+  - name: recreation
+    title: Recreation
+    layers:
+      - garden
+      - park
+    status: active
+  - name: wms
+    title: WMS
+    layers:
+      - baeume
+      - bodenrichtwerte_2014
+    status: active
+  - name: background_layers
+    title: Background Layers
+    layers:
+      - omniscale
+      - omniscale_gray
+    status: active

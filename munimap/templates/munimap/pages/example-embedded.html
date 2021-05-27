@@ -1,0 +1,27 @@
+{% extends "munimap/pages/base.html" %}
+
+{% set pagetitle = 'About' %}
+
+{% block container %}
+<form target="_blank" method="POST" action="http://efa.vrr.de/vrr/XSLT_TRIP_REQUEST2">
+	<input type="hidden" value="de" name="language">
+    <input type="hidden" value="Dortmund" name="place_destination">
+    <input type="hidden" value="Dortmund" name="place_origin">
+
+    <input type="hidden" value="0" name="sessionID">
+    <input type="hidden" value="stop" name="type_destination">
+    <input type="hidden" value="stop" name="type_origin">
+
+     Von:
+     <input type="text" autocomplete="off" placeholder="Haltestelle" value="Kampstr." name="name_origin">
+     Nach:
+    <input type="text" autocomplete="off" placeholder="Haltestelle" value="Eierkampstraße" name="name_destination">
+
+    <input type="text" value="20160204" name="itdDate">
+	<input type="text" value="11:39" name="itdTime">
+
+    <button type="submit">
+    	Verbindung suchen
+            </button>
+        </form>
+{% endblock %}

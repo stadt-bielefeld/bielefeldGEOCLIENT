@@ -1,0 +1,19 @@
+meta:
+  description:  "Themen"
+
+layers:
+  - name: stadtplan_bi
+    title: bielefeldKARTE farbe
+    type: wms
+    background: true
+    attribution: 'bielefeldKARTE Kartenbild © Stadt Bielefeld (<a href="https://creativecommons.org/licenses/by/4.0/deed.de" target="_blank">CC BY 4.0</a>), bielefeldKARTE Kartendaten © Stadt Bielefeld und <a href="http://www.openstreetmap.org/#map=15/52.0189/8.5338" target="_blank">OpenStreetMap</a> (<a href="http://opendatacommons.org/licenses/odbl/" target="_blank">ODbL</a>)'
+    source:
+      url: "http://www.bielefeld01.de/md/WMS/bielefeld_karte_farbe/02?"
+      format: "image/png"
+      layer: 'stadtplan_bi'
+      srs: 'EPSG:25832'
+    legend:
+      type: link
+      href: https://www.bielefeld01.de/md/WMS/bielefeld_karte_farbe/02?REQUEST=GetFile&FILE=legende.pdf
+      title: Legende der bielefeldKARTE farbe
+      text: bielefeldKARTE farbe

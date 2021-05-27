@@ -1,0 +1,60 @@
+<div class="anol-searchbox mobile-searchbox dropdown">
+    <div class="input-group">
+        <input class="form-control"
+             ng-model="searchString"
+             ng-model-options="{debounce: 150}"
+             ng-keyup="handleInputKeypress($event)"
+             placeholder="{{ placeholder }}" 
+             ng-focus="handleInputFocus($event);"
+             ng-blur="handleInputBlur($event);">
+
+        <span class="input-group-btn">
+          <button class="btn geocoder-list" type="button" 
+                ng-show="showSearchDropdown && searchDropdown"
+                ng-click="showGeocoderList = !showGeocoderList; noResults=false;">
+            <span class="glyphicon glyphicon-chevron-down"></span>
+          </button>
+
+          <button class="btn search" type="button" ng-click="searchButton(); showGeocoderList=false;">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </span>
+    </div>
+
+    <ul class="result-menu"
+        ng-show="showResultList"
+        ng-mousedown="handleResultListMousedown($event);"
+        ng-mouseup="handleResultListMouseup($event)">
+        <li ng-repeat="result in searchResults"
+            ng-click="showResult(result);">
+            <a href="#"
+               ng-keydown="handleDropdownKeypress($event)"
+               ng-mouseover="handleMouseover($event)">
+               {{ result.displayText }}
+            </a>
+        </li>
+    </ul>
+
+    <div class="no-results" ng-show="showGeocoderList">
+        <ul class="geocoder-menu">
+            <li ng-repeat="coder in geocoders" ng-click="activateGeocoder(coder)" ng-show="coder.type == 'base'">
+               <span>{{ coder.title }}</span>
+               <span ng-show="activeGeocoder.name == coder.name" class="pull-right glyphicon glyphicon-ok"></span>
+            </li>
+            <hr>
+            <li ng-repeat="coder in geocoders" ng-click="activateGeocoder(coder)" ng-show="coder.type == 'layer'">
+               <span>{{ coder.title }}</span>
+               <span ng-show="activeGeocoder.name == coder.name" class="pull-right glyphicon glyphicon-ok"></span>
+            </li>    
+        </ul>
+    </div>
+
+    <div class="alert alert-info no-results" ng-show="noResults">
+       {{ 'anol.geocoder.NO_RESULTS' | translate }}</li>
+    </div>
+
+    <div class="alert alert-info search-in-progress"  ng-show="searchInProgress">
+        {{ 'anol.geocoder.SEARCH_IN_PROGRESS' | translate }}
+    </div>
+</div>
+

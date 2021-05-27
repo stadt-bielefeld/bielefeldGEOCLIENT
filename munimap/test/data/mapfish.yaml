@@ -1,0 +1,149 @@
+# all templates/styles/icons need to be in the same dir or sub-dir of this file!
+templates:
+  a0_portrait: !template
+    reportTemplate: mapfish/templates/a0_portrait.jrxml
+    attributes:
+      scale: !string {}
+      mapConfig: !map
+        maxDpi: 300
+        width: 2344
+        height: 3310
+    processors:
+      - !reportBuilder
+        directory: 'mapfish/templates/'
+      - !createMap
+        inputMapper: {mapConfig: map}
+        outputMapper:
+          mapSubReport: mapSubReportOutput
+  a0_landscape: !template
+    reportTemplate: mapfish/templates/a0_landscape.jrxml
+    attributes:
+      scale: !string {}
+      mapConfig: !map
+        maxDpi: 300
+        width: 3330
+        height: 2324
+    processors:
+      - !reportBuilder
+        directory: 'mapfish/templates/'
+      - !createMap
+        inputMapper: {mapConfig: map}
+        outputMapper:
+          mapSubReport: mapSubReportOutput
+  a1_portrait: !template
+    reportTemplate: mapfish/templates/a1_portrait.jrxml
+    attributes:
+      scale: !string {}
+      mapConfig: !map
+        maxDpi: 300
+        width: 1644
+        height: 2324
+    processors:
+      - !reportBuilder
+        directory: 'mapfish/templates/'
+      - !createMap
+        inputMapper: {mapConfig: map}
+        outputMapper:
+          mapSubReport: mapSubReportOutput
+  a1_landscape: !template
+    reportTemplate: mapfish/templates/a1_landscape.jrxml
+    attributes:
+      scale: !string {}
+      mapConfig: !map
+        maxDpi: 300
+        width: 2344
+        height: 1624
+    processors:
+      - !reportBuilder
+        directory: 'mapfish/templates/'
+      - !createMap
+        inputMapper: {mapConfig: map}
+        outputMapper:
+          mapSubReport: mapSubReportOutput
+  a2_portrait: !template
+    reportTemplate: mapfish/templates/a2_portrait.jrxml
+    attributes:
+      scale: !string {}
+      mapConfig: !map
+        maxDpi: 300
+        width: 1151
+        height: 1624
+    processors:
+      - !reportBuilder
+        directory: 'mapfish/templates/'
+      - !createMap
+        inputMapper: {mapConfig: map}
+        outputMapper:
+          mapSubReport: mapSubReportOutput
+  a2_landscape: !template
+    reportTemplate: mapfish/templates/a2_landscape.jrxml
+    attributes:
+      scale: !string {}
+      mapConfig: !map
+        maxDpi: 300
+        width: 1644
+        height: 1131
+    processors:
+      - !reportBuilder
+        directory: 'mapfish/templates/'
+      - !createMap
+        inputMapper: {mapConfig: map}
+        outputMapper:
+          mapSubReport: mapSubReportOutput
+  a3_landscape: !template
+    reportTemplate: mapfish/templates/a3_landscape.jrxml
+    attributes:
+      scale: !string {}
+      mapConfig: !map
+        maxDpi: 300
+        width: 1151
+        height: 782
+    processors:
+      - !reportBuilder
+        directory: 'mapfish/templates/'
+      - !createMap
+        inputMapper: {mapConfig: map}
+        outputMapper:
+          mapSubReport: mapSubReportOutput
+  a3_portrait: !template
+    reportTemplate: mapfish/templates/a3_portrait.jrxml
+    attributes:
+      scale: !string {}
+      mapConfig: !map
+        maxDpi: 300
+        width: 802
+        height: 1131
+    processors:
+      - !reportBuilder
+        directory: 'mapfish/templates/'
+      - !createMap
+        inputMapper: {mapConfig: map}
+        outputMapper: {mapSubReport: mapSubReportOutput}
+  a4_landscape: !template
+    reportTemplate: mapfish/templates/a4_landscape.jrxml
+    attributes:
+      scale: !string {}
+      mapConfig: !map
+        maxDpi: 300
+        width: 802
+        height: 535
+    processors:
+      - !reportBuilder
+        directory: 'mapfish/templates/'
+      - !createMap
+        inputMapper: {mapConfig: map}
+        outputMapper: {mapSubReport: mapSubReportOutput}
+  a4_portrait: !template
+    reportTemplate: mapfish/templates/a4_portrait.jrxml
+    attributes:
+      scale: !string {}
+      mapConfig: !map
+        maxDpi: 300
+        width: 555
+        height: 782
+    processors:
+      - !reportBuilder
+        directory: 'mapfish/templates/'
+      - !createMap
+        inputMapper: {mapConfig: map}
+        outputMapper: {mapSubReport: mapSubReportOutput}

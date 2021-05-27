@@ -1,0 +1,20 @@
+{% extends "digitize/admin/base.html" %}
+
+{% from "munimap/macros/forms.html" import input %}
+
+{% block digitize_admin_content %}
+
+<h3>{$ _('New layer') $}</h3>
+
+<div class="row">
+  <div class="col-xs-8 col-sm-8 col-md-4">
+    <form method="POST" action="{$ request.script_root + request.path $}">
+        {$ form.csrf_token $}
+        {% for field in form if field.widget.input_type != 'hidden' %}
+            {$ input(field, class='form-control') $}
+        {% endfor %}
+        <button type="submit" class="btn btn-success">{$ _('Add') $}</button>
+    </form>
+    </div>
+</div>
+{% endblock %}

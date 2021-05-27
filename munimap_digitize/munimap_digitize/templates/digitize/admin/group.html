@@ -1,0 +1,26 @@
+{% extends "digitize/admin/base.html" %}
+
+{% from "munimap/macros/forms.html" import input, splitted_datetime_input %}
+
+{% block digitize_admin_content %}
+
+<h3>{$ _('Group for %(layer_title)s', layer_title=layer.title) $}</h3>
+
+<div class="row">
+  <div class="col-xs-8 col-sm-8 col-md-4">
+    <form method="POST" action="{$ request.script_root + request.path $}">
+        {$ form.csrf_token $}
+        {% for field in form if field.widget.input_type != 'hidden' %}
+            {% if field.id not in ['start_date', 'start_time', 'end_date', 'end_time'] %}
+                {$ input(field, class='form-control') $}
+            {% endif %}
+        {% endfor %}
+
+        {$ splitted_datetime_input(form.start_date, form.start_time, class='form-control') $}
+        {$ splitted_datetime_input(form.end_date, form.end_time, class='form-control') $}
+
+        <button type="submit" class="btn btn-success">{$ _('Add') $}</button>
+    </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends "munimap/pages/base.html" %}
+
+{% set pagetitle = _('Projects') %}
+
+{% block container %}
+<section class="page-slice">
+  <div class="container">
+    {% if is_admin %}
+      <a class="pull-right" href="{$ url_for('admin.index') $}">{$ _('to admin area') $}</a>
+    {% endif %}
+    <div class="row">
+      <div class="col-xs-12">
+        <h3>{$ _('Projects') $}</h3>
+        <ul class="project-list">
+          {% for name, project in projects %}
+          <li {% if loop.index0 % 2 == 0 %}class="striped"{% endif %}>
+            <div class="row">
+              <div class="col-md-4">
+                {% if project is none %}
+                  <span class="text-danger">{$ _('project "%(name)s" missing', name=name) $}</span>
+                {% else %}
+                  <h4>
+                    {$ project['app']['title'] $}
+                  </h4>
+                {% endif %}
+              </div>
+
+              {% if project is not none and project['app']['iframe'] %}
+              <div class="col-md-8">
+                <a class="btn btn-default btn-success" href="{$ url_for('munimap.index', config=name) $}">
+                  {$ _('Start Project') $}
+                </a>
+              </div>
+              {% else %}
+              <div class="col-md-8">
+                <form method="POST" class="form-inline" action="{$ url_for('user.projects') $}"> 
+                  {$ form.csrf $} 
+                  {$ form.load_button(
+                    class='btn btn-default btn-success',
+                    title=_('Start project with selected settings'))  $}
+                  <div class="form-group">
+                    {$ form.settings.label $}                    
+                    <select class="form-control" id="settings" name="settings" 
+                      ng-change="changeDefaultProject(model.{$ name $}.defaultProject, '{$ name $}')"
+                      ng-model="model.{$ name $}.defaultProject" >
+                      <option value="">Standard</option>
+                      {% for settings in project_settings %}
+                        {% if settings.project == name %}
+                          <option value="{$ settings.id $}" {% if settings.selected %}selected="selected"{% endif %}>
+                            {$ settings.name $} 
+                          </option>
+                        {% endif %}
+                      {% endfor %}
+                    </select>
+                  </div>
+                  {$ form.name(value=name)  $}
+                  <input class="btn btn-default" 
+                      id="export_button" 
+                      name="export_button" 
+                      title="{$ _('Export selected project settings') $}" 
+                      type="submit"
+                      ng-disabled=!model.{$ name $}.defaultProject
+                      value="Exportieren">
+                  <input 
+                    class="btn btn-default"
+                    id="import_button"
+                    name="import_button"
+                    value={$ _('Import settings') $}
+                    title="{$ _('Import selected project settings') $}"
+                    type="button" 
+                    ng-click="openUploadModal('{$ name $}')">
+                </form>
+              </div>
+              {% endif %} 
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+</section>
+
+<script type="text/ng-template" id="uploadModalContent.html">
+  {% include 'munimap/user/ng-templates/upload-modal.html' %}
+</script>
+
+{% endblock %}
+
+{% block javascript %}
+  <script type="text/javascript">
+  var defaultSettings = {$ selected_default_settings | tojson $};
+  </script>
+
+  {$ super() $}
+
+{% endblock %}

@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-xs-12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>{$ _('name') $}</th>
+          <th>{$ _('description') $}</th>
+          <th>
+            <a ng-href="/admin/maps/add" class="btn btn-default btn-xs">{$ _('Add config') $}</a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="config in configs  | orderBy: 'name' | filter:listSearch">
+          <td>{{ config.name }}
+              <i class="glyphicon glyphicon-pencil pointer opacity" ng-click="showRenameForm = !showRenameForm"></i>
+              <form ng-submit="rename(config.name, newName); showRenameForm=false;"  class="mt-1" ng-show="showRenameForm">
+                <input type="text" ng-init="config.name" ng-model="newName">
+                <button type="submit" class="btn btn-default btn-xs">
+                  {$ _('rename') $}
+                </button>
+              </form>
+          </td>
+          <td>{{ config.description }}</td>
+          <td>
+            <confirm 
+              ng-show="enviroment=='test'"
+              class="btn btn-xs btn-default btn-success"
+              on-confirm="transfer(config)"
+              confirm-title="{$ _('transfer file') $}"
+              ok-label="{$ _('transfer') $}"
+              cancel-label="{$ _('Cancel') $}"
+              placement="left"
+              text="{$ _('transfer') $}"
+             ></confirm>
+            <a ng-href="/admin/maps/edit/{{ config.name }}" class="btn btn-default btn-xs">
+              {$ _('Edit') $}
+            </a>
+            <confirm class="btn btn-danger btn-xs"
+                     on-confirm="removeConfig(config.name)"
+                     confirm-title="{$ _('Realy remove config file?') $}"
+                     ok-label="{$ _('Remove') $}"
+                     cancel-label="{$ _('Cancel') $}"
+                     placement="top"
+                     text="{$ _('Remove') $}"
+            ></confirm>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

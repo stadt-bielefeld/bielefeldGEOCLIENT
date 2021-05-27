@@ -1,0 +1,116 @@
+<div ng-if="geoeditorEnabled"
+     ng-controller="geoeditorPopupController">
+    <div anol-feature-popup
+         layers="popupLayers"
+         class="munimap-draw-popup"
+         open-for="openGeoeditorPopupFor"
+         on-close="onCloseGeoeditorPopup(feature)"
+         auto-pan-margin="50"
+         offset="[0, -20]"
+         alt-mobile-fullscreen="true">
+        <div ng-controller="popupController">
+            <div class="popup-header" ng-switch="popupTabContent">
+                <h4 ng-switch-when="geoeditor">{$ _('GeoEditor') $}</h4>
+                <h4 ng-switch-when="style">{$ _('Style') $}</h4>
+                <h4 ng-switch-when="text">{$ _('Labeling') $}</h4>
+                <h4 ng-switch-when="marker">{$ _('Marker') $}</h4>
+            </div>
+            <div class="popup-content">
+                <ul ng-show="geoeditor.customStyling"
+                    class="nav nav-tabs tabs-left">
+                    <li ng-show="showGeoeditorTab"
+                        ng-class="{'active': popupTabContent === 'geoeditor'}"
+                        uib-tooltip="{$ _('GeoEditor') $}"
+                        tooltip-placement="left"
+                        tooltip-popup-delay="{{tooltipDelay}}"
+                        tooltip-trigger="mouseenter"
+                        tooltip-enable="showTooltip">
+                        <a href="#"
+                           ng-click="popupTabContent = 'geoeditor'">
+                            <span class="glyphicon glyphicon-list"></span>
+                        </a>
+                    </li>
+                    <li ng-class="{'active': popupTabContent === 'style'}"
+                        ng-show="!isPoint || (isPoint && !isText)"
+                        uib-tooltip="{$ _('Style') $}"
+                        tooltip-placement="left"
+                        tooltip-popup-delay="{{tooltipDelay}}"
+                        tooltip-trigger="mouseenter"
+                        tooltip-enable="showTooltip">
+                        <a href="#"
+                           ng-click="popupTabContent = 'style'">
+                            <span class="glyphicon glyphicon-adjust"></span>
+                        </a>
+                    </li>
+                    <li ng-class="{'active': popupTabContent === 'text'}"
+                        ng-show="isPoint && isText"
+                        uib-tooltip="{$ _('Labeling') $}"
+                        tooltip-placement="left"
+                        tooltip-popup-delay="{{tooltipDelay}}"
+                        tooltip-trigger="mouseenter"
+                        tooltip-enable="showTooltip">
+                        <a href="#"
+                           ng-click="popupTabContent = 'text'">
+                            <span class="glyphicon glyphicon-text-size"></span>
+                        </a>
+                    </li>
+                    <li ng-class="{'active': popupTabContent === 'marker'}"
+                        ng-show="isPoint && !isText"
+                        uib-tooltip="{$ _('Marker') $}"
+                        tooltip-placement="left"
+                        tooltip-popup-delay="{{tooltipDelay}}"
+                        tooltip-trigger="mouseenter"
+                        tooltip-enable="showTooltip">
+                        <a href="#"
+                           ng-click="popupTabContent = 'marker'">
+                            <span class="glyphicon glyphicon-map-marker"></span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div ng-show="popupTabContent === 'geoeditor'"
+                         class="geoeditor">
+                        <div anol-feature-form
+                             point-fields="geoeditor.formFields.point"
+                             line-fields="geoeditor.formFields.line"
+                             polygon-fields="geoeditor.formFields.polygon"
+                             feature="feature"
+                             highlight-invalid="highlightInvalid"
+                             validate="isValid(field, value)">
+                        </div>
+                    </div>
+                    <div ng-show="popupTabContent === 'style'"
+                         class="style">
+                        <div anol-feature-style-editor="feature"
+                             layer="layer"
+                             template-url="munimap/feature-style-editor.html"
+                             form-disabled="isMarker"
+                             disabled-text="{$ _('While a marker is selected, feature cannot be styled') $}">
+                        </div>
+                    </div>
+                    <div ng-show="popupTabContent === 'text'"
+                         class="text">
+                        <div anol-feature-style-editor="feature"
+                             layer="layer"
+                             template-url="munimap/feature-label-editor.html">
+                        </div>
+                    </div>
+                    <div ng-show="popupTabContent === 'marker'"
+                         class="marker">
+                        <div anol-feature-style-editor="feature"
+                             layer="layer"
+                             template-url="munimap/feature-icons.html"
+                             class="text-center">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="popup-footer">
+                <button class="btn btn-default btn-sm pull-right"
+                        ng-click="popup.close()">
+                    {$ _('Close') $}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
