@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-01 15:59+0200\n"
+"POT-Creation-Date: 2021-06-01 11:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1035,13 +1035,13 @@ msgid "Startposition"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/map.html:212
-#: ../munimap_transport/munimap_transport/templates/transport/app/map.html:147
-msgid "WGS 84"
+#: ../munimap_transport/munimap_transport/templates/transport/app/map.html:148
+msgid "UTM 32"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/map.html:213
-#: ../munimap_transport/munimap_transport/templates/transport/app/map.html:148
-msgid "UTM 32"
+#: ../munimap_transport/munimap_transport/templates/transport/app/map.html:147
+msgid "WGS 84"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/map.html:214
@@ -1097,7 +1097,7 @@ msgid "anol.draw.TOOLTIP_POINT"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:12
-#: ../munimap/templates/munimap/app/ng-templates/geoeditor-draw.html:15
+#: ../munimap/templates/munimap/app/ng-templates/geoeditor-draw.html:16
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:16
 msgid "Draw point"
 msgstr ""
@@ -1108,7 +1108,7 @@ msgid "anol.draw.TOOLTIP_LINE"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:23
-#: ../munimap/templates/munimap/app/ng-templates/geoeditor-draw.html:33
+#: ../munimap/templates/munimap/app/ng-templates/geoeditor-draw.html:35
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:27
 msgid "Draw line"
 msgstr ""
@@ -1119,7 +1119,7 @@ msgid "anol.draw.TOOLTIP_POLYGON"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:34
-#: ../munimap/templates/munimap/app/ng-templates/geoeditor-draw.html:51
+#: ../munimap/templates/munimap/app/ng-templates/geoeditor-draw.html:54
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:38
 msgid "Draw polygon"
 msgstr ""
@@ -1135,7 +1135,7 @@ msgid "Draw text"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:50
-#: ../munimap/templates/munimap/app/ng-templates/geoeditor-draw.html:59
+#: ../munimap/templates/munimap/app/ng-templates/geoeditor-draw.html:63
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:53
 msgid "Modify or shift geometry"
 msgstr ""
@@ -1153,7 +1153,7 @@ msgstr ""
 msgid "Upload"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/geoeditor-draw.html:84
+#: ../munimap/templates/munimap/app/ng-templates/geoeditor-draw.html:88
 msgid "Remove geometry"
 msgstr ""
 
