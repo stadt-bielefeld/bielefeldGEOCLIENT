@@ -76,10 +76,10 @@ npm i
 
 ```
 cd dev/
-virtualenv -p python2.7 bielefeldGEOCLIENT
-source bielefeldGEOCLIENT/bin/activate
-# Or: source bielefeldGEOCLIENT/bin/activate.fish
-# Or: source bielefeldGEOCLIENT/bin/activate.csh
+virtualenv -p python2.7 muni_venv
+source muni_venv/bin/activate
+# Or: source muni_venv/bin/activate.fish
+# Or: source muni_venv/bin/activate.csh
 pip install -r requirements.txt
 pip install -e ../
 pip install --no-index -e ../munimap_digitize/
