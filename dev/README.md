@@ -53,17 +53,16 @@ cd mapfish
 tar -xvf print-cli-3.3-SNAPSHOT-tar.tar
 ``` 
 
-* Clone and start anol in watch mode
+* Clone, build (and watch) anol
 
 ```
 cd ../../
 git clone git@github.com:terrestris/anol.git
 cd anol
 npm i
-npm start
+npm run build
+# npm start
 ```
-
-Use `npm run build` to build it just once
 
 * Install (and watch) the munimap frontend
 
