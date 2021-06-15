@@ -86,9 +86,6 @@ pip install --no-index -e ../munimap_digitize/
 pip install --no-index -e ../munimap_transport/
 python -c "import hyphen.dictools; hyphen.dictools.install('de')"
 
-mkdir tmp
-touch tmp/munimap.debug.log
-
 python manage.py -c develop.example.conf create_db
 # python manage.py -c develop.example.conf runserver
 ```
