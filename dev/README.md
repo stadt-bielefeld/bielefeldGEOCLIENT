@@ -11,13 +11,9 @@
 * Java 8
 * virtualenv
 * Required packages for building pip requirements
-  * libspatialindex-dev
-  * libjpeg-dev
-  * zlib1g-dev
-  * python2.7-dev
-  * build-essential
-  * libssl-dev
-  * libffi-dev
+```
+sudo apt install libspatialindex-dev libjpeg-dev zlib1g-dev python2.7-dev build-essential libssl-dev libffi-dev
+```
 
 ## Initial development setup
 
@@ -57,20 +53,22 @@ cd mapfish
 tar -xvf print-cli-3.3-SNAPSHOT-tar.tar
 ``` 
 
-* Clone and build anol
+* Clone and start anol in watch mode
 
 ```
 cd ../../
 git clone git@github.com:terrestris/anol.git
 cd anol
 npm i
-npm run build
+npm start
 ```
+
+Use `npm run build` to build it just once
 
 * Install (and watch) the munimap frontend
 
 ```
-cd ../munimap/
+cd ../bielefeldGEOCLIENT/
 npm i
 # npm start
 ```
@@ -79,15 +77,18 @@ npm i
 
 ```
 cd dev/
-virtualenv -p python2.7 munimap
-source munimap/bin/activate
-# Or: source munimap/bin/activate.fish
-# Or: source munimap/bin/activate.csh
+virtualenv -p python2.7 bielefeldGEOCLIENT
+source bielefeldGEOCLIENT/bin/activate
+# Or: source bielefeldGEOCLIENT/bin/activate.fish
+# Or: source bielefeldGEOCLIENT/bin/activate.csh
 pip install -r requirements.txt
 pip install -e ../
 pip install --no-index -e ../munimap_digitize/
 pip install --no-index -e ../munimap_transport/
 python -c "import hyphen.dictools; hyphen.dictools.install('de')"
+
+mkdir tmp
+touch tmp/munimap.debug.log
 
 python manage.py -c develop.example.conf create_db
 # python manage.py -c develop.example.conf runserver
@@ -121,7 +122,7 @@ JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ python manage.py -c ../../munimap-c
 and
 
 ```
-cd munimap/
+cd bielefeldGEOCLIENT/
 npm start
 ```
 
