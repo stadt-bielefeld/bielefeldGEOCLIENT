@@ -15,6 +15,7 @@ require('./../../../../munimap/static/js/modules/confirm.js');
 require('./../../../../munimap/static/js/modules/notifications.js');
 require('./../../../../munimap/static/js/modules/sidebar.js');
 require('./../../../../munimap/static/js/modules/servicebutton.js');
+require('./../../../../munimap/static/js/modules/postmessage-service.js');
 
 require('./transport-config.js');
 require('./layers.js');
