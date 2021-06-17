@@ -75,6 +75,7 @@ def refresh_users():
 
 manager.add_option('-c', '--config', dest='config_file', required=False)
 manager.add_command("runserver", Server(
+    host='0.0.0.0',
     threaded=True,
     # extra_files=['munimap_develop.conf', 'data/layers_conf.yaml']
 ))
