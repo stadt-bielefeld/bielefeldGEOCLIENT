@@ -64,7 +64,7 @@ npm run build
 # npm start
 ```
 
-* Install (and watch) the munimap frontend
+* Install (and watch) the bielefeldGEOCLIENT frontend
 
 ```
 cd ../bielefeldGEOCLIENT/
