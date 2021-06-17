@@ -11,13 +11,9 @@
 * Java 8
 * virtualenv
 * Required packages for building pip requirements
-  * libspatialindex-dev
-  * libjpeg-dev
-  * zlib1g-dev
-  * python2.7-dev
-  * build-essential
-  * libssl-dev
-  * libffi-dev
+```
+sudo apt install libspatialindex-dev libjpeg-dev zlib1g-dev python2.7-dev build-essential libssl-dev libffi-dev
+```
 
 ## Initial development setup
 
@@ -57,7 +53,7 @@ cd mapfish
 tar -xvf print-cli-3.3-SNAPSHOT-tar.tar
 ``` 
 
-* Clone and build anol
+* Clone, build (and watch) anol
 
 ```
 cd ../../
@@ -65,12 +61,13 @@ git clone git@github.com:terrestris/anol.git
 cd anol
 npm i
 npm run build
+# npm start
 ```
 
-* Install (and watch) the munimap frontend
+* Install (and watch) the bielefeldGEOCLIENT frontend
 
 ```
-cd ../munimap/
+cd ../bielefeldGEOCLIENT/
 npm i
 # npm start
 ```
@@ -79,10 +76,10 @@ npm i
 
 ```
 cd dev/
-virtualenv -p python2.7 munimap
-source munimap/bin/activate
-# Or: source munimap/bin/activate.fish
-# Or: source munimap/bin/activate.csh
+virtualenv -p python2.7 muni_venv
+source muni_venv/bin/activate
+# Or: source muni_venv/bin/activate.fish
+# Or: source muni_venv/bin/activate.csh
 pip install -r requirements.txt
 pip install -e ../
 pip install --no-index -e ../munimap_digitize/
@@ -121,7 +118,7 @@ JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ python manage.py -c ../../munimap-c
 and
 
 ```
-cd munimap/
+cd bielefeldGEOCLIENT/
 npm start
 ```
 
