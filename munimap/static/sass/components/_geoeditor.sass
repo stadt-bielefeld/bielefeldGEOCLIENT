@@ -7,20 +7,69 @@
   &.badge-red
     background-color: rgba(217, 83, 79, 0.8)
 
-.geoeditor-buttons
-  display: table
+.geoeditor
+  .geoeditor-buttons
+    display: table
 
-.geoeditor-button-wrap
-  display: table-row
-  width: 100%
+  .geoeditor-button-wrap
+    display: table-row
+    width: 100%
 
-.geoeditor-button
-  display: table-cell
-  width: 100%
+  .geoeditor-button
+    display: table-cell
+    width: 100%
 
-.geoeditor-button-text
-  float: left
+  .geoeditor-button-text
+    float: left
 
-.geoeditor-badge
-  float: right
-  margin-left: 10px
+  .draw-icon
+    float: left
+    margin: 0.2em
+
+  .geoeditor-badge
+    float: right
+    margin-left: 10px
+
+  @media (max-width: $screen-xs)
+    .geoeditor-modify-label, .geoeditor-button-text
+      display: none
+    .draw-remove
+      display: block
+    > div
+      display: flex
+    .geoeditor-buttons
+      margin-right: 0.5em
+    .geoeditor-modify
+      > h5
+        display: inline-block
+    .geoeditor-edit
+      display: inline-block
+      vertical-align: middle
+      button
+        width: 100%
+
+.anol-mobiledrawer
+  @media (min-width: $screen-xs)
+    display: none
+  @media (max-width: $screen-xs)
+    position: absolute
+    z-index: 1
+    top: 4em
+    right: 0.5em
+    &.anol-mobiledrawer-open
+      width: 300px
+
+    background-color: white
+
+    border: 1px solid lightgrey
+    border-radius: 2px
+
+    .anol-mobiledrawer-content
+      padding: 0.2em
+
+    > *
+      display: table-cell
+    .anol-mobiledrawer-button
+      position: relative
+      vertical-align: center
+      border: none

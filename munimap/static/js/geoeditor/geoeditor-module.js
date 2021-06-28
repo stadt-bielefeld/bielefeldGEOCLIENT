@@ -1,4 +1,4 @@
-angular.module('munimapGeoeditor', [])
+angular.module('munimapGeoeditor', ['anol.mobiledrawer', 'anol.featurepopup'])
     .run(['munimapConfig', function (munimapConfig) {
 
     }]);

@@ -1,3 +1,15 @@
+<div anol-mobiledrawer>
+    <div anol-draw
+         template-url="munimap/geoeditor-draw.html"
+         geometries="geoeditor.geometries"
+         post-draw-action="openGeoeditorPopup(layer, feature)"
+         post-delete-action="onDelete(layer, feature)"
+         on-modify-select="onModifySelect()"
+         live-measure="geoeditor.displayMeasurements"
+         short-text="true"
+    >
+    </div>
+</div>
 <div anol-map class="map">
   <div anol-url-markers></div>
   <div anol-attribution

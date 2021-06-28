@@ -56,6 +56,8 @@ require('anol/src/modules/urlmarkers/urlmarker-service.js');
 require('anol/src/modules/urlmarkers/urlmerker-bbcode-directive.js');
 require('anol/src/modules/zoom/zoom-directive.js');
 
+require('anol/src/modules/mobiledrawer/mobiledrawer-directive.js');
+
 import View from 'ol/View';
 import { transformExtent, transform } from 'ol/proj';
 import { defaults as defaultInteractions } from 'ol/interaction';

@@ -32,15 +32,16 @@
   <div sidebar-item="geoeditor"
        exclusive
        ng-if="geoeditorEnabled"
+       class="hide-for-mobile"
        item-title="{$ _('Editor controls') $}">
-    <div anol-draw
+      <div anol-draw
          template-url="munimap/geoeditor-draw.html"
          geometries="geoeditor.geometries"
          post-draw-action="openGeoeditorPopup(layer, feature)"
          post-delete-action="onDelete(layer, feature)"
          on-modify-select="onModifySelect()"
          live-measure="geoeditor.displayMeasurements">
-    </div>
+      </div>
   </div>
   <div sidebar-item="print"
        exclusive
