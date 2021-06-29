@@ -7,18 +7,9 @@
   &.badge-red
     background-color: rgba(217, 83, 79, 0.8)
 
+$sidebar-width: 300px // TODO: import value
+
 .geoeditor
-  .geoeditor-buttons
-    display: table
-
-  .geoeditor-button-wrap
-    display: table-row
-    width: 100%
-
-  .geoeditor-button
-    display: table-cell
-    width: 100%
-
   .geoeditor-button-text
     float: left
 
@@ -30,46 +21,87 @@
     float: right
     margin-left: 10px
 
-  @media (max-width: $screen-xs)
-    .geoeditor-modify-label, .geoeditor-button-text
-      display: none
-    .draw-remove
+// if under this map width, switch to the compact layout
+$geoeditor-compact-layout-break: 650px
+$geoeditor-remove-texts-break: 350px
+
+@mixin compact-design
+  .btn-group
+    > .btn
       display: block
-    > div
-      display: flex
-    .geoeditor-buttons
-      margin-right: 0.5em
-    .geoeditor-modify
-      > h5
-        display: inline-block
-    .geoeditor-edit
-      display: inline-block
-      vertical-align: middle
-      button
-        width: 100%
+      float: none
+      width: 100%
+      max-width: 100%
 
-.anol-mobiledrawer
-  @media (min-width: $screen-xs)
-    display: none
-  @media (max-width: $screen-xs)
-    position: absolute
-    z-index: 1
-    top: 4em
-    right: 0.5em
-    &.anol-mobiledrawer-open
-      width: 300px
+    > .btn + .btn,
+    > .btn + .btn-group,
+    > .btn-group + .btn,
+    > .btn-group + .btn-group
+      margin-top: -1px
+      margin-left: 0
 
-    background-color: white
+    > .btn
+      &:first-child:not(:last-child)
+        border-bottom-left-radius: 0
+        border-top-right-radius: 3px
 
-    border: 1px solid lightgrey
-    border-radius: 2px
+      &:last-child:not(:first-child)
+        border-bottom-left-radius: 3px
+        border-top-right-radius: 0
 
-    .anol-mobiledrawer-content
-      padding: 0.2em
+.sidebar-open
+  .geoeditor
+    @media (max-width: $geoeditor-compact-layout-break + $sidebar-width)
+      @include compact-design
 
-    > *
-      display: table-cell
-    .anol-mobiledrawer-button
-      position: relative
-      vertical-align: center
-      border: none
+    @media (max-width: $geoeditor-remove-texts-break + $sidebar-width)
+      .geoeditor-button-text
+        display: none
+
+.sidebar-closed
+  .geoeditor
+    @media (max-width: $geoeditor-compact-layout-break)
+      @include compact-design
+
+    @media (max-width: $geoeditor-remove-texts-break)
+      .geoeditor-button-text
+        display: none
+
+.anol-drawer
+  position: absolute
+  z-index: 1
+  top: 0.5em
+
+  right: 0.5em
+
+  max-width: calc(100% - 4em)
+
+  background-color: white
+
+  border: 1px solid lightgrey
+  border-radius: 2px
+
+  .anol-drawer-content
+    display: table-cell
+    padding: 0.3em
+
+  .anol-drawer-button
+    display: table-cell
+    position: relative
+    vertical-align: center
+    border: none
+
+// if under this map width, switch to the lower position
+$drawer-lower-position-break: 1100px
+
+.sidebar-open
+  .anol-drawer
+    max-width: calc(100% - 4em - #{$sidebar-width})
+
+    @media (max-width: $drawer-lower-position-break + $sidebar-width)
+      top: 4em
+
+.sidebar-closed
+  .anol-drawer
+    @media (max-width: $drawer-lower-position-break)
+      top: 4em

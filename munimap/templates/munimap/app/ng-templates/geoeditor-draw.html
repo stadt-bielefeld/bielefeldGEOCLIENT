@@ -1,101 +1,75 @@
 <div ng-controller="geoeditorDrawController" class="geoeditor">
-    <h5 class="hide-for-mobile">{$ _('Add geometry') $}</h5>
-    <h5 class="hide-for-desktop">{$ _('Add or edit geometry') $}</h5>
-    <div>
-        <div class="geoeditor-buttons">
-            <div class="geoeditor-button-wrap">
-                <button ng-click="drawPoint()"
-                        ng-show="geometriesConfig.point.enabled"
-                        ng-disabled="modifyActive || geometryCount.point >= geometriesConfig.point.max"
-                        class="btn btn-default btn-sm draw-point geoeditor-button"
-                        uib-tooltip="{{ 'anol.draw.TOOLTIP_DRAW_POINT' | translate }}"
-                        tooltip-placement="bottom"
-                        tooltip-popup-delay="{{ tooltipDelay }}"
-                        tooltip-enable="{{ tooltipEnable }}"
-                        tooltip-trigger="mouseenter">
-                    <div class="draw-icon"></div>
-                    <span class="geoeditor-button-text">
-                        {$ _('Draw point') $}
-                    </span>
-                    <span ng-class="['geoeditor-badge', 'badge', geometryCount.point < geometriesConfig.point.min ? 'badge-red' : 'badge-green']">
-                    {{ getBadgeText(geometryCount.point, geometriesConfig.point) }}
-                </span>
-                </button>
-            </div>
-            <div class="geoeditor-button-wrap">
-                <button ng-click="drawLine()"
-                        ng-show="geometriesConfig.line.enabled"
-                        ng-disabled="modifyActive || geometryCount.line >= geometriesConfig.line.max"
-                        class="btn btn-default btn-sm draw-line geoeditor-button"
-                        uib-tooltip="{{ 'anol.draw.TOOLTIP_DRAW_LINE' | translate }}"
-                        tooltip-placement="bottom"
-                        tooltip-popup-delay="{{ tooltipDelay }}"
-                        tooltip-enable="{{ tooltipEnable }}"
-                        tooltip-trigger="mouseenter">
-                    <div class="draw-icon"></div>
-                    <span class="geoeditor-button-text">
-                        {$ _('Draw line') $}
-                    </span>
-                        <span ng-class="['geoeditor-badge', 'badge', geometryCount.line < geometriesConfig.line.min ? 'badge-red' : 'badge-green']">
-                        {{ getBadgeText(geometryCount.line, geometriesConfig.line) }}
-                    </span>
-                </button>
-            </div>
-            <div class="geoeditor-button-wrap">
-                <button ng-click="drawPolygon()"
-                        ng-show="geometriesConfig.polygon.enabled"
-                        ng-disabled="modifyActive || geometryCount.polygon >= geometriesConfig.polygon.max"
-                        class="btn btn-default btn-sm draw-polygon geoeditor-button"
-                        uib-tooltip="{{ 'anol.draw.TOOLTIP_DRAW_POLYGON' | translate }}"
-                        tooltip-placement="bottom"
-                        tooltip-popup-delay="{{ tooltipDelay }}"
-                        tooltip-enable="{{ tooltipEnable }}"
-                        tooltip-trigger="mouseenter">
-                    <div class="draw-icon"></div>
-                    <span class="geoeditor-button-text">
-                        {$ _('Draw polygon') $}
-                    </span>
-                        <span ng-class="['geoeditor-badge', 'badge', geometryCount.polygon < geometriesConfig.polygon.min ? 'badge-red' : 'badge-green']">
-                        {{ getBadgeText(geometryCount.polygon, geometriesConfig.polygon) }}
-                    </span>
-                </button>
-            </div>
-        </div>
-        <div class="geoeditor-edit mt-1 mb-1">
-            <span class="geoeditor-modify hide-for-mobile">
-                <h5>{$ _('Modify or shift geometry') $}</h5>
-                <strong class="geoeditor-modify-label">Aus</strong>
-                <switch id="enabled"
-                        name="enabled"
-                        class="green small"
-                        ng-model="enabled"
-                        ng-state="modifyActive"
-                        ng-change="modify()"
-                        uib-tooltip="{{ 'anol.draw.TOOLTIP_MODIFY' | translate }}"
-                        tooltip-placement="bottom-left"
-                        tooltip-popup-delay="{{ tooltipDelay }}"
-                        tooltip-enable="{{ tooltipEnable }}"
-                        tooltip-trigger="mouseenter">
-                </switch>
-                <strong class="mr-1 geoeditor-modify-label">An</strong>
+    <h5 class="geoeditor-header">{$ _('Add or edit geometry') $}</h5>
+    <div class="btn-group geoeditor-draw">
+        <button ng-click="drawPoint()"
+                ng-show="geometriesConfig.point.enabled"
+                ng-disabled="modifyActive || geometryCount.point >= geometriesConfig.point.max"
+                class="btn btn-default btn-sm draw-point geoeditor-button"
+                uib-tooltip="{{ 'anol.draw.TOOLTIP_DRAW_POINT' | translate }}"
+                tooltip-placement="bottom"
+                tooltip-popup-delay="{{ tooltipDelay }}"
+                tooltip-enable="{{ tooltipEnable }}"
+                tooltip-trigger="mouseenter">
+            <div class="draw-icon"></div>
+            <span class="geoeditor-button-text">
+                {$ _('Draw point') $}
             </span>
-            <button class="hide-for-desktop draw-edit btn btn-default btn-sm"
-                    ng-click="modifyActive = !modifyActive"
-                    ng-disabled="!enabled">
-                <div class="draw-icon"></div>
-                {$ _('Edit') $}
-            </button>
-            <button ng-click="remove()"
-                    ng-disabled="!enabled || selectedFeature === undefined"
-                    class="btn btn-default btn-sm draw-remove"
-                    uib-tooltip="{{ 'anol.draw.TOOLTIP_REMOVE' | translate }}"
-                    tooltip-placement="bottom"
-                    tooltip-popup-delay="{{ tooltipDelay }}"
-                    tooltip-enable="{{ tooltipEnable }}"
-                    tooltip-trigger="mouseenter">
-                <div class="draw-icon"></div>
-                {$ _('Remove geometry') $}
-            </button>
-        </div>
+            <span ng-class="['geoeditor-badge', 'badge', geometryCount.point < geometriesConfig.point.min ? 'badge-red' : 'badge-green']">
+                {{ getBadgeText(geometryCount.point, geometriesConfig.point) }}
+            </span>
+        </button>
+        <button ng-click="drawLine()"
+                ng-show="geometriesConfig.line.enabled"
+                ng-disabled="modifyActive || geometryCount.line >= geometriesConfig.line.max"
+                class="btn btn-default btn-sm draw-line geoeditor-button"
+                uib-tooltip="{{ 'anol.draw.TOOLTIP_DRAW_LINE' | translate }}"
+                tooltip-placement="bottom"
+                tooltip-popup-delay="{{ tooltipDelay }}"
+                tooltip-enable="{{ tooltipEnable }}"
+                tooltip-trigger="mouseenter">
+            <div class="draw-icon"></div>
+            <span class="geoeditor-button-text">
+                    {$ _('Draw line') $}
+                </span>
+            <span ng-class="['geoeditor-badge', 'badge', geometryCount.line < geometriesConfig.line.min ? 'badge-red' : 'badge-green']">
+                    {{ getBadgeText(geometryCount.line, geometriesConfig.line) }}
+                </span>
+        </button>
+        <button ng-click="drawPolygon()"
+                ng-show="geometriesConfig.polygon.enabled"
+                ng-disabled="modifyActive || geometryCount.polygon >= geometriesConfig.polygon.max"
+                class="btn btn-default btn-sm draw-polygon geoeditor-button"
+                uib-tooltip="{{ 'anol.draw.TOOLTIP_DRAW_POLYGON' | translate }}"
+                tooltip-placement="bottom"
+                tooltip-popup-delay="{{ tooltipDelay }}"
+                tooltip-enable="{{ tooltipEnable }}"
+                tooltip-trigger="mouseenter">
+            <div class="draw-icon"></div>
+            <span class="geoeditor-button-text">
+                    {$ _('Draw polygon') $}
+                </span>
+            <span ng-class="['geoeditor-badge', 'badge', geometryCount.polygon < geometriesConfig.polygon.min ? 'badge-red' : 'badge-green']">
+                    {{ getBadgeText(geometryCount.polygon, geometriesConfig.polygon) }}
+                </span>
+        </button>
+    </div>
+    <div class="btn-group geoeditor-edit">
+        <button class="draw-edit btn btn-default btn-sm"
+                ng-click="modifyActive = !modifyActive"
+                ng-disabled="!enabled">
+            <div class="draw-icon"></div>
+            {$ _('Modify or shift geometry') $}
+        </button>
+        <button ng-click="remove()"
+                ng-disabled="!enabled || selectedFeature === undefined"
+                class="btn btn-default btn-sm draw-remove"
+                uib-tooltip="{{ 'anol.draw.TOOLTIP_REMOVE' | translate }}"
+                tooltip-placement="bottom"
+                tooltip-popup-delay="{{ tooltipDelay }}"
+                tooltip-enable="{{ tooltipEnable }}"
+                tooltip-trigger="mouseenter">
+            <div class="draw-icon"></div>
+            {$ _('Remove geometry') $}
+        </button>
     </div>
 </div>
