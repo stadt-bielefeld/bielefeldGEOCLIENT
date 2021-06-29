@@ -248,7 +248,6 @@ def configure_assets(app):
         return project_files
 
     def assign_project_files(content_list, project_files):
-        content_list = list(bundle.contents)
         new_bundle_content = []
         for index, content in enumerate(content_list):
             # replace files from project or add the original one
