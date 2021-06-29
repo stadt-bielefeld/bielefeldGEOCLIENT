@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-29 12:10+0200\n"
+"POT-Creation-Date: 2021-06-29 13:43+0200\n"
 "PO-Revision-Date: 2015-12-11 10:51+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -1075,11 +1075,7 @@ msgstr "Themen hinzuladen"
 msgid "Draw controls"
 msgstr "Zeichnen"
 
-#: ../munimap/templates/munimap/app/sidebar.html:35
-msgid "Editor controls"
-msgstr "geoEDITOR"
-
-#: ../munimap/templates/munimap/app/sidebar.html:68
+#: ../munimap/templates/munimap/app/sidebar.html:55
 msgid "CellsX"
 msgstr "Höhe"
 
@@ -1107,7 +1103,7 @@ msgid "anol.draw.TOOLTIP_POINT"
 msgstr "Punkt zeichnen"
 
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:12
-#: ../munimap/templates/munimap/app/ng-templates/geoeditor-draw.html:16
+#: ../munimap/templates/munimap/app/ng-templates/geoeditor-draw.html:15
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:16
 msgid "Draw point"
 msgstr "Punkt"
@@ -2322,5 +2318,5 @@ msgstr "Haltestelle als Ziel übernehmen"
 #~ msgstr "Ausgewählte Geometrie entfernen"
 
 #~ msgid "Editor controls"
-#~ msgstr "GeoEditor"
+#~ msgstr "geoEDITOR"
 

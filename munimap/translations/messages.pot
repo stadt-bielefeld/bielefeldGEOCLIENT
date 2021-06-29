@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-29 12:10+0200\n"
+"POT-Creation-Date: 2021-06-29 13:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1092,7 +1092,7 @@ msgid "anol.draw.TOOLTIP_POINT"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:12
-#: ../munimap/templates/munimap/app/ng-templates/geoeditor-draw.html:16
+#: ../munimap/templates/munimap/app/ng-templates/geoeditor-draw.html:15
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:16
 msgid "Draw point"
 msgstr ""
@@ -1130,7 +1130,7 @@ msgid "Draw text"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:50
-#: ../munimap/templates/munimap/app/ng-templates/geoeditor-draw.html:59
+#: ../munimap/templates/munimap/app/ng-templates/geoeditor-draw.html:61
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:53
 msgid "Modify or shift geometry"
 msgstr ""
