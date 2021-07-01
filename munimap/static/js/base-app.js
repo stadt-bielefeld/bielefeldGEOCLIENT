@@ -35,6 +35,6 @@ angular.element(document).ready(function() {
 
     angular.module('munimapBase')
         .constant('imageUrl', imageUrl);
-        
+
     angular.bootstrap(document, ['munimapBase', 'munimap']);
 });

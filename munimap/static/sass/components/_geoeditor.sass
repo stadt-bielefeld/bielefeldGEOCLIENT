@@ -7,20 +7,99 @@
   &.badge-red
     background-color: rgba(217, 83, 79, 0.8)
 
-.geoeditor-buttons
-  display: table
+.geoeditor
+  .geoeditor-button-text
+    float: left
 
-.geoeditor-button-wrap
-  display: table-row
-  width: 100%
+  .draw-icon
+    float: left
+    margin: 0.2em
 
-.geoeditor-button
-  display: table-cell
-  width: 100%
+  .geoeditor-badge
+    float: right
+    margin-left: 10px
 
-.geoeditor-button-text
-  float: left
+// if under this map width, switch to the compact layout
+$geoeditor-compact-layout-break: 650px
+$geoeditor-remove-texts-break: 350px
 
-.geoeditor-badge
-  float: right
-  margin-left: 10px
+@mixin compact-design
+  .btn-group
+    > .btn
+      display: block
+      float: none
+      width: 100%
+      max-width: 100%
+
+    > .btn + .btn,
+    > .btn + .btn-group,
+    > .btn-group + .btn,
+    > .btn-group + .btn-group
+      margin-top: -1px
+      margin-left: 0
+
+    > .btn
+      &:first-child:not(:last-child)
+        border-bottom-left-radius: 0
+        border-top-right-radius: 3px
+
+      &:last-child:not(:first-child)
+        border-bottom-left-radius: 3px
+        border-top-right-radius: 0
+
+.sidebar-open
+  .geoeditor
+    @media (max-width: $geoeditor-compact-layout-break + $sidebar-width)
+      @include compact-design
+
+    @media (max-width: $geoeditor-remove-texts-break + $sidebar-width)
+      .geoeditor-button-text
+        display: none
+
+.sidebar-closed
+  .geoeditor
+    @media (max-width: $geoeditor-compact-layout-break)
+      @include compact-design
+
+    @media (max-width: $geoeditor-remove-texts-break)
+      .geoeditor-button-text
+        display: none
+
+.anol-drawer
+  position: absolute
+  z-index: 1
+  top: 0.5em
+
+  right: 0.5em
+
+  max-width: calc(100% - 4em)
+
+  background-color: white
+
+  border: 1px solid lightgrey
+  border-radius: 2px
+
+  .anol-drawer-content
+    display: table-cell
+    padding: 0.3em
+
+  .anol-drawer-button
+    display: table-cell
+    position: relative
+    vertical-align: center
+    border: none
+
+// if under this map width, switch to the lower position
+$drawer-lower-position-break: 1100px
+
+.sidebar-open
+  .anol-drawer
+    max-width: calc(100% - 4em - #{$sidebar-width})
+
+    @media (max-width: $drawer-lower-position-break + $sidebar-width)
+      top: 4em
+
+.sidebar-closed
+  .anol-drawer
+    @media (max-width: $drawer-lower-position-break)
+      top: 4em

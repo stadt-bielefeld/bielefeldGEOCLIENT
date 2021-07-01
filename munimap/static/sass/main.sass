@@ -31,9 +31,9 @@
     height: 100%
     overflow: hidden
     position: relative
-    width: 300px
+    width: $sidebar-width
     background-color: $sidebar-color
-    box-shadow: -6px 6px 24px $shadow-color;
+    box-shadow: -6px 6px 24px $shadow-color
     z-index: 3
 
     @media screen and (max-width: $screen-xs)
@@ -58,7 +58,7 @@
         padding: 8px
         cursor: default
       button.search
-        border-color: #cccccc        
+        border-color: #cccccc
       input
         border: 1px solid #ccc
         border-radius: 4px
@@ -168,9 +168,9 @@
   margin-right: 1em
 
 .feedback-button span
-  color: white;
-  background: rgba(0, 0, 0, 0.7);
-  border: 1px solid rgba(0, 0, 0, 0.7);
+  color: white
+  background: rgba(0, 0, 0, 0.7)
+  border: 1px solid rgba(0, 0, 0, 0.7)
   transform: scale(1.2, 1)
 
 .low-margin
@@ -182,67 +182,67 @@
 
 .catalog-tabs
   .form-horizontal
-    margin-top: 1em  
+    margin-top: 1em
 
 .alkis-icon
   &:before
     color: white
     content: "A"
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
     font-size: 20px
 
-.modal.left 
-  .modal-dialog,
+.modal.left
+  .modal-dialog
     position: fixed
     margin: auto
     width: 600px
     bottom: 10px
     left: 10px
-  
-  .modal-content,
-    overflow-y: auto;
+
+  .modal-content
+    overflow-y: auto
 
 
-  
+
 .catalog-modal
   .modal-dialog
-    margin: 10px auto !important;
-    
+    margin: 10px auto !important
+
   .modal-body
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow-y: auto
+    overflow-x: hidden
     max-height: calc(100vh - 80px)
 
     .toggle-variant-button
       position: absolute
-      right: 10px;
-      display: block;
-      padding: 10px 15px;
+      right: 10px
+      display: block
+      padding: 10px 15px
       background-color: #eee
-      cursor: pointer;
+      cursor: pointer
       &.second
-        right: 62px;
+        right: 62px
       &.active
-        color: white;
+        color: white
         background-color: #337ab7
       .glyphicon
-        font-size: 18px;
-        color: inherit;
+        font-size: 18px
+        color: inherit
 
     .striped
-      background-color: #eee;
+      background-color: #eee
 
     .catalog-title
-      padding: 4px;
-      margin: 1px;
+      padding: 4px
+      margin: 1px
 
     .catalog-mouse-over
-      padding-top: 0 !important;
-      padding-bottom: 0 !important;
+      padding-top: 0 !important
+      padding-bottom: 0 !important
 
     .catalog-abstract, .catalog-div
-      padding-top: 4px;
-      padding-bottom: 4px;
+      padding-top: 4px
+      padding-bottom: 4px
       cursor: default
       .inline
         display: inline
@@ -259,16 +259,16 @@
           color: $sidebar-layer-active-text-color
           text-decoration: none
           cursor: pointer
-      
+
       .btn-none
         display: inline-block
         padding: 1px 4px
-        border: 1px solid transparent;
-        
-    .nav-tabs > li 
-      float: left;
-      // margin-bottom: -2px;
-      &:not(:first-child)    
+        border: 1px solid transparent
+
+    .nav-tabs > li
+      float: left
+      // margin-bottom: -2px
+      &:not(:first-child)
         margin-left: 5px
       a, a:hover, a:focus
         background-color: #eeeeee
@@ -276,27 +276,27 @@
         font-size: 16px
         border: 0
         border-radius: 0
-      a:hover,
+      a:hover
         color: $sidebar-item-highlight-text-color
-      
-      &.active > a, 
+
+      &.active > a,
       &.active > a:hover,
       &.active > a:focus
-        color: white;
-        font-weight: bold;
-        background-color: $sidebar-layer-active-text-color;
-        opacity: 0.8;
+        color: white
+        font-weight: bold
+        background-color: $sidebar-layer-active-text-color
+        opacity: 0.8
 
 @media (min-width: 992px)
   .catalog-modal
     .modal-dialog
-      width: 900px !important;
+      width: 900px !important
 
 @media (min-width: 768px)
   .catalog-modal
     .modal-dialog
-      width: 700px;
-      margin: 30px auto;
+      width: 700px
+      margin: 30px auto
 
 .anol-popup
   .popup-content

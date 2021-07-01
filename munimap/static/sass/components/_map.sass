@@ -108,13 +108,13 @@
     width: auto
 
     li.catalog-search-nav, li.catalog-search-no-result
-      display: block;
-      padding: 3px 20px;
-      clear: both;
-      font-weight: normal;
-      line-height: 1.42857143;
-      color: #333;
-      white-space: nowrap;
+      display: block
+      padding: 3px 20px
+      clear: both
+      font-weight: normal
+      line-height: 1.42857143
+      color: #333
+      white-space: nowrap
     li.catalog-search-nav
       border-bottom: 1px solid black
 
@@ -277,10 +277,10 @@
   .alkis-control
     top: 15.6em
     .glyphicon
-      line-height: 1em;
+      line-height: 1em
 
   .timetable-control
-    top: 15.6em !important;
+    top: 15.6em !important
 
   .alkis-container-control
     top: 15.6em
@@ -321,6 +321,8 @@
 .anol-popup-mobile
   width: 100vw
   height: 100vh
+  position: relative
+  z-index: 1
   .popup-content
     max-height: calc(100vh - 80px) !important
   .anol-popup-closer
@@ -331,9 +333,10 @@
     display: none
 
 @media (min-width: $screen-xs)
+  .hide-for-desktop
+    display: none
   .anol-popup-mobile
     display: none
-
 
 .map-logo
   left: 10px
@@ -583,10 +586,10 @@ hr.alkis
     margin-bottom: 10px
 
 .active-background
-  left: auto;
-  right: auto;
-  top: auto;
-  bottom: auto;
+  left: auto
+  right: auto
+  top: auto
+  bottom: auto
 
 .no-background
   background-color: transparent

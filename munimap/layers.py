@@ -59,7 +59,7 @@ def anol_background_layer(layer_conf, layers_base_url=''):
         layer = layer_conf['name']
         if layer_conf.get('source').get('directAccess'):
             layer = layer_conf.get('source').get('layer')
-            
+
         source = {
             'layer': layer,
             'projection': layer_conf['source']['srs'],
@@ -114,7 +114,7 @@ def anol_background_layer(layer_conf, layers_base_url=''):
 
     if 'searchConfig' in layer_conf:
         background_layer['searchConfig'] = layer_conf['searchConfig']
-        
+
     if 'legend' in layer_conf:
         background_layer['legend'] = layer_conf['legend']
 
@@ -159,7 +159,7 @@ def anol_overlay_layer(layer_conf, layers_base_url=''):
             }
         }
         if layer_conf['type'] in ('wms'):
-            source['projection'] = layer_conf['source']['srs']    
+            source['projection'] = layer_conf['source']['srs']
     elif layer_conf['type'] == 'wmts':
         layer_name = layer_conf['name']
         if layer_conf.get('source').get('directAccess'):
@@ -326,7 +326,7 @@ def mapfish_wms_layer(layer_conf, is_background, layers_base_url='',
         'layers': layer_conf['source']['layers'],
         'customParams': {}
     }
-    # make all request transparent, also backgorund layers 
+    # make all request transparent, also background layers
     # can be transparent
     mapfish_layer['customParams']['transparent'] = True
     return mapfish_layer
@@ -541,10 +541,10 @@ def mapfish_measure_feature_collection_layer(feature_collection):
                 total_area = '{0:.2f}m²'.format(total_area)
 
         for idx, coord in enumerate(coordinates):
-            # add length  label on segments 
-            if idx != len(coordinates) - 1: 
-                start = coord; 
-                end = coordinates[idx + 1];
+            # add length  label on segments
+            if idx != len(coordinates) - 1:
+                start = coord
+                end = coordinates[idx + 1]
                 newPoint = [(end[0] + start[0]) / 2, (end[1] + start[1]) / 2]
 
                 segment_line = LineString([start, end])
@@ -599,7 +599,7 @@ def mapfish_measure_feature_collection_layer(feature_collection):
                         }
                     }
                 }
-                feature_collection['features'].append(labelPoint) 
+                feature_collection['features'].append(labelPoint)
             segment_points['geometry']['coordinates'].append(coord)
         feature_collection['features'].append(segment_points)
 
@@ -625,7 +625,7 @@ def mapfish_measure_feature_collection_layer(feature_collection):
         style[id] = feature_style
         style[id]['type'] = 'simple'
         feature['properties'] = {
-            'mapfishStyleId': id   
+            'mapfishStyleId': id
         }
 
     return {
@@ -687,11 +687,11 @@ def load_layers_config(config_folder, protected_layer_names=[], proxy_hash_salt=
 
     for filename in os.listdir(config_folder):
         if filename.endswith(".yaml"):
-            # TODO check 
+            # TODO check
             file = open('%s/%s' % (config_folder, filename), 'r')
-            try: 
+            try:
                 content = yaml.safe_load(file)
-            except: 
+            except:
                 content = {}
 
             if type(content) is not dict:
@@ -708,12 +708,12 @@ def load_layers_config(config_folder, protected_layer_names=[], proxy_hash_salt=
             # add layer to layers list for admin
             meta = content.get('meta', False)
             description = ''
-            if meta: 
+            if meta:
                 description = meta.get('description', '')
-            
+
             layers_list.append({
                 'name': filename,
-                'description': description, 
+                'description': description,
             })
 
     yaml_layers = []
@@ -740,7 +740,7 @@ def load_layers_config(config_folder, protected_layer_names=[], proxy_hash_salt=
             # hash is used to address hidden proxied URLs
             # if direct access is set the origin url will be used
             # authentication for protected layers is provided with session cookies
-            if not direct_access: 
+            if not direct_access:
                 layer['hash'] = hashlib.sha224(layer['source']['url'] + (proxy_hash_salt or '')).hexdigest()
                 hash_map[layer['hash']] = layer['source']['url']
             else:
@@ -786,9 +786,9 @@ def check_project_config(new_yaml_content, exclude_file):
             continue
         if filename.endswith(".yaml"):
             file = open('%s/%s' % (config_folder, filename), 'r')
-            try: 
+            try:
                 content = yaml.safe_load(file)
-            except: 
+            except:
                 content = {}
 
             if type(content) is not dict:
@@ -809,15 +809,15 @@ def check_project_config(new_yaml_content, exclude_file):
     if new_yaml_content.get('groups'):
         for group in new_yaml_content.get('groups'):
             yaml_content['groups'].append(group)
-   
+
     yaml_layers = []
     for layer_config in yaml_content['layers']:
         yaml_layers.append(apply_base_config(layer_config, yaml_content['layers']))
     yaml_content['layers'] = yaml_layers
-    
+
     errors, informal_only = validate_layers_conf(yaml_content)
     return errors, informal_only
-    
+
 def check_project_config_only(new_yaml_content):
     yaml_content = deepcopy(new_yaml_content)
 

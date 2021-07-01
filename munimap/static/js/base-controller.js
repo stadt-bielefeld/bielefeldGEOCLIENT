@@ -154,6 +154,16 @@ angular.module('munimapBase')
                 open: sidebarOpen
             };
 
+            $scope.$watch('sidebar.open', function(isOpen) {
+               if (isOpen) {
+                   $window.document.body.classList.add('sidebar-open');
+                   $window.document.body.classList.remove('sidebar-closed');
+               } else {
+                   $window.document.body.classList.remove('sidebar-open');
+                   $window.document.body.classList.add('sidebar-closed');
+               }
+            });
+
             $scope.showTooltip = !(hasTouch);
 
             $scope.pointMeasureResultSrs = 'EPSG:4326';
