@@ -111,7 +111,7 @@ function GeoeditorValidationServiceProvider() {
         }
 
         function getFormConfig (feature) {
-            var formFields = munimapConfig.components.geoeditor.formFields;
+            var formFields = munimapConfig.geoeditor.formFields;
             switch (feature.getGeometry().getType()) {
             case 'Point':
                 return formFields.point;
@@ -148,7 +148,7 @@ function GeoeditorValidationServiceProvider() {
         }
 
         function getMissingFeatures() {
-            var geometries = munimapConfig.components.geoeditor.geometries;
+            var geometries = munimapConfig.geoeditor.geometries;
 
             const missing = {
                 point: 0,

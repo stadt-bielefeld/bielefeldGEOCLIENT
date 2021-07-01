@@ -16,7 +16,7 @@
                 <h4 ng-switch-when="marker">{$ _('Marker') $}</h4>
             </div>
             <div class="popup-content">
-                <ul ng-show="geoeditor.customStyling"
+                <ul ng-show="geoeditorConfig.customStyling"
                     class="nav nav-tabs tabs-left">
                     <li ng-show="showGeoeditorTab"
                         ng-class="{'active': popupTabContent === 'geoeditor'}"
@@ -71,9 +71,9 @@
                     <div ng-show="popupTabContent === 'geoeditor'"
                          class="geoeditor">
                         <div anol-feature-form
-                             point-fields="geoeditor.formFields.point"
-                             line-fields="geoeditor.formFields.line"
-                             polygon-fields="geoeditor.formFields.polygon"
+                             point-fields="geoeditorConfig.formFields.point"
+                             line-fields="geoeditorConfig.formFields.line"
+                             polygon-fields="geoeditorConfig.formFields.polygon"
                              feature="feature"
                              highlight-invalid="highlightInvalid"
                              validate="isValid(field, value)">

@@ -10,7 +10,7 @@ angular.module('munimapGeoeditor')
 
                 let showForm = true;
 
-                if (angular.isUndefined(munimapConfig.components.geoeditor.formFields)) {
+                if (angular.isUndefined(munimapConfig.geoeditor.formFields)) {
                     showForm = false;
                 } else {
                     const geometryType = feature.getGeometry().getType();
@@ -19,7 +19,7 @@ angular.module('munimapGeoeditor')
                         'LineString': 'line',
                         'Polygon': 'polygon'
                     }[geometryType];
-                    const formFields = munimapConfig.components.geoeditor.formFields[type];
+                    const formFields = munimapConfig.geoeditor.formFields[type];
                     if (angular.isUndefined(formFields) || formFields.length === 0) {
                         showForm = false;
                     }
@@ -28,7 +28,7 @@ angular.module('munimapGeoeditor')
                 $scope.showGeoeditorTab = showForm;
 
                 if (!showForm) {
-                    if (!munimapConfig.components.geoeditor.customStyling) {
+                    if (!munimapConfig.geoeditor.customStyling) {
                         return;
                     }
                     $scope.defaultPopupTabContent = undefined;

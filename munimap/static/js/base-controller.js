@@ -36,10 +36,10 @@ angular.module('munimapBase')
             $scope.menuButtonEnabled = munimapConfig.components.menuButton === true;
             $scope.measureLabelSegmentsEnabled = munimapConfig.components.measureLabelSegments === true;
             $scope.drawEnabled = munimapConfig.components.draw === true;
+            $scope.geoeditorEnabled = munimapConfig.components.geoeditor === true;
 
-            if (angular.isDefined(munimapConfig.components.geoeditor)) {
-                $scope.geoeditorEnabled = true;
-                $scope.geoeditor = munimapConfig.components.geoeditor;
+            if ($scope.geoeditorEnabled) {
+                $scope.geoeditorConfig = munimapConfig.geoeditor;
             }
 
             if ($scope.drawEnabled && $scope.geoeditorEnabled) {
