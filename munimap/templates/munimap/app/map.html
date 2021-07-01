@@ -1,11 +1,11 @@
 <div anol-drawer ng-if="geoeditorEnabled">
     <div anol-draw
          template-url="munimap/geoeditor-draw.html"
-         geometries="geoeditor.geometries"
+         geometries="geoeditorConfig.geometries"
          post-draw-action="openGeoeditorPopup(layer, feature)"
          post-delete-action="onDelete(layer, feature)"
          on-modify-select="onModifySelect()"
-         live-measure="geoeditor.displayMeasurements"
+         live-measure="geoeditorConfig.displayMeasurements"
          short-text="true"
     >
     </div>

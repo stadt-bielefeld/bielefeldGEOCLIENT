@@ -5,7 +5,7 @@ angular.module('munimapGeoeditor')
     .controller('geoeditorDrawController', ['$scope', '$rootScope', 'GeoeditorValidationService', 'PostMessageService', 'DrawService', 'MapService', 'munimapConfig', 'DefaultStyle', 'PrintPageService', 'LayersService', 'PrintService',
         function ($scope, $rootScope, GeoeditorValidationService, PostMessageService, DrawService, MapService, munimapConfig, DefaultStyle, PrintPageService, LayersService, PrintService) {
 
-            const geoeditorConfig = munimapConfig.components.geoeditor;
+            const geoeditorConfig = munimapConfig.geoeditor;
             const allowedUrls = geoeditorConfig.allowedUrls;
 
             const missingFeaturesText = 'Some feature types are missing.';

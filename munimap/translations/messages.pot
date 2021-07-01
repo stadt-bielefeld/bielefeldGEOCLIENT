@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-29 16:33+0200\n"
+"POT-Creation-Date: 2021-07-01 13:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1092,7 +1092,6 @@ msgid "anol.draw.TOOLTIP_POINT"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:12
-#: ../munimap/templates/munimap/app/ng-templates/geoeditor-draw.html:15
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:16
 msgid "Draw point"
 msgstr ""
@@ -1103,7 +1102,6 @@ msgid "anol.draw.TOOLTIP_LINE"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:23
-#: ../munimap/templates/munimap/app/ng-templates/geoeditor-draw.html:32
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:27
 msgid "Draw line"
 msgstr ""
@@ -1114,7 +1112,6 @@ msgid "anol.draw.TOOLTIP_POLYGON"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:34
-#: ../munimap/templates/munimap/app/ng-templates/geoeditor-draw.html:49
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:38
 msgid "Draw polygon"
 msgstr ""

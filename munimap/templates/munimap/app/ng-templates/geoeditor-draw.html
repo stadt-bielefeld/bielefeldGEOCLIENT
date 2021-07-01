@@ -12,7 +12,7 @@
                 tooltip-trigger="mouseenter">
             <div class="draw-icon"></div>
             <span class="geoeditor-button-text">
-                {$ _('Draw point') $}
+                {{ geometriesConfig.point.text }}
             </span>
             <span ng-class="['geoeditor-badge', 'badge', geometryCount.point < geometriesConfig.point.min ? 'badge-red' : 'badge-green']">
                 {{ getBadgeText(geometryCount.point, geometriesConfig.point) }}
@@ -29,11 +29,11 @@
                 tooltip-trigger="mouseenter">
             <div class="draw-icon"></div>
             <span class="geoeditor-button-text">
-                    {$ _('Draw line') $}
-                </span>
+                {{ geometriesConfig.line.text }}
+            </span>
             <span ng-class="['geoeditor-badge', 'badge', geometryCount.line < geometriesConfig.line.min ? 'badge-red' : 'badge-green']">
-                    {{ getBadgeText(geometryCount.line, geometriesConfig.line) }}
-                </span>
+                {{ getBadgeText(geometryCount.line, geometriesConfig.line) }}
+            </span>
         </button>
         <button ng-click="drawPolygon()"
                 ng-show="geometriesConfig.polygon.enabled"
@@ -46,11 +46,11 @@
                 tooltip-trigger="mouseenter">
             <div class="draw-icon"></div>
             <span class="geoeditor-button-text">
-                    {$ _('Draw polygon') $}
-                </span>
+                {{ geometriesConfig.polygon.text }}
+            </span>
             <span ng-class="['geoeditor-badge', 'badge', geometryCount.polygon < geometriesConfig.polygon.min ? 'badge-red' : 'badge-green']">
-                    {{ getBadgeText(geometryCount.polygon, geometriesConfig.polygon) }}
-                </span>
+                {{ getBadgeText(geometryCount.polygon, geometriesConfig.polygon) }}
+            </span>
         </button>
     </div>
     <div class="btn-group geoeditor-edit">

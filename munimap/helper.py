@@ -220,14 +220,12 @@ def load_app_config(config=None, without_404=False):
 
 
 def apply_selectionlists_to_geoeditor(app_config, app_config_path):
-    if app_config.get('components') is None:
+    if app_config.get('geoeditor') is None:
         return
-    if app_config.get('components').get('geoeditor') is None:
-        return
-    if app_config.get('components').get('geoeditor').get('formFields') is None:
+    if app_config.get('geoeditor').get('formFields') is None:
         return
 
-    form_fields = app_config['components']['geoeditor']['formFields']
+    form_fields = app_config['geoeditor']['formFields']
     for geometry_fields in form_fields.values():
         for field in geometry_fields:
             if field['type'] != 'select' or not isinstance(field['select'], str):

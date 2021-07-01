@@ -55,7 +55,7 @@ angular.module('munimapDraw', [
         function(LayersService, DrawService, DefaultStyle, ColorpickerPalette, munimapConfig,
             StyleSchema, StyleSchemaFormOptions, LabelSchema, LabelSchemaFormOptions, DrawIconsPrefix) {
 
-            if(munimapConfig.components.draw !== undefined || munimapConfig.components.geoeditor !== undefined) {
+            if(!!munimapConfig.components.draw || !!munimapConfig.components.geoeditor) {
                 var drawLayer = new anol.layer.Feature({
                     title: 'DrawLayer',
                     name: 'draw_layer',
