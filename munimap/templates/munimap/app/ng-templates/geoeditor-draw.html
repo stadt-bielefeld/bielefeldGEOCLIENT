@@ -55,13 +55,12 @@
     </div>
     <div class="btn-group geoeditor-edit">
         <button class="draw-edit btn btn-default btn-sm"
-                ng-click="modifyActive = !modifyActive"
-                ng-disabled="!enabled">
+                ng-click="toggleModify()">
             <div class="draw-icon"></div>
             {$ _('Modify or shift geometry') $}
         </button>
         <button ng-click="remove()"
-                ng-disabled="!enabled || selectedFeature === undefined"
+                ng-disabled="selectedFeature === undefined"
                 class="btn btn-default btn-sm draw-remove"
                 uib-tooltip="{{ 'anol.draw.TOOLTIP_REMOVE' | translate }}"
                 tooltip-placement="bottom"
