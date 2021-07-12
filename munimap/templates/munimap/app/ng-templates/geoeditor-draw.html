@@ -3,7 +3,8 @@
     <div class="btn-group geoeditor-draw">
         <button ng-click="drawPoint()"
                 ng-show="geometriesConfig.point.enabled"
-                ng-disabled="modifyActive || geometryCount.point >= geometriesConfig.point.max"
+                ng-disabled="modifyActive || removeActive || geometryCount.point >= geometriesConfig.point.max"
+                ng-class="{ active: activeDrawType === 'Point' }"
                 class="btn btn-default btn-sm draw-point geoeditor-button"
                 uib-tooltip="{{ 'anol.draw.TOOLTIP_DRAW_POINT' | translate }}"
                 tooltip-placement="bottom"
@@ -20,8 +21,9 @@
         </button>
         <button ng-click="drawLine()"
                 ng-show="geometriesConfig.line.enabled"
-                ng-disabled="modifyActive || geometryCount.line >= geometriesConfig.line.max"
+                ng-disabled="modifyActive || removeActive || geometryCount.line >= geometriesConfig.line.max"
                 class="btn btn-default btn-sm draw-line geoeditor-button"
+                ng-class="{ active: activeDrawType === 'LineString' }"
                 uib-tooltip="{{ 'anol.draw.TOOLTIP_DRAW_LINE' | translate }}"
                 tooltip-placement="bottom"
                 tooltip-popup-delay="{{ tooltipDelay }}"
@@ -37,8 +39,9 @@
         </button>
         <button ng-click="drawPolygon()"
                 ng-show="geometriesConfig.polygon.enabled"
-                ng-disabled="modifyActive || geometryCount.polygon >= geometriesConfig.polygon.max"
+                ng-disabled="modifyActive || removeActive || geometryCount.polygon >= geometriesConfig.polygon.max"
                 class="btn btn-default btn-sm draw-polygon geoeditor-button"
+                ng-class="{ active: activeDrawType === 'Polygon' }"
                 uib-tooltip="{{ 'anol.draw.TOOLTIP_DRAW_POLYGON' | translate }}"
                 tooltip-placement="bottom"
                 tooltip-popup-delay="{{ tooltipDelay }}"
@@ -55,13 +58,14 @@
     </div>
     <div class="btn-group geoeditor-edit">
         <button class="draw-edit btn btn-default btn-sm"
+                ng-class="{ active: modifyActive }"
                 ng-click="toggleModify()">
             <div class="draw-icon"></div>
             {{ modifyLabel }}
         </button>
-        <button ng-click="remove()"
-                ng-disabled="selectedFeature === undefined"
+        <button ng-click="toggleRemove()"
                 class="btn btn-default btn-sm draw-remove"
+                ng-class="{ active: removeActive }"
                 uib-tooltip="{{ 'anol.draw.TOOLTIP_REMOVE' | translate }}"
                 tooltip-placement="bottom"
                 tooltip-popup-delay="{{ tooltipDelay }}"
