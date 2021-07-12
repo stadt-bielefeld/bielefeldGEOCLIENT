@@ -81,15 +81,22 @@ $geoeditor-remove-texts-break: 350px
   border: 1px solid lightgrey
   border-radius: 2px
 
-  .anol-drawer-content
+  > *
     display: table-cell
+
+  .anol-drawer-content
     padding: 0.3em
 
   .anol-drawer-button
-    display: table-cell
     position: relative
     vertical-align: center
     border: none
+
+  .anol-drawer-label
+    padding: 0.3em
+    h5
+      font-weight: bold
+
 
 // if under this map width, switch to the lower position
 $drawer-lower-position-break: 1100px
