@@ -19,5 +19,4 @@ docker/tmp
 docs/build
 munimap/static/build
 node_modules
-package-lock.json
 projects/*/assets
