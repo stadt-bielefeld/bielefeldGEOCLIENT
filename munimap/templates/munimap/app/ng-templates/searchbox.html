@@ -4,11 +4,11 @@
              ng-model="searchString"
              ng-model-options="{debounce: 150}"
              ng-keyup="handleInputKeypress($event)"
-             placeholder="{{ placeholder }}" 
+             placeholder="{{ placeholder }}"
              ng-focus="handleInputFocus($event);"
              ng-blur="handleInputBlur($event);">
         <span class="input-group-btn">
-          <button class="btn geocoder-list" type="button" 
+          <button class="btn geocoder-list" type="button"
                 ng-show="showSearchDropdown && searchDropdown"
                 ng-click="showGeocoderList = !showGeocoderList; noResults=false;">
             <span class="glyphicon glyphicon-chevron-down"></span>
@@ -19,14 +19,14 @@
           </button>
         </span>
     </div>
-    
+
     <ul class="dropdown-menu result-list"
         ng-show="showResultList"
         ng-mousedown="handleResultListMousedown($event);"
         ng-mouseup="handleResultListMouseup($event)">
-        
+
         <li ng-if="searchTerms.length > 0" class="catalog-search-nav">
-            <span ng-repeat="term in searchTerms" 
+            <span ng-repeat="term in searchTerms"
                 ng-click="resetSteps($event, searchTerms.indexOf(term))">
                 {{ term.displayText }} ---
             </span>
@@ -34,7 +34,7 @@
                 {{ 'anol.geocoder.RESET' | translate }}
             </span>
         </li>
-        
+
         <li ng-repeat="result in searchResults | searchCatalogFilter:searchString:geocoder"
             ng-click="showResult(result, true)">
             <a href="#"
@@ -45,8 +45,8 @@
                {{ result.displayText }}
             </a>
         </li>
-        <li ng-if="geocoder.isCatalog" 
-            ng-show="(searchResults | searchCatalogFilter:searchString:geocoder).length === 0" 
+        <li ng-if="geocoder.isCatalog"
+            ng-show="(searchResults | searchCatalogFilter:searchString:geocoder).length === 0"
             class="catalog-search-no-result">
             {{ 'anol.geocoder.NO_RESULTS' | translate }}
         </li>
@@ -54,19 +54,19 @@
 
     <div class="open no-results" ng-show="showGeocoderList">
         <ul class="dropdown-menu geocoder-menu">
-            <li ng-repeat="coder in baseGeocoders" ng-click="activateGeocoder(coder)">
+            <li ng-repeat="coder in baseGeocoderConfigs" ng-click="activateGeocoder(coder)">
                <span>{{ coder.title }}</span>
                <span ng-show="activeGeocoder.name == coder.name" class="active-geocoder pull-right glyphicon glyphicon-ok"></span>
             </li>
-           
-            <span ng-if="layerGeocoders.length > 0">
+
+            <span ng-if="layerGeocoderConfigs.length > 0">
                 <hr>
             </span>
 
-            <li ng-repeat="coder in layerGeocoders" ng-click="activateGeocoder(coder)">
+            <li ng-repeat="coder in layerGeocoderConfigs" ng-click="activateGeocoder(coder)">
                 <span>{{ coder.title }}</span>
                <span ng-show="activeGeocoder.name == coder.name" class="active-geocoder pull-right glyphicon glyphicon-ok"></span>
-            </li>    
+            </li>
         </ul>
     </div>
 
