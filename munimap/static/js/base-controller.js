@@ -166,7 +166,7 @@ angular.module('munimapBase')
 
             $scope.showTooltip = !(hasTouch);
 
-            $scope.pointMeasureResultSrs = 'EPSG:4326';
+            $scope.pointMeasureResultSrs = 'EPSG:25832';
             $rootScope.pointMeasureResultSrs = $scope.pointMeasureResultSrs;
 
             $scope.endMeasureAreaVisible = false;
