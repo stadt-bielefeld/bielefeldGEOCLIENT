@@ -10,7 +10,8 @@ angular.module('munimapBase.postMessage', ['anol.map'])
             _defaultAllowedUrls = allowedUrls || [];
         };
 
-        this.$get = ['$window', 'MapService', 'LayersService', 'munimapConfig', function ($window, MapService, LayersService, munimapConfig) {
+        this.$get = ['$rootScope', '$window', 'MapService', 'LayersService', 'munimapConfig',
+            function ($rootScope, $window, MapService, LayersService, munimapConfig) {
 
             const PostMessage = function (defaultAllowedUrls) {
                 this.handlers = {};
@@ -92,6 +93,12 @@ angular.module('munimapBase.postMessage', ['anol.map'])
             angular.forEach(pluginNames, function (pluginName) {
                 const plugin = $window.postMessagePlugins[pluginName];
                 postMessage.registerHandler(plugin.event, plugin.allowedUrls, plugin.callback);
+            });
+
+            $rootScope.$watch('appReady', function () {
+                if ($rootScope.appReady) {
+                    postMessage.sendReady();
+                }
             });
 
             return postMessage;

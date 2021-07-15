@@ -6,8 +6,14 @@ import {TOUCH as hasTouch} from 'ol/has';
 import {transformExtent, transform} from 'ol/proj';
 
 angular.module('munimapBase')
-    .controller('baseController', ['$rootScope', '$scope', '$window', '$timeout', '$translate', '$location', '$uibModal', 'munimapConfig', 'ControlsService', 'MapService', 'NotificationService', 'DrawService', 'PermalinkService', 'ClusterSelectService', 'Tour', 'SaveSettingsService', 'GeocoderService', 'CatalogService', 'PostMessageService',
-        function($rootScope, $scope, $window, $timeout, $translate, $location, $uibModal, munimapConfig, ControlsService, MapService, NotificationService, DrawService, PermalinkService, ClusterSelectService, Tour, SaveSettingsService, GeocoderService, CatalogService, PostMessageService) {
+    .controller('baseController', ['$rootScope', '$scope', '$window', '$timeout', '$translate', '$location', '$uibModal',
+        'munimapConfig', 'ControlsService', 'MapService', 'NotificationService', 'DrawService', 'PermalinkService',
+        'ClusterSelectService', 'Tour', 'SaveSettingsService', 'GeocoderService', 'CatalogService', 'PostMessageService',
+        'ReadyService',
+        function($rootScope, $scope, $window, $timeout, $translate, $location, $uibModal, munimapConfig, ControlsService,
+                 MapService, NotificationService, DrawService, PermalinkService, ClusterSelectService, Tour,
+                 SaveSettingsService, GeocoderService, CatalogService, PostMessageService, ReadyService) {
+
             $scope.printEnabled = munimapConfig.components.print === true;
             $scope.searchEnabled = munimapConfig.components.search === true;
             $scope.legendEnabled = munimapConfig.components.legend === true;
@@ -584,9 +590,11 @@ angular.module('munimapBase')
                     }
                 }
             };
+
+            ReadyService.waitFor('translation');
+
             $translate.onReady(function() {
-                $scope.appReady = true;
-                PostMessageService.sendReady();
+                ReadyService.notifyAboutReady('translation')
             });
 
             // some additional map elements like 'homeButton' are wrapped in ng-if
