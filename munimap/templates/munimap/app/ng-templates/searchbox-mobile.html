@@ -4,12 +4,12 @@
              ng-model="searchString"
              ng-model-options="{debounce: 150}"
              ng-keyup="handleInputKeypress($event)"
-             placeholder="{{ placeholder }}" 
+             placeholder="{{ placeholder }}"
              ng-focus="handleInputFocus($event);"
              ng-blur="handleInputBlur($event);">
 
         <span class="input-group-btn">
-          <button class="btn geocoder-list" type="button" 
+          <button class="btn geocoder-list" type="button"
                 ng-show="showSearchDropdown && searchDropdown"
                 ng-click="showGeocoderList = !showGeocoderList; noResults=false;">
             <span class="glyphicon glyphicon-chevron-down"></span>
@@ -39,13 +39,13 @@
         <ul class="geocoder-menu">
             <li ng-repeat="coder in geocoders" ng-click="activateGeocoder(coder)" ng-show="coder.type == 'base'">
                <span>{{ coder.title }}</span>
-               <span ng-show="activeGeocoder.name == coder.name" class="pull-right glyphicon glyphicon-ok"></span>
+               <span ng-show="activeGeocoderConfig.name == coder.name" class="pull-right glyphicon glyphicon-ok"></span>
             </li>
             <hr>
             <li ng-repeat="coder in geocoders" ng-click="activateGeocoder(coder)" ng-show="coder.type == 'layer'">
                <span>{{ coder.title }}</span>
-               <span ng-show="activeGeocoder.name == coder.name" class="pull-right glyphicon glyphicon-ok"></span>
-            </li>    
+               <span ng-show="activeGeocoderConfig.name == coder.name" class="pull-right glyphicon glyphicon-ok"></span>
+            </li>
         </ul>
     </div>
 

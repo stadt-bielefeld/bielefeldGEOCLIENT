@@ -56,7 +56,7 @@
         <ul class="dropdown-menu geocoder-menu">
             <li ng-repeat="coder in baseGeocoderConfigs" ng-click="activateGeocoder(coder)">
                <span>{{ coder.title }}</span>
-               <span ng-show="activeGeocoder.name == coder.name" class="active-geocoder pull-right glyphicon glyphicon-ok"></span>
+               <span ng-show="activeGeocoderConfig.name == coder.name" class="active-geocoder pull-right glyphicon glyphicon-ok"></span>
             </li>
 
             <span ng-if="layerGeocoderConfigs.length > 0">
@@ -65,7 +65,7 @@
 
             <li ng-repeat="coder in layerGeocoderConfigs" ng-click="activateGeocoder(coder)">
                 <span>{{ coder.title }}</span>
-               <span ng-show="activeGeocoder.name == coder.name" class="active-geocoder pull-right glyphicon glyphicon-ok"></span>
+               <span ng-show="activeGeocoderConfig.name == coder.name" class="active-geocoder pull-right glyphicon glyphicon-ok"></span>
             </li>
         </ul>
     </div>
