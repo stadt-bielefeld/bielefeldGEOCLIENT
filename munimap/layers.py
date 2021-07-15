@@ -179,8 +179,6 @@ def anol_overlay_layer(layer_conf, layers_base_url=''):
         'source': source,
         'visible': False
     }
-    if 'opacity' in layer_conf:
-        ol_layer['opacity'] = layer_conf['opacity']
 
     anol_layer = {
         'name': layer_conf['name'],
@@ -189,8 +187,13 @@ def anol_overlay_layer(layer_conf, layers_base_url=''):
         'catalog': layer_conf.get('catalog', False),
         'searchConfig': layer_conf.get('searchConfig', []),
         'status': layer_conf.get('status', 'active'),
-        'olLayer': ol_layer,
+        'olLayer': ol_layer
     }
+
+    if 'opacity' in layer_conf:
+        ol_layer['opacity'] = layer_conf['opacity']
+        anol_layer['opacity'] = layer_conf['opacity']
+
     if layer_conf['type'] in ('postgis', 'static_geojson', 'digitize'):
         anol_layer['cluster'] = layer_conf.get('cluster', False)
 
