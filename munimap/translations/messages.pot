@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-01 13:59+0200\n"
+"POT-Creation-Date: 2021-07-15 11:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1013,7 +1013,21 @@ msgstr ""
 msgid "Use two fingers to move the map"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/map.html:91
+#: ../munimap/templates/munimap/app/map.html:6
+msgid "Add or edit geometry"
+msgstr ""
+
+#: ../munimap/templates/munimap/app/map.html:7
+#: ../munimap/templates/munimap/app/ng-templates/draw.html:50
+#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:53
+msgid "Modify or shift geometry"
+msgstr ""
+
+#: ../munimap/templates/munimap/app/map.html:8
+msgid "Remove geometry"
+msgstr ""
+
+#: ../munimap/templates/munimap/app/map.html:97
 #: ../munimap/templates/munimap/app/ng-templates/sidebar-header.html:3
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/map.html:10
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/sidebar-header.html:3
@@ -1022,34 +1036,34 @@ msgstr ""
 msgid "Close menu"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/map.html:91
+#: ../munimap/templates/munimap/app/map.html:97
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/map.html:10
 #: ../munimap_transport/munimap_transport/templates/transport/app/map.html:74
 msgid "Open menu"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/map.html:103
+#: ../munimap/templates/munimap/app/map.html:109
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/map.html:20
 #: ../munimap_transport/munimap_transport/templates/transport/app/map.html:86
 msgid "Startposition"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/map.html:224
+#: ../munimap/templates/munimap/app/map.html:230
 #: ../munimap_transport/munimap_transport/templates/transport/app/map.html:148
 msgid "UTM 32"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/map.html:225
+#: ../munimap/templates/munimap/app/map.html:231
 #: ../munimap_transport/munimap_transport/templates/transport/app/map.html:147
 msgid "WGS 84"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/map.html:226
+#: ../munimap/templates/munimap/app/map.html:232
 #: ../munimap_transport/munimap_transport/templates/transport/app/map.html:149
 msgid "Web Mercator"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/map.html:240
+#: ../munimap/templates/munimap/app/map.html:246
 #: ../munimap_transport/munimap_transport/templates/transport/app/map.html:171
 msgid "Open Timetable"
 msgstr ""
@@ -1126,12 +1140,6 @@ msgstr ""
 msgid "Draw text"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/draw.html:50
-#: ../munimap/templates/munimap/app/ng-templates/geoeditor-draw.html:61
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:53
-msgid "Modify or shift geometry"
-msgstr ""
-
 #: ../munimap/templates/munimap/app/ng-templates/feature-icons.html:29
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/feature-icons.html:29
 msgid "Unselect"
@@ -1145,12 +1153,8 @@ msgstr ""
 msgid "Upload"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/geoeditor-draw.html:2
-msgid "Add or edit geometry"
-msgstr ""
-
-#: ../munimap/templates/munimap/app/ng-templates/geoeditor-draw.html:72
-msgid "Remove geometry"
+#: ../munimap/templates/munimap/app/ng-templates/geoeditor-draw.html:63
+msgid "Modify geometry"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/layerswitcher-backgrounds.html:14

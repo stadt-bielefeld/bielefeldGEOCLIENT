@@ -59,7 +59,12 @@
     <div class="btn-group geoeditor-edit">
         <button class="draw-edit btn btn-default btn-sm"
                 ng-class="{ active: modifyActive }"
-                ng-click="toggleModify()">
+                ng-click="toggleModify()"
+                uib-tooltip="{$ _('Modify geometry') $}"
+                tooltip-placement="bottom"
+                tooltip-popup-delay="{{ tooltipDelay }}"
+                tooltip-enable="{{ tooltipEnable }}"
+                tooltip-trigger="mouseenter">
             <div class="draw-icon"></div>
             {{ modifyLabel }}
         </button>
