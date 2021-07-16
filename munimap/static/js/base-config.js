@@ -53,7 +53,7 @@ require('anol/src/modules/scale/scaletext-directive.js');
 
 require('anol/src/modules/urlmarkers/urlmarker-directive.js');
 require('anol/src/modules/urlmarkers/urlmarker-service.js');
-require('anol/src/modules/urlmarkers/urlmerker-bbcode-directive.js');
+require('anol/src/modules/urlmarkers/urlmarker-bbcode-directive.js');
 require('anol/src/modules/zoom/zoom-directive.js');
 
 require('anol/src/modules/drawer/drawer-directive.js');
@@ -184,24 +184,24 @@ angular.module('munimapBase', [
 
     }])
 
-    .config(['UrlMarkersServiceProvider', 'imageUrl', 'munimapConfig',
-        function (UrlMarkersServiceProvider, imageUrl, munimapConfig) {
+    .config(['UrlMarkerServiceProvider', 'imageUrl', 'munimapConfig',
+        function (UrlMarkerServiceProvider, imageUrl, munimapConfig) {
             if (munimapConfig.urlMarkersConfig === undefined) {
                 return;
             }
             var config = munimapConfig.urlMarkersConfig;
-            UrlMarkersServiceProvider.setDefaultSrs(config.defaultSrs);
-            UrlMarkersServiceProvider.setPropertiesDelimiter(config.propertiesDelimiter);
-            UrlMarkersServiceProvider.setKeyValueDelimiter(config.keyValueDelimiter);
+            UrlMarkerServiceProvider.setDefaultSrs(config.defaultSrs);
+            UrlMarkerServiceProvider.setPropertiesDelimiter(config.propertiesDelimiter);
+            UrlMarkerServiceProvider.setKeyValueDelimiter(config.keyValueDelimiter);
 
             var markerStyle = config.markerStyle;
             if (markerStyle.graphicFile !== undefined) {
                 markerStyle.externalGraphic = imageUrl + markerStyle.graphicFile;
                 delete markerStyle.graphicFile;
             }
-            UrlMarkersServiceProvider.setMarkerStyle(markerStyle);
-            UrlMarkersServiceProvider.setUsePopup(config.usePopup);
-            UrlMarkersServiceProvider.setPopupOffset(config.popupOffset);
+            UrlMarkerServiceProvider.setMarkerStyle(markerStyle);
+            UrlMarkerServiceProvider.setUsePopup(config.usePopup);
+            UrlMarkerServiceProvider.setPopupOffset(config.popupOffset);
         }])
 
     .config(['PostMessageServiceProvider', 'munimapConfig',
