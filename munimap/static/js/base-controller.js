@@ -138,9 +138,7 @@ angular.module('munimapBase')
             $scope.components = munimapConfig.components;
 
             $scope.printConfig = munimapConfig.printConfig;
-            angular.forEach(munimapConfig.searchConfig, function(config, idx) {
-                GeocoderService.addConfig(config);
-            });
+            GeocoderService.addConfigs(munimapConfig.searchConfig);
             $scope.geolocationConfig = munimapConfig.geolocationConfig;
             $scope.tooltipDelay = munimapConfig.app.tooltipDelay;
             $scope.headerTitle = munimapConfig.app.title;
