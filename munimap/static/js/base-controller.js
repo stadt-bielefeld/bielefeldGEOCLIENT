@@ -606,4 +606,18 @@ angular.module('munimapBase')
                 });
             }
 
+            $rootScope.$watch('geocodeFailed', () => {
+                if ($rootScope.geocodeFailed) {
+                    let message = 'Der übergebene Parameter konnte nicht gefunden werden.';
+                    const msgConfig = munimapConfig.urlSearchNotFoundMessage
+                    if (msgConfig !== false) {
+                        if (angular.isString(msgConfig)) {
+                            message = msgConfig;
+                        }
+                        NotificationService.addError(message);
+                    }
+
+                    console.error(message);
+                }
+            });
         }]);
