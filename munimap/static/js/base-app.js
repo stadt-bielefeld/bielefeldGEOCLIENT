@@ -2,8 +2,8 @@ import { get as getProj } from 'ol/proj';
 
 angular.module('munimapBase')
 
-    .run(['PermalinkService', 'UrlMarkersService', '$rootScope', 'munimapConfig',
-        function(PermalinkService, UrlMarkersService, $rootScope, munimapConfig) {
+    .run(['PermalinkService', 'UrlMarkerService', '$rootScope', 'munimapConfig',
+        function(PermalinkService, UrlMarkerService, $rootScope, munimapConfig) {
             $rootScope.backgroundlayerPreviewUrl = munimapConfig.app.backgroundlayerPreviewUrl;
         }
     ]);

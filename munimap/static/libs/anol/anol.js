@@ -1323,7 +1323,7 @@ $.extend(anol.layer.BBOXGeoJSON.prototype, {
         var self = this;
         if (extentProjection !== undefined) {
             extent = ol.proj.transformExtent(extent, projection, extentProjection);
-        } 
+        }
         var params = [
             'srs=' + extentProjection.getCode(),
             'bbox=' + extent.join(','),
@@ -3064,14 +3064,14 @@ angular.module('anol.map')
                     var revealedFeature = a.selected[0];
                     var zoom = MapService.getMap().getView().getZoom();
                     if(revealedFeature.get('features').length > 1 && zoom < interactionOptions.maxZoomLevel) {
-                        // zoom in when not all revealed features displayed and max zoom is not reached 
+                        // zoom in when not all revealed features displayed and max zoom is not reached
                         var _featureExtent = ol.extent.createEmpty();
                         angular.forEach(revealedFeature.get('features'), function(child) {
                             var _childExtent = child.getGeometry().getExtent();
                             ol.extent.extend(_featureExtent, _childExtent)
                         });
                         var view = MapService.getMap().getView();
-                        view.fit(_featureExtent, MapService.getMap().getSize()); 
+                        view.fit(_featureExtent, MapService.getMap().getSize());
                         return;
                     }
                     if(revealedFeature.get('selectclusterfeature') === true) {
@@ -5389,8 +5389,8 @@ angular.module('anol.geocoder')
  * @description
  * Search for a location string on given geocoder, display and select results
  */
-.directive('anolGeocoderSearchbox', ['$timeout', '$location', 'MapService', 'ControlsService', 'InteractionsService', 'LayersService', 'UrlMarkersService',
-  function($timeout, $location, MapService, ControlsService, InteractionsService, LayersService, UrlMarkersService) {
+.directive('anolGeocoderSearchbox', ['$timeout', '$location', 'MapService', 'ControlsService', 'InteractionsService', 'LayersService', 'UrlMarkerService',
+  function($timeout, $location, MapService, ControlsService, InteractionsService, LayersService, UrlMarkerService) {
     return {
       restrict: 'A',
       require: '?^anolMap',
@@ -5479,9 +5479,9 @@ angular.module('anol.geocoder')
           }
           var urlMarkerParams = [];
           angular.forEach(urlMarker, function(v, k) {
-            urlMarkerParams.push(k + UrlMarkersService.keyValueDelimiter + v);
+            urlMarkerParams.push(k + UrlMarkerService.keyValueDelimiter + v);
           });
-          var urlMarkerString = urlMarkerParams.join(UrlMarkersService.propertiesDelimiter);
+          var urlMarkerString = urlMarkerParams.join(UrlMarkerService.propertiesDelimiter);
           urlMarkers.push(urlMarkerString);
           $location.search('marker', urlMarkers);
           scope.urlMarkerAdded = true;
@@ -8969,9 +8969,9 @@ angular.module('anol.scale')
 }]);;
 angular.module('anol.urlmarkers')
 
-.directive('anolUrlMarkers', ['$compile', 'UrlMarkersService', 'MapService', function($compile, UrlMarkersService, MapService) {
+.directive('anolUrlMarkers', ['$compile', 'UrlMarkerService', 'MapService', function($compile, UrlMarkerService, MapService) {
     return function(scope) {
-        if(!UrlMarkersService.usePopup) {
+        if(!UrlMarkerService.usePopup) {
             return;
         }
 
@@ -8983,7 +8983,7 @@ angular.module('anol.urlmarkers')
                             '</div>' +
                             '</div>';
 
-        angular.forEach(UrlMarkersService.features, function(feature) {
+        angular.forEach(UrlMarkerService.features, function(feature) {
             if (feature.get('label')) {
                 var overlayTemplate = angular.element(angular.copy(popupTemplate));
                 overlayTemplate.find('.anol-popup-content').text(feature.get('label'));
@@ -9007,9 +9007,9 @@ angular.module('anol.urlmarkers')
 angular.module('anol.urlmarkers')
 /**
  * @ngdoc object
- * @name anol.urlmarkers.UrlMarkersServiceProvider
+ * @name anol.urlmarkers.UrlMarkerServiceProvider
  */
-.provider('UrlMarkersService', [function() {
+.provider('UrlMarkerService', [function() {
     var _defaultSrs;
     var _propertiesDelimiter = '|';
     var _keyValueDelimiter = ':';
@@ -9020,7 +9020,7 @@ angular.module('anol.urlmarkers')
     /**
      * @ngdoc method
      * @name setDefaultSrs
-     * @methodOf anol.urlmarkers.UrlMarkersServiceProvider
+     * @methodOf anol.urlmarkers.UrlMarkerServiceProvider
      * @param {string} srs default EPSG code of marker coordinates in url
      */
     this.setDefaultSrs = function(srs) {
@@ -9030,7 +9030,7 @@ angular.module('anol.urlmarkers')
     /**
      * @ngdoc method
      * @name setPropertiesDelimiter
-     * @methodOf anol.urlmarkers.UrlMarkersServiceProvider
+     * @methodOf anol.urlmarkers.UrlMarkerServiceProvider
      * @param {string} delimiter Delimiter separating marker properties
      */
     this.setPropertiesDelimiter = function(delimiter) {
@@ -9040,7 +9040,7 @@ angular.module('anol.urlmarkers')
     /**
      * @ngdoc method
      * @name setKeyValueDelimiter
-     * @methodOf anol.urlmarkers.UrlMarkersServiceProvider
+     * @methodOf anol.urlmarkers.UrlMarkerServiceProvider
      * @param {string} delimiter Delimiter separating properties keys from values
      */
     this.setKeyValueDelimiter = function(delimiter) {
@@ -9050,7 +9050,7 @@ angular.module('anol.urlmarkers')
     /**
      * @ngdoc method
      * @name setMarkerStyle
-     * @methodOf anol.urlmarkers.UrlMarkersServiceProvider
+     * @methodOf anol.urlmarkers.UrlMarkerServiceProvider
      * @param {object} style marker style
      */
     this.setMarkerStyle = function(style) {
@@ -9060,7 +9060,7 @@ angular.module('anol.urlmarkers')
     /**
      * @ngdoc method
      * @name setPopup
-     * @methodOf anol.urlmarkers.UrlMarkersServiceProvider
+     * @methodOf anol.urlmarkers.UrlMarkerServiceProvider
      * @param {boolean} usePopup
      * @description When not using popup a label text is added. This can be styled by markerStyle
      */
@@ -9071,7 +9071,7 @@ angular.module('anol.urlmarkers')
     /**
      * @ngdoc method
      * @name setPopupOffset
-     * @methodOf anol.urlmarkers.UrlMarkersServiceProvider
+     * @methodOf anol.urlmarkers.UrlMarkerServiceProvider
      * @param {Array.<number>} popupOffset Offset of placed popup. First value is x- second value is y-offset in px
      */
     this.setPopupOffset = function(popupOffset) {
@@ -9081,7 +9081,7 @@ angular.module('anol.urlmarkers')
     this.$get = ['$location', 'MapService', 'LayersService', function($location, MapService, LayersService) {
         /**
          * @ngdoc service
-         * @name anol.urlmarkers.UrlMarkersService
+         * @name anol.urlmarkers.UrlMarkerService
          *
          * @description
          * Adds markers specified in url. A valid url marker looks like marker=color:ff0000|label:foobar|coord:8.21,53.15|srs:4326
