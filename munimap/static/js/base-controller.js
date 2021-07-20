@@ -609,12 +609,12 @@ angular.module('munimapBase')
             $rootScope.$watch('geocodeFailed', () => {
                 if ($rootScope.geocodeFailed) {
                     let message = 'Der übergebene Parameter konnte nicht gefunden werden.';
-                    const msgConfig = munimapConfig.urlSearchNotFoundMessage
+                    const msgConfig = munimapConfig.urlGeocodeNotFoundMessage
                     if (msgConfig !== false) {
                         if (angular.isString(msgConfig)) {
                             message = msgConfig;
                         }
-                        NotificationService.addError(message);
+                        NotificationService.addError(message, { timeout: 8000 });
                     }
 
                     console.error(message);

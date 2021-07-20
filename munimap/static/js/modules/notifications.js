@@ -11,7 +11,7 @@ angular.module('munimapBase.notification', [])
                 this.notifications = [];
                 this.timeout = timeout || 3000;
             };
-            NotificationService.prototype.add = function(msg, type) {
+            NotificationService.prototype.add = function(msg, type, { timeout } = {}) {
                 var self = this;
                 var notification = {
                     type: type,
@@ -20,16 +20,16 @@ angular.module('munimapBase.notification', [])
                 self.notifications.push(notification);
                 $timeout(function() {
                     self.remove(notification);
-                }, this.timeout);
+                }, angular.isDefined(timeout) ? timeout : this.timeout);
             };
-            NotificationService.prototype.addError = function(msg) {
-                this.add(msg, 'error');
+            NotificationService.prototype.addError = function(msg, options) {
+                this.add(msg, 'error', options);
             };
-            NotificationService.prototype.addInfo = function(msg) {
-                this.add(msg, 'info');
+            NotificationService.prototype.addInfo = function(msg, options) {
+                this.add(msg, 'info', options);
             };
-            NotificationService.prototype.addSuccess = function(msg) {
-                this.add(msg, 'success');
+            NotificationService.prototype.addSuccess = function(msg, options) {
+                this.add(msg, 'success', options);
             };
             NotificationService.prototype.remove = function(notification) {
                 var idx = this.notifications.indexOf(notification);
