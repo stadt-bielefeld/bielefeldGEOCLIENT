@@ -10,7 +10,7 @@ angular.module('munimapBase.alkisSelection', ['anol.map', 'ngStorage'])
             $sessionStorageProvider.setKeyPrefix('alkis-');
         }])
 
-    .controller('getAlkisSelectionController', 
+    .controller('getAlkisSelectionController',
         ['alkisStorage', '$rootScope', '$scope', '$q', '$http', '$uibModalInstance', 'AlkisSelectionUrl', 'LayersService',
             function(alkisStorage, $rootScope, $scope, $q, $http, $uibModalInstance, AlkisSelectionUrl, LayersService) {
                 let vm = $scope;
@@ -20,7 +20,7 @@ angular.module('munimapBase.alkisSelection', ['anol.map', 'ngStorage'])
                         LayersService.removeOverlayLayer($rootScope.featureLayer);
                     }
                 };
-                
+
                 let updateFromServer = true;
                 if (alkisStorage.updateDate) {
                     const lastUpdate = new Date(alkisStorage.updateDate);
@@ -29,8 +29,8 @@ angular.module('munimapBase.alkisSelection', ['anol.map', 'ngStorage'])
                     if (hours < 24)  {
                         updateFromServer = false;
                     }
-                }            
-                if (!updateFromServer && 
+                }
+                if (!updateFromServer &&
                   (!angular.equals({}, alkisStorage.gemarkungen) && !angular.equals({}, alkisStorage.strassen))) {
                     vm.gemarkungen = alkisStorage.gemarkungen;
                     vm.strassen = alkisStorage.strassen;
@@ -39,7 +39,7 @@ angular.module('munimapBase.alkisSelection', ['anol.map', 'ngStorage'])
                     alkisStorage.strassen = {};
                     updateFromServer = true;
                 }
-         
+
                 const requestPromises = [];
                 const requestDeferred = $q.defer();
                 requestPromises.push(requestDeferred.promise);
@@ -64,7 +64,7 @@ angular.module('munimapBase.alkisSelection', ['anol.map', 'ngStorage'])
                 };
             }
         ])
-    
+
     .directive('alkisSelection', ['$uibModal', '$sessionStorage', 'ControlsService', 'MapService',
         function($uibModal, $sessionStorage, ControlsService, MapService) {
             return {
@@ -87,16 +87,16 @@ angular.module('munimapBase.alkisSelection', ['anol.map', 'ngStorage'])
                 link: {
                     pre: function(scope) {
                         scope.legimationModal = angular.isDefined(scope.legimationModal) ?
-                            scope.legimationModal : false;                          
+                            scope.legimationModal : false;
                         scope.tooltipPlacement = angular.isDefined(scope.tooltipPlacement) ?
                             scope.tooltipPlacement : 'right';
                         scope.tooltipDelay = angular.isDefined(scope.tooltipDelay) ?
                             scope.tooltipDelay : 500;
                         scope.tooltipEnable = angular.isDefined(scope.tooltipEnable) ?
                             scope.tooltipEnable : !hasTouch;
-                        
+
                         scope.$alkisStorage = $sessionStorage;
-                        
+
                         scope.map = MapService.getMap();
                         scope.handleClick = function() {
                             $uibModal.open({
@@ -110,14 +110,14 @@ angular.module('munimapBase.alkisSelection', ['anol.map', 'ngStorage'])
                                     alkisStorage: function() {
                                         return scope.$alkisStorage;
                                     },
-                                }     
+                                }
                             }).result.then(function(){}, function(){});
 
                             var toolsControlContainerScope = angular.element('.tools-control-container').scope();
                             toolsControlContainerScope.toolsContainerVisible = false;
 
                             scope.deactivate();
-                        };   
+                        };
 
                         scope.legitimateInterestModal = function(control) {
                             $uibModal.open({
@@ -135,7 +135,7 @@ angular.module('munimapBase.alkisSelection', ['anol.map', 'ngStorage'])
                             }, function(){
                                 control.deactivate();
                             });
-                        };                         
+                        };
                     },
                     post: function(scope) {
                         // eslint-disable-next-line no-undef
@@ -169,14 +169,14 @@ angular.module('munimapBase.alkisSelection', ['anol.map', 'ngStorage'])
         }])
 
     .directive('alkisSelectionContent', ['$rootScope',
-        '$http', '$window', 'AlkisService', 'LayersService', 'MapService', 
-        'AlkisSelectionByParcelUrl', 'AlkisSelectionByOwnerUrl', 
+        '$http', '$window', 'AlkisService', 'LayersService', 'MapService',
+        'AlkisSelectionByParcelUrl', 'AlkisSelectionByOwnerUrl',
         'AlkisSelectionSearchOwnerUrl', 'AlkisSelectionByAddressUrl', 'AlkisWFSUrl',
         'AlkisWFSParameter', 'alkisLegimationService',
         function(
-            $rootScope, $http, $window, AlkisService, LayersService, MapService, 
-            AlkisSelectionByParcelUrl, AlkisSelectionByOwnerUrl, 
-            AlkisSelectionSearchOwnerUrl, AlkisSelectionByAddressUrl, AlkisWFSUrl, 
+            $rootScope, $http, $window, AlkisService, LayersService, MapService,
+            AlkisSelectionByParcelUrl, AlkisSelectionByOwnerUrl,
+            AlkisSelectionSearchOwnerUrl, AlkisSelectionByAddressUrl, AlkisWFSUrl,
             AlkisWFSParameter, alkisLegimationService) {
             return {
                 restrict: 'A',
@@ -219,10 +219,10 @@ angular.module('munimapBase.alkisSelection', ['anol.map', 'ngStorage'])
 
                     scope.address = {
                         street: '-Keine Auswahl-',
-                        housenumber: undefined, 
+                        housenumber: undefined,
                         additional: undefined
                     };
-                
+
                     var addressDefault = {};
                     angular.copy(scope.address, addressDefault);
 
@@ -234,7 +234,7 @@ angular.module('munimapBase.alkisSelection', ['anol.map', 'ngStorage'])
                         AlkisService.getByAddress(
                             AlkisSelectionByParcelUrl, scope.plot).then(
                             function(response) {
-                                scope.responseData = response.data;   
+                                scope.responseData = response.data;
                                 scope.hideWaitingOverlay();
                             }
                         );
@@ -246,7 +246,7 @@ angular.module('munimapBase.alkisSelection', ['anol.map', 'ngStorage'])
                         AlkisService.getByAddress(
                             AlkisSelectionByAddressUrl, scope.address).then(
                             function(response) {
-                                scope.responseData = response.data;   
+                                scope.responseData = response.data;
                                 scope.hideWaitingOverlay();
                             }
                         );
@@ -261,7 +261,7 @@ angular.module('munimapBase.alkisSelection', ['anol.map', 'ngStorage'])
                         AlkisService.searchOwner(
                             AlkisSelectionByOwnerUrl, data).then(
                             function(response) {
-                                scope.responseData = response.data;   
+                                scope.responseData = response.data;
                                 scope.hideWaitingOverlay();
                             }
                         );
@@ -274,7 +274,7 @@ angular.module('munimapBase.alkisSelection', ['anol.map', 'ngStorage'])
                         AlkisService.searchOwner(
                             AlkisSelectionSearchOwnerUrl, scope.owner).then(
                             function(response) {
-                                scope.ownerData = response.data;   
+                                scope.ownerData = response.data;
                                 scope.ownerData.label = 'ownerdisplay';
                                 scope.ownerData.identifier = 'alkisid';
                                 scope.hideWaitingOverlay();
@@ -342,7 +342,7 @@ angular.module('munimapBase.alkisSelection', ['anol.map', 'ngStorage'])
                         angular.forEach(scope.responseData.items, function(items) {
                             ids.push(items['flurstuecksnummer_alk']);
                         });
-                        scope.showFeatureInMap(ids, 'Or', 'POST');   
+                        scope.showFeatureInMap(ids, 'Or', 'POST');
                     };
                     scope.showFeatureInMap = function(literal, filterType, method, listenAddFeature=true) {
                         if (scope.featureLayer) {
@@ -371,11 +371,11 @@ angular.module('munimapBase.alkisSelection', ['anol.map', 'ngStorage'])
                             }
                         });
                         $rootScope.featureLayer = scope.featureLayer;
-                        LayersService.addOverlayLayer(scope.featureLayer);
+                        LayersService.addSystemLayer(scope.featureLayer);
                         var source = scope.featureLayer.olLayer.getSource();
                         if (listenAddFeature) {
                             source.on('addfeature', function() {
-                                scope.map.getView().fit(source.getExtent(), scope.map.getSize()); 
+                                scope.map.getView().fit(source.getExtent(), scope.map.getSize());
                             });
                         }
                     };
@@ -400,15 +400,15 @@ angular.module('munimapBase.alkisSelection', ['anol.map', 'ngStorage'])
                         scope.responseData = {};
                         scope.ownerData = {};
                     };
-                    
-                    scope.preLoader = false; 
+
+                    scope.preLoader = false;
                     scope.hideWaitingOverlay = function() {
-                        scope.preLoader = false; 
+                        scope.preLoader = false;
                     };
 
                     scope.showWaitingOverlay = function() {
-                        scope.preLoader = true; 
-                    };      
+                        scope.preLoader = true;
+                    };
                 }
             };
         }]);

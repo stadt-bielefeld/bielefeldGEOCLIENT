@@ -52,7 +52,7 @@ function GeoeditorValidationServiceProvider() {
             }
         });
 
-        LayersService.addOverlayLayer(invalidFeatureLayer);
+        LayersService.addSystemLayer(invalidFeatureLayer);
 
         /**
          * @param {FormField} formField

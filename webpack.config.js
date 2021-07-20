@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports  = {
+    devtool: 'eval-source-map',
     entry: {
         app: './munimap/static/js/app.js',
         transport: './munimap_transport/munimap_transport/static/js/app.js',
@@ -11,7 +12,7 @@ module.exports  = {
         admin: './munimap/static/js/admin/admin.js',
         static_app:  './munimap/static/js/static-app.js',
         vendor: ['angular', 'jquery']
-    },    
+    },
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, './munimap/static/dist'),
@@ -29,8 +30,8 @@ module.exports  = {
                     }
                 }
             },
-            { 
-                test: /\.html$/, 
+            {
+                test: /\.html$/,
                 use: ['html-loader']
             },
             {
@@ -44,7 +45,7 @@ module.exports  = {
                 }
             }
         ]
-    },    
+    },
     optimization: {
         splitChunks: {
             cacheGroups: {
@@ -76,5 +77,5 @@ module.exports  = {
             jQuery: 'jquery',
             'window.jQuery': 'jquery'
         })
-    ]    
+    ]
 };
