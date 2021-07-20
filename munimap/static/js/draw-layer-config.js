@@ -72,7 +72,7 @@ angular.module('munimapDraw', [
                     }
                 });
                 drawLayer.olLayer = LayersService.createOlLayer(drawLayer);
-                LayersService.addOverlayLayer(drawLayer);
+                LayersService.addSystemLayer(drawLayer);
                 DrawService.addLayer(drawLayer);
                 DrawService.changeLayer(drawLayer);
             }

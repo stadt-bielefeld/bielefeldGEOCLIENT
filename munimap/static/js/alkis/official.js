@@ -8,9 +8,9 @@ import Feature from 'ol/Feature';
 import Polygon from 'ol/geom/Polygon';
 
 angular.module('munimapBase.alkisOfficial', ['anol.map', 'munimapBase.alkisService'])
-    .directive('alkisOfficial', ['$rootScope', '$q', '$compile', '$window', 'ControlsService', 
+    .directive('alkisOfficial', ['$rootScope', '$q', '$compile', '$window', 'ControlsService',
         'MapService', 'LayersService', 'AlkisService', '$uibModal',
-        function($rootScope, $q, $compile, $window, ControlsService, MapService, 
+        function($rootScope, $q, $compile, $window, ControlsService, MapService,
             LayersService, AlkisService, $uibModal) {
             return {
                 restrict: 'A',
@@ -34,18 +34,18 @@ angular.module('munimapBase.alkisOfficial', ['anol.map', 'munimapBase.alkisServi
                 link: {
                     pre: function(scope, element) {
                         scope.legimationModal = angular.isDefined(scope.legimationModal) ?
-                            scope.legimationModal : false;                          
+                            scope.legimationModal : false;
                         scope.tooltipPlacement = angular.isDefined(scope.tooltipPlacement) ?
                             scope.tooltipPlacement : 'right';
                         scope.tooltipDelay = angular.isDefined(scope.tooltipDelay) ?
                             scope.tooltipDelay : 500;
                         scope.tooltipEnable = angular.isDefined(scope.tooltipEnable) ?
                             scope.tooltipEnable : !hasTouch;
-                        
+
                         $rootScope.alkisPrintPreviewCenter = undefined;
                         $rootScope.popup = undefined;
                         scope.popupUrl = undefined;
-                        
+
                         const defaultStyle = new Style({
                             fill: new Fill({
                                 color: 'rgba(255, 255, 255, 0.4)'
@@ -68,7 +68,7 @@ angular.module('munimapBase.alkisOfficial', ['anol.map', 'munimapBase.alkisServi
                         scope.printInfoLayer.olLayer = LayersService.createOlLayer(
                             scope.printInfoLayer
                         );
-                        LayersService.addOverlayLayer(scope.printInfoLayer);
+                        LayersService.addSystemLayer(scope.printInfoLayer);
                         scope.printBboxString = undefined;
                         $window.addEventListener('message', function(e) {
                             if (!$rootScope.popup || $rootScope.popup.closed) {
@@ -117,7 +117,7 @@ angular.module('munimapBase.alkisOfficial', ['anol.map', 'munimapBase.alkisServi
                             const bottom = center[1] - (mapHeight / 2);
                             const left = center[0] - (mapWidth / 2);
                             const right = center[0] + (mapWidth / 2);
-                            scope.printBboxString = left +',' + bottom+';' + right +','+ top; 
+                            scope.printBboxString = left +',' + bottom+';' + right +','+ top;
                             scope.updatePrintArea(left, top, right, bottom);
                         };
 
@@ -185,7 +185,7 @@ angular.module('munimapBase.alkisOfficial', ['anol.map', 'munimapBase.alkisServi
                                 requestPromises.push(requestDeferred.promise);
                                 AlkisService.getAlkisInfos(url, evt).then(
                                     function(response) {
-                                        if (response.data && response.data.success) { 
+                                        if (response.data && response.data.success) {
                                             requestDeferred.resolve({
                                                 response: response.data
                                             });
@@ -212,7 +212,7 @@ angular.module('munimapBase.alkisOfficial', ['anol.map', 'munimapBase.alkisServi
                             }, function(){
                                 control.deactivate();
                             });
-                        };   
+                        };
 
                         scope.hideWaitingOverlay = function() {
                             if(angular.isDefined(scope.waitingMarkerSrc)) {
@@ -224,7 +224,7 @@ angular.module('munimapBase.alkisOfficial', ['anol.map', 'munimapBase.alkisServi
                             if(angular.isDefined(scope.waitingMarkerSrc)) {
                                 scope.waitingOverlay.setPosition(coordinate);
                             }
-                        };                        
+                        };
                     },
                     post: function(scope) {
                         // eslint-disable-next-line no-undef
@@ -256,7 +256,7 @@ angular.module('munimapBase.alkisOfficial', ['anol.map', 'munimapBase.alkisServi
                             }
                             return false;
                         };
-                        
+
                         scope.toggle = function() {
                             if (control.active) {
                                 control.deactivate();
