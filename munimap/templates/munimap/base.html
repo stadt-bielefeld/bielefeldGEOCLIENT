@@ -44,14 +44,14 @@
           _paq.push(['trackPageView']);
           _paq.push(['enableLinkTracking']);
           (function() {
-            var u="{$ base_config.get('MATOMO_URL') $}";
+            var u="{$ base_config.get('MATOMO_URL') | safe $}";
             _paq.push(['setTrackerUrl', u+'matomo.php']);
             _paq.push(['setSiteId', '58']);
             var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
             g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
           })();
         </script>
-        <noscript><p><img src="{$ base_config.get('MATOMO_IMAGE_URL') $}" style="border:0;" alt="" /></p></noscript>
+        <noscript><p><img src="{$ base_config.get('MATOMO_IMAGE_URL') | safe $}" style="border:0;" alt="" /></p></noscript>
         <!-- End Matomo Code -->
         {% endif %}
     </body>
