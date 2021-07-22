@@ -57,7 +57,7 @@ module.exports  = {
                 },
             }
         },
-        runtimeChunk: false,
+        runtimeChunk: true,
         minimizer: [
             new UglifyJsPlugin({
                 cache: true,
