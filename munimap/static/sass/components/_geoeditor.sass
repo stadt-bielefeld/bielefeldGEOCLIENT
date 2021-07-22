@@ -57,6 +57,8 @@ $geoeditor-remove-texts-break: 350px
   .geoeditor
     @media (max-width: $geoeditor-compact-layout-break + $sidebar-width)
       @include compact-design
+      .geoeditor-header
+        max-width: 330px
 
     @media (max-width: $geoeditor-remove-texts-break + $sidebar-width)
       .geoeditor-button-text
