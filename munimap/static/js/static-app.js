@@ -1,3 +1,5 @@
+import '@babel/polyfill';
+
 require('angular');
 require('angular-ui-bootstrap');
 
@@ -24,7 +26,7 @@ angular.module('munimap', ['munimapBase.notification', 'ui.bootstrap'])
     .service('fileUpload', ['$http', '$q', function ($http, $q) {
         this.uploadFileToUrl = function(file, uploadUrl, name){
             var deferred = $q.defer();
-            var formData = new FormData();                  
+            var formData = new FormData();
             formData.append('file', file);
             formData.append('projectName', name);
 
@@ -76,10 +78,10 @@ angular.module('munimap', ['munimapBase.notification', 'ui.bootstrap'])
         };
     }])
 
-    .controller('baseController', ['$scope', '$uibModal', 'saveDefaultSettings', 
+    .controller('baseController', ['$scope', '$uibModal', 'saveDefaultSettings',
         function($scope, $uibModal, saveDefaultSettings){
             if (typeof(defaultSettings) !== 'undefined') {
-                $scope.model = defaultSettings;  
+                $scope.model = defaultSettings;
             }
             $scope.changeDefaultProject = function(settingsID, projectName) {
                 var url = '/user/settings/default/update';
@@ -124,7 +126,7 @@ angular.module('munimap', ['munimapBase.notification', 'ui.bootstrap'])
             };
         }
     ]);
-   
+
 angular.element(document).ready(function() {
     angular.bootstrap(document, ['munimap']);
 });

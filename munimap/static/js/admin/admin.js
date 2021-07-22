@@ -1,3 +1,5 @@
+import '@babel/polyfill';
+
 require('angular');
 
 require('./base.js');

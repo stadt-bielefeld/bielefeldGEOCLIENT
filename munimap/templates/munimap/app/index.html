@@ -139,8 +139,8 @@
     .constant('AlkisSelectionSearchOwnerUrl',  '{$ url_for("alkis.search_owner") $}')
     .constant('AlkisSelectionByOwnerUrl',  '{$ url_for("alkis.select_by_owner") $}')
     .constant('AlkisSelectionByAddressUrl',  '{$ url_for("alkis.select_by_address") $}')
-    .constant('AlkisWFSUrl', '{$ base_config.get('ALKIS_WFS_URL') $}')
-    .constant('AlkisWFSParameter', '{$ base_config.get('ALKIS_WFS_PARAMETER') $}')
+    .constant('AlkisWFSUrl', '{$ base_config.get("ALKIS_WFS_URL") | safe $}')
+    .constant('AlkisWFSParameter', '{$ base_config.get("ALKIS_WFS_PARAMETER") | safe $}')
     {% endif %}
 
     angular.module('munimapDraw')

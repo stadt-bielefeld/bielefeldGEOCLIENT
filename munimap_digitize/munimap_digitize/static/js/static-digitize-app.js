@@ -1,3 +1,5 @@
+import '@babel/polyfill';
+
 require('angular');
 require('angular-ui-bootstrap');
 require('angular-schema-form');
