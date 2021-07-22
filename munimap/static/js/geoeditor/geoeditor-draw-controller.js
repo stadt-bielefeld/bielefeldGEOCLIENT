@@ -174,6 +174,7 @@ angular.module('munimapGeoeditor')
 
             $scope.$parent.$parent.onDelete = function (layer, feature) {
                 GeoeditorValidationService.updateFeatureValidationStatus(feature);
+                $rootScope.$broadcast('geoeditor:closePopup');
             };
 
             $scope.$parent.$parent.onModifySelect = function () {
