@@ -50,34 +50,29 @@ def list_available_icons():
         current_app.config['MAP_ICONS_DIR'],
         current_app.config['DRAW_ICONS_SUB_DIR']
     )
-    icon_files = os.listdir(draw_icons_path)
+    icon_files = [f.decode('utf-8') for f in os.listdir(draw_icons_path)]
 
     config_file = current_app.config.get('DRAW_ICONS_CONFIG_FILE')
     if config_file:
         config = load_yaml_file(config_file)
 
     icons = []
-    for file in icon_files:
-        file = file.decode('utf-8')
-
-        if not file.endswith(".svg") and not file.endswith('.png'):
-            continue
-
-        width, height = [18, 18]
-        anchor = [9, 9]
-        if config_file:
-            for icon in config['icons']:
-                if icon['name'] == file:
-                    width, height = icon['size']
-                    graphicXAnchor, graphicYAnchor = icon.get('anchor', anchor)
-
-        icons.append({
-            'filename': file,
-            'height': height,
-            'width': width,
-            'graphicXAnchor': graphicXAnchor,
-            'graphicYAnchor': graphicYAnchor
-        })
+    if config_file:
+        for icon in config['icons']:
+            if icon['name'] in icon_files:
+                width, height = icon['size']
+                graphicXAnchor, graphicYAnchor = icon.get('anchor', [9, 9])
+                icons.append({
+                    'filename': icon['name'],
+                    'height': height,
+                    'width': width,
+                    'graphicXAnchor': graphicXAnchor,
+                    'graphicYAnchor': graphicYAnchor
+                })
+            else:
+                file_name = os.path.join(draw_icons_path, icon['name'])
+                current_app.logger.warn('A configured icon file does not exist on the filesystem! path to file: %s' %
+                                        (file_name))
 
     return icons
 
