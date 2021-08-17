@@ -80,7 +80,7 @@ def login():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for("munimap.index"))
+    return redirect(current_app.config.get('USER_LOGOUT_URL'))
 
 
 @user.route("/settings/password", methods=["GET", "POST"])
