@@ -11,15 +11,18 @@ angular.module('munimapBase').config(['LayersServiceProvider', 'stationLayerURL'
     var stationLayer = new anol.layer.BBOXGeoJSON({
         name: 'selectable_stations',
         displayInLayerswitcher: false,
-        minResolution: 3, 
+        minResolution: 3,
         maxResolution: 20,
         featureinfo: {
             properties: ['name', 'city', 'routes']
         },
+        style: {
+            fillOpacity: 0.001,
+            strokeOpacity: 0
+        },
         olLayer: {
-            minResolution: 3, 
+            minResolution: 3,
             maxResolution: 20,
-            style: [],   
             source: {
                 featureProjection: 'EPSG:25832',
                 extentProjection: 'EPSG:4326',
@@ -37,9 +40,12 @@ angular.module('munimapBase').config(['LayersServiceProvider', 'stationLayerURL'
             properties: ['name', 'city', 'routes']
         },
         maxResolution: 2.4,
+        style: {
+            fillOpacity: 0.001,
+            strokeOpacity: 0
+        },
         olLayer: {
             maxResolution: 2.4,
-            style: [],         
             source: {
                 featureProjection: 'EPSG:25832',
                 extentProjection: 'EPSG:4326',
