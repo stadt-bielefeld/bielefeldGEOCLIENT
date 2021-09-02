@@ -370,6 +370,7 @@ angular.module('munimapBase')
             $scope.textDrawn = function(layer, feature) {
                 $scope.drawTextActive = false;
                 $scope.deactivateDrawText = undefined;
+                feature.set('isText', true);
                 feature.set('style', {
                     'radius': 0
                 });
