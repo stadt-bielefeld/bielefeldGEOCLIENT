@@ -89,8 +89,9 @@ angular.module('munimapGeoeditor')
                 }
 
                 var mapSizeOnPage = pageLayout.mapSize;
-                var scale = Math.max(
-                  PrintPageService.getScaleFromExtent(extent, mapSizeOnPage, requestedMargin), minScale);
+                var scaleFromExtent = PrintPageService.getScaleFromExtent(extent, mapSizeOnPage, requestedMargin);
+                // NaN check
+                var scale = scaleFromExtent !== scaleFromExtent ? minScale: Math.max(scaleFromExtent, minScale);
                 var center = getCenter(extent);
                 var bbox = PrintPageService.getBoundsForCenterMapSizeScale(center, mapSizeOnPage, scale);
                 var outputFormat = PrintPageService.outputFormats.find(function(outputFormat) {
