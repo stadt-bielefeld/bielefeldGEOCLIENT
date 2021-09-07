@@ -1,4 +1,3 @@
-from os import path
 from scriptine.shell import sh
 
 from flask import current_app
@@ -60,17 +59,6 @@ def drop_db(force=False):
     if force or prompt_bool("Are you sure ? You will lose all your data !"):
         # drop only on default bind
         db.drop_all(bind=None)
-
-
-@manager.command
-def refresh_users():
-    print "WARNING replacing user and passwords in database by config file values"
-    from munimap.model import load
-    from munimap.lib.yaml_loader import load_yaml_file
-    config = load_yaml_file(
-        path.join(current_app.config.get('CONFIG_PATH'), 'munimap_user_config.yaml')
-    )
-    load.create_config(config)
 
 
 manager.add_option('-c', '--config', dest='config_file', required=False)
