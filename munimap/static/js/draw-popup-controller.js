@@ -46,7 +46,7 @@ angular.module('munimapDraw')
             }
 
             $scope.isPoint = currentFeature.getGeometry().getType() === 'Point';
-            $scope.isText = $scope.isPoint && style !== undefined && (style.radius === 0 || style.radius === '0');
+            $scope.isText = currentFeature.get('isText');
             $scope.isMarker = style !== undefined && style.externalGraphic !== undefined;
 
             // prefer isText over isMarker, because isMarker is assigned after lastStyle is merged

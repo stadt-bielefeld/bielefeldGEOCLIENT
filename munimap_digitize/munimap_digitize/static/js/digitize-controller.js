@@ -1,6 +1,6 @@
 angular.module('munimap')
 
-    .controller('digitizeController', ['$scope', 'LayersService', 'DrawService', 'SaveManagerService', 'NotificationService', 
+    .controller('digitizeController', ['$scope', 'LayersService', 'DrawService', 'SaveManagerService', 'NotificationService',
         function($scope, LayersService, DrawService, SaveManagerService, NotificationService) {
             $scope.activeLayer = undefined;
             $scope.popupLayers = [];
@@ -81,6 +81,7 @@ angular.module('munimap')
             $scope.textDrawn = function(layer, feature) {
                 $scope.drawTextActive = false;
                 $scope.deactivateDrawText = undefined;
+                feature.set('isText', true);
                 feature.set('style', {
                     'radius': 0
                 });
@@ -123,10 +124,10 @@ angular.module('munimap')
                 $scope.layer = undefined;
                 return;
             } else {
-            // wait a digest cycle and trigger schemaform redraw
-            // schemaform style value is changed and default form values
-            // are overwritten by possible empty model values and stay empty
-            // if we don't trigger redraw
+                // wait a digest cycle and trigger schemaform redraw
+                // schemaform style value is changed and default form values
+                // are overwritten by possible empty model values and stay empty
+                // if we don't trigger redraw
                 $timeout(function() {
                     $scope.$broadcast('schemaFormRedraw');
                 });
@@ -143,7 +144,7 @@ angular.module('munimap')
                 $scope.isText = false;
                 $scope.isMarker = false;
             } else {
-                $scope.isText = $scope.isPoint && (style.radius === 0 || style.radius === '0');
+                $scope.isText = feature.get('isText');
                 $scope.isMarker = style.externalGraphic !== undefined;
             }
 

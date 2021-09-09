@@ -550,13 +550,11 @@ class Layer(db.Model):
                     base_feature = {
                         'type': 'Feature',
                         'properties': {
-                            'mapfishStyleId': id
+                            'mapfishStyleId': id,
+                            '__layer__': self.name
                         },
-                        'geometry': {}
+                        'geometry': mapping(to_shape(feature.geometry)),
                     }
-
-                    base_feature['geometry'] = mapping(to_shape(feature.geometry))
-                    base_feature['properties']['__layer__'] = self.name
 
                     style = DEFAULT_STYLE.copy()
                     style.update(self.style)

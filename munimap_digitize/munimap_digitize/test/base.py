@@ -6,7 +6,6 @@ from munimap.extensions import db
 
 from munimap_digitize.model import fixtures
 
-from munimap.model import load
 from munimap.lib.yaml_loader import load_yaml_file
 
 
@@ -27,6 +26,3 @@ class BaseTestWithDigitizeDB(BaseTestClass):
 
         db.session.add_all(fixtures.all())
         db.session.commit()
-
-        config = load_yaml_file('data/munimap_user_config.yaml')
-        load.create_config(config)
