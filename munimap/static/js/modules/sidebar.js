@@ -1,6 +1,6 @@
 angular.module('munimapBase.sidebar', ['anol.map'])
 
-    .directive('sidebar', ['$rootScope', '$location', '$timeout', '$window', 'MapService', 
+    .directive('sidebar', ['$rootScope', '$location', '$timeout', '$window', 'MapService',
         function($rootScope, $location, $timeout, $window, MapService) {
             return {
                 templateUrl: 'munimap/sidebar.html',
@@ -14,39 +14,32 @@ angular.module('munimapBase.sidebar', ['anol.map'])
                 controller: function($scope) {
                     var self = this;
                     $scope.items = {};
-                    $scope.openItems = $location.search().sidebar;
-                    if(angular.isUndefined($scope.openItems)) {
-                        $scope.openItems = '';
+
+                    if (angular.isUndefined($rootScope.sidebar)) {
+                        $rootScope.sidebar = {
+                            openItems: [],
+                            open: false
+                        };
                     }
 
-                    $scope.openSidebar = $location.search().sidebarStatus;
                     if ($window.innerWidth <= 480) {
-                        $scope.sidebar.open = false;
-                    } else {
-                        if ($scope.openSidebar === 'open') {
-                            $scope.sidebar.open = true;
-                        } else if ($scope.openSidebar === 'closed') {
-                            $scope.sidebar.open = false;
-                        }
+                        $rootScope.sidebar.open = false;
                     }
 
-                    $scope.updateLocationSearch = function() {
-                        if(angular.isUndefined($scope.sidebar) || !$scope.sidebar.open) {
-                            // $location.search('sidebar', null);
-                            $location.search('sidebarStatus', 'closed');
-                            $location.replace();
-                            return;
+                    $rootScope.$watch('sidebar.open', function(isOpen) {
+                        if (isOpen) {
+                            $window.document.body.classList.add('sidebar-open');
+                            $window.document.body.classList.remove('sidebar-closed');
+                        } else {
+                            $window.document.body.classList.remove('sidebar-open');
+                            $window.document.body.classList.add('sidebar-closed');
                         }
-                        var openMenus = [];
-                        angular.forEach($scope.items, function(itemScope) {
-                            if(!itemScope.collapse) {
-                                openMenus.push(itemScope.name);
-                            }
+
+                        $timeout(function() {
+                            MapService.getMap().updateSize();
                         });
-                        $location.search('sidebar', openMenus.join(','));
-                        $location.search('sidebarStatus', 'open');
-                        $location.replace();
-                    };
+                    });
+
                     $scope.toggleMenu = function() {
                         $scope.sidebar.open = !$scope.sidebar.open;
                     };
@@ -56,50 +49,30 @@ angular.module('munimapBase.sidebar', ['anol.map'])
                         return 'mailto:'+mail+'?subject='+subject+'&body='+body+' '+url;
                     };
 
-                    $scope.$watch('sidebar.open', function() {
-                        $scope.updateLocationSearch();
-                        $timeout(function() {
-                            MapService.getMap().updateSize();
-                        });
-                    });
-
                     $scope.$on('sidebar.open', function(evt, itemName) {
                         if(angular.isDefined($scope.items[itemName])) {
                             self.openItem(itemName);
                         }
                     });
 
-                    $rootScope.$on('updateSidebar', function(br, data){
-                        // close all sidebar items before load new one
-                        angular.forEach($scope.items, function(itemScope) {
-                            itemScope.close();
-                        });
-                        if (data.map.sidebar) {
-                            $scope.openItems = data.map.sidebar;
-                            var openItem = data.map.sidebar;
-                            var itemScope = $scope.items[openItem];
-                            itemScope.collapse = $scope.openItems.search(openItem) === -1;
-                        }
-                        var openSidebar = data.map.sidebarStatus;
-                        if (openSidebar === 'open') {
-                            $scope.sidebar.open = true;
-                        } else if (openSidebar === 'closed') {
-                            $scope.sidebar.open = false;
-                        }
+                    $rootScope.$watch('sidebar.openItems', (openItems) => {
+                       angular.forEach($scope.items, itemScope => {
+                           itemScope.collapse = openItems.indexOf(itemScope.name) === -1;
+                       });
                     });
 
                     this.registerSidebarItem = function(itemScope) {
                         $scope.items[itemScope.name] = itemScope;
-                        itemScope.collapse = $scope.openItems.search(itemScope.name) === -1;
-                        $scope.updateLocationSearch();
+                        itemScope.collapse = $rootScope.sidebar.openItems.indexOf(itemScope.name) === -1;
                     };
+
                     this.toggleItem = function(name) {
                         var itemScope = $scope.items[name];
-                        if(itemScope.exclusive && itemScope.collapse) {
+                        if (itemScope.exclusive && itemScope.collapse) {
                             angular.forEach($scope.items, function(_itemScope) {
                                 _itemScope.collapse = true;
                             });
-                        } else if(!itemScope.exclusive && itemScope.collapse) {
+                        } else if (!itemScope.exclusive && itemScope.collapse) {
                             angular.forEach($scope.items, function(_itemScope) {
                                 if(_itemScope.exclusive === true) {
                                     _itemScope.collapse = true;
@@ -107,14 +80,19 @@ angular.module('munimapBase.sidebar', ['anol.map'])
                             });
                         }
                         itemScope.collapse = !itemScope.collapse;
-                        $scope.updateLocationSearch();
+
+                        $rootScope.sidebar.openItems = Object.values($scope.items)
+                            .filter(itemScope => !itemScope.collapse)
+                            .map(itemScope => itemScope.name);
                     };
+
                     this.openItem = function(name) {
                         var itemScope = $scope.items[name];
                         if(itemScope.collapse === true) {
                             this.toggleItem(name);
                         }
                     };
+
                     this.closeItem = function(name) {
                         var itemScope = $scope.items[name];
                         if(itemScope.collapse === false) {
