@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3'
 services:
   munimap-nginx:
     image: library/nginx:1.21.0-alpine
@@ -8,6 +8,7 @@ services:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     extra_hosts:
       - host.docker.internal:host-gateway
+
   munimap-postgis:
     image: mdillon/postgis:11-alpine
     ports:
@@ -19,6 +20,7 @@ services:
     volumes:
       - ./postgres/postgresql_init_data:/docker-entrypoint-initdb.d
       - ./postgres/postgresql_data:/var/lib/postgresql/data:Z
+
   munimap-print:
     image: docker.terrestris.de/camptocamp/mapfish_print:3.28@sha256:dd97cd8cfd7212b2e24708d392b9dbff81e7756e29d99d3d08333c88e4597496
     ports:
@@ -26,3 +28,7 @@ services:
     volumes:
       - ./munimap-print/print-apps:/usr/local/tomcat/webapps/ROOT/print-apps:Z
       - ./tmp:/tmp:Z
+
+  munimap-gpkg-builder:
+    build:
+      context: ./gpkg-builder
