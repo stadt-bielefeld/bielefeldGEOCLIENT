@@ -1,0 +1,5 @@
+version: '3'
+services:
+  munimap-magnacarto:
+    build:
+      context: ./magnacarto
