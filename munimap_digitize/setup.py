@@ -25,8 +25,14 @@ setup(
     zip_safe=False,
     platforms='any',
     install_requires=[
-        'Flask',
-        'Flask-Assets',
+        'Flask==0.10.1',
+        'Flask-Assets==0.11',
+        'Flask-WTF==0.12',
+        'Flask-SQLAlchemy==2.1',
+        'SQLAlchemy==1.0.8',
+        'GeoAlchemy2==0.2.6',
+        'Shapely==1.5.12',
+        'Flask-Login==0.3.2',
     ],
     include_package_data=True,
 )

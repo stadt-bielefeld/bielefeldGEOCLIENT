@@ -7,19 +7,40 @@ class DefaultConfig(object):
     Default configuration for a newsmeme application.
     """
 
-    DEBUG = False
+    # TODO It is not recommended to set DEBUG value at runtime.
+    #      Better set it as environment variable before startup.
+    DEBUG = True
 
     MATOMO = False
     MATOMO_URL = ''
     MATOMO_IMAGE_URL = ''
-    
-    # ALLOW_UPLOAD_CONFIG = ['127.0.0.1']
+
+    JSONIFY_PRETTYPRINT_REGULAR = False
+
+    ADMIN_PARTY = False
+
+    LOG_DIR = '/opt/log/munimap'
+
+    # TODO Check if this acutally applies
+    ALLOW_UPLOAD_CONFIG = ['127.0.0.1']
     API_PRODUCTION_URL = 'http://localhost:5000'
+
+    PREFERRED_URL_SCHEME = 'http'
+
+    # change this in your production settings !!!
+    SECRET_KEY = 'verysecret'
+    PROXY_HASH_SALT = 'alsoverysecret'
+
+    ALEMBIC_CONF = '/opt/etc/munimap/alembic.ini'
+
+    LAYERS_CONF_DIR = '/opt/etc/munimap/map-configs'
+    APP_CONFIG_DIR = '/opt/etc/munimap/app-configs'
+    SELECTIONLISTS_CONFIG_DIR = '/opt/etc/munimap/selectionlists-configs'
+    PLUGIN_DIR = '/opt/etc/munimap/plugins'
 
     ASSETS_DEBUG = False
     ASSETS_BUNDLES_CONF = path.join(path.dirname(__file__), 'asset_bundles.yaml')
 
-    APP_CONFIG_DIR = ''
     DEFAULT_APP_CONFIG = 'default-config.yaml'
 
     TMP_DIR = '/tmp'
@@ -27,19 +48,15 @@ class DefaultConfig(object):
     ALKIS_LEGITIMATION_GROUP = 'ALKIS_BERECHTIGTES_INTERESSE'
     ALKIS_WITH_OWNER_GROUP = 'ALKIS_EIGENTUEMER'
     ALKIS_WITH_OWNER_OFFICIAL = 'ALKIS_EIGENTUEMER_IBR'
-    ALKIS_WFS_URL = ''
+    ALKIS_WFS_URL = '/umn/wms_alkis_arbeitsausgabe_v01.asp?'
     ALKIS_WFS_PARAMETER = 'SERVICE=WFS&VERSION=1.0.0&REQUEST=GetFeature&TYPENAME=Flurstuecke'
 
     ALKIS_LOG_DIR = '/tmp/'
-    LOG_DIR = ''
     ALKIS_LOG = 'munimap.alkis.log'
     TOKEN_LOG = 'munimap.token.log'
     DEBUG_LOG = 'munimap.debug.log'
     ERROR_LOG = 'munimap.error.log'
     TRANSFER_LOG = 'munimap.transfer.log'
-
-    # change this in your production settings !!!
-    SECRET_KEY = "verysecret"
 
     MAX_INVALID_LOGIN_ATTEMPTS = 3
     
@@ -48,59 +65,70 @@ class DefaultConfig(object):
     REMEMBER_COOKIE_NAME = 'remember_muimap_token'
     REMEMBER_COOKIE_DURATION = datetime.timedelta(30)
 
-    LAYERS_CONF_DIR = ''
-    LAYERS_BASE_URL = ''
+    # TODO check which baseUrl we can use here
+    LAYERS_BASE_URL = 'http://munimap-nginx'
     SQLALCHEMY_LAYER_DATABASE_URI = ''
 
-    SQLALCHEMY_DATABASE_URI = 'postgres://os:os@localhost:5432/munimap'
+    SQLALCHEMY_DATABASE_URI = ''
     SQLALCHEMY_BINDS = {
-        'mapbender': 'postgres://mapbender:mapbender@localhost:5432/mapbender'
+        'mapbender': ''
     }
     SQLALCHEMY_ECHO = False
     SQLALCHEMY_DATABASE_SCHEMA = 'public'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+    # TODO check if we can provide a local proxy here
     CORS_PROXY = {}
-    PROXY_HASH_SALT = 'changeme'
 
     CERTIFICATE_VERIFY = False
     
     DRAW_ICONS_SUB_DIR = 'draw'
     DRAW_ICONS_CONFIG_FILE = 'draw_icons.yaml'
 
-    MAP_ICONS_DIR = ''
+    MAP_ICONS_DIR = '/opt/etc/munimap/project/static/img/icons'
 
     GEOJSON_DATA_PATH = './geojson/'
 
-    MAPFISH_ICONS_DIR = ''
-    MAPFISH_PRINT_CMD = ''
-    MAPFISH_YAML = ''
-    MAPFISH_STYLES_PATH = ''
+    MAPFISH_ICONS_DIR = '/opt/etc/munimap/project/static/img/icons'
+    MAPFISH_PRINT_CMD = '/opt/var/mapfish/core-3.9.0/bin/print'
+    # TODO add to yaml to repository and Dockerfile
+    MAPFISH_YAML = '/opt/etc/munimap/mapfish.yaml'
+    # TODO add styles to repository and Dockerfile
+    MAPFISH_STYLES_PATH = '/opt/etc/munimap/mapfish/styles'
     MAPFISH_SERVICES_DEFAULT_PROTOCOL = 'http'
 
     MAPFISH_PRINT_USE_SERVICE = False
-    MAPFISH_PRINT_URL = ''
+    MAPFISH_PRINT_BASE_URL = 'http://munimap-print:8080'
+    MAPFISH_PRINT_CREATE_URL = '%s/print/print/munimap/report' % (MAPFISH_PRINT_BASE_URL)
 
     # in px
     MAPFISH_PRINT_MAP_MARGINS = [20, 20, 40, 20]
 
-    PRINT_OUTDIR = './print-output'
+    PRINT_OUTDIR = '/opt/var/printqueue/print-output'
     PRINT_USE_BROKER = False
-    PRINT_QUEUEFILE = './printqueue.sqlite'
+    PRINT_QUEUEFILE = '/opt/var/printqueue/printqueue.sqlite'
     PRINT_STREET_INDEX_LAYER = 'street_labels'
+    PRINT_LOG_DIR = '/opt/log/printqueue'
+    PRINT_DEBUG_LOG = 'printqueue.debug.log'
+    PRINT_ERROR_LOG = 'printqueue.error.log'
 
-    INVERT_LEFT_GRID_LABELS = False
+    INVERT_LEFT_GRID_LABELS = True
     INVERT_TOP_GRID_LABELS = False
-    GRID_LABELS = None
+    GRID_LABELS = ( 'A B C D E F G H I K L M N O P Q R S T U V W X Y Z'.split(),
+        map(str, range(1, 26)),
+    )
 
-    PROJECT_DIR = path.join(path.dirname(__file__), '../projects/demo')
+    PROJECT_DIR = '/opt/etc/munimap/project'
 
     ACCEPT_LANGUAGES = ['de']
 
     # Digitize default configurations
+    DIGITIZE_ADMIN_PERMISSION = 'digitize_admin'
     DIGITIZE_ADMIN_GROUP = 'digitize_admin'
     DIGITIZE_EDIT_GROUP = 'digitize_edit'
-    DIGITIZE_ICON_DIR = ''
+    # TODO we might need to get one level down. Check if that works with default
+    #      application setup.
+    DIGITIZE_ICONS_DIR = '/opt/etc/munimap/project/static/img/icons'
     DIGITIZE_ICON_CONFIG_FILE = False
 
     # Transport default configurations
@@ -127,7 +155,7 @@ class DefaultConfig(object):
     TIMETABLE_NIGHTLINE_DOCUMENTS_BASE_URL = ''
 
     ALKIS_SESSION_URL = '/iplogin/services/LoginService/getSessionNeu?'
-    ALKIS_INFO_URL = '/ip_alkisservices/services/AlkisBuchinfoService/getFlurstuecksinfoDocument?'
+    ALKIS_INFO_URL = '/ip_alkisservices/services/AlkisBuchinfoService/'
     ALKIS_PDF_URL = '/ALKISBuch/indexIPProduct.html?'
 
     # use for response urls
@@ -138,6 +166,7 @@ class DefaultConfig(object):
     ALKIS_GML_WMS = '/umn/wms_alkis_arbeitsausgabe_v01.asp?'
 
     NO_LOGIN_INFORMATION = 'Bitte kontaktieren Sie den Adminstrator <a href="mailto:admin@example.org">admin@example.org</a>'
+    USER_LOGOUT_URL = '/'
 
 here = path.dirname(__file__)
 

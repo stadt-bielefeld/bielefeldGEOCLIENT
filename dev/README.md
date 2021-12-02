@@ -58,9 +58,6 @@ tar -xvf print-cli-3.3-SNAPSHOT-tar.tar
 ```
 cd ../../
 git clone git@github.com:terrestris/anol.git
-cd anol
-npm i
-npm run build
 # npm start
 ```
 
