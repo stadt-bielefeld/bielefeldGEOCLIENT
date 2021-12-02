@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3'
 services:
   munimap-nginx:
     image: library/nginx:1.21.0-alpine
@@ -8,6 +8,9 @@ services:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     extra_hosts:
       - host.docker.internal:host-gateway
+    depends_on:
+      - munimap-app
+
   munimap-postgis:
     image: mdillon/postgis:11-alpine
     ports:
@@ -19,10 +22,37 @@ services:
     volumes:
       - ./postgres/postgresql_init_data:/docker-entrypoint-initdb.d
       - ./postgres/postgresql_data:/var/lib/postgresql/data:Z
-  munimap-print:
-    image: docker.terrestris.de/camptocamp/mapfish_print:3.28@sha256:dd97cd8cfd7212b2e24708d392b9dbff81e7756e29d99d3d08333c88e4597496
+
+  munimap-app:
+    restart: unless-stopped
+    build:
+      context: ../
     ports:
-      - 20081:8080
+      - 5000:8080
+    # command: bash -c 'sleep infinity'
+    command: python /opt/munimap/bin/manage.py -c /opt/etc/munimap/munimap.conf runserver -h 0.0.0.0 -p 8080
+    depends_on:
+      - munimap-postgis
+      - munimap-print
+
+  munimap-mapserver:
+    restart: unless-stopped
+    build:
+      context: ./mapserver
+    environment:
+      # This only serves mapfiles within /opt/etc/styles/bielefeld/map/
+      MS_MAP_PATTERN: '^\/opt\/etc\/styles\/bielefeld\/map\/.+\.map$$'
+    ports:
+      - 8080:80
+
+  munimap-mapproxy:
+    restart: unless-stopped
+    build:
+      context: ./mapproxy
+    ports:
+      - 8081:8181
     volumes:
-      - ./munimap-print/print-apps:/usr/local/tomcat/webapps/ROOT/print-apps:Z
-      - ./tmp:/tmp:Z
+      - ./mapproxy_cache_data:/opt/var/mapproxy/cache_data
+    depends_on:
+      - munimap-mapserver
+  
