@@ -5,16 +5,16 @@ FROM node:14.18.1-alpine3.14 as CLIENTBASE
 
 FROM CLIENTBASE as CLIENTBUILDER
 
+ARG ANOL_COMMIT_HASH=master
 RUN apk add --no-cache wget unzip
 
 RUN npm i -g npm@7
 
 RUN mkdir -p tmp/anol
-# TODO add option to set anol version on build(commit hash)
 RUN cd /tmp/anol \
-    && wget https://github.com/terrestris/anol/archive/refs/heads/master.zip -O anol.zip \
+    && wget https://github.com/terrestris/anol/archive/refs/heads/$ANOL_COMMIT_HASH.zip -O anol.zip \
     && unzip anol.zip \
-    && mv anol-master /anol
+    && mv anol-$ANOL_COMMIT_HASH /anol
 
 RUN cd /anol && npm ci
 
@@ -34,7 +34,6 @@ FROM BASE as BUILDER
 RUN apt-get update && apt-get install -y \
     build-essential \
     python-dev
-    # libpython2-dev
 
 RUN pip install --upgrade pip \
     && pip install wheel setuptools
@@ -43,10 +42,6 @@ RUN mkdir -p /pkg
 # We have to build the client bevor packing everything into a python package
 COPY --from=CLIENTBUILDER /app /pkg
 WORKDIR /pkg
-
-# RUN python setup.py bdist_wheel
-# RUN cd munimap_digitize && python setup.py bdist_wheel
-# RUN cd munimap_transport && python setup.py bdist_wheel
 
 RUN python setup.py clean && python setup.py egg_info sdist --formats=tar
 RUN cd munimap_digitize && python setup.py clean && python setup.py egg_info sdist --formats=tar
@@ -62,7 +57,6 @@ RUN apt-get update && apt-get install -y \
     python-dev \
     openjdk-7-jre-headless \
     libspatialindex-dev \
-    # libpython2-dev \
     libgeos-dev \
     wget \
     libffi-dev \
@@ -136,21 +130,15 @@ RUN wget -c http://download.osgeo.org/gdal/1.11.4/gdal-1.11.4.tar.gz \
     && make -j4 \
     && make install
 
-# TODO check if this is actually needed in this container
-# TODO update path to where to extract mapfish
 RUN wget https://repo1.maven.org/maven2/org/mapfish/print/print-cli/3.9.0/print-cli-3.9.0-tar.tar -O /tmp/mapfish.tar \
     && tar -xvf /tmp/mapfish.tar -C /opt/var/mapfish
 
-# COPY --from=BUILDER /pkg/dist/munimap-*.whl /opt/pkgs
-# COPY --from=BUILDER /pkg/munimap_digitize/dist/munimap_digitize-*.whl /opt/pkgs
-# COPY --from=BUILDER /pkg/munimap_transport/dist/munimap_transport-*.whl /opt/pkgs
 COPY --from=BUILDER /pkg/dist/munimap-*.tar /opt/pkgs
 COPY --from=BUILDER /pkg/munimap_digitize/dist/munimap_digitize-*.tar /opt/pkgs
 COPY --from=BUILDER /pkg/munimap_transport/dist/munimap_transport-*.tar /opt/pkgs
 COPY --from=BUILDER /pkg/dev/manage.py /opt/munimap/bin/
 COPY --from=BUILDER /pkg/gunicorn.conf /opt/etc/munimap/gunicorn.conf
 
-# ENV SSL_CERT_DIR=/etc/ssl/certs
 RUN pip install --upgrade pip && pip install \
     wheel \
     gunicorn==17.5 \
@@ -164,10 +152,6 @@ RUN pip install --upgrade pip && pip install \
 
 # Hack to disable https for following script.
 RUN PYTHONHTTPSVERIFY=0 python -c "import hyphen.dictools; hyphen.dictools.is_installed('de') or hyphen.dictools.install('de')"
-
-# TODO munimap styles need to be mounted at /opt/etc/styles
-#      see system.py update_styles()
-# Also check if styles scripts are still needed/used
 
 ENV JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
 WORKDIR /opt/etc/munimap
