@@ -5,14 +5,15 @@ FROM node:14.18.1-alpine3.14 as CLIENTBASE
 
 FROM CLIENTBASE as CLIENTBUILDER
 
-ARG ANOL_COMMIT_HASH=master
+ARG ANOL_COMMIT_HASH=ce0b062442d165155fa2a0d1324ba70e3d95bd68
 RUN apk add --no-cache wget unzip
 
 RUN npm i -g npm@7
 
 RUN mkdir -p tmp/anol
 RUN cd /tmp/anol \
-    && wget https://github.com/terrestris/anol/archive/refs/heads/$ANOL_COMMIT_HASH.zip -O anol.zip \
+    # && wget https://github.com/terrestris/anol/archive/refs/heads/$ANOL_COMMIT_HASH.zip -O anol.zip \
+    && wget https://github.com/terrestris/anol/archive/$ANOL_COMMIT_HASH.zip -O anol.zip \
     && unzip anol.zip \
     && mv anol-$ANOL_COMMIT_HASH /anol
 
