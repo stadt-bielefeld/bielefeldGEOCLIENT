@@ -11,13 +11,22 @@ module.exports  = {
         digitize_admin: './munimap_digitize/munimap_digitize/static/js/static-digitize-app.js',
         admin: './munimap/static/js/admin/admin.js',
         static_app:  './munimap/static/js/static-app.js',
-        vendor: ['angular', 'jquery']
+        vendor: ['angular', 'jquery', 'angular-ui-bootstrap', 'core-js']
     },
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, './munimap/static/dist'),
         chunkFilename: '[name].bundle.js',
         publicPath: '/',
+    },
+    resolve: {
+      alias: {
+        'ol': path.resolve('./node_modules/ol'),
+        'ol-ext': path.resolve('./node_modules/ol-ext'),
+        'bootstrap': path.resolve('./node_modules/bootstrap'),
+        'angular-ui-bootstrap': path.resolve('./node_modules/angular-ui-bootstrap'),
+        'jquery': path.resolve('./node_modules/jquery')
+      }
     },
     module: {
         rules: [
