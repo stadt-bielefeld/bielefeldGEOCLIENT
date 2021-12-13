@@ -19,6 +19,14 @@ module.exports  = {
         chunkFilename: '[name].bundle.js',
         publicPath: '/',
     },
+    resolve: {
+      alias: {
+        'ol': path.resolve('./node_modules/ol'),
+        'ol-ext': path.resolve('./node_modules/ol-ext'),
+        'bootstrap': path.resolve('./node_modules/bootstrap'),
+        'angular-ui-bootstrap': path.resolve('./node_modules/angular-ui-bootstrap')
+      }
+    },
     module: {
         rules: [
             {
