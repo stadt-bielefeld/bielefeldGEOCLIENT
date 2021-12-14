@@ -40,8 +40,8 @@ services:
     build:
       context: ./mapserver
     environment:
-      # This only serves mapfiles within /opt/etc/styles/project/map/
-      MS_MAP_PATTERN: '^\/opt\/etc\/styles\/project\/map\/.+\.map$$'
+      # This only serves mapfiles within /opt/etc/styles/bielefeld/map/
+      MS_MAP_PATTERN: '^\/opt\/etc\/styles\/bielefeld\/map\/.+\.map$$'
     ports:
       - 8080:80
 

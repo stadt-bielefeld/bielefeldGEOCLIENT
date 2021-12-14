@@ -6,6 +6,6 @@ RUN apt update && apt install -y \
     fonts-dejavu-extra \
     ttf-unifont
 
-RUN mkdir -p /opt/etc/styles/project/map \
+RUN mkdir -p /opt/etc/styles/bielefeld/map \
     && mkdir -p /opt/log/mapproxy \
     && chown -R www-data:www-data /opt/log/mapproxy

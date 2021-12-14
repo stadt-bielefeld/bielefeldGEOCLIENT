@@ -50,7 +50,7 @@ RUN cd munimap_transport && python setup.py clean && python setup.py egg_info sd
 
 
 
-FROM BASE as RELEASE
+FROM BASE as RUNNER
 
 # TODO check which libs are actually needed
 RUN apt-get update && apt-get install -y \
@@ -103,7 +103,7 @@ RUN mkdir -p /opt/munimap \
     && mkdir -p /opt/etc/munimap/map-configs \
     && mkdir -p /opt/etc/munimap/selectionlists-configs \
     && mkdir -p /opt/etc/munimap/plugins \
-    && mkdir -p /opt/etc/munimap/project \
+    && mkdir -p /opt/etc/munimap/bielefeld \
     && mkdir -p /opt/log/mapproxy \
     && mkdir -p /opt/var/mapproxy \
     && mkdir -p /opt/log/munimap \

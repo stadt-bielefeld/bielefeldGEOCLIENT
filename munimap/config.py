@@ -85,11 +85,11 @@ class DefaultConfig(object):
     DRAW_ICONS_SUB_DIR = 'draw'
     DRAW_ICONS_CONFIG_FILE = 'draw_icons.yaml'
 
-    MAP_ICONS_DIR = '/opt/etc/munimap/project/static/img/icons'
+    MAP_ICONS_DIR = '/opt/etc/munimap/bielefeld/static/img/icons'
 
     GEOJSON_DATA_PATH = './geojson/'
 
-    MAPFISH_ICONS_DIR = '/opt/etc/munimap/project/static/img/icons'
+    MAPFISH_ICONS_DIR = '/opt/etc/munimap/bielefeld/static/img/icons'
     MAPFISH_PRINT_CMD = '/opt/var/mapfish/core-3.9.0/bin/print'
     # TODO add to yaml to repository and Dockerfile
     MAPFISH_YAML = '/opt/etc/munimap/mapfish.yaml'
@@ -118,7 +118,7 @@ class DefaultConfig(object):
         map(str, range(1, 26)),
     )
 
-    PROJECT_DIR = '/opt/etc/munimap/project'
+    PROJECT_DIR = '/opt/etc/munimap/bielefeld'
 
     ACCEPT_LANGUAGES = ['de']
 
@@ -128,7 +128,7 @@ class DefaultConfig(object):
     DIGITIZE_EDIT_GROUP = 'digitize_edit'
     # TODO we might need to get one level down. Check if that works with default
     #      application setup.
-    DIGITIZE_ICONS_DIR = '/opt/etc/munimap/project/static/img/icons'
+    DIGITIZE_ICONS_DIR = '/opt/etc/munimap/bielefeld/static/img/icons'
     DIGITIZE_ICON_CONFIG_FILE = False
 
     # Transport default configurations
