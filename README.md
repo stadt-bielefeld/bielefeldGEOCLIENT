@@ -2,6 +2,8 @@
 
 Munimap is an interactive online map with a plenty of abilities. Define theme based layer groups, restrict access to allowed users, export map extracts, digitize features (beta), integration in Form-Solutions formular software for building a citizen service portal and many more.
 
+> **bielefeldGEOCLIENT presentation in march on FOSSGIS 2022! Program: https://pretalx.com/fossgis2022/schedule/#**
+
 ## Features
 
 * Easy configuration using yaml files
