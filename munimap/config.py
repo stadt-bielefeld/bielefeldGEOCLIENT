@@ -23,7 +23,7 @@ class DefaultConfig(object):
 
     # TODO Check if this acutally applies
     ALLOW_UPLOAD_CONFIG = ['127.0.0.1']
-    API_PRODUCTION_URL = 'http://localhost:5000'
+    API_PRODUCTION_URL = 'http://localhost:8080'
 
     PREFERRED_URL_SCHEME = 'http'
 
