@@ -78,7 +78,7 @@ def list_available_icons():
 
 
 @munimap.route('/')
-@munimap.route('/app/<config>/')
+@munimap.route('/app/<config>')
 def index(config=None):
     if config: 
         project = ProtectedProject.by_name_without_404(config)
@@ -134,19 +134,27 @@ def index(config=None):
                            error=ex)
 
     app = app_config.get('app')
+
+    cache_control_header = 'no-store,no-cache,must-revalidate,max-age=0,post-check=0,pre-check=0'
+    pragma_header = 'no-cache'
+
     if app.get('iframe', False):
         iframe_url = app_config['app']['iframe']
         if token:
             iframe_url = '%s?token=%s' % (iframe_url, token)
-        return render_template(
+        rendered_iframe = render_template(
             '/munimap/app/iframe.html', 
             iframe_url=iframe_url,
             app_config=app_config,
             project_name=config
         )
+        resp = Response(rendered_iframe)
+        resp.headers['Cache-Control'] = cache_control_header
+        resp.headers['Pragma'] = pragma_header
+        return resp
     else:
-        return render_template(
-            '/munimap/app/index.html', 
+        rendered_index = render_template(
+            '/munimap/app/index.html',
             app_config=app_config,
             layers_def=layers_def,
             project_settings=project_settings,
@@ -159,6 +167,10 @@ def index(config=None):
             available_icons=list_available_icons(),
             project_name=config
         )
+        resp = Response(rendered_index)
+        resp.headers['Cache-Control'] = cache_control_header
+        resp.headers['Pragma'] = pragma_header
+        return resp
 
 
 @munimap.route('/app/<config>/catalog')
