@@ -66,7 +66,7 @@ angular.module('munimapBase.postMessage', ['anol.map'])
             };
 
             PostMessage.prototype.sendMessage = function (options, target) {
-                if ($window.opener === null) {
+                if ($window.opener === null || $window.opener === undefined) {
                     $window.parent.postMessage(options, target);
                 } else {
                     $window.opener.postMessage(options, target);
