@@ -139,9 +139,20 @@ def layers_allowed_for_user(layers):
             layersToCheck.append(layer)
 
     filteredLayers = check_layers_permission(layersToCheck)
-    allowedLayers = allowedLayers + filteredLayers
 
-    return allowedLayers
+    filteredLayersNames = [layer['name'] for layer in filteredLayers]
+    allowedLayersNames = [layer['name'] for layer in allowedLayers]
+
+    allAllowedLayers = []
+
+    # the original layer order needs to be preserved
+    for layer in layers:
+        if layer['name'] in filteredLayersNames:
+            allAllowedLayers.append(layer)
+        elif layer['name'] in allowedLayersNames:
+            allAllowedLayers.append(layer)
+
+    return allAllowedLayers
 
 
 def merge_yaml_dicts(x, y):

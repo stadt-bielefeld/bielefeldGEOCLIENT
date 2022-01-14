@@ -78,7 +78,7 @@ def list_available_icons():
 
 
 @munimap.route('/')
-@munimap.route('/app/<config>')
+@munimap.route('/app/<config>/')
 def index(config=None):
     if config: 
         project = ProtectedProject.by_name_without_404(config)
