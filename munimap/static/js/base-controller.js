@@ -477,7 +477,7 @@ angular.module('munimapBase')
 
             $scope.extractPermalinkFromImport = function(featureCollection) {
                 if(angular.isDefined(featureCollection.properties) && angular.isDefined(featureCollection.properties.permalink)) {
-                    PermalinkService.setPermalinkParameters(featureCollection.properties.permalink);
+                    PermalinkService.applyPermalinkParameters(featureCollection.properties.permalink);
                 }
                 return featureCollection;
             };
