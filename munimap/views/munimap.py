@@ -254,7 +254,7 @@ def gfi_catalog_names(config=None):
         groups=catalog_groups_def,
     )
 
-@munimap.route('/app/<config>/catalog/<_type>/<name>')
+@munimap.route('/app/<config>/catalog/<_type>/<name>/')
 def catalog_layer(config=None, _type=None, name=None):
     if config: 
         project = ProtectedProject.by_name_without_404(config)
