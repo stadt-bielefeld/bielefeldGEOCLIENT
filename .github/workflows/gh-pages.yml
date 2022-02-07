@@ -15,6 +15,9 @@ jobs:
         with:
           docs-folder: "docs/"
 
+      - name: Add .nojekyll file
+        run: touch docs/build/html/.nojekyll
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.2.3
         with:
