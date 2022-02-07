@@ -22,13 +22,13 @@ Munimap is an interactive online map with a plenty of abilities. Define theme ba
 
 * Integration of third party applications with optional token based access restrictions
 
-![Munimap](./docs/munimap.png)
+![Munimap](./screenshots/munimap.png)
 
 * Ability to export map extract into multiple formats using mapfish print v3
 
 * Export map extract with street index and adjustable grid cells
 
-![Munimap](./docs/munimap_print.png)
+![Munimap](./screenshots/munimap_print.png)
 
 * Measurement
 
@@ -36,11 +36,11 @@ Munimap is an interactive online map with a plenty of abilities. Define theme ba
 
 * Powerful administration tools (users, maps, groups, layers, access rights, geoEDITOR plugins and selections lists, logs)
 
-![Munimap](./docs/munimap_admin.png)
+![Munimap](./screenshots/munimap_admin.png)
 
 * Integration in Form-Solutions formular software for building a citizen service portal with geo functionality
 
-![Munimap](./docs/munimap_geoEDITOR.png)
+![Munimap](./screenshots/munimap_geoEDITOR.png)
 
 ## Addons
 
@@ -48,7 +48,7 @@ Munimap is an interactive online map with a plenty of abilities. Define theme ba
 
 Adds ability to create and publish extra data.
 
-![Munimap](./docs/munimap_digitize.png)
+![Munimap](./screenshots/munimap_digitize.png)
 
 #### Features
 
