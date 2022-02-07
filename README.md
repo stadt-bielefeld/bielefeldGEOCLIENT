@@ -90,7 +90,8 @@ See dev/README for starting instructions
 
 ## Documentation
 
-Will be coming soon.
+Documentation can be found on
+https://stadt-bielefeld.github.io/bielefeldGEOCLIENT
 
 ## Development
 
