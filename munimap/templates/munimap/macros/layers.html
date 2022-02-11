@@ -6,20 +6,21 @@ new anol.layer.Group({
     {% endfor %}
     ],
     {% if group['catalog'] -%}
-    catalog: {$ group['catalog'] | tojson | safe $},
+    catalog: {$ group['catalog'] | tojson | safe $},
     {%- endif %}
     {% if group['catalogLayer'] -%}
-    catalogLayer: {$ group['catalogLayer'] | tojson | safe $},
+    catalogLayer: {$ group['catalogLayer'] | tojson | safe $},
     {%- endif %}    
-    showGroup: {$ group['showGroup'] | tojson | safe $},
+    showGroup: {$ group['showGroup'] | tojson | safe $},
     metadataUrl: '{$ group['metadataUrl'] $}',
     abstract: '{$ group['abstract'] $}',
     collapsed: true,
-    singleSelect: {$ group['singleSelect'] | tojson | safe $},
-    singleSelectGroup: {$ group['singleSelectGroup'] | tojson | safe $},
+    singleSelect: {$ group['singleSelect'] | tojson | safe $},
+    singleSelectGroup: {$ group['singleSelectGroup'] | tojson | safe $},
     name: '{$ group['name'] $}',
     title: '{$ group['title'] $}',
-    legend: {$ group['legend'] | tojson | safe $}
+    legend: {$ group['legend'] | tojson | safe $},
+    defaultVisibleLayers: {$ group['defaultVisibleLayers'] | tojson | safe $},
 })
 {% endmacro %}
 
