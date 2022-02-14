@@ -19,11 +19,11 @@
             $scope.formOptions = {$ form_options | tojson $};
             $scope.submitForm = function() {
                 angular.forEach($scope.style, function(value, key) {
-                    var field = $('[name="' + key + '"]');
+                    var field = $(`[name="${key}"]`);
                     // look for select field and add scope value as selected option;
                     if(field.find('option').length > 0) {
                         field.empty();
-                        var option = $('<option></option>');
+                        var option = angular.element('<option></option>');
                         option.prop('value', value || '');
                         option.prop('selected', 'selected');
                         field.append(option);
@@ -31,7 +31,7 @@
                         field.val(value);
                     }
                 });
-                $('form.style-form').submit();
+                angular.element('form.style-form').submit();
             };
         }]);
     </script>

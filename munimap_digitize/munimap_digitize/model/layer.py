@@ -77,7 +77,7 @@ class Layer(db.Model):
                     'type': 'number',
                     'minimum': 0,
                     'maximum': 20,
-                    'default': style['radius']
+                    'default': style.get('radius', DEFAULT_STYLE['radius'])
                 },
                 'graphicRotation': {
                     'title': _l('rotation'),
@@ -91,13 +91,13 @@ class Layer(db.Model):
                     'type': 'number',
                     'minimum': 0,
                     'maximum': 10,
-                    'default': style['strokeWidth']
+                    'default': style.get('strokeWidth', DEFAULT_STYLE['strokeWidth'])
                 },
                 'strokeColor': {
                     'title': _l('strokeColor'),
                     'type': ['string', 'null'],
                     'format': 'color',
-                    'default': style['strokeColor']
+                    'default': style.get('strokeColor', DEFAULT_STYLE['strokeColor'])
                 },
                 'strokeOpacity': {
                     'title': _l('opacity'),
@@ -105,18 +105,18 @@ class Layer(db.Model):
                     'format': 'slider',
                     'minimum': 0,
                     'maximum': 1,
-                    'default': style['strokeOpacity']
+                    'default': style.get('strokeOpacity', DEFAULT_STYLE['strokeOpacity'])
                 },
                 'strokeDashstyle': {
                     'title': _l('strokeDashstyle'),
                     'type': ['string', 'null'],
-                    'default': style['strokeDashstyle']
+                    'default': style.get('strokeDashstyle', DEFAULT_STYLE['strokeDashstyle'])
                 },
                 'fillColor': {
                     'title': _l('fillColor'),
                     'type': ['string', 'null'],
                     'format': 'color',
-                    'default': style['fillColor']
+                    'default': style.get('fillColor', DEFAULT_STYLE['fillColor'])
                 },
                 'fillOpacity': {
                     'title': _l('opacity'),
@@ -124,7 +124,7 @@ class Layer(db.Model):
                     'format': 'slider',
                     'minimum': 0,
                     'maximum': 1,
-                    'default': style['fillOpacity']
+                    'default': style.get('fillOpacity', DEFAULT_STYLE['fillOpacity'])
                 }
             },
             'required': []
@@ -360,18 +360,18 @@ class Layer(db.Model):
                 'fontWeight': {
                     'title': _l('Font weight'),
                     'type': ['string', 'null'],
-                    'default': style['fontWeight']
+                    'default': style.get('fontWeight', DEFAULT_STYLE['fontWeight'])
                 },
                 'fontSize': {
                     'title': _l('Font size'),
                     'type': ['string', 'null'],
-                    'default': style['fontSize']
+                    'default': style.get('fontSize', DEFAULT_STYLE['fontSize'])
                 },
                 'fontColor': {
                     'title': _l('Font color'),
                     'type': ['string', 'null'],
                     'format': 'color',
-                    'default': style['fontColor']
+                    'default': style.get('fontColor', DEFAULT_STYLE['fontColor'])
                 },
                 'fontRotation': {
                     'title': _l('rotation'),

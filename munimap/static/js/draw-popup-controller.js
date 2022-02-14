@@ -86,7 +86,7 @@ angular.module('munimapDraw')
         });
 
         $scope.$watch('popupTabContent', function(newTab, oldTab) {
-            $('.munimap-popup .' + oldTab)
+          angular.element('.munimap-popup .' + oldTab)
                 .find('[ng-init^=defaultSpectrumOptions]')
                 .find('input')
                 .spectrum('hide');
@@ -95,9 +95,9 @@ angular.module('munimapDraw')
                 $scope.isMarker = style !== undefined && style.externalGraphic !== undefined;
             }
             if(newTab === 'style' || newTab === 'text') {
-                $('.munimap-popup .popup-footer').css('border-color', 'transparent');
+              angular.element('.munimap-popup .popup-footer').css('border-color', 'transparent');
             } else {
-                $('.munimap-popup .popup-footer').css('border-color', '');
+              angular.element('.munimap-popup .popup-footer').css('border-color', '');
             }
 
         });
