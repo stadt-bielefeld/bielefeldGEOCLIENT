@@ -23,7 +23,7 @@
                     // look for select field and add scope value as selected option;
                     if(field.find('option').length > 0) {
                         field.empty();
-                        var option = angular.element('<option></option>');
+                        var option = $('<option></option>');
                         option.prop('value', value || '');
                         option.prop('selected', 'selected');
                         field.append(option);
@@ -31,7 +31,7 @@
                         field.val(value);
                     }
                 });
-                angular.element('form.style-form').submit();
+                $('form.style-form').submit();
             };
         }]);
     </script>

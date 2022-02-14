@@ -53,7 +53,7 @@ class Feature(db.Model):
             del properties['_id']
         except KeyError:
             pass
-        
+
         for key, value in properties.items():
             properties[key] = str(value).encode('utf-8')
 
