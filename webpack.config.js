@@ -25,7 +25,7 @@ module.exports  = {
         'ol-ext': path.resolve('./node_modules/ol-ext'),
         'bootstrap': path.resolve('./node_modules/bootstrap'),
         'angular-ui-bootstrap': path.resolve('./node_modules/angular-ui-bootstrap'),
-        'jquery': path.resolve('./node_modules/jquery')
+        'jquery': path.resolve('./node_modules/jquery/src/jquery')
       }
     },
     module: {
@@ -82,9 +82,9 @@ module.exports  = {
     },
     plugins: [
         new webpack.ProvidePlugin({
-            $: 'jquery',
-            jQuery: 'jquery',
-            'window.jQuery': 'jquery'
+          'window.jQuery': 'jquery',
+          $: 'jquery',
+          jQuery: 'jquery',
         })
     ]
 };
