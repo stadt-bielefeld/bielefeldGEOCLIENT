@@ -268,7 +268,8 @@ def create_anol_layers(conf, layers_base_url=''):
             'singleSelectGroup': group.get('singleSelectGroup', False),
             'catalog': group.get('catalog', False),
             'status': group.get('status', 'active'),
-            'layers': []
+            'layers': [],
+            'defaultVisibleLayers': group.get('defaultVisibleLayers', []),
         }
         for layer in group['layers']:
             try:

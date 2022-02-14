@@ -168,6 +168,7 @@ group_spec = {
     'abstract': string_type, 
     'metadataUrl': string_type,
     'legend': one_of(legend_spec, 'GetLegendGraphic'),
+    'defaultVisibleLayers': [string_type],
 }
 
 layers_conf_spec = {
