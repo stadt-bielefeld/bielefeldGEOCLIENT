@@ -264,6 +264,30 @@ Die Gruppe wird in der Layerauswahl wie ein Layer angezeigt. Nur bei Gruppen mit
 """"""""""""""""
 Es kann nur ein Layer innerhalb der Gruppe sichtbar sein. Schaltet der Nutzer einen anderen Layer sichtbar, werden alle weiteren Layer nicht sichtbar.
 
+Dieses Attribut darf nicht zusammen mit `defaultVisibleLayers` verwendet werden.
+
+``defaultVisibleLayers``
+""""""""""""""""""""""""
+Legt fest, welche Layer einer Gruppe beim aktivieren der Gruppe sichtbar geschaltet werden. Alle anderen Layer können
+nur mittels Klick auf den jeweiligen Layer sichtbar geschaltet werden.
+
+Dieses Attribut darf nicht zusammen mit `singleSelect` verwendet werden.
+
+Beispiel
+
+.. code-block:: yaml
+
+  groups
+    - name: lichtsignalanlagen
+      title: 'Ampeln'
+      layers:
+        - lichtsignalanlagen_p
+        - bodenrichtwerte_t
+        - bodenrichtwerte_brwznr_t
+      defaultVisibleLayers:
+        - lichtsignalanlagen_p
+
+
 ``catalog``
 """""""""""
 Soll die Gruppe im Katalog auftauchen kann dies hier eingesetllt werden. Standartwert `false`. Zusätzlich kann hier auch noch ein Titel mit angegeben werden.

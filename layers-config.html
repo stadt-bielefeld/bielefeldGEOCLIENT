@@ -118,6 +118,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#id6"><code class="docutils literal notranslate"><span class="pre">status</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#showgroup"><code class="docutils literal notranslate"><span class="pre">showGroup</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#singleselect"><code class="docutils literal notranslate"><span class="pre">singleSelect</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#defaultvisiblelayers"><code class="docutils literal notranslate"><span class="pre">defaultVisibleLayers</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id7"><code class="docutils literal notranslate"><span class="pre">catalog</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id8"><code class="docutils literal notranslate"><span class="pre">abstract</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id9"><code class="docutils literal notranslate"><span class="pre">legend</span></code></a></li>
@@ -414,6 +415,25 @@
 <div class="section" id="singleselect">
 <h3><code class="docutils literal notranslate"><span class="pre">singleSelect</span></code><a class="headerlink" href="#singleselect" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Es kann nur ein Layer innerhalb der Gruppe sichtbar sein. Schaltet der Nutzer einen anderen Layer sichtbar, werden alle weiteren Layer nicht sichtbar.</p>
+<p>Dieses Attribut darf nicht zusammen mit <cite>defaultVisibleLayers</cite> verwendet werden.</p>
+</div>
+<div class="section" id="defaultvisiblelayers">
+<h3><code class="docutils literal notranslate"><span class="pre">defaultVisibleLayers</span></code><a class="headerlink" href="#defaultvisiblelayers" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Legt fest, welche Layer einer Gruppe beim aktivieren der Gruppe sichtbar geschaltet werden. Alle anderen Layer können
+nur mittels Klick auf den jeweiligen Layer sichtbar geschaltet werden.</p>
+<p>Dieses Attribut darf nicht zusammen mit <cite>singleSelect</cite> verwendet werden.</p>
+<p>Beispiel</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">groups</span>
+  <span class="l l-Scalar l-Scalar-Plain">- name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">lichtsignalanlagen</span>
+    <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="s">&#39;Ampeln&#39;</span>
+    <span class="nt">layers</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">lichtsignalanlagen_p</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bodenrichtwerte_t</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bodenrichtwerte_brwznr_t</span>
+    <span class="nt">defaultVisibleLayers</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">lichtsignalanlagen_p</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="id7">
 <h3><code class="docutils literal notranslate"><span class="pre">catalog</span></code><a class="headerlink" href="#id7" title="Link zu dieser Überschrift">¶</a></h3>
@@ -629,7 +649,7 @@ Layer mit einer Namenserweiterung dürfen weder nicht in <cite>groups</cite> auf
   <div role="contentinfo">
     <p>
         &copy; Copyright 2021, Stadt Bielefeld.
-      Zuletzt aktualisiert am 2022-02-07.
+      Zuletzt aktualisiert am 2022-02-14.
 
     </p>
   </div>
