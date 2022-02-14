@@ -149,13 +149,14 @@ angular.module('munimapBase')
 
             // on devices with smaller width from 480 we hide the sidebar everytime
             let sidebarOpen = munimapConfig.app.sidebarOpen;
+            let openItem = munimapConfig.map.sidebar;
             if ($window.innerWidth <= 480) {
                 sidebarOpen = false;
             }
 
             $rootScope.sidebar = {
                 open: sidebarOpen,
-                openItems: []
+                openItems: openItem ? [openItem] : []
             };
 
             $scope.showTooltip = !(hasTouch);
