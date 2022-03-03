@@ -285,68 +285,65 @@ def configure_assets(app):
 def configure_logging(app):
     formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s ')
 
-    # log debug
-    debug_log = os.path.abspath(os.path.join(app.config['LOG_DIR'], app.config['DEBUG_LOG']))
-    debug_file_handler = logging.FileHandler(debug_log)
-    debug_file_handler.setLevel(logging.DEBUG)
-    debug_file_handler.setFormatter(formatter)
-    app.logger.addHandler(debug_file_handler)
-    logging.getLogger("munimap").addHandler(debug_file_handler)
+    def add_debug_logger(handler):
+        handler.setFormatter(formatter)
+        handler.setLevel(logging.DEBUG)
+        app.logger.addHandler(handler)
+        logging.getLogger("munimap").addHandler(handler)
 
-    # log transfer
-    transfer_log = os.path.join(
-        app.root_path,
-        app.config['LOG_DIR'],
-        app.config['TRANSFER_LOG']
-    )
-    transfer_log_handler = logging.FileHandler(transfer_log)
-    transfer_log_handler.setLevel(logging.INFO)
-    transfer_log_handler.setFormatter(formatter)
+    def add_transfer_logger(handler):
+        handler.setLevel(logging.INFO)
+        handler.setFormatter(formatter)
 
-    transfer_logger = logging.getLogger('munimap.transfer')
-    transfer_logger.setLevel(logging.INFO)
-    transfer_logger.propagate = False
-    transfer_logger.addHandler(transfer_log_handler)
- 
-     # log alkis
-    alkis_log = os.path.join(
-        app.root_path,
-        app.config['LOG_DIR'],
-        app.config['ALKIS_LOG']
-    )
-    alkis_log_handler = logging.FileHandler(alkis_log)
-    alkis_log_handler.setLevel(logging.INFO)
-    alkis_log_handler.setFormatter(formatter)
+        transfer_logger = logging.getLogger('munimap.transfer')
+        transfer_logger.setLevel(logging.INFO)
+        transfer_logger.propagate = False
+        transfer_logger.addHandler(handler)
 
-    alkis_logger = logging.getLogger('munimap.alkis')
-    alkis_logger.setLevel(logging.INFO)
-    alkis_logger.propagate = False
-    alkis_logger.addHandler(alkis_log_handler)
- 
-     # log alkis
-    token_log = os.path.join(
-        app.root_path,
-        app.config['LOG_DIR'],
-        app.config['TOKEN_LOG']
-    )
-    token_log_handler = logging.FileHandler(token_log)
-    token_log_handler.setLevel(logging.INFO)
-    token_log_handler.setFormatter(formatter)
+    def add_alkis_logger(handler):
+        handler.setLevel(logging.INFO)
+        handler.setFormatter(formatter)
 
-    token_logger = logging.getLogger('munimap.alkis')
-    token_logger.setLevel(logging.INFO)
-    token_logger.propagate = False
-    token_logger.addHandler(alkis_log_handler)
- 
-     # log errors
-    error_log = os.path.abspath(os.path.join(app.config['LOG_DIR'], app.config['ERROR_LOG']))
-    error_file_handler = logging.FileHandler(error_log)
-    error_file_handler.setLevel(logging.ERROR)
-    error_file_handler.setFormatter(formatter)
-    app.logger.addHandler(error_file_handler)
+        alkis_logger = logging.getLogger('munimap.alkis')
+        alkis_logger.setLevel(logging.INFO)
+        alkis_logger.propagate = False
+        alkis_logger.addHandler(handler)
+
+    def add_error_logger(handler):
+        handler.setLevel(logging.ERROR)
+        handler.setFormatter(formatter)
+        app.logger.addHandler(handler)
+
+    log_both = 'LOG_MODE' not in app.config or app.config['LOG_MODE'] == 'BOTH'
+
+    if log_both or app.config['LOG_MODE'] == 'FILES':
+        debug_log = os.path.abspath(os.path.join(app.config['LOG_DIR'], app.config['DEBUG_LOG']))
+        add_debug_logger(logging.FileHandler(debug_log))
+
+        transfer_log = os.path.join(
+            app.root_path,
+            app.config['LOG_DIR'],
+            app.config['TRANSFER_LOG']
+        )
+        add_transfer_logger(logging.FileHandler(transfer_log))
+
+        alkis_log = os.path.join(
+            app.root_path,
+            app.config['LOG_DIR'],
+            app.config['ALKIS_LOG']
+        )
+        add_alkis_logger(logging.FileHandler(alkis_log))
+
+        error_log = os.path.abspath(os.path.join(app.config['LOG_DIR'], app.config['ERROR_LOG']))
+        add_error_logger(logging.FileHandler(error_log))
+
+    if log_both or app.config['LOG_MODE'] == 'STDOUT':
+        add_debug_logger(logging.StreamHandler(sys.stdout))
+        add_transfer_logger(logging.StreamHandler(sys.stdout))
+        add_alkis_logger(logging.StreamHandler(sys.stdout))
+        add_error_logger(logging.StreamHandler(sys.stdout))
 
     app.logger.setLevel(logging.DEBUG)
-
 
 
 def configure_i18n(app):
