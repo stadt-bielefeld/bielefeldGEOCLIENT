@@ -1,4 +1,6 @@
 from __future__ import absolute_import
+
+import logging
 import os
 import os.path
 import re
@@ -22,6 +24,8 @@ from munimap.query.feature_collection import query_feature_collection
 from munimap.print_requests import MapRequest
 from munimap.layers import (mapfish_grid_layer, mapfish_numeration_layer, 
     mapfish_feature_collection_layer, mapfish_measure_feature_collection_layer)
+
+log = logging.getLogger('munimap.mapfish')
 
 GRID_STYLE = {
     'strokeColor': 'rgb(50, 50, 50)',
@@ -272,13 +276,14 @@ def create_spec_json(req, is_custom=False, icons_dir=''):
 
 
 def create_jasper_report(print_request, base_path):
+    project_dir = current_app.config.get('PROJECT_DIR')
     margins = current_app.config.get('MAPFISH_PRINT_MAP_MARGINS', [0, 0, 0, 0])
     page_width = int(round((print_request.page_size[0] * 72) / 25.4))
     page_height = int(round((print_request.page_size[1] * 72) / 25.4))
     column_width = page_width - margins[1] - margins[3]
     map_height = page_height - margins[0] - margins[2]
     jasper_report = render_template(
-        '/munimap/mapfish/custom.jrxml',
+        os.path.abspath(os.path.join(project_dir, 'templates/mapfish/custom.jrxml')),
         page_width=page_width,
         page_height=page_height,
         column_width=column_width,
@@ -292,6 +297,7 @@ def create_jasper_report(print_request, base_path):
 
 
 def create_mapfish_yaml(print_request, base_path, report_file):
+    project_dir = current_app.config.get('PROJECT_DIR')
     margins = current_app.config.get('MAPFISH_PRINT_MAP_MARGINS', [0, 0, 0, 0])
     width = int(round((print_request.page_size[0] * 72) / 25.4))
     width = width - margins[1] - margins[3]
@@ -299,7 +305,7 @@ def create_mapfish_yaml(print_request, base_path, report_file):
     height = height - margins[0] - margins[2]
 
     yaml_content = render_template(
-        '/munimap/mapfish/custom.yaml',
+        os.path.abspath(os.path.join(project_dir, 'templates/mapfish/custom.yaml')),
         width=width,
         height=height,
         report_file=os.path.basename(report_file))
@@ -371,6 +377,7 @@ def ensure_directory(directory):
         try:
             os.makedirs(directory)
         except OSError, ex:
+            log.error('could not create directory \'%s\'' % directory)
             if ex.errno != errno.EEXIST:
                 raise
 

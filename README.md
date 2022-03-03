@@ -70,27 +70,27 @@ Turns Munimap into an interactive journey planner.
 
 #### Dependencies
 
-You need
-
-* Postgresql >= 9.4
-* PostGIS >= 2.1
-* Mapfish Print >= 3.3
-* Python = 2.6
-* Virtualenv >= 4.3
-
-### Munimap
-
-See dev/README for install instructions for munimap, munimap_digitize and munimap_transport
+* docker
+* docker-compose
 
 ## Start
 
-See dev/README for starting instructions
+Goto the `docker` directory and build the containers (this may take several minutes):
+```
+docker-compose --profile prod build
+```
+After completion you can start the application like this, again from the `docker` directory:
+```
+docker-compose --profile prod up
+```
 
 ## Documentation
 
 Will be coming soon.
 
 ## Development
+
+To learn how to configure an dev-environment please refer to the [readme for developers](./dev/README.md)
 
 The source code is available at: https://github.com/stadt-bielefeld/bielefeldGEOCLIENT
 

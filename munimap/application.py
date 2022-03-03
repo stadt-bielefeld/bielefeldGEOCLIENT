@@ -271,7 +271,7 @@ def configure_assets(app):
 
         loader = webassets.loaders.YAMLLoader(app.config.get('ASSETS_BUNDLES_CONF'))
         for name, bundle in loader.load_bundles().iteritems():
-            if name == 'app-css':
+            if name == 'app-css' and app.config.get('ASSETS_MERGE_SASS'):
                 # check if project overwrite some sass files
                 bundle.contents = assign_project_files(list(bundle.contents), project_sass_files)
 
@@ -309,6 +309,15 @@ def configure_logging(app):
         alkis_logger.propagate = False
         alkis_logger.addHandler(handler)
 
+    def add_token_logger(handler):
+        handler.setLevel(logging.INFO)
+        handler.setFormatter(formatter)
+
+        token_logger = logging.getLogger('munimap.token')
+        token_logger.setLevel(logging.INFO)
+        token_logger.propagate = False
+        token_logger.addHandler(handler)
+
     def add_error_logger(handler):
         handler.setLevel(logging.ERROR)
         handler.setFormatter(formatter)
@@ -334,6 +343,13 @@ def configure_logging(app):
         )
         add_alkis_logger(logging.FileHandler(alkis_log))
 
+        token_log = os.path.join(
+            app.root_path,
+            app.config['LOG_DIR'],
+            app.config['TOKEN_LOG']
+        )
+        add_token_logger(logging.FileHandler(token_log))
+
         error_log = os.path.abspath(os.path.join(app.config['LOG_DIR'], app.config['ERROR_LOG']))
         add_error_logger(logging.FileHandler(error_log))
 
@@ -341,6 +357,7 @@ def configure_logging(app):
         add_debug_logger(logging.StreamHandler(sys.stdout))
         add_transfer_logger(logging.StreamHandler(sys.stdout))
         add_alkis_logger(logging.StreamHandler(sys.stdout))
+        add_token_logger(logging.StreamHandler(sys.stdout))
         add_error_logger(logging.StreamHandler(sys.stdout))
 
     app.logger.setLevel(logging.DEBUG)

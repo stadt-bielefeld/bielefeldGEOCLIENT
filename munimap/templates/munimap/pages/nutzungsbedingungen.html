@@ -1,0 +1,62 @@
+{% extends "munimap/pages/base.html" %}
+
+{% set pagetitle = 'Allgemeine Informationen . Nutzungsbedingungen . Haftungsbeschränkung' %}
+
+{% block container %}
+
+<section class="page-slice">
+  <div class="container">
+    <div class="static-content">
+        <h4>Die bielefeldKARTE: Basiskarte des Bielefelder Stadtplans</h4>
+        <p>Die bielefeldKARTE ist ein Produkt auf Basis mehreren Datenquellen. Für die Darstellung der Straßen, Wege und auch Objektbeschriftungen werden OpenStreetMap-Daten verwendet. Auf Grundlage des Datenbestands der Liegenschaftskarte ALKIS (Amt für Geoinformation und Kataster Bielefeld) werden administrative Grenzen, Einfärbungen des Kartenhintergrunds nach der Art der tatsächlichen Nutzung, Topografie sowie Gebäudegrundrisse mit Hausnummern dargestellt. Die Daten werden bis zum Rendern der Kartenkacheln in getrennten Datenbanken gehalten und erfüllen damit die Voraussetzungen einer &bdquo;Sammeldatenbank&ldquo; (&bdquo;Collective Database&ldquo;) gemäß ODbL. Eine Aktualisierung der OpenStreetMap-Daten erfolgt täglich über den Import von Differenzdaten. Die Daten der Liegenschaftskarte ALKIS werden direkt durch das Amt für Geoinformation und Kataster koinzident zur ALKIS-Fortführung aktualisiert.</p>
+        <p>Mit der Nutzung der Kartenanwendung bielefeldKARTE und der darin enthaltenen Dienste akzeptiert der Nutzer die weiter unten aufgeführten Nutzungsbedingungen und Hinweise.</p>
+
+        <h4>Mischnutzung der Inhalte mehrerer Eigentümer</h4>
+        <p>Bei einer gleichzeitigen Nutzung (Mischnutzung) der Inhalte mehrerer Eigentümer sind diese anzugeben und die jeweiligen Nutzungsbedingungen jedes Eigentümers im Einzelnen zu beachten.</p>
+        <p class="clearfix">
+            <img src="{$ url_for('static', filename='img/pages/nutzungsbedingungen_copyright.png') $}" class="img-responsive pull-left" alt="Copyright Symbol in der Kartenansicht">
+            Die jeweils beteiligten Eigentümer werden nach Anklicken des &copy;-Knopfes (Attribuierung) unten rechts in der Kartenanwendung aufgelistet.
+        </>
+
+        <h4>Nutzung der Kartenbilder der bielefeldKARTE</h4>
+        <p>Die von der Stadt Bielefeld angebotenen und in ihrem Eigentum befindlichen Daten und Kartenbilder der bielefeldKARTE werden bereitgestellt unter der Lizenz <a href="https://creativecommons.org/licenses/by/4.0/deed.de" taget="_blank">Creative Commons Attribution 4.0 International (CC BY 4.0)</a>.</p>
+        <p>Nach dieser Lizenz ist es gestattet die Kartenbilder zu kopieren, zu verbreiten, öffentlich zugänglich zu machen, Abwandlungen und Bearbeitungen anzufertigen sowie die Kartenbilder kommerziell zu nutzen.</p>
+        <p>Weiter geben die Lizenzbedingungen vor, dass angeben werden muss, ob und in welcher Form Änderungen vorgenommen wurden.</p>
+        <p>Der Quellenvermerk ist bei jeder Nutzung erforderlich und in diesem Fall wie folgt auszugestalten:</p>
+        <p>&copy; Stadt Bielefeld, Amt für Geoinformation und Kataster (CC BY 4.0).</p>
+        <p><u>Darüber hinaus sind die Daten der bielefeldKARTE Bestandteil des OpenStreetMap (OSM) Datenbankwerks. Bei Nutzung der bielefeldKARTE als Datengrundlage in OSM ist kein Quellenvermerk erforderlich.</u></p>
+
+        <h4>Nutzung der sonstigen Inhalte der Stadt Bielefeld</h4>
+        <p>Das Layout, sämtliche Grafiken und Fotos sowie die Textbeiträge sind urheberrechtlich geschützt. Es gelten die gesetzlichen Copyright-Bestimmungen. Änderungen dürfen nicht vorgenommen werden. Die Verwertung oder elektronische Verarbeitung von Inhalten jeglicher Art ist ohne vorherige schriftliche Zustimmung des Herausgebers nicht gestattet. Eine Vervielfältigung ist lediglich zum privaten Gebrauch gestattet. Darüber hinaus dürfen Vervielfältigungsstücke weder verbreitet noch für öffentliche Wiedergaben genutzt werden. Siehe hierzu <a href="https://www.bielefeld.de/impressum" target="_blank">Impressum Bielefeld.de</a></p>
+
+        <h4>Nutzung der Kartenbilder von Geobasis NRW</h4>
+        <p>Es gelten die Lizenzbedingungen <a href="https://www.govdata.de/dl-de/zero-2-0" target="_blank">Datenlizenz Deutschland - Zero - Version 2.0 (dl-de/zero-2-0)</a>.</p>
+        <p>Nach dieser Lizenz ist es gestattet die Daten zu kopieren, zu verbreiten, öffentlich zugänglich zu machen, Abwandlungen und Bearbeitungen anzufertigen sowie die Daten kommerziell zu nutzen.</p>
+
+        <h4>Nutzung der Daten von OpenStreetMap</h4>
+        <p>Die Daten des Projektes OpenStreetMap, die von der Stadt Bielefeld angebotenen Inhalten zugrunde liegen, unterliegen der freien Datenbanklizenz <a href="http://opendatacommons.org/licenses/odbl" target="_blank">Open Data Commons Open Database License (ODbL)</a>. Für die Aufbereitung der Daten verwendet die Stadt Bielefeld die Open-Source-Software Imposm. Der Quellenvermerk ist stets und bei jedweder Art der Nutzung erforderlich und wie folgt auszugestalten: &copy; OpenStreetMap (ODbL).</p>
+
+        <h4>Haftungsbeschränkung</h4>
+        <p>Die Geodaten werden mit der zur Erfüllung der Aufgaben erforderlichen Sorgfalt geführt. Es wird jedoch keine Gewähr für ihre inhaltliche Vollständigkeit und Richtigkeit übernommen. Außerdem wird keine Haftung für die Kompatibilität der zur Verfügung gestellten Daten oder Dienste mit den Systemen des Nutzers, eine bestimmte Datenqualität oder die dauerhafte Bereitstellung übernommen. Insbesondere wird jede Haftung für solche Schäden ausgeschlossen, die direkt oder indirekt daraus entstehen, dass Geodaten genutzt werden.</p>
+
+        <h4>Datenschutzerklärung</h4>
+        <p><a href="https://www.bielefeld.de/datenschutzerklaerung">Zur Datenschutzerklärung der Stadt Bielefeld</a></p>
+
+        <h4>Registrierung der Zugriffe</h4>
+        <p>Alle Zugriffe auf den Webserver www.bielefeld.de werden registriert. Es werden Datum, Rechneradresse und gelesenes Dokument gespeichert. Diese Daten werden für statistische Zwecke ausgewertet und gegebenenfalls anonymisiert veröffentlicht. Mit der Benutzung dieses Servers erklären Sie sich hiermit einverstanden.</p>
+
+        <p>Auf dieser Web-Seite kommt zusätzlich die Open Source Web-Analyse-Software Piwik zum Einsatz. Die gewonnenen Daten werden zu Marketing- und Optimierungszwecken gesammelt und gespeichert. Hierzu kommen JavaScript und Cookies zum Einsatz. Die Cookies ermöglichen die Wiedererkennung Ihres Internetbrowsers.</p>
+
+        <p>Bei den von Piwik erfassten Daten handelt es sich um die teilanonymisierte IP-Adresse (z.B. 134.99.128.X) des anfordernden Rechners, angeforderte Ressourcen (Webseiten), Datum, Uhrzeit und Herkunftsland der Anforderung, die Art des Internet-Browsers, die verwendete Bildschirmauflösung.</p>
+
+        <p>Die Speicherung der Daten findet ausschließlich auf Servern der IT-On.NET GmbH statt, die auch die Webserver der Stadt Bielefeld betreibt. Die Daten sind Dritten weder zugänglich noch werden sie an Dritte zu kommerziellen oder nichtkommerziellen Zwecken weitergegeben.</p>
+
+        {% if base_config.get('MATOMO') %}
+        <iframe src="https://statistik.it-on.net/index.php?module=CoreAdminHome&action=optOut&idsite=58&language=de" height="100%" width="100%" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" ></iframe>
+        {% endif %}
+        
+        <p>Stand: 2019-08-08</p>
+    </div>
+  </div>
+</section>
+{% endblock %}

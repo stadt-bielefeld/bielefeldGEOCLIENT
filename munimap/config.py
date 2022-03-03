@@ -40,6 +40,7 @@ class DefaultConfig(object):
 
     ASSETS_DEBUG = False
     ASSETS_BUNDLES_CONF = path.join(path.dirname(__file__), 'asset_bundles.yaml')
+    ASSETS_MERGE_SASS = False
 
     DEFAULT_APP_CONFIG = 'default-config.yaml'
 
@@ -62,7 +63,7 @@ class DefaultConfig(object):
     
     ADMIN_GROUPS = ['admin']
 
-    REMEMBER_COOKIE_NAME = 'remember_muimap_token'
+    REMEMBER_COOKIE_NAME = 'remember_munimap_token'
     REMEMBER_COOKIE_DURATION = datetime.timedelta(30)
 
     # TODO check which baseUrl we can use here
@@ -95,6 +96,7 @@ class DefaultConfig(object):
     MAPFISH_YAML = '/opt/etc/munimap/mapfish.yaml'
     # TODO add styles to repository and Dockerfile
     MAPFISH_STYLES_PATH = '/opt/etc/munimap/mapfish/styles'
+    MAPFISH_TEMPLATES_PATH = '/opt/etc/munimap/mapfish/templates'
     MAPFISH_SERVICES_DEFAULT_PROTOCOL = 'http'
 
     MAPFISH_PRINT_USE_SERVICE = False
@@ -128,7 +130,7 @@ class DefaultConfig(object):
     DIGITIZE_EDIT_GROUP = 'digitize_edit'
     # TODO we might need to get one level down. Check if that works with default
     #      application setup.
-    DIGITIZE_ICONS_DIR = '/opt/etc/munimap/bielefeld/static/img/icons'
+    DIGITIZE_ICONS_DIR = '/opt/etc/munimap/bielefeld/static/img/icons/'
     DIGITIZE_ICON_CONFIG_FILE = False
 
     # Transport default configurations
