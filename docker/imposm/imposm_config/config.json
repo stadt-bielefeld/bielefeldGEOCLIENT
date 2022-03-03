@@ -1,4 +1,0 @@
-{
-  "mapping": "imposm_config/mapping.yml",
-  "connection": "postgis://osm:osm@munimap-postgis:5432/osm"
-}

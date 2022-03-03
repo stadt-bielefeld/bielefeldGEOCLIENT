@@ -1,0 +1,82 @@
+<script type="text/javascript">
+    var steps = [{
+      orphan: true,
+      content: '<center>Die OnlineKarten liefern Informationen zu zahlreichen Themenbereichen und bieten komfortable Such- und Auskunftsmöglichkeiten.</center>'
+    },
+    {
+        element: '.anol-searchbox',
+        title: 'Navigation / Suche',
+        placement: 'bottom',
+        content: '<strong>Adress-Suche:</strong>' +
+                 '<p>- August Bebel Str 92 oder bebel 92</p>' +
+                 '<strong>Koordinaten-Eingabe:</strong>' +
+                 '<p>ETRS89/UTM<br>- 470500 5765000 oder 470500,0-5765000,0</p>' +
+                 '<p>WGS84<br>- 52.021162 8.535049</p>' +
+                 '<strong>Objekt-Navigation:</strong>' +
+                 '<p>mit Flurstückskennzeichen<br>- Altenhagen 4 632 oder 2851 4 632</p>' +
+                 '<strong>Mit Points of Interest:</strong>' +
+                 '<p>- Schüco-Arena<br>- Viadukt</p>' +
+                 '<strong>Besonderheiten:</strong>' +
+                 '<p>- ein voran-/ nachgestelltes # schaltet die Ähnlichkeitsund Volltextsuche aus (Beispiel: #kamp)</p>'
+    }, {
+        element: '.ol-zoom',
+        title: 'Kartenfunktionen',
+        content: '<img width="20" src="{$ url_for("static", filename="img/tours/zoom-in.png") $}" /> Karte vergrößern<br>' +
+                 '<img width="20" src="{$ url_for("static", filename="img/tours/zoom-out.png") $}" /> Karte verkleinern<br>' +
+                 '<img width="20" src="{$ url_for("static", filename="img/tours/geolocate.png") $}" /> Positionsbestimmung (GPS muss aktiv sein)<br>' +
+                 '<img width="20" src="{$ url_for("static", filename="img/tours/home.png") $}" /> Zurück zur Ausgangsposition'
+    }, {
+        element: '.tools-control',
+        title: 'Werkzeuge',
+        content: '<img class="pull-left" width="20" src="{$ url_for("static", filename="img/tours/tools.png") $}" />' +
+                 '<div style="display: inline-block; margin-left: 25px">' +
+                 '  <ul>' +
+                 '    <li>Koordinaten ermitteln</li>' +
+                 '    <li>Strecken messen</li>' +
+                 '    <li>Flächen messen</li>' +
+                 '  </ul>' +
+                 '</div><br>' +
+                 '<strong>Koordinaten ermitteln:</strong>' +
+                 '<p>- Gewünschten Punkt durch Anklicken auswählen.<br>- Koordinatensystem auswählen, angezeigte</p>' +
+                 '<strong>Strecke / Fläche messen:</strong>' +
+                 '<p>- Wege- / Flächenpunkte mit Maus markieren. Strecke / Fläche wird kontinuierlich angezeigt. Die Punkte können mit der Maus nachträglich verschoben werden.<br>Zwischenpunkte können nachträglich eingefügt werden. Koordinaten können kopiert werden.</p>' +
+                 '<strong>Hilfe starten</strong>' +
+                 '<p>- Erklärung der Kartenfunktionen</p>'
+    }];
+    var tour = new Tour({
+        template: function(i) {
+            var tmpl =  '<div class="popover tour">' +
+                        '  <div class="arrow"></div>' +
+                        '  <div class="tour-content">' +
+                        '    <div class="tour-head">';
+            if(i > 0) {
+                tmpl += '     <span class="pull-left">' + i + ' / ' + (steps.length - 1) + '</span>';
+            }
+            tmpl += '         <span class="pull-right pointer" data-role="end">' +
+                    '            Fenster schließen <i class="glyphicon glyphicon-remove"></i>' +
+                    '          </span>' +
+                    '        </div>' +
+                    '        <img class="tour-image" src="{$ url_for("static", filename="img/tours/logoschriftzug_onlinekarten.png") $}" />' +
+                    '        <h4 class="popover-title"></h4>' +
+                    '        <div class="popover-content"></div>';
+            if(i === 0) {
+                tmpl += '   <button class="btn btn-default start-tour" data-role="next">Funktionserklärung starten</button>';
+            } else if (i === steps.length - 1) {
+                tmpl += '   <div class="popover-navigation">' +
+                        '     <span data-role="prev" class="pull-left pointer"><i class="glyphicon glyphicon-chevron-left"></i> vorhergehender Tipp</span>' +
+                        '   </div>';
+            } else {
+                tmpl += '   <div class="popover-navigation">' +
+                        '     <span data-role="prev" class="pull-left pointer"><i class="glyphicon glyphicon-chevron-left"></i> vorhergehender Tipp</span>' +
+                        '     <span data-role="next" class="pull-right pointer">nächster Tipp <i class="glyphicon glyphicon-chevron-right"></i></span>' +
+                        '   </div>';
+            }
+            tmpl += '     </div>' +
+                    '   </div>';
+            return tmpl;
+        },
+        steps: steps
+    });
+    angular.module('munimap')
+    .value('Tour', tour);
+</script>

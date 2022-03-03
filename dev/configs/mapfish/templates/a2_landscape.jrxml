@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.0.final using JasperReports Library version 6.1.0  -->
+<!-- 2015-08-19T10:40:06 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="a2_landscape" pageWidth="1684" pageHeight="1191" columnWidth="1644" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a81f90ec-af24-4643-849a-7adafaf99a2e">
+    <parameter name="mapSubReportOutput" class="java.lang.String"/>
+    <parameter name="scale" class="java.lang.String"/>
+    <queryString>
+        <![CDATA[]]>
+    </queryString>
+    <detail>
+        <band height="1131" splitType="Stretch">
+            <subreport>
+                <reportElement x="0" y="0" width="1644" height="1131" uuid="76be56f0-d946-49a5-995a-c066ecaddc23">
+                    <property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+                </reportElement>
+                <subreportExpression><![CDATA[$P{mapSubReportOutput}]]></subreportExpression>
+            </subreport>
+        </band>
+        <band height="20" splitType="Stretch">
+            <textField>
+                <reportElement x="0" y="8" width="1644" height="12" uuid="76be56f0-d946-49a5-995a-c066ecaddc24">
+                    <property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+                </reportElement>
+                <textElement>
+                    <font size="8" />
+                </textElement>
+                <textFieldExpression><![CDATA["Kartengrundlage: bielefeldKARTE © Amt für Geoinformation und Kataster (CC BY 4.0), OpenStreetMap (ODbL)"]]></textFieldExpression>
+            </textField>
+           <textField>
+                <reportElement x="-100" y="8" width="1644" height="12" uuid="76be56f0-d946-49a5-995a-c066ecaddc25">
+                    <property name="com.jaspersoft.studio.unit.width" value="pixel" />
+                </reportElement>
+                <textElement textAlignment="Right">
+                    <font size="8" />
+                </textElement>
+                <textFieldExpression><![CDATA["Aktualität: " + (new java.text.SimpleDateFormat("dd.MM.yyyy")).format(new java.util.Date()) ]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="0" y="8" width="1644" height="12" uuid="76be56f0-d946-49a5-995a-c066ecaddc25">
+                    <property name="com.jaspersoft.studio.unit.width" value="pixel" />
+                </reportElement>
+                <textElement textAlignment="Right">
+                    <font size="8" />
+                </textElement>
+                <textFieldExpression><![CDATA[$P{scale}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+</jasperReport>

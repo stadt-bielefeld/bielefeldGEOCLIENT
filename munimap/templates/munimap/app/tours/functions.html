@@ -1,0 +1,186 @@
+<script type="text/javascript">
+    var steps = [{
+      orphan: true,
+      content: '<center>Die onlineKARTEN liefern Informationen zu zahlreichen Themenbereichen und bieten komfortable Such- und Auskunftsmöglichkeiten.</center>'
+    },
+    {
+        element: '.anol-searchbox',
+        title: 'Die Suche / Navigation in der Karte',
+        placement: 'bottom',
+        content: '<strong>Adresse:</strong>' +
+                 '<p>Die Suche unterstützt Autovervollständigung! Schreibfehler werden ignoriert:' + 
+                 '<br>- <i>bebel 92</i> findet <i>August-Bebel-Straße 92</i></p>' +
+                 '<strong>Koordinaten:</strong>' +
+                 '<p>- ETRS89 / UTM: <i>470500 5765000</i>' +
+                 '<br>- WGS84: <i>52.021162 8.535049</i></p>' +
+                 '<strong>Flurstückskennzeichen:</strong>' +
+                 '<p>- <i>Altenhagen 4 632</i> | <i>2851 4 632</i></p>' +
+                 '<strong>Bebauungsplan:</strong>' +
+                 '<p>- <i>BPlan II/J11</i> | <i>ii/j11</i> | <i>BPlan Meyerfeld</i></p>' +
+                 '<strong>Point of Interest (POI):</strong>' +
+                 '<p>- <i>Schüco-Arena</i> | <i>Viadukt</i> | <i>Bosseschule</i></p>'
+    }, {
+        element: '.menu-control',
+        title: 'Menü öffnen / schließen',
+        content: '<img width="20" src="{$ url_for("static", filename="img/tours/menu.png") $}" />' +
+                 '<p>Hier können Hintergrundkarten und darzustellende Themen ausgewählt und hinzugeladen werden. ' +
+                 'Sie können den Maßstab einstellen, die Legende einsehen und die Druckfunktionen verwenden.</p>'
+    }, {
+        element: '.ol-zoom',
+        title: 'Kartenfunktionen',
+        content: '<img width="20" src="{$ url_for("static", filename="img/tours/zoom-in.png") $}" /> Karte vergrößern<br>' +
+                 '<img width="20" src="{$ url_for("static", filename="img/tours/zoom-out.png") $}" /> Karte verkleinern<br>' +
+                 '<img width="20" src="{$ url_for("static", filename="img/tours/geolocate.png") $}" /> Positionsbestimmung (mobil muss GPS aktiv sein)<br>' +
+                 '<img width="20" src="{$ url_for("static", filename="img/tours/home.png") $}" /> Zurück zur Ausgangsposition'
+    }, {
+        element: '.tools-control',
+        title: 'Werkzeuge',
+        content: '<img width="20" src="{$ url_for("static", filename="img/tours/tools.png") $}" /><br>' +
+                 '<strong>Koordinaten ermitteln:</strong>' +
+                 '<p>- Punkt durch Klick in die Karte bestimmen<br>- Koordinatensystem wählen<br>- Koordinaten können kopiert werden</p>' +
+                 '<strong>Strecke / Fläche messen:</strong>' +
+                 '<p>- Strecken- / Flächenpunkte markieren<br>- Punkte können nachträglich verschoben und eingefügt werden</p>' +
+                 '<strong>Hilfe starten</strong>' +
+                 '<p>- Funktionserklärung starten</p>'
+    }, {
+        element: 'div[sidebar-item="background"] .panel-heading',
+        title: 'Hintergrundkarten',
+        content: '<p>Wählen Sie hier eine Hintergrundkarte aus, auf der die Themen und Inhalte angezeigt werden.</p>',
+        onShow: function() {
+            var sidebarScope = angular.element('.side-bar').scope();
+            var backgroundItemScope = angular.element('div[sidebar-item="background"] .panel-heading').scope();
+            sidebarScope.$apply(function() {
+                sidebarScope.sidebar.open = true;
+                backgroundItemScope.open();
+            });
+        },
+        onHide: function() {
+            var sidebarScope = angular.element('.side-bar').scope();
+            var backgroundItemScope = angular.element('div[sidebar-item="background"] .panel-heading').scope();
+            backgroundItemScope.$apply(function() {
+                sidebarScope.sidebar.open = false;
+                backgroundItemScope.close();
+            });
+        }
+
+    }, {
+        element: 'div[sidebar-item="overlay"] .panel-heading',
+        title: 'Themen | Inhalte',
+        content: '<p>Themenbezeichnung anklicken &rarr; Das Thema wird ein- bzw. ausgeblendet</p>' +
+                 '<p><span class="glyphicon glyphicon-menu-right"></span> anklicken &rarr; Themengruppe wird ausgeklappt, nun können einzelne Layer ein- bzw. ausgeblendet werden</p>' +
+                 '<p><span class="glyphicon glyphicon-info-sign"></span> anklicken &rarr; Öffnet Metadaten zum Thema</p>' +
+                 '<p>Per Drag´n´Drop kann die Reihenfolge der Layer angepasst werden</p>',
+        onShow: function() {
+            var sidebarScope = angular.element('.side-bar').scope();
+            var overlayItemScope = angular.element('div[sidebar-item="overlay"] .panel-heading').scope();
+            overlayItemScope.$apply(function() {
+                sidebarScope.sidebar.open = true;
+                overlayItemScope.open();
+            });
+        },
+        onHide: function() {
+            var sidebarScope = angular.element('.side-bar').scope();
+            var overlayItemScope = angular.element('div[sidebar-item="overlay"] .panel-heading').scope();
+            overlayItemScope.$apply(function() {
+                sidebarScope.sidebar.open = false;
+                overlayItemScope.close();
+            });
+        }
+    }, {
+        element: 'div[sidebar-item="legend"] .panel-heading',
+        title: 'Legende',
+        content: '<p>Öffnet die Zeichenerklärung der aktiven Hintergrundkarten sowie Themen und Inhalte</p>',
+        onShow: function() {
+            var sidebarScope = angular.element('.side-bar').scope();
+            var printItemScope = angular.element('div[sidebar-item="legend"] .panel-heading').scope();
+            printItemScope.$apply(function() {
+                sidebarScope.sidebar.open = true;
+                printItemScope.open();
+            });
+        },
+        onHide: function() {
+            var sidebarScope = angular.element('.side-bar').scope();
+            var printItemScope = angular.element('div[sidebar-item="legend"] .panel-heading').scope();
+            printItemScope.$apply(function() {
+                sidebarScope.sidebar.open = false;
+                printItemScope.close();
+            });
+        }
+    }, {
+        element: 'div[sidebar-item="print"] .panel-heading',
+        title: 'Drucken | PDF',
+        content: '<ol style="margin-left: 17px">' +
+                 '  <li>Seitengröße einstellen' +
+                 '    <ul style="margin-left: 25px"><li>Über Seitengröße kann ein vordefiniertes DIN-Format ausgewählt werden</li>' +
+                 '    <li>Über Breite und Höhe kann ein individuelles Format eingestellt werden</li></ul></li>' +
+                 '    <div><strong>Tipp:</strong> Der im Kartenbild angezeigte gewählte Druckbereich kann per Drag´n´Drop verschoben werden</div>' +
+                 '  <li>Maßstab wählen</li>' +
+                 '  <li>Ausgabeformat wählen</li>' +
+                 '  <li><i>Straßenverzeichnis erzeugen</i> aktivieren (optional)</li>' +
+                 '  <li>Nutzungsbedingungen lesen und zustimmen</li>' +
+                 '  <li>Karte ausgeben</li>' +
+                 '  <li>Warten bis der Exportvorgang abgeschlossen ist und dann das Dokument herunterladen</li>' +
+                 '</ol>',
+        onShow: function() {
+            var sidebarScope = angular.element('.side-bar').scope();
+            var printItemScope = angular.element('div[sidebar-item="print"] .panel-heading').scope();
+            printItemScope.$apply(function() {
+                sidebarScope.sidebar.open = true;
+                printItemScope.open();
+            });
+        },
+        onHide: function() {
+            var sidebarScope = angular.element('.side-bar').scope();
+            var printItemScope = angular.element('div[sidebar-item="print"] .panel-heading').scope();
+            printItemScope.$apply(function() {
+                sidebarScope.sidebar.open = false;
+                printItemScope.close();
+            });
+        }
+    }, {
+        element: '.anol-attribution',
+        title: 'Quellenangaben',
+        content: '<img width="20" src="{$ url_for("static", filename="img/tours/attribution.png") $}" /><br>' +
+                 ' <p>Es werden die Urheberrechte der aktiven Hintergrundkarten sowie Themen und Inhalte angezeigt.</p>',
+        placement: 'left',
+        onShown: function() {
+            document.querySelector('.popover.tour').style.bottom = "2px";
+        }
+    }];
+    var tour = new Tour({
+        template: function(i) {
+            var tmpl =  '<div class="popover tour">' +
+                        '  <div class="arrow"></div>' +
+                        '  <div class="tour-content">' +
+                        '    <div class="tour-head">';
+            if(i > 0) {
+                tmpl += '     <span class="pull-left">' + i + ' / ' + (steps.length - 1) + '</span>';
+            }
+            tmpl += '         <span class="pull-right pointer" data-role="end">' +
+                    '            Fenster schließen <i class="glyphicon glyphicon-remove"></i>' +
+                    '          </span>' +
+                    '        </div>' +
+                    '        <img class="tour-image" src="{$ url_for("static", filename="img/tours/logoschriftzug_onlinekarten.png") $}" />' +
+                    '        <h4 class="popover-title"></h4>' +
+                    '        <div class="popover-content"></div>';
+            if(i === 0) {
+                tmpl += '   <button class="btn btn-default start-tour" data-role="next">Funktionserklärung starten</button>';
+            } else if (i === steps.length - 1) {
+                tmpl += '   <div class="popover-navigation">' +
+                        '     <span data-role="prev" class="pull-left pointer"><i class="glyphicon glyphicon-chevron-left"></i> vorhergehender Tipp</span>' +
+                        '   </div>';
+            } else {
+                tmpl += '   <div class="popover-navigation">' +
+                        '     <span data-role="prev" class="pull-left pointer"><i class="glyphicon glyphicon-chevron-left"></i> vorhergehender Tipp</span>' +
+                        '     <span data-role="next" class="pull-right pointer">nächster Tipp <i class="glyphicon glyphicon-chevron-right"></i></span>' +
+                        '   </div>';
+            }
+            tmpl += '     </div>' +
+                    '   </div>';
+            return tmpl;
+        },
+        steps: steps
+    });
+    angular.module('munimap')
+    .value('Tour', tour);
+</script>

@@ -1,0 +1,8 @@
+icons:
+  - name: marker_red.svg
+    size: [50, 50]
+    anchor: [25, 50]
+  - name: marker_blue.svg
+    size: [50, 50]
+    anchor: [25, 50]
+    
