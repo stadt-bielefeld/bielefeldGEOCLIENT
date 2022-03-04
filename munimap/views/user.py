@@ -43,6 +43,7 @@ from munimap.model import ProjectSettings
 
 user = Blueprint("user", __name__, url_prefix='/user')
 
+
 @user.route("/login", methods=["GET", "POST"])
 def login():
     form = LoginForm()
@@ -96,6 +97,7 @@ def change_password():
         else:
             flash(_('Old Password is not correct'), 'error')
     return render_template("munimap/user/password.html", form=form)
+
 
 @user.route("/password/recover", methods=["GET", "POST"])
 def recover_password():
