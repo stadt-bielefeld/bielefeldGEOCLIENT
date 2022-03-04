@@ -1,0 +1,84 @@
+<script type="text/javascript">
+    angular.module('munimap')
+    .value('Tour', new Tour({
+        steps: [{
+          orphan: true,
+          title: 'Willkommen',
+          content: 'Herzlich willkommen zu unserer kleinen Tour',
+          backdrop: true,
+          backdropContainer: 'body'
+        },
+        {
+            element: '.anol-searchbox',
+            title: 'Suche',
+            content: 'Hier kann nach Orten gesucht werden',
+            backdrop: true,
+            backdropContainer: '.anol-map > .ol-viewport > .ol-overlaycontainer-stopevent'
+        }, {
+            element: '.menu-control',
+            title: 'Toggle sidebar',
+            content: 'Sidebar öffnen/schließen',
+            backdrop: true,
+            backdropContainer: '.anol-map > .ol-viewport > .ol-overlaycontainer-stopevent'
+        }, {
+            element: '.sidebar-content',
+            title: 'Sidebar',
+            content: 'In der sidebar können dinge gemacht werden',
+            backdrop: true,
+            backdropContainer: '.side-bar',
+            onShow: function() {
+              var sidebarScope = angular.element('.side-bar').scope();
+              sidebarScope.$apply(function() {
+                  sidebarScope.sidebar.open = true;
+              });
+            }
+        }, {
+            element: 'div[sidebar-item="background"]',
+            title: 'Hintergrundkarten',
+            content: 'Hier können verschiedene Hintergrundkarten gewählt werden',
+            backdrop: true,
+            backdropContainer: '.side-bar',
+            onShow: function() {
+                var backgroundItemScope = angular.element('div[sidebar-item="background"] .panel-heading').scope();
+                backgroundItemScope.$apply(function() {
+                    backgroundItemScope.toggle();
+                });
+            },
+            onHide: function() {
+                var backgroundItemScope = angular.element('div[sidebar-item="background"] .panel-heading').scope();
+                backgroundItemScope.$apply(function() {
+                    backgroundItemScope.toggle();
+                });
+                var sidebarScope = angular.element('.side-bar').scope();
+                sidebarScope.$apply(function() {
+                    sidebarScope.sidebar.open = false;
+                });
+            }
+        }, {
+            element: '.tools-control',
+            title: 'Werkzeugkasten',
+            content: 'Ein Klick öffnet den Werkzeugkasten',
+            backdrop: true,
+            backdropContainer: '.anol-map > .ol-viewport > .ol-overlaycontainer-stopevent'
+
+        }, {
+            element: '.tools-container-control',
+            title: 'Werkzeuge',
+            content: 'Hier sind die Werkzeuge',
+            backdrop: true,
+            backdropContainer: '.anol-map > .ol-viewport > .ol-overlaycontainer-stopevent',
+            onShow: function(t,a, b) {
+                var toolsControlScope = angular.element('.tools-control-container').scope();
+                toolsControlScope.$apply(function() {
+                    toolsControlScope.toolsContainerVisible = true;
+                });
+            },
+            onHide: function(t,a, b) {
+                var toolsControlScope = angular.element('.tools-control-container').scope();
+                toolsControlScope.$apply(function() {
+                    toolsControlScope.toolsContainerVisible = false;
+                });
+            }
+        }]
+    }));
+</script>

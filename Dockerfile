@@ -34,7 +34,8 @@ FROM BASE as BUILDER
 
 RUN apt-get update && apt-get install -y \
     build-essential \
-    python-dev
+    python-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN pip install --upgrade pip \
     && pip install wheel setuptools
@@ -78,7 +79,8 @@ RUN apt-get update && apt-get install -y \
     libfcgi-dev \
     fonts-dejavu-extra \
     ttf-unifont \
-    locales
+    locales \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN echo "de_DE.UTF-8 UTF-8" >> /etc/locale.gen \
     && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
@@ -111,15 +113,13 @@ RUN mkdir -p /opt/munimap \
     && mkdir -p /opt/var/printqueue \
     && mkdir -p /src
 
-# create empty files to better document which config files to mount
-RUN touch /opt/etc/munimap/munimap.conf \
-    && touch /opt/etc/munimap/alembic.ini \
-    && touch /opt/etc/munimap/draw_icons.yaml \
-    && touch /opt/etc/munimap/favicon.ico \
-    && touch /opt/etc/munimap/mapfish.yaml
+RUN mkdir -p /opt/etc/munimap/configs/mapfish
 
-# TODO put alembic.ini (dev version) into repo and copy it here
-#      instead of creating it as above.
+# create empty files to better document which config files are needed
+RUN touch /opt/etc/munimap/configs/munimap.conf \
+    && touch /opt/etc/munimap/configs/alembic.ini \
+    && touch /opt/etc/munimap/configs/draw_icons.yaml \
+    && touch /opt/etc/munimap/configs/mapfish/mapfish.yaml
 
 # TODO check if this is actually still needed
 # install gdal
@@ -129,15 +129,15 @@ RUN wget -c http://download.osgeo.org/gdal/1.11.4/gdal-1.11.4.tar.gz \
     && cd /src/gdal-1.11.4 \
     && ./configure --prefix=/opt/local/gdal \
     && make -j4 \
-    && make install
+    && make install \
+    && cd / \
+    && rm -rf /src
 
-RUN wget https://repo1.maven.org/maven2/org/mapfish/print/print-cli/3.9.0/print-cli-3.9.0-tar.tar -O /tmp/mapfish.tar \
-    && tar -xvf /tmp/mapfish.tar -C /opt/var/mapfish
+RUN wget -q -O- https://repo1.maven.org/maven2/org/mapfish/print/print-cli/3.9.0/print-cli-3.9.0-tar.tar | tar -x -C /opt/var/mapfish
 
 COPY --from=BUILDER /pkg/dist/munimap-*.tar /opt/pkgs
 COPY --from=BUILDER /pkg/munimap_digitize/dist/munimap_digitize-*.tar /opt/pkgs
 COPY --from=BUILDER /pkg/munimap_transport/dist/munimap_transport-*.tar /opt/pkgs
-COPY --from=BUILDER /pkg/dev/manage.py /opt/munimap/bin/
 COPY --from=BUILDER /pkg/gunicorn.conf /opt/etc/munimap/gunicorn.conf
 
 RUN pip install --upgrade pip && pip install \
@@ -156,4 +156,4 @@ RUN PYTHONHTTPSVERIFY=0 python -c "import hyphen.dictools; hyphen.dictools.is_in
 
 ENV JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
 WORKDIR /opt/etc/munimap
-CMD gunicorn -c /opt/etc/munimap/gunicorn.conf "munimap.application:create_app(config_file='/opt/etc/munimap/munimap.conf')"
+CMD gunicorn -c /opt/etc/munimap/gunicorn.conf "munimap.application:create_app(config_file='/opt/etc/munimap/configs/munimap.conf')"

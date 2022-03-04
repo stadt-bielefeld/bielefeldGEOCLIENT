@@ -22,27 +22,38 @@ if __name__ == '__main__':
     if options.config_file is not None:
         file_config.from_pyfile(options.config_file)
 
-    if file_config.get('PRINT_LOG_DIR') and file_config.get('PRINT_DEBUG_LOG') and file_config.get('PRINT_ERROR_LOG'):
+    def add_debug_logger(handler):
+        handler.setLevel(logging.DEBUG)
+        handler.setFormatter(formatter)
+        logger.addHandler(handler)
+
+    def add_error_logger(handler):
+        handler.setLevel(logging.ERROR)
+        handler.setFormatter(formatter)
+        logger.addHandler(handler)
+
+
+    log_both = 'LOG_MODE' not in file_config or file_config['LOG_MODE'] == 'BOTH'
+
+    if (log_both or file_config['LOG_MODE'] == 'FILES') and file_config.get('PRINT_LOG_DIR') and file_config.get('PRINT_DEBUG_LOG') and file_config.get('PRINT_ERROR_LOG'):
         formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s ')
         logger = logging.getLogger('munimap')
 
         # log debug
         debug_log = os.path.abspath(os.path.join(file_config['PRINT_LOG_DIR'], file_config['PRINT_DEBUG_LOG']))
-        debug_file_handler = logging.FileHandler(debug_log)
-        debug_file_handler.setLevel(logging.DEBUG)
-        debug_file_handler.setFormatter(formatter)
-        logger.addHandler(debug_file_handler)
+        add_debug_logger(logging.FileHandler(debug_log))
 
         # log errors
         error_log = os.path.abspath(os.path.join(file_config['PRINT_LOG_DIR'], file_config['PRINT_ERROR_LOG']))
-        error_file_handler = logging.FileHandler(error_log)
-        error_file_handler.setLevel(logging.ERROR)
-        error_file_handler.setFormatter(formatter)
-        logger.addHandler(error_file_handler)
+        add_error_logger(logging.FileHandler(error_log))
 
         logger.setLevel(logging.DEBUG)
     else:
         logging.basicConfig(level=logging.DEBUG)
+
+    if log_both or file_config['LOG_MODE'] == 'STDOUT':
+        add_debug_logger(logging.StreamHandler(sys.stdout))
+        add_error_logger(logging.StreamHandler(sys.stdout))
 
     q = SqliteQueue(file_config.get('PRINT_QUEUEFILE') or options.queue_file)
 

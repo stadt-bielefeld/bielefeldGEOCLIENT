@@ -1,0 +1,250 @@
+
+# all templates/styles/icons need to be in the same dir or sub-dir of this file!
+templates:
+  a0_portrait: !template
+    reportTemplate: templates/a0_portrait.jrxml
+    attributes:
+      scale: !string {}
+      mapConfig: !map
+        maxDpi: 300
+        width: 2344
+        height: 3310
+      scalebar: !scalebar
+        width: 200
+        height: 30
+        default:
+          intervals: 4
+          align: right
+          fontSize: 9
+          lineWidth: 1
+          type: line
+    processors:
+      - !reportBuilder
+        directory: 'templates/'
+      - !createMap
+        inputMapper: {mapConfig: map}
+        outputMapper:
+          mapSubReport: mapSubReportOutput
+      - !createScalebar {}
+  a0_landscape: !template
+    reportTemplate: templates/a0_landscape.jrxml
+    attributes:
+      scale: !string {}
+      mapConfig: !map
+        maxDpi: 300
+        width: 3330
+        height: 2324
+      scalebar: !scalebar
+        width: 200
+        height: 30
+        default:
+          intervals: 4
+          align: right
+          fontSize: 9
+          lineWidth: 1
+          type: line
+    processors:
+      - !reportBuilder
+        directory: 'templates/'
+      - !createMap
+        inputMapper: {mapConfig: map}
+        outputMapper:
+          mapSubReport: mapSubReportOutput
+      - !createScalebar {}
+  a1_portrait: !template
+    reportTemplate: templates/a1_portrait.jrxml
+    attributes:
+      scale: !string {}
+      mapConfig: !map
+        maxDpi: 300
+        width: 1644
+        height: 2324
+      scalebar: !scalebar
+        width: 200
+        height: 30
+        default:
+          intervals: 4
+          align: right
+          fontSize: 9
+          lineWidth: 1
+          type: line
+    processors:
+      - !reportBuilder
+        directory: 'templates/'
+      - !createMap
+        inputMapper: {mapConfig: map}
+        outputMapper:
+          mapSubReport: mapSubReportOutput
+      - !createScalebar {}
+  a1_landscape: !template
+    reportTemplate: templates/a1_landscape.jrxml
+    attributes:
+      scale: !string {}
+      mapConfig: !map
+        maxDpi: 300
+        width: 2344
+        height: 1624
+      scalebar: !scalebar
+        width: 200
+        height: 30
+        default:
+          intervals: 4
+          align: right
+          fontSize: 9
+          lineWidth: 1
+          type: line
+    processors:
+      - !reportBuilder
+        directory: 'templates/'
+      - !createMap
+        inputMapper: {mapConfig: map}
+        outputMapper:
+          mapSubReport: mapSubReportOutput
+      - !createScalebar {}
+  a2_portrait: !template
+    reportTemplate: templates/a2_portrait.jrxml
+    attributes:
+      scale: !string {}
+      mapConfig: !map
+        maxDpi: 300
+        width: 1151
+        height: 1624
+      scalebar: !scalebar
+        width: 200
+        height: 30
+        default:
+          intervals: 4
+          align: right
+          fontSize: 9
+          lineWidth: 1
+          type: line
+    processors:
+      - !reportBuilder
+        directory: 'templates/'
+      - !createMap
+        inputMapper: {mapConfig: map}
+        outputMapper:
+          mapSubReport: mapSubReportOutput
+      - !createScalebar {}
+  a2_landscape: !template
+    reportTemplate: templates/a2_landscape.jrxml
+    attributes:
+      scale: !string {}
+      mapConfig: !map
+        maxDpi: 300
+        width: 1644
+        height: 1131
+      scalebar: !scalebar
+        width: 200
+        height: 30
+        default:
+          intervals: 4
+          align: right
+          fontSize: 9
+          lineWidth: 1
+          type: line
+    processors:
+      - !reportBuilder
+        directory: 'templates/'
+      - !createMap
+        inputMapper: {mapConfig: map}
+        outputMapper:
+          mapSubReport: mapSubReportOutput
+      - !createScalebar {}
+  a3_landscape: !template
+    reportTemplate: templates/a3_landscape.jrxml
+    attributes:
+      scale: !string {}
+      mapConfig: !map
+        maxDpi: 300
+        width: 1151
+        height: 782
+      scalebar: !scalebar
+        width: 200
+        height: 30
+        default:
+          intervals: 4
+          align: right
+          fontSize: 9
+          lineWidth: 1
+          type: line
+    processors:
+      - !reportBuilder
+        directory: 'templates/'
+      - !createMap
+        inputMapper: {mapConfig: map}
+        outputMapper:
+          mapSubReport: mapSubReportOutput
+      - !createScalebar {}
+  a3_portrait: !template
+    reportTemplate: templates/a3_portrait.jrxml
+    attributes:
+      scale: !string {}
+      mapConfig: !map
+        maxDpi: 300
+        width: 802
+        height: 1131
+      scalebar: !scalebar
+        width: 200
+        height: 30
+        default:
+          intervals: 4
+          align: right
+          fontSize: 9
+          lineWidth: 1
+          type: line
+    processors:
+      - !reportBuilder
+        directory: 'templates/'
+      - !createMap
+        inputMapper: {mapConfig: map}
+        outputMapper: {mapSubReport: mapSubReportOutput}
+      - !createScalebar {}
+  a4_landscape: !template
+    reportTemplate: templates/a4_landscape.jrxml
+    attributes:
+      scale: !string {}
+      mapConfig: !map
+        maxDpi: 300
+        width: 802
+        height: 535
+      scalebar: !scalebar
+        width: 200
+        height: 30
+        default:
+          intervals: 4
+          align: right
+          fontSize: 9
+          lineWidth: 1
+          type: line
+    processors:
+      - !reportBuilder
+        directory: 'templates/'
+      - !createMap
+        inputMapper: {mapConfig: map}
+        outputMapper: {mapSubReport: mapSubReportOutput}
+      - !createScalebar {}
+  a4_portrait: !template
+    reportTemplate: templates/a4_portrait.jrxml
+    attributes:
+      scale: !string {}
+      mapConfig: !map
+        maxDpi: 300
+        width: 555
+        height: 782
+      scalebar: !scalebar
+        width: 200
+        height: 30
+        default:
+          intervals: 4
+          align: right
+          fontSize: 9
+          lineWidth: 1
+          type: line
+    processors:
+      - !reportBuilder
+        directory: 'templates/'
+      - !createMap
+        inputMapper: {mapConfig: map}
+        outputMapper: {mapSubReport: mapSubReportOutput}
+      - !createScalebar {}

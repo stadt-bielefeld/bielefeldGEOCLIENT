@@ -1,0 +1,113 @@
+version: '3'
+
+services:
+  munimap-nginx:
+    image: docker.terrestris.de/library/nginx:1.21.0-alpine
+    ports:
+      - 80:80
+    volumes:
+      - ./munimap-nginx/favicion.ico:/opt/etc/munimap/favicon.ico
+      - ./munimap-nginx/default.conf:/etc/nginx/conf.d/default.conf
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    depends_on:
+      - munimap-app
+      - munimap-mapserver
+      - munimap-svgserver
+      - munimap-mapproxy
+    profiles:
+      - prod
+
+  munimap-nginx-dev:
+    image: docker.terrestris.de/library/nginx:1.21.0-alpine
+    ports:
+      - 80:80
+    volumes:
+      - ./munimap-nginx/favicion.ico:/opt/etc/munimap/favicon.ico
+      - ./munimap-nginx/default-dev.conf:/etc/nginx/conf.d/default.conf
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    depends_on:
+      - munimap-mapserver
+      - munimap-svgserver
+      - munimap-mapproxy
+    profiles:
+      - dev
+
+  munimap-app:
+    build:
+      context: ../
+      args:
+        ANOL_COMMIT_HASH: master
+    volumes:
+      - ./munimap-app/alembic.ini:/opt/etc/munimap/alembic.ini
+      - ../dev/configs:/opt/etc/munimap/configs
+      - ../dev/data:/opt/etc/munimap/data
+      - ../dev/printqueue:/opt/log/printqueue
+    depends_on:
+      - munimap-postgis
+      - munimap-postgis-mapbender
+    profiles:
+      - prod
+
+  munimap-postgis:
+    image: docker.terrestris.de/postgis/postgis:9.6-2.5-alpine
+    ports:
+      - 5555:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    #command: ["postgres", "-c", "log_statement=all"]
+    volumes:
+      - ./munimap-postgis/postgresql_init_data:/docker-entrypoint-initdb.d
+      - ./munimap-postgis/postgresql_data:/var/lib/postgresql/data:Z
+
+  munimap-postgis-mapbender:
+    image: docker.terrestris.de/postgis/postgis:10-2.5-alpine
+    ports:
+      - 5556:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    #command: ["postgres", "-c", "log_statement=all"]
+    volumes:
+      - ./munimap-postgis-mapbender/postgresql_init_data:/docker-entrypoint-initdb.d
+      - ./munimap-postgis-mapbender/postgresql_data:/var/lib/postgresql/data:Z
+
+  munimap-mapserver:
+    build:
+      context: ./munimap-mapserver/build
+    environment:
+      # This only serves mapfiles within /opt/etc/styles/bielefeld/map/
+      MS_MAP_PATTERN: '^\/opt\/etc\/styles\/bielefeld\/map\/.+\.map$$'
+    ports:
+      - 8080:80
+    volumes:
+      - ./munimap-mapserver/maps:/opt/etc/styles/bielefeld/map
+
+  #  As the example map file is not based on vector data this service is kind of useless
+  munimap-svgserver:
+    build:
+      context: ./munimap-svgserver/build
+    environment:
+      # This only serves mapfiles within /opt/etc/styles/bielefeld/map/
+      MS_MAP_PATTERN: '^\/opt\/etc\/styles\/bielefeld\/map\/.+\.map$$'
+    ports:
+      - 8182:8182
+    volumes:
+     - ./munimap-svgserver/svg-translations.txt:/opt/etc/styles/bielefeld/svg-translations.txt
+     - ./munimap-mapserver/maps:/opt/etc/styles/bielefeld/map
+    depends_on:
+      - munimap-postgis
+      - munimap-postgis-mapbender
+
+  munimap-mapproxy:
+    build:
+      context: ./munimap-mapproxy/build
+    ports:
+      - 8081:8181
+    volumes:
+      - ./munimap-mapproxy/mapproxy.yaml:/opt/etc/mapproxy/mapproxy.yaml
+      - ./munimap-mapproxy/mapproxy_cache_data:/opt/var/mapproxy
+    depends_on:
+      - munimap-mapserver

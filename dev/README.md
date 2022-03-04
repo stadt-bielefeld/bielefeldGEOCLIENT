@@ -19,46 +19,18 @@ sudo apt install libspatialindex-dev libjpeg-dev zlib1g-dev python2.7-dev build-
 
 The following steps are required once:
 
-* Startup the postgres docker container (from the root directory of the repository):
-
-```
-cd docker/
-docker-compose up
-```
-
-* Get and import the OSM data
-
-```
-cd docker/imposm/imposm_data/
-
-# This is just an example file
-wget http://download.geofabrik.de/europe/germany/nordrhein-westfalen/detmold-regbez-latest.osm.pbf
-
-cd ../../
-
-docker-compose -f docker-compose-imposm.yaml up --abort-on-container-exit
-```
-
-* Create a mapbender like database called `mapbender`
-
-* Create an admin user
-
 * Prepare mapfish
 
 ```
 cd ../dev/
-mkdir mapfish
-wget https://oss.sonatype.org/content/repositories/snapshots/org/mapfish/print/print-cli/3.3-SNAPSHOT/print-cli-3.3-SNAPSHOT-tar.tar -c -P ./mapfish
-cd mapfish
-tar -xvf print-cli-3.3-SNAPSHOT-tar.tar
+wget -q -O- https://repo1.maven.org/maven2/org/mapfish/print/print-cli/3.9.0/print-cli-3.9.0-tar.tar | tar -x -C ./mapfish
 ``` 
 
-* Clone, build (and watch) anol
+* Clone anol
 
 ```
 cd ../../
 git clone git@github.com:terrestris/anol.git
-# npm start
 ```
 
 * Install (and watch) the bielefeldGEOCLIENT frontend
@@ -66,7 +38,7 @@ git clone git@github.com:terrestris/anol.git
 ```
 cd ../bielefeldGEOCLIENT/
 npm i
-# npm start
+npm start
 ```
 
 * Install (and start) the munimap backend
@@ -82,16 +54,13 @@ pip install -e ../
 pip install --no-index -e ../munimap_digitize/
 pip install --no-index -e ../munimap_transport/
 python -c "import hyphen.dictools; hyphen.dictools.install('de')"
-
-python manage.py -c develop.example.conf create_db
-# python manage.py -c develop.example.conf runserver
 ```
 
 * Update translations
 
 ```
-python manage.py -c develop.example.conf babel_refresh
-python manage.py -c develop.example.conf babel_compile
+python dev/manage.py -c dev/configs/munimap.conf babel_refresh
+python dev/manage.py -c dev/configs/munimap.conf babel_compile
 ```
 
 * Build Documentation
@@ -103,19 +72,22 @@ TODO
 After all steps from above have been applied successfully, the application can be started with:
 
 ```
-cd dev/
-python manage.py -c develop.example.conf runserver
+python dev/manage.py -c dev/configs/munimap.conf runserver
 ```
 
 If you want to use mapfish and have not configured Java 8 as the default Java Version, you need to set the `JAVA_HOME` environment variable. i.e.:
 ```
-JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ python manage.py -c ../../munimap-conf/conf/munimap/munimap_develop.conf runserver
+JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ python dev/manage.py -c dev/configs/munimap.conf runserver
 ```
 
-and
+In another terminal the docker dev environment needs to be started
+```
+docker-compose up --profile dev 
+```
+
+and the client (javascript) source can be watched via:
 
 ```
-cd bielefeldGEOCLIENT/
 npm start
 ```
 
@@ -127,3 +99,10 @@ Start print queue/broker (TODO UNTESTED):
 python -m munimap.queue.worker -q /tmp/printqueue.sqlite
 ```
 
+
+
+If you are running the dev setup and the prod setup after each other it can be that some of the permissions are not fitting. Try
+```
+sudo chmod -R a+rwx munimap/assets/
+sudo chmod -R a+rwx dev/data/
+```
