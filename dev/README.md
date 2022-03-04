@@ -101,7 +101,7 @@ python -m munimap.queue.worker -q /tmp/printqueue.sqlite
 
 
 
-if you are running the dev setup and the prod setup after each other it can be that some of the permissions are not fitting. Try
+If you are running the dev setup and the prod setup after each other it can be that some of the permissions are not fitting. Try
 ```
 sudo chmod -R a+rwx munimap/assets/
 sudo chmod -R a+rwx dev/data/

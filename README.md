@@ -77,7 +77,7 @@ Turns Munimap into an interactive journey planner.
 
 ## Start
 
-Goto the `docker` directory and build the containers (this may take several minutes):
+Go to the `docker` directory and build the containers (this may take several minutes):
 ```
 docker-compose --profile prod build
 ```
@@ -93,7 +93,7 @@ https://stadt-bielefeld.github.io/bielefeldGEOCLIENT
 
 ## Development
 
-To learn how to configure an dev-environment please refer to the [readme for developers](./dev/README.md)
+To learn how to configure a dev-environment please refer to the [readme for developers](./dev/README.md)
 
 The source code is available at: https://github.com/stadt-bielefeld/bielefeldGEOCLIENT
 
