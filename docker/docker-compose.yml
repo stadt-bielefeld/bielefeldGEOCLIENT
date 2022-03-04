@@ -40,7 +40,6 @@ services:
       args:
         ANOL_COMMIT_HASH: master
     volumes:
-      - ./munimap-app/app.py:/opt/etc/munimap/app.py
       - ./munimap-app/alembic.ini:/opt/etc/munimap/alembic.ini
       - ../dev/configs:/opt/etc/munimap/configs
       - ../dev/data:/opt/etc/munimap/data

@@ -16,7 +16,6 @@ app-css:
     - sass/helpers/*.sass
     - sass/components/*.sass
   contents:
-    # this configuration is ignored due to code in application.py and configuration of PROJECT_DIR
     - sass/helpers/_variables.sass
     - sass/helpers/_mixins.sass
     - sass/helpers/_placeholders.sass
