@@ -111,20 +111,20 @@ function GeoeditorValidationServiceProvider() {
         }
 
         function getFormConfig (feature) {
-          var formFields = munimapConfig.geoeditor.formFields;
-          // only get the form config if there are form fields
-          if(formFields) {
-            switch (feature.getGeometry().getType()) {
-              case 'Point':
-                return formFields.point;
-              case 'LineString':
-                return formFields.line;
-              case 'Polygon':
-                return formFields.polygon;
-              default:
-                throw new Error('Unsupported geometry type: ' + feature.getGeometry().getType());
+            var formFields = munimapConfig.geoeditor.formFields;
+            // only get the form config if there are form fields
+            if(formFields) {
+                switch (feature.getGeometry().getType()) {
+                    case 'Point':
+                        return formFields.point;
+                    case 'LineString':
+                        return formFields.line;
+                    case 'Polygon':
+                        return formFields.polygon;
+                    default:
+                        throw new Error('Unsupported geometry type: ' + feature.getGeometry().getType());
+                }
             }
-          }
         }
 
         function allFeaturesValid () {
