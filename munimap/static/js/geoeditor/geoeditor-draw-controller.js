@@ -2,8 +2,8 @@ import GeoJSON from 'ol/format/GeoJSON';
 import { getCenter } from 'ol/extent';
 
 angular.module('munimapGeoeditor')
-    .controller('geoeditorDrawController', ['$scope', '$rootScope', 'GeoeditorValidationService', 'PostMessageService', 'DrawService', 'MapService', 'munimapConfig', 'DefaultStyle', 'PrintPageService', 'LayersService', 'PrintService',
-        function ($scope, $rootScope, GeoeditorValidationService, PostMessageService, DrawService, MapService, munimapConfig, DefaultStyle, PrintPageService, LayersService, PrintService) {
+    .controller('geoeditorDrawController', ['$scope', '$rootScope', '$olOn', 'GeoeditorValidationService', 'PostMessageService', 'DrawService', 'MapService', 'munimapConfig', 'DefaultStyle', 'PrintPageService', 'LayersService', 'PrintService',
+        function ($scope, $rootScope, $olOn, GeoeditorValidationService, PostMessageService, DrawService, MapService, munimapConfig, DefaultStyle, PrintPageService, LayersService, PrintService) {
 
             const geoeditorConfig = munimapConfig.geoeditor;
             const allowedUrls = geoeditorConfig.allowedUrls;
@@ -150,35 +150,39 @@ angular.module('munimapGeoeditor')
                     }
                 );
             });
-
+          
             $scope.$parent.$parent.openGeoeditorPopup = function (layer, feature) {
-                if (angular.isUndefined(feature.get('style'))) {
-                    var style = angular.copy(DefaultStyle);
-                    var styleConfig = geoeditorConfig.style;
-                    var featureType = feature.getGeometry().getType();
-
-                    var type = {
-                        'Point': 'point',
-                        'LineString': 'line',
-                        'Polygon': 'polygon'
-                    }[featureType];
-
-                    if (styleConfig && styleConfig[type]) {
-                        style = angular.merge(style, styleConfig[type]);
-                    }
-
-                    feature.set('style', style);
-                }
-
-                $rootScope.$broadcast('geoeditor:openPopupFor', layer, feature);
-            };
-
-            $scope.$parent.$parent.onDelete = function (layer, feature) {
-                GeoeditorValidationService.updateFeatureValidationStatus(feature);
-                $rootScope.$broadcast('geoeditor:closePopup');
-            };
-
-            $scope.$parent.$parent.onModifySelect = function () {
-                $rootScope.$broadcast('geoeditor:closePopup');
-            }
+                  if (angular.isUndefined(feature.get('style'))) {
+                      var style = angular.copy(DefaultStyle);
+                      var styleConfig = geoeditorConfig.style;
+                      var featureType = feature.getGeometry().getType();
+                      var type = {
+                          'Point': 'point',
+                          'LineString': 'line',
+                          'Polygon': 'polygon'
+                      }[featureType];
+                      if (styleConfig && styleConfig[type]) {
+                          style = angular.merge(style, styleConfig[type]);
+                      }
+                      feature.set('style', style);
+                  }
+                  $rootScope.$broadcast('geoeditor:openPopupFor', layer, feature);
+              };
+              // This following event is used to trigger an update of the popup configuration
+              // when clicking on an existing geographic element on the map.
+              // Without this event the popup element will show the configuration of the last
+              // created element, i.e, it can show tabs for content that should be shown, like the attribute form, 
+              // even when there are no attributes present.
+              $olOn(MapService.getMap(), 'singleclick', (evt) => {
+                MapService.getMap().forEachFeatureAtPixel(evt.pixel, function(feature, layer) {
+                  $scope.$parent.$parent.openGeoeditorPopup(layer, feature);
+                })
+              })
+              $scope.$parent.$parent.onDelete = function (layer, feature) {
+                  GeoeditorValidationService.updateFeatureValidationStatus(feature);
+                  $rootScope.$broadcast('geoeditor:closePopup');
+              };
+              $scope.$parent.$parent.onModifySelect = function () {
+                  $rootScope.$broadcast('geoeditor:closePopup');
+              }
         }]);

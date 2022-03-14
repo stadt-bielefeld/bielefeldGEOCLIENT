@@ -1,12 +1,13 @@
 angular.module('munimapGeoeditor')
     .controller('geoeditorPopupController', ['$scope', '$rootScope', 'GeoeditorValidationService', 'munimapConfig',
         function ($scope, $rootScope, GeoeditorValidationService, munimapConfig) {
-            $scope.defaultPopupTabContent = 'geoeditor';
-            $scope.showGeoeditorTab = true;
+            $scope.defaultPopupTabContent = undefined; // default set to undefined, case there are no fields to show
+            $scope.showGeoeditorTab = false; // default set to false, case there are no fields to show
 
             $scope.$on('geoeditor:openPopupFor', function (event, layer, feature) {
-
-                feature.set('formValues', {})
+                // in case we are opening an already existent element, check if the feature has formValues. 
+                // If not, then initialize it as an empty object
+                feature.set('formValues', feature.get('formValues') || {})
 
                 let showForm = true;
 
