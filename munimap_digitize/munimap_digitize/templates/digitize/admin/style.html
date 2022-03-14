@@ -19,7 +19,7 @@
             $scope.formOptions = {$ form_options | tojson $};
             $scope.submitForm = function() {
                 angular.forEach($scope.style, function(value, key) {
-                    var field = $('[name="' + key + '"]');
+                    var field = $(`[name="${key}"]`);
                     // look for select field and add scope value as selected option;
                     if(field.find('option').length > 0) {
                         field.empty();

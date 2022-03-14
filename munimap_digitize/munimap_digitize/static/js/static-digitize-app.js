@@ -10,7 +10,13 @@ require('./../../../../munimap/static/js/modules/slider.js');
 require('./../../../../munimap/static/js/modules/slider-directive.js');
 require('./../../../../munimap/static/js/modules/notifications.js');
 
-angular.module('munimap', ['munimapBase.notification', 'schemaForm', 'ui.bootstrap', 'ui.bootstrap-slider'])
+angular.module('munimap', [
+  'schemaForm', 
+  'ui.bootstrap', 
+  'ui.bootstrap-slider',
+  'angularSpectrumColorpicker',
+  'munimapBase.notification', 
+])
 
     .controller('baseController', function() {})
 
