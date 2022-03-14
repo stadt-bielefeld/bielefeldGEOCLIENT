@@ -78,6 +78,7 @@ angular.module('munimapBase')
 
             if($scope.drawEnabled === false && $scope.geoeditorEnabled === false) {
                 DrawService.changeLayer(undefined);
+                $scope.popupLayers = [];
             } else {
                 $scope.popupLayers = [DrawService.activeLayer];
             }
