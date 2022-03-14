@@ -176,7 +176,7 @@ angular.module('munimapGeoeditor')
             // This following event is used to trigger an update of the popup configuration
             // when clicking on an existing geographic element on the map.
             // Without this event the popup element will show the configuration of the last
-            // created element, i.e, it can show tabs for content that should be shown, like the attribute form, 
+            // created element, i.e, it can show tabs for content that should not be shown, like the attribute form, 
             // even when there are no attributes present.
             $olOn(MapService.getMap(), 'singleclick', (evt) => {
               MapService.getMap().forEachFeatureAtPixel(evt.pixel, function(feature, layer) {
