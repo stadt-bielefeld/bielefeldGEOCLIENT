@@ -79,8 +79,10 @@ angular.module('munimapBase')
             if($scope.drawEnabled === false && $scope.geoeditorEnabled === false) {
                 DrawService.changeLayer(undefined);
                 $scope.popupLayers = [];
+                $scope.excludePopupLayers = [];
             } else {
                 $scope.popupLayers = [DrawService.activeLayer];
+                $scope.excludePopupLayers = [DrawService.activeLayer];
             }
 
             // load default sidebar config from config file

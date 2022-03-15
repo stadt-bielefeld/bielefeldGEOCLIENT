@@ -48,10 +48,10 @@
        popup-opening-direction="bottom"
        waiting-marker-src="{$ url_for('static', filename='img/get-featureinfo-loading.svg') $}"
        waiting-marker-offset="[-14, -14]"
-       exclude-layers="popupLayers">
+       exclude-layers="excludePopupLayers">
   </div>
 
-  <div anol-feature-popup multiselect open-for="openPopupFor" exclude-layers="popupLayers">
+  <div anol-feature-popup multiselect open-for="openPopupFor" exclude-layers="excludePopupLayers">
     <div anol-feature-properties selects="$parent.selects" feature="$parent.feature" layer="$parent.layer"></div>
   </div>
 
