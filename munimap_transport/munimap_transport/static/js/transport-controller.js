@@ -97,7 +97,7 @@ angular.module('munimapBase')
             };
 
             updateTimetableDate();
-            
+
             var self = this;
             $rootScope.$watchCollection(function() {
                 return LayersService.layers();
@@ -157,6 +157,7 @@ angular.module('munimapBase')
                     stationPointLayer.changeUrl(stationPointLayerURL + layer);
                     updateTimetableDate();
                     $scope.stationPopupLayers = [stationsLayer, stationPointLayer];
+                    $scope.popupLayers = $scope.popupLayers.concat($scope.stationPopupLayers);
                     routeLayer.olLayer.setSource();
                     stationsLayer.setVisible(true);
                     stationPointLayer.setVisible(true);
@@ -174,7 +175,7 @@ angular.module('munimapBase')
                     var xtLayer = LayersService.layerByName(layer);
                     if (xtLayer !== undefined && xtLayer.getVisible()) {
                         xtLayer.toggle = true;
-                        xtLayer.setVisible(false);                        
+                        xtLayer.setVisible(false);
                     }
                 });
             };
