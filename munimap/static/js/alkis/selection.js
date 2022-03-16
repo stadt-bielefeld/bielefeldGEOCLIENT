@@ -17,7 +17,7 @@ angular.module('munimapBase.alkisSelection', ['anol.map', 'ngStorage'])
                 vm.close = function() {
                     $uibModalInstance.dismiss();
                     if ($rootScope.featureLayer) {
-                        LayersService.removeOverlayLayer($rootScope.featureLayer);
+                        LayersService.removeSystemLayer($rootScope.featureLayer);
                     }
                 };
 
@@ -300,7 +300,7 @@ angular.module('munimapBase.alkisSelection', ['anol.map', 'ngStorage'])
                             scope.showFeatureInMap(alkToZoomTo, undefined, undefined, false);
                             let source = scope.featureLayer.olLayer.getSource();
                             source.on('addfeature', function() {
-                                LayersService.removeOverlayLayer(scope.featureLayer);
+                                LayersService.removeSystemLayer(scope.featureLayer);
 
                                 let extent = source.getExtent();
                                 let center = getCenter(extent);
@@ -346,7 +346,7 @@ angular.module('munimapBase.alkisSelection', ['anol.map', 'ngStorage'])
                     };
                     scope.showFeatureInMap = function(literal, filterType, method, listenAddFeature=true) {
                         if (scope.featureLayer) {
-                            LayersService.removeOverlayLayer(scope.featureLayer);
+                            LayersService.removeSystemLayer(scope.featureLayer);
                         }
                         if (angular.isUndefined(method)) {
                             method = 'GET';
