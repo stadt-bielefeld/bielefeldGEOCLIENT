@@ -122,10 +122,7 @@ canvas.anol-legend-item-image {
       top: 0; }
   .anol-popup-container .anol-popup .anol-popup-content {
     white-space: nowrap;
-    min-width: 30px;
-    max-height: 80vh;
-    overflow: auto;
-    max-width: 90vw;}
+    min-width: 30px;}
   .anol-popup-container .anol-popup .anol-popup-content a {
     cursor: pointer; }
   .anol-popup-container .anol-popup .anol-popup-closer {
