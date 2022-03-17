@@ -75,7 +75,11 @@ angular.module('munimapBase.alkisOfficial', ['anol.map', 'munimapBase.alkisServi
                                 // no popup present
                                 return;
                             }
-                            const popupUrl = scope.popupUrl;
+                            // $rootScope.popupUrl will only be used to share
+                            // the url between the selection and the official directive.
+                            // This is also why we reset the value immediately after reading.
+                            const popupUrl = scope.popupUrl || $rootScope.popupUrl;
+                            $rootScope.popupUrl = undefined;
                             if (e.data.action) {
                                 // not an ALKIS message, but a message for the PostMessageService
                                 return;
@@ -101,7 +105,7 @@ angular.module('munimapBase.alkisOfficial', ['anol.map', 'munimapBase.alkisServi
                                     if (angular.isDefined($rootScope.popup)) {
                                         $rootScope.popup.postMessage(
                                             {'bbox': scope.printBboxString},
-                                            scope.popupUrl
+                                            popupUrl
                                         );
                                     }
                                 }

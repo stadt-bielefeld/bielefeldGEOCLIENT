@@ -321,6 +321,7 @@ angular.module('munimapBase.alkisSelection', ['anol.map', 'ngStorage'])
                                     .then(function(response) {
                                         const loc = $window.location;
                                         const appUrl = loc.origin + loc.pathname;
+                                        $rootScope.popupUrl = response['data']['url'];
                                         $rootScope.popup = $window.open(response['data']['url']+'#'+appUrl, '',
                                             'toolbar=no,location=no, status=no, menubar=no, '+
                                             'scrollbars=yes, resizable=yes, width=500, height=600');
@@ -331,6 +332,9 @@ angular.module('munimapBase.alkisSelection', ['anol.map', 'ngStorage'])
                                 .then(function(response) {
                                     const loc = $window.location;
                                     const appUrl = loc.origin + loc.pathname;
+                                    // $rootScope.popupUrl will only be used to share
+                                    // the url between the selection and the official directive.
+                                    $rootScope.popupUrl = response['data']['url'];
                                     $window.open(response['data']['url']+'#'+appUrl, '',
                                         'toolbar=no,location=no, status=no, menubar=no, '+
                                         'scrollbars=yes, resizable=yes, width=500, height=600');
