@@ -157,7 +157,7 @@ angular.module('munimapBase')
                     stationPointLayer.changeUrl(stationPointLayerURL + layer);
                     updateTimetableDate();
                     $scope.stationPopupLayers = [stationsLayer, stationPointLayer];
-                    $scope.excludePopupLayers.push(...$scope.popupLayers, ...$scope.stationPopupLayers);
+                    $scope.excludePopupLayers.push(...$scope.stationPopupLayers);
                     routeLayer.olLayer.setSource();
                     stationsLayer.setVisible(true);
                     stationPointLayer.setVisible(true);
