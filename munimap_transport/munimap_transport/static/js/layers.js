@@ -11,6 +11,7 @@ angular.module('munimapBase').config(['LayersServiceProvider', 'stationLayerURL'
     var stationLayer = new anol.layer.BBOXGeoJSON({
         name: 'selectable_stations',
         displayInLayerswitcher: false,
+        isSystem: true,
         minResolution: 3,
         maxResolution: 20,
         featureinfo: {
@@ -36,6 +37,7 @@ angular.module('munimapBase').config(['LayersServiceProvider', 'stationLayerURL'
     var stationPointLayer = new anol.layer.BBOXGeoJSON({
         name: 'selectable_station_points',
         displayInLayerswitcher: false,
+        isSystem: true,
         featureinfo: {
             properties: ['name', 'city', 'routes']
         },
@@ -59,6 +61,7 @@ angular.module('munimapBase').config(['LayersServiceProvider', 'stationLayerURL'
     var routeLayer = new anol.layer.StaticGeoJSON({
         name: 'display_routes',
         displayInLayerswitcher: false,
+        isSystem: true,
         olLayer: {
            style: function(feature, resolution) {
                if (feature !== undefined) {
