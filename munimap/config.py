@@ -170,6 +170,8 @@ class DefaultConfig(object):
     NO_LOGIN_INFORMATION = 'Bitte kontaktieren Sie den Adminstrator <a href="mailto:admin@example.org">admin@example.org</a>'
     USER_LOGOUT_URL = '/'
 
+    COORD_TRANSFORM_URL = ''
+
 here = path.dirname(__file__)
 
 

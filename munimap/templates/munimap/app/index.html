@@ -167,13 +167,76 @@
     {% include 'munimap/app/tours/' + app_config['app']['tour'] %}
   {% endif %}
 
-  {% if app_config.get('app',{})['contextMenu'] %}
-    {% if app_config.get('app',{})['contextMenu'] is string %}
-      {% include 'munimap/app/context/' + app_config.get('app',{})['contextMenu'] %}
-    {% else %}
-      {% include 'munimap/app/context/index.html' %}
+
+  <script type="text/javascript">
+    let contextmenuItems = [{
+      text: 'Starte 3D-Stadtmodell',
+      title: 'Startet das 3D-Stadtmodell an dieser Koordinate',
+      link: true,
+      callback: start3D
+    },
+    {
+      text: 'Starte Schrägluftbilder',
+      title: 'Startet den Schrägluftbild-Viewer an dieser Koordinate',
+      link: true,
+      callback: startAero
+    },
+    {
+      text: 'Starte OpenStreetMap',
+      title: 'Startet OpenStreetMap an dieser Koordinate',
+      link: true,
+      callback: startOSM
+    },
+    {
+      text: 'Starte Google Maps',
+      title: 'Startet Google Maps an dieser Koordinate',
+      link: true,
+      callback: startGoogleMaps
+    }
+    {% if app_config.get('app',{})['contextMenu'] == 'index_intern.html' %}
+    , {
+      text: 'Klick-Koordinaten',
+      title: 'Startet eine Umrechnung der Koordinate in unterschiedliche Koordinatensysteme',
+      link: true,
+      callback: startCoordTransform
+    }
     {% endif %}
-  {% endif %}
+    ];
+
+    function startGoogleMaps(obj) {
+      let zoom = obj['zoom'] + 4
+      let url = 'https://www.google.de/maps/@' + obj['coordinates']['EPSG:4326'][1] +
+        ',' + obj['coordinates']['EPSG:4326'][0] + ',' + zoom + 'z'
+      return url;
+    }
+
+    {% if app_config.get('app',{})['contextMenu'] == 'index_intern.html' %}
+    function startCoordTransform(obj) {
+      let rw = obj['coordinates']['EPSG:25832'][0].toFixed(1);
+      let hw = obj['coordinates']['EPSG:25832'][1].toFixed(1);
+      let url = '{{ base_config.get('COORD_TRANSFORM_URL') }}?rw=' + rw + '&hw=' + hw;
+      return url;
+    }
+    {% endif %}
+
+    function startOSM(obj) {
+      let zoom = obj['zoom'] + 4
+      let url = 'https://www.openstreetmap.org/#map=' + zoom +
+        '/' + obj['coordinates']['EPSG:4326'][1] +
+        '/' + obj['coordinates']['EPSG:4326'][0]
+      return url;
+    }
+
+    function startAero(obj) {
+      let url = 'https://bielefeld.g.geoplex.de/v/oblique-cfa959eb/?x=' + obj.coordinates['EPSG:25832'][0] + '&y=' + obj.coordinates['EPSG:25832'][1] + '&yaw=0&elevation=150';
+      return url;
+    }
+
+    function start3D(obj) {
+      let url = 'https://www.owl-in-3d.de/v/OWLin3D/?x=' + obj.coordinates['EPSG:25832'][0] + '&y=' + obj.coordinates['EPSG:25832'][1] + '&yaw=0&elevation=150';
+      return url;
+    }
+  </script>
 
 {% endblock %}
 
