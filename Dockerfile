@@ -133,18 +133,19 @@ RUN wget -c http://download.osgeo.org/gdal/1.11.4/gdal-1.11.4.tar.gz \
 
 RUN wget -q -O- https://repo1.maven.org/maven2/org/mapfish/print/print-cli/3.9.0/print-cli-3.9.0-tar.tar | tar -x -C /opt/var/mapfish
 
-COPY --from=BUILDER /pkg/dist/munimap-*.tar /opt/pkgs
-COPY --from=BUILDER /pkg/munimap_digitize/dist/munimap_digitize-*.tar /opt/pkgs
-COPY --from=BUILDER /pkg/munimap_transport/dist/munimap_transport-*.tar /opt/pkgs
-COPY --from=BUILDER /pkg/gunicorn.conf /opt/etc/munimap/gunicorn.conf
-
 RUN pip install --upgrade pip && pip install \
     wheel \
     gunicorn==17.5 \
     eventlet==0.17.4 \
     alembic==0.8.3 \
-    scriptine==0.2.1 \
-    && pip install -f file:///opt/pkgs \
+    scriptine==0.2.1
+
+COPY --from=BUILDER /pkg/dist/munimap-*.tar /opt/pkgs
+COPY --from=BUILDER /pkg/munimap_digitize/dist/munimap_digitize-*.tar /opt/pkgs
+COPY --from=BUILDER /pkg/munimap_transport/dist/munimap_transport-*.tar /opt/pkgs
+COPY --from=BUILDER /pkg/gunicorn.conf /opt/etc/munimap/gunicorn.conf
+
+RUN pip install -f file:///opt/pkgs \
     munimap \
     munimap_transport \
     munimap_digitize
