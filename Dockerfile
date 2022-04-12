@@ -1,10 +1,8 @@
 ARG ANOL_COMMIT_HASH=ce0b062442d165155fa2a0d1324ba70e3d95bd68
-FROM python:2.7.16-jessie as BASE
-FROM node:14.18.1-alpine3.14 as CLIENTBASE
 
 
 
-FROM CLIENTBASE as CLIENTBUILDER
+FROM node:14.18.1-alpine3.14 as CLIENTBUILDER
 
 ARG ANOL_COMMIT_HASH
 RUN apk add --no-cache wget unzip
@@ -30,7 +28,7 @@ RUN npm run build
 
 
 
-FROM BASE as BUILDER
+FROM python:2.7.16-jessie as BUILDER
 
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -51,7 +49,7 @@ RUN cd munimap_transport && python setup.py clean && python setup.py egg_info sd
 
 
 
-FROM BASE as RUNNER
+FROM python:2.7.16-jessie as RUNNER
 
 # TODO check which libs are actually needed
 RUN apt-get update && apt-get install -y \
