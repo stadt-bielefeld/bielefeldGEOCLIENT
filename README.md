@@ -70,21 +70,35 @@ Turns Munimap into an interactive journey planner.
 
 ## Installation
 
-#### Dependencies
+### Dependencies
 
 * docker
-* docker-compose
+* docker-compose version >= 1.29
 
-## Start
+### Building production containers
+
 
 Go to the `docker` directory and build the containers (this may take several minutes):
 ```
 docker-compose --profile prod build
 ```
-After completion you can start the application like this, again from the `docker` directory:
+
+### Initializing databases
+
+The databases need to be initialized, again from the `docker` directory:
+```
+docker-compose --profile prod up munimap-postgis munimap-postgis-mapbender
+```
+When the message `database system is ready to accept connections` is displayed the initialization is complete, and the containers can be stopped with `ctrl+c`.
+
+## Start
+
+Go to the `docker` directory and start the application:
 ```
 docker-compose --profile prod up
 ```
+After everything loaded up you can reach the application at `http://localhost`. The admin interface is found under
+`http://localhost/admin` and by default the admin user is named `verwalter` and has the password `verwalter`.
 
 ## Documentation
 
