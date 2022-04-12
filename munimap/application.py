@@ -391,7 +391,7 @@ def configure_errorhandlers(app):
             response = jsonify(message='Bad Request')
             response.status_code = 400
             return response
-        app.logger.error("bad request for %s: %s", request, getattr(error, 'description', error))
+        app.logger.error("Bad Request (400) for %s: %s", request, getattr(error, 'description', error))
         return make_response(render_template("munimap/errors/400.html"), 400)
 
     @app.errorhandler(401)
@@ -400,6 +400,7 @@ def configure_errorhandlers(app):
             response =  jsonify(message="Login required")
             response.status_code = 401
             return response
+        app.logger.error("Unauthorized (401) for %s: %s", request, getattr(error, 'description', error))
         return redirect(url_for("user.login", next=request.url))
 
     @app.errorhandler(403)
@@ -408,6 +409,7 @@ def configure_errorhandlers(app):
             response = jsonify(message='Not allowed')
             response.status_code = 403
             return response
+        app.logger.error("Not allowed (403) for %s: %s", request, getattr(error, 'description', error))
         return make_response(render_template("munimap/errors/403.html"), 403)
 
     @app.errorhandler(404)
@@ -416,14 +418,16 @@ def configure_errorhandlers(app):
             response = jsonify(message='Page not found')
             response.status_code = 404
             return response
+        app.logger.error("Not Found (400) for %s: %s", request, getattr(error, 'description', error))
         return make_response(render_template("munimap/errors/404.html"), 404)
 
     @app.errorhandler(500)
     def server_error(error):
         if request.is_xhr:
-            response = jsonify(message='Interal Error')
+            response = jsonify(message='Internal Error')
             response.status_code = 500
             return response
+        app.logger.error("Internal Error (500) for %s: %s", request, getattr(error, 'description', error))
         return make_response(render_template("munimap/errors/500.html", error=error), 500)
 
 
