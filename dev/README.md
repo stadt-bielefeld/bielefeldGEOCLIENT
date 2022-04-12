@@ -19,18 +19,20 @@ sudo apt install libspatialindex-dev libjpeg-dev zlib1g-dev python2.7-dev build-
 
 The following steps are required once:
 
-* Prepare mapfish
+* Download mapfish
 
 ```
 cd ../dev/
 wget -q -O- https://repo1.maven.org/maven2/org/mapfish/print/print-cli/3.9.0/print-cli-3.9.0-tar.tar | tar -x -C ./mapfish
 ``` 
 
-* Clone anol
+* Clone and install anol
 
 ```
 cd ../../
 git clone git@github.com:terrestris/anol.git
+cd anol/
+npm i
 ```
 
 * Install (and watch) the bielefeldGEOCLIENT frontend
@@ -44,11 +46,12 @@ npm start
 * Install (and start) the munimap backend
 
 ```
-cd dev/
+# cd to directory where the venv should be created
 virtualenv -p python2.7 muni_venv
 source muni_venv/bin/activate
 # Or: source muni_venv/bin/activate.fish
 # Or: source muni_venv/bin/activate.csh
+cd dev/
 pip install -r requirements.txt
 pip install -e ../
 pip install --no-index -e ../munimap_digitize/
