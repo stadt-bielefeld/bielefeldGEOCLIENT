@@ -418,7 +418,7 @@ def configure_errorhandlers(app):
             response = jsonify(message='Page not found')
             response.status_code = 404
             return response
-        app.logger.error("Not Found (400) for %s: %s", request, getattr(error, 'description', error))
+        app.logger.error("Not Found (404) for %s: %s", request, getattr(error, 'description', error))
         return make_response(render_template("munimap/errors/404.html"), 404)
 
     @app.errorhandler(500)

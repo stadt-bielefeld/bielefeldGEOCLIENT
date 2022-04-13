@@ -13,7 +13,7 @@ except ImportError:
     from dummy_thread import get_ident
 
 import logging
-log = logging.getLogger(__name__)
+log = logging.getLogger('munimap.printqueue')
 
 
 class SqliteQueue(object):

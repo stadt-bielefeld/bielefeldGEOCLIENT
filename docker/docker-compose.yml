@@ -44,7 +44,7 @@ services:
       - ./munimap-app/alembic.ini:/opt/etc/munimap/configs/alembic.ini
       - ./munimap-app/munimap.conf:/opt/etc/munimap/configs/munimap.conf
       - ../dev/data:/opt/etc/munimap/data
-#      - ../dev/printqueue:/opt/log/printqueue
+      - ../dev/printqueue:/opt/var/printqueue
     depends_on:
       - munimap-postgis
       - munimap-postgis-mapbender
