@@ -19,7 +19,12 @@ RUN cd /anol && npm ci
 
 RUN mkdir -p /app
 
-COPY . /app
+COPY ./munimap /app/munimap
+COPY ./munimap_digitize /app/munimap_digitize
+COPY ./munimap_transport /app/munimap_transport
+COPY ./package.json /app/package.json
+COPY ./package-lock.json /app/package-lock.json
+COPY ./webpack.config.js /app/webpack.config.js
 
 WORKDIR /app
 
@@ -40,7 +45,13 @@ RUN pip install --upgrade pip \
 
 RUN mkdir -p /pkg
 # We have to build the client bevor packing everything into a python package
-COPY --from=CLIENTBUILDER /app /pkg
+COPY --from=CLIENTBUILDER /app/munimap /pkg/munimap
+COPY --from=CLIENTBUILDER /app/munimap_digitize /pkg/munimap_digitize
+COPY --from=CLIENTBUILDER /app/munimap_transport /pkg/munimap_transport
+
+COPY ./setup.cfg /pkg/setup.cfg
+COPY ./setup.py /pkg/setup.py
+
 WORKDIR /pkg
 
 RUN python setup.py clean && python setup.py egg_info sdist --formats=tar
@@ -140,10 +151,10 @@ RUN pip install --upgrade pip && pip install \
     alembic==0.8.3 \
     scriptine==0.2.1
 
+COPY ./gunicorn.conf /opt/etc/munimap/gunicorn.conf
 COPY --from=BUILDER /pkg/dist/munimap-*.tar /opt/pkgs
 COPY --from=BUILDER /pkg/munimap_digitize/dist/munimap_digitize-*.tar /opt/pkgs
 COPY --from=BUILDER /pkg/munimap_transport/dist/munimap_transport-*.tar /opt/pkgs
-COPY --from=BUILDER /pkg/gunicorn.conf /opt/etc/munimap/gunicorn.conf
 
 RUN pip install -f file:///opt/pkgs \
     munimap \
