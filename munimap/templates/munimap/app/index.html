@@ -227,14 +227,18 @@
       return url;
     }
 
+    {% if app_config.get('app',{})['contextMenu'] == 'index_intern.html' %}
+    const geoplexBaseURL = '{{ base_config.get('GEOPLEX_BASE_INTERN_URL') }}';
+    {% elif %}
+    const geoplexBaseURL = '{{ base_config.get('GEOPLEX_BASE_EXTERN_URL') }}';
+    {% endif %}
+
     function startAero(obj) {
-      let url = 'https://bielefeld.g.geoplex.de/v/oblique-cfa959eb/?x=' + obj.coordinates['EPSG:25832'][0] + '&y=' + obj.coordinates['EPSG:25832'][1] + '&yaw=0&elevation=150';
-      return url;
+      return geoplexBaseURL + '?x=' + obj.coordinates['EPSG:25832'][0] + '&y=' + obj.coordinates['EPSG:25832'][1] + '&yaw=0&elevation=150';
     }
 
     function start3D(obj) {
-      let url = 'https://www.owl-in-3d.de/v/OWLin3D/?x=' + obj.coordinates['EPSG:25832'][0] + '&y=' + obj.coordinates['EPSG:25832'][1] + '&yaw=0&elevation=150';
-      return url;
+      return geoplexBaseURL + '?state=cesium&x=' + obj.coordinates['EPSG:25832'][0] + '&y=' + obj.coordinates['EPSG:25832'][1] + '&yaw=0&elevation=150';
     }
   </script>
 

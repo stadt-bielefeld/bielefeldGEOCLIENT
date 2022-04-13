@@ -2,8 +2,8 @@ services:
   tms:
   wmts:
   wms:
-    srs: [ 'EPSG:3857', 'EPSG:4326', 'EPSG:25832' ]
-    max_output_pixels: [ 14000, 14000 ]
+    srs: ['EPSG:3857', 'EPSG:4326', 'EPSG:25832']
+    max_output_pixels: [14000, 14000]
     md:
       title: Bielefeld MapProxy
       abstract: Mapproxy for Bielefeld
@@ -13,22 +13,22 @@ services:
 layers:
   - name: stadtplan_bi
     title: OSM+ALKIS Bielefeld
-    sources: [ stadtplan_bi_utm32_cache ]
-    tile_sources: [ stadtplan_bi_utm32_adv_cache, stadtplan_bi_utm32_adv_hq_cache ]
+    sources: [stadtplan_bi_utm32_cache]
+    tile_sources: [stadtplan_bi_utm32_adv_cache, stadtplan_bi_utm32_adv_hq_cache]
 
 
   - name: stadtplan_bi_direct
     title: OSM+ALKIS Bielefeld für den Druck
-    sources: [ stadtplan_bi_source ]
+    sources: [stadtplan_bi_source]
 
   - name: nw_dop40
     title: NRW DOP 40
-    sources: [ nw_dop40_cache ]
+    sources: [nw_dop40_cache]
 
 caches:
   stadtplan_bi_webmerc_cache:
-    grids: [ webmercator ]
-    sources: [ stadtplan_bi_source ]
+    grids: [webmercator]
+    sources: [stadtplan_bi_source]
     cache:
       type: file
       directory_layout: mp
@@ -73,11 +73,11 @@ sources:
     forward_req_params:
       - map_resolution
     req:
-      url: http://munimap-mapserver?map=/opt/etc/styles/bielefeld/map/stadtplan_bi.map
+      url: http://munimap-mapserver?map=/opt/etc/styles/bielefeld/map/bielefeld.map
       layers: map
       transparent: false
     coverage:
-      bbox: [ -46133.17, 5048875.26857567, 1206211.10142433, 6301219.54 ]
+      bbox: [-46133.17, 5048875.26857567, 1206211.10142433, 6301219.54]
       srs: 'EPSG:25832'
 
   stadtplan_bi_hq_source:
@@ -88,12 +88,12 @@ sources:
       transparent: false
       map_resolution: 144
     coverage:
-      bbox: [ -46133.17, 5048875.26857567, 1206211.10142433, 6301219.54 ]
+      bbox: [-46133.17, 5048875.26857567, 1206211.10142433, 6301219.54]
       srs: 'EPSG:25832'
 
 grids:
   utm32_adv:
-    bbox: [ -46133.17, 5048875.26857567, 1206211.10142433, 6301219.54 ]
+    bbox: [-46133.17, 5048875.26857567, 1206211.10142433, 6301219.54]
     srs: 'EPSG:25832'
     origin: ul
     res:
@@ -119,10 +119,10 @@ grids:
       - 0.009330691929342785625   ## 19 test tesch
 
   utm32_adv_hq:
-    bbox: [ -46133.17, 5048875.26857567, 1206211.10142433, 6301219.54 ]
+    bbox: [-46133.17, 5048875.26857567, 1206211.10142433, 6301219.54]
     srs: 'EPSG:25832'
     origin: ul
-    tile_size: [ 512, 512 ]
+    tile_size: [512, 512]
     res:
       - 2445.98490512564
       - 1222.99245256282
@@ -146,7 +146,7 @@ grids:
       - 0.0046653459646713928125 ## test tesch
 
   utm32:
-    bbox: [ -46133.17, 5048875.26857567, 1206211.10142433, 6301219.54 ]
+    bbox: [-46133.17, 5048875.26857567, 1206211.10142433, 6301219.54]
     srs: 'EPSG:25832'
     origin: ul
     res:
@@ -198,17 +198,18 @@ grids:
 globals:
   cache:
     base_dir: /opt/var/mapproxy/
-    meta_size: [ 6, 6 ]
+    meta_size: [6, 6]
     meta_buffer: 150
 
   image:
     resampling_method: bicubic
-    paletted: true
-    formats:
-      image/png:
-        encoding_options:
-          # quantizer: fastoctree
-          quantizer: mediancut
+    paletted: false
+#    formats:
+#      image/png:
+#        #colors: 0
+#        encoding_options:
+#          # quantizer: fastoctree
+#          quantizer: mediancut
 
   tiles:
     expires_hours: 8
