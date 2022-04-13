@@ -49,6 +49,7 @@ COPY --from=CLIENTBUILDER /app/munimap /pkg/munimap
 COPY --from=CLIENTBUILDER /app/munimap_digitize /pkg/munimap_digitize
 COPY --from=CLIENTBUILDER /app/munimap_transport /pkg/munimap_transport
 
+COPY ./MANIFEST.in /pkg/MANIFEST.in
 COPY ./setup.cfg /pkg/setup.cfg
 COPY ./setup.py /pkg/setup.py
 

@@ -229,7 +229,7 @@
 
     {% if app_config.get('app',{})['contextMenu'] == 'index_intern.html' %}
     const geoplexBaseURL = '{{ base_config.get('GEOPLEX_BASE_INTERN_URL') }}';
-    {% elif %}
+    {% else %}
     const geoplexBaseURL = '{{ base_config.get('GEOPLEX_BASE_EXTERN_URL') }}';
     {% endif %}
 
