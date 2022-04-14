@@ -20,6 +20,8 @@ from munimap.print_requests import PrintRequest
 
 export = Blueprint('export', __name__)
 
+import logging
+log = logging.getLogger('munimap.print')
 
 @export.route('/export/map/<id>/status', methods=['GET'])
 def print_check(id):

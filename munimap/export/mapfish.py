@@ -25,7 +25,7 @@ from munimap.print_requests import MapRequest
 from munimap.layers import (mapfish_grid_layer, mapfish_numeration_layer, 
     mapfish_feature_collection_layer, mapfish_measure_feature_collection_layer)
 
-log = logging.getLogger('munimap.mapfish')
+log = logging.getLogger('munimap.print')
 
 GRID_STYLE = {
     'strokeColor': 'rgb(50, 50, 50)',

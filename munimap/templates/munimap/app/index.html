@@ -214,7 +214,7 @@
     function startCoordTransform(obj) {
       let rw = obj['coordinates']['EPSG:25832'][0].toFixed(1);
       let hw = obj['coordinates']['EPSG:25832'][1].toFixed(1);
-      let url = '{{ base_config.get('COORD_TRANSFORM_URL') }}?rw=' + rw + '&hw=' + hw;
+      let url = '{$ base_config.get('COORD_TRANSFORM_URL') $}?rw=' + rw + '&hw=' + hw;
       return url;
     }
     {% endif %}
@@ -228,9 +228,9 @@
     }
 
     {% if app_config.get('app',{})['contextMenu'] == 'index_intern.html' %}
-    const geoplexBaseURL = '{{ base_config.get('GEOPLEX_BASE_INTERN_URL') }}';
+    const geoplexBaseURL = '{$ base_config.get('GEOPLEX_BASE_INTERN_URL') $}';
     {% else %}
-    const geoplexBaseURL = '{{ base_config.get('GEOPLEX_BASE_EXTERN_URL') }}';
+    const geoplexBaseURL = '{$ base_config.get('GEOPLEX_BASE_EXTERN_URL') $}';
     {% endif %}
 
     function startAero(obj) {

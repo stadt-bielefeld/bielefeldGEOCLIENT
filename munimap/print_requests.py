@@ -7,7 +7,7 @@ from flask import current_app
 from munimap.grid import Grid
 
 import logging
-log = logging.getLogger('munimap.print_requests')
+log = logging.getLogger('munimap.print')
 
 
 MISSING = object()
