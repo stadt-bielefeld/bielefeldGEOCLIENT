@@ -323,6 +323,15 @@ def configure_logging(app):
         handler.setFormatter(formatter)
         app.logger.addHandler(handler)
 
+    def add_proxy_logger(handler):
+        handler.setLevel(logging.ERROR)
+        handler.setFormatter(formatter)
+
+        proxy_logger = logging.getLogger('munimap.logger')
+        proxy_logger.setLevel(logging.ERROR)
+        proxy_logger.propagate = False
+        proxy_logger.addHandler(handler)
+
     log_both = 'LOG_MODE' not in app.config or app.config['LOG_MODE'] == 'BOTH'
 
     if log_both or app.config['LOG_MODE'] == 'FILES':
@@ -352,6 +361,7 @@ def configure_logging(app):
 
         error_log = os.path.abspath(os.path.join(app.config['LOG_DIR'], app.config['ERROR_LOG']))
         add_error_logger(logging.FileHandler(error_log))
+        add_proxy_logger(logging.FileHandler(error_log))
 
     if log_both or app.config['LOG_MODE'] == 'STDOUT':
         add_debug_logger(logging.StreamHandler(sys.stdout))
@@ -359,6 +369,7 @@ def configure_logging(app):
         add_alkis_logger(logging.StreamHandler(sys.stdout))
         add_token_logger(logging.StreamHandler(sys.stdout))
         add_error_logger(logging.StreamHandler(sys.stdout))
+        add_proxy_logger(logging.StreamHandler(sys.stdout))
 
     app.logger.setLevel(logging.DEBUG)
 
