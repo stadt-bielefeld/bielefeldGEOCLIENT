@@ -477,6 +477,7 @@ def mapfish_printqueue_worker_process(job):
     return {}
 
 def mapfish_printqueue_worker(job):
+    log.info('print worker started')
     if job.get('type') != 'mapfish_print':
         return {'error': 'not a mapfish_print job'}
 
@@ -516,4 +517,4 @@ def mapfish_printqueue_worker(job):
     zip_buf.close()
     os.unlink(map_filename)
 
-    return {'output_file': zip_filename}
+    return { 'output_file': zip_filename }

@@ -336,19 +336,19 @@ def configure_logging(app):
         handler.setLevel(logging.WARN)
         handler.setFormatter(formatter)
 
-        proxy_logger = logging.getLogger('munimap.layers')
-        proxy_logger.setLevel(logging.ERROR)
-        proxy_logger.propagate = False
-        proxy_logger.addHandler(handler)
+        layers_logger = logging.getLogger('munimap.layers')
+        layers_logger.setLevel(logging.ERROR)
+        layers_logger.propagate = False
+        layers_logger.addHandler(handler)
 
     def add_print_logger(handler):
-        handler.setLevel(logging.WARN)
+        handler.setLevel(logging.INFO)
         handler.setFormatter(formatter)
 
-        proxy_logger = logging.getLogger('munimap.print')
-        proxy_logger.setLevel(logging.DEBUG)
-        proxy_logger.propagate = False
-        proxy_logger.addHandler(handler)
+        print_logger = logging.getLogger('munimap.print')
+        print_logger.setLevel(logging.INFO)
+        print_logger.propagate = False
+        print_logger.addHandler(handler)
 
     log_both = 'LOG_MODE' not in app.config or app.config['LOG_MODE'] == 'BOTH'
 
