@@ -438,7 +438,7 @@ def handle_wms_get_map(service_url, layers, request_args):
     response = requests.get(service_url, params, verify=current_app.config.get('CERTIFICATE_VERIFY'))
 
     if not response.ok:
-        proxy_log.debug('request failed with status %s. url: %s, params: %s',
+        proxy_log.error('request failed with status %s. url: %s, params: %s',
                         response.status_code, service_url, str(params))
         raise BadGateway()
 
@@ -471,7 +471,7 @@ def handle_wms_get_legend(service_url, layers, request_args):
     response = requests.get(service_url, params, verify=current_app.config.get('CERTIFICATE_VERIFY'))
 
     if not response.ok:
-        proxy_log.debug('request failed with status %s. url: %s, params: %s',
+        proxy_log.error('request failed with status %s. url: %s, params: %s',
                         response.status_code, service_url, str(params))
         raise BadGateway()
 
@@ -492,7 +492,7 @@ def handle_get_file(service_url, layers, request_args):
     response = requests.get(service_url, params, verify=current_app.config.get('CERTIFICATE_VERIFY'))
 
     if not response.ok:
-        proxy_log.debug('request failed with status %s. url: %s, params: %s',
+        proxy_log.error('request failed with status %s. url: %s, params: %s',
                         response.status_code, service_url, str(params))
         raise BadGateway()
 
@@ -549,7 +549,7 @@ def handle_wms_get_feature_info(service_url, layers, request_args):
     response = requests.get(service_url, params, verify=current_app.config.get('CERTIFICATE_VERIFY'))
 
     if not response.ok:
-        proxy_log.debug('request failed with status %s. url: %s, params: %s',
+        proxy_log.error('request failed with status %s. url: %s, params: %s',
                         response.status_code, service_url, str(params))
         raise BadGateway()
 
