@@ -25,7 +25,7 @@ from munimap.print_requests import MapRequest
 from munimap.layers import (mapfish_grid_layer, mapfish_numeration_layer, 
     mapfish_feature_collection_layer, mapfish_measure_feature_collection_layer)
 
-log = logging.getLogger('munimap.mapfish')
+log = logging.getLogger('munimap.print')
 
 GRID_STYLE = {
     'strokeColor': 'rgb(50, 50, 50)',
@@ -477,6 +477,7 @@ def mapfish_printqueue_worker_process(job):
     return {}
 
 def mapfish_printqueue_worker(job):
+    log.info('print worker started')
     if job.get('type') != 'mapfish_print':
         return {'error': 'not a mapfish_print job'}
 
@@ -516,4 +517,4 @@ def mapfish_printqueue_worker(job):
     zip_buf.close()
     os.unlink(map_filename)
 
-    return {'output_file': zip_filename}
+    return { 'output_file': zip_filename }

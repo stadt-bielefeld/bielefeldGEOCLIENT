@@ -20,46 +20,35 @@ if __name__ == '__main__':
     file_config = Config(root_path='./')
 
     formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s ')
-    logger = logging.getLogger('munimap.printqueue')
+    logger = logging.getLogger('munimap.print')
 
     if options.config_file is not None:
         file_config.from_pyfile(options.config_file)
-
-    def add_debug_logger(handler):
-        handler.setLevel(logging.DEBUG)
-        handler.setFormatter(formatter)
-        logger.addHandler(handler)
-
-    def add_error_logger(handler):
-        handler.setLevel(logging.ERROR)
-        handler.setFormatter(formatter)
-        logger.addHandler(handler)
-
-    def add_mapfish_logger(handler):
-        handler.setLevel(logging.ERROR)
-        handler.setFormatter(formatter)
-        logging.getLogger('munimap.mapfish').addHandler(handler)
 
     log_both = 'LOG_MODE' not in file_config or file_config['LOG_MODE'] == 'BOTH'
 
     if (log_both or file_config['LOG_MODE'] == 'FILES') and file_config.get('PRINT_LOG_DIR') and file_config.get('PRINT_DEBUG_LOG') and file_config.get('PRINT_ERROR_LOG'):
         # log debug
         debug_log = os.path.abspath(os.path.join(file_config['PRINT_LOG_DIR'], file_config['PRINT_DEBUG_LOG']))
-        add_debug_logger(logging.FileHandler(debug_log))
+        debug_handler = logging.FileHandler(debug_log)
+        debug_handler.setLevel(logging.DEBUG)
+        debug_handler.setFormatter(formatter)
+        logger.addHandler(debug_handler)
 
         # log errors
         error_log = os.path.abspath(os.path.join(file_config['PRINT_LOG_DIR'], file_config['PRINT_ERROR_LOG']))
-        add_error_logger(logging.FileHandler(error_log))
-
-        debug_log = os.path.abspath(os.path.join(file_config['PRINT_LOG_DIR'], file_config['PRINT_DEBUG_LOG']))
-        add_mapfish_logger(logging.FileHandler(debug_log))
+        error_handler = logging.FileHandler(error_log)
+        error_handler.setLevel(logging.ERROR)
+        error_handler.setFormatter(formatter)
+        logger.addHandler(error_handler)
     else:
-        logging.basicConfig(level=logging.DEBUG)
+        logging.basicConfig(level=logging.INFO)
 
     if log_both or file_config['LOG_MODE'] == 'STDOUT':
-        add_debug_logger(logging.StreamHandler(sys.stdout))
-        add_error_logger(logging.StreamHandler(sys.stdout))
-        add_mapfish_logger(logging.StreamHandler(sys.stdout))
+        log_level = logging.INFO
+        handler = logging.StreamHandler(sys.stdout)
+        handler.setLevel(log_level)
+        logger.addHandler(handler)
 
     logger.setLevel(logging.DEBUG)
 
