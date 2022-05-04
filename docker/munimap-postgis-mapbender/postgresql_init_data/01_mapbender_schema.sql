@@ -298,7 +298,7 @@ CREATE TABLE public.mb_user (
 	mb_user_owner int4 NOT NULL DEFAULT 0,
 	mb_user_description varchar(255) NULL,
 	mb_user_login_count int4 NOT NULL DEFAULT 0,
-	mb_user_email varchar(50) NULL,
+	mb_user_email varchar(100) NULL,
 	mb_user_phone varchar(50) NULL,
 	mb_user_department varchar(255) NULL,
 	mb_user_resolution int4 NOT NULL DEFAULT 72,
