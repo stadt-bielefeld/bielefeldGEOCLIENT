@@ -1,17 +1,29 @@
 app:
     title: 'Stadtplan'
-    headerLogoLink: ''
+    headerLogoLink: 'https://www.bielefeld01.de/geodaten/welcome.php'
     tooltipDelay: 50
     showNoBackground: false
-    versionString: ''
+    versionString: '' #'Vers. 0.9.322 (Beta-Version)'
+    tour: 'functions.html'
     showLogin: false
+    contextMenu: 'index_extern.html'
     hideMetadata: true
+    feedbackButton:
+        email: olkd@bielefeld.de
+        subject: onlineKARTENdienst Stadt Bielefeld
+        body: "%0A%0A%0A%0AAktuelle%20Url%3A%0A"
     
 map:
     center:
         - 468152.5616
         - 5764386.17546
     centerProjection: "EPSG:25832"
+    #bbox:
+    #    - 455564 
+    #    - 5751313
+    #    - 478610
+    #    - 5774549
+    #bboxProjection: "EPSG:25832"
     zoom: 8
     projection: "EPSG:25832"
     projectionExtent: [-46133.17, 5048875.26857567, 1206211.10142433, 6301219.54]
@@ -27,6 +39,25 @@ map:
 backgrounds:
     explicit:
         - stadtplan_bi
+        #- mobiel_day
+        #- mobiel_night
+        #- stadtplan_bi_grau
+        #- stadtplan_bi_gruen
+        - luftbilder_2020_to
+        #- abk_farbe
+        #- abk_grau
+
+groups:
+    explicit:
+        - kultur_freizeit_sport
+      #  - parken
+        - parken_verkehr 
+      #  - parken_baustellen
+        - schulen_kitas_behoerden
+        - wms_uebernachten
+        - wirtschaft_wissenschaft
+
+
 
 components:
     serviceButton: true
@@ -65,7 +96,89 @@ searchConfig:
           graphicHeight: 50
           graphicYAnchor: 50
           graphicScale: 0.75
-         
+
+    - name: flr_search_catalog
+      title: Katalog-Suche Flurstück #Flürstücks-Katalog
+      geocoder: Catalog
+      selected: false
+      geocoderOptions:
+          steps: 
+            - getgemarkungen
+            - getflure
+            - getflurstuecke
+          viewbox:
+            - 8.34154267980772
+            - 51.905836372029
+            - 8.72247497339103
+            - 52.1276204795065
+          url: "/proxy/cors/solr/"
+          method: get
+      zoom: 14
+      resultMarkerVisible: 0
+      urlMarkerColor: E2001A
+      autoSearchChars: 1
+      resultMarker: 
+          graphicFile: 'geocoder-marker.svg'
+          graphicWidth: 32
+          graphicHeight: 50
+          graphicYAnchor: 50
+          graphicScale: 0.75
+
+
+    - name: address_search_catalog
+      title: Katalog-Suche Adresse #Adress-Katalog
+      geocoder: Catalog
+      selected: false
+      geocoderOptions:
+          steps: 
+            - getbuchstaben
+            - getstrassen
+            - gethausnummern
+          viewbox:
+            - 8.34154267980772
+            - 51.905836372029
+            - 8.72247497339103
+            - 52.1276204795065
+          url: "/proxy/cors/solr/"
+          method: get
+      zoom: 14
+      resultMarkerVisible: 0
+      urlMarkerColor: E2001A
+      autoSearchChars: 1
+      resultMarker: 
+          graphicFile: 'geocoder-marker.svg'
+          graphicWidth: 32
+          graphicHeight: 50
+          graphicYAnchor: 50
+          graphicScale: 0.75
+
+
+  #   http://www.bielefeld01.de/solr2/solr.php?term=285100400632&catalog=flurstueck
+  #  - name: flurstueck
+  #    title: Flurstück
+  #    geocoder: Solr
+  #    geocoderOptions:
+  #        viewbox:
+  #            - 8.34154267980772
+  #            - 51.905836372029
+  #            - 8.72247497339103
+  #            - 52.1276204795065
+  #        url: "/proxy/cors/solr2?catalog=flurstueck"
+  #        method: get
+  #    zoom: 14
+  #    resultMarkerVisible: 0
+  #    urlMarkerColor: E2001A
+  #    autoSearchChars: 3
+  #    resultMarker: 
+  #        graphicFile: 'geocoder-marker.svg'
+  #        graphicWidth: 32
+  #        graphicHeight: 50
+  #        graphicYAnchor: 50
+  #        graphicScale: 0.75
+  #        strokeWidth: 10
+  #        strokeColor: '#f00'
+  #        strokeOpacity: 0.3
+          
 geolocationConfig:
     zoom: 14
     tracking: False

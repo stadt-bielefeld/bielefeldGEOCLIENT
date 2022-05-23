@@ -11,6 +11,8 @@ dev/mapfish
 dev/munimap
 dev/print-output
 dev/tmp/
+dev/venv/
+dev/muni_venv/
 dist/
 docker/munimap-mapproxy/mapproxy_logs
 docker/munimap-mapproxy/mapproxy_cache_data

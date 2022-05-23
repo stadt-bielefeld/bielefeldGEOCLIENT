@@ -15,7 +15,7 @@ def query_feature_collection(request, pg_layers, num_offset=1):
             refs = ref_grid.refs(asShape(feature['geometry']))
             if refs:
                 groups = group_refs(refs)
-                refs = u', '.join(format_refs(reduce_refs(g), labels=grid.labels) for g in groups)
+                refs = ', '.join(format_refs(reduce_refs(g), labels=grid.labels) for g in groups)
                 feature['properties'][
                     '__ref__'] =  refs
             else:
@@ -25,7 +25,7 @@ def query_feature_collection(request, pg_layers, num_offset=1):
         fc['features'],
         sort_properties=('name',),
         group_property='__layer__',
-        groups=pg_layers.keys(),
+        groups=list(pg_layers.keys()),
     )
 
     # add __num__ for all point layers

@@ -46,7 +46,7 @@ class TestMapfishSpecFile(BaseTestClass):
         with open(spec_file, 'r') as f:
             # used yaml to load spec_content cause json loads all values as
             # unicode type and so comparing will fail
-            spec_content = yaml.load(f.read())
+            spec_content = yaml.safe_load(f.read())
             return spec_content, test_mapfish_layers
 
     def test_mapfish_spec_file(self):

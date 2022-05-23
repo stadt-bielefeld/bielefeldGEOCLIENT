@@ -8,9 +8,9 @@ import threading
 from json import loads, dumps
 from time import sleep
 try:
-    from thread import get_ident
+    from _thread import get_ident
 except ImportError:
-    from dummy_thread import get_ident
+    from _dummy_thread import get_ident
 
 import logging
 log = logging.getLogger('munimap.print')
@@ -84,7 +84,7 @@ class SqliteQueue(object):
     def append(self, definition, priority=0, id=None, finished=False):
         if id is None:
             id = uuid.uuid4().hex
-        obj_buffer = buffer(dumps(definition))
+        obj_buffer = bytes(memoryview(dumps(definition).encode('utf8')))
         status = 'added'
         if finished:
             status = 'finished'
@@ -103,7 +103,7 @@ class SqliteQueue(object):
                 conn.execute(self._write_lock)
                 cursor = conn.execute(self._fetch_get, (min_priority,))
                 try:
-                    id, priority, obj_buffer = cursor.next()
+                    id, priority, obj_buffer = next(cursor)
                     keep_pooling = False
                 except StopIteration:
                     conn.commit()  # unlock the database
@@ -127,7 +127,7 @@ class SqliteQueue(object):
         with self._get_conn() as conn:
             cursor = conn.execute(self._peek, (min_priority, ))
             try:
-                id, priority, obj_buffer = cursor.next()
+                id, priority, obj_buffer = next(cursor)
                 return Job(
                     id=id,
                     definition=loads(str(obj_buffer)),
@@ -141,20 +141,33 @@ class SqliteQueue(object):
         with self._get_conn() as conn:
             cursor = conn.execute(self._get, (id,))
             try:
-                priority, obj_buffer, result, status = cursor.next()
+                priority, obj_buffer, result, status = next(cursor)
                 j = Job(
                     id=id,
-                    definition=loads(str(obj_buffer)),
+                    definition=loads(str(obj_buffer.decode())),
                     status=status,
                     priority=priority,
                 )
-                j.result = loads(str(result or 'null'))
+                j.result = loads(str(result.decode() or 'null'))
                 return j
             except StopIteration:
                 return None
 
     def mark_done(self, id, result):
-        obj_buffer = buffer(dumps(result))
+        for x in result:
+          if isinstance(result[x], bytes):
+            result.update({x: result[x].decode()})
+          elif isinstance(x, bytes):
+            result.pop(x)
+            result.update({x.decode(): result[x]})
+          elif isinstance(result[x], bytes) and isinstance(x, bytes):
+            result.pop(x)
+            result.update({x.decode(): result[x].decode()})
+          else:
+            pass
+        
+        res = dumps(result).encode('utf-8')
+        obj_buffer = memoryview(res)
 
         with self._get_conn() as conn:
             conn.execute(self._done, (obj_buffer, id))
@@ -270,16 +283,16 @@ if __name__ == '__main__':
     q = SqliteQueue(options.queue_file)
 
     if options.add_job:
-        print q.append(loads(options.add_job))
+        print(q.append(loads(options.add_job)))
         sys.exit(0)
 
     if options.get_job:
-        print q.get(options.get_job)
+        print(q.get(options.get_job))
         sys.exit(0)
 
     if options.list_jobs:
         for j in q:
-            print j
+            print(j)
         sys.exit(0)
 
     b = Broker(q, echo, max_running=options.concurrency)

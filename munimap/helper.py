@@ -2,20 +2,20 @@ import os
 import re
 import yaml
 import glob
-import urllib
+import urllib.request, urllib.parse, urllib.error
 
 from functools import wraps
 from flask import request, abort, current_app, url_for
 
-from flask.ext.login import current_user
-from flask.ext.babel import gettext as _, lazy_gettext as _l
+from flask_login import current_user
+from flask_babel import gettext as _, lazy_gettext as _l
 from sqlalchemy.orm import class_mapper
 
 from munimap.model import ProtectedLayer
 
 from munimap.extensions import db
 
-from jinja2 import Markup, escape
+from jinja2.utils import markupsafe
 
 __all__ = ['_', '_l']
 
@@ -165,7 +165,7 @@ def merge_dict(child, parent):
     Return `parent` dict with values from `child` merged in.
     Removes `child` values = None from `parent`
     """
-    for k, v in child.iteritems():
+    for k, v in child.items():
         if v is None:
             del parent[k]
             continue
@@ -189,7 +189,7 @@ def load_app_config(config=None, without_404=False):
         default_config = {}
     else:
         try:
-            default_config = yaml.load(open(default_config_file, 'r'))
+            default_config = yaml.safe_load(open(default_config_file, 'r'))
         except yaml.YAMLError as ex:
             raise InvalidAppConfigError(
                 ex, current_app.config.get('DEFAULT_APP_CONFIG'))
@@ -202,7 +202,7 @@ def load_app_config(config=None, without_404=False):
         )
         if os.path.exists(sub_app_config_file):
             try:
-                sub_app_config = yaml.load(open(sub_app_config_file, 'r'))
+                sub_app_config = yaml.safe_load(open(sub_app_config_file, 'r'))
             except yaml.YAMLError as ex:
                 raise InvalidAppConfigError(ex, config + '.yaml')
             app_config = merge_dict(
@@ -237,7 +237,7 @@ def apply_selectionlists_to_geoeditor(app_config, app_config_path):
         return
 
     form_fields = app_config['geoeditor']['formFields']
-    for geometry_fields in form_fields.values():
+    for geometry_fields in list(form_fields.values()):
         for field in geometry_fields:
             if field['type'] != 'select' or not isinstance(field['select'], str):
                 continue
@@ -252,7 +252,7 @@ def apply_selectionlists_to_geoeditor(app_config, app_config_path):
                 raise InvalidAppConfigError(err, app_config_path)
 
             try:
-                selectionlist_config = yaml.load(open(file_path, 'r'))
+                selectionlist_config = yaml.safe_load(open(file_path, 'r'))
             except yaml.YAMLError as ex:
                 raise InvalidAppConfigError(ex, file_path)
             field['select'] = selectionlist_config
@@ -321,14 +321,14 @@ _paragraph_re = re.compile(r'(?:\r\n|\r|\n){2,}')
 
 # found at http://flask.pocoo.org/snippets/28/
 def nl2br(value, only_first=False):
-    lines = _paragraph_re.split(escape(value))
-    html_lines = [u'<p>%s</p>' % p.replace('\n', '<br>\n') for p in lines]
+    lines = _paragraph_re.split(markupsafe.escape(value))
+    html_lines = ['<p>%s</p>' % p.replace('\n', '<br>\n') for p in lines]
 
     if only_first and len(html_lines) > 0:
         result = html_lines[0]
     else:
-        result = u'\n\n'.join(html_lines)
-    return Markup(result)
+        result = '\n\n'.join(html_lines)
+    return markupsafe.Markup(result)
 
 
 def touch_last_changes_file(times=None):

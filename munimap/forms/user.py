@@ -1,4 +1,4 @@
-from flask_wtf import Form
+from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, ValidationError
 from wtforms.validators import InputRequired, EqualTo, Length
 
@@ -14,7 +14,7 @@ def username_exists(form, field):
     if not MBUser.by_name(field.data):
         raise ValidationError(_('Username does not exist'))
 
-class LoginForm(Form):
+class LoginForm(FlaskForm):
     username = StringField(_l('Username'), [
         InputRequired()
     ])
@@ -22,7 +22,7 @@ class LoginForm(Form):
         InputRequired()
     ])
 
-class UserChangePassword(Form):
+class UserChangePassword(FlaskForm):
     password_old = PasswordField(
     	_l('Old Password')
     )
@@ -31,11 +31,11 @@ class UserChangePassword(Form):
         EqualTo('password2', message=_l("Passwords must match"))])
     password2 = PasswordField(_l('New Password repeat'))
 
-class RecoverRequestForm(Form):
+class RecoverRequestForm(FlaskForm):
     username = StringField(
         _l('Username'), [InputRequired(), username_exists])
 
-class UserRecoverPassword(Form):
+class UserRecoverPassword(FlaskForm):
     password = PasswordField(_l('New Password'), [
         Length(min=6),
         EqualTo('password2', message=_l("Passwords must match"))])

@@ -1,4 +1,4 @@
-import md5
+import hashlib
 
 from .mb_group import MBGroup
 from .mb_user import MBUser
@@ -15,7 +15,7 @@ def test_data():
     admin_user = MBUser()
     admin_user.mb_user_name = 'admin'
     admin_user.mb_user_email = 'admin@example.org'
-    admin_user.mb_user_password = md5.new('secure').hexdigest()
+    admin_user.mb_user_password = hashlib.md5('secure'.encode('utf8')).hexdigest()
     admin_group.users.append(admin_user)
 
     user_group = MBGroup()
@@ -26,7 +26,7 @@ def test_data():
     user = MBUser()
     user.mb_user_name = 'user'
     user.mb_user_email = 'user@example.org'
-    user.mb_user_password = md5.new('secure').hexdigest()
+    user.mb_user_password = hashlib.md5('secure'.encode('utf8')).hexdigest()
     user_group.users.append(user)
 
     # layer names have to match layers in test/data/test_layers_conf.yaml

@@ -3,11 +3,11 @@ import json
 import time, datetime
 
 from flask import current_app
-from flask.ext.login import current_user
+from flask_login import current_user
 from munimap.helper import urlencode_params
 
 from werkzeug.exceptions import BadRequest, BadGateway
-from requests.packages.urllib3.exceptions import InsecureRequestWarning
+from urllib3.exceptions import InsecureRequestWarning
 import xml.etree.ElementTree as ET
 
 import logging

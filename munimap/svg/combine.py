@@ -38,7 +38,7 @@ class CombineSVG(object):
 
         for evt, elem in iterparse(r, events=('start', 'end')):
             if evt == 'start' and self.first and elem.tag == SVG_TAG:
-                svg_attrib = {(None, k): v for k, v in elem.attrib.items()}
+                svg_attrib = {(None, k): v for k, v in list(elem.attrib.items())}
                 if self.root_id:
                     svg_attrib[(None, 'id')] = self.root_id
 

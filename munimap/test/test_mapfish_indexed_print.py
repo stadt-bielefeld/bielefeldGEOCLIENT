@@ -10,7 +10,7 @@ tmp_dir = '/tmp/munimap-mapfish-prints'
 def setUp():
     try:
         os.makedirs(tmp_dir)
-        print os.path.exists(tmp_dir)
+        print(os.path.exists(tmp_dir))
     except:
         pass
 
@@ -30,7 +30,7 @@ class TestMapfishIndexedPrint(BaseMapfishPrintTest):
 
     def prepare_index_query(self):
         params = {}
-        for key, value in self.prepare_data().items():
+        for key, value in list(self.prepare_data().items()):
             if key == 'pageSize':
                 params['width'] = value[0]
                 params['height'] = value[1]
@@ -51,7 +51,7 @@ class TestMapfishIndexedPrint(BaseMapfishPrintTest):
 
             self.assert200(r)
 
-            if isinstance(self.test_layers[0], basestring):
+            if isinstance(self.test_layers[0], str):
                 layernames = '_'.join(self.test_layers)
             else:
                 layernames = '_'.join([n for n, p in self.test_layers])

@@ -2,18 +2,1008 @@ meta:
   description:  "Themen"
 
 layers:
+
+ 
+  #Reitwege --------------------------------------------------------------------------
+  - name: reitverbot_pl
+    attribution: 'Reiten in Bielefeld © Stadt Bielefeld'
+    title: Reitverbotsgebiete
+    type: wms
+    source:
+      url: //www.bielefeld01.de/umn/wms_reitwege_v02.asp
+      format: 'image/png'
+      layers:
+        - 'reitverbot_pl'
+      srs: 'EPSG:25832'
+    legend:
+      type: GetLegendGraphic
+  - name: wanderwege_gesperrt_l
+    base: reitverbot_pl
+    title: Wanderwege (Reiten verboten)
+    type: wms
+    source:
+       layers:
+         - wanderwege_gesperrt_l
+    legend:
+       type: GetLegendGraphic
+  - name: reitwege_l
+    base: reitverbot_pl
+    title: Reitwege
+    type: wms
+    source:
+        layers:
+          - reitwege_l
+    legend:
+         type: GetLegendGraphic
+
+  #Reitwege --------------------------------------------------------------------------
+
+
+  #Fahrradwege--------------------------------------------------------------------------------
+
+  - name: radwegkarte_bi_classic
+    title: Fahrradwege
+    type: tiledwms
+    source:
+      url: "/cgi-bin/mapserv?map=/opt/etc/styles/bielefeld/map/bielefeld-radwege.map&map_resolution=72&"
+      format: "image/png"
+      layers:
+        - cycle_tracks
+      srs: "EPSG:25832"
+    legend:
+      type: GetLegendGraphic
+
+
+  - name: radwegkarte_bi_gruen
+    title: Fahrradwege
+    type: wms #tiledwms
+    source:
+      url: "/cgi-bin/mapserv?map=/opt/etc/styles/bielefeld/map/bielefeld-radwege-gruen.map&map_resolution=72&"
+      format: "image/png"
+      layers:
+        - cycle_tracks
+      srs: "EPSG:25832"
+    legend:
+      type: GetLegendGraphic
+
+  #Fahrradwege--------------------------------------------------------------------------------
+  
+  #Parkplätze vektoriell Cluster-Test -------------------------------------------
+  - name: parken_clustering_test
+    title: Parken Vektoren
+    type: postgis
+    cluster: true
+    attribution: 'Vektordaten: OpenStreetMap (Lizenz: ODbL)'
+    source:
+      # db_uri: postgres://osm:osm@localhost:5432/stadtplan_bi
+      type: point
+      query:
+        SELECT geometry, name FROM osm_amenity_points WHERE type IN ('bakery')
+        #SELECT geometry, bez, typ FROM test_parken
+    style:
+      type: simple
+      externalGraphic: '620_parken.svg'
+      graphicWidth: 18 #SVG-Leinwand muss dem entsprechen
+      graphicHeight: 18 #SVG-Leinwand muss dem entsprechen
+      graphicScale: 2
+      fontSize: '13px'
+      fontOffsetY: 10
+    legend:
+      type: point
+    #featureinfo:
+    #  target: '_popup'
+    #  properties:
+    #    - name
+    #    - type
+   #Parkplätze vektoriell Cluster-Test -------------------------------------------
+
+  #Parkplätze (aus osm) Amtl. Stadtplan Cluster-Test -------------------------------------------
+  - name: parken_osm_cluster_p
+    title: Parkplätze WMS
+    abstract: Parkplätze aus OSM in Bielefeld.
+    attribution: Parkplätze © Stadt Bielefeld
+    type: wms
+    source:
+      url: http://172.22.100.139/test_umn/wms_parken_osm_cluster_v01.asp?
+      layers:
+        - parken_osm_p
+      srs: 'EPSG:25832'
+      format: image/png
+    legend:
+      type: GetLegendGraphic
+    featureinfo:
+      target: _popup
+      width: 200
+      height: 100
+      featureCount: 100
+  #Parkplätze (aus osm) Amtl. Stadtplan Cluster-Test -------------------------------------------
+
+  #Parkplätze (aus osm) Amtl. Stadtplan ---------------------------------------------------------
+  - name: parken_osm_p
+    attribution: 'Parkplätze (aus OSM) © Stadt Bielefeld'
+    title: Parkplätze
+    type: wms
+    source:
+      url: //www.bielefeld01.de/umn/wms_parken_osm_v01.asp? #http://172.22.100.139/test_umn/wms_parken_osm_v01.asp?
+      format: 'image/png'
+      layers:
+        - parken_osm_p
+      srs: 'EPSG:25832'
+    legend:
+      type: GetLegendGraphic
+    featureinfo:
+      target: '_popup'
+      width: 300
+      height: 300
+      featureCount: 100
+  #Parkplätze (aus osm) Amtl. Stadtplan ----------------------------------------------------------
+
+  #Parkleitsystem --------------------------------------------------------------------------------
+  - name: parkleitsystem_p
+    attribution: 'Parkleitsystem © Stadt Bielefeld'
+    title: Parkplätze
+    type: wms
+    catalog: true
+    metadataUrl: https://www.bielefeld01.de/mdOLKD/Daten/parkleitsystem_p?FORMAT=HTML_Daten
+    source:
+      url: http://172.20.131.39/umn/intern_free/wms_parkleitsystem_v01.php?
+      format: 'image/png'
+      layers:
+        - parkleitsystem_p
+      srs: 'EPSG:25832'
+    legend:
+      type: GetLegendGraphic
+    featureinfo:
+      target: '_popup'
+      width: 300
+      height: 300
+      featureCount: 100
+  #Parkleitsystem --------------------------------------------------------------------------------
+
+
+  #Ampeln ----------------------------------------------------------------------------------------
+  - name: lichtsignalanlagen_p
+    attribution: 'Lichtsignalanlagen © Stadt Bielefeld'
+    title: Ampeln
+    type: wms
+    source:
+      url: //www.bielefeld01.de/umn/wms_lichtsignalanlagen_v01.asp?
+      format: 'image/png'
+      layers:
+        - lichtsignalanlagen_p
+      srs: 'EPSG:25832'
+    legend:
+      type: GetLegendGraphic
+  #  featureinfo:
+  #    target: '_popup'
+  #    width: 300
+  #    height: 300
+  #Ampeln ----------------------------------------------------------------------------------------
+
+
+  #Biotope 360-----------------------------------------------
+  - name: biotop_stadtbiotop_fl
+    title: Stadtbiotope
+    abstract: Stadtbiotope in der Stadt Bielefeld
+    attribution: Biotope Umweltamt © Stadt Bielefeld
+    type: wms
+    source:
+      url: //www.bielefeld01.de/umn/wms_biotop_v02.asp?
+     # url: //172.22.100.139/test_umn/wms_biotop_v02.asp?
+      layers:
+        - biotop_stadtbiotop_fl
+      srs: 'EPSG:25832'
+      format: image/png
+    legend:
+      type: GetLegendGraphic
+    featureinfo: {target: _popup, width: 200, height: 100, featureCount: 100}
+
+  #Biotope 360------------------------------------------------
+
+
+  #Stimmbezirke ---------------------------------------------------------------------------------
+  #Layer: Texte
+ # - name: stimmbezirke_t
+ #   attribution: 'Stimmbezirke © Stadt Bielefeld'
+ #   title: Stimmbezirke-Texte
+ #   type: wms
+ #   source:
+ #     url: //www.bielefeld01.de/umn/wms_wahlen_v01.asp?
+ #     format: 'image/png'
+ #     layers:
+ #       - stimmbezirke_t
+ #     srs: 'EPSG:25832'
+ # Layer: Umringe
+ # - name: stimmbezirke_pl
+ #   base: stimmbezirke_t
+ #   title: Stimmbezirke-Umringe
+ #   type: wms
+ #   source:
+ #     layers:
+ #       - stimmbezirke_pl
+ #   legend:
+ #     type: GetLegendGraphic
+
+  #Stimmbezirke ---------------------------------------------------------------------------------
+
+  #Bodenrichtwerte 2017 -------------------------------------------------------------------------
+  #Layer: Freiflaechen
+  - name: brw_2017_freiflaechen_pl
+    attribution: 'Bodenrichtwerte 2017 © Stadt Bielefeld'
+    title: BRW 2017 - Freiflächen
+    type: wms
+    source:
+      url: //www.bielefeld01.de/umn/wms_bodenrichtwerte_2017_v01.asp?
+      format: 'image/png'
+      layers:
+        - freiflaechen_2017
+      srs: 'EPSG:25832'
+    legend:
+      type: GetLegendGraphic
+  #Layer: Umringe
+  - name: brw_2017_pl
+    base: brw_2017_freiflaechen_pl
+    title: BRW 2017 - Umringe
+    source:
+      layers:
+        - bodenrichtwerte_2017_pl
+    featureinfo:
+      target: '_blank'
+      width: 390
+      height: 590
+  #Layer: Texte
+  - name: brw_2017_t
+    base: brw_2017_freiflaechen_pl
+    title: BRW 2017 - Texte
+    source:
+      layers:
+        - bodenrichtwerte_2017_t
+  #Bodenrichtwerte 2017 -------------------------------------------------------------------------
+
+  #Bodenrichtwerte 2018 -------------------------------------------------------------------------
+
+  - name: brwznr_2018_t
+    title: Bodenrichtwertzonennr. 2018
+    abstract: Bodenrichtwertzonennr. 2018 in Bielefeld
+    attribution: Bodenrichtwertzonennr. 2018 © Stadt Bielefeld
+    type: wms
+    source:
+      url: //www.bielefeld01.de/umn/wms_bodenrichtwerte_2018_v01.asp?language=ger&
+      layers:
+        - brwznr_2018_t
+      srs: 'EPSG:25832'
+      format: image/png
+    legend:
+      type: GetLegendGraphic
+  - name: bodenrichtwerte_2018_t
+    title: Bodenrichtwerte 2018
+    abstract: Bodenrichtwerte 2018 in Bielefeld
+    attribution: Bodenrichtwerte 2018 © Stadt Bielefeld
+    source:
+      layers:
+        - bodenrichtwerte_2018_t
+    base: brwznr_2018_t
+  - name: bodenrichtwerte_2018_pl
+    title: Bodenrichtwert-Gebiete 2018
+    abstract: Bodenrichtwert-Gebiete 2018 in Bielefeld
+    attribution: Bodenrichtwert-Gebiete 2018 © Stadt Bielefeld
+    searchConfig:
+        - name: bodenrichtwertzonen2018
+          title: Bodenrichtwertzonen 2018
+          geocoder: Solr
+          geocoderOptions:
+              viewbox:
+                  - 8.34154267980772
+                  - 51.905836372029
+                  - 8.72247497339103
+                  - 52.1276204795065
+              url: "/proxy/cors/solr/?catalog=bodenrichtwertzonen2018"
+              method: get
+          zoom: 15
+          resultMarkerVisible: 0
+          urlMarkerColor: E2001A
+          autoSearchChars: 1
+          resultMarker: 
+              graphicFile: 'geocoder-marker.svg'
+              graphicWidth: 32
+              graphicHeight: 50
+              graphicYAnchor: 50
+              graphicScale: 0.75    
+              strokeWidth: 10
+              strokeColor: '#f00'
+              strokeOpacity: 0.3
+    source:
+      layers:
+        - bodenrichtwerte_2018_pl
+    featureinfo:
+      target: '_blank'
+      width: 200
+      height: 100
+      featureCount: 100
+    base: brwznr_2018_t
+  - name: freiflaechen_2018
+    title: Freiflächen ohne Wert 2018
+    abstract: Freiflächen ohne Wert 2018 in Bielefeld
+    attribution: Freiflächen ohne Wert 2018 © Stadt Bielefeld
+    source:
+      layers:
+        - freiflaechen_2018
+    base: brwznr_2018_t
+  #Bodenrichtwerte 2018 -------------------------------------------------------------------------
+
+
+ 
+  
+  #Kalte und warme Bebauungsgebiete---------------------------------------------------------------
+  - name: kalt_warm_gebiete
+    attribution: 'Kalte und warme Bebauungsgebiete © Stadt Bielefeld'
+    title: Kalte und warme Bebauungsgebiete
+    type: wms
+    source:
+      url: //www.bielefeld01.de/umn/wms_kalt_warm_gebiete_v01.asp?
+      format: 'image/png'
+      layers:
+      - kalt_warm_gebiete
+      srs: 'EPSG:25832'
+    legend:
+      type: GetLegendGraphic
+
+#  - name: stadtumring_pl
+#    base: klimaschutzzone_fl
+#    title: Stadtumring
+#    source:
+#        layers:
+#          - stadtumring_pl
+  #Kalte und warme Bebauungsgebiete---------------------------------------------------------------
+
+  #Klimaschutzzonen------------------------------------------------------------------------------
+  - name: klimaschutzzone_fl
+    attribution: 'Klimatische Schutzzonen © Stadt Bielefeld'
+    title: Klimatische Schutzzonen
+    type: wms
+    source:
+      url: //www.bielefeld01.de/umn/wms_klimaschutzzone_v01.asp?
+      format: 'image/png'
+      layers:
+      - klimaschutzzone_fl
+      srs: 'EPSG:25832'
+    legend:
+      type: GetLegendGraphic
+
+#  - name: stadtumring_pl
+#    base: klimaschutzzone_fl
+#    title: Stadtumring
+#    source:
+#        layers:
+#          - stadtumring_pl
+  #Klimaschutzzonen--------------------------------------------------------------------------------
+
+  #Bodenrichtwerte 2016 -------------------------------------------------------------------------
+  #Layer: Freiflaechen
+  - name: brw_2016_freiflaechen_pl
+    attribution: 'Bodenrichtwerte 2016 © Stadt Bielefeld'
+    title: BRW 2016 - Freiflächen
+    type: wms
+    source:
+      url: //www.bielefeld01.de/umn/wms_bodenrichtwerte_2016_v01.asp?
+      format: 'image/png'
+      layers:
+        - freiflaechen_2016
+      srs: 'EPSG:25832'
+    legend:
+      type: GetLegendGraphic
+  #Layer: Umringe
+  - name: brw_2016_pl
+    base: brw_2016_freiflaechen_pl
+    title: BRW 2016 - Umringe
+    type: wms
+    source:
+      layers:
+        - bodenrichtwerte_2016_pl
+    legend:
+      type: GetLegendGraphic
+    featureinfo:
+      target: '_blank'
+      width: 390
+      height: 590
+  #Layer: Texte
+  - name: brw_2016_t
+    base: brw_2016_freiflaechen_pl
+    title: BRW 2016 - Texte
+    type: wms
+    source:
+      layers:
+        - bodenrichtwerte_2016_t
+    legend:
+      type: GetLegendGraphic
+  #Bodenrichtwerte 2016 -------------------------------------------------------------------------
+
+  #Bodenrichtwerte 2015 -------------------------------------------------------------------------
+  #Layer: Freiflaechen
+  - name: brw_2015_freiflaechen_pl
+    attribution: 'Bodenrichtwerte 2015 © Stadt Bielefeld'
+    title: BRW 2015 - Freiflächen
+    type: wms
+    source:
+      url: //www.bielefeld01.de/umn/wms_bodenrichtwerte_2015_v02.asp?
+      format: 'image/png'
+      layers:
+        - freiflaechen_2015
+      srs: 'EPSG:25832'
+    legend:
+      type: GetLegendGraphic
+  #Layer: Umringe
+  - name: brw_2015_pl
+    base: brw_2015_freiflaechen_pl
+    title: BRW 2015 - Umringe
+    type: wms
+    source:
+      layers:
+        - bodenrichtwerte_2015_pl
+    legend:
+      type: GetLegendGraphic
+    featureinfo:
+      target: '_blank'
+      width: 390
+      height: 590
+  #Layer: Texte
+  - name: brw_2015_t
+    base: brw_2015_freiflaechen_pl
+    title: BRW 2015 - Texte
+    type: wms
+    source:
+      layers:
+        - bodenrichtwerte_2015_t
+    legend:
+      type: GetLegendGraphic
+  #Bodenrichtwerte 2015 -------------------------------------------------------------------------
+
+  #Bodenrichtwerte 2014 -------------------------------------------------------------------------
+  #Layer: Freiflaechen
+  - name: brw_2014_freiflaechen_pl
+    attribution: 'Bodenrichtwerte 2014 © Stadt Bielefeld'
+    title: BRW 2014 - Freiflächen
+    type: wms
+    source:
+      url: //www.bielefeld01.de/umn/wms_bodenrichtwerte_2014_v01.asp?
+      format: 'image/png'
+      layers:
+        - freiflaechen_2014
+      srs: 'EPSG:25832'
+    legend:
+      type: GetLegendGraphic
+  #Layer: Umringe
+  - name: brw_2014_pl
+    base: brw_2014_freiflaechen_pl
+    title: BRW 2014 - Umringe
+    type: wms
+    source:
+      layers:
+        - bodenrichtwerte_2014_pl
+      encoding: 'iso-8859-1'
+    legend:
+      type: GetLegendGraphic
+    featureinfo:
+      target: '_blank'
+      width: 390
+      height: 590
+  #Layer: Texte
+  - name: brw_2014_t
+    base: brw_2014_freiflaechen_pl
+    title: BRW 2014 - Texte
+    type: wms
+    source:
+      layers:
+        - bodenrichtwerte_2014_t
+    legend:
+      type: GetLegendGraphic
+  #Bodenrichtwerte 2014 -------------------------------------------------------------------------
+
+  #Bodenrichtwerte 2013 -------------------------------------------------------------------------
+  #Layer: Freiflaechen
+  - name: brw_2013_freiflaechen_pl
+    attribution: 'Bodenrichtwerte 2013 © Stadt Bielefeld'
+    title: BRW 2013 - Freiflächen
+    type: wms
+    source:
+      url: //www.bielefeld01.de/umn/wms_bodenrichtwerte_2013_v01.asp?
+      format: 'image/png'
+      layers:
+        - freiflaechen_2013
+      srs: 'EPSG:25832'
+    legend:
+      type: GetLegendGraphic
+  #Layer: Umringe
+  - name: brw_2013_pl
+    base: brw_2013_freiflaechen_pl
+    title: BRW 2013 - Umringe
+    type: wms
+    source:
+      layers:
+        - bodenrichtwerte_2013_pl
+      encoding: 'iso-8859-1'
+    legend:
+      type: GetLegendGraphic
+    featureinfo:
+      target: '_blank'
+      width: 390
+      height: 590
+  #Layer: Texte
+  - name: brw_2013_t
+    base: brw_2013_freiflaechen_pl
+    title: BRW 2013 - Texte
+    type: wms
+    source:
+      layers:
+        - bodenrichtwerte_2013_t
+    legend:
+      type: GetLegendGraphic
+  #Bodenrichtwerte 2013 -------------------------------------------------------------------------
+
+
+  #Bodenrichtwerte 2012 -------------------------------------------------------------------------
+  #Layer: Freiflaechen
+  - name: brw_2012_freiflaechen_pl
+    attribution: 'Bodenrichtwerte 2012 © Stadt Bielefeld'
+    title: BRW 2012 - Freiflächen
+    type: wms
+    source:
+      url: //www.bielefeld01.de/umn/wms_bodenrichtwerte_2012_v01.asp?
+      format: 'image/png'
+      layers:
+        - freiflaechen_2012
+      srs: 'EPSG:25832'
+    legend:
+      type: GetLegendGraphic
+  #Layer: Umringe
+  - name: brw_2012_pl
+    base: brw_2012_freiflaechen_pl
+    title: BRW 2012 - Umringe
+    type: wms
+    source:
+      layers:
+        - bodenrichtwerte_2012_pl
+      encoding: 'iso-8859-1'
+    legend:
+      type: GetLegendGraphic
+    featureinfo:
+      target: '_blank'
+      width: 390
+      height: 590
+  #Layer: Texte
+  - name: brw_2012_t
+    base: brw_2012_freiflaechen_pl
+    title: BRW 2012 - Texte
+    type: wms
+    source:
+      layers:
+        - bodenrichtwerte_2012_t
+    legend:
+      type: GetLegendGraphic
+  #Bodenrichtwerte 2012 -------------------------------------------------------------------------
+
+  #Bodenrichtwerte 2011 -------------------------------------------------------------------------
+  #Layer: Texte
+  - name: brw_2011_t
+    attribution: 'Bodenrichtwerte 2011 © Stadt Bielefeld'
+    title: BRW 2011 - Texte
+    #catalog:
+    #  title: Bodenrichtwerte 2011 - Texte
+    type: wms
+    source:
+      url: //www.bielefeld01.de/umn/wms_bodenrichtwerte_2011_v01.asp?
+      format: 'image/png'
+      layers:
+        - bodenrichtwerte_2011_t
+      srs: 'EPSG:25832'
+    legend:
+      type: GetLegendGraphic
+  #Layer: Umringe
+  - name: brw_2011_pl
+    base: brw_2011_t
+    title: BRW 2011 - Umringe
+    #catalog:
+    #  title: Bodenrichtwerte 2011 - Umringe
+    type: wms
+    source:
+      layers:
+        - bodenrichtwerte_2011_pl
+      encoding: 'iso-8859-1'
+    legend:
+      type: GetLegendGraphic
+    featureinfo:
+      target: '_blank'
+      width: 390
+      height: 590
+  #Bodenrichtwerte 2011 -------------------------------------------------------------------------
+
+  #Bodenrichtwerte 2010 -------------------------------------------------------------------------
+  #Layer: Umringe 2010
+  - name: brw_2010_pl
+    attribution: 'Bodenrichtwerte 2010 © Stadt Bielefeld'
+    title: BRW 2010 - Umringe
+    type: wms
+    #catalog:
+    #  title: Bodenrichtwerte 2010 - Umringe
+    source:
+      url: //www.bielefeld01.de/umn/wms_bodenrichtwerte_2002_2010_v01.asp?
+      format: 'image/png'
+      layers:
+        - bodenrichtwerte_2010_pl
+      srs: 'EPSG:25832'
+    legend:
+      type: GetLegendGraphic
+  #Layer: Texte 2010
+  - name: brw_2010_t
+    base: brw_2010_pl
+    attribution: 'Bodenrichtwerte 2010 © Stadt Bielefeld'
+    title: BRW 2010 - Texte
+    #catalog:
+    #  title: Bodenrichtwerte 2010 - Text
+    source:
+      layers:
+        - bodenrichtwerte_2010_t
+      encoding: 'iso-8859-1'
+    featureinfo:
+      target: '_blank'
+      width: 390
+      height: 590
+  #Bodenrichtwerte 2010 -------------------------------------------------------------------------
+
+
+  #Bodenrichtwerte 2009 -------------------------------------------------------------------------
+  #Layer: Umringe 2009
+  - name: brw_2009_pl
+    base: brw_2010_pl
+    attribution: 'Bodenrichtwerte 2009 © Stadt Bielefeld'
+    title: BRW 2009 - Umringe
+    #catalog:
+    #  title: Bodenrichtwerte 2009 - Umringe
+    source:
+      layers:
+        - bodenrichtwerte_2009_pl
+  #Layer: Texte 2009
+  - name: brw_2009_t
+    base: brw_2010_pl
+    attribution: 'Bodenrichtwerte 2009 © Stadt Bielefeld'
+    title: BRW 2009 - Texte
+    #catalog:
+    #  title: Bodenrichtwerte 2009
+    source:
+      layers:
+        - bodenrichtwerte_2009_t
+      encoding: 'iso-8859-1'
+    featureinfo:
+      target: '_blank'
+      width: 390
+      height: 590
+  #Bodenrichtwerte 2009 -------------------------------------------------------------------------
+
+
+  #Bodenrichtwerte 2008 -------------------------------------------------------------------------
+  #Layer: Umringe 2008
+  - name: brw_2008_pl
+    base: brw_2010_pl
+    attribution: 'Bodenrichtwerte 2008 © Stadt Bielefeld'
+    title: BRW 2008 - Umringe
+    #catalog:
+    #  title: Bodenrichtwerte 2008
+    source:
+      layers:
+        - bodenrichtwerte_2008_pl
+  #Layer: Texte 2008
+  - name: brw_2008_t
+    base: brw_2010_pl
+    attribution: 'Bodenrichtwerte 2008 © Stadt Bielefeld'
+    title: BRW 2008 - Texte
+    source:
+      layers:
+        - bodenrichtwerte_2008_t
+      encoding: 'iso-8859-1'
+    featureinfo:
+      target: '_blank'
+      width: 390
+      height: 590
+  #Bodenrichtwerte 2008 -------------------------------------------------------------------------
+
+  #Bodenrichtwerte 2007 -------------------------------------------------------------------------
+  - name: brw_2007
+    attribution: 'Bodenrichtwerte 2007 © Stadt Bielefeld'
+    title: BRW 2007
+    type: wms
+    source:
+      url: //www.bielefeld01.de/umn/wms_bodenrichtwerte_2002_2010_v01.asp?
+      format: 'image/png'
+      layers:
+        - bodenrichtwerte_2007_in_euro
+      srs: 'EPSG:25832'
+    #metadataUrl: https://www.bielefeld01.de/mdOLKD/Daten/baustellen_p?FORMAT=HTML_Daten
+    catalog: false
+
+  #Bodenrichtwerte 2007 -------------------------------------------------------------------------
+
+  #Bodenrichtwerte 2006 -------------------------------------------------------------------------
+  - name: brw_2006
+    base: brw_2007
+    attribution: 'Bodenrichtwerte 2006 © Stadt Bielefeld'
+    title: BRW 2006
+    source:
+      layers:
+        - bodenrichtwerte_2006_in_euro
+    #metadataUrl: https://www.bielefeld01.de/mdOLKD/Daten/baustellen_p?FORMAT=HTML_Daten
+    #catalog:
+    #  title: Bodenrichtwerte 2006
+
+  #Bodenrichtwerte 2006 -------------------------------------------------------------------------
+
+
+  #Bodenrichtwerte 2005 -------------------------------------------------------------------------
+  - name: brw_2005
+    base: brw_2007
+    attribution: 'Bodenrichtwerte 2005 © Stadt Bielefeld'
+    title: BRW 2005
+    source:
+      layers:
+        - bodenrichtwerte_2005_in_euro
+    #catalog:
+    #  title: Bodenrichtwerte 2005
+    #metadataUrl: https://www.bielefeld01.de/mdOLKD/Daten/baustellen_p?FORMAT=HTML_Daten
+
+  #Bodenrichtwerte 2005 -------------------------------------------------------------------------
+
+
+  #Bodenrichtwerte 2004 -------------------------------------------------------------------------
+  - name: brw_2004
+    base: brw_2007
+    attribution: 'Bodenrichtwerte 2004 © Stadt Bielefeld'
+    title: BRW 2004
+    source:
+      layers:
+        - bodenrichtwerte_2004_in_euro
+    #catalog:
+    #  title: Bodenrichtwerte 2004
+    #metadataUrl: https://www.bielefeld01.de/mdOLKD/Daten/baustellen_p?FORMAT=HTML_Daten
+
+  #Bodenrichtwerte 2004 -------------------------------------------------------------------------
+
+
+  #Bodenrichtwerte 2003 -------------------------------------------------------------------------
+  - name: brw_2003
+    base: brw_2007
+    attribution: 'Bodenrichtwerte 2003 © Stadt Bielefeld'
+    title: BRW 2003
+    source:
+      layers:
+        - bodenrichtwerte_2003_in_euro
+
+  #Bodenrichtwerte 2003 -------------------------------------------------------------------------
+
+
+  #Bodenrichtwerte 2002 -------------------------------------------------------------------------
+  - name: brw_2002
+    base: brw_2007
+    attribution: 'Bodenrichtwerte 2002 © Stadt Bielefeld'
+    title: BRW 2002
+    source:
+      layers:
+        - bodenrichtwerte_2002_in_euro
+  #Bodenrichtwerte 2002 -------------------------------------------------------------------------
+
+
+  #Bodenrichtwerte 2001 -------------------------------------------------------------------------
+  - name: brw_2001
+    attribution: 'Bodenrichtwerte 2001 © Stadt Bielefeld'
+    title: BRW 2001 in DM
+    type: wms
+    source:
+      url: //www.bielefeld01.de/umn/wms_bodenrichtwerte_1996_2001_v01.asp?
+      format: 'image/png'
+      layers:
+        - bodenrichtwerte_2001_in_dm
+      srs: 'EPSG:25832'
+  #Bodenrichtwerte 2001 -------------------------------------------------------------------------
+
+
+  #Bodenrichtwerte 2000 -------------------------------------------------------------------------
+  - name: brw_2000
+    base: brw_2001
+    attribution: 'Bodenrichtwerte 2001 © Stadt Bielefeld'
+    title: BRW 2000 in DM
+    source:
+      layers:
+        - bodenrichtwerte_2000_in_dm
+  #Bodenrichtwerte 2000 -------------------------------------------------------------------------
+
+
+  #Bodenrichtwerte 1999 -------------------------------------------------------------------------
+  - name: brw_1999
+    base: brw_2001
+    attribution: 'Bodenrichtwerte 1999 © Stadt Bielefeld'
+    title: BRW 1999 in DM
+    source:
+      layers:
+        - bodenrichtwerte_1999_in_dm
+  #Bodenrichtwerte 1999 -------------------------------------------------------------------------
+
+
+  #Bodenrichtwerte 1998 -------------------------------------------------------------------------
+  - name: brw_1998
+    base: brw_2001
+    attribution: 'Bodenrichtwerte 1998 © Stadt Bielefeld'
+    title: BRW 1998 in DM
+    source:
+      layers:
+        - bodenrichtwerte_1998_in_dm
+  #Bodenrichtwerte 1998 -------------------------------------------------------------------------
+
+
+  #Bodenrichtwerte 1997 -------------------------------------------------------------------------
+  - name: brw_1997
+    base: brw_2001
+    attribution: 'Bodenrichtwerte 1997 © Stadt Bielefeld'
+    title: BRW 1997 in DM
+    source:
+      layers:
+        - bodenrichtwerte_1997_in_dm
+  #Bodenrichtwerte 1997 -------------------------------------------------------------------------
+
+
+  #Bodenrichtwerte 1996 -------------------------------------------------------------------------
+  - name: brw_1996
+    base: brw_2001
+    attribution: 'Bodenrichtwerte 1996 © Stadt Bielefeld'
+    title: BRW 1996 in DM
+    source:
+      layers:
+        - bodenrichtwerte_1996_in_dm
+  #Bodenrichtwerte 1996 -------------------------------------------------------------------------
+
+
+  # Rettungspunkte ------------------------------------------------------------------------------------------------
+  # Rettungspunkte ohne Klassifizierung ---------------------------------------------------------------------------
+  - name: rettungspunkte_jeder_p
+    base: rettungspunkte_kq_pl
+    type: wms
+    attribution: Rettungspunkte © Stadt Bielefeld
+    title: Rettungspunkte
+    source:
+      layers:
+        - rettungspunkte_jeder_p
+      srs: 'EPSG:25832'
+  # Rettungspunkte ohne Klassifizierung ---------------------------------------------------------------------------
+  # Rettungspunkte mit Klassifizierung ----------------------------------------------------------------------------
+  - name: rettungspunkte_p
+    base: rettungspunkte_kq_pl
+    type: wms
+    attribution: Rettungspunkte © Stadt Bielefeld
+    title: Rettungspunkte
+    source:
+      layers:
+        - rettungspunkte_p
+      srs: 'EPSG:25832'
+    featureinfo:
+      target: '_blank'
+      width: 390
+      height: 590  
+  # Rettungspunkte mit Klassifizierung ----------------------------------------------------------------------------
+  # Rettungspunkte ------------------------------------------------------------------------------------------------
+  # Kilometerquadrate-Stadtplan -----------------------------------------------------------------------------------
+  - name: rettungspunkte_kq_pl
+    type: wms
+    attribution: Kilometerquadrate © Stadt Bielefeld
+    title: Kilometerquadrate
+    source:
+      url: //www.bielefeld01.de/umn/wms_rettungspunkte_v02.asp
+      format: 'image/png'
+      layers:
+        - rettungspunkte_kq_pl
+      srs: 'EPSG:25832'
+    legend:
+      type: GetLegendGraphic
+  # Kilometerquadrate-Stadtplan -----------------------------------------------------------------------------------
+
+  #Postleitzahlen - Texte -----------------------------------------------------------------------------------------
+  - name: plz_t
+    type: wms
+    attribution: '<a href="http://www.bielefeld01.de/geoportal/vertrieb/hinweise.htm" title="Weitere Informationen zu den PLZ" target="_blank">Postleitzahlen © Stadt Bielefeld</a>'
+    title: PLZ Texte
+    source:
+      #url: //www.bielefeld01.de/umn/wms_plz_v01.asp?
+      url: http://172.22.100.139/test_umn/wms_plz_v01.asp?
+      format: 'image/png'
+      layers:
+        - postleitzahl_t
+      srs: 'EPSG:25832'
+  #Postleitzahlen - Texte -----------------------------------------------------------------------
+  #Postleitzahlen - Bereiche --------------------------------------------------------------------
+   # für group Grenzen
+  - name: plz_ohne_info_pl
+    base: plz_t
+    title: PLZ Bereiche ohne Info
+    source:
+      format: 'image/png'
+      layers:
+        - postleitzahl_pl
+    legend:
+      type: GetLegendGraphic
+   # für group Grenzen
+  - name: plz_pl
+    base: plz_t
+    title: PLZ Bereiche
+    source:
+      format: 'image/png'
+      layers:
+        - postleitzahl_pl
+    featureinfo:
+      target: '_popup'
+      width: 250
+      height: 180
+    legend:
+      type: GetLegendGraphic
+    searchConfig:
+        - name: plz
+          title: Postleitzahl
+          geocoder: Solr
+          geocoderOptions:
+              viewbox:
+                  - 8.34154267980772
+                  - 51.905836372029
+                  - 8.72247497339103
+                  - 52.1276204795065
+              url: "/proxy/cors/solr/?catalog=plz"
+              method: get
+          zoom: 14
+          resultMarkerVisible: 0
+          urlMarkerColor: E2001A
+          autoSearchChars: 3
+          resultMarker: 
+              graphicFile: 'geocoder-marker.svg'
+              graphicWidth: 32
+              graphicHeight: 50
+              graphicYAnchor: 50
+              graphicScale: 0.75    
+              strokeWidth: 10
+              strokeColor: '#f00'
+              strokeOpacity: 0.3
+  #Postleitzahlen - Bereiche --------------------------------------------------------------------
+
+
+  #Background-Karten
+
+  - name: topplus_web_open
+    title: TopPlus-Web-Open
+    type: tiledwms
+    background: true
+    attribution: 'TopPlus-Web-Open © <a href="https://www.bkg.bund.de/" target="_blank">Bundesamt für Kartographie und Geodäsie</a> 2017, <a href="http://sg.geodatenzentrum.de/web_public/Datenquellen_TopPlus_Open.pdf" target="_blank">Datenquellen</a>'
+    source:
+      url: "//sg.geodatenzentrum.de/wms_topplus_web_open?"
+      format: "image/png"
+      layers:
+        - web
+      srs: "EPSG:25832"
+  - name: topplus_web_open_print
+    title: TopPlus-Web-Open
+    type: tiledwms
+    attribution: 'TopPlus-Web-Open © <a href="https://www.bkg.bund.de/" target="_blank">Bundesamt für Kartographie und Geodäsie</a> 2017, <a href="http://sg.geodatenzentrum.de/web_public/Datenquellen_TopPlus_Open.pdf" target="_blank">Datenquellen</a>'
+    source:
+      url: "//sg.geodatenzentrum.de/wms_topplus_web_open?MAP_RESOLUTION=72&"
+      format: "image/png"
+      layers:
+        - web
+      srs: "EPSG:25832"
+
   - name: stadtplan_bi
     title: bielefeldKARTE farbe
     type: wmts
     background: true
     attribution: 'bielefeldKARTE Kartenbild © Stadt Bielefeld (<a href="https://creativecommons.org/licenses/by/4.0/deed.de" target="_blank">CC BY 4.0</a>), bielefeldKARTE Kartendaten © Stadt Bielefeld und <a href="http://www.openstreetmap.org/#map=15/52.0189/8.5338" target="_blank">OpenStreetMap</a> (<a href="http://opendatacommons.org/licenses/odbl/" target="_blank">ODbL</a>)'
     source:
-      url: "/mapproxy/wmts/"
+      url : "/mapproxy/wmts/"
       format: "image/png"
       layer: 'stadtplan_bi'
       srs: 'EPSG:25832'
-      levels: 16
-      extent: [ -46133.17, 5048875.26857567, 1206211.10142433, 6301219.54 ]
+      levels: 20
+      extent: [-46133.17, 5048875.26857567, 1206211.10142433, 6301219.54]
       matrixSet: 'utm32_adv'
       hqMatrixSet: 'utm32_adv_hq'
     legend:
@@ -21,3 +1011,1073 @@ layers:
       href: https://www.bielefeld01.de/md/WMS/bielefeld_karte_farbe/02?REQUEST=GetFile&FILE=legende.pdf
       title: Legende der bielefeldKARTE farbe
       text: bielefeldKARTE farbe
+
+  - name: stadtplan_bi_print
+    title: bielefeldKARTE
+    type: tiledwms
+    attribution: 'bielefeldKARTE Kartenbild © Stadt Bielefeld (<a href="https://creativecommons.org/licenses/by/4.0/deed.de" target="_blank">CC BY 4.0</a>), bielefeldKARTE Kartendaten © Stadt Bielefeld und <a href="http://www.openstreetmap.org/#map=15/52.0189/8.5338" target="_blank">OpenStreetMap</a> (<a href="http://opendatacommons.org/licenses/odbl/" target="_blank">ODbL</a>)'
+    source:
+      url: "/mapproxy/service?map_resolution=216&"
+      format: "image/png"
+      layers:
+        - stadtplan_bi_direct
+      srs: "EPSG:25832"
+
+  - name: stadtplan_bi_ori
+    title: bielefeldKARTE farbe ori
+    type: wms
+    background: true
+    attribution: 'bielefeldKARTE Kartenbild © Stadt Bielefeld (<a href="https://creativecommons.org/licenses/by/4.0/deed.de" target="_blank">CC BY 4.0</a>), bielefeldKARTE Kartendaten © Stadt Bielefeld und <a href="http://www.openstreetmap.org/#map=15/52.0189/8.5338" target="_blank">OpenStreetMap</a> (<a href="http://opendatacommons.org/licenses/odbl/" target="_blank">ODbL</a>)'
+    source:
+      url: "/mapproxy/service?"
+      format: "image/png"
+      layers:
+        - stadtplan_bi_direct
+      srs: "EPSG:25832"
+
+  - name: stadtplan_bi_druck
+    title: bielefeldKARTE druck
+    type: wms
+    background: true
+    attribution: 'bielefeldKARTE Kartenbild © Stadt Bielefeld (<a href="https://creativecommons.org/licenses/by/4.0/deed.de" target="_blank">CC BY 4.0</a>), bielefeldKARTE Kartendaten © Stadt Bielefeld und <a href="http://www.openstreetmap.org/#map=15/52.0189/8.5338" target="_blank">OpenStreetMap</a> (<a href="http://opendatacommons.org/licenses/odbl/" target="_blank">ODbL</a>)'
+    source:
+      url: "/cgi-bin/mapserv?map=/opt/etc/styles/bielefeld/map/bielefeld-druck.map&"
+      format: "image/png"
+      layers:
+        - map
+      srs: "EPSG:25832"
+
+  - name: stadtplan_bi_druck_raw
+    title: bielefeldKARTE druck (SVG)
+    type: tiledwms
+    source:
+      url: "/cgi-bin/mapserv?map=/opt/etc/styles/bielefeld/map/bielefeld-druck.map&map_resolution=216&"
+      format: "image/png"
+      layers:
+        - map
+      srs: "EPSG:25832"
+
+  - name: stadtplan_bi_grau_ori
+    title: bielefeldKARTE grau ori
+    type: wms
+    background: true
+    attribution: 'bielefeldKARTE Kartenbild © Stadt Bielefeld (<a href="https://creativecommons.org/licenses/by/4.0/deed.de" target="_blank">CC BY 4.0</a>), bielefeldKARTE Kartendaten © Stadt Bielefeld und <a href="http://www.openstreetmap.org/#map=15/52.0189/8.5338" target="_blank">OpenStreetMap</a> (<a href="http://opendatacommons.org/licenses/odbl/" target="_blank">ODbL</a>)'
+    source:
+      url: "/mapproxy/service?"
+      format: "image/png"
+      layers:
+        - stadtplan_bi_grau_direct
+      srs: "EPSG:25832"
+
+  - name: stadtplan_bi_gruen_ori
+    title: bielefeldKARTE grün ori
+    type: wms
+    background: true
+    attribution: 'bielefeldKARTE Kartenbild © Stadt Bielefeld (<a href="https://creativecommons.org/licenses/by/4.0/deed.de" target="_blank">CC BY 4.0</a>), bielefeldKARTE Kartendaten © Stadt Bielefeld und <a href="http://www.openstreetmap.org/#map=15/52.0189/8.5338" target="_blank">OpenStreetMap</a> (<a href="http://opendatacommons.org/licenses/odbl/" target="_blank">ODbL</a>)'
+    source:
+      url: "/mapproxy/service?"
+      format: "image/png"
+      layers:
+        - stadtplan_bi_gruen_direct
+      srs: "EPSG:25832"
+
+  - name: mobiel_tag_ori
+    title: moBiel Tagesnetz ori
+    type: wms
+    background: true
+    attribution: 'bielefeldKARTE Kartenbild © Stadt Bielefeld (<a href="https://creativecommons.org/licenses/by/4.0/deed.de" target="_blank">CC BY 4.0</a>), bielefeldKARTE Kartendaten © Stadt Bielefeld und <a href="http://www.openstreetmap.org/#map=15/52.0189/8.5338" target="_blank">OpenStreetMap</a> (<a href="http://opendatacommons.org/licenses/odbl/" target="_blank">ODbL</a>)'
+    source:
+      url: "/mapproxy/service?"
+      format: "image/png"
+      layers:
+        - mobiel_tag_direct
+      srs: "EPSG:25832"
+
+  - name: mobiel_nacht_ori
+    title: moBiel NachtBus-Netz ori
+    type: wms
+    background: true
+    attribution: 'bielefeldKARTE Kartenbild © Stadt Bielefeld (<a href="https://creativecommons.org/licenses/by/4.0/deed.de" target="_blank">CC BY 4.0</a>), bielefeldKARTE Kartendaten © Stadt Bielefeld und <a href="http://www.openstreetmap.org/#map=15/52.0189/8.5338" target="_blank">OpenStreetMap</a> (<a href="http://opendatacommons.org/licenses/odbl/" target="_blank">ODbL</a>)'
+    source:
+      url: "/mapproxy/service?"
+      format: "image/png"
+      layers:
+        - mobiel_nacht_direct
+      srs: "EPSG:25832"
+
+  - name: regio_karte_bi_print
+    title: regioKARTE
+    type: tiledwms
+    attribution: 'regioKARTE Kartenbild © Stadt Bielefeld (<a href="https://creativecommons.org/licenses/by/4.0/deed.de" target="_blank">CC BY 4.0</a>), bielefeldKARTE Kartendaten © Stadt Bielefeld und <a href="http://www.openstreetmap.org/#map=15/52.0189/8.5338" target="_blank">OpenStreetMap</a> (<a href="http://opendatacommons.org/licenses/odbl/" target="_blank">ODbL</a>)'
+    source:
+      url: "//www.bielefeld01.de/mp/regio/service?map_resolution=216&"
+      format: "image/png"
+      layers:
+        - regio_karte_bi_direct
+      srs: "EPSG:25832"
+
+
+  - name: stadtplan_bi_raw
+    title: Stadtplan Bielefeld
+    type: tiledwms
+    source:
+      url: "/cgi-bin/mapserv?map=/opt/etc/styles/bielefeld/map/bielefeld.map&map_resolution=216&"
+      format: "image/png"
+      layers:
+        - map
+      srs: "EPSG:25832"
+
+
+  - name: stadtplan_bi_grau
+    title: bielefeldKARTE grau
+    background: true
+    base: stadtplan_bi
+    source:
+      url : "/mapproxy/wmts/"
+      layer: 'stadtplan_bi_grau'
+
+  # Radwegkarte ------------------------------------------------------------------------------
+
+  - name: radwegkarte_bi
+    title: Radwegkarte Bielefeld
+    type: wmts
+    background: true
+    attribution: 'bielefeldKARTE Kartenbild © Stadt Bielefeld (<a href="https://creativecommons.org/licenses/by/4.0/deed.de" target="_blank">CC BY 4.0</a>), bielefeldKARTE Kartendaten © Stadt Bielefeld und <a href="http://www.openstreetmap.org/#map=15/52.0189/8.5338" target="_blank">OpenStreetMap</a> (<a href="http://opendatacommons.org/licenses/odbl/" target="_blank">ODbL</a>)'
+    source:
+      url : "/mapproxy/wmts/"
+      format: "image/png"
+      layer: 'stadtplan_bi'
+      srs: 'EPSG:25832'
+      levels: 16
+      extent: [-46133.17, 5048875.26857567, 1206211.10142433, 6301219.54]
+      matrixSet: 'utm32_adv'
+      hqMatrixSet: 'utm32_adv_hq'
+
+  - name: radwegkarte_bi_print
+    title: Radwegkarte Bielefeld
+    type: tiledwms
+    background: true
+    attribution: 'bielefeldKARTE Kartenbild © Stadt Bielefeld (<a href="https://creativecommons.org/licenses/by/4.0/deed.de" target="_blank">CC BY 4.0</a>), bielefeldKARTE Kartendaten © Stadt Bielefeld und <a href="http://www.openstreetmap.org/#map=15/52.0189/8.5338" target="_blank">OpenStreetMap</a> (<a href="http://opendatacommons.org/licenses/odbl/" target="_blank">ODbL</a>)'
+    source:
+      url: "/cgi-bin/mapserv?map=/opt/etc/styles/bielefeld/map/bielefeld-radwege.map&map_resolution=216&"
+      format: "image/png"
+      layers:
+        - map
+      srs: "EPSG:25832"
+
+  - name: radwegkarte_bi_raw
+    title: Radwegkarte Bielefeld
+    type: tiledwms
+    source:
+      url: "/cgi-bin/mapserv?map=/opt/etc/styles/bielefeld/map/bielefeld-radwege.map&map_resolution=216&"
+      format: "image/png"
+      layers:
+        - map
+      srs: "EPSG:25832"
+
+
+# Historische Karte 1895 --------------------
+  - name: Bielefeld_1895
+    attribution: 'Karte von Bielefeld 1895 (historisch) © Stadt Bielefeld'
+    title: Bomers-Karte 1895
+    type: wms
+    source:
+      url: //www.bielefeld01.de/umn/wms_hist_karte_1895_v01.asp?
+      format: 'image/png'
+      layers:
+        - Bielefeld_1895
+      srs: 'EPSG:25832'
+    legend:
+      type: GetLegendGraphic
+# Historische Karte 1895 --------------------
+
+
+# Historische Karte 1784 --------------------
+  - name: grenze_ravensberg_lippe_1784
+    attribution: 'Karte von Bielefeld 1784 (historisch) © Stadt Bielefeld'
+    title: Grenzverlauf Ravensberg Lippe 1784
+    type: wms
+    source:
+      url: //www.bielefeld01.de/umn/wms_hist_karte_1784_v01.asp?
+      format: 'image/png'
+      layers:
+        - grenze_ravensberg_lippe_1784
+      srs: 'EPSG:25832'
+    legend:
+      type: GetLegendGraphic
+# Historische Karte 1784 --------------------
+
+# # Stadtumbaugebiete --------------------
+  - name: zielkonzept_naturschutz
+    attribution: 'Zielkonzept Naturschutz © Stadt Bielefeld'
+    title: Zielkonzept Naturschutz
+    type: wms
+    source:
+      url: //www.bielefeld01.de/umn/wms_zielkonzept_naturschutz_v01.asp?
+      format: 'image/png'
+      layers:
+        - zielkonzept_naturschutz
+      srs: 'EPSG:25832'
+    legend:
+      type: GetLegendGraphic
+# stadtumbaugebiete --------------------
+
+# Schulwegeplan ---------------------------------------------------------
+  - name: gefahrenbereich
+    title: Gefahrenbereich
+    abstract: ''
+    attribution: Schulwegeplan © Stadt Bielefeld
+    type: wms
+    source:
+      url: //www.bielefeld01.de/umn/wms_schulwegplan_v01.asp?
+      layers:
+        - schulwegpl_gefahrenber_l
+      srs: 'EPSG:25832'
+      format: image/png
+#    legend:
+#      type: GetLegendGraphic
+
+ #   legend:
+ #    type: link
+   #  href: https://www.bielefeld01.de/fachdaten/oepnv/mobiel%20legende.pdf
+#      href: https://www.bielefeld01.de/fachdaten/metadaten/aaa_projekte_oeffentlich/klimaanpassungskonzept_oeff/starkregen_legende.pdf
+  #   href: https://www.bielefeld01.de/fachdaten/metadaten/schulwegplaene/schulwegkarte_legende.pdf
+ #     href: https://www.bielefeld01.de/md/WMS/bielefeld_karte_farbe/02?REQUEST=GetFile&FILE=legende.pdf
+  #   title: Legende der Schulwegpläne
+  #   text: Legende
+      
+  - name: fussgaengerschutzinsel
+    title: Fußgängerschutzinsel
+    abstract: ''
+    source:
+      layers:
+        - schulwegpl_schutzinsel_p
+    base: gefahrenbereich
+  #  legend:
+    
+  - name: empfohlener_gehweg
+    title: empfohlener Gehweg zur nächsten GS
+    abstract: ''
+    source:
+      layers:
+        - schulwegpl_schulweg_l
+    base: gefahrenbereich
+  #  legend:
+    
+  - name: empfohlener_gehrichtung
+    title: empfohlene Gehrichtung
+    abstract: ''
+    source:
+      layers:
+        - schulwegpl_wegrichtg_l
+    base: gefahrenbereich
+  #  legend:
+    
+  - name: zebrastreifen
+    title: Zebrastreifen
+    abstract: ''
+    source:
+      layers:
+        - schulwegpl_zebrastreifen_p
+    base: gefahrenbereich
+  #  legend:
+    
+  - name: ampel
+    title: Fußgänger- und Kreuzungsampel
+    abstract: ''
+    source:
+      layers:
+        - schulwegpl_ampel_p
+    base: gefahrenbereich
+  #  legend:
+    
+  - name: schulbushaltestelle
+    title: Schulbushaltestelle
+    abstract: ''
+    source:
+      layers:
+        - schulwegpl_haltestelle_p
+    base: gefahrenbereich
+  #  legend:
+    
+    featureinfo:
+      target: _popup
+      width: 200
+      height: 100
+      featureCount: 100
+
+  - name: haltestelle_walking_bus
+    title: Haltestelle Walking-Bus
+    abstract: ''
+    source:
+      layers:
+        - schulwegpl_fussgruppe_p
+    base: gefahrenbereich
+  #  legend:
+    
+  - name: elternhaltestelle
+    title: Elternhaltestelle
+    abstract: ''
+    source:
+      layers:
+        - schulwegpl_elternhaltest_p
+    base: gefahrenbereich
+  #  legend:
+    
+  - name: lotsenstandort
+    title: Standort von Lotsen
+    abstract: ''
+    source:
+      layers:
+        - schulwegpl_lotse_p
+    base: gefahrenbereich
+  #  legend:
+    legend:
+     type: link
+   #  href: https://www.bielefeld01.de/fachdaten/oepnv/mobiel%20legende.pdf
+#      href: https://www.bielefeld01.de/fachdaten/metadaten/aaa_projekte_oeffentlich/klimaanpassungskonzept_oeff/starkregen_legende.pdf
+     href: https://www.bielefeld01.de/fachdaten/metadaten/schulwegplaene/schulwegkarte_legende.pdf
+ #     href: https://www.bielefeld01.de/md/WMS/bielefeld_karte_farbe/02?REQUEST=GetFile&FILE=legende.pdf
+     title: Legende der Schulwegpläne
+     text: Legende
+  # Schulwegeplan --------------------------------------------------------
+
+
+
+  #Gewässergüte Messpunkte-----------------------------------------------------------------------------
+  - name: gewaesserguete_messp
+    attribution: 'Gewässergüte © Stadt Bielefeld'
+    title: Gewässergüte Messpunkte
+    type: wms
+    source:
+      url: http://172.22.100.139/test_umn/wms_gewaesserguete_messp_v02.asp?
+      format: 'image/png'
+      layers:
+        - gewaesserguete_messp_p
+      srs: 'EPSG:25832'
+    legend:
+      type: GetLegendGraphic
+  #Gewässergüte Messpunkte-----------------------------------------------------------------------------
+
+  #Gewässereinzugsbereiche-------------------------------------------------------------------------------
+  #Übersicht Gebiete
+  - name: gew_einzugsgebiete_uebersicht
+    attribution: 'Gewässereinzugsgebiete und Gewässernetz © Stadt Bielefeld'
+    title: Übersicht Gebiete
+   # catalog:
+    #  title: Übersicht Gewässergebiete
+    type: wms
+    source:
+      url: //www.bielefeld01.de/umn/wms_gewaesser_einzugsgebiete_v02.asp?
+      format: 'image/png'
+      layers:
+        - gew_einzugsgebiete_uebersicht
+      srs: 'EPSG:25832'
+    legend:
+      type: GetLegendGraphic
+  #Übersicht Gebiete
+  #Dalkebach
+  - name: gew_einzugsgebiet_dalkebach
+    base: gew_einzugsgebiete_uebersicht
+    title: Gebiet Dalkebach
+    #catalog:
+    source:
+      layers:
+        - gew_einzugsgebiet_dalkebach
+  #Dalkebach
+  #Ems-Lutter
+  - name: gew_einzugsgebiet_ems_lutter
+    base: gew_einzugsgebiete_uebersicht
+    title: Gebiet Ems-Lutter
+    #catalog:
+    source:
+      layers:
+        - gew_einzugsgebiet_ems_lutter
+  #Ems-Lutter
+  #Johannisbach
+  - name: gew_einzugsgebiet_johannisbach
+    base: gew_einzugsgebiete_uebersicht
+    title: Gebiet Johannisbach
+    #catalog:
+    source:
+      layers:
+        - gew_einzugsgebiet_johannisbach
+  #Johannisbach
+  #Lichtebach
+  - name: gew_einzugsgebiet_lichtebach
+    base: gew_einzugsgebiete_uebersicht
+    title: Gebiet Lichtebach
+    #catalog:
+    source:
+      layers:
+        - gew_einzugsgebiet_lichtebach
+  #Lichtebach
+  #Reiherbach
+  - name: gew_einzugsgebiet_reiherbach
+    base: gew_einzugsgebiete_uebersicht
+    title: Gebiet Reiherbach
+    #catalog:
+    source:
+      layers:
+        - gew_einzugsgebiet_reiherbach
+  #Reiherbach
+  #Weser-Lutter
+  - name: gew_einzugsgebiet_weser_lutter
+    base: gew_einzugsgebiete_uebersicht
+    title: Gebiet Weser-Lutter
+    #catalog:
+    source:
+      layers:
+        - gew_einzugsgebiet_weser_lutter
+  #Weser-Lutter
+  #Gewässernetz
+  - name: gewaessernetz
+    base: gew_einzugsgebiete_uebersicht
+    title: Gewässernetz
+    #catalog:
+    source:
+      layers:
+        - gewaessernetz
+  #Gewässernetz
+  #Gewässereinzugsbereiche-------------------------------------------------------------------------------
+
+  ### Wanderwege 360
+ # - name: wanderwege_360_l
+ #   title: Wanderwege
+ #   abstract: Wanderwege in Bielefeld.
+ #   attribution: Wanderwege © Stadt Bielefeld
+ #   type: wms
+#    source:
+ #     url: //www.bielefeld01.de/umn/wms_wanderwege_360_v01.asp?
+ #     layers:
+ #       - wanderwege_360_l
+ #     srs: 'EPSG:25832'
+ #     format: image/png
+#    legend:
+ #     type: GetLegendGraphic
+   ### Wanderwege 360
+
+
+
+  #Radtouren------------------------------------------------------------------------------------
+  #Strecke
+  - name: radtour
+    title: Radtouren
+    abstract: Radtouren in Bielefeld.
+    attribution: Radtouren © Stadt Bielefeld
+    type: wms
+    source:
+      url: //www.bielefeld01.de/umn/wms_radverkehrsnetz_v02.asp?
+      layers:
+       - radtour
+      srs: 'EPSG:25832'
+      format: image/png
+    legend:
+      type: GetLegendGraphic
+  #Strecke
+  #Startpunkt
+  - name: radtour_start
+    base: radtour
+    title: Radtour Startpunkt
+    type: wms
+    source:
+      layers:
+        - radtour_start
+    legend:
+      type: GetLegendGraphic
+  #Startpunkt
+
+  # Radtour Beschreibung
+  - name: radtour_t
+    base: radtour
+    title: Beschreibung
+   # catalog: 
+    # title: Radtour Beschreibung
+    type: wms
+    source:
+
+      layers:
+          - radtour_t
+    featureinfo:
+     target: _popup
+     width: 400
+     height: 600
+     featureCount: 100
+  # Radtour Beschreibung
+  #Radtouren-------------------------------------------------------------------------------------
+
+ 
+  ### windows10_rollout ##########################################################################
+  - name: windows10_rollout
+    title: windows10_rollout
+    abstract: PC-Standorte als Information für den Dienstleister (Lieferant)
+    attribution: windows10_rollout © Stadt Bielefeld
+    type: wms
+    source:
+      url: //www.bielefeld01.de/umn/wms_windows10_rollout.asp?
+      layers:
+        - windows10_rollout
+      srs: 'EPSG:25832'
+      format: image/png
+    legend:
+      type: GetLegendGraphic
+  ### windows10_rollout ##########################################################################
+
+
+  - name: stadtplan_bi_grau_print
+    title: bielefeldKARTE (Graustufen)
+    type: tiledwms
+    attribution: 'Kartenbild © Stadt Bielefeld (<a href="https://creativecommons.org/licenses/by/4.0/deed.de" target="_blank">CC BY 4.0</a>), Kartendaten © Stadt Bielefeld und <a href="http://www.openstreetmap.org/#map=15/52.0189/8.5338" target="_blank">OpenStreetMap</a> (ODbL)'
+    source:
+      url: "/mapproxy/service?map_resolution=216&"
+      format: "image/png"
+      layers:
+        - stadtplan_bi_grau_direct
+      srs: "EPSG:25832"
+
+
+  - name: stadtplan_bi_grau_raw
+    title: bielefeldKARTE (Graustufen)
+    type: tiledwms
+    source:
+      url: "/cgi-bin/mapserv?map=/opt/etc/styles/bielefeld/map/bielefeld-grau.map&map_resolution=216&"
+      format: "image/png"
+      layers:
+        - map
+      srs: "EPSG:25832"
+
+  - name: stadtplan_bi_gruen
+    title: bielefeldKARTE grün
+    base: stadtplan_bi
+    background: true
+    source:
+      url : "/mapproxy/wmts/"
+      layer: 'stadtplan_bi_gruen'
+    legend:
+      type: link
+      href: https://www.bielefeld01.de/md/WMS/bielefeld_karte_farbe/02?REQUEST=GetFile&FILE=legende.pdf
+      title: Legende der bielefeldKARTE grün
+      text: bielefeldKARTE grün
+
+  - name: stadtplan_bi_gruen_print
+    title: bielefeldKARTE (Farbreduziert)
+    type: tiledwms
+    attribution: 'bielefeldKARTE Kartenbild © Stadt Bielefeld (<a href="https://creativecommons.org/licenses/by/4.0/deed.de" target="_blank">CC BY 4.0</a>), bielefeldKARTE Kartendaten © Stadt Bielefeld und <a href="http://www.openstreetmap.org/#map=15/52.0189/8.5338" target="_blank">OpenStreetMap</a> (<a href="http://opendatacommons.org/licenses/odbl/" target="_blank">ODbL</a>)'
+    source:
+      url: "/mapproxy/service?map_resolution=216&"
+      format: "image/png"
+      layers:
+        - stadtplan_bi_gruen_direct
+      srs: "EPSG:25832"
+
+  - name: stadtplan_bi_gruen_raw
+    title: bielefeldKARTE (Farbreduziert)
+    type: tiledwms
+    source:
+      url: "/cgi-bin/mapserv?map=/opt/etc/styles/bielefeld/map/bielefeld-gruen.map&map_resolution=216&"
+      format: "image/png"
+      layers:
+        - map
+      srs: "EPSG:25832"
+
+  - name: mobiel_day
+    title: Tagesnetz
+    base: stadtplan_bi
+    background: true
+    source:
+      url: "/mapproxy/wmts/"
+      layer: 'mobiel_tag'
+
+  - name: mobiel_day_print
+    title: Tagesnetz
+    type: tiledwms
+    source:
+      url: "/mapproxy/service?map_resolution=216&"
+      format: "image/png"
+      layers:
+        - 'mobiel_tag_direct'
+      srs: "EPSG:25832"
+
+  - name: mobiel_day_raw
+    title: Tagesnetz
+    type: tiledwms
+    source:
+      url: "/cgi-bin/mapserv?map=/opt/etc/styles/bielefeld/map/mobiel-tag.map&map_resolution=216&"
+      format: "image/png"
+      layers:
+        - map
+      srs: "EPSG:25832"
+
+  - name: mobiel_night
+    title: NachtBus-Netz
+    base: stadtplan_bi
+    background: true
+    source:
+      url: "/mapproxy/wmts/"
+      layer: 'mobiel_nacht'
+
+  - name: mobiel_night_print
+    title: NachtBus-Netz
+    type: tiledwms
+    source:
+      url: "/mapproxy/service?map_resolution=216&"
+      format: "image/png"
+      layers:
+        - 'mobiel_nacht_direct'
+      srs: "EPSG:25832"
+
+  - name: mobiel_night_raw
+    title: NachtBus-Netz
+    type: tiledwms
+    source:
+      url: "/cgi-bin/mapserv?map=/opt/etc/styles/bielefeld/map/mobiel-nacht.map&map_resolution=216&"
+      format: "image/png"
+      layers:
+        - map
+      srs: "EPSG:25832"
+
+
+   #Background-Karten
+
+
+
+  # labeling layers
+  # der street_labels Layer wird für die Erstellung des Straßenverzeichnisses verwendet!
+  # Wenn für den gedruckten Stadtplan nur Bielefelder Straßen ausgegeben werden müssen, 
+  # müssen die beiden OR-Querys mit NOT ST_INTERSECTS(geometry, (SELECT geometry FROM osm_admin WHERE name = 'Bielefeld'))
+  # auskommentiert werden
+  - name: street_labels
+    title: Straßen
+    type: postgis
+    attribution: 'Vektordaten: OpenStreetMap (Lizenz: ODbL)'
+    source:
+      type: line
+      query:
+        "SELECT name, ST_Collect(geometry) AS geometry FROM ((
+        	SELECT name, geometry
+        	FROM osm_roads
+        	WHERE
+        		geometry && !bbox! AND (
+        	  (NOT ST_INTERSECTS(geometry, (SELECT geometry FROM osm_admin WHERE name = 'Bielefeld'))
+        	  AND name <> ''
+        	  AND type IN ('trunk', 'primary', 'secondary', 'tertiary', 'residential', 'service', 'path', 'track', 'pedestrian', 'steps', 'unclassified', 'living_street', 'construction', 'footway'))
+        	OR
+        	(ST_INTERSECTS(geometry, (SELECT geometry FROM osm_admin WHERE name = 'Bielefeld'))
+        	  AND name <> ''
+        	  AND type IN ('trunk', 'primary', 'secondary', 'tertiary', 'residential', 'service', 'path', 'track', 'pedestrian', 'steps', 'unclassified', 'living_street', 'construction', 'footway')
+        	  AND name IN (SELECT corrected_name FROM
+        			dblink(
+        		  'hostaddr=172.22.100.14 port=5432 dbname=Prod user=mapbender password=mapbender', 
+        		  'SELECT CASE
+        			WHEN name LIKE ''%straße'' THEN replace(name, ''straße'', ''str.'')
+			        WHEN name LIKE ''%Straße'' THEN replace(name, ''Straße'', ''Str.'')
+        			ELSE name
+        			END AS corrected_name FROM verwaltung.tab_streets_alkis_first;') AS t1(corrected_name name))))
+        	  )	
+        	
+        
+        	UNION ALL
+        
+        	SELECT name, ST_ExteriorRing(ST_ConvexHull(geometry)) AS geometry
+        	FROM osm_landusages
+        	WHERE
+        		geometry && !bbox! AND (
+        	  (NOT ST_INTERSECTS(geometry, (SELECT geometry FROM osm_admin WHERE name = 'Bielefeld'))
+        	  AND name <> ''
+        	  AND type IN ('pedestrian', 'square'))
+        	  OR
+        	  (ST_INTERSECTS(geometry, (SELECT geometry FROM osm_admin WHERE name = 'Bielefeld'))
+        	  AND name <> ''
+        	  AND type IN ('pedestrian', 'square')
+        	  AND name IN (SELECT corrected_name FROM
+        			dblink(
+        		  'hostaddr=172.22.100.14 port=5432 dbname=Prod user=mapbender password=mapbender', 
+        		  'SELECT CASE
+        			WHEN name LIKE ''%straße'' THEN replace(name, ''straße'', ''str.'')
+			        WHEN name LIKE ''%Straße'' THEN replace(name, ''Straße'', ''Str.'')
+        			ELSE name
+        			END AS corrected_name FROM verwaltung.tab_streets_alkis_first;') AS t1(corrected_name name))))
+        ) AS sub
+        GROUP BY name"
+    style:
+      type: simple
+      strokeColor: '#22e'
+      strokeWidth: 1
+
+  - name: polygons
+    title: polygons base
+    type: postgis
+    attribution: 'Vektordaten: OpenStreetMap (Lizenz: ODbL)'
+    source:
+      type: polygon
+      srid: 25832
+      query:
+        SELECT geometry
+        FROM alkis_buildings
+    style:
+      type: simple
+      strokeColor: '#c3c'
+      strokeWidth: 1
+      fillColor: '#c6c'
+    featureinfo:
+      target: '_popup'
+      properties:
+        - name
+    legend:
+      type: polygon
+
+  #- name: parking
+  #  title: Parkplätze
+  #  base: polygons
+  #  source:
+  #    query:
+  #      SELECT geometry
+  #      FROM alkis_landusages
+  #      WHERE code = 5310
+  #  style:
+  #    strokeColor: 'rgba(0, 0, 200, 0.5)'
+  #    fillColor: 'rgba(155, 155, 200, 0.5)'
+  #    externalGraphic: 'bus-18.svg'
+  #  featureinfo: null
+
+  #- name: education
+  #  title: Bildung
+  #  base: polygons
+  #  source:
+  #    query:
+  #      SELECT name, geometry
+  #      FROM alkis_buildings
+  #     WHERE
+  #        (
+  #          code >= 3020
+  #          AND code <= 3024
+  #        )
+  #        OR code = 3037
+  #  style:
+  #    strokeColor: '#70a'
+  #    fillColor: '#d07'
+
+
+  - name: POI
+    title: Base for all POIs
+    type: postgis
+    cluster: true
+   # catalog: true
+    attribution: 'Vektordaten: OpenStreetMap (Lizenz: ODbL)'
+    source:
+      type: point
+      query:
+        SELECT geometry, name, type
+        FROM osm_transport_points
+        WHERE 1=0
+    style:
+      type: simple
+      externalGraphic: 'bus-18.svg'
+      graphicWidth: 18
+      graphicHeight: 18
+    legend:
+      type: point
+    featureinfo:
+      target: '_popup'
+      properties:
+        - name
+        - type
+
+  #- name: busstop
+  #  title: Bus stops
+  #  base: POI
+  #  source:
+  #    query:
+  #      SELECT geometry, name, type
+  #      FROM osm_transport_points
+  #      WHERE type='bus_stop'
+  #  style:
+  #    externalGraphic: 'bus-18.svg'
+  #  featureinfo:
+  #    properties:
+  #      - name
+  #      - type
+  #- name: stations
+  #  title: Stations
+  #  base: POI
+  #  source:
+  #    query:
+  #      SELECT geometry, name
+  #      FROM osm_transport_points
+  #      WHERE type='station'
+  #  style:
+  #    externalGraphic: 'rail-18.svg'
+  #- name: art
+  #  title: Kunst
+  #  base: POI
+  #  source:
+  #    query:
+  #      SELECT geometry, name
+  #      FROM osm_amenity_points
+  #      WHERE type IN ('art', 'arts_centre')
+  #  style:
+  #    externalGraphic: 'art-gallery-18.svg'
+ # - name: bakery
+ #   title: Bäcker
+ #   base: POI
+ #   source:
+ #     query:
+ #       SELECT geometry, name
+ #       FROM osm_amenity_points
+ #       WHERE type IN ('bakery')
+ #   style:
+ #     externalGraphic: 'bakery-18.svg'
+ # - name: bank
+ #   title: Bank
+ #   base: POI
+ #   source:
+ #     query:
+ #       SELECT geometry, name
+ #      FROM osm_amenity_points
+ #      WHERE type IN ('bank')
+ #   style:
+ #     externalGraphic: 'bank-18.svg'
+  - name: pubs
+    title: Kneipen
+    base: POI
+    source:
+      query:
+        SELECT geometry, name
+        FROM osm_amenity_points
+        WHERE type IN ('bar', 'pub', 'biergarten')
+    style:
+      externalGraphic: 'bar-18.svg'
+ # - name: cafe
+ #   title: Café
+ #   base: POI
+ #   source:
+ #     query:
+ #       SELECT geometry, name
+ #       FROM osm_amenity_points
+ #       WHERE type IN ('cafe')
+ #   style:
+ #     externalGraphic: 'cafe-18.svg'
+  #- name: fast_food
+  #  title: Imbiss
+  #  base: POI
+  #  source:
+  #    query:
+  #      SELECT geometry, name
+  #      FROM osm_amenity_points
+  #      WHERE type IN ('fast_food')
+  #  style:
+  #    externalGraphic: 'fast-food-18.svg'
+  #- name: fire_station
+  #  title: Feuerwehr
+  #  base: POI
+  #  source:
+  #    query:
+  #      SELECT geometry, name
+  #      FROM osm_amenity_points
+  #      WHERE type IN ('fire_station')
+  #  style:
+  #    externalGraphic: 'fire-station-18.svg'
+  #- name: fuel
+  #  title: Tankstelle
+  #  base: POI
+  #  source:
+  #    query:
+  #      SELECT geometry, name
+  #      FROM osm_amenity_points
+  #      WHERE type IN ('fuel')
+  #  style:
+  #    externalGraphic: 'fuel-18.svg'
+  #- name: garden
+  #  title: Garten
+  #  base: POI
+  #  source:
+  #   query:
+  #      SELECT geometry, name
+  #      FROM osm_amenity_points
+  #      WHERE type IN ('garden', 'garden_centre')
+  #  style:
+  #    externalGraphic: 'garden-18.svg'#
+
+  #- name: ice_cream
+  #  title: Eisdiele
+  #  base: POI
+  #  source:
+  #    query:
+  #      SELECT geometry, name
+  #      FROM osm_amenity_points
+  #      WHERE type IN ('ice_cream')
+  #  style:
+  #    externalGraphic: 'ice-cream-18.svg'
+  #- name: ACCOMMODATION
+  #  title: Base for all accommodations
+  #  base: POI
+  #  style:
+  #    externalGraphic: 'lodging-18.svg'
+  #  featureinfo:
+  #    properties:
+  #      - name
+  #      - website
+  #- name: apartment
+  #  title: Apartment
+  #  base: ACCOMMODATION
+  #  source:
+  #    query:
+  #      SELECT geometry, name, tags->'website' as website
+  #      FROM osm_amenity_points
+  #      WHERE type IN ('apartment')
+  #- name: guest_house
+  #  title: Gasthaus
+  #  base: ACCOMMODATION
+  #  source:
+  #    query:
+  #      SELECT geometry, name, tags->'website' as website
+  #      FROM osm_amenity_points
+  #      WHERE type IN ('guest_house')
+  #- name: hostel
+  #  title: Hostel
+  #  base: ACCOMMODATION
+  #  source:
+  #    query:
+  #      SELECT geometry, name, tags->'website' as website
+  #      FROM osm_amenity_points
+  #      WHERE type IN ('hostel')
+  #- name: hotel
+  #  title: Hotel
+  #  base: ACCOMMODATION
+  #  source:
+  #    query:
+  #      SELECT geometry, name, tags->'website' as website
+  #      FROM osm_amenity_points
+  #      WHERE type IN ('hotel')
+  #- name: motel
+  #  title: Motel
+  #  base: ACCOMMODATION
+  #  source:
+  #     query:
+  #      SELECT geometry, name, tags->'website' as website
+  #      FROM osm_amenity_points
+  #      WHERE type IN ('motel')
+  #- name: monument
+  #  title: Monument
+  #  base: POI
+  #  source:
+  #    query:
+  #      SELECT geometry, name
+  #      FROM osm_amenity_points
+  #      WHERE type IN ('monument')
+  #  style:
+  #    externalGraphic: 'monument-18.svg'
+  #- name: museum
+  #  title: Museum
+  #  base: POI
+  #  source:
+  #    query:
+  #      SELECT geometry, name
+  #      FROM osm_amenity_points
+  #      WHERE type IN ('museum')
+  #  style:
+  #    externalGraphic: 'museum-18.svg'
+  #- name: playground
+  #  title: Spielplatz
+  #  base: POI
+  #  source:
+  #    query:
+  #      SELECT geometry, name
+  #      FROM osm_amenity_points
+  #      WHERE type IN ('playground')
+  #  style:
+  #    externalGraphic: 'playground-18.svg'
+  #- name: police
+  #  title: Polizei
+  #  base: POI
+  #  source:
+  #    query:
+  #      SELECT geometry, name
+  #      FROM osm_amenity_points
+  #      WHERE type IN ('police')
+  #  style:
+  #    externalGraphic: 'police-18.svg'
+  #- name: post
+  #  title: Post
+  #  base: POI
+  #  source:
+  #    query:
+  #      SELECT geometry, name
+  #      FROM osm_amenity_points
+  #      WHERE type IN ('post')
+  #  style:
+  #    externalGraphic: 'post-18.svg'
+  - name: restaurant
+    title: Restaurant
+    base: POI
+    source:
+      query:
+        SELECT geometry, name
+        FROM osm_amenity_points
+        WHERE type IN ('restaurant')
+    style:
+      externalGraphic: 'restaurant-18.svg'
+  #- name: soccer
+  #  title: Fussball
+  #  base: POI
+  #  source:
+  #    query:
+  #      SELECT geometry, name
+  #      FROM osm_amenity_points
+  #      WHERE type IN ('soccer')
+  #  style:
+  #    externalGraphic: 'soccer-18.svg'
+  #- name: swimming
+  #  title: Schwimmen
+  #  base: POI
+  #  source:
+  #    query:
+  #      SELECT geometry, name
+  #      FROM osm_amenity_points
+  #      WHERE type IN ('swimming')
+  #  style:
+  #    externalGraphic: 'swimming-18.svg'
+  #- name: telephone
+  #  title:  Telefon
+  #  base: POI
+  #  source:
+  #    query:
+  #      SELECT geometry, name
+  #      FROM osm_amenity_points
+  #      WHERE type IN ('telephone')
+  #  style:
+  #    externalGraphic: 'telephone-18.svg'
+  #- name: theatre
+  #  title: Theater
+  #  base: POI
+  #  source:
+  #    query:
+  #      SELECT geometry, name
+  #      FROM osm_amenity_points
+  #      WHERE type IN ('theatre')
+  #  style:
+  #    externalGraphic: 'theatre-18.svg'
+  #- name: toilets
+  #  title: Toilette
+  #  base: POI
+  #  source:
+  #    query:
+  #      SELECT geometry, name
+  #      FROM osm_amenity_points
+  #      WHERE type IN ('toilets')
+  #  style:
+  #    externalGraphic: 'toilets-18.svg'
+
+  # Digitize layer
+
+  - name: baustellen
+    title: Baustellen
+    type: digitize
+    source:
+      name: test_layer
+      srs: 'EPSG:25832'
+    featureinfo:
+      properties:
+        - name
+        - description
+  

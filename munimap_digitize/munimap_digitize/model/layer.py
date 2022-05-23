@@ -596,7 +596,7 @@ class Layer(db.Model):
     @property
     def properties(self):
         properties = []
-        for key, options in self.properties_schema['properties'].items():
+        for key, options in list(self.properties_schema['properties'].items()):
             properties.append({
                 'name': key,
                 'title': options['title']

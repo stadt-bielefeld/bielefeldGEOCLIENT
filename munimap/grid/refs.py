@@ -8,7 +8,7 @@ def format_refs(refs, labels=None):
 
 DEFAULT_LABELS = (
     'A B C D E F G H I J K L M N O P Q R S T U V W X Y Z'.split(),
-    map(str, range(1, 27)),
+    list(map(str, list(range(1, 27)))),
 )
 
 def refstr(x, y=None, labels=None):
@@ -148,7 +148,9 @@ def reduce_refs(refs):
     else:
         return [(minx, miny), (maxx, maxy)]
 
-def is_adjacent((ax, ay), (bx, by)):
+def is_adjacent(xxx_todo_changeme, xxx_todo_changeme1):
+    (ax, ay) = xxx_todo_changeme
+    (bx, by) = xxx_todo_changeme1
     if (bx+1 >= ax >= bx-1 and
         by+1 >= ay >= by-1 and
         not abs(ax-bx)+abs(ay-by) == 2):

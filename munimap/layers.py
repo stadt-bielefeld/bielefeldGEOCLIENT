@@ -286,14 +286,14 @@ def create_anol_layers(conf, layers_base_url=''):
 
 def load_anol_layers(configfile):
     with open(configfile, 'r') as f:
-        layers_conf = yaml.load(f)
+        layers_conf = yaml.safe_load(f)
 
     return create_anol_layers(layers_conf)
 
 
 def create_mapfish_layers(conf, layers_base_url='', default_protocol=''):
     mapfish_layers = {}
-    for layer_conf in conf['layers'].values():
+    for layer_conf in list(conf['layers'].values()):
         mapfish_layer_factory = None
         if layer_conf['type'] in ('wms', 'tiledwms'):
             mapfish_layer_factory = mapfish_wms_layer
@@ -437,13 +437,14 @@ def mapfish_grid_layer(grid, srs, style):
 
 def mapfish_numeration_layer(feature_collection, srs, scale, dpi, _style):
     style = deepcopy(_style)
-
+    # style = {b'label': '__num__', b'labelXOffset': 12, b'labelYOffset': 6, b'fontColor': '#ffffff', b'fontSize': 5, b'fontFamily': 'DejaVu Sans Bold', b'fillColor': '#000000', b'circleMargin': 1.75, b'circleXOffset': 0.3, b'circleYOffset': -0.2}
     # _features = []
     sld_file = os.path.join(
         current_app.config.get('MAPFISH_STYLES_PATH'),
         'numeration.sld'
     )
-    sld_style = open(sld_file, 'rb').read()
+    sld_style = open(sld_file.encode('utf8'), 'r').read()
+
     sld_style = sld_style % style
 
     return {
@@ -640,7 +641,7 @@ def mapfish_measure_feature_collection_layer(feature_collection):
 
 def create_featureinfo_layers(conf, layers_base_url=''):
     featureinfo_layers = {}
-    for layer_conf in conf['layers'].values():
+    for layer_conf in list(conf['layers'].values()):
         if layer_conf['type'] not in ('wms', 'tiledwms', 'wmts'):
             continue
         if 'featureinfo' not in layer_conf:
@@ -745,7 +746,8 @@ def load_layers_config(config_folder, protected_layer_names=[], proxy_hash_salt=
             # if direct access is set the origin url will be used
             # authentication for protected layers is provided with session cookies
             if not direct_access:
-                layer['hash'] = hashlib.sha224(layer['source']['url'] + (proxy_hash_salt or '')).hexdigest()
+                encoded_layer = (layer['source']['url'] + (proxy_hash_salt or '')).encode(encoding = 'UTF-8', errors = 'strict')
+                layer['hash'] = hashlib.sha224(encoded_layer).hexdigest()
                 hash_map[layer['hash']] = layer['source']['url']
             else:
                 layer['url'] = layer['source']['url']
@@ -781,7 +783,7 @@ def check_project_config(new_yaml_content, exclude_file):
         'layers': [],
         'groups': []
     }
-    if isinstance(new_yaml_content, basestring):
+    if isinstance(new_yaml_content, str):
         return ['String only not supported'], False
 
     config_folder = current_app.config.get('LAYERS_CONF_DIR')
@@ -825,7 +827,7 @@ def check_project_config(new_yaml_content, exclude_file):
 def check_project_config_only(new_yaml_content):
     yaml_content = deepcopy(new_yaml_content)
 
-    if isinstance(yaml_content, basestring):
+    if isinstance(yaml_content, str):
         return ['String only not supported'], False
 
     if not yaml_content.get('layers'):
@@ -844,6 +846,7 @@ def check_project_config_only(new_yaml_content):
 
 if __name__ == '__main__':
     import sys
+    import json
     json_content = load_anol_layers(sys.argv[1])
     with open(sys.argv[2], 'w') as json_file:
         json_file.write(json.dumps(json_content, indent=4))

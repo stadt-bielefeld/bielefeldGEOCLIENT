@@ -1,4 +1,4 @@
-from __future__ import division
+
 import re
 from werkzeug.exceptions import BadRequest
 
@@ -156,7 +156,7 @@ class MapRequest(object):
 
     def as_strings(self):
         d = {}
-        for k, v in self.__dict__.iteritems():
+        for k, v in self.__dict__.items():
             if isinstance(v, (list, tuple)):
                 v = format_list(v)
             else:
@@ -166,7 +166,7 @@ class MapRequest(object):
 
     @classmethod
     def from_req(cls, req):
-        param = dict((k.lower(), v) for k, v in req.args.iteritems())
+        param = dict((k.lower(), v) for k, v in req.args.items())
 
         param['width'], param['height'] = parse_size(param)
         param['bbox'] = parse_bbox(param)
@@ -207,14 +207,14 @@ class PrintRequest(MapRequest):
         param['limit'] = check_int(param, 'limit', 1000)
         param['cellsx'], param['cellsy'] = check_list(param, 'cells', [0, 0])
         param['page_size'] = check_list(param, 'page_size', None)
-        param['output_format'] = check_value(param, 'output_format', lambda x: isinstance(x, basestring))
-        param['mimetype'] = check_value(param, 'mimetype', lambda x: isinstance(x, basestring))
-        param['page_layout'] = check_value(param, 'page_layout', lambda x: isinstance(x, basestring), 'custom')
+        param['output_format'] = check_value(param, 'output_format', lambda x: isinstance(x, str))
+        param['mimetype'] = check_value(param, 'mimetype', lambda x: isinstance(x, str))
+        param['page_layout'] = check_value(param, 'page_layout', lambda x: isinstance(x, str), 'custom')
         param['scale'] = check_value(param, 'scale', lambda x: isinstance(x, (float, int)))
         param['name'] = check_value(
             param,
             'name',
-            lambda x: isinstance(x, basestring) and PRINT_NAME_REGEX.match(x)
+            lambda x: isinstance(x, str) and PRINT_NAME_REGEX.match(x)
         )
 
         param['cellsx'] = param['cellsx'] or 0 # set to 0 in case of None
@@ -240,7 +240,7 @@ class PrintRequest(MapRequest):
 
 def uncamel_case_dict(d):
     result = {}
-    for k, v in d.iteritems():
+    for k, v in d.items():
         result[uncamel_case(k)] = v
     return result
 

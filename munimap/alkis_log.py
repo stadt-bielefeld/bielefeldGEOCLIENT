@@ -3,10 +3,10 @@ import os
 import csv
 
 from flask import current_app
-from flask.ext.login import current_user
+from flask_login import current_user
 
 from werkzeug.exceptions import BadRequest, BadGateway
-from requests.packages.urllib3.exceptions import InsecureRequestWarning
+from urllib3.exceptions import InsecureRequestWarning
 import datetime
 
 def create_legimiation_log(id, company, reference, person, kind):
@@ -35,8 +35,8 @@ def create_legimiation_log(id, company, reference, person, kind):
         )
 
         if with_headers:
-            csv_headers = [u"Flurstücks-ID", u"Benutzername", u"Firma", u"Aktenzeichen", 
-                u"Sachbearbeiter", u"Art des berechtigten Interesses", u"Uhrzeit", u"Datum"]
+            csv_headers = ["Flurstücks-ID", "Benutzername", "Firma", "Aktenzeichen", 
+                "Sachbearbeiter", "Art des berechtigten Interesses", "Uhrzeit", "Datum"]
             writer.writerow([h.encode("latin1") for h in csv_headers])
 
         time = now.strftime("%H:%M:%S")

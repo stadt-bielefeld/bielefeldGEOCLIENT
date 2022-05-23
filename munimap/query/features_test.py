@@ -18,7 +18,7 @@ def assert_sorted_features(features, **sort_args):
     Creates a shuffled copy of features, sorts them and compares
     the resulting order with the input order of features.
     """
-    for _ in xrange(10): # tests with a few shuffles
+    for _ in range(10): # tests with a few shuffles
         shuffled = features[:]
         random.shuffle(shuffled)
         sort_features(shuffled, **sort_args)
@@ -56,20 +56,20 @@ def test_sort_features_properties():
 
 def test_sort_features_locales():
     assert_sorted_features([
-        {'properties': {'name': u'22'}},
-        {'properties': {'name': u'al'}},
-        {'properties': {'name': u'äl'}},
-        {'properties': {'name': u'am'}},
-        {'properties': {'name': u'äm'}},
-        {'properties': {'name': u'az'}},
-        {'properties': {'name': u'sb'}},
-        {'properties': {'name': u'ss ab'}},
-        {'properties': {'name': u'ss ac'}},
-        {'properties': {'name': u'ssab'}},
-        {'properties': {'name': u'ßac'}},
-        {'properties': {'name': u'ssacc'}},
-        {'properties': {'name': u'ssba'}},
-        {'properties': {'name': u'Ssbb'}},
-        {'properties': {'name': u'ssbc'}},
-        {'properties': {'name': u'tac'}},
+        {'properties': {'name': '22'}},
+        {'properties': {'name': 'al'}},
+        {'properties': {'name': 'äl'}},
+        {'properties': {'name': 'am'}},
+        {'properties': {'name': 'äm'}},
+        {'properties': {'name': 'az'}},
+        {'properties': {'name': 'sb'}},
+        {'properties': {'name': 'ss ab'}},
+        {'properties': {'name': 'ss ac'}},
+        {'properties': {'name': 'ssab'}},
+        {'properties': {'name': 'ßac'}},
+        {'properties': {'name': 'ssacc'}},
+        {'properties': {'name': 'ssba'}},
+        {'properties': {'name': 'Ssbb'}},
+        {'properties': {'name': 'ssbc'}},
+        {'properties': {'name': 'tac'}},
     ])

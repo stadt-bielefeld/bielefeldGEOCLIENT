@@ -1,5 +1,5 @@
 # -:- encoding: utf8 -:-
-from __future__ import absolute_import
+
 
 import os
 import fnmatch
@@ -19,7 +19,7 @@ from threading import Lock
 from flask import Flask, send_from_directory, request, \
     jsonify, redirect, url_for, make_response, render_template, \
     current_app
-from flask.ext.babel import Babel
+from flask_babel import Babel
 
 from flask.json import JSONEncoder as BaseJSONEncoder
 from speaklater import _LazyString
@@ -69,7 +69,7 @@ def create_app(config=None, config_file=None):
     class LazyJSONEncoder(BaseJSONEncoder):
         def default(self, o):
             if isinstance(o, _LazyString):
-                return unicode(o)
+                return str(o)
             return BaseJSONEncoder.default(self, o)
 
     app.json_encoder = LazyJSONEncoder
@@ -270,7 +270,7 @@ def configure_assets(app):
         project_sass_files = collect_project_files(os.path.join(app.config.get('PROJECT_DIR'), 'static', 'sass'), '*.sass')
 
         loader = webassets.loaders.YAMLLoader(app.config.get('ASSETS_BUNDLES_CONF'))
-        for name, bundle in loader.load_bundles().iteritems():
+        for name, bundle in loader.load_bundles().items():
             if name == 'app-css' and app.config.get('ASSETS_MERGE_SASS'):
                 # check if project overwrite some sass files
                 bundle.contents = assign_project_files(list(bundle.contents), project_sass_files)
@@ -420,7 +420,7 @@ def configure_errorhandlers(app):
 
     @app.errorhandler(400)
     def bad_request(error):
-        if request.is_xhr:
+        if request.is_json: # is_xhr is deprectaed
             response = jsonify(message='Bad Request')
             response.status_code = 400
             return response
@@ -429,7 +429,7 @@ def configure_errorhandlers(app):
 
     @app.errorhandler(401)
     def unauthorized(error):
-        if request.is_xhr:
+        if request.is_json: # is_xhr is deprectaed
             response =  jsonify(message="Login required")
             response.status_code = 401
             return response
@@ -438,8 +438,8 @@ def configure_errorhandlers(app):
 
     @app.errorhandler(403)
     def forbidden(error):
-        if request.is_xhr:
-            response = jsonify(message='Not allowed')
+        if request.is_json: # is_xhr is deprectaed
+            response = jsonify( message='Not allowed')
             response.status_code = 403
             return response
         app.logger.error("Not allowed (403) for %s: %s", request, getattr(error, 'description', error))
@@ -447,7 +447,7 @@ def configure_errorhandlers(app):
 
     @app.errorhandler(404)
     def page_not_found(error):
-        if request.is_xhr:
+        if request.is_json: # is_xhr is deprectaed
             response = jsonify(message='Page not found')
             response.status_code = 404
             return response
@@ -456,7 +456,7 @@ def configure_errorhandlers(app):
 
     @app.errorhandler(500)
     def server_error(error):
-        if request.is_xhr:
+        if request.is_json: # is_xhr is deprectaed
             response = jsonify(message='Internal Error')
             response.status_code = 500
             return response

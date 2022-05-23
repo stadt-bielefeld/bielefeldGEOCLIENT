@@ -13,7 +13,7 @@ def index_group_key(name):
     key = key.upper()
     if key.isnumeric():
         return '0'
-    for char, replacement in [(u'Ä', 'A'), (u'Ü', 'U'), (u'Ö', 'O')]:
+    for char, replacement in [('Ä', 'A'), ('Ü', 'U'), ('Ö', 'O')]:
         if key == char:
             return replacement
     if key.isalpha():

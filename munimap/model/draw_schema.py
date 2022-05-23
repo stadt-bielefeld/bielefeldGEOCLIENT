@@ -150,7 +150,7 @@ style_schema_form_options = [
                             'min': -180,
                             'max': 180,
                             'step': 1,
-                            'unit': u'°'
+                            'unit': '°'
                         }
                     }
                 ]

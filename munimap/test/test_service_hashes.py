@@ -10,7 +10,7 @@ class TestServiceHashes(BaseTestClass):
         layers = self.app.layers
 
         hash_count = 0
-        for layer in layers.values():
+        for layer in list(layers.values()):
             if layer['type'] in ['wms', 'wmts', 'tiledwms']:
                 assert 'hash' in layer
                 hash_count += 1
@@ -27,7 +27,7 @@ class TestServiceHashes(BaseTestClass):
         layers = self.app.layers
         hash_map = self.app.hash_map
 
-        for layer in layers.values():
+        for layer in list(layers.values()):
             if layer['type'] in ['wms', 'wmts', 'tiledwms']:
                 self.assertEqual(
                     layer['source']['url'],

@@ -209,10 +209,10 @@ if __name__ == '__main__':
     import yaml
 
     if len(sys.argv) < 2:
-        print 'Filename required'
+        print('Filename required')
         exit(0)
 
-    yaml_content = yaml.load(
+    yaml_content = yaml.safe_load(
         open(sys.argv[1], 'r')
     )
 

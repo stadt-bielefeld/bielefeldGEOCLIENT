@@ -1,6 +1,6 @@
 import os
 import os.path
-from flask.ext.testing import TestCase
+from flask_testing import TestCase
 
 from munimap.application import create_app
 from munimap.config import TestConfig

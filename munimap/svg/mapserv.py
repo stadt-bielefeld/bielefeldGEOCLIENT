@@ -11,7 +11,7 @@ from .combine import CombineSVG
 
 
 def get_wms_layer_names(base_url, params={}):
-    params = {k.upper(): v for k, v in params.items()}
+    params = {k.upper(): v for k, v in list(params.items())}
     params['REQUEST'] = 'GetCapabilities'
     params['SERVICE'] = 'WMS'
     with closing(requests.get(base_url, params=params, stream=True)) as r:
@@ -35,7 +35,7 @@ def combined_mapserv_svg(base_url, print_params, output=sys.stdout):
 
     c = CombineSVG(output)
     for layer_name, sublayers in groupby(layers, lambda l: re.sub('[-_].*$', '', l)):
-        params = {k.upper(): v for k, v in print_params.items()}
+        params = {k.upper(): v for k, v in list(print_params.items())}
         params['LAYERS'] = ','.join(sublayers)
         with closing(requests.get(base_url, params=params, stream=True)) as r:
             c.add(layer_name, r.raw)

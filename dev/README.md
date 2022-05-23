@@ -7,13 +7,43 @@
 * docker
 * docker-compose
 * Node (>= 10)
-* Python (2.7)
-* Java 8
+* Python (>=3.8)
+* Java 8 (openjdk-8-jre)
 * virtualenv
-* Required packages for building pip requirements
-```
-sudo apt install libspatialindex-dev libjpeg-dev zlib1g-dev python2.7-dev build-essential libssl-dev libffi-dev
-```
+* Required packages for building pip requirements:
+  ```
+  sudo apt install build-essential \
+      python3-dev \
+      libpython3-dev \
+      python-gdal \
+      python3-gdal \
+      python3-pycurl \
+      libgdal-dev \
+      libspatialindex-dev \
+      libgeos-dev \
+      libssl-dev \
+      libffi-dev \
+      libjpeg-dev \
+      zlib1g-dev \
+      libfreetype6-dev \
+      libproj-dev \
+      gdal-bin \
+      fcgiwrap \
+      libgif-dev \
+      libcurl4-openssl-dev \
+      libproj-dev \
+      libcairo2-dev \
+      libfribidi-dev \
+      libharfbuzz-dev \
+      librsvg2-dev \
+      libfcgi-dev \
+      fonts-dejavu-extra \
+      ttf-unifont \
+      locales 
+  ```
+
+**Note**: Depending on your Python version, it can happen that during the package installation process you come across an error like `lib/hnjmodule.c:3:10: fatal error: Python.h: No such file or directory`.
+If this shows, you need to install the appropriate dev library for your Python version, for instance `libpython3.9-dev` instead of `libpython3-dev`
 
 ## Initial development setup
 
@@ -47,17 +77,30 @@ npm start
 
 ```
 # cd to directory where the venv should be created
-virtualenv -p python2.7 muni_venv
+python -m venv muni_venv
 source muni_venv/bin/activate
-# Or: source muni_venv/bin/activate.fish
-# Or: source muni_venv/bin/activate.csh
 cd dev/
+pip install wheel setuptools
 pip install -r requirements.txt
 pip install -e ../
 pip install --no-index -e ../munimap_digitize/
 pip install --no-index -e ../munimap_transport/
 python -c "import hyphen.dictools; hyphen.dictools.install('de')"
 ```
+
+* Using a Python 3.9 Virtual Environment
+
+  - Install python 3.9 on your system (Assuming debian based linux distro):
+    - If Python3.9 is not available to install on your distro: 
+      - `sudo add-apt-repository ppa:deadsnakes/ppa`
+      - `sudo apt-get update`
+    - Install Python3.9
+      - `sudo apt install python3.9`
+    - install python3.9 venv
+      - `sudo apt install python3.9-venv`
+  - create the virtual environment
+    - `python3.9 -m venv muni_venv` (or any other name you like)
+
 
 * Update translations
 
@@ -85,7 +128,7 @@ JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ python dev/manage.py -c dev/configs
 
 In another terminal the docker dev environment needs to be started
 ```
-docker-compose up --profile dev 
+docker-compose --profile dev up
 ```
 
 and the client (javascript) source can be watched via:

@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 
 import os
 
@@ -20,7 +20,7 @@ from flask import (
     url_for
 )
 
-from flask.ext.login import current_user
+from flask_login import current_user
 
 from munimap.extensions import db
 from munimap.helper import (
@@ -64,7 +64,7 @@ def check_permission():
         current_app.config.get('ADMIN_GROUPS')
     )
     if not access_allowed:
-        if request.is_xhr:
+        if request.is_json: # is_xhr is deprectaed
             return jsonify(message='Not allowed')
         return abort(403)
 
@@ -73,7 +73,7 @@ def check_permission():
 @admin.route('/<path:path>')
 def index(path=None):
     layers = []
-    for name, layer in current_app.layers.items():
+    for name, layer in list(current_app.layers.items()):
         _layer = {
             'name': name,
             'title': layer['title'],
@@ -92,7 +92,7 @@ def index(path=None):
         layers.append(_layer)
 
     protected_layers = {}
-    for layer in [l.to_dict(current_app.layers.keys()) for l in ProtectedLayer.query.all()]:
+    for layer in [l.to_dict(list(current_app.layers.keys())) for l in ProtectedLayer.query.all()]:
         protected_layers[layer['name']] = layer
 
     projects = list_projects()
@@ -334,7 +334,7 @@ def edit_user():
 
 @admin.route('/users/add', methods=['POST'])
 def add_user():
-    form = NewUserForm(request.form, csrf_enabled=False)
+    form = NewUserForm(request.form, meta={'csrf':False})
 
     duplicate = request.args.get('duplicate', False)
 
@@ -614,7 +614,7 @@ def unprotect_project():
 @admin.route('/layers/load', methods=['GET'])
 def load_layers():
     layers = []
-    for name, layer in current_app.layers.items():
+    for name, layer in list(current_app.layers.items()):
         _layer = {
             'name': name,
             'title': layer['title'],
@@ -633,7 +633,7 @@ def load_layers():
         layers.append(_layer)
 
     protected_layers = {}
-    for layer in [l.to_dict(current_app.layers.keys()) for l in ProtectedLayer.query.all()]:
+    for layer in [l.to_dict(list(current_app.layers.keys())) for l in ProtectedLayer.query.all()]:
         protected_layers[layer['name']] = layer
 
     return jsonify({
@@ -648,7 +648,7 @@ def protect_layer():
 
     if layer is not None:
         return jsonify({
-            'layer': layer.to_dict(current_app.layers.keys()),
+            'layer': layer.to_dict(list(current_app.layers.keys())),
             'message': _('layer "%(layer)s protected', layer=layer.name)
         })
 
@@ -659,7 +659,7 @@ def protect_layer():
     db.session.commit()
     current_app.layer_protection_changed = True
     return jsonify({
-        'layer': layer.to_dict(current_app.layers.keys()),
+        'layer': layer.to_dict(list(current_app.layers.keys())),
         'message': _('layer "%(layer)s protected', layer=layer.name)
     })
 
@@ -681,7 +681,7 @@ def unprotect_layer():
     db.session.commit()
     current_app.layer_protection_changed = True
     return jsonify({
-        'layer': layer.to_dict(current_app.layers.keys()),
+        'layer': layer.to_dict(list(current_app.layers.keys())),
         'message': _('layer "%(layer)s unprotected', layer=layer.name)
     })
 
@@ -713,7 +713,7 @@ def add_project():
         # check if input is valid yaml
         try:
             yaml.safe_load(form.code.data)
-        except yaml.scanner.ScannerError, ex:
+        except yaml.scanner.ScannerError as ex:
             response = jsonify({
                 'errors': str(ex),
                 'message': _('Invalid JSON'),
@@ -777,7 +777,7 @@ def edit_project():
 
         try:
             yaml.safe_load(form.code.data)
-        except yaml.scanner.ScannerError, ex:
+        except yaml.scanner.ScannerError as ex:
             response = jsonify({
                 'errors': str(ex),
                 'message': _('Invalid JSON'),
@@ -955,7 +955,7 @@ def add_map_config():
                     response.status_code = 400
                     return response
 
-        except yaml.scanner.ScannerError, ex:
+        except yaml.scanner.ScannerError as ex:
             response = jsonify({
                 'errors': str(ex),
                 'message': _('Invalid JSON'),
@@ -1051,7 +1051,7 @@ def edit_map_config():
                 response.status_code = 400
                 return response
 
-        except yaml.scanner.ScannerError, ex:
+        except yaml.scanner.ScannerError as ex:
             response = jsonify({
                 'errors': str(ex),
                 'message': _('Invalid JSON'),
@@ -1256,7 +1256,7 @@ def edit_selectionlist():
 
         try:
             yaml.safe_load(form.code.data)
-        except yaml.scanner.ScannerError, ex:
+        except yaml.scanner.ScannerError as ex:
             response = jsonify({
                 'errors': str(ex),
                 'message': _('Invalid JSON'),
@@ -1291,7 +1291,7 @@ def add_selectionlist():
         # check if input is valid yaml
         try:
             yaml.safe_load(form.code.data)
-        except yaml.scanner.ScannerError, ex:
+        except yaml.scanner.ScannerError as ex:
             response = jsonify({
                 'errors': str(ex),
                 'message': _('Invalid JSON'),

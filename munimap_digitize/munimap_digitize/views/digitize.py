@@ -5,8 +5,8 @@ from flask import (
     current_app, redirect, flash
 )
 
-from flask.ext.login import current_user
-from flask.ext.assets import Bundle
+from flask_login import current_user
+from flask_assets import Bundle
 
 from munimap.extensions import db, assets
 from munimap.helper import _, check_group_permission, load_app_config
@@ -59,7 +59,7 @@ def check_permission():
     ])
 
     if not access_allowed:
-        if request.is_xhr:
+        if request.is_json: # is_xhr is deprectaed
             return jsonify(message='Not allowed')
         return abort(403)
 
@@ -121,8 +121,8 @@ def list_available_icons():
 
     icons = []
     for file in icon_files:
-        file = file.decode('utf-8')
-
+        if not isinstance(file, str):
+          file = file.decode('utf-8')
         if not file.endswith(".svg"):
             continue
 

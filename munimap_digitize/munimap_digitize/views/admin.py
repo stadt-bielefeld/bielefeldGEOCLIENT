@@ -5,7 +5,7 @@ from flask import (
     render_template, redirect, flash, current_app
 )
 
-from flask.ext.login import current_user
+from flask_login import current_user
 
 from munimap.extensions import db
 from munimap.helper import _, check_group_permission, merge_dict
@@ -37,7 +37,7 @@ def check_permission():
               'error')
         return redirect(url_for('user.login', next=request.url))
     if not access_allowed:
-        if request.is_xhr:
+        if request.is_json: # is_xhr is deprectaed
             return jsonify(message='Not allowed')
         return abort(403)
 
@@ -73,7 +73,7 @@ def properties(name=None):
     add_form = AddPropertyForm()
 
     return render_template('digitize/admin/properties.html',
-                           property_keys=layer.properties_schema['properties'].keys(),
+                           property_keys=list(layer.properties_schema['properties'].keys()),
                            edit_form=edit_form,
                            add_form=add_form,
                            layer=layer,
@@ -88,13 +88,13 @@ def edit_properties(name=None):
 
     if form.validate_on_submit():
         schema = layer.properties_schema
-        for key in schema['properties'].keys():
+        for key in list(schema['properties'].keys()):
             schema['properties'][key]['title'] = form.data[key]
         layer.properties_schema = schema
         db.session.commit()
         flash(_('Property updated'), 'success')
     else:
-        for field_name, errors in form.errors.items():
+        for field_name, errors in list(form.errors.items()):
             for error in errors:
                 flash(field_name + ': ' + error, 'error')
 
@@ -119,7 +119,7 @@ def add_property(name=None):
             flash(_('Property %(name)s added', name=form.data['name']),
                   'success')
     else:
-        for field_name, errors in form.errors.items():
+        for field_name, errors in list(form.errors.items()):
             for error in errors:
                 flash(form[field_name].label.text + ': ' + error, 'error')
 
@@ -168,7 +168,7 @@ def edit_style(name=None):
 
     form = StyleForm()
     if form.validate_on_submit():
-        for key, value in form.data.items():
+        for key, value in list(form.data.items()):
             style[key] = value
             if value is not 0 and not value:
                 try:

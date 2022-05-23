@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 
 import logging
 
@@ -37,7 +37,7 @@ def check_permission():
         access_allowed = True
 
     if not access_allowed:
-        if request.is_xhr:
+        if request.is_json: # is_xhr is deprectaed
             return jsonify(message='Not allowed')
         return abort(403)
 

@@ -103,7 +103,7 @@ def stations_to_feature(row, operator=None, ref_expression=None):
     feature['properties']['name'] = row['name']
     feature['properties']['city'] = row['city']
 
-    zipped_properties = zip(
+    zipped_properties = list(zip(
         row['refs'],
         row['ids'],
         row['names'],
@@ -112,11 +112,11 @@ def stations_to_feature(row, operator=None, ref_expression=None):
         row['tos'],
         row['types'],
         row['operator'],
-    )
-    properties = map(
+    ))
+    properties = list(map(
         dict,
-        map(lambda p: zip(('ref', 'id', 'name', 'from', 'via', 'to', 'type', 'operator'), p), zipped_properties)
-    )
+        [list(zip(('ref', 'id', 'name', 'from', 'via', 'to', 'type', 'operator'), p)) for p in zipped_properties]
+    ))
 
     routes = {}
     osm_ids = set()
@@ -165,7 +165,7 @@ def stations_to_feature(row, operator=None, ref_expression=None):
                 routes[ref]['subroutes'], key=lambda k: k['description'])
             routes[ref]['subroutes'] = sorted_sub_routes
 
-    sorted_routes = natsorted(routes.values(), key=lambda k: k['ref'])
+    sorted_routes = natsorted(list(routes.values()), key=lambda k: k['ref'])
     feature['properties']['routes'] = sorted_routes
 
     return feature
@@ -195,7 +195,7 @@ def row_to_feature(row):
         },
         'geometry': {}
     }
-    for k, v in row.items():
+    for k, v in list(row.items()):
         if k == 'geometry':
             feature['geometry'] = json.loads(v)
         else:
