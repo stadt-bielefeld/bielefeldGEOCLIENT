@@ -4,7 +4,12 @@ from scriptine.shell import sh
 from munimap.application import create_app
 from munimap.extensions import db
 
-config_file = os.getenv('FLASK_MUNIMAP_CONFIG', './configs/munimap.conf')
+config_file=os.getenv('FLASK_MUNIMAP_CONFIG', './configs/munimap.conf')
+debug=os.getenv('FLASK_DEBUG', '0')
+host=os.getenv('FLASK_RUN_HOST', 'localhost')
+port=os.getenv('FLASK_RUN_PORT',5000)
+
+
 app = create_app(config_file=config_file)
 cli_manager = app.cli
 
@@ -13,7 +18,9 @@ def run_munimap():
     app.logger.info("Preparing to run munimap")
     app.logger.info(f"Starting applicatio {app.name}")
     app.logger.info(f"Using {config_file} as config file")
-    app.run()
+    app.logger.info(f"Debugger is {debug == '1'}")
+    app.run(host=host, port=int(port), debug=debug=="1")
+
 
 @cli_manager.command()
 def babel_init_lang(lang='de'):
@@ -36,12 +43,6 @@ def babel_compile():
 
 
 @cli_manager.command()
-def recreate_db():
-    drop_db(force=True)
-    create_db()
-
-
-@cli_manager.command()
 def create_db():
     "Creates database tables with fixtures"
     # create only on default bind
@@ -57,10 +58,17 @@ def create_db():
     db.session.add_all(fixtures.all())
     db.session.commit()
 
+# TODO: How to prompt user with CLI?
+# @cli_manager.command()
+# def drop_db(force=False):
+#     "Drops all database tables"
+#     if force or prompt_bool("Are you sure ? You will lose all your data !"):
+#         # drop only on default bind
+#         db.drop_all(bind=None)
 
-@cli_manager.command()
-def drop_db(force=False):
-    "Drops all database tables"
-    if force or prompt_bool("Are you sure ? You will lose all your data !"):
-        # drop only on default bind
-        db.drop_all(bind=None)
+
+# TODO: Dependent on previous function
+# @cli_manager.command()
+# def recreate_db():
+#     drop_db(force=True)
+#     create_db()

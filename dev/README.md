@@ -99,12 +99,10 @@ npm start
     - `python3.9 -c "import hyphen.dictools; hyphen.dictools.install('de')"`
   - Update translations
     ```
-    python dev/manage.py -c dev/configs/munimap.conf babel_refresh
-    python dev/manage.py -c dev/configs/munimap.conf babel_compile
+    FLASK_APP=manage.py flask babel-refresh
+    FLASK_APP=manage.py flask babel-compile
     ```
-  - Start the backend server
-    - `FLASK_APP=manage.py flask run-munimap`
-    - 
+
 ## Start the application
 
 After all steps from above have been applied successfully, the application can be started with:
@@ -141,6 +139,15 @@ sudo chmod -R a+rwx dev/data/
 **Note**: Other commands are also set in the `manage.py`. You can check which commands exist by running `FLASK_APP=manage.py flask --help`
 
 
+## Debugging the application
+
+# With VSCODE
+A debug configuration is provided and can be found in `.vscode/launch.json`.
+If you are using a custom config file for your application, you have to change it's path in `FLASK_MUNIMAP_CONFIG`.
+Then all you need to do is start debugging with vscode
+
+# With PyCharm
+TODO
 
 ## Testing the application
 

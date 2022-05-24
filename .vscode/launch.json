@@ -1,0 +1,27 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Bielefeld GeoClient",
+      "type": "python",
+      "request": "launch",
+      "module": "flask",
+      "env": {
+        "FLASK_APP": "./dev/manage.py",
+        "FLASK_RUN_HOST": "localhost",
+        "FLASK_RUN_PORT": "5000",
+        "FLASK_ENV": "development",
+        "FLASK_DEBUG": "1",
+        "FLASK_MUNIMAP_CONFIG": "./dev/configs/munimap.conf",
+        "JAVA_HOME": "/usr/lib/jvm/java-8-openjdk-amd64/"
+      },
+      "args": [
+        "run-munimap"
+      ],
+      "jinja": true,
+    }
+  ]
+}
