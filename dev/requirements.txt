@@ -9,7 +9,6 @@ Flask-Babel==0.9
 Flask-Login==0.5.0
 flask-mailman==0.1.5
 Flask-Minify==0.39
-Flask-Script==2.0.5
 Flask-SQLAlchemy==2.5.1 
 Flask-WTF==0.15.1
 GeoAlchemy2==0.11.1

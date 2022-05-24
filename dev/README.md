@@ -73,22 +73,7 @@ npm i
 npm start
 ```
 
-* Install (and start) the munimap backend
-
-```
-# cd to directory where the venv should be created
-python -m venv muni_venv
-source muni_venv/bin/activate
-cd dev/
-pip install wheel setuptools
-pip install -r requirements.txt
-pip install -e ../
-pip install --no-index -e ../munimap_digitize/
-pip install --no-index -e ../munimap_transport/
-python -c "import hyphen.dictools; hyphen.dictools.install('de')"
-```
-
-* Using a Python 3.9 Virtual Environment
+* Install the munimap backend using a Python 3.9 Virtual Environment
 
   - Install python 3.9 on your system (Assuming debian based linux distro):
     - If Python3.9 is not available to install on your distro: 
@@ -100,58 +85,62 @@ python -c "import hyphen.dictools; hyphen.dictools.install('de')"
       - `sudo apt install python3.9-venv`
   - create the virtual environment
     - `python3.9 -m venv muni_venv` (or any other name you like)
-
-
-* Update translations
-
-```
-python dev/manage.py -c dev/configs/munimap.conf babel_refresh
-python dev/manage.py -c dev/configs/munimap.conf babel_compile
-```
-
-* Build Documentation
-
-TODO
-
+  - Activate Virtual Environment
+    - `source muni_venv/bin/activate`
+  - Install requirements:
+      ```
+      pip3 install wheel setuptools
+      pip3 install -r requirements.txt
+      pip3 instal -e ../
+      pip3 install --no-index -e ../munimap_digitize/
+      pip3 install --no-index -e ../munimap_transport/
+      ```
+  - Install language support
+    - `python3.9 -c "import hyphen.dictools; hyphen.dictools.install('de')"`
+  - Update translations
+    ```
+    python dev/manage.py -c dev/configs/munimap.conf babel_refresh
+    python dev/manage.py -c dev/configs/munimap.conf babel_compile
+    ```
+  - Start the backend server
+    - `FLASK_APP=manage.py flask run-munimap`
+    - 
 ## Start the application
 
 After all steps from above have been applied successfully, the application can be started with:
+- `FLASK_APP=manage.py flask run-munimap`
+  
+By default a configuration file located in the `dev/` folder is used. However you can use a custom file by providing `FLASK_MUNIMAP_CONFIG` environment variable:
+- `FLASK_APP=manage.py FLASK_MUNIMAP_CONFIG='../path/to/your/custom/config/file.conf' flask run-munimap`
 
-```
-python dev/manage.py -c dev/configs/munimap.conf runserver
-```
+For debugging purposes, you may use the environment variable `FLASK_DEBUG=1` if not set in the configuration file
+- `FLASK_DEBUG=1 FLASK_APP=manage.py flask run-munimap`
+
+You can also set the environment your app is running on by setting the `FLASK_ENV=development` environment variable, if not already in the config file
+- `FLASK_ENV=development FLASK_APP=manage.py flask run-munimap`
 
 If you want to use mapfish and have not configured Java 8 as the default Java Version, you need to set the `JAVA_HOME` environment variable. i.e.:
-```
-JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ python dev/manage.py -c dev/configs/munimap.conf runserver
-```
+- `JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ FLASK_APP=manage.py flask run-munimap`
 
 In another terminal the docker dev environment needs to be started
-```
-docker-compose --profile dev up
-```
+- `docker-compose --profile dev up`
 
-and the client (javascript) source can be watched via:
-
-```
-npm start
-```
+and finally the client (javascript) source can be watched via:
+- `npm start` (ran in the root folder, i.e, bielefeldGEOCLIENT)
 
 The application should now be available via [http://localhost:5000/](http://localhost:5000/).
 
-Start print queue/broker (TODO UNTESTED):
-
-```
-python -m munimap.queue.worker -q /tmp/printqueue.sqlite
-```
-
-
+Start print queue/broker (**TODO UNTESTED**):
+- `python -m munimap.queue.worker -q /tmp/printqueue.sqlite`
 
 If you are running the dev setup and the prod setup after each other it can be that some of the permissions are not fitting. Try
 ```
 sudo chmod -R a+rwx munimap/assets/
 sudo chmod -R a+rwx dev/data/
 ```
+**Note**: Other commands are also set in the `manage.py`. You can check which commands exist by running `FLASK_APP=manage.py flask --help`
+
+
 
 ## Testing the application
 
@@ -164,6 +153,8 @@ Then, you will be able to run the tests
 
 **TODO**: Make creation and deletion of test DB automatic with test run
 **TODO**: Consider migrating tests and fixtures to `pytest` in the future
+
+
 
 ## About building or generating documentation
 

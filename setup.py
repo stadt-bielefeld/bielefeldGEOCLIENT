@@ -21,7 +21,6 @@ setup(
         'Flask-Login==0.5.0',
         'flask-mailman==0.1.5',
         'Flask-Minify==0.39',
-        'Flask-Script==2.0.5',
         'Flask-SQLAlchemy==2.5.1', 
         'Flask-WTF==0.15.1',
         'itsdangerous==2.0.1',
