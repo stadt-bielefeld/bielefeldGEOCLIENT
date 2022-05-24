@@ -27,12 +27,12 @@ setup(
     install_requires=[
         'Flask==0.12.5',
         'Flask-Assets==0.12',
-        'Flask-WTF==0.15.1',
+        'Flask-Login==0.5.0',
         'Flask-SQLAlchemy==2.5.1',
-        'SQLAlchemy==1.4.36',
+        'Flask-WTF==0.15.1',
         'GeoAlchemy2==0.11.1',
         'Shapely==1.8.2',
-        'Flask-Login==0.5.0',
+        'SQLAlchemy==1.4.36',
         'WTForms==2.3.3',
         'WTForms-SQLAlchemy==0.3'
     ],
