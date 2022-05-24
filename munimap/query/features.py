@@ -41,15 +41,14 @@ def sort_features(features, group_property='type', sort_properties=('name',), gr
             v = feature['properties'].get(p)
             if v and isinstance(v, str):
                 # get localized sort order by calling strxfrm
-                # strxfrm expects encoded strings
-                # split at whitespace as strxfrm can ignore it (depending on the collate)
+                # strxfrm expects strings and returns str
                 v = v.lower()
                 v = v.replace('ä', 'ae')
                 v = v.replace('ö', 'oe')
                 v = v.replace('ü', 'ue')
                 v = v.replace('ß', 'ss')
-                v = tuple(locale.strxfrm(p) for p in
-                    v.encode(locale_encoding, errors='replace').split(' '))
+                v = tuple(locale.strxfrm(str(p)) for p in
+                    v.encode(locale_encoding, errors='replace'))
             k.append(v)
 
         return tuple(k)

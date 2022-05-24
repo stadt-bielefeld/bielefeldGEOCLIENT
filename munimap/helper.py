@@ -15,7 +15,7 @@ from munimap.model import ProtectedLayer
 
 from munimap.extensions import db
 
-from jinja2.utils import markupsafe
+from markupsafe import Markup, escape
 
 __all__ = ['_', '_l']
 
@@ -321,14 +321,14 @@ _paragraph_re = re.compile(r'(?:\r\n|\r|\n){2,}')
 
 # found at http://flask.pocoo.org/snippets/28/
 def nl2br(value, only_first=False):
-    lines = _paragraph_re.split(markupsafe.escape(value))
+    lines = _paragraph_re.split(escape(value))
     html_lines = ['<p>%s</p>' % p.replace('\n', '<br>\n') for p in lines]
 
     if only_first and len(html_lines) > 0:
         result = html_lines[0]
     else:
         result = '\n\n'.join(html_lines)
-    return markupsafe.Markup(result)
+    return Markup(result)
 
 
 def touch_last_changes_file(times=None):

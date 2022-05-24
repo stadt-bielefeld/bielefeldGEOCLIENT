@@ -173,7 +173,7 @@ class DefaultConfig(object):
     COORD_TRANSFORM_URL = ''
 
 here = path.dirname(__file__)
-
+print("here---------------------------------------")
 
 class TestConfig(object):
     DEBUG = True
@@ -205,3 +205,5 @@ class TestConfig(object):
     PRINT_USE_BROKER = False
     PRINT_QUEUEFILE = path.join(here, 'test/data/printqueue.sqlite')
     WTF_CSRF_ENABLED = False
+
+    LOG_DIR = path.join(here, 'test/logs/')

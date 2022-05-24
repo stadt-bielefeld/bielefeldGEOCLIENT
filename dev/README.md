@@ -152,3 +152,31 @@ If you are running the dev setup and the prod setup after each other it can be t
 sudo chmod -R a+rwx munimap/assets/
 sudo chmod -R a+rwx dev/data/
 ```
+
+## Testing the application
+
+To test the application, you will need to install the requirements defined on `requirements-testing.txt`. To do so, run `pip install -r requirements-testing.txt`. Make sure you are on your virtual environment, altough not mandatory.
+
+You will also need to have created the test database `munimap_test` or any other name, depending on your TestConfig, which is found in: `munimap/config.py`. The structure of the DB must be the same as the regular DB.
+
+Tests run with [nose](https://nose.readthedocs.io/en/latest/). Go to the root level of the application and run `nosetests`
+Then, you will be able to run the tests
+
+**TODO**: Make creation and deletion of test DB automatic with test run
+**TODO**: Consider migrating tests and fixtures to `pytest` in the future
+
+## About building or generating documentation
+
+If you need to work on changing the documentation, this is done using [Sphinx](https://www.sphinx-doc.org/en/master/).
+
+Firts of all, you need to install the requirements defined on `requirements-docs.txt`. To do so, run `pip install -r requirements-docs.txt`. Make sure you are on your virtual environment, altough not mandatory.
+
+A source is already provided and can be found in `docs` folder (`../docs/` if you are currently on `dev/`). 
+
+If you make any changes and need to build it for publishing, simply run `sphinx-build`, providing the source folder and an output folder for the built version.
+
+There is no need to create a new soure, but if some reason you need it, you can do so by syimply running `sphinx-quickstart` and answer the questions. Alternatively you can also run `sphinx-autogenerate` by providing a source file so it can autogenerate the `rst` files.
+
+You can also generate API docs by running `sphinx-apidocs`.
+
+Check the Sphinx documentation for further
