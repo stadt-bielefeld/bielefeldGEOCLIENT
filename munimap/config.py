@@ -173,7 +173,6 @@ class DefaultConfig(object):
     COORD_TRANSFORM_URL = ''
 
 here = path.dirname(__file__)
-print("here---------------------------------------")
 
 class TestConfig(object):
     DEBUG = True
