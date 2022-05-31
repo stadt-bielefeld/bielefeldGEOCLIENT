@@ -6,9 +6,10 @@ import logging
 from flask import (
     Blueprint,
     current_app,
-    request,
+    Request,
     jsonify,
-    abort
+    abort,
+    request as LocalProxyRequet
 )
 
 from munimap.helper import (
@@ -29,7 +30,7 @@ def check_permission():
     if not current_app.config.get('ALLOW_UPLOAD_CONFIG'):
         return abort(403)
 
-    requested_ip = request.headers.get('X-Forwarded-For', False)
+    requested_ip = LocalProxyRequet.headers.get('X-Forwarded-For', False)
     if current_app.config.get('DEBUG'):
         requested_ip = '127.0.0.1'
 
@@ -37,14 +38,14 @@ def check_permission():
         access_allowed = True
 
     if not access_allowed:
-        if request.is_json: # is_xhr is deprectaed
+        if LocalProxyRequet.is_xhr:
             return jsonify(message='Not allowed')
         return abort(403)
 
 
 @api.route('/update/map/config', methods=['POST'])
 def update_map_config(path=None):
-    file = request.files.get('upload_file', None)
+    file = LocalProxyRequet.files.get('upload_file', None)
     if file:
         filename = file.filename
         log.info('get map config for %s', filename)
@@ -58,7 +59,7 @@ def update_map_config(path=None):
 
 @api.route('/update/project/config', methods=['POST'])
 def update_project_config(path=None):
-    file = request.files.get('upload_file', None)
+    file = LocalProxyRequet.files.get('upload_file', None)
     if file:
         filename = file.filename
         filename, _ = filename.split('.')

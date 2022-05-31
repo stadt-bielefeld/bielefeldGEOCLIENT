@@ -1102,3 +1102,183 @@
 2022-05-24 12:24:42,210 INFO: munimap_digitize loaded 
 2022-05-24 12:24:42,217 INFO: munimap_transport loaded 
 2022-05-24 12:24:42,219 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:29:15,999 INFO: munimap_digitize loaded 
+2022-05-31 20:29:16,025 INFO: munimap_transport loaded 
+2022-05-31 20:29:16,028 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:29:16,103 INFO: munimap_digitize loaded 
+2022-05-31 20:29:16,111 INFO: munimap_transport loaded 
+2022-05-31 20:29:16,113 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:29:16,146 INFO: munimap_digitize loaded 
+2022-05-31 20:29:16,154 INFO: munimap_transport loaded 
+2022-05-31 20:29:16,155 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:29:16,188 INFO: munimap_digitize loaded 
+2022-05-31 20:29:16,196 INFO: munimap_transport loaded 
+2022-05-31 20:29:16,198 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:29:16,230 INFO: munimap_digitize loaded 
+2022-05-31 20:29:16,238 INFO: munimap_transport loaded 
+2022-05-31 20:29:16,240 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:29:16,272 INFO: munimap_digitize loaded 
+2022-05-31 20:29:16,279 INFO: munimap_transport loaded 
+2022-05-31 20:29:16,281 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:29:16,314 INFO: munimap_digitize loaded 
+2022-05-31 20:29:16,322 INFO: munimap_transport loaded 
+2022-05-31 20:29:16,324 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:29:16,356 INFO: munimap_digitize loaded 
+2022-05-31 20:29:16,364 INFO: munimap_transport loaded 
+2022-05-31 20:29:16,366 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:29:16,398 INFO: munimap_digitize loaded 
+2022-05-31 20:29:16,405 INFO: munimap_transport loaded 
+2022-05-31 20:29:16,407 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:29:16,440 INFO: munimap_digitize loaded 
+2022-05-31 20:29:16,447 INFO: munimap_transport loaded 
+2022-05-31 20:29:16,449 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:29:16,481 INFO: munimap_digitize loaded 
+2022-05-31 20:29:16,488 INFO: munimap_transport loaded 
+2022-05-31 20:29:16,490 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:29:16,523 INFO: munimap_digitize loaded 
+2022-05-31 20:29:16,530 INFO: munimap_transport loaded 
+2022-05-31 20:29:16,532 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:29:16,564 INFO: munimap_digitize loaded 
+2022-05-31 20:29:16,571 INFO: munimap_transport loaded 
+2022-05-31 20:29:16,573 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:29:16,607 INFO: munimap_digitize loaded 
+2022-05-31 20:29:16,614 INFO: munimap_transport loaded 
+2022-05-31 20:29:16,616 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:29:16,648 INFO: munimap_digitize loaded 
+2022-05-31 20:29:16,655 INFO: munimap_transport loaded 
+2022-05-31 20:29:16,657 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:30:16,161 INFO: munimap_digitize loaded 
+2022-05-31 20:30:16,182 INFO: munimap_transport loaded 
+2022-05-31 20:30:16,185 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:30:16,245 INFO: munimap_digitize loaded 
+2022-05-31 20:30:16,253 INFO: munimap_transport loaded 
+2022-05-31 20:30:16,254 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:30:16,290 INFO: munimap_digitize loaded 
+2022-05-31 20:30:16,298 INFO: munimap_transport loaded 
+2022-05-31 20:30:16,300 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:30:16,332 INFO: munimap_digitize loaded 
+2022-05-31 20:30:16,340 INFO: munimap_transport loaded 
+2022-05-31 20:30:16,342 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:30:16,375 INFO: munimap_digitize loaded 
+2022-05-31 20:30:16,382 INFO: munimap_transport loaded 
+2022-05-31 20:30:16,384 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:30:16,416 INFO: munimap_digitize loaded 
+2022-05-31 20:30:16,424 INFO: munimap_transport loaded 
+2022-05-31 20:30:16,425 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:30:16,458 INFO: munimap_digitize loaded 
+2022-05-31 20:30:16,465 INFO: munimap_transport loaded 
+2022-05-31 20:30:16,467 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:30:16,499 INFO: munimap_digitize loaded 
+2022-05-31 20:30:16,507 INFO: munimap_transport loaded 
+2022-05-31 20:30:16,509 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:30:16,541 INFO: munimap_digitize loaded 
+2022-05-31 20:30:16,549 INFO: munimap_transport loaded 
+2022-05-31 20:30:16,551 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:30:16,583 INFO: munimap_digitize loaded 
+2022-05-31 20:30:16,590 INFO: munimap_transport loaded 
+2022-05-31 20:30:16,592 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:30:16,624 INFO: munimap_digitize loaded 
+2022-05-31 20:30:16,631 INFO: munimap_transport loaded 
+2022-05-31 20:30:16,633 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:30:16,665 INFO: munimap_digitize loaded 
+2022-05-31 20:30:16,673 INFO: munimap_transport loaded 
+2022-05-31 20:30:16,675 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:30:16,706 INFO: munimap_digitize loaded 
+2022-05-31 20:30:16,714 INFO: munimap_transport loaded 
+2022-05-31 20:30:16,716 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:30:16,749 INFO: munimap_digitize loaded 
+2022-05-31 20:30:16,756 INFO: munimap_transport loaded 
+2022-05-31 20:30:16,758 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:30:16,789 INFO: munimap_digitize loaded 
+2022-05-31 20:30:16,798 INFO: munimap_transport loaded 
+2022-05-31 20:30:16,800 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:30:48,872 INFO: munimap_digitize loaded 
+2022-05-31 20:30:48,893 INFO: munimap_transport loaded 
+2022-05-31 20:30:48,895 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:30:48,955 INFO: munimap_digitize loaded 
+2022-05-31 20:30:48,962 INFO: munimap_transport loaded 
+2022-05-31 20:30:48,964 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:30:48,997 INFO: munimap_digitize loaded 
+2022-05-31 20:30:49,005 INFO: munimap_transport loaded 
+2022-05-31 20:30:49,007 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:30:49,039 INFO: munimap_digitize loaded 
+2022-05-31 20:30:49,046 INFO: munimap_transport loaded 
+2022-05-31 20:30:49,048 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:30:49,081 INFO: munimap_digitize loaded 
+2022-05-31 20:30:49,088 INFO: munimap_transport loaded 
+2022-05-31 20:30:49,090 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:30:49,122 INFO: munimap_digitize loaded 
+2022-05-31 20:30:49,130 INFO: munimap_transport loaded 
+2022-05-31 20:30:49,132 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:30:49,165 INFO: munimap_digitize loaded 
+2022-05-31 20:30:49,172 INFO: munimap_transport loaded 
+2022-05-31 20:30:49,174 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:30:49,207 INFO: munimap_digitize loaded 
+2022-05-31 20:30:49,215 INFO: munimap_transport loaded 
+2022-05-31 20:30:49,217 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:30:49,249 INFO: munimap_digitize loaded 
+2022-05-31 20:30:49,257 INFO: munimap_transport loaded 
+2022-05-31 20:30:49,258 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:30:49,291 INFO: munimap_digitize loaded 
+2022-05-31 20:30:49,299 INFO: munimap_transport loaded 
+2022-05-31 20:30:49,301 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:30:49,333 INFO: munimap_digitize loaded 
+2022-05-31 20:30:49,340 INFO: munimap_transport loaded 
+2022-05-31 20:30:49,342 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:30:49,375 INFO: munimap_digitize loaded 
+2022-05-31 20:30:49,383 INFO: munimap_transport loaded 
+2022-05-31 20:30:49,385 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:30:49,417 INFO: munimap_digitize loaded 
+2022-05-31 20:30:49,424 INFO: munimap_transport loaded 
+2022-05-31 20:30:49,426 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:30:49,459 INFO: munimap_digitize loaded 
+2022-05-31 20:30:49,467 INFO: munimap_transport loaded 
+2022-05-31 20:30:49,469 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:30:49,500 INFO: munimap_digitize loaded 
+2022-05-31 20:30:49,508 INFO: munimap_transport loaded 
+2022-05-31 20:30:49,509 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:31:17,371 INFO: munimap_digitize loaded 
+2022-05-31 20:31:17,392 INFO: munimap_transport loaded 
+2022-05-31 20:31:17,395 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:31:17,456 INFO: munimap_digitize loaded 
+2022-05-31 20:31:17,463 INFO: munimap_transport loaded 
+2022-05-31 20:31:17,465 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:31:17,498 INFO: munimap_digitize loaded 
+2022-05-31 20:31:17,506 INFO: munimap_transport loaded 
+2022-05-31 20:31:17,508 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:31:17,540 INFO: munimap_digitize loaded 
+2022-05-31 20:31:17,547 INFO: munimap_transport loaded 
+2022-05-31 20:31:17,549 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:31:17,582 INFO: munimap_digitize loaded 
+2022-05-31 20:31:17,590 INFO: munimap_transport loaded 
+2022-05-31 20:31:17,592 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:31:17,624 INFO: munimap_digitize loaded 
+2022-05-31 20:31:17,632 INFO: munimap_transport loaded 
+2022-05-31 20:31:17,634 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:31:17,666 INFO: munimap_digitize loaded 
+2022-05-31 20:31:17,674 INFO: munimap_transport loaded 
+2022-05-31 20:31:17,676 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:31:17,708 INFO: munimap_digitize loaded 
+2022-05-31 20:31:17,716 INFO: munimap_transport loaded 
+2022-05-31 20:31:17,717 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:31:17,750 INFO: munimap_digitize loaded 
+2022-05-31 20:31:17,757 INFO: munimap_transport loaded 
+2022-05-31 20:31:17,759 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:31:17,792 INFO: munimap_digitize loaded 
+2022-05-31 20:31:17,800 INFO: munimap_transport loaded 
+2022-05-31 20:31:17,802 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:31:17,834 INFO: munimap_digitize loaded 
+2022-05-31 20:31:17,842 INFO: munimap_transport loaded 
+2022-05-31 20:31:17,844 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:31:17,877 INFO: munimap_digitize loaded 
+2022-05-31 20:31:17,884 INFO: munimap_transport loaded 
+2022-05-31 20:31:17,886 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:31:17,918 INFO: munimap_digitize loaded 
+2022-05-31 20:31:17,926 INFO: munimap_transport loaded 
+2022-05-31 20:31:17,928 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:31:17,963 INFO: munimap_digitize loaded 
+2022-05-31 20:31:17,970 INFO: munimap_transport loaded 
+2022-05-31 20:31:17,972 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 
+2022-05-31 20:31:18,005 INFO: munimap_digitize loaded 
+2022-05-31 20:31:18,013 INFO: munimap_transport loaded 
+2022-05-31 20:31:18,015 INFO: Loading layers_conf folder "/opt/etc/munimap/map-configs" 

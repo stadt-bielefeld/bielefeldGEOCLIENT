@@ -16,7 +16,7 @@ import traceback
 from tempfile import NamedTemporaryFile
 from threading import Lock
 
-from flask import Flask, send_from_directory, request, \
+from flask import Flask, send_from_directory, request as LocalProxyRequet, Request, \
     jsonify, redirect, url_for, make_response, render_template, \
     current_app
 from flask_babel import Babel
@@ -403,7 +403,7 @@ def configure_i18n(app):
     @babel.localeselector
     def get_locale():
         accept_languages = app.config.get('ACCEPT_LANGUAGES', ['en_GB'])
-        return request.accept_languages.best_match(accept_languages,
+        return LocalProxyRequet.accept_languages.best_match(accept_languages,
             default=accept_languages[0])
 
 
@@ -420,47 +420,47 @@ def configure_errorhandlers(app):
 
     @app.errorhandler(400)
     def bad_request(error):
-        if request.is_json: # is_xhr is deprectaed
+        if LocalProxyRequet.is_xhr:
             response = jsonify(message='Bad Request')
             response.status_code = 400
             return response
-        app.logger.error("Bad Request (400) for %s: %s", request, getattr(error, 'description', error))
+        app.logger.error("Bad Request (400) for %s: %s", LocalProxyRequet, getattr(error, 'description', error))
         return make_response(render_template("munimap/errors/400.html"), 400)
 
     @app.errorhandler(401)
     def unauthorized(error):
-        if request.is_json: # is_xhr is deprectaed
+        if LocalProxyRequet.is_xhr:
             response =  jsonify(message="Login required")
             response.status_code = 401
             return response
-        app.logger.error("Unauthorized (401) for %s: %s", request, getattr(error, 'description', error))
-        return redirect(url_for("user.login", next=request.url))
+        app.logger.error("Unauthorized (401) for %s: %s", LocalProxyRequet, getattr(error, 'description', error))
+        return redirect(url_for("user.login", next=LocalProxyRequet.url))
 
     @app.errorhandler(403)
     def forbidden(error):
-        if request.is_json: # is_xhr is deprectaed
-            response = jsonify( message='Not allowed')
+        if LocalProxyRequet.is_xhr:
+            response = jsonify(message='Not allowed')
             response.status_code = 403
             return response
-        app.logger.error("Not allowed (403) for %s: %s", request, getattr(error, 'description', error))
+        app.logger.error("Not allowed (403) for %s: %s", LocalProxyRequet, getattr(error, 'description', error))
         return make_response(render_template("munimap/errors/403.html"), 403)
 
     @app.errorhandler(404)
     def page_not_found(error):
-        if request.is_json: # is_xhr is deprectaed
+        if LocalProxyRequet.is_xhr:
             response = jsonify(message='Page not found')
             response.status_code = 404
             return response
-        app.logger.error("Not Found (404) for %s: %s", request, getattr(error, 'description', error))
+        app.logger.error("Not Found (404) for %s: %s", LocalProxyRequet, getattr(error, 'description', error))
         return make_response(render_template("munimap/errors/404.html"), 404)
 
     @app.errorhandler(500)
     def server_error(error):
-        if request.is_json: # is_xhr is deprectaed
+        if LocalProxyRequet.is_xhr:
             response = jsonify(message='Internal Error')
             response.status_code = 500
             return response
-        app.logger.error("Internal Error (500) for %s: %s", request, getattr(error, 'description', error))
+        app.logger.error("Internal Error (500) for %s: %s", LocalProxyRequet, getattr(error, 'description', error))
         return make_response(render_template("munimap/errors/500.html", error=error), 500)
 
 

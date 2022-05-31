@@ -145,11 +145,9 @@
 
     angular.module('munimapDraw')
     .value('StyleSchema', {$ style_schema | tojson $})
-    {# TODO: causes TypeError: '<' not supported between instances of 'int' and 'str' #}
-    {# .value('StyleSchemaFormOptions', {$ style_schema_form_options | tojson $}) #}
+    .value('StyleSchemaFormOptions', {$ style_schema_form_options | tojson $})
     .value('LabelSchema', {$ label_schema | tojson $})
-    {# TODO: Causes TypeError: '<' not supported between instances of 'int' and 'str' #}
-    {# .value('LabelSchemaFormOptions', {$ label_schema_form_options | tojson $}) #}
+    .value('LabelSchemaFormOptions', {$ label_schema_form_options | tojson $})
     .value('DrawIconsPrefix', '{$ url_for("munimap.draw_icons", filename="") $}');
 
     angular.module('munimap')

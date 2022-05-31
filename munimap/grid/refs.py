@@ -148,9 +148,9 @@ def reduce_refs(refs):
     else:
         return [(minx, miny), (maxx, maxy)]
 
-def is_adjacent(xxx_todo_changeme, xxx_todo_changeme1):
-    (ax, ay) = xxx_todo_changeme
-    (bx, by) = xxx_todo_changeme1
+def is_adjacent(reference, group_member):
+    (ax, ay) = reference
+    (bx, by) = group_member
     if (bx+1 >= ax >= bx-1 and
         by+1 >= ay >= by-1 and
         not abs(ax-bx)+abs(ay-by) == 2):

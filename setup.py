@@ -24,8 +24,8 @@ setup(
         'Flask-SQLAlchemy==2.5.1', 
         'Flask-WTF==0.15.1',
         'itsdangerous==2.0.1',
-        'Jinja2==3.0.3'
-        'libsass==0.8.3'
+        'Jinja2==3.0.3',
+        'libsass==0.8.3',
         'markupsafe==2.0.1',
         'psycopg2==2.9.3',
         'PyHyphen==4.0.3',

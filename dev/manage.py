@@ -16,7 +16,7 @@ cli_manager = app.cli
 @cli_manager.command()
 def run_munimap():
     app.logger.info("Preparing to run munimap")
-    app.logger.info(f"Starting applicatio {app.name}")
+    app.logger.info(f"Starting application {app.name}")
     app.logger.info(f"Using {config_file} as config file")
     app.logger.info(f"Debugger is {debug == '1'}")
     app.run(host=host, port=int(port), debug=debug=="1")

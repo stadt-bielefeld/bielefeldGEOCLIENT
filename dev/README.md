@@ -7,7 +7,7 @@
 * docker
 * docker-compose
 * Node (>= 10)
-* Python (>=3.8)
+* Python (>=3.9)
 * Java 8 (openjdk-8-jre)
 * virtualenv
 * Required packages for building pip requirements:
@@ -15,7 +15,6 @@
   sudo apt install build-essential \
       python3-dev \
       libpython3-dev \
-      python-gdal \
       python3-gdal \
       python3-pycurl \
       libgdal-dev \
@@ -173,8 +172,8 @@ A source is already provided and can be found in `docs` folder (`../docs/` if yo
 
 If you make any changes and need to build it for publishing, simply run `sphinx-build`, providing the source folder and an output folder for the built version.
 
-There is no need to create a new soure, but if some reason you need it, you can do so by syimply running `sphinx-quickstart` and answer the questions. Alternatively you can also run `sphinx-autogenerate` by providing a source file so it can autogenerate the `rst` files.
+There is no need to create a new source, but if for some reason you need it, you can do so by simply running `sphinx-quickstart` and answer the questions. Alternatively you can also run `sphinx-autogenerate` by providing a source file so it can autogenerate the `rst` files.
 
 You can also generate API docs by running `sphinx-apidocs`.
 
-Check the Sphinx documentation for further
+Check the Sphinx documentation for further information.

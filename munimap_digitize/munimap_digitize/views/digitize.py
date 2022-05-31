@@ -1,8 +1,8 @@
 import os
 
 from flask import (
-    Blueprint, request, jsonify, abort, url_for, render_template,
-    current_app, redirect, flash
+    Blueprint, Request, jsonify, abort, url_for, render_template,
+    current_app, redirect, flash, request as LocalProxyRequet
 )
 
 from flask_login import current_user
@@ -51,7 +51,7 @@ def digitize_context_processor():
 def check_permission():
     if current_user.is_anonymous:
         flash(_('You are not allowed to use the digitize module without a login'), 'error')
-        return redirect(url_for('user.login', next=request.url))
+        return redirect(url_for('user.login', next=LocalProxyRequet.url))
 
     access_allowed = check_group_permission([
         current_app.config.get('DIGITIZE_ADMIN_GROUP'),
@@ -59,7 +59,7 @@ def check_permission():
     ])
 
     if not access_allowed:
-        if request.is_json: # is_xhr is deprectaed
+        if LocalProxyRequet.is_xhr:
             return jsonify(message='Not allowed')
         return abort(403)
 
@@ -83,13 +83,13 @@ def remove_feature_group(id):
 
 @digitize.route('/features', methods=['POST'])
 def features():
-    if request.json is None:
+    if LocalProxyRequet.json is None:
         abort(400)
 
     # got group_id from name, because group_id is assigned as name
     # see 'digitizer' below
-    group_id = request.json.get('name')
-    feature_collection = request.json.get('featureCollection')
+    group_id = LocalProxyRequet.json.get('name')
+    feature_collection = LocalProxyRequet.json.get('featureCollection')
 
     if None in (group_id, feature_collection):
         abort(400)

@@ -1,8 +1,9 @@
 from datetime import datetime, time
 
 from flask import (
-    Blueprint, request, jsonify, abort, url_for,
-    render_template, redirect, flash, current_app
+    Blueprint, Request, jsonify, abort, url_for,
+    render_template, redirect, flash, current_app,
+    request as LocalProxyRequet
 )
 
 from flask_login import current_user
@@ -35,9 +36,9 @@ def check_permission():
     if current_user.is_anonymous:
         flash(_('You are not allowed to administrate the digitize layers'),
               'error')
-        return redirect(url_for('user.login', next=request.url))
+        return redirect(url_for('user.login', next=LocalProxyRequet.url))
     if not access_allowed:
-        if request.is_json: # is_xhr is deprectaed
+        if LocalProxyRequet.is_xhr:
             return jsonify(message='Not allowed')
         return abort(403)
 

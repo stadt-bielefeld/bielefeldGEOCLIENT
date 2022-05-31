@@ -437,8 +437,6 @@ def mapfish_grid_layer(grid, srs, style):
 
 def mapfish_numeration_layer(feature_collection, srs, scale, dpi, _style):
     style = deepcopy(_style)
-    # style = {b'label': '__num__', b'labelXOffset': 12, b'labelYOffset': 6, b'fontColor': '#ffffff', b'fontSize': 5, b'fontFamily': 'DejaVu Sans Bold', b'fillColor': '#000000', b'circleMargin': 1.75, b'circleXOffset': 0.3, b'circleYOffset': -0.2}
-    # _features = []
     sld_file = os.path.join(
         current_app.config.get('MAPFISH_STYLES_PATH'),
         'numeration.sld'

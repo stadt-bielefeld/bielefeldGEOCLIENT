@@ -95,6 +95,7 @@ RUN apt-get update && apt-get install -y \
     fonts-dejavu-extra \
     ttf-unifont \
     locales \
+    software-properties-common \
     && rm -rf /var/lib/apt/lists/*
 
     
@@ -140,22 +141,9 @@ RUN touch /opt/etc/munimap/configs/munimap.conf \
 # Get and install openjdk-8-jre. Not available in Debian Buster
 # TODO: Check for a possible mapfish print update, so version 11 can be used. Then this is not needed anymore. 
 # openjdk-11-jre can be easily installed by apt#
-RUN wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | sudo apt-key add -
+RUN wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | apt-key add -
 RUN add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
 RUN apt update -y && apt install adoptopenjdk-8-hotspot-jre -y
-
-# gdal-bin provides GDAL 2.4.0
-# TODO check if this is actually still needed
-# install gdal
-# WORKDIR /src
-# RUN wget -c http://download.osgeo.org/gdal/1.11.4/gdal-1.11.4.tar.gz \
-#     && tar -xzf gdal-1.11.4.tar.gz \
-#     && cd /src/gdal-1.11.4 \
-#     && ./configure --prefix=/opt/local/gdal \
-#     && make -j4 \
-#     && make install \
-#     && cd / \
-#     && rm -rf /src
 
 RUN wget -q -O- https://repo1.maven.org/maven2/org/mapfish/print/print-cli/3.9.0/print-cli-3.9.0-tar.tar | tar -x -C /opt/var/mapfish
 
@@ -180,6 +168,6 @@ RUN pip install -f file:///opt/pkgs \
 # Hack to disable https for following script.
 RUN PYTHONHTTPSVERIFY=0 python -c "import hyphen.dictools; hyphen.dictools.is_installed('de') or hyphen.dictools.install('de')"
 
-ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+ENV JAVA_HOME=/usr/lib/jvm/adoptopenjdk-8-hotspot-jre-amd64
 WORKDIR /opt/etc/munimap
-CMD gunicorn --preload -c /opt/etc/munimap/gunicorn.conf "munimap.application:create_app(config_file='/opt/etc/munimap/configs/munimap.conf')"
+CMD gunicorn -c /opt/etc/munimap/gunicorn.conf "munimap.application:create_app(config_file='/opt/etc/munimap/configs/munimap.conf')"

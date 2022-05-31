@@ -11,13 +11,14 @@ from flask import (
     Blueprint,
     render_template,
     current_app,
-    request,
+    Request,
     jsonify,
     flash,
     redirect,
     abort,
     send_from_directory,
-    url_for
+    url_for,
+    request as LocalProxyRequet
 )
 
 from flask_login import current_user
@@ -59,12 +60,12 @@ def check_permission():
     if current_user.is_anonymous:
         flash(_('You are not allowed to administrate the app'),
               'error')
-        return redirect(url_for('user.login', next=request.url))
+        return redirect(url_for('user.login', next=LocalProxyRequet.url))
     access_allowed = check_group_permission(
         current_app.config.get('ADMIN_GROUPS')
     )
     if not access_allowed:
-        if request.is_json: # is_xhr is deprectaed
+        if LocalProxyRequet.is_xhr:
             return jsonify(message='Not allowed')
         return abort(403)
 
@@ -147,7 +148,7 @@ def index(path=None):
 #
 @admin.route('/groups/add', methods=['POST'])
 def add_group():
-    form = MBGroupForm(request.form)
+    form = MBGroupForm(LocalProxyRequet.form)
 
     if form.validate_on_submit():
         group = MBGroup()
@@ -174,7 +175,7 @@ def add_group():
 
 @admin.route('/groups/edit', methods=['POST'])
 def edit_group():
-    group_id = request.form.get('id', None)
+    group_id = LocalProxyRequet.form.get('id', None)
 
     group = MBGroup.by_id_without_404(group_id)
 
@@ -186,7 +187,7 @@ def edit_group():
         response.status_code = 404
         return response
 
-    form = MBGroupForm(request.form)
+    form = MBGroupForm(LocalProxyRequet.form)
     if form.validate_on_submit():
         group.name = form.name.data
         group.title = form.title.data
@@ -212,12 +213,12 @@ def edit_group():
 #
 @admin.route('/users/load', methods=['POST'])
 def load_user():
-    r = request.json
+    r = LocalProxyRequet.json
     user = MBUser.by_id_without_404(r['userId'])
     user_details = user.to_mb_dict()
     duplicate = False
-    if request.args.get('duplicate'):
-        duplicate = request.args.get('duplicate')
+    if LocalProxyRequet.args.get('duplicate'):
+        duplicate = LocalProxyRequet.args.get('duplicate')
         del user_details['mb_user_email']
         del user_details['mb_user_name']
         del user_details['mb_user_firstname']
@@ -231,7 +232,7 @@ def load_user():
 
 @admin.route('/users/remove', methods=['POST'])
 def remove_user():
-    r = request.json
+    r = LocalProxyRequet.json
     user = MBUser.by_id_without_404(r['userId'])
     if user == current_user:
         return jsonify({
@@ -289,7 +290,7 @@ def update_user_parameters(user, data):
 
 @admin.route('/users/edit', methods=['POST'])
 def edit_user():
-    form = EditUserForm(request.form, csrf_enabled=False)
+    form = EditUserForm(LocalProxyRequet.form, csrf_enabled=False)
     if form.validate_on_submit():
         data = form.data
         user = MBUser.by_id_without_404(data['mb_user_id'])
@@ -334,9 +335,9 @@ def edit_user():
 
 @admin.route('/users/add', methods=['POST'])
 def add_user():
-    form = NewUserForm(request.form, meta={'csrf':False})
+    form = NewUserForm(LocalProxyRequet.form, meta={'csrf':False})
 
-    duplicate = request.args.get('duplicate', False)
+    duplicate = LocalProxyRequet.args.get('duplicate', False)
 
     if form.validate_on_submit():
         data = form.data
@@ -373,7 +374,7 @@ def add_user():
 
 @admin.route('/groups/remove', methods=['POST'])
 def remove_group():
-    r = request.json
+    r = LocalProxyRequet.json
     group = MBGroup.by_id_without_404(r['groupId'])
 
     if group is None:
@@ -396,7 +397,7 @@ def remove_group():
 
 @admin.route('/groups/user/add', methods=['POST'])
 def group_add_user():
-    r = request.json
+    r = LocalProxyRequet.json
     group = MBGroup.by_id_without_404(r['groupId'])
     user = MBUser.by_id_without_404(r['userId'])
 
@@ -425,7 +426,7 @@ def group_add_user():
 
 @admin.route('groups/user/remove', methods=['POST'])
 def group_remove_user():
-    r = request.json
+    r = LocalProxyRequet.json
     group = MBGroup.by_id_without_404(r['groupId'])
     user = MBUser.by_id_without_404(r['userId'])
 
@@ -454,7 +455,7 @@ def group_remove_user():
 
 @admin.route('groups/layer/add', methods=['POST'])
 def group_add_layer():
-    r = request.json
+    r = LocalProxyRequet.json
     group = MBGroup.by_id_without_404(r['groupId'])
     layer = ProtectedLayer.by_name_without_404(r['layerName'])
 
@@ -483,7 +484,7 @@ def group_add_layer():
 
 @admin.route('groups/layer/remove', methods=['POST'])
 def group_remove_layer():
-    r = request.json
+    r = LocalProxyRequet.json
     group = MBGroup.by_id_without_404(r['groupId'])
     layer = ProtectedLayer.by_name_without_404(r['layerName'])
 
@@ -512,7 +513,7 @@ def group_remove_layer():
 
 @admin.route('groups/project/add', methods=['POST'])
 def group_add_project():
-    r = request.json
+    r = LocalProxyRequet.json
     group = MBGroup.by_id_without_404(r['groupId'])
     project = ProtectedProject.by_name_without_404(r['projectName'])
 
@@ -541,7 +542,7 @@ def group_add_project():
 
 @admin.route('groups/project/remove', methods=['POST'])
 def group_remove_project():
-    r = request.json
+    r = LocalProxyRequet.json
 
     group = MBGroup.by_id_without_404(r['groupId'])
     project = ProtectedProject.by_name_without_404(r['projectName'])
@@ -571,7 +572,7 @@ def group_remove_project():
 
 @admin.route('projects/protect', methods=['POST'])
 def protect_project():
-    r = request.json
+    r = LocalProxyRequet.json
     project = ProtectedProject.by_name_without_404(r['projectName'])
 
     if project is not None:
@@ -592,7 +593,7 @@ def protect_project():
 
 @admin.route('projects/unprotect', methods=['POST'])
 def unprotect_project():
-    r = request.json
+    r = LocalProxyRequet.json
     project = ProtectedProject.by_id_without_404(r['projectId'])
 
     if project is None:
@@ -643,7 +644,7 @@ def load_layers():
 
 @admin.route('layers/protect', methods=['POST'])
 def protect_layer():
-    r = request.json
+    r = LocalProxyRequet.json
     layer = ProtectedLayer.by_name_without_404(r['layerName'])
 
     if layer is not None:
@@ -666,7 +667,7 @@ def protect_layer():
 
 @admin.route('layers/unprotect', methods=['POST'])
 def unprotect_layer():
-    r = request.json
+    r = LocalProxyRequet.json
     layer = ProtectedLayer.by_id_without_404(r['layerId'])
 
     if layer is None:
@@ -687,7 +688,7 @@ def unprotect_layer():
 
 @admin.route('/projects/load', methods=['POST'])
 def load_project():
-    name = request.form.get('name', False)
+    name = LocalProxyRequet.form.get('name', False)
     config_file = project_file_path(name)
 
     if not os.path.exists(config_file):
@@ -707,7 +708,7 @@ def load_project():
 
 @admin.route('/projects/add', methods=['POST'])
 def add_project():
-    form = NewProjectForm(request.form, csrf_enabled=False)
+    form = NewProjectForm(LocalProxyRequet.form, csrf_enabled=False)
 
     if form.validate_on_submit():
         # check if input is valid yaml
@@ -722,7 +723,7 @@ def add_project():
             response.status_code = 400
             return response
 
-        name = request.form.get('new')
+        name = LocalProxyRequet.form.get('new')
         config_file = project_file_path(name)
 
         if os.path.exists(config_file):
@@ -754,7 +755,7 @@ def add_project():
 
 @admin.route('/projects/edit', methods=['POST'])
 def edit_project():
-    name = request.form.get('name')
+    name = LocalProxyRequet.form.get('name')
 
     if name is None:
         response = jsonify({
@@ -764,7 +765,7 @@ def edit_project():
         response.status_code = 404
         return response
 
-    form = ProjectForm(request.form, csrf_enabled=False)
+    form = ProjectForm(LocalProxyRequet.form, csrf_enabled=False)
     if form.validate_on_submit():
         config_file = project_file_path(name)
         if not os.path.exists(config_file):
@@ -806,8 +807,8 @@ def edit_project():
 
 @admin.route('/projects/rename', methods=['POST'])
 def rename_project_config():
-    name = '%s' % request.form.get('name')
-    new_name =  '%s' % request.form.get('newName')
+    name = '%s' % LocalProxyRequet.form.get('name')
+    new_name =  '%s' % LocalProxyRequet.form.get('newName')
     if name is None or new_name is None:
         response = jsonify({
             'code': 404,
@@ -855,7 +856,7 @@ def rename_project_config():
 
 @admin.route('/projects/remove', methods=['POST'])
 def remove_project():
-    name = request.form.get('name')
+    name = LocalProxyRequet.form.get('name')
     if name:
         config_file = project_file_path(name)
         if os.path.exists(config_file):
@@ -880,7 +881,7 @@ def remove_project():
 
 @admin.route('/projects/transfer', methods=['POST'])
 def transfer_project_config():
-    r = request.json
+    r = LocalProxyRequet.json
     name = r.get('projectName', False)
     if name:
         config_file = project_file_path(name)
@@ -906,7 +907,7 @@ def transfer_project_config():
 
 @admin.route('/map/config/load', methods=['POST'])
 def load_map_config():
-    name = request.form.get('name', False)
+    name = LocalProxyRequet.form.get('name', False)
     config_file = config_file_path(name)
 
     if not os.path.exists(config_file):
@@ -925,10 +926,10 @@ def load_map_config():
 
 @admin.route('/map/config/add', methods=['POST'])
 def add_map_config():
-    form = NewProjectForm(request.form, csrf_enabled=False)
+    form = NewProjectForm(LocalProxyRequet.form, csrf_enabled=False)
 
     if form.validate_on_submit():
-        filename = request.form.get('new')
+        filename = LocalProxyRequet.form.get('new')
         name = filename +'.yaml'
 
         try:
@@ -938,7 +939,7 @@ def add_map_config():
                 global_errors, global_informal_only = check_project_config(new_yaml_content, exclude_file=name)
                 # substract local errors from global erros to show them differnt on web
                 errros = [item for item in local_errors if item in global_errors]
-                admin_save = request.form.get('adminSave', False)
+                admin_save = LocalProxyRequet.form.get('adminSave', False)
 
                 overwrite = False
                 if admin_save and global_informal_only and local_informal_only:
@@ -1007,7 +1008,7 @@ def add_map_config():
 
 @admin.route('/map/config/edit', methods=['POST'])
 def edit_map_config():
-    name = request.form.get('name')
+    name = LocalProxyRequet.form.get('name')
 
     if name is None:
         response = jsonify({
@@ -1017,7 +1018,7 @@ def edit_map_config():
         response.status_code = 404
         return response
 
-    form = ProjectForm(request.form, csrf_enabled=False)
+    form = ProjectForm(LocalProxyRequet.form, csrf_enabled=False)
     if form.validate_on_submit():
         config_file = config_file_path(name)
         if not os.path.exists(config_file):
@@ -1034,7 +1035,7 @@ def edit_map_config():
             local_errors, local_informal_only = check_project_config_only(new_yaml_content)
             global_errors, global_informal_only = check_project_config(new_yaml_content, exclude_file=name)
             # substract local errors from global erros to show them differnt on web
-            admin_save = request.form.get('adminSave', False)
+            admin_save = LocalProxyRequet.form.get('adminSave', False)
 
             overwrite = False
             if admin_save and global_informal_only and local_informal_only:
@@ -1091,7 +1092,7 @@ def edit_map_config():
 
 @admin.route('/map/config/remove', methods=['POST'])
 def remove_map_config():
-    name = request.form.get('name')
+    name = LocalProxyRequet.form.get('name')
     if name:
         config_file = config_file_path(name)
         if os.path.exists(config_file):
@@ -1113,8 +1114,8 @@ def remove_map_config():
 
 @admin.route('/map/config/rename', methods=['POST'])
 def rename_map_config():
-    name = request.form.get('name')
-    new_name = request.form.get('newName')
+    name = LocalProxyRequet.form.get('name')
+    new_name = LocalProxyRequet.form.get('newName')
     if name is None or new_name is None:
         response = jsonify({
             'code': 404,
@@ -1154,7 +1155,7 @@ def rename_map_config():
 
 @admin.route('/map/config/transfer', methods=['POST'])
 def transfer_map_config():
-    r = request.json
+    r = LocalProxyRequet.json
     name = r.get('projectName', False)
     if name:
         config_file = config_file_path(name)
@@ -1179,7 +1180,7 @@ def transfer_map_config():
 
 @admin.route('/log/alkis/remove', methods=['POST'])
 def remove_alkis_log_config():
-    name = request.form.get('name')
+    name = LocalProxyRequet.form.get('name')
     if name:
         alkis_log = os.path.join(
             current_app.root_path,
@@ -1214,7 +1215,7 @@ def download_alkis_log(filename):
 
 @admin.route('/selectionlists/load', methods=['POST'])
 def load_selectionlist():
-    name = request.form.get('name', False)
+    name = LocalProxyRequet.form.get('name', False)
     config_file = selectionlist_file_path(name)
 
     if not os.path.exists(config_file):
@@ -1233,7 +1234,7 @@ def load_selectionlist():
 
 @admin.route('/selectionlists/edit', methods=['POST'])
 def edit_selectionlist():
-    name = request.form.get('name')
+    name = LocalProxyRequet.form.get('name')
 
     if name is None:
         response = jsonify({
@@ -1243,7 +1244,7 @@ def edit_selectionlist():
         response.status_code = 404
         return response
 
-    form = SelectionlistForm(request.form, csrf_enabled=False)
+    form = SelectionlistForm(LocalProxyRequet.form, csrf_enabled=False)
     if form.validate_on_submit():
         config_file = selectionlist_file_path(name)
         if not os.path.exists(config_file):
@@ -1285,7 +1286,7 @@ def edit_selectionlist():
 
 @admin.route('/selectionlists/add', methods=['POST'])
 def add_selectionlist():
-    form = NewSelectionlistForm(request.form, csrf_enabled=False)
+    form = NewSelectionlistForm(LocalProxyRequet.form, csrf_enabled=False)
 
     if form.validate_on_submit():
         # check if input is valid yaml
@@ -1300,7 +1301,7 @@ def add_selectionlist():
             response.status_code = 400
             return response
 
-        name = request.form.get('new')
+        name = LocalProxyRequet.form.get('new')
         config_file = selectionlist_file_path(name)
 
         if os.path.exists(config_file):
@@ -1331,7 +1332,7 @@ def add_selectionlist():
 
 @admin.route('/selectionlists/remove', methods=['POST'])
 def remove_selectionlist():
-    name = request.form.get('name')
+    name = LocalProxyRequet.form.get('name')
     if name:
         config_file = selectionlist_file_path(name)
         if os.path.exists(config_file):
@@ -1350,8 +1351,8 @@ def remove_selectionlist():
 
 @admin.route('/selectionlists/rename', methods=['POST'])
 def rename_selectionlist_config():
-    name = '%s' % request.form.get('name')
-    new_name = '%s' % request.form.get('newName')
+    name = '%s' % LocalProxyRequet.form.get('name')
+    new_name = '%s' % LocalProxyRequet.form.get('newName')
     if name is None or new_name is None:
         response = jsonify({
             'code': 404,
@@ -1391,7 +1392,7 @@ def rename_selectionlist_config():
 
 @admin.route('/plugins/load', methods=['POST'])
 def load_plugin():
-    name = request.form.get('name', False)
+    name = LocalProxyRequet.form.get('name', False)
     config_file = plugin_file_path(name)
 
     if not os.path.exists(config_file):
@@ -1410,7 +1411,7 @@ def load_plugin():
 
 @admin.route('/plugins/edit', methods=['POST'])
 def edit_plugin():
-    name = request.form.get('name')
+    name = LocalProxyRequet.form.get('name')
 
     if name is None:
         response = jsonify({
@@ -1420,7 +1421,7 @@ def edit_plugin():
         response.status_code = 404
         return response
 
-    form = PluginForm(request.form, csrf_enabled=False)
+    form = PluginForm(LocalProxyRequet.form, csrf_enabled=False)
     if form.validate_on_submit():
         config_file = plugin_file_path(name)
         if not os.path.exists(config_file):
@@ -1451,11 +1452,11 @@ def edit_plugin():
 
 @admin.route('/plugins/add', methods=['POST'])
 def add_plugin():
-    form = NewPluginForm(request.form, csrf_enabled=False)
+    form = NewPluginForm(LocalProxyRequet.form, csrf_enabled=False)
 
     if form.validate_on_submit():
 
-        name = request.form.get('new')
+        name = LocalProxyRequet.form.get('new')
         config_file = plugin_file_path(name)
 
         if os.path.exists(config_file):
@@ -1486,7 +1487,7 @@ def add_plugin():
 
 @admin.route('/plugins/remove', methods=['POST'])
 def remove_plugin():
-    name = request.form.get('name')
+    name = LocalProxyRequet.form.get('name')
     if name:
         config_file = plugin_file_path(name)
         if os.path.exists(config_file):
@@ -1505,8 +1506,8 @@ def remove_plugin():
 
 @admin.route('/plugins/rename', methods=['POST'])
 def rename_plugin_config():
-    name = '%s' % request.form.get('name')
-    new_name = '%s' % request.form.get('newName')
+    name = '%s' % LocalProxyRequet.form.get('name')
+    new_name = '%s' % LocalProxyRequet.form.get('newName')
     if name is None or new_name is None:
         response = jsonify({
             'code': 404,

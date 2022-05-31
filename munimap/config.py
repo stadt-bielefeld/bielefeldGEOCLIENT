@@ -205,4 +205,3 @@ class TestConfig(object):
     PRINT_QUEUEFILE = path.join(here, 'test/data/printqueue.sqlite')
     WTF_CSRF_ENABLED = False
 
-    LOG_DIR = path.join(here, 'test/logs/')

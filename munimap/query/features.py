@@ -48,7 +48,7 @@ def sort_features(features, group_property='type', sort_properties=('name',), gr
                 v = v.replace('ü', 'ue')
                 v = v.replace('ß', 'ss')
                 v = tuple(locale.strxfrm(str(p)) for p in
-                    v.encode(locale_encoding, errors='replace'))
+                    v.encode(locale_encoding, errors='replace')).split(' ')
             k.append(v)
 
         return tuple(k)

@@ -14,7 +14,6 @@ if sys.platform == 'darwin':
 else:
     locale.setlocale(locale.LC_COLLATE, 'de_DE.UTF8')
 
-@SkipTest
 def assert_sorted_features(features, **sort_args):
     """
     Creates a shuffled copy of features, sorts them and compares

@@ -21,6 +21,7 @@ docker/munimap-postgis/postgresql_data
 docker/munimap-mapserver/logs
 docs/build
 munimap/static/build
+munimap/test/logs/
 node_modules
 projects/*/assets
 munimap/assets/
