@@ -293,7 +293,7 @@ def load_anol_layers(configfile):
 
 def create_mapfish_layers(conf, layers_base_url='', default_protocol=''):
     mapfish_layers = {}
-    for layer_conf in list(conf['layers'].values()):
+    for layer_conf in conf['layers'].values():
         mapfish_layer_factory = None
         if layer_conf['type'] in ('wms', 'tiledwms'):
             mapfish_layer_factory = mapfish_wms_layer
@@ -639,7 +639,7 @@ def mapfish_measure_feature_collection_layer(feature_collection):
 
 def create_featureinfo_layers(conf, layers_base_url=''):
     featureinfo_layers = {}
-    for layer_conf in list(conf['layers'].values()):
+    for layer_conf in conf['layers'].values():
         if layer_conf['type'] not in ('wms', 'tiledwms', 'wmts'):
             continue
         if 'featureinfo' not in layer_conf:
@@ -785,6 +785,7 @@ def check_project_config(new_yaml_content, exclude_file):
         return ['String only not supported'], False
 
     config_folder = current_app.config.get('LAYERS_CONF_DIR')
+    print(config_folder)
     for filename in os.listdir(config_folder):
         if filename == exclude_file:
             continue

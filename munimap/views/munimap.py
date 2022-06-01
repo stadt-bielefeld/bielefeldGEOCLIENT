@@ -153,7 +153,6 @@ def index(config=None):
         resp.headers['Pragma'] = pragma_header
         return resp
     else:
-        from flask._compat import text_type
         rendered_index = render_template(
             '/munimap/app/index.html',
             app_config=app_config,

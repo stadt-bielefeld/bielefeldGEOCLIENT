@@ -54,7 +54,7 @@ class Feature(db.Model):
         except KeyError:
             pass
 
-        for key, value in list(properties.items()):
+        for key, value in properties.items():
             properties[key] = str(value).encode('utf-8')
 
         geometry = from_shape(asShape(geojson['geometry']), srid=25832)
@@ -62,6 +62,6 @@ class Feature(db.Model):
         self.properties = properties
 
         if style is not None:
-            for key, value in list(style.items()):
+            for key, value in style.items():
                 style[key] = str(value)
         self.style = style

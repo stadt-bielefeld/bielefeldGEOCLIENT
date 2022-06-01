@@ -172,6 +172,8 @@ class DefaultConfig(object):
 
     COORD_TRANSFORM_URL = ''
 
+    JSON_SORT_KEYS = False
+
 here = path.dirname(__file__)
 
 class TestConfig(object):
@@ -184,11 +186,11 @@ class TestConfig(object):
 
     SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres@localhost:5555/munimap_test'
 
-    SQLALCHEMY_LAYER_DATABASE_URI = 'postgresql://osm:osm@localhost:5555/osm'
+    SQLALCHEMY_LAYER_DATABASE_URI = 'postgresql://postgres:postgres@localhost:5556/osmdata_test'
     SQLALCHEMY_DATABASE_SCHEMA = 'munimaptest'
 
     SQLALCHEMY_BINDS = {
-        'mapbender': 'postgresql://postgres:postgres@localhost:5555/munimap_test'
+        'mapbender': 'postgresql://postgres:postgres@localhost:5556/mapbender_test'
     }
 
     MAP_ICONS_DIR = path.join(here, 'test/data/mapfish/icons')
@@ -204,4 +206,10 @@ class TestConfig(object):
     PRINT_USE_BROKER = False
     PRINT_QUEUEFILE = path.join(here, 'test/data/printqueue.sqlite')
     WTF_CSRF_ENABLED = False
+
+    LOG_DIR = path.join(here, 'test/logs/')
+    LAYERS_CONF_DIR = path.join(here, 'test/data/map')
+    APP_CONFIG_DIR = path.join(here, 'test/data/app')
+
+    JSON_SORT_KEYS = False
 

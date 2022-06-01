@@ -16,7 +16,7 @@ class LayerNotFoundError(Exception):
 def load_layers(config, default_db_uri, db_schema, db_echo=False):
     queryable_layers = OrderedDict()
     engines = {}
-    for layer in list(config['layers'].values()):
+    for layer in config['layers'].values():
         if layer['type'] not in ('postgis', 'digitize'):
             continue
 
@@ -100,7 +100,7 @@ def row_to_feature(row, layername=None):
         },
         'geometry': {}
     }
-    for k, v in list(row.items()):
+    for k, v in row.items():
         if k == 'geometry':
             continue
         elif k == '__transformed_geom__':

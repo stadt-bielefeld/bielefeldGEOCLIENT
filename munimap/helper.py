@@ -237,7 +237,7 @@ def apply_selectionlists_to_geoeditor(app_config, app_config_path):
         return
 
     form_fields = app_config['geoeditor']['formFields']
-    for geometry_fields in list(form_fields.values()):
+    for geometry_fields in form_fields.values():
         for field in geometry_fields:
             if field['type'] != 'select' or not isinstance(field['select'], str):
                 continue

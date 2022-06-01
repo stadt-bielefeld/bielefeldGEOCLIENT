@@ -20,7 +20,7 @@ LAYER_NAME_REGEX = r'^[0-9a-z_]+$'
 class EditPropertiesForm(FlaskForm):
     @classmethod
     def from_schema(cls, schema):
-        for name, options in list(schema['properties'].items()):
+        for name, options in schema['properties'].items():
             title_field = StringField(_l('Title'), [InputRequired()],
                                       default=options['title'])
             setattr(cls, name, title_field)

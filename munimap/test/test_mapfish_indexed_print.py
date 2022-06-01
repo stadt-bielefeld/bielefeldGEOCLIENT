@@ -30,7 +30,7 @@ class TestMapfishIndexedPrint(BaseMapfishPrintTest):
 
     def prepare_index_query(self):
         params = {}
-        for key, value in list(self.prepare_data().items()):
+        for key, value in self.prepare_data().items():
             if key == 'pageSize':
                 params['width'] = value[0]
                 params['height'] = value[1]

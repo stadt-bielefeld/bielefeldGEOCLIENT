@@ -17,14 +17,15 @@ cli_manager = app.cli
 
 @cli_manager.command()
 def run_munimap():
+    "Runs the development server with special configuration attributes"
     app.logger.info("Preparing to run munimap")
     app.logger.info(f"Starting application {app.name}")
     app.logger.info(f"Using {config_file} as config file")
     app.logger.info(f"Debugger is {debug == '1'}")
-    threading.Thread(target=lambda: app.run(host=host, port=port, debug=debug=="1")).start()
-
+    app.run(host=host, port=int(port), debug=debug=="1", threaded=True)
 
 @cli_manager.command()
+@click.option('--lang', default='de', help='selects language to initialize')
 def babel_init_lang(lang='de'):
     "Initialize new language."
     sh('pybabel init -i ../munimap/translations/messages.pot -d ../munimap/translations -l %s' %
@@ -62,9 +63,10 @@ def create_db():
 
 
 @cli_manager.command()
-def drop_db(force=False):
+@click.option('--force', default=False, help='Drops all database tables')
+def drop_db(force):
     "Drops all database tables"
-    if click.confirm("Are you sure ? You will lose all your data !"):
+    if force or not force and click.confirm("Are you sure ? You will lose all your data !"):
         app.logger.info("Dropping Database")
         # drop only on default bind
         db.drop_all(bind=None)

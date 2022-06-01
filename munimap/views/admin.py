@@ -290,7 +290,7 @@ def update_user_parameters(user, data):
 
 @admin.route('/users/edit', methods=['POST'])
 def edit_user():
-    form = EditUserForm(LocalProxyRequet.form, csrf_enabled=False)
+    form = EditUserForm(LocalProxyRequet.form, meta={'csrf': False})
     if form.validate_on_submit():
         data = form.data
         user = MBUser.by_id_without_404(data['mb_user_id'])
@@ -708,7 +708,7 @@ def load_project():
 
 @admin.route('/projects/add', methods=['POST'])
 def add_project():
-    form = NewProjectForm(LocalProxyRequet.form, csrf_enabled=False)
+    form = NewProjectForm(LocalProxyRequet.form, meta={'csrf': False})
 
     if form.validate_on_submit():
         # check if input is valid yaml
@@ -735,7 +735,7 @@ def add_project():
             return response
 
         with open(config_file, 'w+') as yaml_file:
-            yaml_file.write(form.code.data.encode("utf-8"))
+            yaml_file.write(form.code.data)
 
         return jsonify({
             'project': name,
@@ -765,7 +765,7 @@ def edit_project():
         response.status_code = 404
         return response
 
-    form = ProjectForm(LocalProxyRequet.form, csrf_enabled=False)
+    form = ProjectForm(LocalProxyRequet.form, meta={'csrf': False})
     if form.validate_on_submit():
         config_file = project_file_path(name)
         if not os.path.exists(config_file):
@@ -788,7 +788,7 @@ def edit_project():
             return response
 
         with open(config_file, 'w') as yaml_file:
-            yaml_file.write(form.code.data.encode("utf-8"))
+            yaml_file.write(form.code.data)
 
         return jsonify({
             'project': name,
@@ -926,7 +926,7 @@ def load_map_config():
 
 @admin.route('/map/config/add', methods=['POST'])
 def add_map_config():
-    form = NewProjectForm(LocalProxyRequet.form, csrf_enabled=False)
+    form = NewProjectForm(LocalProxyRequet.form, meta={'csrf': False})
 
     if form.validate_on_submit():
         filename = LocalProxyRequet.form.get('new')
@@ -976,7 +976,7 @@ def add_map_config():
             return response
 
         with open(config_file, 'w+') as yaml_file:
-            yaml_file.write(form.code.data.encode('utf8'))
+            yaml_file.write(form.code.data)
 
         touch_last_changes_file()
 
@@ -1018,7 +1018,7 @@ def edit_map_config():
         response.status_code = 404
         return response
 
-    form = ProjectForm(LocalProxyRequet.form, csrf_enabled=False)
+    form = ProjectForm(LocalProxyRequet.form, meta={'csrf': False})
     if form.validate_on_submit():
         config_file = config_file_path(name)
         if not os.path.exists(config_file):
@@ -1062,7 +1062,7 @@ def edit_map_config():
             return response
 
         with open(config_file, 'w') as yaml_file:
-            yaml_file.write(form.code.data.encode('utf8'))
+            yaml_file.write(form.code.data)
 
         touch_last_changes_file()
 
@@ -1244,7 +1244,7 @@ def edit_selectionlist():
         response.status_code = 404
         return response
 
-    form = SelectionlistForm(LocalProxyRequet.form, csrf_enabled=False)
+    form = SelectionlistForm(LocalProxyRequet.form, meta={'csrf': False})
     if form.validate_on_submit():
         config_file = selectionlist_file_path(name)
         if not os.path.exists(config_file):
@@ -1267,7 +1267,7 @@ def edit_selectionlist():
             return response
 
         with open(config_file, 'w') as yaml_file:
-            yaml_file.write(form.code.data.encode("utf-8"))
+            yaml_file.write(form.code.data)
 
         return jsonify({
             'selectionlist': name,
@@ -1286,7 +1286,7 @@ def edit_selectionlist():
 
 @admin.route('/selectionlists/add', methods=['POST'])
 def add_selectionlist():
-    form = NewSelectionlistForm(LocalProxyRequet.form, csrf_enabled=False)
+    form = NewSelectionlistForm(LocalProxyRequet.form, meta={'csrf': False})
 
     if form.validate_on_submit():
         # check if input is valid yaml
@@ -1313,7 +1313,7 @@ def add_selectionlist():
             return response
 
         with open(config_file, 'w+') as yaml_file:
-            yaml_file.write(form.code.data.encode("utf-8"))
+            yaml_file.write(form.code.data)
 
         return jsonify({
             'selectionlist': name,
@@ -1421,7 +1421,7 @@ def edit_plugin():
         response.status_code = 404
         return response
 
-    form = PluginForm(LocalProxyRequet.form, csrf_enabled=False)
+    form = PluginForm(LocalProxyRequet.form, meta={'csrf': False})
     if form.validate_on_submit():
         config_file = plugin_file_path(name)
         if not os.path.exists(config_file):
@@ -1433,7 +1433,7 @@ def edit_plugin():
             return response
 
         with open(config_file, 'w') as file:
-            file.write(form.code.data.encode("utf-8"))
+            file.write(form.code.data)
 
         return jsonify({
             'plugin': name,
@@ -1452,7 +1452,7 @@ def edit_plugin():
 
 @admin.route('/plugins/add', methods=['POST'])
 def add_plugin():
-    form = NewPluginForm(LocalProxyRequet.form, csrf_enabled=False)
+    form = NewPluginForm(LocalProxyRequet.form, meta={'csrf': False})
 
     if form.validate_on_submit():
 
@@ -1468,7 +1468,7 @@ def add_plugin():
             return response
 
         with open(config_file, 'w+') as file:
-            file.write(form.code.data.encode("utf-8"))
+            file.write(form.code.data)
 
         return jsonify({
             'plugin': name,

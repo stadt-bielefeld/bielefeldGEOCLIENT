@@ -89,13 +89,13 @@ def edit_properties(name=None):
 
     if form.validate_on_submit():
         schema = layer.properties_schema
-        for key in list(schema['properties'].keys()):
+        for key in schema['properties'].keys():
             schema['properties'][key]['title'] = form.data[key]
         layer.properties_schema = schema
         db.session.commit()
         flash(_('Property updated'), 'success')
     else:
-        for field_name, errors in list(form.errors.items()):
+        for field_name, errors in form.errors.items():
             for error in errors:
                 flash(field_name + ': ' + error, 'error')
 
@@ -120,7 +120,7 @@ def add_property(name=None):
             flash(_('Property %(name)s added', name=form.data['name']),
                   'success')
     else:
-        for field_name, errors in list(form.errors.items()):
+        for field_name, errors in form.errors.items():
             for error in errors:
                 flash(form[field_name].label.text + ': ' + error, 'error')
 
@@ -169,7 +169,7 @@ def edit_style(name=None):
 
     form = StyleForm()
     if form.validate_on_submit():
-        for key, value in list(form.data.items()):
+        for key, value in form.data.items():
             style[key] = value
             if value is not 0 and not value:
                 try:

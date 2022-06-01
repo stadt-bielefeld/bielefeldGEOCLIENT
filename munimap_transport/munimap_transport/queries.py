@@ -195,7 +195,7 @@ def row_to_feature(row):
         },
         'geometry': {}
     }
-    for k, v in list(row.items()):
+    for k, v in row.items():
         if k == 'geometry':
             feature['geometry'] = json.loads(v)
         else:
