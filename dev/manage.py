@@ -1,12 +1,14 @@
 from asyncio.log import logger
 import os
+import threading
 from scriptine.shell import sh
 from munimap.application import create_app
 from munimap.extensions import db
+import click
 
 config_file=os.getenv('FLASK_MUNIMAP_CONFIG', './configs/munimap.conf')
 debug=os.getenv('FLASK_DEBUG', '0')
-host=os.getenv('FLASK_RUN_HOST', 'localhost')
+host=os.getenv('FLASK_RUN_HOST', '0.0.0.0')
 port=os.getenv('FLASK_RUN_PORT',5000)
 
 
@@ -19,7 +21,7 @@ def run_munimap():
     app.logger.info(f"Starting application {app.name}")
     app.logger.info(f"Using {config_file} as config file")
     app.logger.info(f"Debugger is {debug == '1'}")
-    app.run(host=host, port=int(port), debug=debug=="1")
+    threading.Thread(target=lambda: app.run(host=host, port=port, debug=debug=="1")).start()
 
 
 @cli_manager.command()
@@ -58,17 +60,20 @@ def create_db():
     db.session.add_all(fixtures.all())
     db.session.commit()
 
-# TODO: How to prompt user with CLI?
-# @cli_manager.command()
-# def drop_db(force=False):
-#     "Drops all database tables"
-#     if force or prompt_bool("Are you sure ? You will lose all your data !"):
-#         # drop only on default bind
-#         db.drop_all(bind=None)
+
+@cli_manager.command()
+def drop_db(force=False):
+    "Drops all database tables"
+    if click.confirm("Are you sure ? You will lose all your data !"):
+        app.logger.info("Dropping Database")
+        # drop only on default bind
+        db.drop_all(bind=None)
+    else:
+      app.logger.info("Database will be kept")
 
 
-# TODO: Dependent on previous function
-# @cli_manager.command()
-# def recreate_db():
-#     drop_db(force=True)
-#     create_db()
+@cli_manager.command()
+def recreate_db():
+    "Drops all database tables and recreates a clean database structure"
+    drop_db(force=True)
+    create_db()
