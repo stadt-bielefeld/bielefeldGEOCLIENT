@@ -2,7 +2,7 @@ import os
 
 from flask import (
     Blueprint, Request, jsonify, abort, url_for, render_template,
-    current_app, redirect, flash, request as LocalProxyRequet
+    current_app, redirect, flash, request as LocalProxyRequest
 )
 
 from flask_login import current_user
@@ -51,7 +51,7 @@ def digitize_context_processor():
 def check_permission():
     if current_user.is_anonymous:
         flash(_('You are not allowed to use the digitize module without a login'), 'error')
-        return redirect(url_for('user.login', next=LocalProxyRequet.url))
+        return redirect(url_for('user.login', next=LocalProxyRequest.url))
 
     access_allowed = check_group_permission([
         current_app.config.get('DIGITIZE_ADMIN_GROUP'),
@@ -59,7 +59,7 @@ def check_permission():
     ])
 
     if not access_allowed:
-        if LocalProxyRequet.is_xhr:
+        if LocalProxyRequest.is_xhr:
             return jsonify(message='Not allowed')
         return abort(403)
 
@@ -83,18 +83,22 @@ def remove_feature_group(id):
 
 @digitize.route('/features', methods=['POST'])
 def features():
-    if LocalProxyRequet.json is None:
+    if LocalProxyRequest.json is None:
         abort(400)
 
     # got group_id from name, because group_id is assigned as name
     # see 'digitizer' below
-    group_id = LocalProxyRequet.json.get('name')
-    feature_collection = LocalProxyRequet.json.get('featureCollection')
+    group_id = LocalProxyRequest.json.get('name')
+    feature_collection = LocalProxyRequest.json.get('featureCollection')
 
     if None in (group_id, feature_collection):
         abort(400)
 
     group = FeatureGroup.by_id(group_id)
+
+    # TODO: Should all features be really deleted before creating? Why not adding only the new feature?
+    # In case of error, all features will be deleted and none will be written.
+    # Maybe refactor this 
     group.delete_all_features()
 
     features = feature_collection.get('features', [])

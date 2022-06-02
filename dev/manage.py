@@ -1,6 +1,4 @@
-from asyncio.log import logger
 import os
-import threading
 from scriptine.shell import sh
 from munimap.application import create_app
 from munimap.extensions import db

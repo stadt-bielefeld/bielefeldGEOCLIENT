@@ -68,7 +68,6 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     python3-dev \
     libpython3-dev \
-    python-gdal \
     python3-gdal \
     python3-pycurl \
     libgdal-dev \

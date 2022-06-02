@@ -172,11 +172,13 @@ class DefaultConfig(object):
 
     COORD_TRANSFORM_URL = ''
 
+    # why use this? Answer here-> https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/pull/59#discussion_r885749224
     JSON_SORT_KEYS = False
 
-here = path.dirname(__file__)
 
 class TestConfig(object):
+    here = path.dirname(__file__)
+
     DEBUG = True
     ASSETS_DEBUG = True
 
@@ -211,5 +213,6 @@ class TestConfig(object):
     LAYERS_CONF_DIR = path.join(here, 'test/data/map')
     APP_CONFIG_DIR = path.join(here, 'test/data/app')
 
+    # why use this? Answer here-> https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/pull/59#discussion_r885749224
     JSON_SORT_KEYS = False
 
