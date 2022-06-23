@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>FormSolutions Mockup</title>
+  <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+
+<body>
+  <h2>FormSolutions Mockup for testing PostMessage</h2>
+  <div>
+    <label for="appUrl">Munimap Application URL</label>
+    <input type="text" name="appUrl" id="appUrlField" value="http://localhost/app/geoeditor" />
+  </div>
+  <div>
+    <label for="open-app-as">Open as</label>
+    <select name="open-app-as" id="open-app-as">
+      <option value="iframe">Iframe</option>
+      <option value="window">Window</option>
+    </select>
+  </div>
+  <div>
+    <h3>Actions</h3>
+    <div>
+      <button id="openMunimap">open Munimap</button>
+      <button id="submitForm">submit form</button>
+    </div>
+    <div>
+      <input type="text" name="bbox" id="zoomToBBoxField"
+        value="8.525819778442383, 52.01460429932595, 8.528523445129395, 52.0162946804084" />
+      <button id="zoomToBBox">zoom to bbox</button>
+    </div>
+    <div>
+      <input type="text" name="geom" id="zoomToGeomField"
+        value='{"geom" : { "type": "Polygon", "coordinates": [[[8.518695831298828,52.018655164308115],[8.518931865692139,52.0182226933605],[8.52038025856018,52.01791897080651],[8.521034717559814,52.01860894623844],[8.520605564117432,52.01941775556382],[8.51887822151184,52.01923288615016],[8.518695831298828,52.018655164308115]]]}, "srs" : "EPSG:4326"}' />
+      <button id="zoomToGeom">zoom to geom</button>
+    </div>
+    <div>
+      <input type="text" name="coord" id="centerOnCoordField" value="8.525776863098143, 52.00332465343609, 14" />
+      <button id="centerOnCoord">center on coord</button>
+    </div>
+    <div>
+      <label for="printLayout">Layout</label>
+      <input type="text" name="layout" id="printLayout" value="a4-portrait" />
+      <label for="printMargin">Margin</label>
+      <input type="number" name="margin" id="printMargin" value="20" />
+      <label for="printFormat">Format</label>
+      <input type="text" name="format" id="printFormat" value="pdf" />
+      <label for="printMinScale">Min Scale</label>
+      <input type="number" name="minScale" id="printMinScale" value="100" />
+      <button id="print">Print</button>
+    </div>
+  </div>
+  <div id="iframe-container"></div>
+  <h3>Message records</h3>
+  <div class="tableDiv">
+    <table id="cmsTable">
+      <tr>
+        <th>Action</th>
+        <th>Data</th>
+        <th>Creation time</th>
+      </tr>
+    </table>
+  </div>
+  <script src="./index.js"></script>
+</body>
+
+</html>
