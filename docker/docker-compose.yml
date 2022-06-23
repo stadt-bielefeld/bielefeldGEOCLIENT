@@ -5,6 +5,8 @@ services:
     image: docker.terrestris.de/library/nginx:1.21.0-alpine
     ports:
       - 80:80
+      - 4000:4000
+      - 4001:4001
     volumes:
       - ./munimap-nginx/favicon.ico:/opt/etc/munimap/favicon.ico
       - ./munimap-nginx/default.conf:/etc/nginx/conf.d/default.conf
@@ -15,6 +17,8 @@ services:
       - munimap-mapserver
       - munimap-svgserver
       - munimap-mapproxy
+      - munimap-docs
+      - munimap-formsolutions-mockup
     profiles:
       - prod
 
@@ -22,6 +26,8 @@ services:
     image: docker.terrestris.de/library/nginx:1.21.0-alpine
     ports:
       - 80:80
+      - 4000:4000
+      - 4001:4001
     volumes:
       - ./munimap-nginx/favicon.ico:/opt/etc/munimap/favicon.ico
       - ./munimap-nginx/default-dev.conf:/etc/nginx/conf.d/default.conf
@@ -31,6 +37,8 @@ services:
       - munimap-mapserver
       - munimap-svgserver
       - munimap-mapproxy
+      - munimap-docs
+      - munimap-formsolutions-mockup
     profiles:
       - dev
 
@@ -45,6 +53,10 @@ services:
       - ./munimap-app/munimap.conf:/opt/etc/munimap/configs/munimap.conf
       - ../dev/data:/opt/etc/munimap/data
       - ../dev/printqueue:/opt/var/printqueue
+    environment:
+      # Because of failing DIN A0 prints in production, the heap size needed to be increased to 4gb
+      # TODO: When mapfish has its own container, this heapspace allocation should be move to that container instead
+      JAVA_OPTIONS: -Xmx4096m -Djava.awt.headless=true
     depends_on:
       - munimap-postgis
       - munimap-postgis-mapbender
@@ -74,6 +86,8 @@ services:
     volumes:
       - ./munimap-postgis-mapbender/postgresql_init_data:/docker-entrypoint-initdb.d
       - ./munimap-postgis-mapbender/postgresql_data:/var/lib/postgresql/data:Z
+    profiles:
+      - dev
 
   munimap-mapserver:
     build:
@@ -112,3 +126,17 @@ services:
       - ./munimap-mapproxy/mapproxy_cache_data:/opt/var/mapproxy
     depends_on:
       - munimap-mapserver
+
+  munimap-docs:
+    build:
+      context: ./munimap-docs/
+    volumes:
+      - ./munimap-docs/source:/docs/source
+    ports:
+      - 8082:8080
+
+  munimap-formsolutions-mockup:
+    build:
+      context: ./munimap-formsolutions-mockup/
+    ports:
+      - 8083:8080
