@@ -136,7 +136,6 @@ services:
       - 8082:8080
 
   munimap-formsolutions-mockup:
-    build:
-      context: ./munimap-formsolutions-mockup/
+    image: nexus.terrestris.de/munimap/munimap-formsolutions-mockup:0.0.1
     ports:
       - 8083:8080
