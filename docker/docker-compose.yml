@@ -55,7 +55,7 @@ services:
       - ../dev/printqueue:/opt/var/printqueue
     environment:
       # Because of failing DIN A0 prints in production, the heap size needed to be increased to 4gb
-      # TODO: When mapfish has its own container, this heapspace allocation should be move to that container instead
+      # TODO: When mapfish has its own container, this heapspace allocation should be moved to that container instead
       JAVA_OPTIONS: -Xmx4096m -Djava.awt.headless=true
     depends_on:
       - munimap-postgis
