@@ -177,4 +177,4 @@ You can also generate API docs by running `sphinx-apidocs`.
 
 Check the Sphinx documentation for further information.
 
-**NOTE**: A docker container for the docs is provided. By making changes on the source, a new documentation is automatic compiled from the source. However, you can always execute the container interactively and do your changes there directly or run the already mentioned commands.
+**NOTE**: A docker container for the docs is provided. By making changes to the source, a new documentation is automatically compiled from the source. However, you can always execute the container interactively and do your changes there directly or run the already mentioned commands.
