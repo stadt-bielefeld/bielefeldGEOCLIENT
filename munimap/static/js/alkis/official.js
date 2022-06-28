@@ -77,7 +77,6 @@ angular.module('munimapBase.alkisOfficial', ['anol.map', 'munimapBase.alkisServi
                             }
                             // $rootScope.popupUrl will only be used to share
                             // the url between the selection and the official directive.
-                            // This is also why we reset the value immediately after reading.
                             const popupUrl = scope.popupUrl || $rootScope.popupUrl;
                             if (e.data.action) {
                                 // not an ALKIS message, but a message for the PostMessageService

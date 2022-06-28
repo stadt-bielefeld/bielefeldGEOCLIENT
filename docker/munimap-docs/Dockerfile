@@ -6,6 +6,7 @@ RUN mkdir -p /docs/build/
 
 WORKDIR /docs/
 COPY requirements.txt .
+COPY source/ ./source/
 
 RUN pip3 install --upgrade pip && pip3 install -r requirements.txt
 
