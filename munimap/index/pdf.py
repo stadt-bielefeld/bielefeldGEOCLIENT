@@ -2,7 +2,7 @@
 
 from copy import copy
 
-import cStringIO
+import io
 import collections
 
 import hyphen
@@ -206,7 +206,7 @@ class DottedEntry(Paragraph):
                 delimiter = '-'
                 words = self.text.split(delimiter)
                 if len(words) == 1:
-                    if not isinstance(self.text, unicode):
+                    if not isinstance(self.text, str):
                         text = self.text.decode('utf-8')
                     else:
                         text = self.text
@@ -266,7 +266,7 @@ class DottedEntry(Paragraph):
 
 
 def create_index_pdf(data, title=None, columns=2):
-    pdf_buffer = cStringIO.StringIO()
+    pdf_buffer = io.StringIO()
 
     styles = getSampleStyleSheet()
 
@@ -343,12 +343,12 @@ def create_index_pdf(data, title=None, columns=2):
     return pdf_buffer
 
 if __name__ == '__main__':
-    from example_data import streets
+    from .example_data import streets
     with open('streets_new.pdf', 'w') as pdf_file:
-        pdf_buffer = create_index_pdf(streets, u'Straßenverzeichnis', 3)
+        pdf_buffer = create_index_pdf(streets, 'Straßenverzeichnis', 3)
         pdf_file.write(pdf_buffer.read())
 
-    from example_data import pois
+    from .example_data import pois
     with open('pois_new.pdf', 'w') as pdf_file:
-        pdf_buffer = create_index_pdf(pois, u'Interessante Orte', 3)
+        pdf_buffer = create_index_pdf(pois, 'Interessante Orte', 3)
         pdf_file.write(pdf_buffer.read())

@@ -1,4 +1,4 @@
-from flask_wtf import Form
+from flask_wtf import FlaskForm
 from wtforms import (
     StringField, IntegerField, FloatField, SelectField, HiddenField,
     DateField, DateTimeField
@@ -17,7 +17,7 @@ COLOR_REGEX = r'^#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?$'
 LAYER_NAME_REGEX = r'^[0-9a-z_]+$'
 
 
-class EditPropertiesForm(Form):
+class EditPropertiesForm(FlaskForm):
     @classmethod
     def from_schema(cls, schema):
         for name, options in schema['properties'].items():
@@ -30,7 +30,7 @@ class EditPropertiesForm(Form):
         return form
 
 
-class AddPropertyForm(Form):
+class AddPropertyForm(FlaskForm):
     name = StringField(_l('Name'), [
         InputRequired(),
         Length(min=2, max=25),
@@ -41,7 +41,7 @@ class AddPropertyForm(Form):
     ])
 
 
-class StyleForm(Form):
+class StyleForm(FlaskForm):
     # used lower camel case field names, so no mapping to correct json is
     # needed
     radius = IntegerField(_l('Radius'), [NumberRange(min=0), Optional()])
@@ -156,7 +156,7 @@ def create_scale_choices(scales):
     return choices
 
 
-class GroupForm(Form):
+class GroupForm(FlaskForm):
     title = StringField(_l('Title'), [InputRequired()])
 
     max_scale = SelectField(
@@ -205,7 +205,7 @@ class GroupForm(Form):
     )
 
 
-class LayerForm(Form):
+class LayerForm(FlaskForm):
     name = StringField(_l('Name'), [
         InputRequired(),
         layer_name_unique(id_field='id'),

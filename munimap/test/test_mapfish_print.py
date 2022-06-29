@@ -12,7 +12,7 @@ tmp_dir = '/tmp/munimap-mapfish-prints'
 def setUp():
     try:
         os.makedirs(tmp_dir)
-        print os.path.exists(tmp_dir)
+        print(os.path.exists(tmp_dir))
     except:
         pass
 
@@ -73,7 +73,7 @@ class BaseMapfishPrintTest(BaseTestWithTestDB):
             download_url = resp.json['downloadURL'].replace('http://localhost', '')
             resp = c.get(download_url)
 
-            if isinstance(self.test_layers[0], basestring):
+            if isinstance(self.test_layers[0], str):
                 layernames = '_'.join(self.test_layers)
             else:
                 layernames = '_'.join([n for n, p in self.test_layers])
@@ -515,7 +515,7 @@ class _BaseMapfishPrintBadParameterTest500(BaseMapfishPrintTest):
             resp = c.post('/export/map',
                           content_type='application/json',
                           data=json.dumps(data))
-            print resp
+            print(resp)
             self.assert500(resp)
 
 

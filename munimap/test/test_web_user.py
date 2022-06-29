@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-from __future__ import with_statement, absolute_import
+
 
 from munimap.test.base import BaseTestWithMunimapTestDB
 from munimap.model import MBUser
 
 from flask import url_for
-from flask.ext.login import current_user
+from flask_login import current_user
 
 
 class TestUserRegister(BaseTestWithMunimapTestDB):

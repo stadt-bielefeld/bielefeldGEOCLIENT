@@ -14,7 +14,7 @@ VALUES (
   'verwalter',
   'ea6d9b22ccadc0b2a65918eba27bef1d',
   1,
-  'ea6d9b22ccadc0b2a65918eba27bef1d',
+  'ea6d9b22ccadc0b2a65918eba27bef1d', -- ??? why the password hash for email???
   'ea6d9b22ccadc0b2a65918eba27bef1d',
   true
 );

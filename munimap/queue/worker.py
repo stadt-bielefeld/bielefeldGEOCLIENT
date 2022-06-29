@@ -55,12 +55,12 @@ if __name__ == '__main__':
     q = SqliteQueue(file_config.get('PRINT_QUEUEFILE') or options.queue_file)
 
     if options.get_job:
-        print q.get(options.get_job)
+        print(q.get(options.get_job))
         sys.exit(0)
 
     if options.list_jobs:
         for j in q:
-            print j
+            print(j)
         sys.exit(0)
 
     b = Broker(q, mapfish_printqueue_worker, max_running=file_config.get('PRINT_CONCURRENCY') or options.concurrency)

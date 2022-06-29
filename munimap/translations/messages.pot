@@ -1,33 +1,33 @@
 # Translations template for PROJECT.
-# Copyright (C) 2021 ORGANIZATION
+# Copyright (C) 2022 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-15 11:01+0200\n"
+"POT-Creation-Date: 2022-05-24 18:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.2.0\n"
+"Generated-By: Babel 2.10.1\n"
 
-#: ../munimap/layers.py:128 ../munimap/layers.py:206
+#: ../munimap/layers.py:128 ../munimap/layers.py:209
 #, python-format
 msgid "%(name)s [edited %(last_update)s]"
 msgstr ""
 
-#: ../munimap/layers.py:130 ../munimap/layers.py:208
+#: ../munimap/layers.py:130 ../munimap/layers.py:211
 #, python-format
 msgid "%(name)s [last update %(last_update)s]"
 msgstr ""
 
-#: ../munimap/export/mapfish.py:255
+#: ../munimap/export/mapfish.py:259
 #, python-format
 msgid "Scale 1 : %(scale)s"
 msgstr ""
@@ -419,7 +419,7 @@ msgstr ""
 
 #: ../munimap/templates/munimap/admin/index.html:115
 #: ../munimap/templates/munimap/app/ng-templates/sidebar-footer.html:30
-#: ../munimap/templates/munimap/pages/base.html:50
+#: ../munimap/templates/munimap/pages/base.html:49
 msgid "Logout"
 msgstr ""
 
@@ -1335,11 +1335,11 @@ msgstr ""
 msgid "Save Settings"
 msgstr ""
 
-#: ../munimap/templates/munimap/pages/base.html:57
+#: ../munimap/templates/munimap/pages/base.html:56
 msgid "About"
 msgstr ""
 
-#: ../munimap/templates/munimap/pages/base.html:62
+#: ../munimap/templates/munimap/pages/base.html:61
 msgid "Terms of Use"
 msgstr ""
 
@@ -1729,48 +1729,48 @@ msgstr ""
 msgid "Plugin %(name)s renamed to %(new_name)s"
 msgstr ""
 
-#: ../munimap/views/munimap.py:93 ../munimap/views/munimap.py:176
-#: ../munimap/views/munimap.py:220 ../munimap/views/munimap.py:257
+#: ../munimap/views/munimap.py:88 ../munimap/views/munimap.py:183
+#: ../munimap/views/munimap.py:227 ../munimap/views/munimap.py:264
 msgid "You are not allowed to open this app."
 msgstr ""
 
-#: ../munimap/views/user.py:52 ../munimap/views/user.py:61
+#: ../munimap/views/user.py:53 ../munimap/views/user.py:62
 msgid "username or password not correct"
 msgstr ""
 
-#: ../munimap/views/user.py:54
+#: ../munimap/views/user.py:55
 msgid "User not active. Please contact us."
 msgstr ""
 
-#: ../munimap/views/user.py:56
+#: ../munimap/views/user.py:57
 msgid "Useraccount is expired. Please contact us."
 msgstr ""
 
-#: ../munimap/views/user.py:58 ../munimap/views/user.py:59
+#: ../munimap/views/user.py:59 ../munimap/views/user.py:60
 msgid "Too many invalid attempts. Please contact us."
 msgstr ""
 
-#: ../munimap/views/user.py:69
+#: ../munimap/views/user.py:70
 msgid "Logged in successfully"
 msgstr ""
 
-#: ../munimap/views/user.py:94 ../munimap/views/user.py:144
+#: ../munimap/views/user.py:95 ../munimap/views/user.py:146
 msgid "Change password successfully"
 msgstr ""
 
-#: ../munimap/views/user.py:97
+#: ../munimap/views/user.py:98
 msgid "Old Password is not correct"
 msgstr ""
 
-#: ../munimap/views/user.py:111
+#: ../munimap/views/user.py:112
 msgid "Password recover mail subject"
 msgstr ""
 
-#: ../munimap/views/user.py:120
+#: ../munimap/views/user.py:122
 msgid "Mail with instructions will be send"
 msgstr ""
 
-#: ../munimap/views/user.py:133
+#: ../munimap/views/user.py:135
 msgid "Recovery link is not valid anymore. Please request a new one"
 msgstr ""
 

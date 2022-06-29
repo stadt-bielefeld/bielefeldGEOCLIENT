@@ -33,11 +33,11 @@ RUN npm run build
 
 
 
-FROM python:2.7.16-jessie as BUILDER
+FROM python:3.9.13-buster as BUILDER
 
 RUN apt-get update && apt-get install -y \
     build-essential \
-    python-dev \
+    python3-dev \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip install --upgrade pip \
@@ -61,25 +61,29 @@ RUN cd munimap_transport && python setup.py clean && python setup.py egg_info sd
 
 
 
-FROM python:2.7.16-jessie as RUNNER
+FROM python:3.9.13-buster as RUNNER
 
 # TODO check which libs are actually needed
 RUN apt-get update && apt-get install -y \
     build-essential \
-    python-dev \
-    openjdk-7-jre-headless \
+    python3-dev \
+    libpython3-dev \
+    python3-gdal \
+    python3-pycurl \
+    libgdal-dev \
+    #äopenjdk-11-jre-headless \
     libspatialindex-dev \
     libgeos-dev \
+    libssl-dev \
     wget \
     libffi-dev \
     libjpeg-dev \
     zlib1g-dev \
     libfreetype6-dev \
-    libproj0 \
+    libproj-dev \
     gdal-bin \
     fcgiwrap \
     libgif-dev \
-    libgdal1-dev \
     libcurl4-openssl-dev \
     libproj-dev \
     libcairo2-dev \
@@ -90,8 +94,10 @@ RUN apt-get update && apt-get install -y \
     fonts-dejavu-extra \
     ttf-unifont \
     locales \
+    software-properties-common \
     && rm -rf /var/lib/apt/lists/*
 
+    
 RUN echo "de_DE.UTF-8 UTF-8" >> /etc/locale.gen \
     && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
     && locale-gen \
@@ -131,26 +137,22 @@ RUN touch /opt/etc/munimap/configs/munimap.conf \
     && touch /opt/etc/munimap/configs/draw_icons.yaml \
     && touch /opt/etc/munimap/configs/mapfish/mapfish.yaml
 
-# TODO check if this is actually still needed
-# install gdal
-WORKDIR /src
-RUN wget -c http://download.osgeo.org/gdal/1.11.4/gdal-1.11.4.tar.gz \
-    && tar -xzf gdal-1.11.4.tar.gz \
-    && cd /src/gdal-1.11.4 \
-    && ./configure --prefix=/opt/local/gdal \
-    && make -j4 \
-    && make install \
-    && cd / \
-    && rm -rf /src
+# Get and install openjdk-8-jre. Not available in Debian Buster
+# TODO: Check for a possible mapfish print update, so version 11 can be used. Then this is not needed anymore. 
+# openjdk-11-jre can be easily installed by apt#
+RUN wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | apt-key add -
+RUN add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
+RUN apt update -y && apt install adoptopenjdk-8-hotspot-jre -y
 
 RUN wget -q -O- https://repo1.maven.org/maven2/org/mapfish/print/print-cli/3.9.0/print-cli-3.9.0-tar.tar | tar -x -C /opt/var/mapfish
 
 RUN pip install --upgrade pip && pip install \
     wheel \
-    gunicorn==17.5 \
-    eventlet==0.17.4 \
-    alembic==0.8.3 \
-    scriptine==0.2.1
+    setuptools \
+    gunicorn==20.1.0 \
+    eventlet==0.30.2 \
+    alembic==1.7.7 \
+    scriptinep3==0.3.1
 
 COPY ./gunicorn.conf /opt/etc/munimap/gunicorn.conf
 COPY --from=BUILDER /pkg/dist/munimap-*.tar /opt/pkgs
@@ -165,6 +167,6 @@ RUN pip install -f file:///opt/pkgs \
 # Hack to disable https for following script.
 RUN PYTHONHTTPSVERIFY=0 python -c "import hyphen.dictools; hyphen.dictools.is_installed('de') or hyphen.dictools.install('de')"
 
-ENV JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
+ENV JAVA_HOME=/usr/lib/jvm/adoptopenjdk-8-hotspot-jre-amd64
 WORKDIR /opt/etc/munimap
 CMD gunicorn -c /opt/etc/munimap/gunicorn.conf "munimap.application:create_app(config_file='/opt/etc/munimap/configs/munimap.conf')"

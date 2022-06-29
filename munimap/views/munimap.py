@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 
 import os
 import json
@@ -22,8 +22,8 @@ from flask import (
     session,
 )
 
-from flask.ext.login import current_user
-from requests.packages.urllib3.exceptions import InsecureRequestWarning
+from flask_login import current_user
+from urllib3.exceptions import InsecureRequestWarning
 
 from munimap import helper
 from munimap.app_layers_def import (
@@ -50,7 +50,7 @@ def list_available_icons():
         current_app.config['MAP_ICONS_DIR'],
         current_app.config['DRAW_ICONS_SUB_DIR']
     )
-    icon_files = [f.decode('utf-8') for f in os.listdir(draw_icons_path)]
+    icon_files = [(f.decode('utf-8') if not isinstance(f, str) else f) for f in os.listdir(draw_icons_path)]
 
     config_file = current_app.config.get('DRAW_ICONS_CONFIG_FILE')
     if config_file:

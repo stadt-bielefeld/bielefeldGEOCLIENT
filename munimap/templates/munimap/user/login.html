@@ -27,7 +27,7 @@
         <strong>Kein Zugang?</strong></p>
       <p>
         {% autoescape false %}
-        {$ base_config.get('NO_LOGIN_INFORMATION').decode('utf8') $}
+        {$ base_config.get('NO_LOGIN_INFORMATION') $}
         {% endautoescape %}
       </p>
     </div>

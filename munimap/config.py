@@ -117,7 +117,7 @@ class DefaultConfig(object):
     INVERT_LEFT_GRID_LABELS = True
     INVERT_TOP_GRID_LABELS = False
     GRID_LABELS = ( 'A B C D E F G H I K L M N O P Q R S T U V W X Y Z'.split(),
-        map(str, range(1, 26)),
+        list(map(str, list(range(1, 26)))),
     )
 
     PROJECT_DIR = '/opt/etc/munimap/bielefeld'
@@ -172,10 +172,13 @@ class DefaultConfig(object):
 
     COORD_TRANSFORM_URL = ''
 
-here = path.dirname(__file__)
+    # why use this? Answer here-> https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/pull/59#discussion_r885749224
+    JSON_SORT_KEYS = False
 
 
 class TestConfig(object):
+    here = path.dirname(__file__)
+
     DEBUG = True
     ASSETS_DEBUG = True
 
@@ -183,13 +186,13 @@ class TestConfig(object):
 
     LAYERS_CONF = path.join(here, 'test/data/test_layers_conf.yaml')
 
-    SQLALCHEMY_DATABASE_URI = 'postgres://postgres:postgres@localhost:5555/munimap_test'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres@localhost:5555/munimap_test'
 
-    SQLALCHEMY_LAYER_DATABASE_URI = 'postgres://osm:osm@localhost:5555/osm'
+    SQLALCHEMY_LAYER_DATABASE_URI = 'postgresql://postgres:postgres@localhost:5556/osmdata_test'
     SQLALCHEMY_DATABASE_SCHEMA = 'munimaptest'
 
     SQLALCHEMY_BINDS = {
-        'mapbender': 'postgres://postgres:postgres@localhost:5555/munimap_test'
+        'mapbender': 'postgresql://postgres:postgres@localhost:5556/mapbender_test'
     }
 
     MAP_ICONS_DIR = path.join(here, 'test/data/mapfish/icons')
@@ -205,3 +208,7 @@ class TestConfig(object):
     PRINT_USE_BROKER = False
     PRINT_QUEUEFILE = path.join(here, 'test/data/printqueue.sqlite')
     WTF_CSRF_ENABLED = False
+
+    # why use this? Answer here-> https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/pull/59#discussion_r885749224
+    JSON_SORT_KEYS = False
+

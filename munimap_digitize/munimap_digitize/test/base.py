@@ -1,4 +1,4 @@
-from flask.ext.login import current_user
+from flask_login import current_user
 from flask import url_for
 
 from munimap.test.base import BaseTestClass

@@ -1,6 +1,6 @@
-from flask_wtf import Form
+from flask_wtf import FlaskForm
 from wtforms import SubmitField, HiddenField
-from wtforms.ext.sqlalchemy.fields import QuerySelectField
+from wtforms_sqlalchemy.fields import QuerySelectField
 
 from munimap.helper import _l
 from munimap.model import ProjectSettings
@@ -8,7 +8,7 @@ from munimap.model import ProjectSettings
 def projects_query_factory():
     return ProjectSettings.query
 
-class ProjectSettingsForm(Form):
+class ProjectSettingsForm(FlaskForm):
 
     settings = QuerySelectField(
         _l('Settings'),

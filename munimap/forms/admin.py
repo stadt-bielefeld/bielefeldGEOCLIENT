@@ -1,4 +1,4 @@
-from flask_wtf import Form
+from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, TextAreaField, BooleanField, DateField
 from wtforms.validators import InputRequired, Optional, ValidationError
 from sqlalchemy import func
@@ -7,38 +7,38 @@ from munimap.helper import _l, _
 from munimap.model import MBUser
 
 
-class MBGroupForm(Form):
+class MBGroupForm(FlaskForm):
     name = StringField(_l('name'), validators=[InputRequired()])
     title = StringField(_l('title'), validators=[InputRequired()])
     description = TextAreaField(_l('description'))
 
 
-class ProjectForm(Form):
+class ProjectForm(FlaskForm):
     name = StringField(_l('name'), validators=[InputRequired()])
     code = TextAreaField(_l('code'))
 
 
-class NewProjectForm(Form):
+class NewProjectForm(FlaskForm):
     new = StringField(_l('name'), validators=[InputRequired()])
     code = TextAreaField(_l('code'))
 
 
-class SelectionlistForm(Form):
+class SelectionlistForm(FlaskForm):
     name = StringField(_l('name'), validators=[InputRequired()])
     code = TextAreaField(_l('code'))
 
 
-class NewSelectionlistForm(Form):
+class NewSelectionlistForm(FlaskForm):
     new = StringField(_l('name'), validators=[InputRequired()])
     code = TextAreaField(_l('code'))
 
 
-class PluginForm(Form):
+class PluginForm(FlaskForm):
     name = StringField(_l('name'), validators=[InputRequired()])
     code = TextAreaField(_l('code'))
 
 
-class NewPluginForm(Form):
+class NewPluginForm(FlaskForm):
     new = StringField(_l('name'), validators=[InputRequired()])
     code = TextAreaField(_l('code'))
 
@@ -50,7 +50,7 @@ def check_user_name(form, field):
         raise ValidationError(_('Username %(name)s already exist', name=field.data))
 
 
-class NewUserForm(Form):
+class NewUserForm(FlaskForm):
     mb_user_id = StringField('mb_user_id')
     mb_user_name = StringField('mb_user_name', validators=[InputRequired(), check_user_name])
     mb_user_firstname = StringField('mb_user_firstname', validators=[InputRequired()])
@@ -76,7 +76,7 @@ class NewUserForm(Form):
     mb_user_valid_to = DateField('mb_user_valid_to', format='%d.%m.%Y', validators=[Optional(strip_whitespace=True)])
 
 
-class EditUserForm(Form):
+class EditUserForm(FlaskForm):
     mb_user_id = StringField('mb_user_id')
     mb_user_name = StringField('mb_user_name', validators=[InputRequired()])
     mb_user_firstname = StringField('mb_user_firstname', validators=[InputRequired()])

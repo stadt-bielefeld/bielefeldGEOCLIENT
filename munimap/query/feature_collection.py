@@ -1,5 +1,5 @@
 from munimap.query import pq
-from shapely.geometry import asShape
+from shapely.geometry import shape
 from munimap.grid import RefFinder
 from munimap.grid.refs import format_refs, reduce_refs, group_refs
 from munimap.query.features import sort_features
@@ -12,10 +12,10 @@ def query_feature_collection(request, pg_layers, num_offset=1):
     if grid:
         ref_grid = RefFinder(grid.boxes())
         for feature in fc['features']:
-            refs = ref_grid.refs(asShape(feature['geometry']))
+            refs = ref_grid.refs(shape(feature['geometry']))
             if refs:
                 groups = group_refs(refs)
-                refs = u', '.join(format_refs(reduce_refs(g), labels=grid.labels) for g in groups)
+                refs = ', '.join(format_refs(reduce_refs(g), labels=grid.labels) for g in groups)
                 feature['properties'][
                     '__ref__'] =  refs
             else:
@@ -25,7 +25,7 @@ def query_feature_collection(request, pg_layers, num_offset=1):
         fc['features'],
         sort_properties=('name',),
         group_property='__layer__',
-        groups=pg_layers.keys(),
+        groups=list(pg_layers.keys()),
     )
 
     # add __num__ for all point layers

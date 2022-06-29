@@ -10,7 +10,7 @@ tmp_dir = '/tmp/munimap-mapfish-prints'
 def setUp():
     try:
         os.makedirs(tmp_dir)
-        print os.path.exists(tmp_dir)
+        print(os.path.exists(tmp_dir))
     except:
         pass
 
@@ -51,7 +51,7 @@ class TestMapfishIndexedPrint(BaseMapfishPrintTest):
 
             self.assert200(r)
 
-            if isinstance(self.test_layers[0], basestring):
+            if isinstance(self.test_layers[0], str):
                 layernames = '_'.join(self.test_layers)
             else:
                 layernames = '_'.join([n for n, p in self.test_layers])

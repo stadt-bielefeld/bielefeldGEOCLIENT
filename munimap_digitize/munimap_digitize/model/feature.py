@@ -3,7 +3,7 @@ from sqlalchemy.dialects.postgresql import HSTORE
 from sqlalchemy.ext.mutable import MutableDict
 
 from geoalchemy2.shape import from_shape
-from shapely.geometry import asShape
+from shapely.geometry import shape
 
 from geoalchemy2.types import Geometry
 from geoalchemy2.functions import ST_AsGeoJSON
@@ -55,9 +55,9 @@ class Feature(db.Model):
             pass
 
         for key, value in properties.items():
-            properties[key] = str(value).encode('utf-8')
+            properties[key] = str(value)
 
-        geometry = from_shape(asShape(geojson['geometry']), srid=25832)
+        geometry = from_shape(shape(geojson['geometry']), srid=25832)
         self.geometry = geometry
         self.properties = properties
 

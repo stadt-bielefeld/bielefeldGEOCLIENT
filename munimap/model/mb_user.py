@@ -1,15 +1,15 @@
-import md5
+import hashlib
+import sys
 import bcrypt
 import uuid
 import datetime
 
-from flask.ext.login import UserMixin, AnonymousUserMixin as LoginAnonymousUser
+from flask_login import UserMixin, AnonymousUserMixin as LoginAnonymousUser
 from flask import current_app, url_for
 from munimap.extensions import db
 from sqlalchemy import or_, func
 
 __all__ = ['MBUser', 'AnonymousUser', 'DummyUser', 'EmailVerification']
-
 
 mb_user_mb_group = db.Table(
     'mb_user_mb_group', db.metadata,
@@ -187,13 +187,13 @@ class MBUser(db.Model, UserMixin):
     def update_password(self, password):
         if not password:
             raise ValueError("Password must be non empty.")
-        self.mb_user_password = md5.new(password.encode('utf-8')).hexdigest()
+        self.mb_user_password = hashlib.md5(password.encode('utf-8')).hexdigest()
   
     def check_password(self, password):
         if not self.mb_user_password:
             return False
-        _hash = md5.new(password.encode('utf-8')).hexdigest()
-        if _hash == self.mb_user_password.encode('utf-8'):
+        _hash = hashlib.md5(password.encode('utf-8')).hexdigest()
+        if _hash == self.mb_user_password:
             return True
         return False
 

@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 
 import logging
 import os
@@ -18,7 +18,7 @@ from zipfile import ZipFile
 import requests
 
 from flask import current_app, render_template
-from flask.ext.babel import gettext as _
+from flask_babel import gettext as _
 
 from munimap.query.feature_collection import query_feature_collection
 from munimap.print_requests import MapRequest
@@ -109,7 +109,7 @@ def mapfish_layers(requested_layers, bbox=None, srs=None, dpi=None, scale=None, 
     if len(requested_layers) == 0:
         return []
     # convert list of strings to needed format
-    if isinstance(requested_layers[0], basestring):
+    if isinstance(requested_layers[0], str):
         requested_layers = [[name, {}] for name in requested_layers]
     layers = []
 
@@ -270,7 +270,7 @@ def create_spec_json(req, is_custom=False, icons_dir=''):
         }
     }
     handle, spec_file_path = tempfile.mkstemp()
-    with open(spec_file_path, 'wb') as spec_file:
+    with open(spec_file_path, 'w', encoding ='utf8') as spec_file:
         spec_file.write(json.dumps(spec))
     return spec_file_path
 
@@ -376,7 +376,7 @@ def ensure_directory(directory):
     if not os.path.exists(directory):
         try:
             os.makedirs(directory)
-        except OSError, ex:
+        except OSError as ex:
             log.error('could not create directory \'%s\'' % directory)
             if ex.errno != errno.EEXIST:
                 raise
@@ -508,10 +508,10 @@ def mapfish_printqueue_worker(job):
         if not r.ok:
             zip_buf.close()
             return {
-                'error': 'unable to request index from %s' % index_url,
-                'full_error': str(r) + '\n' + r.content,
+                'error': f'unable to request index from {index_url}',
+                'full_error': f'{r}\n{r.content.decode()}',
             }
-        zip_buf.writestr('index.pdf', r.content)
+        zip_buf.writestr('index.pdf', r.content.decode())
 
     zip_buf.write(map_filename, 'map' + ext)
     zip_buf.close()
