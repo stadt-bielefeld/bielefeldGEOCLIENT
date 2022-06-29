@@ -125,7 +125,9 @@ In another terminal the docker dev environment needs to be started
 and finally the client (javascript) source can be watched via:
 - `npm start` (ran in the root folder, i.e, bielefeldGEOCLIENT)
 
-The application should now be available via [http://localhost:5000/](http://localhost:5000/).
+The application should now be available via [http://localhost:5000/](http://localhost:5000/) (Proxied to [http://localhost/](http://localhost/)).
+
+The docs are available via [http://localhost:8082/](http://localhost:8082/) (Proxied to [http://localhost:4000](http://localhost:4000))
 
 Start print queue/broker (**TODO UNTESTED**):
 - `python -m munimap.queue.worker -q /tmp/printqueue.sqlite`
