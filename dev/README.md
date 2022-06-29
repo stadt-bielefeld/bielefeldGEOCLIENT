@@ -90,7 +90,7 @@ npm start
       ```
       pip3 install wheel setuptools
       pip3 install -r requirements.txt
-      pip3 instal -e ../
+      pip3 install -e ../
       pip3 install --no-index -e ../munimap_digitize/
       pip3 install --no-index -e ../munimap_transport/
       ```
@@ -161,14 +161,13 @@ Then, you will be able to run the tests
 **TODO**: Consider migrating tests and fixtures to `pytest` in the future
 
 
-
 ## About building or generating documentation
 
 If you need to work on changing the documentation, this is done using [Sphinx](https://www.sphinx-doc.org/en/master/).
 
 Firts of all, you need to install the requirements defined on `requirements-docs.txt`. To do so, run `pip install -r requirements-docs.txt`. Make sure you are on your virtual environment, altough not mandatory.
 
-A source is already provided and can be found in `docs` folder (`../docs/` if you are currently on `dev/`). 
+A source is already provided and can be found in `munimap-docs` folder (`../docker/munimap-docs/` if you are currently on `dev/`).  
 
 If you make any changes and need to build it for publishing, simply run `sphinx-build`, providing the source folder and an output folder for the built version.
 
@@ -177,3 +176,5 @@ There is no need to create a new source, but if for some reason you need it, you
 You can also generate API docs by running `sphinx-apidocs`.
 
 Check the Sphinx documentation for further information.
+
+**NOTE**: A docker container for the docs is provided. By making changes to the source, a new documentation is automatically compiled from the source. However, you can always execute the container interactively and do your changes there directly or run the already mentioned commands.
