@@ -785,7 +785,7 @@ def check_project_config(new_yaml_content, exclude_file):
         return ['String only not supported'], False
 
     config_folder = current_app.config.get('LAYERS_CONF_DIR')
-    print(config_folder)
+
     for filename in os.listdir(config_folder):
         if filename == exclude_file:
             continue

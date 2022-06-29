@@ -209,10 +209,6 @@ class TestConfig(object):
     PRINT_QUEUEFILE = path.join(here, 'test/data/printqueue.sqlite')
     WTF_CSRF_ENABLED = False
 
-    LOG_DIR = path.join(here, 'test/logs/')
-    LAYERS_CONF_DIR = path.join(here, 'test/data/map')
-    APP_CONFIG_DIR = path.join(here, 'test/data/app')
-
     # why use this? Answer here-> https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/pull/59#discussion_r885749224
     JSON_SORT_KEYS = False
 
