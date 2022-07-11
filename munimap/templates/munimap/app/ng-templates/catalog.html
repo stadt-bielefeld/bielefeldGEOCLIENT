@@ -39,6 +39,7 @@
                                         <div ng-class-odd="{'striped': variant == 'mouseover'}"
                                             ng-class="{'col-sm-4': variant == 'abstract'}">
                                             <div class="catalog-title">
+                                                {% if app_config['app']['hideMetadata'] == False %}
                                                 <a class="btn btn-xs btn-default float" target="_blank"
                                                     href="{{ layer.metadataUrl }}" ng-if="layer.metadataUrl">
                                                     <span class="glyphicon glyphicon-info-sign"></span>
@@ -46,6 +47,7 @@
                                                 <a class="btn-none float" target="_blank" ng-if="!layer.metadataUrl">
                                                     <span class="glyphicon glyphicon-none"></span>
                                                 </a>
+                                                {% endif %}
                                                 <div class="inline-padding"
                                                     uib-popover="{{ layer.abstract }}"
                                                     popover-trigger="'mouseenter'"
@@ -123,13 +125,14 @@
                                         <div ng-class-odd="{'striped': variant == 'mouseover'}"
                                             ng-class="{'col-sm-4': variant == 'abstract'}">
                                             <div class="catalog-title">
+                                                {% if app_config['app']['hideMetadata'] == False %}
                                                 <a class="btn btn-xs btn-default float" target="_blank" href="{{ layer.metadataUrl }}" ng-if="layer.metadataUrl">
                                                     <span class="glyphicon glyphicon-info-sign"></span>
                                                 </a>
                                                 <a class="btn-none float" target="_blank" ng-if="!layer.metadataUrl">
                                                     <span class="glyphicon glyphicon-none"></span>
                                                 </a>
-
+                                                {% endif %}
                                                 <div class="inline-padding"
                                                     uib-popover="{{ layer.abstract }}"
                                                     popover-trigger="'mouseenter'"
