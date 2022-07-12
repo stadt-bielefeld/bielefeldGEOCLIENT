@@ -27,3 +27,4 @@ node_modules
 projects/*/assets
 munimap/assets/
 dev/printqueue/
+*.code-workspace
