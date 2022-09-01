@@ -150,14 +150,25 @@ angular.module('munimap')
 
             // reset to properties tab if popup has a state not supported for current feature
             switch($scope.popupTabContent) {
+            case 'properties':
+                if($scope.isText) {
+                    $scope.popupTabContent = 'text';
+                }
+                break;
             case 'style':
                 if($scope.isPoint && $scope.isText) {
                     $scope.popupTabContent = 'properties';
                 }
+                if($scope.isText) {
+                    $scope.popupTabContent = 'text';
+                }
                 break;
             case 'marker':
-                if(!$scope.isPoint || $scope.isText) {
+                if(!$scope.isPoint) {
                     $scope.popupTabContent = 'properties';
+                }
+                if($scope.isText) {
+                    $scope.popupTabContent = 'text';
                 }
                 break;
             case 'text':
