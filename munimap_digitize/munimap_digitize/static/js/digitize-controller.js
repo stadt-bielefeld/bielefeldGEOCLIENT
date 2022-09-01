@@ -68,10 +68,10 @@ angular.module('munimap')
 
             $scope.deactivateDrawText = undefined;
             $scope.drawTextActive = false;
-            $scope.drawTextDisabled = true;
+            $scope.drawButtonsDisabled = true;
             $scope.$watch('activeLayer', function(activeLayer) {
                 $scope.drawTextActive = false;
-                $scope.drawTextDisabled = activeLayer === undefined;
+                $scope.drawButtonsDisabled = activeLayer === undefined;
                 if($scope.deactivateDrawText !== undefined) {
                     $scope.deactivateDrawText();
                     $scope.deactivateDrawText = undefined;

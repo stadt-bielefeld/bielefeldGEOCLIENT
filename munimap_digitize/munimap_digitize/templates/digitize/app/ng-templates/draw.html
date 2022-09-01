@@ -6,6 +6,7 @@
 <div class="btn-group">
     <button ng-click="drawPoint()"
             class="btn btn-default btn-sm draw-point"
+            ng-class="{'disabled': $parent.drawButtonsDisabled}"
             uib-tooltip="{$ _('anol.draw.TOOLTIP_POINT') $}"
             tooltip-placement="top"
             tooltip-append-to-body="true"
@@ -17,6 +18,7 @@
     </button>
     <button ng-click="drawLine()"
             class="btn btn-default btn-sm draw-line"
+            ng-class="{'disabled': $parent.drawButtonsDisabled}"
             uib-tooltip="{$ _('anol.draw.TOOLTIP_LINE') $}"
             tooltip-placement="top"
             tooltip-append-to-body="true"
@@ -28,6 +30,7 @@
     </button>
     <button ng-click="drawPolygon()"
             class="btn btn-default btn-sm draw-polygon"
+            ng-class="{'disabled': $parent.drawButtonsDisabled}"
             uib-tooltip="{$ _('anol.draw.TOOLTIP_POLYGON') $}"
             tooltip-placement="top"
             tooltip-append-to-body="true"
@@ -39,7 +42,7 @@
     </button>
     <button ng-click="$parent.drawText(drawCustom)"
             class="btn btn-default btn-sm draw-text"
-            ng-class="{'disabled': $parent.drawTextDisabled, 'active': $parent.drawTextActive}"
+            ng-class="{'disabled': $parent.drawButtonsDisabled, 'active': $parent.drawTextActive}"
             uib-tooltip="{$ _('anol.draw.TOOLTIP_TEXT') $}"
             tooltip-placement="top"
             tooltip-append-to-body="true"
