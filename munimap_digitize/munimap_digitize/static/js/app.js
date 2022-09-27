@@ -5,9 +5,9 @@ import '@babel/polyfill';
 proj4.defs('EPSG:25832', '+proj=utm +zone=32 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs');
 register(proj4);
 
-require('anol/src/anol/anol.js');
 require('angular-schema-form');
 require('angular-schema-form-bootstrap');
+require('anol/src/anol/anol.js');
 
 require('./../../../../munimap/static/js/default-munimap-config.js');
 
