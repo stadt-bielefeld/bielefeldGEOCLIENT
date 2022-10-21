@@ -58,10 +58,10 @@
             ng-if="layer.displayInLayerswitcher !== false" 
             ng-class="{'inactive': !layerIsVisibleByName(layer.name)}">
 
-            <a class="float-left" ng-if="layer.options.metadataUrl && hideMetadata == false" target="_blank" ng-href="{{ layer.options.metadataUrl }}">
+            <a class="float-left" ng-if="group.options.metadataUrl && hideMetadata == false" target="_blank" ng-href="{{ group.options.metadataUrl }}">
               <span class="glyphicon glyphicon-info-sign"></span>                    
             </a>
-            <span ng-if="!layer.metadataUrl && hideMetadata == false" class="glyphicon glyphicon-none float-left"></span>    
+            <span ng-if="!group.options.metadataUrl && hideMetadata == false" class="glyphicon glyphicon-none float-left"></span>    
             <div>
               <span class="layer-title"
                 ng-click="toggleLayerVisibleByName(layer.name)">
