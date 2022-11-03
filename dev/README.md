@@ -10,7 +10,7 @@
 * Python (>=3.9)
 * Java 8 (openjdk-8-jre)
 * virtualenv
-* Required packages for building pip requirements:
+* Required packages for building pip requirements (Maybe you have to use python3.9 versions - see below):
   ```
   sudo apt install build-essential \
       python3-dev \
@@ -88,7 +88,7 @@ npm start
     - `source muni_venv/bin/activate`
   - Install requirements:
       ```
-      pip3 install wheel setuptools
+      pip3 install --upgrade wheel setuptools
       pip3 install -r requirements.txt
       pip3 install -e ../
       pip3 install --no-index -e ../munimap_digitize/

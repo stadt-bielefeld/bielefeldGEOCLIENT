@@ -16,10 +16,10 @@ itsdangerous==2.0.1
 # jinja2 still needed because of an import in flask 0.12.5 ---> from jinja2 import Markup, escape
 # Can probably be removed in higher flask version.
 Jinja2==3.0.3
-libsass==0.8.3
+libsass==0.21.0
 markupsafe==2.0.1
 natsort==8.1.0
-psycopg2==2.9.3
+psycopg2-binary==2.9.5
 PyHyphen==4.0.3
 PyYAML==6.0
 reportlab==3.6.9
