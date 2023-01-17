@@ -1,6 +1,8 @@
 FROM python:2.7.16-jessie as BASE
 
-RUN apt-get update && apt-get install -y \
+# --force-yes is needed here since a few packages cannot
+# be authenticated.
+RUN apt-get update && apt-get install -y --force-yes \
     libgeos-dev \
     libproj0 \
     libproj-dev
