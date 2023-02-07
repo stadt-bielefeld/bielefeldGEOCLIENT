@@ -1,16 +1,28 @@
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<meta name="HandheldFriendly" content="true" />
-
 {% set metaDescription = 'ALKIS und OpenStreetMap Daten gemeinsam in einer Karte.' %}
 {% if app_config and app_config['app'] and app_config['app']['metaDescription'] %}
 	{% set metaDescription = app_config['app']['metaDescription'] %}
 {% endif %}
 <meta name="description" content="{$ metaDescription $}"/>
 
-{% set title = 'Munimap' %}
+<meta charset='utf-8'>
+<meta content='chrome=1' http_equiv='X-UA-Compatible'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="HandheldFriendly" content="true" />
+<link rel="icon" type="image/png" href="{$ url_for('static', filename='img/favicon-16x16.png') $}" sizes="16x16">
+<link rel="icon" type="image/png" href="{$ url_for('static', filename='img/favicon-32x32.png') $}" sizes="32x32">
+<link rel="apple-touch-icon" type="image/png" href="{$ url_for('static', filename='img/favicon-180x180.png') $}" sizes="180x180">
+<link rel="icon" type="image/png" href="{$ url_for('static', filename='img/favicon-192x192.png') $}" sizes="192x192">
+<meta name="theme-color" content="#E30014">
+<meta name="mobile-web-app-capable" content="yes">
+
+{% set title = 'onlineKARTENdienst Bielefeld' %}
 {% if app_config and app_config['app'] and app_config['app']['title'] %}
     {% set title = app_config['app']['title'] %}
+{% endif %}
+{% if '/pages/nutzungsbedingungen' in request.base_url %}
+    {% set title = 'Nutzungsbedingungen - onlineKARTENdienst' %}
+{% endif %}
+{% if '/pages/about' in request.base_url %}
+    {% set title = 'Impressum - onlineKARTENdienst' %}
 {% endif %}
 <title>{$ title $}</title>

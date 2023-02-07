@@ -1,4 +1,4 @@
-from __future__ import division
+
 from .refs import refstr, DEFAULT_LABELS
 
 def calculate_num_cells(out_size, max_width, max_cells=(20, 20), min_cells=(2, 2)):
@@ -48,9 +48,9 @@ class Grid(object):
 
     def boxes(self):
         boxes = []
-        for y in xrange(self.cells[1]):
+        for y in range(self.cells[1]):
             y_ref = self.cells[1] - y if self.invert_left_labels else y +1
-            for x in xrange(self.cells[0]):
+            for x in range(self.cells[0]):
                 x_ref = self.cells[0] - x if self.invert_top_labels else x +1
                 boxes.append(((x_ref, y_ref), (
                      self.bbox[0] + self.grid_size[0] * x,
@@ -63,12 +63,12 @@ class Grid(object):
     def lines(self):
         lines = []
 
-        for i in xrange(self.cells[0]+1):
+        for i in range(self.cells[0]+1):
             lines.append([
                 (self.bbox[0] + self.grid_size[0]*i, self.bbox[1]),
                 (self.bbox[0] + self.grid_size[0]*i, self.bbox[3]),
             ])
-        for i in xrange(self.cells[1]+1):
+        for i in range(self.cells[1]+1):
             lines.append([
                 (self.bbox[0], self.bbox[1] + self.grid_size[1]*i),
                 (self.bbox[2], self.bbox[1] + self.grid_size[1]*i),
@@ -79,7 +79,7 @@ class Grid(object):
     def points(self):
         label_points = []
         # top labels (left to right)
-        for i in xrange(self.cells[0]):
+        for i in range(self.cells[0]):
             label_value = (self.cells[0] - i) if self.invert_top_labels else (i + 1)
             label_points.append((
                 refstr(label_value, labels=self.labels[0]),
@@ -96,7 +96,7 @@ class Grid(object):
                 ),
             ))
         # left labels (top to bottom)
-        for i in xrange(self.cells[1]):
+        for i in range(self.cells[1]):
             label_value = (self.cells[1] - i) if self.invert_left_labels else (i + 1)
             label_points.append((
                 refstr(label_value, labels=self.labels[1]),

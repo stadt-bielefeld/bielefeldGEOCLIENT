@@ -1,42 +1,49 @@
+import os
 from scriptine.shell import sh
-
-from flask import current_app
-from flask.ext.script import Manager, Server, prompt_bool
-from flask.ext.assets import ManageAssets
 from munimap.application import create_app
 from munimap.extensions import db
+import click
 
-manager = Manager(create_app)
-manager.add_command("assets", ManageAssets())
+config_file=os.getenv('FLASK_MUNIMAP_CONFIG', './configs/munimap.conf')
+debug=os.getenv('FLASK_DEBUG', '0')
+host=os.getenv('FLASK_RUN_HOST', '0.0.0.0')
+port=os.getenv('FLASK_RUN_PORT',5000)
 
 
-@manager.command
+app = create_app(config_file=config_file)
+cli_manager = app.cli
+
+@cli_manager.command()
+def run_munimap():
+    "Runs the development server with special configuration attributes"
+    app.logger.info("Preparing to run munimap")
+    app.logger.info(f"Starting application {app.name}")
+    app.logger.info(f"Using {config_file} as config file")
+    app.logger.info(f"Debugger is {debug == '1'}")
+    app.run(host=host, port=int(port), debug=debug=="1", threaded=True)
+
+@cli_manager.command()
+@click.option('--lang', default='de', help='selects language to initialize')
 def babel_init_lang(lang='de'):
     "Initialize new language."
     sh('pybabel init -i ../munimap/translations/messages.pot -d ../munimap/translations -l %s' %
        (lang,))
 
 
-@manager.command
+@cli_manager.command()
 def babel_refresh():
     "Extract messages and update translation files."
     sh('pybabel extract -F ../munimap/babel.cfg -k lazy_gettext -k _l -o ../munimap/translations/messages.pot ../munimap ../munimap_digitize ../munimap_transport')
     sh('pybabel update -i ../munimap/translations/messages.pot -d ../munimap/translations')
 
 
-@manager.command
+@cli_manager.command()
 def babel_compile():
     "Compile translations."
     sh('pybabel compile -d ../munimap/translations')
 
 
-@manager.command
-def recreate_db():
-    drop_db(force=True)
-    create_db()
-
-
-@manager.command
+@cli_manager.command()
 def create_db():
     "Creates database tables with fixtures"
     # create only on default bind
@@ -45,7 +52,7 @@ def create_db():
     from alembic.config import Config
     from alembic import command
 
-    alembic_cfg = Config(current_app.config.get('ALEMBIC_CONF'))
+    alembic_cfg = Config(app.config.get('ALEMBIC_CONF'))
     command.stamp(alembic_cfg, "head")
 
     from munimap_digitize.model import fixtures
@@ -53,20 +60,20 @@ def create_db():
     db.session.commit()
 
 
-@manager.command
-def drop_db(force=False):
+@cli_manager.command()
+@click.option('--force', default=False, help='Drops all database tables')
+def drop_db(force):
     "Drops all database tables"
-    if force or prompt_bool("Are you sure ? You will lose all your data !"):
+    if force or not force and click.confirm("Are you sure ? You will lose all your data !"):
+        app.logger.info("Dropping Database")
         # drop only on default bind
         db.drop_all(bind=None)
+    else:
+      app.logger.info("Database will be kept")
 
 
-manager.add_option('-c', '--config', dest='config_file', required=False)
-manager.add_command("runserver", Server(
-    host='0.0.0.0',
-    threaded=True,
-    # extra_files=['munimap_develop.conf', 'data/layers_conf.yaml']
-))
-
-if __name__ == '__main__':
-    manager.run()
+@cli_manager.command()
+def recreate_db():
+    "Drops all database tables and recreates a clean database structure"
+    drop_db(force=True)
+    create_db()

@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 import json
 from datetime import datetime
 
@@ -17,8 +17,8 @@ from flask import (
 
 from werkzeug.exceptions import BadRequest, NotFound
 
-from flask.ext.login import login_user, logout_user, login_required, current_user
-from flask.ext.babel import gettext as _, to_user_timezone
+from flask_login import login_user, logout_user, login_required, current_user
+from flask_babel import gettext as _, to_user_timezone
 from munimap.extensions import db
 
 # from munimap.extensions import db

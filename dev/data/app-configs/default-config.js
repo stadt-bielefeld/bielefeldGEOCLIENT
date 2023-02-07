@@ -3,7 +3,7 @@ var munimapConfig = {
         tooltipDelay: 2000
     },
     map: {
-        center: [468152.5616,5764386.17546],
+        center: [468152.5616, 5764386.17546],
         centerProjection: 'EPSG:25832',
         zoom: 8,
         projection: 'EPSG:25832',
@@ -48,6 +48,6 @@ var munimapConfig = {
                 'icon': 'glyphicon-resize-horizontal',
                 'value': [210, 148]
             }
-       }
+        }
     }
 };

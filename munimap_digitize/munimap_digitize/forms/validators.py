@@ -2,7 +2,7 @@ from wtforms import ValidationError
 from wtforms.validators import Optional
 
 from munimap_digitize.model import FeatureGroup, Layer
-from flask.ext.babel import lazy_gettext as _l
+from flask_babel import lazy_gettext as _l
 
 
 def group_name_unique(form, field):

@@ -1,7 +1,7 @@
 from wtforms import ValidationError
 
 from munimap.model import MBUser
-from flask.ext.babel import lazy_gettext as _l
+from flask_babel import lazy_gettext as _l
 
 
 def email_exist(form, field):

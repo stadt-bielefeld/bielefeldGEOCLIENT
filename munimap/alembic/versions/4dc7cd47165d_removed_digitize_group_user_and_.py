@@ -31,9 +31,9 @@ def downgrade():
         sa.Column('id', sa.INTEGER(), nullable=False),
         sa.Column('name', sa.VARCHAR(), autoincrement=False, nullable=True),
         sa.Column('title', sa.VARCHAR(), autoincrement=False, nullable=True),
-        sa.PrimaryKeyConstraint('id', name=u'groups_pkey'),
-        sa.UniqueConstraint('name', name=u'groups_name_key'),
-        sa.UniqueConstraint('title', name=u'groups_title_key')
+        sa.PrimaryKeyConstraint('id', name='groups_pkey'),
+        sa.UniqueConstraint('name', name='groups_name_key'),
+        sa.UniqueConstraint('title', name='groups_title_key')
     )
     op.create_table(
         'users',
@@ -42,29 +42,29 @@ def downgrade():
         sa.Column('password', sa.VARCHAR(length=256), autoincrement=False, nullable=True),
         sa.Column('last_login', postgresql.TIMESTAMP(), autoincrement=False, nullable=True),
         sa.Column('active', sa.BOOLEAN(), autoincrement=False, nullable=False),
-        sa.PrimaryKeyConstraint('id', name=u'users_pkey'),
-        sa.UniqueConstraint('email', name=u'users_email_key'),
+        sa.PrimaryKeyConstraint('id', name='users_pkey'),
+        sa.UniqueConstraint('email', name='users_email_key'),
         postgresql_ignore_search_path=False
     )
     op.create_table(
         'permissions',
         sa.Column('id', sa.INTEGER(), nullable=False),
         sa.Column('action', sa.VARCHAR(), autoincrement=False, nullable=True),
-        sa.PrimaryKeyConstraint('id', name=u'permissions_pkey'),
-        sa.UniqueConstraint('action', name=u'permissions_action_key'),
+        sa.PrimaryKeyConstraint('id', name='permissions_pkey'),
+        sa.UniqueConstraint('action', name='permissions_action_key'),
         postgresql_ignore_search_path=False
     )
     op.create_table(
         'groups_permissions',
         sa.Column('group_id', sa.INTEGER(), autoincrement=False, nullable=True),
         sa.Column('permission_id', sa.INTEGER(), autoincrement=False, nullable=True),
-        sa.ForeignKeyConstraint(['group_id'], [u'groups.id'], name=u'groups_permissions_group_id_fkey'),
-        sa.ForeignKeyConstraint(['permission_id'], [u'permissions.id'], name=u'groups_permissions_permission_id_fkey')
+        sa.ForeignKeyConstraint(['group_id'], ['groups.id'], name='groups_permissions_group_id_fkey'),
+        sa.ForeignKeyConstraint(['permission_id'], ['permissions.id'], name='groups_permissions_permission_id_fkey')
     )
     op.create_table(
         'user_groups',
         sa.Column('user_id', sa.INTEGER(), autoincrement=False, nullable=True),
         sa.Column('group_id', sa.INTEGER(), autoincrement=False, nullable=True),
-        sa.ForeignKeyConstraint(['group_id'], [u'groups.id'], name=u'user_groups_group_id_fkey'),
-        sa.ForeignKeyConstraint(['user_id'], [u'users.id'], name=u'user_groups_user_id_fkey')
+        sa.ForeignKeyConstraint(['group_id'], ['groups.id'], name='user_groups_group_id_fkey'),
+        sa.ForeignKeyConstraint(['user_id'], ['users.id'], name='user_groups_user_id_fkey')
     )

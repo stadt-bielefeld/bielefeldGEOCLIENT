@@ -1,5 +1,5 @@
 # -:- encoding: utf8 -:-
-from __future__ import absolute_import
+
 
 import os
 import fnmatch
@@ -16,10 +16,10 @@ import traceback
 from tempfile import NamedTemporaryFile
 from threading import Lock
 
-from flask import Flask, send_from_directory, request, \
+from flask import Flask, send_from_directory, request as LocalProxyRequest, Request, \
     jsonify, redirect, url_for, make_response, render_template, \
     current_app
-from flask.ext.babel import Babel
+from flask_babel import Babel
 
 from flask.json import JSONEncoder as BaseJSONEncoder
 from speaklater import _LazyString
@@ -69,7 +69,7 @@ def create_app(config=None, config_file=None):
     class LazyJSONEncoder(BaseJSONEncoder):
         def default(self, o):
             if isinstance(o, _LazyString):
-                return unicode(o)
+                return str(o)
             return BaseJSONEncoder.default(self, o)
 
     app.json_encoder = LazyJSONEncoder
@@ -270,8 +270,8 @@ def configure_assets(app):
         project_sass_files = collect_project_files(os.path.join(app.config.get('PROJECT_DIR'), 'static', 'sass'), '*.sass')
 
         loader = webassets.loaders.YAMLLoader(app.config.get('ASSETS_BUNDLES_CONF'))
-        for name, bundle in loader.load_bundles().iteritems():
-            if name == 'app-css':
+        for name, bundle in loader.load_bundles().items():
+            if name == 'app-css' and app.config.get('ASSETS_MERGE_SASS'):
                 # check if project overwrite some sass files
                 bundle.contents = assign_project_files(list(bundle.contents), project_sass_files)
 
@@ -285,68 +285,115 @@ def configure_assets(app):
 def configure_logging(app):
     formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s ')
 
-    # log debug
-    debug_log = os.path.abspath(os.path.join(app.config['LOG_DIR'], app.config['DEBUG_LOG']))
-    debug_file_handler = logging.FileHandler(debug_log)
-    debug_file_handler.setLevel(logging.DEBUG)
-    debug_file_handler.setFormatter(formatter)
-    app.logger.addHandler(debug_file_handler)
-    logging.getLogger("munimap").addHandler(debug_file_handler)
+    def add_debug_logger(handler):
+        handler.setFormatter(formatter)
+        handler.setLevel(logging.DEBUG)
+        app.logger.addHandler(handler)
+        logging.getLogger("munimap").addHandler(handler)
 
-    # log transfer
-    transfer_log = os.path.join(
-        app.root_path,
-        app.config['LOG_DIR'],
-        app.config['TRANSFER_LOG']
-    )
-    transfer_log_handler = logging.FileHandler(transfer_log)
-    transfer_log_handler.setLevel(logging.INFO)
-    transfer_log_handler.setFormatter(formatter)
+    def add_transfer_logger(handler):
+        handler.setLevel(logging.INFO)
+        handler.setFormatter(formatter)
 
-    transfer_logger = logging.getLogger('munimap.transfer')
-    transfer_logger.setLevel(logging.INFO)
-    transfer_logger.propagate = False
-    transfer_logger.addHandler(transfer_log_handler)
- 
-     # log alkis
-    alkis_log = os.path.join(
-        app.root_path,
-        app.config['LOG_DIR'],
-        app.config['ALKIS_LOG']
-    )
-    alkis_log_handler = logging.FileHandler(alkis_log)
-    alkis_log_handler.setLevel(logging.INFO)
-    alkis_log_handler.setFormatter(formatter)
+        transfer_logger = logging.getLogger('munimap.transfer')
+        transfer_logger.setLevel(logging.INFO)
+        transfer_logger.propagate = False
+        transfer_logger.addHandler(handler)
 
-    alkis_logger = logging.getLogger('munimap.alkis')
-    alkis_logger.setLevel(logging.INFO)
-    alkis_logger.propagate = False
-    alkis_logger.addHandler(alkis_log_handler)
- 
-     # log alkis
-    token_log = os.path.join(
-        app.root_path,
-        app.config['LOG_DIR'],
-        app.config['TOKEN_LOG']
-    )
-    token_log_handler = logging.FileHandler(token_log)
-    token_log_handler.setLevel(logging.INFO)
-    token_log_handler.setFormatter(formatter)
+    def add_alkis_logger(handler):
+        handler.setLevel(logging.INFO)
+        handler.setFormatter(formatter)
 
-    token_logger = logging.getLogger('munimap.alkis')
-    token_logger.setLevel(logging.INFO)
-    token_logger.propagate = False
-    token_logger.addHandler(alkis_log_handler)
- 
-     # log errors
-    error_log = os.path.abspath(os.path.join(app.config['LOG_DIR'], app.config['ERROR_LOG']))
-    error_file_handler = logging.FileHandler(error_log)
-    error_file_handler.setLevel(logging.ERROR)
-    error_file_handler.setFormatter(formatter)
-    app.logger.addHandler(error_file_handler)
+        alkis_logger = logging.getLogger('munimap.alkis')
+        alkis_logger.setLevel(logging.INFO)
+        alkis_logger.propagate = False
+        alkis_logger.addHandler(handler)
+
+    def add_token_logger(handler):
+        handler.setLevel(logging.INFO)
+        handler.setFormatter(formatter)
+
+        token_logger = logging.getLogger('munimap.token')
+        token_logger.setLevel(logging.INFO)
+        token_logger.propagate = False
+        token_logger.addHandler(handler)
+
+    def add_error_logger(handler):
+        handler.setLevel(logging.ERROR)
+        handler.setFormatter(formatter)
+        app.logger.addHandler(handler)
+
+    def add_proxy_logger(handler):
+        handler.setLevel(logging.ERROR)
+        handler.setFormatter(formatter)
+
+        proxy_logger = logging.getLogger('munimap.proxy')
+        proxy_logger.setLevel(logging.ERROR)
+        proxy_logger.propagate = False
+        proxy_logger.addHandler(handler)
+
+    def add_layers_logger(handler):
+        handler.setLevel(logging.WARN)
+        handler.setFormatter(formatter)
+
+        layers_logger = logging.getLogger('munimap.layers')
+        layers_logger.setLevel(logging.ERROR)
+        layers_logger.propagate = False
+        layers_logger.addHandler(handler)
+
+    def add_print_logger(handler):
+        handler.setLevel(logging.INFO)
+        handler.setFormatter(formatter)
+
+        print_logger = logging.getLogger('munimap.print')
+        print_logger.setLevel(logging.INFO)
+        print_logger.propagate = False
+        print_logger.addHandler(handler)
+
+    log_both = 'LOG_MODE' not in app.config or app.config['LOG_MODE'] == 'BOTH'
+
+    if log_both or app.config['LOG_MODE'] == 'FILES':
+        debug_log = os.path.abspath(os.path.join(app.config['LOG_DIR'], app.config['DEBUG_LOG']))
+        add_debug_logger(logging.FileHandler(debug_log))
+
+        transfer_log = os.path.join(
+            app.root_path,
+            app.config['LOG_DIR'],
+            app.config['TRANSFER_LOG']
+        )
+        add_transfer_logger(logging.FileHandler(transfer_log))
+
+        alkis_log = os.path.join(
+            app.root_path,
+            app.config['LOG_DIR'],
+            app.config['ALKIS_LOG']
+        )
+        add_alkis_logger(logging.FileHandler(alkis_log))
+
+        token_log = os.path.join(
+            app.root_path,
+            app.config['LOG_DIR'],
+            app.config['TOKEN_LOG']
+        )
+        add_token_logger(logging.FileHandler(token_log))
+
+        error_log = os.path.abspath(os.path.join(app.config['LOG_DIR'], app.config['ERROR_LOG']))
+        add_error_logger(logging.FileHandler(error_log))
+        add_proxy_logger(logging.FileHandler(error_log))
+        add_layers_logger(logging.FileHandler(error_log))
+        add_print_logger(logging.FileHandler(error_log))
+
+    if log_both or app.config['LOG_MODE'] == 'STDOUT':
+        add_debug_logger(logging.StreamHandler(sys.stdout))
+        add_transfer_logger(logging.StreamHandler(sys.stdout))
+        add_alkis_logger(logging.StreamHandler(sys.stdout))
+        add_token_logger(logging.StreamHandler(sys.stdout))
+        add_error_logger(logging.StreamHandler(sys.stdout))
+        add_proxy_logger(logging.StreamHandler(sys.stdout))
+        add_layers_logger(logging.StreamHandler(sys.stdout))
+        add_print_logger(logging.StreamHandler(sys.stdout))
 
     app.logger.setLevel(logging.DEBUG)
-
 
 
 def configure_i18n(app):
@@ -356,7 +403,7 @@ def configure_i18n(app):
     @babel.localeselector
     def get_locale():
         accept_languages = app.config.get('ACCEPT_LANGUAGES', ['en_GB'])
-        return request.accept_languages.best_match(accept_languages,
+        return LocalProxyRequest.accept_languages.best_match(accept_languages,
             default=accept_languages[0])
 
 
@@ -373,43 +420,47 @@ def configure_errorhandlers(app):
 
     @app.errorhandler(400)
     def bad_request(error):
-        if request.is_xhr:
+        if LocalProxyRequest.is_xhr:
             response = jsonify(message='Bad Request')
             response.status_code = 400
             return response
-        app.logger.error("bad request for %s: %s", request, getattr(error, 'description', error))
+        app.logger.error("Bad Request (400) for %s: %s", LocalProxyRequest, getattr(error, 'description', error))
         return make_response(render_template("munimap/errors/400.html"), 400)
 
     @app.errorhandler(401)
     def unauthorized(error):
-        if request.is_xhr:
+        if LocalProxyRequest.is_xhr:
             response =  jsonify(message="Login required")
             response.status_code = 401
             return response
-        return redirect(url_for("user.login", next=request.url))
+        app.logger.error("Unauthorized (401) for %s: %s", LocalProxyRequest, getattr(error, 'description', error))
+        return redirect(url_for("user.login", next=LocalProxyRequest.url))
 
     @app.errorhandler(403)
     def forbidden(error):
-        if request.is_xhr:
+        if LocalProxyRequest.is_xhr:
             response = jsonify(message='Not allowed')
             response.status_code = 403
             return response
+        app.logger.error("Not allowed (403) for %s: %s", LocalProxyRequest, getattr(error, 'description', error))
         return make_response(render_template("munimap/errors/403.html"), 403)
 
     @app.errorhandler(404)
     def page_not_found(error):
-        if request.is_xhr:
+        if LocalProxyRequest.is_xhr:
             response = jsonify(message='Page not found')
             response.status_code = 404
             return response
+        app.logger.error("Not Found (404) for %s: %s", LocalProxyRequest, getattr(error, 'description', error))
         return make_response(render_template("munimap/errors/404.html"), 404)
 
     @app.errorhandler(500)
     def server_error(error):
-        if request.is_xhr:
-            response = jsonify(message='Interal Error')
+        if LocalProxyRequest.is_xhr:
+            response = jsonify(message='Internal Error')
             response.status_code = 500
             return response
+        app.logger.error("Internal Error (500) for %s: %s", LocalProxyRequest, getattr(error, 'description', error))
         return make_response(render_template("munimap/errors/500.html", error=error), 500)
 
 

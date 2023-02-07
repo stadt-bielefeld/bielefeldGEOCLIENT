@@ -25,9 +25,9 @@ setup(
     zip_safe=False,
     platforms='any',
     install_requires=[
-        'Flask',
-        'Flask-Assets',
-        'natsort',
+        'Flask==0.12.5',
+        'Flask-Assets==0.12',
+        'natsort==8.1.0'
     ],
     include_package_data=True,
 )

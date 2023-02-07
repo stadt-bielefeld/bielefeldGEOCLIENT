@@ -15,7 +15,7 @@ tmp_dir = '/tmp/munimap-mapfish-prints'
 def setUp():
     try:
         os.makedirs(tmp_dir)
-        print os.path.exists(tmp_dir)
+        print(os.path.exists(tmp_dir))
     except:
         pass
 

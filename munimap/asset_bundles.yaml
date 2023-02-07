@@ -30,6 +30,7 @@ app-css:
     - sass/digitize.sass
     - sass/transport.sass
     - sass/admin.sass
+    - sass/project.sass
 
 draw-libs-css:
   output: draw-libs.css

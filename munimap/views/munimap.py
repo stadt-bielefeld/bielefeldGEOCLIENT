@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 
 import os
 import json
@@ -22,8 +22,8 @@ from flask import (
     session,
 )
 
-from flask.ext.login import current_user
-from requests.packages.urllib3.exceptions import InsecureRequestWarning
+from flask_login import current_user
+from urllib3.exceptions import InsecureRequestWarning
 
 from munimap import helper
 from munimap.app_layers_def import (
@@ -50,7 +50,7 @@ def list_available_icons():
         current_app.config['MAP_ICONS_DIR'],
         current_app.config['DRAW_ICONS_SUB_DIR']
     )
-    icon_files = [f.decode('utf-8') for f in os.listdir(draw_icons_path)]
+    icon_files = [(f.decode('utf-8') if not isinstance(f, str) else f) for f in os.listdir(draw_icons_path)]
 
     config_file = current_app.config.get('DRAW_ICONS_CONFIG_FILE')
     if config_file:
@@ -334,6 +334,7 @@ def featureinfo_proxy(layer_name=None):
 
     requested_layer = request.args.get('QUERY_LAYERS')
     if requested_layer not in current_app.layers:
+        proxy_log.error('unknown/unconfigured layer')
         raise BadRequest()
 
     layer = current_app.layers[requested_layer]
@@ -405,9 +406,11 @@ def handle_wms_get_map(service_url, layers, request_args):
     bbox = request_args.get('BBOX')
 
     if None in (transparent, width, height, styles, bbox):
+        proxy_log.error('request is missing on of transparent, width, height, styles or bbox')
         raise BadRequest()
 
     if len(bbox.split(',')) != 4:
+        proxy_log.error('bbox needs to consist of 4 values')
         raise BadRequest()
 
     params = dict(
@@ -435,7 +438,7 @@ def handle_wms_get_map(service_url, layers, request_args):
     response = requests.get(service_url, params, verify=current_app.config.get('CERTIFICATE_VERIFY'))
 
     if not response.ok:
-        proxy_log.debug('request failed with status %s. url: %s, params: %s',
+        proxy_log.error('request failed with status %s. url: %s, params: %s',
                         response.status_code, service_url, str(params))
         raise BadGateway()
 
@@ -468,7 +471,7 @@ def handle_wms_get_legend(service_url, layers, request_args):
     response = requests.get(service_url, params, verify=current_app.config.get('CERTIFICATE_VERIFY'))
 
     if not response.ok:
-        proxy_log.debug('request failed with status %s. url: %s, params: %s',
+        proxy_log.error('request failed with status %s. url: %s, params: %s',
                         response.status_code, service_url, str(params))
         raise BadGateway()
 
@@ -489,7 +492,7 @@ def handle_get_file(service_url, layers, request_args):
     response = requests.get(service_url, params, verify=current_app.config.get('CERTIFICATE_VERIFY'))
 
     if not response.ok:
-        proxy_log.debug('request failed with status %s. url: %s, params: %s',
+        proxy_log.error('request failed with status %s. url: %s, params: %s',
                         response.status_code, service_url, str(params))
         raise BadGateway()
 
@@ -546,7 +549,7 @@ def handle_wms_get_feature_info(service_url, layers, request_args):
     response = requests.get(service_url, params, verify=current_app.config.get('CERTIFICATE_VERIFY'))
 
     if not response.ok:
-        proxy_log.debug('request failed with status %s. url: %s, params: %s',
+        proxy_log.error('request failed with status %s. url: %s, params: %s',
                         response.status_code, service_url, str(params))
         raise BadGateway()
 
@@ -555,14 +558,17 @@ def handle_wms_get_feature_info(service_url, layers, request_args):
 @munimap.route('/proxy/wms/<url_hash>/service', methods=['GET'])
 def wms_proxy(url_hash=None):
     if url_hash is None or url_hash not in current_app.hash_map:
+        proxy_log.error('proxy url hash unknown')
         raise NotFound()
 
     url = current_app.hash_map[url_hash]
     if url is None:
+        proxy_log.error('proxy url not found by url_hash')
         raise NotFound()
 
     request_type = request.args.get('REQUEST')
     if request_type not in ('GetMap', 'GetLegendGraphic', 'GetFeatureInfo') and not request.args.get('GetFile'):
+        proxy_log.error('wms request type is unknown')
         raise BadRequest()
 
     requested_layers = (
@@ -575,11 +581,13 @@ def wms_proxy(url_hash=None):
         request_type = 'GetFile'
 
     if requested_layers is None:
+        proxy_log.error('no layers in request')
         raise BadRequest()
     requested_layers = requested_layers.split(',')
 
     for requested_layer in requested_layers:
         if requested_layer not in current_app.layers:
+            proxy_log.error('unknown/unconfigured layer')
             raise BadRequest()
         layer = current_app.layers[requested_layer]
         if layer['hash'] != url_hash:
@@ -619,17 +627,21 @@ def wms_proxy(url_hash=None):
 @munimap.route('/proxy/wmts/<url_hash>/service/<layer>/<grid>/<int:zoom>/<int:x>/<int:y>.<__format>')
 def wmts_proxy(url_hash=None, layer=None, grid=None, zoom=None, x=None, y=None, __format=None):
     if url_hash is None or url_hash not in current_app.hash_map:
+        proxy_log.error('proxy url hash unknown')
         raise NotFound()
 
     if None in (layer, grid, zoom, x, y, __format):
+        proxy_log.error('proxy request is missing parameters')
         raise BadRequest()
 
     url = current_app.hash_map[url_hash]
 
     if url is None:
+        proxy_log.error('proxy url not found by url_hash')
         raise NotFound()
 
     if layer not in current_app.layers or url_hash != current_app.layers[layer]['hash']:
+        proxy_log.error('layer is misconfigured')
         raise NotFound()
 
     layer = current_app.layers[layer]

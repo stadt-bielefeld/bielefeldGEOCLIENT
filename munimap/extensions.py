@@ -1,7 +1,7 @@
-from flask.ext.mail import Mail
-from flask.ext.sqlalchemy import SQLAlchemy
-from flask.ext.assets import Environment as AssetsEnvironment, FlaskResolver
-from flask.ext.login import LoginManager
+from flask_mailman  import Mail
+from flask_sqlalchemy import SQLAlchemy
+from flask_assets import Environment as AssetsEnvironment, FlaskResolver
+from flask_login import LoginManager
 
 __all__ = ['mail', 'db', 'assets', 'login_manager']
 

@@ -1,5 +1,5 @@
-from __future__ import absolute_import
-import urllib
+
+import urllib.request, urllib.parse, urllib.error
 
 from flask import (
     Blueprint,
@@ -8,7 +8,7 @@ from flask import (
     jsonify,
 )
 
-from flask.ext.login import login_required, current_user
+from flask_login import login_required, current_user
 
 from munimap.alkis import (
     request_alkis_info,
@@ -104,7 +104,7 @@ def pdf():
         'popup': 'true',
     }
 
-    url_params = urllib.urlencode(params)
+    url_params = urllib.parse.urlencode(params)
 
     if (current_app.config.get('ALKIS_LEGITIMATION_GROUP') in current_user.groups_list):
         company, reference, person, kind = parse_legimation_request(request)
@@ -151,7 +151,7 @@ def official(feature_id=None):
         'popup': 'true',
     }
 
-    url_params = urllib.urlencode(params)
+    url_params = urllib.parse.urlencode(params)
 
     if (current_app.config.get('ALKIS_LEGITIMATION_GROUP') in current_user.groups_list):
         company, reference, person, kind = parse_legimation_request(request)

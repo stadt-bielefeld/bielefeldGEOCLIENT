@@ -1,4 +1,6 @@
-from __future__ import absolute_import
+
+
+import logging
 import os
 import os.path
 import re
@@ -16,12 +18,14 @@ from zipfile import ZipFile
 import requests
 
 from flask import current_app, render_template
-from flask.ext.babel import gettext as _
+from flask_babel import gettext as _
 
 from munimap.query.feature_collection import query_feature_collection
 from munimap.print_requests import MapRequest
 from munimap.layers import (mapfish_grid_layer, mapfish_numeration_layer, 
     mapfish_feature_collection_layer, mapfish_measure_feature_collection_layer)
+
+log = logging.getLogger('munimap.print')
 
 GRID_STYLE = {
     'strokeColor': 'rgb(50, 50, 50)',
@@ -105,7 +109,7 @@ def mapfish_layers(requested_layers, bbox=None, srs=None, dpi=None, scale=None, 
     if len(requested_layers) == 0:
         return []
     # convert list of strings to needed format
-    if isinstance(requested_layers[0], basestring):
+    if isinstance(requested_layers[0], str):
         requested_layers = [[name, {}] for name in requested_layers]
     layers = []
 
@@ -266,19 +270,20 @@ def create_spec_json(req, is_custom=False, icons_dir=''):
         }
     }
     handle, spec_file_path = tempfile.mkstemp()
-    with open(spec_file_path, 'wb') as spec_file:
+    with open(spec_file_path, 'w', encoding ='utf8') as spec_file:
         spec_file.write(json.dumps(spec))
     return spec_file_path
 
 
 def create_jasper_report(print_request, base_path):
+    project_dir = current_app.config.get('PROJECT_DIR')
     margins = current_app.config.get('MAPFISH_PRINT_MAP_MARGINS', [0, 0, 0, 0])
     page_width = int(round((print_request.page_size[0] * 72) / 25.4))
     page_height = int(round((print_request.page_size[1] * 72) / 25.4))
     column_width = page_width - margins[1] - margins[3]
     map_height = page_height - margins[0] - margins[2]
     jasper_report = render_template(
-        '/munimap/mapfish/custom.jrxml',
+        os.path.abspath(os.path.join(project_dir, 'templates/mapfish/custom.jrxml')),
         page_width=page_width,
         page_height=page_height,
         column_width=column_width,
@@ -292,6 +297,7 @@ def create_jasper_report(print_request, base_path):
 
 
 def create_mapfish_yaml(print_request, base_path, report_file):
+    project_dir = current_app.config.get('PROJECT_DIR')
     margins = current_app.config.get('MAPFISH_PRINT_MAP_MARGINS', [0, 0, 0, 0])
     width = int(round((print_request.page_size[0] * 72) / 25.4))
     width = width - margins[1] - margins[3]
@@ -299,7 +305,7 @@ def create_mapfish_yaml(print_request, base_path, report_file):
     height = height - margins[0] - margins[2]
 
     yaml_content = render_template(
-        '/munimap/mapfish/custom.yaml',
+        os.path.abspath(os.path.join(project_dir, 'templates/mapfish/custom.yaml')),
         width=width,
         height=height,
         report_file=os.path.basename(report_file))
@@ -370,7 +376,8 @@ def ensure_directory(directory):
     if not os.path.exists(directory):
         try:
             os.makedirs(directory)
-        except OSError, ex:
+        except OSError as ex:
+            log.error('could not create directory \'%s\'' % directory)
             if ex.errno != errno.EEXIST:
                 raise
 
@@ -470,6 +477,7 @@ def mapfish_printqueue_worker_process(job):
     return {}
 
 def mapfish_printqueue_worker(job):
+    log.info('print worker started')
     if job.get('type') != 'mapfish_print':
         return {'error': 'not a mapfish_print job'}
 
@@ -500,13 +508,13 @@ def mapfish_printqueue_worker(job):
         if not r.ok:
             zip_buf.close()
             return {
-                'error': 'unable to request index from %s' % index_url,
-                'full_error': str(r) + '\n' + r.content,
+                'error': f'unable to request index from {index_url}',
+                'full_error': f'{r}\n{r.content.decode()}',
             }
-        zip_buf.writestr('index.pdf', r.content)
+        zip_buf.writestr('index.pdf', r.content.decode())
 
     zip_buf.write(map_filename, 'map' + ext)
     zip_buf.close()
     os.unlink(map_filename)
 
-    return {'output_file': zip_filename}
+    return { 'output_file': zip_filename }

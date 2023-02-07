@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 import json
 
 import datetime
@@ -19,9 +19,9 @@ from flask import (
 
 from werkzeug.exceptions import BadRequest, NotFound
 
-from flask.ext.mail import Message
-from flask.ext.login import login_user, logout_user, login_required, current_user
-from flask.ext.babel import gettext as _, to_user_timezone
+from flask_mailman import EmailMessage
+from flask_login import login_user, logout_user, login_required, current_user
+from flask_babel import gettext as _, to_user_timezone
 from munimap.extensions import db, mail
 
 # from munimap.extensions import db
@@ -42,6 +42,7 @@ from munimap.forms.project_settings import ProjectSettingsForm
 from munimap.model import ProjectSettings
 
 user = Blueprint("user", __name__, url_prefix='/user')
+
 
 @user.route("/login", methods=["GET", "POST"])
 def login():
@@ -97,6 +98,7 @@ def change_password():
             flash(_('Old Password is not correct'), 'error')
     return render_template("munimap/user/password.html", form=form)
 
+
 @user.route("/password/recover", methods=["GET", "POST"])
 def recover_password():
     form = RecoverRequestForm()
@@ -106,16 +108,16 @@ def recover_password():
         db.session.add(recover)
         db.session.commit()
 
-        msg_body = render_template('munimap/emails/recover_mail.txt', user=user, recover=recover)
-        msg = Message(
-            _('Password recover mail subject'),
-            recipients=[user.email]
+        msg = EmailMessage(
+            subject=_('Password recover mail subject'),
+            body=render_template('munimap/emails/recover_mail.txt', user=user, recover=recover),
+            to=[user.email]
         )
-        msg.body = msg_body
+
         if current_app.config.get('DEBUG'):
-            print(msg_body)
+            print(msg.body)
         else:
-            mail.send(msg)
+            msg.send(msg)
 
         flash(_('Mail with instructions will be send'), 'success')
         return redirect(url_for('user.login'))

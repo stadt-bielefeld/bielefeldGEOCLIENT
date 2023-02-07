@@ -286,7 +286,7 @@ def create_anol_layers(conf, layers_base_url=''):
 
 def load_anol_layers(configfile):
     with open(configfile, 'r') as f:
-        layers_conf = yaml.load(f)
+        layers_conf = yaml.safe_load(f)
 
     return create_anol_layers(layers_conf)
 
@@ -437,13 +437,12 @@ def mapfish_grid_layer(grid, srs, style):
 
 def mapfish_numeration_layer(feature_collection, srs, scale, dpi, _style):
     style = deepcopy(_style)
-
-    # _features = []
     sld_file = os.path.join(
         current_app.config.get('MAPFISH_STYLES_PATH'),
         'numeration.sld'
     )
-    sld_style = open(sld_file, 'rb').read()
+    sld_style = open(sld_file.encode('utf8'), 'r').read()
+
     sld_style = sld_style % style
 
     return {
@@ -745,7 +744,8 @@ def load_layers_config(config_folder, protected_layer_names=[], proxy_hash_salt=
             # if direct access is set the origin url will be used
             # authentication for protected layers is provided with session cookies
             if not direct_access:
-                layer['hash'] = hashlib.sha224(layer['source']['url'] + (proxy_hash_salt or '')).hexdigest()
+                encoded_layer = (layer['source']['url'] + (proxy_hash_salt or '')).encode(encoding = 'UTF-8', errors = 'strict')
+                layer['hash'] = hashlib.sha224(encoded_layer).hexdigest()
                 hash_map[layer['hash']] = layer['source']['url']
             else:
                 layer['url'] = layer['source']['url']
@@ -781,10 +781,11 @@ def check_project_config(new_yaml_content, exclude_file):
         'layers': [],
         'groups': []
     }
-    if isinstance(new_yaml_content, basestring):
+    if isinstance(new_yaml_content, str):
         return ['String only not supported'], False
 
     config_folder = current_app.config.get('LAYERS_CONF_DIR')
+
     for filename in os.listdir(config_folder):
         if filename == exclude_file:
             continue
@@ -825,7 +826,7 @@ def check_project_config(new_yaml_content, exclude_file):
 def check_project_config_only(new_yaml_content):
     yaml_content = deepcopy(new_yaml_content)
 
-    if isinstance(yaml_content, basestring):
+    if isinstance(yaml_content, str):
         return ['String only not supported'], False
 
     if not yaml_content.get('layers'):
@@ -844,6 +845,7 @@ def check_project_config_only(new_yaml_content):
 
 if __name__ == '__main__':
     import sys
+    import json
     json_content = load_anol_layers(sys.argv[1])
     with open(sys.argv[2], 'w') as json_file:
         json_file.write(json.dumps(json_content, indent=4))

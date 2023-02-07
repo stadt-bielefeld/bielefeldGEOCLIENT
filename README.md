@@ -70,23 +70,35 @@ Turns Munimap into an interactive journey planner.
 
 ## Installation
 
-#### Dependencies
+### Dependencies
 
-You need
+* docker
+* docker-compose version >= 1.29
 
-* Postgresql >= 9.4
-* PostGIS >= 2.1
-* Mapfish Print >= 3.3
-* Python = 2.6
-* Virtualenv >= 4.3
+### Building production containers
 
-### Munimap
 
-See dev/README for install instructions for munimap, munimap_digitize and munimap_transport
+Go to the `docker` directory and build the containers (this may take several minutes):
+```
+docker-compose --profile prod build
+```
+
+### Initializing databases
+
+The databases need to be initialized, again from the `docker` directory:
+```
+docker-compose --profile prod up munimap-postgis munimap-postgis-mapbender
+```
+When the message `database system is ready to accept connections` is displayed the initialization is complete, and the containers can be stopped with `ctrl+c`.
 
 ## Start
 
-See dev/README for starting instructions
+Go to the `docker` directory and start the application:
+```
+docker-compose --profile prod up
+```
+After everything loaded up you can reach the application at `http://localhost`. The admin interface is found under
+`http://localhost/admin` and by default the admin user is named `verwalter` and has the password `verwalter`.
 
 ## Documentation
 
@@ -94,6 +106,8 @@ Documentation can be found on
 https://stadt-bielefeld.github.io/bielefeldGEOCLIENT
 
 ## Development
+
+To learn how to configure a dev-environment please refer to the [readme for developers](./dev/README.md)
 
 The source code is available at: https://github.com/stadt-bielefeld/bielefeldGEOCLIENT
 

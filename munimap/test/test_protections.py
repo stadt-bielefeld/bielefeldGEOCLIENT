@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from __future__ import with_statement, absolute_import
+
 
 from munimap.test.base import BaseTestWithMunimapTestDB
 
 from flask import url_for
-from flask.ext.login import current_user
+from flask_login import current_user
 
 
 # mapproxy with munimap/test/data/test_mapproxy.yaml must run to pass all tests

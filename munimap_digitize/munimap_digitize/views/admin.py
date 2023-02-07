@@ -1,11 +1,12 @@
 from datetime import datetime, time
 
 from flask import (
-    Blueprint, request, jsonify, abort, url_for,
-    render_template, redirect, flash, current_app
+    Blueprint, Request, jsonify, abort, url_for,
+    render_template, redirect, flash, current_app,
+    request as LocalProxyRequest
 )
 
-from flask.ext.login import current_user
+from flask_login import current_user
 
 from munimap.extensions import db
 from munimap.helper import _, check_group_permission, merge_dict
@@ -35,9 +36,9 @@ def check_permission():
     if current_user.is_anonymous:
         flash(_('You are not allowed to administrate the digitize layers'),
               'error')
-        return redirect(url_for('user.login', next=request.url))
+        return redirect(url_for('user.login', next=LocalProxyRequest.url))
     if not access_allowed:
-        if request.is_xhr:
+        if LocalProxyRequest.is_xhr:
             return jsonify(message='Not allowed')
         return abort(403)
 
@@ -73,7 +74,7 @@ def properties(name=None):
     add_form = AddPropertyForm()
 
     return render_template('digitize/admin/properties.html',
-                           property_keys=layer.properties_schema['properties'].keys(),
+                           property_keys=list(layer.properties_schema['properties'].keys()),
                            edit_form=edit_form,
                            add_form=add_form,
                            layer=layer,

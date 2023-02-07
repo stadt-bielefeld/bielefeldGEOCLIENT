@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 
 import os
 import uuid
@@ -20,6 +20,8 @@ from munimap.print_requests import PrintRequest
 
 export = Blueprint('export', __name__)
 
+import logging
+log = logging.getLogger('munimap.print')
 
 @export.route('/export/map/<id>/status', methods=['GET'])
 def print_check(id):
@@ -75,6 +77,7 @@ def print_download(id):
 
 @export.route('/export/map', methods=['POST'])
 def print_post():
+    log.info('starting print job')
     params = request.get_json()
     if params is None:
         raise exceptions.BadRequest(description='Invalid JSON request')
@@ -134,6 +137,8 @@ def print_post():
         q.append({}, id=id, finished=True)
         q.mark_done(id, {'output_file': output_file})
 
+        log.debug('added print job with id=%s' % (id))
+
         r = jsonify({
             'status': 'added',
             'statusURL': url_for('.print_check', id=id, _external=True),
@@ -179,6 +184,7 @@ def print_post():
         q.append(job, id=id, finished=True)
         q.mark_done(id, result)
 
+    log.debug('added print job with id=%s' % (id))
 
     r = jsonify({
         'status': 'added',

@@ -72,7 +72,7 @@ class TestDigitizeFeatures(BaseTestWithDigitizeDB):
                 assert feature.properties == {"bar": "Fred",  "foo": "17"}
                 assert feature.style == {"strokeColor": "#0f0", "strokeWidth": "3"}
                 geojson = json.loads(feature.geojson)
-                print geojson
+                print(geojson)
                 assert geojson == {'type': 'Polygon', 'coordinates': [[[449389, 5887352], [446228, 5882044], [452902, 5882502], [449389, 5887352]]]}
 
     def test_update_feature(self):
@@ -138,5 +138,5 @@ class TestDigitizeFeatures(BaseTestWithDigitizeDB):
                 assert feature.properties == {"bar": "Fred",  "foo": "17"}
                 assert feature.style == {"strokeColor": "#0f0", "strokeWidth": "3"}
                 geojson = json.loads(feature.geojson)
-                print geojson
+                print(geojson)
                 assert geojson == {'type': 'Polygon', 'coordinates': [[[449389, 5887352], [446228, 5882044], [452902, 5882502], [449389, 5887352]]]}

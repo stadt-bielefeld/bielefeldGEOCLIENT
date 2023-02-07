@@ -38,7 +38,7 @@ class TestAppLayersDef(BaseTestClass):
         }
 
         app_layers_def = prepare_layers_def(app_config, self.app.layers)
-        print app_layers_def['overlays']
+        print(app_layers_def['overlays'])
         assert('backgroundLayer' in app_layers_def)
         assert(len(app_layers_def['backgroundLayer']) == 1)
         assert(app_layers_def['backgroundLayer'][0]['name'] == 'omniscale')
