@@ -18,6 +18,8 @@ setup(
         'Flask==0.12.5',
         'Flask-Assets==0.12',
         'Flask-Babel==0.9',
+        'Babel==2.11.0',
+        'pytz==2022.7.1',
         'Flask-Login==0.5.0',
         'flask-mailman==0.1.5',
         'Flask-Minify==0.39',
