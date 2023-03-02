@@ -168,5 +168,11 @@ RUN pip install -f file:///opt/pkgs \
 RUN PYTHONHTTPSVERIFY=0 python -c "import hyphen.dictools; hyphen.dictools.is_installed('de') or hyphen.dictools.install('de')"
 
 ENV JAVA_HOME=/usr/lib/jvm/adoptopenjdk-8-hotspot-jre-amd64
+
+RUN mkdir -p /certs
+
 WORKDIR /opt/etc/munimap
-CMD gunicorn -c /opt/etc/munimap/gunicorn.conf "munimap.application:create_app(config_file='/opt/etc/munimap/configs/munimap.conf')"
+
+# cat will print a "no such file or directory" if /certs is empty. This can be ignored.
+CMD cat /certs/*.pem >> /etc/ssl/certs/ca-certificates.crt; \
+    gunicorn -c /opt/etc/munimap/gunicorn.conf "munimap.application:create_app(config_file='/opt/etc/munimap/configs/munimap.conf')"
