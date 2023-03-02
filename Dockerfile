@@ -64,7 +64,7 @@ RUN cd munimap_transport && python setup.py clean && python setup.py egg_info sd
 FROM python:3.9.13-buster as RUNNER
 
 # TODO check which libs are actually needed
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     build-essential \
     python3-dev \
     libpython3-dev \
