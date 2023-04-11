@@ -1,6 +1,36 @@
 app:
-  title: 'Test - App'
+    title: 'bielefeldGEOCLIENT Test App'
+    headerLogoLink: 'https://bielefeld01.de/geo/portal/geoportal.php'
+    tooltipDelay: 50
+    showNoBackground: true
+    showLogin: true
+    hideMetadata: false
+    
+map:
+    center:
+        - 468152.5616
+        - 5764386.17546
+    centerProjection: "EPSG:25832"
+    zoom: 8
+    projection: "EPSG:25832"
+    projectionExtent: [-46133.17, 5048875.26857567, 1206211.10142433, 6301219.54]
+    maxExtent:
+        - 371030.56
+        - 5672454.87
+        - 562875.71
+        - 5818346.28
+    minZoom: 6
+    maxZoom: 20
+
+components:
+    catalog: true
+    draw: true
+    saveSettings: true
 
 backgrounds:
     explicit:
         - stadtplan_bi
+
+groups:
+    explicit:
+        - wms_dyn_sentinel2_nrw
