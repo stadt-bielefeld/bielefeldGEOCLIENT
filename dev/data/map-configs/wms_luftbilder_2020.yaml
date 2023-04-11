@@ -1,0 +1,38 @@
+meta:
+  description:  'WMS Luftbilder Bielefeld 2020'
+
+
+groups:
+  - name: wms_luftbilder_2020
+    title: 'Luftbilder 2020 (TDOP)'
+    abstract: Befliegung 2020 für Bielefeld - True Orthofotos(TDOP)
+    catalog: true
+    showGroup: true
+    status: inactive
+    metadataUrl: http://www.bielefeld01.de/md/Daten/luftbilder_2020_true_orthoph_r?FORMAT=HTML_Daten
+    layers:
+      - jahrgang_befliegung_2020_utm
+      - luftbilder_2020_to
+
+layers:
+  - name: luftbilder_2020_to
+    attribution: 'Luftbilder 2020 (TDOP) © Stadt Bielefeld'
+    title: 'Luftbilder 2020 (TDOP)'
+    metadataUrl: http://www.bielefeld01.de/md/Daten/luftbilder_2020_true_orthoph_r?FORMAT=HTML_Daten
+    background: false
+    type: wms
+    source:
+      url: http://www.bielefeld01.de/md/WMS/luftbilder_2020_true_orthoph/01?
+      format: 'image/png'
+      layers:
+        - 'luftbilder_2020_to'
+      srs: 'EPSG:25832'
+
+  - name: jahrgang_befliegung_2020_utm
+    base: 'luftbilder_2020_to'
+    attribution: 'Datum der Befliegung © Stadt Bielefeld'
+    title: 'Datum der Befliegung'
+    metadataUrl: 'http://www.bielefeld01.de/md/Daten/luftbilder_datum_der_befliegung_pl?FORMAT=HTML_Daten'
+    source:
+      layers:
+         - 'jahrgang_befliegung_utm'
