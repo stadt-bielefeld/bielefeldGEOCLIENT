@@ -1,0 +1,55 @@
+meta:
+  description:  'WMS dynamische Sentinel-2 Orthobilder NRW'
+
+groups:
+  #dyn Sentinel-2 Orthobilder NRW --------------------------------------------------------------------------
+  - name: wms_dyn_sentinel2_nrw
+    title: Sentinel-2 Orthobilder (Dynamisches Mosaik)
+    catalog: true
+    abstract: EXTERNER LANDESDIENST. Das Dynamische Mosaik setzt sich aus aktuellen wolkenfreien Aufnahmen von Sentinel-2 Orthobildern zusammen. 
+    status: inactive
+    singleSelect: true
+    metadataUrl: https://www.wms.nrw.de/rssfeeds/content/geobasis/html/238.html
+    layers:
+      - nw_dymos_s2_info
+      - nw_dymos_s2_rgb
+      - nw_dymos_s2_cir
+  #dyn Sentinel-2 Orthobilder NRW --------------------------------------------------------------------------
+
+layers:
+
+   #dyn Sentinel-2 Orthobilder NRW ---------------------------------------------------------------------------------
+  - name: nw_dymos_s2_info
+    title: DYMOS-S2 Metadaten
+    abstract: Aufnahmezeitpunkt des jeweiligen wolkenfreien Bereichs. (externer Dienst).
+    metadataUrl: https://www.wms.nrw.de/geobasis/wms_nw_dymos_s2?REQUEST=GetCapabilities&SERVICE=WMS&VERSION=1.3.0
+    attribution: Sentinel-2 Orthobilder © Geobasis NRW
+    type: tiledwms
+    source:
+      url: "//www.wms.nrw.de/geobasis/wms_nw_dymos_s2?"  
+      layers:
+        - nw_dymos_s2_info
+      srs: 'EPSG:25832'
+      directAccess: true
+      format: image/png
+    legend:
+      type: GetLegendGraphic
+    featureinfo: {target: _popup, width: 700, height: 250, featureCount: 100}
+  - name: nw_dymos_s2_rgb
+    title: DYMOS-S2 RG
+    abstract: Dynamisches Mosaik in RGB Darstellung mit 10 m Bodenauflösung.
+    base: nw_dymos_s2_info
+    source:
+      layers:
+        - nw_dymos_s2_rgb
+    featureinfo:
+  - name: nw_dymos_s2_cir
+    title: DYMOS-S2 CIR
+    abstract: Dynamisches Mosaik in CIR Darstellung mit 10 m Bodenauflösung.
+    base: nw_dymos_s2_info
+    source:
+      layers:
+        - nw_dymos_s2_cir
+    featureinfo:
+   #WMS dyn Sentinel-2 Orthobilder NRW ---------------------------------------------------------------------------------
+  

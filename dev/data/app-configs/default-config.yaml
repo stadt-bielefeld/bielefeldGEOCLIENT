@@ -1,9 +1,8 @@
 app:
-    title: 'Stadtplan'
-    headerLogoLink: ''
+    title: 'bielefeldGEOCLIENT'
+    headerLogoLink: 'https://bielefeld01.de/geo/portal/geoportal.php'
     tooltipDelay: 50
     showNoBackground: false
-    versionString: ''
     showLogin: false
     hideMetadata: true
     
@@ -21,12 +20,14 @@ map:
         - 562875.71
         - 5818346.28
     minZoom: 6
-    maxZoom: 15
+    maxZoom: 20
+    sidebar: 'overlay'
 
 
 backgrounds:
     explicit:
         - stadtplan_bi
+
 
 components:
     serviceButton: true
@@ -36,7 +37,7 @@ components:
     legend: true
     geolocation: true
     scaleLine: true
-    overviewmap: false
+    overviewmap: true
     saveSettings: false
     alkis: false 
     measureLabelSegments: true
@@ -53,7 +54,7 @@ searchConfig:
               - 51.905836372029
               - 8.72247497339103
               - 52.1276204795065
-          url: "/proxy/cors/solr/?maxresults=20"
+          url: "https://stadtplan.bielefeld.de/search/?maxresults=20"
           method: get
       zoom: 14
       resultMarkerVisible: 0
