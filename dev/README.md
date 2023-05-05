@@ -121,7 +121,7 @@ npm start
 ## Start the application
 
 After all steps from above have been applied successfully, the application can be started with:
-- `FLASK_APP=manage.py flask run-munimap`
+- `flask run-munimap`
   
 By default a configuration file located in the `dev/` folder is used. However you can use a custom file by providing `FLASK_MUNIMAP_CONFIG` environment variable:
 - `FLASK_APP=manage.py FLASK_MUNIMAP_CONFIG='../path/to/your/custom/config/file.conf' flask run-munimap`
