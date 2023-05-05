@@ -88,6 +88,7 @@ npm start
     - `source muni_venv/bin/activate`
   - Install requirements:
       ```
+      cd dev/
       pip3 install wheel setuptools
       pip3 install -r requirements.txt
       pip3 install -e ../
@@ -96,10 +97,15 @@ npm start
       ```
   - Install language support
     - `python3.9 -c "import hyphen.dictools; hyphen.dictools.install('de')"`
+  - locales installieren. Befehl ausführen und dann mittels pfeiltaste "de_DE.UTF-8 UTF-8" und "de_DE ISO 8859-1" suchen und per Pfeiltaste auswählen. Per Tab auf Ok und mit Enter bestätigen. Als Standard "de_DE.UTF-8" auswählen.
+    ```
+    sudo dpkg-reconfigure locales
+    ```
   - Update translations
     ```
-    FLASK_APP=manage.py flask babel-refresh
-    FLASK_APP=manage.py flask babel-compile
+    export FLASK_APP="manage.py"
+    flask babel-refresh
+    flask babel-compile
     ```
 
 ## Start the application
