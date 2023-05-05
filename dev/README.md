@@ -74,6 +74,7 @@ npm start
 
 * Install the munimap backend using a Python 3.9 Virtual Environment
 
+  - Open new terminal
   - Install python 3.9 on your system (Assuming debian based linux distro):
     - If Python3.9 is not available to install on your distro: 
       - `sudo add-apt-repository ppa:deadsnakes/ppa`
@@ -97,10 +98,12 @@ npm start
       ```
   - Install language support
     - `python3.9 -c "import hyphen.dictools; hyphen.dictools.install('de')"`
-  - locales installieren. Befehl ausführen und dann mittels pfeiltaste "de_DE.UTF-8 UTF-8" und "de_DE ISO 8859-1" suchen und per Pfeiltaste auswählen. Per Tab auf Ok und mit Enter bestätigen. Als Standard "de_DE.UTF-8" auswählen.
+  - Install loacales. Run the command and then use the arrow key to search for "de_DE.UTF-8 UTF-8" and "de_DE ISO 8859-1" and select with the space bar. Tab to OK and confirm with Enter. Select "de_DE.UTF-8" as standard.
     ```
     sudo dpkg-reconfigure locales
     ```
+  - In another terminal the docker dev environment needs to be started
+    - `docker-compose --profile dev up`
   - Update translations
     ```
     export FLASK_APP="manage.py"
