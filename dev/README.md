@@ -91,6 +91,13 @@ npm start
       ```
       cd dev/
       pip3 install wheel setuptools
+      ```
+  - check installed setuptools version. If version is something like 44, it´s too old. Then upgrade it manually to something like 67.7.2. Else skip this command.
+      ```
+      pip3 install setuptools==67.7.2
+      ```
+  - Continue installing requirements
+      ```
       pip3 install -r requirements.txt
       pip3 install -e ../
       pip3 install --no-index -e ../munimap_digitize/
