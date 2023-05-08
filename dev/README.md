@@ -74,6 +74,7 @@ npm start
 
 * Install the munimap backend using a Python 3.9 Virtual Environment
 
+  - Open new terminal
   - Install python 3.9 on your system (Assuming debian based linux distro):
     - If Python3.9 is not available to install on your distro: 
       - `sudo add-apt-repository ppa:deadsnakes/ppa`
@@ -88,7 +89,15 @@ npm start
     - `source muni_venv/bin/activate`
   - Install requirements:
       ```
+      cd dev/
       pip3 install wheel setuptools
+      ```
+  - check installed setuptools version. If version is something like 44, it´s too old. Then upgrade it manually to something like 67.7.2. Else skip this command.
+      ```
+      pip3 install setuptools==67.7.2
+      ```
+  - Continue installing requirements
+      ```
       pip3 install -r requirements.txt
       pip3 install -e ../
       pip3 install --no-index -e ../munimap_digitize/
@@ -96,16 +105,23 @@ npm start
       ```
   - Install language support
     - `python3.9 -c "import hyphen.dictools; hyphen.dictools.install('de')"`
+  - Install locales. Run the command and then use the arrow key to search for "de_DE.UTF-8 UTF-8" and "de_DE ISO 8859-1" and select with the space bar. Tab to OK and confirm with Enter. Select "de_DE.UTF-8" as standard.
+    ```
+    sudo dpkg-reconfigure locales
+    ```
+  - In another terminal the docker dev environment needs to be started
+    - `docker-compose --profile dev up`
   - Update translations
     ```
-    FLASK_APP=manage.py flask babel-refresh
-    FLASK_APP=manage.py flask babel-compile
+    export FLASK_APP="manage.py"
+    flask babel-refresh
+    flask babel-compile
     ```
 
 ## Start the application
 
 After all steps from above have been applied successfully, the application can be started with:
-- `FLASK_APP=manage.py flask run-munimap`
+- `flask run-munimap`
   
 By default a configuration file located in the `dev/` folder is used. However you can use a custom file by providing `FLASK_MUNIMAP_CONFIG` environment variable:
 - `FLASK_APP=manage.py FLASK_MUNIMAP_CONFIG='../path/to/your/custom/config/file.conf' flask run-munimap`
