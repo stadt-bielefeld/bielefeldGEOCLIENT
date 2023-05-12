@@ -121,6 +121,12 @@ npm start
 ## Start the application
 
 After all steps from above have been applied successfully, the application can be started with:
+- if not just now complete the initial development setup and start the client once more, you need at first repeat these commands from the initial setup:
+    ```
+    cd ./bielefeldGEOCLIENT 
+    source muni_venv/bin/activate
+    export FLASK_APP="manage.py"
+    ```
 - `flask run-munimap`
   
 By default a configuration file located in the `dev/` folder is used. However you can use a custom file by providing `FLASK_MUNIMAP_CONFIG` environment variable:
