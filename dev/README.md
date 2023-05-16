@@ -120,11 +120,17 @@ npm start
 
 ## Start the application
 
-After all steps from above have been applied successfully, the application can be started with:
-- if not just now complete the initial development setup and start the client once more, you need at first repeat these commands from the initial setup:
+After all steps from above have been applied successfully, the application can be started:
+- if not just now completed the initial development setup and you start the client again, at first you need to start the docker dev environment
+    ```
+    cd docker/
+    docker-compose --profile dev up
+    ```
+  - Then repeat these commands from the initial setup in another terminal:
     ```
     cd ./bielefeldGEOCLIENT 
     source muni_venv/bin/activate
+    cd dev/
     export FLASK_APP="manage.py"
     ```
 - `flask run-munimap`
@@ -140,9 +146,6 @@ You can also set the environment your app is running on by setting the `FLASK_EN
 
 If you want to use mapfish and have not configured Java 8 as the default Java Version, you need to set the `JAVA_HOME` environment variable. i.e.:
 - `JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ FLASK_APP=manage.py flask run-munimap`
-
-In another terminal the docker dev environment needs to be started
-- `docker-compose --profile dev up`
 
 and finally the client (javascript) source can be watched via:
 - `npm start` (ran in the root folder, i.e, bielefeldGEOCLIENT)
