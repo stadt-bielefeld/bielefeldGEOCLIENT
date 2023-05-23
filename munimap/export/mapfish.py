@@ -283,7 +283,7 @@ def create_jasper_report(print_request, base_path):
     column_width = page_width - margins[1] - margins[3]
     map_height = page_height - margins[0] - margins[2]
     jasper_report = render_template(
-        os.path.abspath(os.path.join(project_dir, 'templates/mapfish/custom.jrxml')),
+        os.path.abspath(os.path.join(project_dir, 'templates/munimap/mapfish/custom.jrxml')),
         page_width=page_width,
         page_height=page_height,
         column_width=column_width,
@@ -305,7 +305,7 @@ def create_mapfish_yaml(print_request, base_path, report_file):
     height = height - margins[0] - margins[2]
 
     yaml_content = render_template(
-        os.path.abspath(os.path.join(project_dir, 'templates/mapfish/custom.yaml')),
+        os.path.abspath(os.path.join(project_dir, 'templates/munimap/mapfish/custom.yaml')),
         width=width,
         height=height,
         report_file=os.path.basename(report_file))
