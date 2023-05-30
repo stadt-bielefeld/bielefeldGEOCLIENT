@@ -1,0 +1,86 @@
+meta:
+  description:  'WMS Bodenrichtwerte 2023'
+
+groups:
+
+  #WMS Bodenrichtwerte 2023 ----------------------------------------------------------------------
+  - name: wms_bodenrichtwerte_2023
+    title: Bodenrichtwerte 2023
+    catalog: true
+    abstract: Zonale Bodenrichtwerte 2023 auf Basis der Digitalen Liegenschaftskarte
+    metadataUrl: https://www.bielefeld01.de/md/WMS/bodenrichtwerte_2023?FORMAT=HTML_WMS
+    status: inactive
+    layers:
+      - bodenrichtwerte_2023_t
+      - brwznr_2023_t
+      - bodenrichtwerte_2023_pl  
+  #WMS Bodenrichtwerte 2023 ----------------------------------------------------------------------
+
+
+
+layers:
+
+ #Bodenrichtwerte 2023 -------------------------------------------------------------------------
+  - name: bodenrichtwerte_2023_t
+    title: Bodenrichtwerte 2023
+    abstract: Bodenrichtwerte 2023 in Bielefeld
+    attribution: Bodenrichtwerte 2023 © Stadt Bielefeld
+    metadataUrl: https://www.bielefeld01.de/md/Daten/bodenrichtwertzonen_2023_texte_p?FORMAT=HTML_Daten
+    source:
+      layers:
+        - brw_2023_t
+    base: brwznr_2023_t
+  - name: brwznr_2023_t
+    title: Bodenrichtwertzonennummern 2023
+    attribution: Bodenrichtwertzonennummern 2023 © Stadt Bielefeld
+    metadataUrl: https://www.bielefeld01.de/md/Daten/bodenrichtwertzonen_2023_texte_p?FORMAT=HTML_Daten
+    type: wms
+    catalog: true
+    source:
+      url: http://www.bielefeld01.de/md/WMS/bodenrichtwerte_2023/02?
+      layers:
+        - brwznr_2023_t
+      srs: 'EPSG:25832'
+      format: image/png
+    legend:
+      type: GetLegendGraphic
+  - name: bodenrichtwerte_2023_pl
+    title: Bodenrichtwertzonen 2023
+    abstract: Bodenrichtwertzonen 2023 in Bielefeld.
+    attribution: Bodenrichtwertzonen 2023 © Stadt Bielefeld
+    metadataUrl: https://www.bielefeld01.de/md/Daten/bodenrichtwertzonen_2023_pl?FORMAT=HTML_Daten
+    searchConfig:
+        - name: bodenrichtwertzonen2023
+          title: Bodenrichtwertzonen 2023
+          geocoder: Solr
+          geocoderOptions:
+              viewbox:
+                  - 8.34154267980772
+                  - 51.905836372029
+                  - 8.72247497339103
+                  - 52.1276204795065
+              url: "http://stadtplan.bielefeld.de/search/?catalog=bodenrichtwertzonen2023"
+              method: get
+          zoom: 15
+          resultMarkerVisible: 0
+          urlMarkerColor: E2001A
+          autoSearchChars: 1
+          resultMarker: 
+              graphicFile: 'geocoder-marker.svg'
+              graphicWidth: 32
+              graphicHeight: 50
+              graphicYAnchor: 50
+              graphicScale: 0.75    
+              strokeWidth: 10
+              strokeColor: '#f00'
+              strokeOpacity: 0.3
+    source:
+      layers:
+        - brw_2023_pl
+    featureinfo:
+      target: _popup
+      width: 200
+      height: 100
+      featureCount: 100
+    base: brwznr_2023_t
+  #Bodenrichtwerte 2023 -------------------------------------------------------------------------
