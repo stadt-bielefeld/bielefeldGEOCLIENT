@@ -84,6 +84,7 @@ services:
       - ./munimap-postgis-mapbender/postgresql_data:/var/lib/postgresql/data:Z
     profiles:
       - dev
+      - prod
 
   munimap-mapserver:
     build:
