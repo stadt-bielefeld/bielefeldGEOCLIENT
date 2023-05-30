@@ -5,6 +5,7 @@ app:
     showNoBackground: true
     showLogin: true
     hideMetadata: false
+    sidebarOpen: true
     
 map:
     center:
@@ -21,9 +22,12 @@ map:
         - 5818346.28
     minZoom: 6
     maxZoom: 20
+    sidebar: overlay
 
 components:
-    catalog: true
+    catalog:
+        layer: true
+        variant: abstract
     draw: true
     saveSettings: true
 
