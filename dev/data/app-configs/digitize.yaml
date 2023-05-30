@@ -4,3 +4,7 @@ app:
 backgrounds:
     explicit:
         - stadtplan_bi
+
+groups:
+    explicit:
+        - wms_dyn_sentinel2_nrw
