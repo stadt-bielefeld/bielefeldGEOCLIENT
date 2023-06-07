@@ -1,8 +1,0 @@
-# MapProxy==1.10.0a0.post20170315
-MapProxy==1.10.4
-# gunicorn==19.2.1
-gunicorn==17.5
-eventlet==0.17.4
-greenlet==0.4.5
-setproctitle==1.1.9
-Shapely==1.5.12

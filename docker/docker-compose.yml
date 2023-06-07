@@ -15,7 +15,6 @@ services:
       - munimap-app
       - munimap-mapserver
       - munimap-svgserver
-      - munimap-mapproxy
       - munimap-docs
     profiles:
       - prod
@@ -33,7 +32,6 @@ services:
     depends_on:
       - munimap-mapserver
       - munimap-svgserver
-      - munimap-mapproxy
       - munimap-docs
     profiles:
       - dev
@@ -112,17 +110,6 @@ services:
     depends_on:
       - munimap-postgis
       - munimap-postgis-mapbender
-
-  munimap-mapproxy:
-    build:
-      context: ./munimap-mapproxy/build
-    ports:
-      - 8081:8181
-    volumes:
-      - ./munimap-mapproxy/mapproxy.yaml:/opt/etc/mapproxy/mapproxy.yaml
-      - ./munimap-mapproxy/mapproxy_cache_data:/opt/var/mapproxy
-    depends_on:
-      - munimap-mapserver
 
   munimap-docs:
     build:
