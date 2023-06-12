@@ -47,8 +47,13 @@ def sort_features(features, group_property='type', sort_properties=('name',), gr
                 v = v.replace('ö', 'oe')
                 v = v.replace('ü', 'ue')
                 v = v.replace('ß', 'ss')
-                v = tuple(locale.strxfrm(str(p)) for p in
-                    v.encode(locale_encoding, errors='replace')).split(' ')
+                v = tuple(locale.strxfrm(str(encoded_v)) for encoded_v in
+                    v.encode(locale_encoding, errors='replace').split(b' '))
+            elif isinstance(v, str):
+                # We have to create tuples for empty strings
+                # as otherwise sort will try comparing strings with tuples,
+                # which will fail.
+                v = tuple('')
             k.append(v)
 
         return tuple(k)
