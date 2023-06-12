@@ -104,11 +104,9 @@ RUN echo "de_DE.UTF-8 UTF-8" >> /etc/locale.gen \
     && update-locale
 
 RUN mkdir -p /opt/munimap \
-    && mkdir -p /opt/mapproxy \
     && mkdir -p /opt/import \
     && mkdir -p /opt/etc \
     && mkdir -p /opt/etc/mapfish \
-    && mkdir -p /opt/etc/mapproxy \
     && mkdir -p /opt/etc/munimap \
     && mkdir -p /opt/etc/import \
     && mkdir -p /opt/etc/imposm_changes \
@@ -122,8 +120,6 @@ RUN mkdir -p /opt/munimap \
     && mkdir -p /opt/etc/munimap/selectionlists-configs \
     && mkdir -p /opt/etc/munimap/plugins \
     && mkdir -p /opt/etc/munimap/bielefeld \
-    && mkdir -p /opt/log/mapproxy \
-    && mkdir -p /opt/var/mapproxy \
     && mkdir -p /opt/log/munimap \
     && mkdir -p /opt/log/printqueue \
     && mkdir -p /opt/var/printqueue \
