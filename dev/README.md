@@ -110,7 +110,7 @@ npm start
     sudo dpkg-reconfigure locales
     ```
   - In another terminal the docker dev environment needs to be started
-    - `docker-compose --profile dev up`
+    - `[sudo] docker-compose --profile dev up`
   - Update translations
     ```
     export FLASK_APP="manage.py"
