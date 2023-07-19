@@ -6,6 +6,31 @@
   </div>-->
   {% include 'digitize/app/popup.html' %}
   <div class="ol-control menu-control">
+    <div ng-if="geolocationEnabled"
+       ng-style="hasTouch ? mobileGeolocationButtonPosition : desktopGeolocationButtonPosition"
+       anol-geolocation="{{geolocationConfig.tracking}}"
+       highlight="{{geolocationConfig.resultVisible}}"
+       result-style="{
+          strokeColor: geolocationConfig.style.strokeColor,
+          strokeWidth: geolocationConfig.style.strokeWidth,
+          fillColor: geolocationConfig.style.fillColor,
+          externalGraphic: '{$ url_for('static', filename='img/') $}' + geolocationConfig.style.graphicFile,
+          graphicWidth: geolocationConfig.style.graphicWidth,
+          graphicHeight: geolocationConfig.style.graphicHeight,
+          graphicYAnchor: geolocationConfig.style.graphicYAnchor,
+          graphicScale: geolocationConfig.style.graphicScale
+       }"
+       zoom="{{geolocationConfig.zoom}}"
+       tooltip-delay="{{tooltipDelay}}">
+  </div>
+  <div ng-if="overviewMapEnabled"
+       anol-overview-map
+       tooltip-placement="right"
+       tooltip-delay="{{tooltipDelay}}">
+  </div>
+  <div anol-scale-line
+       ng-if="scaleLineEnabled">
+  </div>
     <button ng-click="toggleMenu()"
             uib-tooltip="{{ sidebar.open ? '{$ _('Close menu') $}' : '{$ _('Open menu') $}' }}"
             tooltip-placement="right"
