@@ -123,6 +123,7 @@ RUN mkdir -p /opt/munimap \
     && mkdir -p /opt/log/munimap \
     && mkdir -p /opt/log/printqueue \
     && mkdir -p /opt/var/printqueue \
+    && mkdir -p /opt/var/printqueue/job-specs \
     && mkdir -p /src
 
 RUN mkdir -p /opt/etc/munimap/configs/mapfish

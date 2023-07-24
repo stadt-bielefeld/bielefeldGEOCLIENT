@@ -269,8 +269,8 @@ def create_spec_json(req, is_custom=False, icons_dir=''):
             }
         }
     }
-    handle, spec_file_path = tempfile.mkstemp()
-    with open(spec_file_path, 'w', encoding ='utf8') as spec_file:
+    handle, spec_file_path = tempfile.mkstemp(dir=current_app.config.get('PRINT_JOBSPEC_DIR'))
+    with open(spec_file_path, 'w', encoding='utf8') as spec_file:
         spec_file.write(json.dumps(spec))
     return spec_file_path
 

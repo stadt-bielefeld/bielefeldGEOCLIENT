@@ -93,21 +93,22 @@ class DefaultConfig(object):
     MAPFISH_ICONS_DIR = '/opt/etc/munimap/bielefeld/static/img/icons'
     MAPFISH_PRINT_CMD = '/opt/var/mapfish/core-3.9.0/bin/print'
     # TODO add to yaml to repository and Dockerfile
-    MAPFISH_YAML = '/opt/etc/munimap/mapfish.yaml'
+    MAPFISH_YAML = '/opt/etc/munimap/config.yaml'
     # TODO add styles to repository and Dockerfile
     MAPFISH_STYLES_PATH = '/opt/etc/munimap/mapfish/styles'
     MAPFISH_TEMPLATES_PATH = '/opt/etc/munimap/mapfish/templates'
     MAPFISH_SERVICES_DEFAULT_PROTOCOL = 'http'
 
-    MAPFISH_PRINT_USE_SERVICE = False
+    MAPFISH_PRINT_USE_SERVICE = True
     MAPFISH_PRINT_BASE_URL = 'http://munimap-print:8080'
-    MAPFISH_PRINT_CREATE_URL = '%s/print/print/munimap/report' % (MAPFISH_PRINT_BASE_URL)
+    MAPFISH_PRINT_CREATE_URL = '%s/print/munimap/report' % (MAPFISH_PRINT_BASE_URL)
 
     # in px
     MAPFISH_PRINT_MAP_MARGINS = [20, 20, 40, 20]
 
+    PRINT_JOBSPEC_DIR = '/opt/var/printqueue/job-specs'
     PRINT_OUTDIR = '/opt/var/printqueue/print-output'
-    PRINT_USE_BROKER = False
+    PRINT_USE_BROKER = True
     PRINT_QUEUEFILE = '/opt/var/printqueue/printqueue.sqlite'
     PRINT_STREET_INDEX_LAYER = 'street_labels'
     PRINT_LOG_DIR = '/opt/log/printqueue'
@@ -205,6 +206,7 @@ class TestConfig(object):
     MAPFISH_PRINT_USE_SERVICE = False
 
     PRINT_OUTDIR = '/tmp/print-output'
+    PRINT_JOBSPEC_DIR = '/tmp/job-specs'
     PRINT_USE_BROKER = False
     PRINT_QUEUEFILE = path.join(here, 'test/data/printqueue.sqlite')
     WTF_CSRF_ENABLED = False

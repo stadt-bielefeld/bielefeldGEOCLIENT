@@ -117,7 +117,7 @@ class SqliteQueue(object):
                 conn.execute(self._inprocess, (id,))
                 return Job(
                     id=id,
-                    definition=loads(str(obj_buffer)),
+                    definition=loads(obj_buffer),
                     priority=priority,
                     status='inprocess',
                 )
@@ -148,7 +148,13 @@ class SqliteQueue(object):
                     status=status,
                     priority=priority,
                 )
-                j.result = loads(str(result.decode() or 'null'))
+
+                if result:
+                    result = result.decode()
+                else:
+                    result = 'null'
+
+                j.result = loads(result)
                 return j
             except StopIteration:
                 return None
