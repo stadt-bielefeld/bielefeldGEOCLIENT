@@ -511,7 +511,7 @@ def mapfish_printqueue_worker(job):
                 'error': f'unable to request index from {index_url}',
                 'full_error': f'{r}\n{r.content.decode()}',
             }
-        zip_buf.writestr('index.pdf', r.content.decode())
+        zip_buf.writestr('index.pdf', r.content)
 
     zip_buf.write(map_filename, 'map' + ext)
     zip_buf.close()
