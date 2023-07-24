@@ -49,7 +49,28 @@ services:
       - ../dev/printqueue:/opt/var/printqueue
     environment:
       # Because of failing DIN A0 prints in production, the heap size needed to be increased to 4gb
-      # TODO: When mapfish has its own container, this heapspace allocation should be moved to that container instead
+      # TODO: When removing the mapfish CLI, this option can be removed from this container
+      JAVA_OPTIONS: -Xmx4096m -Djava.awt.headless=true
+    depends_on:
+      - munimap-postgis
+      - munimap-postgis-mapbender
+    profiles:
+      - prod
+
+  munimap-print-worker:
+    build:
+      context: ../
+      args:
+        ANOL_COMMIT_HASH: master
+    command: ['python3', '-m', 'munimap.queue.worker', '--config-file=/opt/etc/munimap/configs/munimap.conf']
+    volumes:
+      - ../dev/configs:/opt/etc/munimap/configs
+      - ./munimap-app/alembic.ini:/opt/etc/munimap/configs/alembic.ini
+      - ./munimap-app/munimap.conf:/opt/etc/munimap/configs/munimap.conf
+      - ../dev/printqueue:/opt/var/printqueue
+    environment:
+      # Because of failing DIN A0 prints in production, the heap size needed to be increased to 4gb
+      # TODO: When removing the mapfish CLI this option can be removed from this container
       JAVA_OPTIONS: -Xmx4096m -Djava.awt.headless=true
     depends_on:
       - munimap-postgis
@@ -110,6 +131,15 @@ services:
     depends_on:
       - munimap-postgis
       - munimap-postgis-mapbender
+
+  munimap-print:
+    restart: unless-stopped
+    image: docker.terrestris.de/camptocamp/mapfish_print:3.9.0
+    environment:
+      # Because of failing DIN A0 prints in production, the heap size needed to be increased to 4gb
+      CATALINA_OPTS: -Xmx4096m -Djava.awt.headless=true
+    volumes:
+      - ../dev/configs/mapfish:/usr/local/tomcat/webapps/ROOT/print-apps/munimap
 
   munimap-docs:
     build:
