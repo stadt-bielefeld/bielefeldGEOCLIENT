@@ -144,7 +144,7 @@ For debugging purposes, you may use the environment variable `FLASK_DEBUG=1` if 
 You can also set the environment your app is running on by setting the `FLASK_ENV=development` environment variable, if not already in the config file
 - `FLASK_ENV=development FLASK_APP=manage.py flask run-munimap`
 
-If you want to use mapfish and have not configured Java 8 as the default Java Version, you need to set the `JAVA_HOME` environment variable. i.e.:
+If you want to use mapfish CLI instead of service and have not configured Java 8 as the default Java Version, you need to set the `JAVA_HOME` environment variable. i.e.:
 - `JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ FLASK_APP=manage.py flask run-munimap`
 
 and finally the client (javascript) source can be watched via:
@@ -154,7 +154,7 @@ The application should now be available via [http://localhost:5000/](http://loca
 
 The docs are available via [http://localhost:8082/](http://localhost:8082/) (Proxied to [http://localhost:4000](http://localhost:4000))
 
-Start print queue/broker (**TODO UNTESTED**):
+Start print queue/broker (make sure to adjust the path to printqueue.sqlite according to `PRINT_QUEUEFILE`):
 - `python -m munimap.queue.worker -q /tmp/printqueue.sqlite`
 
 If you are running the dev setup and the prod setup after each other it can be that some of the permissions are not fitting. Try
