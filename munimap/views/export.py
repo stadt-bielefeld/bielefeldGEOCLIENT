@@ -164,7 +164,8 @@ def print_post():
             script_name = request.environ['SCRIPT_NAME']
             if index_url.startswith(script_name):
                 index_url = index_url[len(script_name)-1:]
-        index_url = 'http://%(SERVER_NAME)s:%(SERVER_PORT)s' % request.environ + index_url
+        internal_app_url = current_app.config.get('INTERNAL_APP_URL', 'http://%(SERVER_NAME)s:%(SERVER_PORT)s' % request.environ)
+        index_url = internal_app_url + index_url
 
 
     job = mapfish.mapfish_printqueue_task(
