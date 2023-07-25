@@ -46,7 +46,7 @@ services:
       - ./munimap-app/alembic.ini:/opt/etc/munimap/configs/alembic.ini
       - ./munimap-app/munimap.conf:/opt/etc/munimap/configs/munimap.conf
       - ../dev/data:/opt/etc/munimap/data
-      - ../dev/printqueue:/opt/var/printqueue
+      - ../dev/printqueue:/opt/etc/munimap/printqueue
     environment:
       # Because of failing DIN A0 prints in production, the heap size needed to be increased to 4gb
       # TODO: When removing the mapfish CLI, this option can be removed from this container
@@ -67,7 +67,7 @@ services:
       - ../dev/configs:/opt/etc/munimap/configs
       - ./munimap-app/alembic.ini:/opt/etc/munimap/configs/alembic.ini
       - ./munimap-app/munimap.conf:/opt/etc/munimap/configs/munimap.conf
-      - ../dev/printqueue:/opt/var/printqueue
+      - ../dev/printqueue:/opt/etc/munimap/printqueue
     environment:
       # Because of failing DIN A0 prints in production, the heap size needed to be increased to 4gb
       # TODO: When removing the mapfish CLI this option can be removed from this container

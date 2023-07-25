@@ -120,10 +120,10 @@ RUN mkdir -p /opt/munimap \
     && mkdir -p /opt/etc/munimap/selectionlists-configs \
     && mkdir -p /opt/etc/munimap/plugins \
     && mkdir -p /opt/etc/munimap/bielefeld \
+    && mkdir -p /opt/etc/munimap/printqueue \
+    && mkdir -p /opt/etc/munimap/printqueue/job-specs \
     && mkdir -p /opt/log/munimap \
     && mkdir -p /opt/log/printqueue \
-    && mkdir -p /opt/var/printqueue \
-    && mkdir -p /opt/var/printqueue/job-specs \
     && mkdir -p /src
 
 RUN mkdir -p /opt/etc/munimap/configs/mapfish

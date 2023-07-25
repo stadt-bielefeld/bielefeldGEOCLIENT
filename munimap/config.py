@@ -27,6 +27,8 @@ class DefaultConfig(object):
 
     PREFERRED_URL_SCHEME = 'http'
 
+    INTERNAL_APP_URL = 'http://localhost:8080'
+
     # change this in your production settings !!!
     SECRET_KEY = 'verysecret'
     PROXY_HASH_SALT = 'alsoverysecret'
@@ -106,12 +108,12 @@ class DefaultConfig(object):
     # in px
     MAPFISH_PRINT_MAP_MARGINS = [20, 20, 40, 20]
 
-    PRINT_JOBSPEC_DIR = '/opt/var/printqueue/job-specs'
-    PRINT_OUTDIR = '/opt/var/printqueue/print-output'
+    PRINT_JOBSPEC_DIR = '/opt/etc/munimap/printqueue/job-specs'
+    PRINT_OUTDIR = '/opt/etc/munimap/printqueue/print-output'
     PRINT_USE_BROKER = True
-    PRINT_QUEUEFILE = '/opt/var/printqueue/printqueue.sqlite'
+    PRINT_QUEUEFILE = '/opt/etc/munimap/printqueue/printqueue.sqlite'
     PRINT_STREET_INDEX_LAYER = 'street_labels'
-    PRINT_LOG_DIR = '/opt/log/printqueue'
+    PRINT_LOG_DIR = '/opt/etc/munimap/printqueue'
     PRINT_DEBUG_LOG = 'printqueue.debug.log'
     PRINT_ERROR_LOG = 'printqueue.error.log'
 
