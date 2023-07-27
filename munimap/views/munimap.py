@@ -24,6 +24,7 @@ from flask import (
 
 from flask_login import current_user
 from urllib3.exceptions import InsecureRequestWarning
+from urllib.parse import urlencode
 
 from munimap import helper
 from munimap.app_layers_def import (
@@ -39,6 +40,7 @@ from munimap.model import ProtectedProject, draw_schema
 from munimap.lib.yaml_loader import load_yaml_file
 from munimap.model import ProjectSettings
 from munimap.token import request_security_session
+from munimap.stats import log_stats
 
 import logging
 proxy_log = logging.getLogger('munimap.proxy')
@@ -384,7 +386,8 @@ def cors_proxy(service=None):
     )
 
 
-def handle_wms_get_map(service_url, layers, request_args):
+def handle_wms_get_map(service_url, layers, request):
+    request_args = request.args
     requested_layers = []
     layer_names = []
     for layer in layers:
@@ -437,6 +440,8 @@ def handle_wms_get_map(service_url, layers, request_args):
         requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
     response = requests.get(service_url, params, verify=current_app.config.get('CERTIFICATE_VERIFY'))
 
+    log_stats(f'{service_url}?{urlencode(params)}', request, response, current_user)
+
     if not response.ok:
         proxy_log.error('request failed with status %s. url: %s, params: %s',
                         response.status_code, service_url, str(params))
@@ -445,7 +450,8 @@ def handle_wms_get_map(service_url, layers, request_args):
     return response
 
 
-def handle_wms_get_legend(service_url, layers, request_args):
+def handle_wms_get_legend(service_url, layers, request):
+    request_args = request.args
     requested_layers = []
     layer_names = []
     for layer in layers:
@@ -470,6 +476,8 @@ def handle_wms_get_legend(service_url, layers, request_args):
         requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
     response = requests.get(service_url, params, verify=current_app.config.get('CERTIFICATE_VERIFY'))
 
+    log_stats(f'{service_url}?{urlencode(params)}', request, response, current_user)
+
     if not response.ok:
         proxy_log.error('request failed with status %s. url: %s, params: %s',
                         response.status_code, service_url, str(params))
@@ -478,7 +486,8 @@ def handle_wms_get_legend(service_url, layers, request_args):
     return response
 
 
-def handle_get_file(service_url, layers, request_args):
+def handle_get_file(service_url, layers, request):
+    request_args = request.args
     filename = request_args.get('GetFile')
 
     params = dict(
@@ -491,6 +500,8 @@ def handle_get_file(service_url, layers, request_args):
         requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
     response = requests.get(service_url, params, verify=current_app.config.get('CERTIFICATE_VERIFY'))
 
+    log_stats(f'{service_url}?{urlencode(params)}', request, response, current_user)
+
     if not response.ok:
         proxy_log.error('request failed with status %s. url: %s, params: %s',
                         response.status_code, service_url, str(params))
@@ -498,7 +509,8 @@ def handle_get_file(service_url, layers, request_args):
 
     return response
 
-def handle_wms_get_feature_info(service_url, layers, request_args):
+def handle_wms_get_feature_info(service_url, layers, request):
+    request_args = request.args
     requested_layers = []
     layer_names = []
     for layer in layers:
@@ -547,6 +559,8 @@ def handle_wms_get_feature_info(service_url, layers, request_args):
     if not current_app.config.get('CERTIFICATE_VERIFY'):
         requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
     response = requests.get(service_url, params, verify=current_app.config.get('CERTIFICATE_VERIFY'))
+
+    log_stats(f'{service_url}?{urlencode(params)}', request, response, current_user)
 
     if not response.ok:
         proxy_log.error('request failed with status %s. url: %s, params: %s',
@@ -614,13 +628,14 @@ def wms_proxy(url_hash=None):
     elif request_type == 'GetFile':
         handle_response = handle_get_file
 
-    service_response = handle_response(url, layers, request.args)
+    service_response = handle_response(url, layers, request)
 
     response = make_response(
         service_response.content
     )
     response.content_type = service_response.headers.get('content-type')
     response.headers['Cache-Control'] = 'private'
+    log_stats(url, request, response, current_user)
     return response
 
 @munimap.route('/proxy/wmts/<url_hash>/service/', methods=['GET'])
@@ -681,6 +696,7 @@ def wmts_proxy(url_hash=None, layer=None, grid=None, zoom=None, x=None, y=None, 
     )
     response.content_type = service_response.headers.get('content-type')
     response.headers['Cache-Control'] = 'private'
+    log_stats(service_url, request, response, current_user)
     return response
 
 
