@@ -7,6 +7,7 @@ import sys
 import locale
 import logging
 import tempfile
+from logging.handlers import RotatingFileHandler
 
 import jinja2
 import sass
@@ -284,6 +285,7 @@ def configure_assets(app):
 
 def configure_logging(app):
     formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s ')
+    stats_formatter = logging.Formatter('DATE:%(asctime)s %(message)s ')
 
     def add_debug_logger(handler):
         handler.setFormatter(formatter)
@@ -350,7 +352,18 @@ def configure_logging(app):
         print_logger.propagate = False
         print_logger.addHandler(handler)
 
+    def add_stats_logger(handler):
+        handler.setLevel(logging.INFO)
+        handler.setFormatter(stats_formatter)
+
+        stats_logger = logging.getLogger('munimap.stats')
+        stats_logger.setLevel(logging.INFO)
+        stats_logger.propagate = False
+        stats_logger.addHandler(handler)
+
     log_both = 'LOG_MODE' not in app.config or app.config['LOG_MODE'] == 'BOTH'
+
+    log_stats = app.config.get('LOG_STATS', False)
 
     if log_both or app.config['LOG_MODE'] == 'FILES':
         debug_log = os.path.abspath(os.path.join(app.config['LOG_DIR'], app.config['DEBUG_LOG']))
@@ -392,6 +405,13 @@ def configure_logging(app):
         add_proxy_logger(logging.StreamHandler(sys.stdout))
         add_layers_logger(logging.StreamHandler(sys.stdout))
         add_print_logger(logging.StreamHandler(sys.stdout))
+
+    if log_stats:
+        stats_log_file = app.config.get('LOG_STATS_FILENAME', 'stats.log')
+        stats_log_max_bytes = app.config.get('LOG_STATS_MAX_BYTES', 1000000);
+        stats_log_backup_count = app.config.get('LOG_STATS_BACKUP_COUNT', 5)
+        add_stats_logger(RotatingFileHandler(stats_log_file, maxBytes=stats_log_max_bytes,
+                                             backupCount=stats_log_backup_count))
 
     app.logger.setLevel(logging.DEBUG)
 

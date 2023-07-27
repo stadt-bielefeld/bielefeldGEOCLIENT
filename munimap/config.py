@@ -21,6 +21,12 @@ class DefaultConfig(object):
 
     LOG_DIR = '/opt/log/munimap'
 
+    LOG_STATS = False
+    LOG_STATS_FILENAME = '/opt/log/munimap/stats.log'
+    LOG_STATS_MAX_BYTES = 1000000  # 1MB
+    LOG_STATS_BACKUP_COUNT = 5
+    LOG_STATS_WHITELIST = ['http://localhost/mapproxy', 'http://localhost/cgi-bin/mapserv']
+
     # TODO Check if this acutally applies
     ALLOW_UPLOAD_CONFIG = ['127.0.0.1']
     API_PRODUCTION_URL = 'http://localhost:8080'
