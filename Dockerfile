@@ -104,11 +104,9 @@ RUN echo "de_DE.UTF-8 UTF-8" >> /etc/locale.gen \
     && update-locale
 
 RUN mkdir -p /opt/munimap \
-    && mkdir -p /opt/mapproxy \
     && mkdir -p /opt/import \
     && mkdir -p /opt/etc \
     && mkdir -p /opt/etc/mapfish \
-    && mkdir -p /opt/etc/mapproxy \
     && mkdir -p /opt/etc/munimap \
     && mkdir -p /opt/etc/import \
     && mkdir -p /opt/etc/imposm_changes \
@@ -122,11 +120,10 @@ RUN mkdir -p /opt/munimap \
     && mkdir -p /opt/etc/munimap/selectionlists-configs \
     && mkdir -p /opt/etc/munimap/plugins \
     && mkdir -p /opt/etc/munimap/bielefeld \
-    && mkdir -p /opt/log/mapproxy \
-    && mkdir -p /opt/var/mapproxy \
+    && mkdir -p /opt/etc/munimap/printqueue \
+    && mkdir -p /opt/etc/munimap/printqueue/job-specs \
     && mkdir -p /opt/log/munimap \
     && mkdir -p /opt/log/printqueue \
-    && mkdir -p /opt/var/printqueue \
     && mkdir -p /src
 
 RUN mkdir -p /opt/etc/munimap/configs/mapfish
@@ -149,8 +146,9 @@ RUN wget -q -O- https://repo1.maven.org/maven2/org/mapfish/print/print-cli/3.9.0
 RUN pip install --upgrade pip && pip install \
     wheel \
     setuptools \
-    gunicorn==20.1.0 \
-    eventlet==0.30.2 \
+    gunicorn==21.2.0 \
+    eventlet==0.33.3 \
+    dnspython==2.3.0 \
     alembic==1.7.7 \
     scriptinep3==0.3.1
 

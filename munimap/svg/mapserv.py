@@ -1,7 +1,7 @@
 import re
 import sys
 
-from xml.etree.ElementTree import parse
+from xml.etree.ElementTree import fromstring
 from itertools import groupby
 from contextlib import closing
 
@@ -15,13 +15,12 @@ def get_wms_layer_names(base_url, params={}):
     params['REQUEST'] = 'GetCapabilities'
     params['SERVICE'] = 'WMS'
     with closing(requests.get(base_url, params=params, stream=True)) as r:
-        for layer in parse_layer_names(r.raw):
+        for layer in parse_layer_names(r.content):
             yield layer
 
 
 def parse_layer_names(f):
-    tree = parse(f)
-    root = tree.getroot()
+    root = fromstring(f)
 
     for elem in root.findall(
         './wms:Capability/wms:Layer/wms:Layer/wms:Name',

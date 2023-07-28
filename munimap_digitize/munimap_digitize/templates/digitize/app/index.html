@@ -47,6 +47,7 @@
         new anol.layer.StaticGeoJSON({
           title: '{$ layer["title"] $}',
           name: '{$ layer["name"] $}',
+          displayInLayerswitcher: false,
           propertiesSchema: {$ layer["properties_schema"] | tojson $},
           propertiesSchemaFormOptions: {$ layer["properties_schema_form_options"] | tojson $},
           styleSchema: {$ layer["style_schema"] | tojson $},

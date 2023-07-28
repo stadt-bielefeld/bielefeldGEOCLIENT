@@ -220,7 +220,7 @@ class DottedEntry(Paragraph):
             text_width = stringWidth(self.text, self.style.fontName,
                                      self.style.fontSize, self.encoding)
             lines = [(max_width - text_width, [self.text])]
-        return ParaLines(kind=0, fontSize=font_size, fontName=font_name,
+        return ParaLines(kind=0, fontSize=font_size, fontName=font_name, us_lines=False,
                          textColor=self.style.textColor, ascent=font_size,
                          descent=-0.2 * font_size, lines=lines,
                          underline=False, link=False, strike=False, endDots=False)
@@ -266,7 +266,7 @@ class DottedEntry(Paragraph):
 
 
 def create_index_pdf(data, title=None, columns=2):
-    pdf_buffer = io.StringIO()
+    pdf_buffer = io.BytesIO()
 
     styles = getSampleStyleSheet()
 
@@ -339,7 +339,6 @@ def create_index_pdf(data, title=None, columns=2):
 
     doc.build(entries, columns=columns)
 
-    pdf_buffer.reset()
     return pdf_buffer
 
 if __name__ == '__main__':

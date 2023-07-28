@@ -1,6 +1,21 @@
 app:
     title: 'bielefeldGEOCLIENT - digitize'
+
+components:
+    geolocation: true
+    scaleLine: true
+    overviewmap: true
     
+geolocationConfig:
+    zoom: 16
+    tracking: false
+    style:
+        strokeColor: "#D2001A"
+
 backgrounds:
     explicit:
         - stadtplan_bi
+
+groups:
+    explicit:
+        - wms_dyn_sentinel2_nrw

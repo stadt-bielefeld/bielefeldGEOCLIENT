@@ -269,8 +269,8 @@ def create_spec_json(req, is_custom=False, icons_dir=''):
             }
         }
     }
-    handle, spec_file_path = tempfile.mkstemp()
-    with open(spec_file_path, 'w', encoding ='utf8') as spec_file:
+    handle, spec_file_path = tempfile.mkstemp(dir=current_app.config.get('PRINT_JOBSPEC_DIR'))
+    with open(spec_file_path, 'w', encoding='utf8') as spec_file:
         spec_file.write(json.dumps(spec))
     return spec_file_path
 
@@ -283,7 +283,7 @@ def create_jasper_report(print_request, base_path):
     column_width = page_width - margins[1] - margins[3]
     map_height = page_height - margins[0] - margins[2]
     jasper_report = render_template(
-        os.path.abspath(os.path.join(project_dir, 'templates/mapfish/custom.jrxml')),
+        'munimap/mapfish/custom.jrxml',
         page_width=page_width,
         page_height=page_height,
         column_width=column_width,
@@ -305,13 +305,13 @@ def create_mapfish_yaml(print_request, base_path, report_file):
     height = height - margins[0] - margins[2]
 
     yaml_content = render_template(
-        os.path.abspath(os.path.join(project_dir, 'templates/mapfish/custom.yaml')),
+        'munimap/mapfish/custom.yaml',
         width=width,
         height=height,
         report_file=os.path.basename(report_file))
 
     yaml_file = tempfile.mkstemp(dir=base_path, suffix='.yaml')[1]
-    with open(yaml_file, 'wb') as f:
+    with open(yaml_file, 'w') as f:
         f.write(yaml_content)
 
     return yaml_file
@@ -511,7 +511,7 @@ def mapfish_printqueue_worker(job):
                 'error': f'unable to request index from {index_url}',
                 'full_error': f'{r}\n{r.content.decode()}',
             }
-        zip_buf.writestr('index.pdf', r.content.decode())
+        zip_buf.writestr('index.pdf', r.content)
 
     zip_buf.write(map_filename, 'map' + ext)
     zip_buf.close()

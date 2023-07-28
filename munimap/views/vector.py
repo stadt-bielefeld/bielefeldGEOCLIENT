@@ -53,7 +53,7 @@ def index_pdf():
     fc = query_feature_collection(req, current_app.pg_layers)
     index = features_to_index_data(fc, current_app.pg_layers)
     return Response(
-        create_index_pdf(index, 'Index', columns=3),
+        create_index_pdf(index, 'Index', columns=3).getvalue(),
         mimetype='application/pdf',
     )
 
