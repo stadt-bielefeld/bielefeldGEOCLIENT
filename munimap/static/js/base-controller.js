@@ -533,13 +533,15 @@ angular.module('munimapBase')
                     ControlsService.addControl(toolsContainerControl);
                 }
 
+                /** if we don´t add this as control the eventPropagation is no longer handled by openlayers.
+                * so we can rightclick on this element to get the default contextmenu. this is useful to copy the coordinates.
                 var measurePointResultElement = angular.element('.measure-point-result');
                 if(measurePointResultElement.length > 0) {
                     var measurePointResultControl = new anol.control.Control({
                         element: measurePointResultElement
                     });
                     ControlsService.addControl(measurePointResultControl);
-                }
+                } */
 
                 var endMeasureElement = angular.element('.end-measure');
                 if(endMeasureElement.length > 0) {
