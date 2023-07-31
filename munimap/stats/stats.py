@@ -9,15 +9,15 @@ log = logging.getLogger('munimap.stats')
 def log_stats(url, req, res, user):
     """ Log the stat.
     """
-    if user.is_anonymous:
-        return
-
     url_in_whitelist = _is_url_in_whitelist(url, current_app.config.get('LOG_STATS_WHITELIST', []))
     if not url_in_whitelist:
         return
 
-    user_name = user.mb_user_name
-    user_department = user.mb_user_department
+    user_name = 'guest'
+    user_department = 'guest'
+    if not user.is_anonymous:
+        user_name = user.mb_user_name
+        user_department = user.mb_user_department
 
     referrer = req.referrer if hasattr(req, 'referrer') else None
     try:
