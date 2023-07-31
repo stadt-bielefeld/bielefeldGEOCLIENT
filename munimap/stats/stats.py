@@ -20,7 +20,12 @@ def log_stats(url, req, res, user):
     user_department = user.mb_user_department
 
     referrer = req.referrer if hasattr(req, 'referrer') else None
-    ip = req.remote_addr if hasattr(req, 'remote_addr') else None
+    try:
+        ip = req.headers.environ['HTTP_X_FORWARDED_FOR'].split(', ')[0]
+    except:
+        ip = None
+    if ip is None:
+        ip = req.remote_addr if hasattr(req, 'remote_addr') else None
     host = req.host if hasattr(req, 'host') else None
     user_agent = req.user_agent.string if hasattr(req, 'user_agent') else None
 
