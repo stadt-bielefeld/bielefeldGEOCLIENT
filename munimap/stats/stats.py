@@ -19,15 +19,15 @@ def log_stats(url, req, res, user):
     user_name = user.mb_user_name
     user_department = user.mb_user_department
 
-    referrer = req.referrer
-    ip = req.remote_addr
-    host = req.host
-    user_agent = req.user_agent.string
+    referrer = req.referrer if hasattr(req, 'referrer') else None
+    ip = req.remote_addr if hasattr(req, 'remote_addr') else None
+    host = req.host if hasattr(req, 'host') else None
+    user_agent = req.user_agent.string if hasattr(req, 'user_agent') else None
 
     app = _get_app_from_url(referrer, current_app.url_map)
 
-    status_code = res.status_code
-    content_length = res.content_length
+    status_code = res.status_code if hasattr(res, 'status_code') else None
+    content_length = res.content_length if hasattr(res, 'content_length') else None
 
     msg = f'USER:{user_name} DEPARTMENT:{user_department} APP:{app} IP:{ip} URL:{url} STATUS:{status_code} ' \
           f'CONTENT-LENGTH:{content_length} HOST:{host} REFERER:{referrer} USER-AGENT:{user_agent}'
