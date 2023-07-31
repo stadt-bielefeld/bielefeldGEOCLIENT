@@ -9,9 +9,13 @@ log = logging.getLogger('munimap.stats')
 def log_stats(url, req, res, user):
     """ Log the stat.
     """
-    should_log_stat = _should_log_stat(url, current_app.config.get('LOG_STATS_WHITELIST', []))
-    if not should_log_stat:
+    if user.is_anonymous:
         return
+
+    url_in_whitelist = _is_url_in_whitelist(url, current_app.config.get('LOG_STATS_WHITELIST', []))
+    if not url_in_whitelist:
+        return
+
     user_name = user.mb_user_name
     user_department = user.mb_user_department
 
@@ -49,8 +53,8 @@ def _get_app_from_url(url, url_map):
         return None
 
 
-def _should_log_stat(url, accepted_urls):
-    """ Check if stat should be logged.
+def _is_url_in_whitelist(url, accepted_urls):
+    """ Check if URL is in whitelist of accepted URLs.
 
     Returns True if provided URL starts with
     at least one URL from the list of accepted URLs.
