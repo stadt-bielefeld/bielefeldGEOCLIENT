@@ -285,7 +285,7 @@ def configure_assets(app):
 
 def configure_logging(app):
     formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s ')
-    stats_formatter = logging.Formatter('DATE:%(asctime)s %(message)s ')
+    stats_formatter = logging.Formatter('%(asctime)s;%(message)s;')
 
     def add_debug_logger(handler):
         handler.setFormatter(formatter)

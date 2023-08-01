@@ -34,8 +34,8 @@ def log_stats(url, req, res, user):
     status_code = res.status_code if hasattr(res, 'status_code') else None
     content_length = res.content_length if hasattr(res, 'content_length') else None
 
-    msg = f'USER:{user_name} DEPARTMENT:{user_department} APP:{app} IP:{ip} URL:{url} STATUS:{status_code} ' \
-          f'CONTENT-LENGTH:{content_length} HOST:{host} REFERER:{referrer} USER-AGENT:{user_agent}'
+    msg = f'{user_name};{user_department};{app};{ip};{url};{status_code};' \
+          f'{content_length};{host};{referrer};{user_agent}'
     log.info(msg)
 
 
