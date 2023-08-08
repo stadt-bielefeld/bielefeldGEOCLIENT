@@ -1,5 +1,6 @@
 import GeoJSON from 'ol/format/GeoJSON';
 import WKT from 'ol/format/WKT';
+import * as ol from 'ol';
 
 angular.module('munimapBase.postMessage', ['anol.map'])
     .provider('PostMessageService', [function () {
@@ -10,8 +11,8 @@ angular.module('munimapBase.postMessage', ['anol.map'])
             _defaultAllowedUrls = allowedUrls || [];
         };
 
-        this.$get = ['$rootScope', '$window', 'MapService', 'LayersService', 'munimapConfig',
-            function ($rootScope, $window, MapService, LayersService, munimapConfig) {
+        this.$get = ['$rootScope', '$window', 'MapService', 'LayersService', 'DrawService', 'PrintPageService', 'PrintService', 'munimapConfig',
+            function ($rootScope, $window, MapService, LayersService, DrawService, PrintPageService, PrintService, munimapConfig) {
 
             const PostMessage = function (defaultAllowedUrls) {
                 this.handlers = {};
@@ -25,7 +26,11 @@ angular.module('munimapBase.postMessage', ['anol.map'])
                     olGeoJSON: GeoJSON,
                     olWKT: WKT,
                     LayersService: LayersService,
-                    MapService: MapService
+                    MapService: MapService,
+                    ol: ol,
+                    DrawService: DrawService,
+                    PrintPageService: PrintPageService,
+                    PrintService: PrintService
                 };
 
                 $window.addEventListener('message', function (evt) {
