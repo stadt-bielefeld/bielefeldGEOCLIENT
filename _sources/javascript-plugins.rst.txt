@@ -82,11 +82,23 @@ ausschließlich den Aufruf zu ``registerCommunicationPlugin()`` enthalten.
           ``olWKT``
             Die OpenLayers WKT format Klasse. Details in `OpenLayers Dokumentation <https://openlayers.org/en/v5.3.0/apidoc/module-ol_format_WKT-WKT.html>`_
 
+          ``ol``
+            Vollständiger Zugriff auf alle OpenLayers Funktionalitäten. Details in `OpenLayers Dokumentation <https://openlayers.org/en/v5.3.0/apidoc/>`_
+
           ``LayersService``
             Der anol LayersService. Mit Hilfe von ``.addSystemLayer`` lassen sich Layer hinzufügen. Neue Layer können mit den anol Funktionalitäten erzeugt werden: `https://github.com/terrestris/anol/tree/master/src/anol/layer <https://github.com/terrestris/anol/tree/master/src/anol/layer>`_.
 
           ``MapService``
             Der anol MapService.
+
+          ``DrawService``
+            Der anol DrawService.
+
+          ``PrintPageService``
+            Der anol PrintPageService.
+
+          ``PrintService``
+            Der anol PrintService.
 
       ``postMessage``
         Eine Funktion, die aufgerufen werden kann um eine Antwort an die Anwendung zu schicken, die das PostMessage-Event
