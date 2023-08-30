@@ -103,6 +103,10 @@ npm start
       pip3 install --no-index -e ../munimap_digitize/
       pip3 install --no-index -e ../munimap_transport/
       ```
+  - As long as the custom print layouts are still using the mapfish cli, we need to copy the icons to the mapfish config dir:
+      ```
+       cp -r ../munimap/static/img/icons/* configs/mapfish/icons/
+      ```
   - Install language support
     - `python3.9 -c "import hyphen.dictools; hyphen.dictools.install('de')"`
   - Install locales. Run the command and then use the arrow key to search for "de_DE.UTF-8 UTF-8" and "de_DE ISO 8859-1" and select with the space bar. Tab to OK and confirm with Enter. Select "de_DE.UTF-8" as standard.
@@ -155,7 +159,7 @@ The application should now be available via [http://localhost:5000/](http://loca
 The docs are available via [http://localhost:8082/](http://localhost:8082/) (Proxied to [http://localhost:4000](http://localhost:4000))
 
 Start print queue/broker (make sure to adjust the path to printqueue.sqlite according to `PRINT_QUEUEFILE`):
-- `python -m munimap.queue.worker -q /tmp/printqueue.sqlite`
+- `JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ python -m munimap.queue.worker -q /tmp/printqueue.sqlite`
 
 If you are running the dev setup and the prod setup after each other it can be that some of the permissions are not fitting. Try
 ```

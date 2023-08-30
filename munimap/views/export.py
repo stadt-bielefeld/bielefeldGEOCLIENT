@@ -81,7 +81,7 @@ def print_post():
     params = request.get_json()
     if params is None:
         raise exceptions.BadRequest(description='Invalid JSON request')
-    
+
     print_request = PrintRequest.from_json(params)
     invalid_layers = []
     for layer in print_request.layers:
@@ -114,7 +114,8 @@ def print_post():
     icons_dir = os.path.join(current_app.config['MAPFISH_ICONS_DIR'],
                              current_app.config['DRAW_ICONS_SUB_DIR'])
     if is_custom:
-        icons_dir = os.path.join(current_app.config['MAP_ICONS_DIR'],
+        # if using custom print layout (i.e. adjusted sizes) the mapfish cli is used
+        icons_dir = os.path.join(current_app.config['MAPFISH_CLI_ICONS_DIR'],
                                  current_app.config['DRAW_ICONS_SUB_DIR'])
 
     spec_file = mapfish.create_spec_json(print_request, is_custom=is_custom,

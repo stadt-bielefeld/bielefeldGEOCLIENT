@@ -80,18 +80,16 @@ def create_mapfish_v2_style(mapfish_style_id, style, geometry_type, dpi):
 
 def prepare_style_for_mapfish(style, requested_opacity, internal_type='postgis', is_custom=False):
     if 'externalGraphic' in style:
-        graphic_path = style['externalGraphic']
         if internal_type in ['digitize'] or not is_custom:
-            graphic_path = os.path.abspath(os.path.join(
+            style['externalGraphic'] = os.path.abspath(os.path.join(
                 current_app.config.get('MAPFISH_ICONS_DIR'),
                 style['externalGraphic']
             ))
         else:
-            graphic_path = os.path.abspath(os.path.join(
-                current_app.config.get('MAP_ICONS_DIR'),
+            style['externalGraphic'] = os.path.abspath(os.path.join(
+                current_app.config.get('MAPFISH_CLI_ICONS_DIR'),
                 style['externalGraphic']
             ))
-        style['externalGraphic'] = graphic_path
         if 'graphicOpacity' in style:
             style['graphicOpacity'] = float(style['graphicOpacity']) * requested_opacity
 
@@ -302,7 +300,6 @@ def create_jasper_report(print_request, base_path):
 
 
 def create_mapfish_yaml(print_request, base_path, report_file):
-    project_dir = current_app.config.get('PROJECT_DIR')
     margins = current_app.config.get('MAPFISH_PRINT_MAP_MARGINS', [0, 0, 0, 0])
     width = int(round((print_request.page_size[0] * 72) / 25.4))
     width = width - margins[1] - margins[3]
@@ -323,16 +320,13 @@ def create_mapfish_yaml(print_request, base_path, report_file):
 
 
 def mapfish_printqueue_task(spec_file, config_file, output_file, index_url, report_file=None, is_custom=False):
-    mapfish_print_service = current_app.config.get('MAPFISH_PRINT_USE_SERVICE')
-    if is_custom:
-        # Don't use jetty for custom layouts, Because each custom layout has its own mapfish.yaml
-        mapfish_print_service = False
     return {
         'type': 'mapfish_print',
         'mapfish_print_cmd': current_app.config.get('MAPFISH_PRINT_CMD'),
         'mapfish_print_base_url': current_app.config.get('MAPFISH_PRINT_BASE_URL'),
         'mapfish_print_create_url': current_app.config.get('MAPFISH_PRINT_CREATE_URL'),
-        'mapfish_print_service': mapfish_print_service,
+        # custom print layouts (i.e. adjusted sizes) use the mapfish cli
+        'mapfish_print_service': not is_custom,
         'spec_file': spec_file,
         'config_file': config_file,
         'output_file': output_file,
