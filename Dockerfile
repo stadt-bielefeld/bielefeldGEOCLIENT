@@ -71,7 +71,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     python3-gdal \
     python3-pycurl \
     libgdal-dev \
-    #äopenjdk-11-jre-headless \
+    # openjdk-11-jre-headless \
     libspatialindex-dev \
     libgeos-dev \
     libssl-dev \
@@ -97,7 +97,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     software-properties-common \
     && rm -rf /var/lib/apt/lists/*
 
-    
+
 RUN echo "de_DE.UTF-8 UTF-8" >> /etc/locale.gen \
     && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
     && locale-gen \
@@ -135,11 +135,11 @@ RUN touch /opt/etc/munimap/configs/munimap.conf \
     && touch /opt/etc/munimap/configs/mapfish/mapfish.yaml
 
 # Get and install openjdk-8-jre. Not available in Debian Buster
-# TODO: Check for a possible mapfish print update, so version 11 can be used. Then this is not needed anymore. 
+# TODO: Check for a possible mapfish print update, so version 11 can be used. Then this is not needed anymore.
 # openjdk-11-jre can be easily installed by apt#
-RUN wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | apt-key add -
-RUN add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
-RUN apt update -y && apt install adoptopenjdk-8-hotspot-jre -y
+RUN wget -qO - https://packages.adoptium.net/artifactory/api/security/keypair/default-gpg-key/public | apt-key add -
+RUN add-apt-repository --yes https://packages.adoptium.net/artifactory/deb
+RUN apt update -y && apt install temurin-8-jre -y
 
 RUN wget -q -O- https://repo1.maven.org/maven2/org/mapfish/print/print-cli/3.9.0/print-cli-3.9.0-tar.tar | tar -x -C /opt/var/mapfish
 
