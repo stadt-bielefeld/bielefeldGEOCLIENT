@@ -68,7 +68,7 @@ class DefaultConfig(object):
     TRANSFER_LOG = 'munimap.transfer.log'
 
     MAX_INVALID_LOGIN_ATTEMPTS = 3
-    
+
     ADMIN_GROUPS = ['admin']
 
     REMEMBER_COOKIE_NAME = 'remember_munimap_token'
@@ -90,7 +90,7 @@ class DefaultConfig(object):
     CORS_PROXY = {}
 
     CERTIFICATE_VERIFY = False
-    
+
     DRAW_ICONS_SUB_DIR = 'draw'
     DRAW_ICONS_CONFIG_FILE = 'draw_icons.yaml'
 
@@ -107,7 +107,6 @@ class DefaultConfig(object):
     MAPFISH_TEMPLATES_PATH = '/opt/etc/munimap/mapfish/templates'
     MAPFISH_SERVICES_DEFAULT_PROTOCOL = 'http'
 
-    MAPFISH_PRINT_USE_SERVICE = True
     MAPFISH_PRINT_BASE_URL = 'http://munimap-print:8080'
     MAPFISH_PRINT_CREATE_URL = '%s/print/munimap/report' % (MAPFISH_PRINT_BASE_URL)
 
@@ -210,8 +209,6 @@ class TestConfig(object):
     MAPFISH_PRINT_CMD = path.join(here, '../dev/mapfish/core-3.3-SNAPSHOT/bin/print')
     MAPFISH_YAML = path.join(here, 'test/data/mapfish.yaml')
     MAPFISH_STYLES_PATH = path.join(here, 'test/data/mapfish/styles/')
-
-    MAPFISH_PRINT_USE_SERVICE = False
 
     PRINT_OUTDIR = '/tmp/print-output'
     PRINT_JOBSPEC_DIR = '/tmp/job-specs'
