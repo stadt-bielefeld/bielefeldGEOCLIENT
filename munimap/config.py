@@ -95,10 +95,11 @@ class DefaultConfig(object):
     DRAW_ICONS_CONFIG_FILE = 'draw_icons.yaml'
 
     MAP_ICONS_DIR = '/opt/etc/munimap/bielefeld/static/img/icons'
+    MAPFISH_ICONS_DIR = '/opt/etc/munimap/bielefeld/static/img/icons'
+    MAPFISH_CLI_ICONS_DIR = '/opt/etc/munimap/bielefeld/static/img/icons'
 
     GEOJSON_DATA_PATH = './geojson/'
 
-    MAPFISH_ICONS_DIR = '/opt/etc/munimap/bielefeld/static/img/icons'
     MAPFISH_PRINT_CMD = '/opt/var/mapfish/core-3.9.0/bin/print'
     # TODO add to yaml to repository and Dockerfile
     MAPFISH_YAML = '/opt/etc/munimap/config.yaml'
