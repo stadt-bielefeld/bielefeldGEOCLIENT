@@ -10,6 +10,7 @@ import threading
 import tempfile
 import subprocess
 import time
+import datetime
 
 from contextlib import closing
 from copy import deepcopy
@@ -22,7 +23,7 @@ from flask_babel import gettext as _
 
 from munimap.query.feature_collection import query_feature_collection
 from munimap.print_requests import MapRequest
-from munimap.layers import (mapfish_grid_layer, mapfish_numeration_layer, 
+from munimap.layers import (mapfish_grid_layer, mapfish_numeration_layer,
     mapfish_feature_collection_layer, mapfish_measure_feature_collection_layer)
 
 log = logging.getLogger('munimap.print')
@@ -269,7 +270,11 @@ def create_spec_json(req, is_custom=False, icons_dir=''):
             }
         }
     }
-    handle, spec_file_path = tempfile.mkstemp(dir=current_app.config.get('PRINT_JOBSPEC_DIR'))
+    handle, spec_file_path = tempfile.mkstemp(
+        dir=current_app.config.get('PRINT_JOBSPEC_DIR'),
+        prefix=str(datetime.datetime.now()) + '.',
+        suffix='.json'
+    )
     with open(spec_file_path, 'w', encoding='utf8') as spec_file:
         spec_file.write(json.dumps(spec))
     return spec_file_path

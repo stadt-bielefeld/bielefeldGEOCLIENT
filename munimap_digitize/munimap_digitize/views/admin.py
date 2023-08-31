@@ -171,7 +171,7 @@ def edit_style(name=None):
     if form.validate_on_submit():
         for key, value in form.data.items():
             style[key] = value
-            if value is not 0 and not value:
+            if value != 0 and not value:
                 try:
                     del style[key]
                 except KeyError:
