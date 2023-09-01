@@ -63,7 +63,7 @@ angular.module('munimapGeoeditor')
                         action: 'printGeoEditing_response',
                         value: {
                             success: false,
-                            message: validationStatus.hasMissingFeatures ? missingFeaturesText : featuresInvalidText
+                            message: validationStatus.hasMissingFeatures ? missingFeaturesText : invalidFeaturesText
                         }
                     });
 
