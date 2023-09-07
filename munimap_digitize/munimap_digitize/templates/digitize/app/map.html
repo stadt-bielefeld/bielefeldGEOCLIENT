@@ -1,5 +1,12 @@
 <div anol-map class="map">
-  <div anol-zoom></div>
+  <div anol-zoom
+       ng-style="hasTouch ? mobileZoomButtonsPosition : desktopZoomButtonsPosition"
+       tooltip-delay="{{ tooltipDelay}}">
+  </div>
+  <div anol-rotation
+       ng-style="hasTouch ? mobileRotationButtonPosition : desktopRotationButtonPosition"
+       tooltip-delay="{{ tooltipDelay }}">
+  </div>
   <!-- TODO readd when anol-feature-popups don't influence each other
   <div anol-feature-popup multiselect>
     <div anol-feature-properties selects="$parent.selects"></div>

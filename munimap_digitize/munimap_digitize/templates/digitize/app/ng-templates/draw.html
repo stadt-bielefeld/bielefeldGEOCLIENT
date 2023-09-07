@@ -6,7 +6,7 @@
 <div class="btn-group">
     <button ng-click="drawPoint()"
             class="btn btn-default btn-sm draw-point"
-            ng-class="{'disabled': $parent.drawButtonsDisabled}"
+            ng-class="{'disabled': $parent.drawButtonsDisabled, 'active': activeDrawType == 'Point'}"
             uib-tooltip="{$ _('anol.draw.TOOLTIP_POINT') $}"
             tooltip-placement="top"
             tooltip-append-to-body="true"
@@ -18,7 +18,7 @@
     </button>
     <button ng-click="drawLine()"
             class="btn btn-default btn-sm draw-line"
-            ng-class="{'disabled': $parent.drawButtonsDisabled}"
+            ng-class="{'disabled': $parent.drawButtonsDisabled, 'active': activeDrawType == 'LineString'}"
             uib-tooltip="{$ _('anol.draw.TOOLTIP_LINE') $}"
             tooltip-placement="top"
             tooltip-append-to-body="true"
@@ -30,7 +30,7 @@
     </button>
     <button ng-click="drawPolygon()"
             class="btn btn-default btn-sm draw-polygon"
-            ng-class="{'disabled': $parent.drawButtonsDisabled}"
+            ng-class="{'disabled': $parent.drawButtonsDisabled, 'active': activeDrawType == 'Polygon'}"
             uib-tooltip="{$ _('anol.draw.TOOLTIP_POLYGON') $}"
             tooltip-placement="top"
             tooltip-append-to-body="true"
@@ -42,7 +42,7 @@
     </button>
     <button ng-click="$parent.drawText(drawCustom)"
             class="btn btn-default btn-sm draw-text"
-            ng-class="{'disabled': $parent.drawButtonsDisabled, 'active': $parent.drawTextActive}"
+            ng-class="{'disabled': $parent.drawButtonsDisabled, 'active': activeDrawType == 'Text'}"
             uib-tooltip="{$ _('anol.draw.TOOLTIP_TEXT') $}"
             tooltip-placement="top"
             tooltip-append-to-body="true"
@@ -53,12 +53,19 @@
         {$ _('Draw text') $}
     </button>
 </div>
-<h5>{$ _('Modify or shift geometry') $}</h5>
-<button ng-click="toggleModify()"
-        class="btn btn-default btn-sm draw-modify">
-    <span class="control-on">{$ _('Deactivate') $}</span>
-    <span class="control-off">{$ _('Activate') $}</span>
-</button>
+<div class="mt-1 mb-1">
+    <h5>{$ _('Modify or shift geometry') $}</h5>
+    <strong>Aus</strong>
+    <switch id="modifyEnabled"
+            name="modifyEnabled"
+            disabled="!activeLayer"
+            class="green small"
+            ng-model="modifyEnabled"
+            ng-state="modifyActive"
+            ng-change="toggleModify()">
+    </switch>
+    <strong>An</strong>
+</div>
 
 <button class="btn btn-default btn-sm save-button"
         ng-class="{'btn-success': $parent.hasChanges()}"

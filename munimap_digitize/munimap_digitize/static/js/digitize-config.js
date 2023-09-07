@@ -1,7 +1,13 @@
 
+require('angular-ui-switch');
+require('anol/src/modules/rotate/rotate-directive.js');
+
 import GeoJSON from 'ol/format/GeoJSON';
 
 angular.module('munimap', [
+    'anol.geolocation',
+    'anol.rotation',
+    'anol.overviewmap',
     'anol.draw',
     'anol.featurepopup',
     'anol.featurepropertieseditor',
@@ -12,7 +18,8 @@ angular.module('munimap', [
     'munimapBase.confirm',
     'schemaForm',
     'ui.bootstrap-slider',
-    'angularSpectrumColorpicker'
+    'angularSpectrumColorpicker',
+    'uiSwitch'
 ])
 
     .config(['PrintServiceProvider', 'PrintPageServiceProvider', 'munimapConfig',
