@@ -18,6 +18,7 @@ dev/printqueue/
 dev/tmp/
 dev/venv/
 dev/muni_venv/
+muni_venv/
 dist/
 build/
 docker/munimap-postgis-mapbender/postgresql_data
