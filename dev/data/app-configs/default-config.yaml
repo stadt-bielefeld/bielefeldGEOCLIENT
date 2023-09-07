@@ -76,6 +76,7 @@ geolocationConfig:
 
 printConfig:
     chooseCells: True
+    pageResize: True
     chooseStreetIndex: True
     conditionsOfUse: True
     downloadPrefix: bielefeldKarte-
