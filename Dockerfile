@@ -165,7 +165,7 @@ RUN pip install -f file:///opt/pkgs \
 # Hack to disable https for following script.
 RUN PYTHONHTTPSVERIFY=0 python -c "import hyphen.dictools; hyphen.dictools.is_installed('de') or hyphen.dictools.install('de')"
 
-ENV JAVA_HOME=/usr/lib/jvm/adoptopenjdk-8-hotspot-jre-amd64
+ENV JAVA_HOME=/usr/lib/jvm/temurin-8-jre-amd64
 
 RUN mkdir -p /certs
 
