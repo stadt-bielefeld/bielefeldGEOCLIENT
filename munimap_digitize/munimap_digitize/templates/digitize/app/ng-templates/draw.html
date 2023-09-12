@@ -55,7 +55,7 @@
 </div>
 <div class="mt-1 mb-1">
     <h5>{$ _('Modify or shift geometry') $}</h5>
-    <strong>Aus</strong>
+    <strong>{$ _('Off') $}</strong>
     <switch id="modifyEnabled"
             name="modifyEnabled"
             disabled="!activeLayer"
@@ -64,7 +64,7 @@
             ng-state="modifyActive"
             ng-change="toggleModify()">
     </switch>
-    <strong>An</strong>
+    <strong>{$ _('On') $}</strong>
 </div>
 
 <button class="btn btn-default btn-sm save-button"
