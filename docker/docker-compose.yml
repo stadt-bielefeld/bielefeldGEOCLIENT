@@ -13,7 +13,6 @@ services:
       - host.docker.internal:host-gateway
     depends_on:
       - munimap-app
-      - munimap-svgserver
       - munimap-docs
     profiles:
       - prod
@@ -29,7 +28,6 @@ services:
     extra_hosts:
       - host.docker.internal:host-gateway
     depends_on:
-      - munimap-svgserver
       - munimap-docs
     profiles:
       - dev
@@ -102,22 +100,6 @@ services:
     profiles:
       - dev
       - prod
-
-  #  As the example map file is not based on vector data this service is kind of useless
-  munimap-svgserver:
-    build:
-      context: ./munimap-svgserver/build
-    environment:
-      # This only serves mapfiles within /opt/etc/styles/bielefeld/map/
-      MS_MAP_PATTERN: '^\/opt\/etc\/styles\/bielefeld\/map\/.+\.map$$'
-    ports:
-      - 8182:8182
-    volumes:
-     - ./munimap-svgserver/svg-translations.txt:/opt/etc/styles/bielefeld/svg-translations.txt
-     - ./munimap-mapserver/maps:/opt/etc/styles/bielefeld/map
-    depends_on:
-      - munimap-postgis
-      - munimap-postgis-mapbender
 
   munimap-print:
     restart: unless-stopped
