@@ -1,21 +1,21 @@
 # Translations template for PROJECT.
-# Copyright (C) 2022 ORGANIZATION
+# Copyright (C) 2023 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-24 18:24+0200\n"
+"POT-Creation-Date: 2023-09-12 11:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.10.1\n"
+"Generated-By: Babel 2.11.0\n"
 
 #: ../munimap/layers.py:128 ../munimap/layers.py:209
 #, python-format
@@ -27,7 +27,7 @@ msgstr ""
 msgid "%(name)s [last update %(last_update)s]"
 msgstr ""
 
-#: ../munimap/export/mapfish.py:259
+#: ../munimap/export/mapfish.py:258
 #, python-format
 msgid "Scale 1 : %(scale)s"
 msgstr ""
@@ -71,7 +71,7 @@ msgstr ""
 msgid "code"
 msgstr ""
 
-#: ../munimap/forms/admin.py:50 ../munimap/views/admin.py:304
+#: ../munimap/forms/admin.py:50 ../munimap/views/admin.py:305
 #, python-format
 msgid "Username %(name)s already exist"
 msgstr ""
@@ -155,7 +155,7 @@ msgstr ""
 #: ../munimap/templates/munimap/app/geoeditor-popup.html:35
 #: ../munimap_digitize/munimap_digitize/model/layer.py:73
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:10
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:29
+#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:30
 msgid "Style"
 msgstr ""
 
@@ -297,7 +297,7 @@ msgstr ""
 #: ../munimap/templates/munimap/app/geoeditor-popup.html:47
 #: ../munimap_digitize/munimap_digitize/model/layer.py:354
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:11
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:41
+#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:42
 msgid "Labeling"
 msgstr ""
 
@@ -368,7 +368,7 @@ msgstr ""
 #: ../munimap/templates/munimap/admin/index.html:126
 #: ../munimap/templates/munimap/admin/index.html:135
 #: ../munimap/templates/munimap/admin/index.html:159
-#: ../munimap/templates/munimap/app/ng-templates/catalog.html:94
+#: ../munimap/templates/munimap/app/ng-templates/catalog.html:96
 #: ../munimap_digitize/munimap_digitize/templates/digitize/admin/index.html:7
 #: ../munimap_digitize/munimap_digitize/templates/digitize/pages/index.html:16
 msgid "Layers"
@@ -558,7 +558,7 @@ msgstr ""
 #: ../munimap/templates/munimap/app/ng-templates/settings-load.html:28
 #: ../munimap/templates/munimap/user/ng-templates/upload-modal.html:20
 #: ../munimap_digitize/munimap_digitize/templates/digitize/admin/base.html:49
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:103
+#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:104
 msgid "Cancel"
 msgstr ""
 
@@ -612,7 +612,7 @@ msgstr ""
 #: ../munimap_digitize/munimap_digitize/templates/digitize/admin/index.html:43
 #: ../munimap_digitize/munimap_digitize/templates/digitize/admin/index.html:75
 #: ../munimap_digitize/munimap_digitize/templates/digitize/admin/properties.html:29
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:102
+#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:103
 msgid "Remove"
 msgstr ""
 
@@ -717,7 +717,7 @@ msgstr ""
 #: ../munimap/templates/munimap/admin/ng-templates/selectionlists-edit.html:46
 #: ../munimap/templates/munimap/user/password.html:17
 #: ../munimap/templates/munimap/user/password_recover_set.html:17
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:65
+#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:75
 msgid "Save"
 msgstr ""
 
@@ -967,23 +967,23 @@ msgstr ""
 #: ../munimap/templates/munimap/app/geoeditor-popup.html:16
 #: ../munimap/templates/munimap/app/geoeditor-popup.html:59
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:12
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:53
+#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:54
 msgid "Marker"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/draw-popup.html:61
 #: ../munimap/templates/munimap/app/geoeditor-popup.html:88
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:78
+#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:79
 msgid "While a marker is selected, feature cannot be styled"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/draw-popup.html:84
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:101
+#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:102
 msgid "Realy remove feature?"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/draw-popup.html:88
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:105
+#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:106
 msgid "Remove feature"
 msgstr ""
 
@@ -992,7 +992,7 @@ msgstr ""
 #: ../munimap/templates/munimap/app/ng-templates/settings-load.html:40
 #: ../munimap/templates/munimap/app/ng-templates/settings-save.html:24
 #: ../munimap/templates/munimap/modals/alkis-legitimate.html:50
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:109
+#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:110
 msgid "Close"
 msgstr ""
 
@@ -1019,7 +1019,7 @@ msgstr ""
 
 #: ../munimap/templates/munimap/app/map.html:7
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:50
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:53
+#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:57
 msgid "Modify or shift geometry"
 msgstr ""
 
@@ -1029,7 +1029,7 @@ msgstr ""
 
 #: ../munimap/templates/munimap/app/map.html:97
 #: ../munimap/templates/munimap/app/ng-templates/sidebar-header.html:3
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/map.html:10
+#: ../munimap_digitize/munimap_digitize/templates/digitize/app/map.html:42
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/sidebar-header.html:3
 #: ../munimap_transport/munimap_transport/templates/transport/app/map.html:74
 #: ../munimap_transport/munimap_transport/templates/transport/app/ng-templates/sidebar-header.html:3
@@ -1037,13 +1037,13 @@ msgid "Close menu"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/map.html:97
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/map.html:10
+#: ../munimap_digitize/munimap_digitize/templates/digitize/app/map.html:42
 #: ../munimap_transport/munimap_transport/templates/transport/app/map.html:74
 msgid "Open menu"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/map.html:109
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/map.html:20
+#: ../munimap_digitize/munimap_digitize/templates/digitize/app/map.html:52
 #: ../munimap_transport/munimap_transport/templates/transport/app/map.html:86
 msgid "Startposition"
 msgstr ""
@@ -1091,7 +1091,7 @@ msgid "Alkis Tools"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/catalog.html:13
-#: ../munimap/templates/munimap/app/ng-templates/catalog.html:97
+#: ../munimap/templates/munimap/app/ng-templates/catalog.html:99
 msgid "Filter"
 msgstr ""
 
@@ -1101,42 +1101,42 @@ msgid "Add geometry"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:5
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:9
+#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:10
 msgid "anol.draw.TOOLTIP_POINT"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:12
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:16
+#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:17
 msgid "Draw point"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:16
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:20
+#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:22
 msgid "anol.draw.TOOLTIP_LINE"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:23
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:27
+#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:29
 msgid "Draw line"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:27
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:31
+#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:34
 msgid "anol.draw.TOOLTIP_POLYGON"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:34
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:38
+#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:41
 msgid "Draw polygon"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:39
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:43
+#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:46
 msgid "anol.draw.TOOLTIP_TEXT"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:46
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:50
+#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:53
 msgid "Draw text"
 msgstr ""
 
@@ -1389,348 +1389,348 @@ msgstr ""
 msgid "Import Config"
 msgstr ""
 
-#: ../munimap/views/admin.py:60
+#: ../munimap/views/admin.py:61
 msgid "You are not allowed to administrate the app"
 msgstr ""
 
-#: ../munimap/views/admin.py:162
+#: ../munimap/views/admin.py:163
 #, python-format
 msgid "Group %(name)s created"
 msgstr ""
 
-#: ../munimap/views/admin.py:167 ../munimap/views/admin.py:202
-#: ../munimap/views/admin.py:310 ../munimap/views/admin.py:328
-#: ../munimap/views/admin.py:367 ../munimap/views/admin.py:747
-#: ../munimap/views/admin.py:800 ../munimap/views/admin.py:999
-#: ../munimap/views/admin.py:1085 ../munimap/views/admin.py:1279
-#: ../munimap/views/admin.py:1325 ../munimap/views/admin.py:1445
-#: ../munimap/views/admin.py:1480
+#: ../munimap/views/admin.py:168 ../munimap/views/admin.py:203
+#: ../munimap/views/admin.py:311 ../munimap/views/admin.py:329
+#: ../munimap/views/admin.py:368 ../munimap/views/admin.py:748
+#: ../munimap/views/admin.py:801 ../munimap/views/admin.py:1000
+#: ../munimap/views/admin.py:1086 ../munimap/views/admin.py:1280
+#: ../munimap/views/admin.py:1326 ../munimap/views/admin.py:1446
+#: ../munimap/views/admin.py:1481
 msgid "Invalid form"
 msgstr ""
 
-#: ../munimap/views/admin.py:184
+#: ../munimap/views/admin.py:185
 msgid "Group not exists"
 msgstr ""
 
-#: ../munimap/views/admin.py:197
-#: ../munimap_digitize/munimap_digitize/views/admin.py:290
+#: ../munimap/views/admin.py:198
+#: ../munimap_digitize/munimap_digitize/views/admin.py:291
 #, python-format
 msgid "Group %(name)s updated"
 msgstr ""
 
-#: ../munimap/views/admin.py:228
+#: ../munimap/views/admin.py:229
 #, python-format
 msgid "user %(name)s load"
 msgstr ""
 
-#: ../munimap/views/admin.py:238
+#: ../munimap/views/admin.py:239
 msgid "own user cannot be removed"
 msgstr ""
 
-#: ../munimap/views/admin.py:246
+#: ../munimap/views/admin.py:247
 msgid "user removed"
 msgstr ""
 
-#: ../munimap/views/admin.py:253
+#: ../munimap/views/admin.py:254
 #, python-format
 msgid "user %(name)s removed"
 msgstr ""
 
-#: ../munimap/views/admin.py:322
+#: ../munimap/views/admin.py:323
 #, python-format
 msgid "User %(name)s updated"
 msgstr ""
 
-#: ../munimap/views/admin.py:361
+#: ../munimap/views/admin.py:362
 #, python-format
 msgid "User %(name)s created"
 msgstr ""
 
-#: ../munimap/views/admin.py:384
+#: ../munimap/views/admin.py:385
 msgid "group removed"
 msgstr ""
 
-#: ../munimap/views/admin.py:392
+#: ../munimap/views/admin.py:393
 #, python-format
 msgid "group %(name)s removed"
 msgstr ""
 
-#: ../munimap/views/admin.py:404 ../munimap/views/admin.py:433
+#: ../munimap/views/admin.py:405 ../munimap/views/admin.py:434
 msgid "User or group not exists"
 msgstr ""
 
-#: ../munimap/views/admin.py:412 ../munimap/views/admin.py:421
+#: ../munimap/views/admin.py:413 ../munimap/views/admin.py:422
 #, python-format
 msgid "\"%(user_name)s\" added to \"%(group_name)s\""
 msgstr ""
 
-#: ../munimap/views/admin.py:441 ../munimap/views/admin.py:450
+#: ../munimap/views/admin.py:442 ../munimap/views/admin.py:451
 #, python-format
 msgid "\"%(user_name)s\" removed from \"%(group_name)s\""
 msgstr ""
 
-#: ../munimap/views/admin.py:462 ../munimap/views/admin.py:491
+#: ../munimap/views/admin.py:463 ../munimap/views/admin.py:492
 msgid "Layer or group not exists"
 msgstr ""
 
-#: ../munimap/views/admin.py:470 ../munimap/views/admin.py:479
+#: ../munimap/views/admin.py:471 ../munimap/views/admin.py:480
 #, python-format
 msgid "\"%(layer_name)s added to \"%(group_name)s\""
 msgstr ""
 
-#: ../munimap/views/admin.py:499 ../munimap/views/admin.py:508
+#: ../munimap/views/admin.py:500 ../munimap/views/admin.py:509
 #, python-format
 msgid "\"%(layer_name)s removed from \"%(group_name)s\""
 msgstr ""
 
-#: ../munimap/views/admin.py:520 ../munimap/views/admin.py:550
+#: ../munimap/views/admin.py:521 ../munimap/views/admin.py:551
 msgid "Project or group not exists"
 msgstr ""
 
-#: ../munimap/views/admin.py:528 ../munimap/views/admin.py:537
+#: ../munimap/views/admin.py:529 ../munimap/views/admin.py:538
 #, python-format
 msgid "\"%(project_name)s\" add to \"%(group_name)s\""
 msgstr ""
 
-#: ../munimap/views/admin.py:558 ../munimap/views/admin.py:567
+#: ../munimap/views/admin.py:559 ../munimap/views/admin.py:568
 #, python-format
 msgid "\"%(project_name)s\" removed from \"%(group_name)s\""
 msgstr ""
 
-#: ../munimap/views/admin.py:580 ../munimap/views/admin.py:589
+#: ../munimap/views/admin.py:581 ../munimap/views/admin.py:590
 #, python-format
 msgid "project \"%(project)s protected"
 msgstr ""
 
-#: ../munimap/views/admin.py:603 ../munimap/views/admin.py:610
+#: ../munimap/views/admin.py:604 ../munimap/views/admin.py:611
 #, python-format
 msgid "project \"%(project)s unprotected"
 msgstr ""
 
-#: ../munimap/views/admin.py:652 ../munimap/views/admin.py:663
+#: ../munimap/views/admin.py:653 ../munimap/views/admin.py:664
 #, python-format
 msgid "layer \"%(layer)s protected"
 msgstr ""
 
-#: ../munimap/views/admin.py:677 ../munimap/views/admin.py:685
+#: ../munimap/views/admin.py:678 ../munimap/views/admin.py:686
 #, python-format
 msgid "layer \"%(layer)s unprotected"
 msgstr ""
 
-#: ../munimap/views/admin.py:695 ../munimap/views/admin.py:772
-#: ../munimap/views/admin.py:914
+#: ../munimap/views/admin.py:696 ../munimap/views/admin.py:773
+#: ../munimap/views/admin.py:915
 msgid "Project do not exist"
 msgstr ""
 
-#: ../munimap/views/admin.py:705
+#: ../munimap/views/admin.py:706
 #, python-format
 msgid "project \"%(name)s loaded"
 msgstr ""
 
-#: ../munimap/views/admin.py:719 ../munimap/views/admin.py:783
-#: ../munimap/views/admin.py:961 ../munimap/views/admin.py:1057
-#: ../munimap/views/admin.py:1262 ../munimap/views/admin.py:1297
+#: ../munimap/views/admin.py:720 ../munimap/views/admin.py:784
+#: ../munimap/views/admin.py:962 ../munimap/views/admin.py:1058
+#: ../munimap/views/admin.py:1263 ../munimap/views/admin.py:1298
 msgid "Invalid JSON"
 msgstr ""
 
-#: ../munimap/views/admin.py:730
+#: ../munimap/views/admin.py:731
 #, python-format
 msgid "Project with name \"%(name)s\" already exist"
 msgstr ""
 
-#: ../munimap/views/admin.py:742
+#: ../munimap/views/admin.py:743
 #, python-format
 msgid "Project %(name)s created"
 msgstr ""
 
-#: ../munimap/views/admin.py:762 ../munimap/views/admin.py:1015
+#: ../munimap/views/admin.py:763 ../munimap/views/admin.py:1016
 msgid "Project not exists"
 msgstr ""
 
-#: ../munimap/views/admin.py:795 ../munimap/views/admin.py:1080
+#: ../munimap/views/admin.py:796 ../munimap/views/admin.py:1081
 #, python-format
 msgid "Project %(name)s updated"
 msgstr ""
 
-#: ../munimap/views/admin.py:814
+#: ../munimap/views/admin.py:815
 msgid "Project config do not exists"
 msgstr ""
 
-#: ../munimap/views/admin.py:823
+#: ../munimap/views/admin.py:824
 msgid "Project config do not exist"
 msgstr ""
 
-#: ../munimap/views/admin.py:832
+#: ../munimap/views/admin.py:833
 msgid "Project config already exist"
 msgstr ""
 
-#: ../munimap/views/admin.py:853
+#: ../munimap/views/admin.py:854
 #, python-format
 msgid "project %(name)s renamed to %(new_name)s"
 msgstr ""
 
-#: ../munimap/views/admin.py:873 ../munimap/views/admin.py:1105
+#: ../munimap/views/admin.py:874 ../munimap/views/admin.py:1106
 #, python-format
 msgid "project %(name)s removed"
 msgstr ""
 
-#: ../munimap/views/admin.py:878 ../munimap/views/admin.py:903
-#: ../munimap/views/admin.py:1110
+#: ../munimap/views/admin.py:879 ../munimap/views/admin.py:904
+#: ../munimap/views/admin.py:1111
 #, python-format
 msgid "project %(name)s not found"
 msgstr ""
 
-#: ../munimap/views/admin.py:892 ../munimap/views/admin.py:1166
+#: ../munimap/views/admin.py:893 ../munimap/views/admin.py:1167
 #, python-format
 msgid "project %(name)s was transfered"
 msgstr ""
 
-#: ../munimap/views/admin.py:898 ../munimap/views/admin.py:1172
+#: ../munimap/views/admin.py:899 ../munimap/views/admin.py:1173
 msgid "no project selected"
 msgstr ""
 
-#: ../munimap/views/admin.py:923
+#: ../munimap/views/admin.py:924
 #, python-format
 msgid "map config \"%(name)s loaded"
 msgstr ""
 
-#: ../munimap/views/admin.py:952 ../munimap/views/admin.py:1048
+#: ../munimap/views/admin.py:953 ../munimap/views/admin.py:1049
 msgid "Config has some erros"
 msgstr ""
 
-#: ../munimap/views/admin.py:971
+#: ../munimap/views/admin.py:972
 msgid "Map Config already exist"
 msgstr ""
 
-#: ../munimap/views/admin.py:994
+#: ../munimap/views/admin.py:995
 #, python-format
 msgid "Map Config %(name)s created"
 msgstr ""
 
-#: ../munimap/views/admin.py:1025 ../munimap/views/admin.py:1121
-#: ../munimap/views/admin.py:1130
+#: ../munimap/views/admin.py:1026 ../munimap/views/admin.py:1122
+#: ../munimap/views/admin.py:1131
 msgid "Map config do not exist"
 msgstr ""
 
-#: ../munimap/views/admin.py:1139
+#: ../munimap/views/admin.py:1140
 msgid "Map config already exist"
 msgstr ""
 
-#: ../munimap/views/admin.py:1152
+#: ../munimap/views/admin.py:1153
 #, python-format
 msgid "map %(name)s renamed to %(new_name)s"
 msgstr ""
 
-#: ../munimap/views/admin.py:1177
+#: ../munimap/views/admin.py:1178
 #, python-format
 msgid "project %(name)s not successful transfered"
 msgstr ""
 
-#: ../munimap/views/admin.py:1194
+#: ../munimap/views/admin.py:1195
 #, python-format
 msgid "alkis.log %(name)s removed"
 msgstr ""
 
-#: ../munimap/views/admin.py:1199
+#: ../munimap/views/admin.py:1200
 #, python-format
 msgid "alkis.log %(name)s not found"
 msgstr ""
 
-#: ../munimap/views/admin.py:1222 ../munimap/views/admin.py:1241
-#: ../munimap/views/admin.py:1251
+#: ../munimap/views/admin.py:1223 ../munimap/views/admin.py:1242
+#: ../munimap/views/admin.py:1252
 msgid "Selectionlist does not exist"
 msgstr ""
 
-#: ../munimap/views/admin.py:1231
+#: ../munimap/views/admin.py:1232
 #, python-format
 msgid "Selectionlist %(name)s loaded"
 msgstr ""
 
-#: ../munimap/views/admin.py:1274
+#: ../munimap/views/admin.py:1275
 #, python-format
 msgid "Selectionlist %(name)s updated"
 msgstr ""
 
-#: ../munimap/views/admin.py:1308
+#: ../munimap/views/admin.py:1309
 #, python-format
 msgid "Selectionlist with name \"%(name)s\" already exist"
 msgstr ""
 
-#: ../munimap/views/admin.py:1320
+#: ../munimap/views/admin.py:1321
 #, python-format
 msgid "Selectionlist %(name)s created"
 msgstr ""
 
-#: ../munimap/views/admin.py:1343
+#: ../munimap/views/admin.py:1344
 #, python-format
 msgid "Selectionlist %(name)s removed"
 msgstr ""
 
-#: ../munimap/views/admin.py:1348
+#: ../munimap/views/admin.py:1349
 #, python-format
 msgid "Selectionlist %(name)s not found"
 msgstr ""
 
-#: ../munimap/views/admin.py:1358 ../munimap/views/admin.py:1366
+#: ../munimap/views/admin.py:1359 ../munimap/views/admin.py:1367
 msgid "Selectionlist config does not exist"
 msgstr ""
 
-#: ../munimap/views/admin.py:1375
+#: ../munimap/views/admin.py:1376
 msgid "Selectionlist config already exist"
 msgstr ""
 
-#: ../munimap/views/admin.py:1388
+#: ../munimap/views/admin.py:1389
 #, python-format
 msgid "Selectionlist %(name)s renamed to %(new_name)s"
 msgstr ""
 
-#: ../munimap/views/admin.py:1399 ../munimap/views/admin.py:1418
-#: ../munimap/views/admin.py:1428 ../munimap/views/admin.py:1513
-#: ../munimap/views/admin.py:1521
+#: ../munimap/views/admin.py:1400 ../munimap/views/admin.py:1419
+#: ../munimap/views/admin.py:1429 ../munimap/views/admin.py:1514
+#: ../munimap/views/admin.py:1522
 msgid "Plugin does not exist"
 msgstr ""
 
-#: ../munimap/views/admin.py:1408
+#: ../munimap/views/admin.py:1409
 #, python-format
 msgid "Plugin %(name)s loaded"
 msgstr ""
 
-#: ../munimap/views/admin.py:1440
+#: ../munimap/views/admin.py:1441
 #, python-format
 msgid "Plugin %(name)s updated"
 msgstr ""
 
-#: ../munimap/views/admin.py:1463
+#: ../munimap/views/admin.py:1464
 #, python-format
 msgid "Plugin with name \"%(name)s\" already exists"
 msgstr ""
 
-#: ../munimap/views/admin.py:1475
+#: ../munimap/views/admin.py:1476
 #, python-format
 msgid "Plugin %(name)s created"
 msgstr ""
 
-#: ../munimap/views/admin.py:1498
+#: ../munimap/views/admin.py:1499
 #, python-format
 msgid "Plugin %(name)s removed"
 msgstr ""
 
-#: ../munimap/views/admin.py:1503
+#: ../munimap/views/admin.py:1504
 #, python-format
 msgid "Plugin %(name)s not found"
 msgstr ""
 
-#: ../munimap/views/admin.py:1530
+#: ../munimap/views/admin.py:1531
 msgid "Plugin already exists"
 msgstr ""
 
-#: ../munimap/views/admin.py:1543
+#: ../munimap/views/admin.py:1544
 #, python-format
 msgid "Plugin %(name)s renamed to %(new_name)s"
 msgstr ""
 
-#: ../munimap/views/munimap.py:88 ../munimap/views/munimap.py:183
-#: ../munimap/views/munimap.py:227 ../munimap/views/munimap.py:264
+#: ../munimap/views/munimap.py:90 ../munimap/views/munimap.py:185
+#: ../munimap/views/munimap.py:229 ../munimap/views/munimap.py:266
 msgid "You are not allowed to open this app."
 msgstr ""
 
@@ -1983,12 +1983,10 @@ msgid "DIGITIZE ADMIN INFOTEXT - GROUPS"
 msgstr ""
 
 #: ../munimap_digitize/munimap_digitize/templates/digitize/admin/index.html:62
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:56
 msgid "Deactivate"
 msgstr ""
 
 #: ../munimap_digitize/munimap_digitize/templates/digitize/admin/index.html:62
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:57
 msgid "Activate"
 msgstr ""
 
@@ -2042,7 +2040,7 @@ msgid "Style for %(layer_title)s"
 msgstr ""
 
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:9
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:17
+#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:18
 msgid "Properties"
 msgstr ""
 
@@ -2061,6 +2059,14 @@ msgstr ""
 
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:3
 msgid "No group active"
+msgstr ""
+
+#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:58
+msgid "Off"
+msgstr ""
+
+#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:67
+msgid "On"
 msgstr ""
 
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/feature-properties-editor.html:6
@@ -2093,83 +2099,83 @@ msgstr ""
 msgid "Administrate"
 msgstr ""
 
-#: ../munimap_digitize/munimap_digitize/views/admin.py:36
+#: ../munimap_digitize/munimap_digitize/views/admin.py:37
 msgid "You are not allowed to administrate the digitize layers"
 msgstr ""
 
-#: ../munimap_digitize/munimap_digitize/views/admin.py:59
+#: ../munimap_digitize/munimap_digitize/views/admin.py:60
 msgid "activated"
 msgstr ""
 
-#: ../munimap_digitize/munimap_digitize/views/admin.py:59
+#: ../munimap_digitize/munimap_digitize/views/admin.py:60
 msgid "deactivated"
 msgstr ""
 
-#: ../munimap_digitize/munimap_digitize/views/admin.py:61
+#: ../munimap_digitize/munimap_digitize/views/admin.py:62
 #, python-format
 msgid "Group %(group)s %(status)s"
 msgstr ""
 
-#: ../munimap_digitize/munimap_digitize/views/admin.py:95
+#: ../munimap_digitize/munimap_digitize/views/admin.py:96
 msgid "Property updated"
 msgstr ""
 
-#: ../munimap_digitize/munimap_digitize/views/admin.py:115
+#: ../munimap_digitize/munimap_digitize/views/admin.py:116
 #, python-format
 msgid "Property %(name)s already exists"
 msgstr ""
 
-#: ../munimap_digitize/munimap_digitize/views/admin.py:119
+#: ../munimap_digitize/munimap_digitize/views/admin.py:120
 #, python-format
 msgid "Property %(name)s added"
 msgstr ""
 
-#: ../munimap_digitize/munimap_digitize/views/admin.py:150
+#: ../munimap_digitize/munimap_digitize/views/admin.py:151
 #, python-format
 msgid "Property %(key)s removed"
 msgstr ""
 
-#: ../munimap_digitize/munimap_digitize/views/admin.py:180
+#: ../munimap_digitize/munimap_digitize/views/admin.py:181
 msgid "Style updated"
 msgstr ""
 
-#: ../munimap_digitize/munimap_digitize/views/admin.py:208
+#: ../munimap_digitize/munimap_digitize/views/admin.py:209
 msgid "Can not be empty if start date is set"
 msgstr ""
 
-#: ../munimap_digitize/munimap_digitize/views/admin.py:213
+#: ../munimap_digitize/munimap_digitize/views/admin.py:214
 msgid "Can not be empty if end date is set"
 msgstr ""
 
-#: ../munimap_digitize/munimap_digitize/views/admin.py:219
+#: ../munimap_digitize/munimap_digitize/views/admin.py:220
 msgid "start date must be lower than end date"
 msgstr ""
 
-#: ../munimap_digitize/munimap_digitize/views/admin.py:224
+#: ../munimap_digitize/munimap_digitize/views/admin.py:225
 msgid "end date must be greater than start date"
 msgstr ""
 
-#: ../munimap_digitize/munimap_digitize/views/admin.py:255
+#: ../munimap_digitize/munimap_digitize/views/admin.py:256
 #, python-format
 msgid "Group %(name)s added"
 msgstr ""
 
-#: ../munimap_digitize/munimap_digitize/views/admin.py:313
+#: ../munimap_digitize/munimap_digitize/views/admin.py:314
 #, python-format
 msgid "Group %(name)s removed"
 msgstr ""
 
-#: ../munimap_digitize/munimap_digitize/views/admin.py:324
+#: ../munimap_digitize/munimap_digitize/views/admin.py:325
 #, python-format
 msgid "Layer %(name)s added"
 msgstr ""
 
-#: ../munimap_digitize/munimap_digitize/views/admin.py:337
+#: ../munimap_digitize/munimap_digitize/views/admin.py:338
 #, python-format
 msgid "Layer %(name)s updated"
 msgstr ""
 
-#: ../munimap_digitize/munimap_digitize/views/admin.py:348
+#: ../munimap_digitize/munimap_digitize/views/admin.py:349
 #, python-format
 msgid "Layer %(name)s removed"
 msgstr ""
@@ -2182,7 +2188,7 @@ msgstr ""
 msgid "Removed feature group successfully"
 msgstr ""
 
-#: ../munimap_digitize/munimap_digitize/views/digitize.py:109
+#: ../munimap_digitize/munimap_digitize/views/digitize.py:113
 #, python-format
 msgid "%(title)s saved successfully"
 msgstr ""
