@@ -64,7 +64,7 @@ def _log_stats(url, req, res, user, use_referrer, route_name, app_attr):
         app = _get_app_from_url(req.base_url, current_app.url_map, route_name, app_attr)
 
     status_code = res.status_code if hasattr(res, 'status_code') else None
-    content_length = res.content_length if hasattr(res, 'content_length') else None
+    content_length = res.headers.get('Content-Length', None) if hasattr(res, 'headers') else None
 
     user_name = user_name if user_name else ''
     user_department = user_department if user_department else ''
