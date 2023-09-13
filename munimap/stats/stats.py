@@ -72,6 +72,7 @@ def _log_stats(url, req, res, user, use_referrer, route_name, app_attr):
     ip = ip if ip else ''
     url = url if url else ''
     status_code = status_code if status_code else ''
+    content_length = content_length if content_length is not None else ''
     host = host if host else ''
     referrer = referrer if referrer else ''
     user_agent = user_agent if user_agent else ''
