@@ -81,6 +81,7 @@ def list_available_icons():
 
 @munimap.route('/')
 @munimap.route('/app/<config>/')
+@log_stats(request, current_user, route_name='munimap.index')
 def index(config=None):
     if config: 
         project = ProtectedProject.by_name_without_404(config)
@@ -176,6 +177,7 @@ def index(config=None):
 
 
 @munimap.route('/app/<config>/catalog')
+@log_stats(request, current_user, route_name='munimap.catalog_names')
 def catalog_names(config=None):
     if config: 
         project = ProtectedProject.by_name_without_404(config)
@@ -219,6 +221,7 @@ def catalog_names(config=None):
     )
 
 @munimap.route('/app/<config>/catalog/load_names', methods=['POST'])
+@log_stats(request, current_user, route_name='munimap.gfi_catalog_names')
 def gfi_catalog_names(config=None):
     names = request.json.get('names', [])
     if config: 
@@ -257,6 +260,7 @@ def gfi_catalog_names(config=None):
     )
 
 @munimap.route('/app/<config>/catalog/<_type>/<name>/')
+@log_stats(request, current_user, route_name='munimap.catalog_layer')
 def catalog_layer(config=None, _type=None, name=None):
     if config: 
         project = ProtectedProject.by_name_without_404(config)
@@ -386,6 +390,7 @@ def cors_proxy(service=None):
     )
 
 
+@log_stats(request, current_user, use_referrer=True, url_from_response=True)
 def handle_wms_get_map(service_url, layers, request):
     request_args = request.args
     requested_layers = []
@@ -440,16 +445,10 @@ def handle_wms_get_map(service_url, layers, request):
         requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
     response = requests.get(service_url, params, verify=current_app.config.get('CERTIFICATE_VERIFY'))
 
-    log_stats(f'{service_url}?{urlencode(params)}', request, response, current_user)
-
-    if not response.ok:
-        proxy_log.error('request failed with status %s. url: %s, params: %s',
-                        response.status_code, service_url, str(params))
-        raise BadGateway()
-
     return response
 
 
+@log_stats(request, current_user, use_referrer=True, url_from_response=True)
 def handle_wms_get_legend(service_url, layers, request):
     request_args = request.args
     requested_layers = []
@@ -476,16 +475,10 @@ def handle_wms_get_legend(service_url, layers, request):
         requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
     response = requests.get(service_url, params, verify=current_app.config.get('CERTIFICATE_VERIFY'))
 
-    log_stats(f'{service_url}?{urlencode(params)}', request, response, current_user)
-
-    if not response.ok:
-        proxy_log.error('request failed with status %s. url: %s, params: %s',
-                        response.status_code, service_url, str(params))
-        raise BadGateway()
-
     return response
 
 
+@log_stats(request, current_user, use_referrer=True, url_from_response=True)
 def handle_get_file(service_url, layers, request):
     request_args = request.args
     filename = request_args.get('GetFile')
@@ -500,15 +493,9 @@ def handle_get_file(service_url, layers, request):
         requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
     response = requests.get(service_url, params, verify=current_app.config.get('CERTIFICATE_VERIFY'))
 
-    log_stats(f'{service_url}?{urlencode(params)}', request, response, current_user)
-
-    if not response.ok:
-        proxy_log.error('request failed with status %s. url: %s, params: %s',
-                        response.status_code, service_url, str(params))
-        raise BadGateway()
-
     return response
 
+@log_stats(request, current_user, use_referrer=True, url_from_response=True)
 def handle_wms_get_feature_info(service_url, layers, request):
     request_args = request.args
     requested_layers = []
@@ -559,8 +546,6 @@ def handle_wms_get_feature_info(service_url, layers, request):
     if not current_app.config.get('CERTIFICATE_VERIFY'):
         requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
     response = requests.get(service_url, params, verify=current_app.config.get('CERTIFICATE_VERIFY'))
-
-    log_stats(f'{service_url}?{urlencode(params)}', request, response, current_user)
 
     if not response.ok:
         proxy_log.error('request failed with status %s. url: %s, params: %s',
@@ -630,13 +615,44 @@ def wms_proxy(url_hash=None):
 
     service_response = handle_response(url, layers, request)
 
+    if not service_response.ok:
+        proxy_log.error('Request failed with status %s. url: %s',
+                        service_response.status_code, service_response.request.url)
+        raise BadGateway()
+
     response = make_response(
         service_response.content
     )
     response.content_type = service_response.headers.get('content-type')
     response.headers['Cache-Control'] = 'private'
-    log_stats(url, request, response, current_user)
     return response
+
+@log_stats(request, current_user, use_referrer=True,  url_from_response=True)
+def handle_wmts(service_url, layer, request, grid, zoom, x, y):
+    requested_layer = layer['source']['layer']
+    # grid not replaced by layers grid, because js client determine which
+    # matrix set (hq / normal) should be used
+    _format = layer['source']['format'].split('/')[-1]
+
+    url = add_layers_base_url(service_url, current_app.config.get('LAYERS_BASE_URL'),
+                              request.scheme)
+
+    if url.startswith('/'):
+        url = request.url_root + url[1:]
+
+    url_tmpl = '%(url)s/%(layer)s/%(grid)s/%(zoom)d/%(x)d/%(y)d.%(_format)s'
+
+    full_service_url = url_tmpl % dict(url=url.rstrip('/'), layer=requested_layer,
+                                  grid=grid, zoom=zoom, x=x, y=y,
+                                  _format=_format)
+
+    proxy_log.debug('munimap layer: %s; url: %s', layer['name'], full_service_url)
+
+    if not current_app.config.get('CERTIFICATE_VERIFY'):
+        requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+    service_response = requests.get(full_service_url, verify=current_app.config.get('CERTIFICATE_VERIFY'))
+
+    return service_response
 
 @munimap.route('/proxy/wmts/<url_hash>/service/', methods=['GET'])
 @munimap.route('/proxy/wmts/<url_hash>/service/<layer>/<grid>/<int:zoom>/<int:x>/<int:y>.<__format>')
@@ -660,35 +676,12 @@ def wmts_proxy(url_hash=None, layer=None, grid=None, zoom=None, x=None, y=None, 
         raise NotFound()
 
     layer = current_app.layers[layer]
-    if not helper.layer_allowed_for_user(layer):
-        raise Forbidden()
 
-    requested_layer = layer['source']['layer']
-    # grid not replaced by layers grid, because js client determine which
-    # matrix set (hq / normal) should be used
-    _format = layer['source']['format'].split('/')[-1]
-
-    url = add_layers_base_url(url, current_app.config.get('LAYERS_BASE_URL'),
-                              request.scheme)
-
-    if url.startswith('/'):
-        url = request.url_root + url[1:]
-
-    url_tmpl = '%(url)s/%(layer)s/%(grid)s/%(zoom)d/%(x)d/%(y)d.%(_format)s'
-
-    service_url = url_tmpl % dict(url=url.rstrip('/'), layer=requested_layer,
-                                  grid=grid, zoom=zoom, x=x, y=y,
-                                  _format=_format)
-
-    proxy_log.debug('munimap layer: %s; url: %s', layer['name'], service_url)
-
-    if not current_app.config.get('CERTIFICATE_VERIFY'):
-        requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
-    service_response = requests.get(service_url, verify=current_app.config.get('CERTIFICATE_VERIFY'))
+    service_response = handle_wmts(url, layer, request, grid, zoom, x, y)
 
     if not service_response.ok:
-        proxy_log.error('request failed with status %s. url: %s',
-                        service_response.status_code, service_url)
+        proxy_log.error('Request failed with status %s. url: %s',
+                        service_response.status_code, service_response.request.url)
         raise NotFound()
 
     response = make_response(
@@ -696,7 +689,6 @@ def wmts_proxy(url_hash=None, layer=None, grid=None, zoom=None, x=None, y=None, 
     )
     response.content_type = service_response.headers.get('content-type')
     response.headers['Cache-Control'] = 'private'
-    log_stats(service_url, request, response, current_user)
     return response
 
 
