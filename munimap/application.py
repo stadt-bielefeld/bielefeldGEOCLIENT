@@ -485,9 +485,7 @@ def configure_errorhandlers(app):
         return make_response(render_template("munimap/errors/500.html", error=error), 500)
 
 
-def layers_conf_needs_reload(config_folder, timestamp, protection_changed):
-    if protection_changed:
-        return True
+def layers_conf_needs_reload(config_folder, timestamp):
     if not timestamp:
         return True
     m_time = os.path.getmtime('%s/%s' % (config_folder, 'last_changes'))
@@ -501,12 +499,9 @@ def configure_layers_conf_reload(app, config_folder):
 
     @app.before_request
     def reload_layers_conf():
-        if layers_conf_needs_reload(config_folder, current_app.layers_conf_mtime,
-                                    current_app.layer_protection_changed):
+        if layers_conf_needs_reload(config_folder, current_app.layers_conf_mtime):
             with lock:
-                if layers_conf_needs_reload(config_folder,
-                                            current_app.layers_conf_mtime,
-                                            current_app.layer_protection_changed):
+                if layers_conf_needs_reload(config_folder, current_app.layers_conf_mtime):
                     load_layers(app, config_folder)
 
 
@@ -551,7 +546,6 @@ def load_layers(app, config_folder, initial=False):
         app.layers_conf_mtime = os.path.getmtime('%s/%s' % (config_folder, 'last_changes'))
     else:
         touch_last_changes_file()
-    app.layer_protection_changed = False
 
 
 class ReverseProxiedFlask(Flask):
