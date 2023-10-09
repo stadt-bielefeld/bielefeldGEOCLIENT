@@ -28,6 +28,7 @@ transport = Blueprint(
 # add assets for transport application
 assets.append_path(transport.static_folder)
 
+
 @transport.route('/')
 def app():
     app_config = load_app_config('transport')
@@ -58,6 +59,7 @@ def stations():
         json.dumps(station_json),
         content_type='application/json',
     )
+
 
 @transport.route('/station_points.geojson')
 def station_points():

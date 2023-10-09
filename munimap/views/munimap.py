@@ -121,7 +121,7 @@ def index(config=None):
         for p_settings in current_user.project_settings:
             if p_settings.project == config:
                 project_settings.append( { 'id': p_settings.id, 'name': p_settings.name })
-        
+
     selected_settings = {}
     settings_id = session.get('project_setting_id', False)
 

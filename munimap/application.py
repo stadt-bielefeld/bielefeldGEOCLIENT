@@ -156,6 +156,7 @@ def configure_extensions(app):
     configure_errorhandlers(app)
     configure_context_processors(app)
 
+
 def configure_context_processors(app):
     app.jinja_env.globals.update(base_config=app.config)
     app.jinja_env.globals['datetime'] = datetime.datetime
@@ -450,7 +451,7 @@ def configure_errorhandlers(app):
     @app.errorhandler(401)
     def unauthorized(error):
         if LocalProxyRequest.is_xhr:
-            response =  jsonify(message="Login required")
+            response = jsonify(message="Login required")
             response.status_code = 401
             return response
         app.logger.error("Unauthorized (401) for %s: %s", LocalProxyRequest, getattr(error, 'description', error))
