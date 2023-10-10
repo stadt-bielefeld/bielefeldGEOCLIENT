@@ -425,7 +425,7 @@ def group_add_user():
     })
 
 
-@admin.route('groups/user/remove', methods=['POST'])
+@admin.route('/groups/user/remove', methods=['POST'])
 def group_remove_user():
     r = LocalProxyRequest.json
     group = MBGroup.by_id_without_404(r['groupId'])
@@ -454,7 +454,7 @@ def group_remove_user():
     })
 
 
-@admin.route('groups/layer/add', methods=['POST'])
+@admin.route('/groups/layer/add', methods=['POST'])
 def group_add_layer():
     r = LocalProxyRequest.json
     group = MBGroup.by_id_without_404(r['groupId'])
@@ -483,7 +483,7 @@ def group_add_layer():
     })
 
 
-@admin.route('groups/layer/remove', methods=['POST'])
+@admin.route('/groups/layer/remove', methods=['POST'])
 def group_remove_layer():
     r = LocalProxyRequest.json
     group = MBGroup.by_id_without_404(r['groupId'])
@@ -512,7 +512,7 @@ def group_remove_layer():
     })
 
 
-@admin.route('groups/project/add', methods=['POST'])
+@admin.route('/groups/project/add', methods=['POST'])
 def group_add_project():
     r = LocalProxyRequest.json
     group = MBGroup.by_id_without_404(r['groupId'])
@@ -541,7 +541,7 @@ def group_add_project():
     })
 
 
-@admin.route('groups/project/remove', methods=['POST'])
+@admin.route('/groups/project/remove', methods=['POST'])
 def group_remove_project():
     r = LocalProxyRequest.json
 
@@ -571,7 +571,7 @@ def group_remove_project():
     })
 
 
-@admin.route('projects/protect', methods=['POST'])
+@admin.route('/projects/protect', methods=['POST'])
 def protect_project():
     r = LocalProxyRequest.json
     project = ProtectedProject.by_name_without_404(r['projectName'])
@@ -592,7 +592,7 @@ def protect_project():
     })
 
 
-@admin.route('projects/unprotect', methods=['POST'])
+@admin.route('/projects/unprotect', methods=['POST'])
 def unprotect_project():
     r = LocalProxyRequest.json
     project = ProtectedProject.by_id_without_404(r['projectId'])
@@ -644,7 +644,7 @@ def load_layers():
     })
 
 
-@admin.route('layers/protect', methods=['POST'])
+@admin.route('/layers/protect', methods=['POST'])
 def protect_layer():
     r = LocalProxyRequest.json
     layer = ProtectedLayer.by_name_without_404(r['layerName'])
@@ -667,7 +667,7 @@ def protect_layer():
     })
 
 
-@admin.route('layers/unprotect', methods=['POST'])
+@admin.route('/layers/unprotect', methods=['POST'])
 def unprotect_layer():
     r = LocalProxyRequest.json
     layer = ProtectedLayer.by_id_without_404(r['layerId'])
