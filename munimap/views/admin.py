@@ -660,7 +660,7 @@ def protect_layer():
     layer.title = r['layerTitle']
     db.session.add(layer)
     db.session.commit()
-    current_app.layer_protection_changed = True
+    touch_last_changes_file()
     return jsonify({
         'layer': layer.to_dict(list(current_app.layers.keys())),
         'message': _('layer "%(layer)s protected', layer=layer.name)
@@ -682,7 +682,7 @@ def unprotect_layer():
 
     db.session.delete(layer)
     db.session.commit()
-    current_app.layer_protection_changed = True
+    touch_last_changes_file()
     return jsonify({
         'layer': layer.to_dict(list(current_app.layers.keys())),
         'message': _('layer "%(layer)s unprotected', layer=layer.name)
@@ -848,7 +848,6 @@ def rename_project_config():
         project_dict = project.to_dict(list_projects())
 
     shutil.move(config_file, config_file_new)
-    touch_last_changes_file()
 
     return jsonify({
         'success': True,
@@ -1392,7 +1391,6 @@ def rename_selectionlist_config():
         return response
 
     shutil.move(config_file, config_file_new)
-    touch_last_changes_file()
 
     return jsonify({
         'success': True,
@@ -1552,7 +1550,6 @@ def rename_plugin_config():
         return response
 
     shutil.move(config_file, config_file_new)
-    touch_last_changes_file()
 
     return jsonify({
         'success': True,
