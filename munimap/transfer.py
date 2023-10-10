@@ -8,12 +8,13 @@ from flask import current_app, url_for
 
 log = logging.getLogger('munimap.transfer')
 
+
 def transfer_config(filename, type_='map'):
     log.info('update map config for %s', filename)
     if not os.path.exists(filename):
         return False
 
-    files = {'upload_file': open(filename,'rb')}
+    files = {'upload_file': open(filename, 'rb')}
 
     if type_ == 'map':
         url = "%s%s" % (

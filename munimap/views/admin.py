@@ -216,9 +216,7 @@ def load_user():
     r = LocalProxyRequest.json
     user = MBUser.by_id_without_404(r['userId'])
     user_details = user.to_mb_dict()
-    duplicate = False
     if LocalProxyRequest.args.get('duplicate'):
-        duplicate = LocalProxyRequest.args.get('duplicate')
         del user_details['mb_user_email']
         del user_details['mb_user_name']
         del user_details['mb_user_firstname']
@@ -229,6 +227,7 @@ def load_user():
         'message': _('user %(name)s load', name=user.mb_user_name)
 
     })
+
 
 @admin.route('/users/remove', methods=['POST'])
 def remove_user():
@@ -253,6 +252,7 @@ def remove_user():
         'user': user.to_dict(),
         'message': _('user %(name)s removed', name=user.mb_user_name)
     })
+
 
 def update_user_parameters(user, data):
     user.mb_user_description = data['mb_user_description']
@@ -288,6 +288,7 @@ def update_user_parameters(user, data):
         user.mb_user_login_count = 0
     return user
 
+
 @admin.route('/users/edit', methods=['POST'])
 def edit_user():
     form = EditUserForm(LocalProxyRequest.form, meta={'csrf': False})
@@ -295,14 +296,14 @@ def edit_user():
         data = form.data
         user = MBUser.by_id_without_404(data['mb_user_id'])
         errors = {}
-        if (data['mb_user_name'] != user.name):
+        if data['mb_user_name'] != user.name:
             user_exist = MBUser.query.filter(
                 func.lower(MBUser.mb_user_name) == func.lower(data['mb_user_name'])
             ).first()
             if not user_exist:
                 user.mb_user_name = form.mb_user_name.data
             else:
-                errors['mb_user_name'] = [_('Username %(name)s already exist', name=form.mb_user_name.data)]
+                errors['mb_user_name'] = [_('Username %(name)s already exists', name=form.mb_user_name.data)]
 
         if errors:
             return jsonify({
@@ -332,6 +333,7 @@ def edit_user():
     response.status_code = 400
 
     return response
+
 
 @admin.route('/users/add', methods=['POST'])
 def add_user():
@@ -372,6 +374,7 @@ def add_user():
 
     return response
 
+
 @admin.route('/groups/remove', methods=['POST'])
 def remove_group():
     r = LocalProxyRequest.json
@@ -383,7 +386,6 @@ def remove_group():
                 'id': r['groupId']
             },
             'message': _('group removed')
-
         })
 
     db.session.delete(group)
@@ -391,7 +393,6 @@ def remove_group():
     return jsonify({
         'group': group.to_dict(),
         'message': _('group %(name)s removed', name=group.name)
-
     })
 
 
@@ -402,7 +403,7 @@ def group_add_user():
     user = MBUser.by_id_without_404(r['userId'])
 
     if None in [group, user]:
-        response = jsonify({'code': 404, 'message': _('User or group not exists')})
+        response = jsonify({'code': 404, 'message': _('User or group does not exist')})
         response.status_code = 404
         return response
 
@@ -431,7 +432,7 @@ def group_remove_user():
     user = MBUser.by_id_without_404(r['userId'])
 
     if None in [group, user]:
-        response = jsonify({'code': 404, 'message': _('User or group not exists')})
+        response = jsonify({'code': 404, 'message': _('User or group does not exist')})
         response.status_code = 404
         return response
 
@@ -460,7 +461,7 @@ def group_add_layer():
     layer = ProtectedLayer.by_name_without_404(r['layerName'])
 
     if None in [group, layer]:
-        response = jsonify({'code': 404, 'message': _('Layer or group not exists')})
+        response = jsonify({'code': 404, 'message': _('Layer or group does not exist')})
         response.status_code = 404
         return response
 
@@ -489,7 +490,7 @@ def group_remove_layer():
     layer = ProtectedLayer.by_name_without_404(r['layerName'])
 
     if None in [group, layer]:
-        response = jsonify({'code': 404, 'message': _('Layer or group not exists')})
+        response = jsonify({'code': 404, 'message': _('Layer or group does not exist')})
         response.status_code = 404
         return response
 
@@ -518,7 +519,7 @@ def group_add_project():
     project = ProtectedProject.by_name_without_404(r['projectName'])
 
     if None in [group, project]:
-        response = jsonify({'code': 404, 'message': _('Project or group not exists')})
+        response = jsonify({'code': 404, 'message': _('Project or group does not exist')})
         response.status_code = 404
         return response
 
@@ -526,7 +527,7 @@ def group_add_project():
         return jsonify({
             'groupId': group.id,
             'projectName': project.name,
-            'message': _('"%(project_name)s" add to "%(group_name)s"',
+            'message': _('"%(project_name)s" added to "%(group_name)s"',
                          project_name=project.name, group_name=group.name)
         })
 
@@ -535,7 +536,7 @@ def group_add_project():
     return jsonify({
         'groupId': group.id,
         'projectName': project.name,
-        'message': _('"%(project_name)s" add to "%(group_name)s"',
+        'message': _('"%(project_name)s" added to "%(group_name)s"',
                      project_name=project.name, group_name=group.name)
     })
 
@@ -548,7 +549,7 @@ def group_remove_project():
     project = ProtectedProject.by_name_without_404(r['projectName'])
 
     if None in [group, project]:
-        response = jsonify({'code': 404, 'message': _('Project or group not exists')})
+        response = jsonify({'code': 404, 'message': _('Project or group does not exist')})
         response.status_code = 404
         return response
 
@@ -578,7 +579,7 @@ def protect_project():
     if project is not None:
         return jsonify({
             'project': project.to_dict(list_projects()),
-            'message': _('project "%(project)s protected', project=project.name)
+            'message': _('Project "%(project)s protected', project=project.name)
         })
 
     project = ProtectedProject()
@@ -587,7 +588,7 @@ def protect_project():
     db.session.commit()
     return jsonify({
         'project': project.to_dict(list_projects()),
-        'message': _('project "%(project)s protected', project=project.name)
+        'message': _('Project "%(project)s protected', project=project.name)
     })
 
 
@@ -601,14 +602,14 @@ def unprotect_project():
             'project': {
                 'id': r['projectId']
             },
-            'message': _('project "%(project)s unprotected', project=project.name)
+            'message': _('Project "%(project)s unprotected', project=project.name)
         })
 
     db.session.delete(project)
     db.session.commit()
     return jsonify({
         'project': project.to_dict(list_projects()),
-        'message': _('project "%(project)s unprotected', project=project.name)
+        'message': _('Project "%(project)s unprotected', project=project.name)
     })
 
 
@@ -641,6 +642,7 @@ def load_layers():
         'layers': layers,
         'protected_layers': protected_layers
     })
+
 
 @admin.route('layers/protect', methods=['POST'])
 def protect_layer():
@@ -686,6 +688,7 @@ def unprotect_layer():
         'message': _('layer "%(layer)s unprotected', layer=layer.name)
     })
 
+
 @admin.route('/projects/load', methods=['POST'])
 def load_project():
     name = LocalProxyRequest.form.get('name', False)
@@ -705,6 +708,7 @@ def load_project():
         'code': app_code,
         'message': _('project "%(name)s loaded', name=name)
     })
+
 
 @admin.route('/projects/add', methods=['POST'])
 def add_project():
@@ -728,7 +732,7 @@ def add_project():
 
         if os.path.exists(config_file):
             response = jsonify({
-                'message': _('Project with name "%(name)s" already exist', name=name),
+                'message': _('Project with name "%(name)s" already exists', name=name),
                 'code': 400
                 })
             response.status_code = 400
@@ -770,7 +774,7 @@ def edit_project():
         config_file = project_file_path(name)
         if not os.path.exists(config_file):
             response = jsonify({
-                'message': _('Project do not exist'),
+                'message': _('Project does not exist'),
                 'code': 400
                 })
             response.status_code = 400
@@ -805,23 +809,23 @@ def edit_project():
 
     return response
 
+
 @admin.route('/projects/rename', methods=['POST'])
 def rename_project_config():
     name = '%s' % LocalProxyRequest.form.get('name')
-    new_name =  '%s' % LocalProxyRequest.form.get('newName')
+    new_name = '%s' % LocalProxyRequest.form.get('newName')
     if name is None or new_name is None:
         response = jsonify({
             'code': 404,
-            'message': _('Project config do not exists')
+            'message': _('Project config does not exist')
         })
         response.status_code = 404
         return response
 
-
     config_file = project_file_path(name)
     if not os.path.exists(config_file):
         response = jsonify({
-            'message': _('Project config do not exist'),
+            'message': _('Project config does not exist'),
             'code': 400
         })
         response.status_code = 400
@@ -830,7 +834,7 @@ def rename_project_config():
     config_file_new = project_file_path(new_name)
     if os.path.exists(config_file_new):
         response = jsonify({
-            'message': _('Project config already exist'),
+            'message': _('Project config already exists'),
             'code': 400
         })
         response.status_code = 400
@@ -851,8 +855,9 @@ def rename_project_config():
         'name': name,
         'newName': new_name,
         'project': project_dict,
-        'message': _('project %(name)s renamed to %(new_name)s', name=name, new_name=new_name)
+        'message': _('Project %(name)s renamed to %(new_name)s', name=name, new_name=new_name)
     })
+
 
 @admin.route('/projects/remove', methods=['POST'])
 def remove_project():
@@ -862,7 +867,7 @@ def remove_project():
         if os.path.exists(config_file):
             os.remove(config_file)
 
-        # delete from projected projects
+        # delete from protected projects
         project = ProtectedProject.by_name_without_404(name)
         if project:
             db.session.delete(project)
@@ -871,13 +876,14 @@ def remove_project():
         return jsonify({
             'success': True,
             'project': name,
-            'message': _('project %(name)s removed', name=name)
+            'message': _('Project %(name)s removed', name=name)
         })
 
     return jsonify({
         'success': True,
-        'message': _('project %(name)s not found', name=name)
+        'message': _('Project %(name)s not found', name=name)
     })
+
 
 @admin.route('/projects/transfer', methods=['POST'])
 def transfer_project_config():
@@ -890,18 +896,18 @@ def transfer_project_config():
 
             return jsonify({
                 'success': True,
-                'message': _('project %(name)s was transfered', name=name)
+                'message': _('Project %(name)s was transferred', name=name)
             })
 
     if not name:
         return jsonify({
             'success': False,
-            'message': _('no project selected')
+            'message': _('No project selected')
         })
 
     return jsonify({
         'success': False,
-        'message': _('project %(name)s not found', name=name)
+        'message': _('Project %(name)s not found', name=name)
     })
 
 
@@ -912,7 +918,7 @@ def load_map_config():
 
     if not os.path.exists(config_file):
         response = jsonify({
-            'message': _('Project do not exist'),
+            'message': _('Map config does not exist'),
             'code': 400
         })
         response.status_code = 400
@@ -921,8 +927,9 @@ def load_map_config():
     app_code = open(config_file, 'r').read()
     return jsonify({
         'code': app_code,
-        'message': _('map config "%(name)s loaded', name=name)
+        'message': _('Map config "%(name)s loaded', name=name)
     })
+
 
 @admin.route('/map/config/add', methods=['POST'])
 def add_map_config():
@@ -930,15 +937,15 @@ def add_map_config():
 
     if form.validate_on_submit():
         filename = LocalProxyRequest.form.get('new')
-        name = filename +'.yaml'
+        name = filename + '.yaml'
 
         try:
             new_yaml_content = yaml.safe_load(form.code.data)
             if new_yaml_content:
                 local_errors, local_informal_only = check_project_config_only(new_yaml_content)
                 global_errors, global_informal_only = check_project_config(new_yaml_content, exclude_file=name)
-                # substract local errors from global erros to show them differnt on web
-                errros = [item for item in local_errors if item in global_errors]
+                # subtract local errors from global errors to show them different on web
+                errors = [item for item in local_errors if item in global_errors]
                 admin_save = LocalProxyRequest.form.get('adminSave', False)
 
                 overwrite = False
@@ -947,10 +954,10 @@ def add_map_config():
 
                 if (local_errors or global_errors) and not overwrite:
                     response = jsonify({
-                        'errors': errros,
+                        'errors': errors,
                         'local_errors': local_errors,
                         'informal_only': global_informal_only,
-                        'message': _('Config has some erros'),
+                        'message': _('Config has some errors'),
                         'code': 400
                     })
                     response.status_code = 400
@@ -965,11 +972,10 @@ def add_map_config():
             response.status_code = 400
             return response
 
-
         config_file = config_file_path(name)
         if os.path.exists(config_file):
             response = jsonify({
-                'message': _('Map Config already exist'),
+                'message': _('Map config already exists'),
                 'code': 400
                 })
             response.status_code = 400
@@ -992,7 +998,7 @@ def add_map_config():
                 'description': description
             },
             'success': True,
-            'message': _('Map Config %(name)s created', name=name)
+            'message': _('Map config %(name)s created', name=name)
         })
 
     response = jsonify({
@@ -1005,7 +1011,6 @@ def add_map_config():
     return response
 
 
-
 @admin.route('/map/config/edit', methods=['POST'])
 def edit_map_config():
     name = LocalProxyRequest.form.get('name')
@@ -1013,7 +1018,7 @@ def edit_map_config():
     if name is None:
         response = jsonify({
             'code': 404,
-            'message': _('Project not exists')
+            'message': _('Project does not exist')
         })
         response.status_code = 404
         return response
@@ -1023,18 +1028,17 @@ def edit_map_config():
         config_file = config_file_path(name)
         if not os.path.exists(config_file):
             response = jsonify({
-                'message': _('Map config do not exist'),
+                'message': _('Map config does not exist'),
                 'code': 400
                 })
             response.status_code = 400
             return response
 
-
         try:
             new_yaml_content = yaml.safe_load(form.code.data)
             local_errors, local_informal_only = check_project_config_only(new_yaml_content)
             global_errors, global_informal_only = check_project_config(new_yaml_content, exclude_file=name)
-            # substract local errors from global erros to show them differnt on web
+            # subtract local errors from global errors to show them different on web
             admin_save = LocalProxyRequest.form.get('adminSave', False)
 
             overwrite = False
@@ -1046,7 +1050,7 @@ def edit_map_config():
                     'errors': global_errors,
                     'local_errors': local_errors,
                     'informal_only': global_informal_only,
-                    'message': _('Config has some erros'),
+                    'message': _('Config has some errors'),
                     'code': 400
                 })
                 response.status_code = 400
@@ -1078,7 +1082,7 @@ def edit_map_config():
                 'description': description
             },
             'success': True,
-            'message': _('Project %(name)s updated', name=name)
+            'message': _('Map config %(name)s updated', name=name)
         })
 
     response = jsonify({
@@ -1089,6 +1093,7 @@ def edit_map_config():
     response.status_code = 400
 
     return response
+
 
 @admin.route('/map/config/remove', methods=['POST'])
 def remove_map_config():
@@ -1103,12 +1108,12 @@ def remove_map_config():
         return jsonify({
             'success': True,
             'config': name,
-            'message': _('project %(name)s removed', name=name)
+            'message': _('Map config %(name)s removed', name=name)
         })
 
     return jsonify({
         'success': True,
-        'message': _('project %(name)s not found', name=name)
+        'message': _('Map config %(name)s not found', name=name)
     })
 
 
@@ -1119,16 +1124,15 @@ def rename_map_config():
     if name is None or new_name is None:
         response = jsonify({
             'code': 404,
-            'message': _('Map config do not exist'),
+            'message': _('Map config does not exist'),
         })
         response.status_code = 404
         return response
 
-
     config_file = config_file_path(name)
     if not os.path.exists(config_file):
         response = jsonify({
-            'message': _('Map config do not exist'),
+            'message': _('Map config does not exist'),
             'code': 400
         })
         response.status_code = 400
@@ -1153,6 +1157,7 @@ def rename_map_config():
         'message': _('map %(name)s renamed to %(new_name)s', name=name, new_name=new_name)
     })
 
+
 @admin.route('/map/config/transfer', methods=['POST'])
 def transfer_map_config():
     r = LocalProxyRequest.json
@@ -1160,23 +1165,24 @@ def transfer_map_config():
     if name:
         config_file = config_file_path(name)
         if os.path.exists(config_file):
-            transfered = transfer_config(config_file, type_='map')
-            if transfered:
+            transferred = transfer_config(config_file, type_='map')
+            if transferred:
                 return jsonify({
                     'success': True,
-                    'message': _('project %(name)s was transfered', name=name)
+                    'message': _('Map config %(name)s was transferred', name=name)
                 })
 
     if not name:
         return jsonify({
             'success': False,
-            'message': _('no project selected')
+            'message': _('No project selected')
         })
 
     return jsonify({
         'success': False,
-        'message': _('project %(name)s not successful transfered', name=name)
+        'message': _('Project %(name)s not successfully transferred', name=name)
     })
+
 
 @admin.route('/log/alkis/remove', methods=['POST'])
 def remove_alkis_log_config():
@@ -1200,6 +1206,7 @@ def remove_alkis_log_config():
         'message': _('alkis.log %(name)s not found', name=name)
     })
 
+
 @admin.route('/log/alkis/download/')
 @admin.route('/log/alkis/download/<filename>')
 def download_alkis_log(filename):
@@ -1212,6 +1219,7 @@ def download_alkis_log(filename):
         filename,
         as_attachment=True, cache_timeout=-1
     )
+
 
 @admin.route('/selectionlists/load', methods=['POST'])
 def load_selectionlist():
@@ -1231,6 +1239,7 @@ def load_selectionlist():
         'code': app_code,
         'message': _('Selectionlist %(name)s loaded', name=name)
     })
+
 
 @admin.route('/selectionlists/edit', methods=['POST'])
 def edit_selectionlist():
@@ -1284,6 +1293,7 @@ def edit_selectionlist():
 
     return response
 
+
 @admin.route('/selectionlists/add', methods=['POST'])
 def add_selectionlist():
     form = NewSelectionlistForm(LocalProxyRequest.form, meta={'csrf': False})
@@ -1306,7 +1316,7 @@ def add_selectionlist():
 
         if os.path.exists(config_file):
             response = jsonify({
-                'message': _('Selectionlist with name "%(name)s" already exist', name=name),
+                'message': _('Selectionlist with name "%(name)s" already exists', name=name),
                 'code': 400
             })
             response.status_code = 400
@@ -1330,6 +1340,7 @@ def add_selectionlist():
 
     return response
 
+
 @admin.route('/selectionlists/remove', methods=['POST'])
 def remove_selectionlist():
     name = LocalProxyRequest.form.get('name')
@@ -1348,6 +1359,7 @@ def remove_selectionlist():
         'success': True,
         'message': _('Selectionlist %(name)s not found', name=name)
     })
+
 
 @admin.route('/selectionlists/rename', methods=['POST'])
 def rename_selectionlist_config():
@@ -1373,7 +1385,7 @@ def rename_selectionlist_config():
     config_file_new = selectionlist_file_path(new_name)
     if os.path.exists(config_file_new):
         response = jsonify({
-            'message': _('Selectionlist config already exist'),
+            'message': _('Selectionlist config already exists'),
             'code': 400
         })
         response.status_code = 400
@@ -1389,6 +1401,7 @@ def rename_selectionlist_config():
         'message': _('Selectionlist %(name)s renamed to %(new_name)s', name=name,
                      new_name=new_name)
     })
+
 
 @admin.route('/plugins/load', methods=['POST'])
 def load_plugin():
@@ -1408,6 +1421,7 @@ def load_plugin():
         'code': app_code,
         'message': _('Plugin %(name)s loaded', name=name)
     })
+
 
 @admin.route('/plugins/edit', methods=['POST'])
 def edit_plugin():
@@ -1450,6 +1464,7 @@ def edit_plugin():
 
     return response
 
+
 @admin.route('/plugins/add', methods=['POST'])
 def add_plugin():
     form = NewPluginForm(LocalProxyRequest.form, meta={'csrf': False})
@@ -1485,6 +1500,7 @@ def add_plugin():
 
     return response
 
+
 @admin.route('/plugins/remove', methods=['POST'])
 def remove_plugin():
     name = LocalProxyRequest.form.get('name')
@@ -1503,6 +1519,7 @@ def remove_plugin():
         'success': True,
         'message': _('Plugin %(name)s not found', name=name)
     })
+
 
 @admin.route('/plugins/rename', methods=['POST'])
 def rename_plugin_config():

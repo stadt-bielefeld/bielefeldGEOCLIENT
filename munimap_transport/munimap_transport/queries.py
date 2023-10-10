@@ -7,6 +7,7 @@ from natsort import natsorted
 
 from munimap.helper import _
 
+
 def create_engine():
     uri = current_app.config.get('SQLALCHEMY_LAYER_DATABASE_URI')
     return sa.create_engine(uri,
