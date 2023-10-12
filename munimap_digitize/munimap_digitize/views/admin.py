@@ -62,7 +62,7 @@ def layer_migrations():
             }
         }
         if digitize_layer.style is not None:
-            layer_dict['source']['style'] = digitize_layer.style
+            layer_dict['style'] = digitize_layer.style
         layer_dicts.append(layer_dict)
 
     yaml_layers = yaml.dump({'layers': layer_dicts})
