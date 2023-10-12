@@ -41,9 +41,16 @@ wmts_source_spec = {
     'directAccess': bool
 }
 
+digitize_properties_spec = [{
+    required('name'): string_type,
+    required('type'): one_of('text', 'int', 'float', 'select', 'boolean', 'date'),
+    'label': string_type,
+}]
+
 digitize_source_spec = {
     'name': string_type,
     'srs': string_type,
+    'properties': digitize_properties_spec
 }
 
 static_geojson_source_spec = {
@@ -192,6 +199,7 @@ layers_conf_spec = {
         }),
         'digitize': combined(layer_commons, {
             'source': digitize_source_spec,
+            'style': style_spec,
             'cluster': one_of(cluster_spec, bool),
         }),
         'static_geojson': combined(layer_commons, {
