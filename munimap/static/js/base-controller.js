@@ -409,10 +409,6 @@ angular.module('munimapBase')
             };
 
             $scope.preDownload = function(featureCollection) {
-                if(angular.isUndefined(featureCollection.properties)) {
-                    featureCollection.properties = {};
-                }
-                featureCollection.properties.permalink = PermalinkService.getPermalinkParameters();
                 angular.forEach(featureCollection.features, function(feature) {
                     if(angular.isUndefined(feature.properties.style)) {
                         return;
