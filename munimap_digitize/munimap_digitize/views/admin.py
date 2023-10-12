@@ -6,6 +6,8 @@ from flask import (
     request as LocalProxyRequest
 )
 
+import yaml
+
 from flask_login import current_user
 
 from munimap.extensions import db
@@ -42,6 +44,29 @@ def check_permission():
             return jsonify(message='Not allowed')
         return abort(403)
 
+@digitize_admin.route('/admin/migrations')
+def layer_migrations():
+    """Temporary route for listing migrated digitize_layers"""
+    digitize_layers = Layer.query.all()
+    layer_dicts = []
+    for digitize_layer in digitize_layers:
+        digitize_props = digitize_layer.properties_schema.get('properties', {})
+        props = [{'name': prop, 'type': 'text', 'label': val['title']} for prop, val in digitize_props.items()]
+        layer_dict = {
+            'name': digitize_layer.name,
+            'title': digitize_layer.title,
+            'source': {
+                'name': digitize_layer.name,
+                'srs': 'EPSG:25832',
+                'properties': props
+            }
+        }
+        if digitize_layer.style is not None:
+            layer_dict['source']['style'] = digitize_layer.style
+        layer_dicts.append(layer_dict)
+
+    yaml_layers = yaml.dump({'layers': layer_dicts})
+    return '<pre><code>'+yaml_layers+'</code></pre>'
 
 @digitize_admin.route('/admin')
 @digitize_admin.route('/admin/<name>')
