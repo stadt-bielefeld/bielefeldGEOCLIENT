@@ -4,12 +4,6 @@ from flask import current_app, url_for
 from munimap.helper import layer_allowed_for_user
 from munimap.helper import layers_allowed_for_user
 
-try:
-    from munimap_digitize.model import Layer as DigitizeLayer
-    has_digitize = True
-except ImportError:
-    has_digitize = False
-
 
 def is_active(name, active, includes=[], excludes=[], explicits=[]):
     include = name in includes
@@ -140,7 +134,6 @@ def prepare_group_layers(app_config, layers, group_active, layers_config, visibl
             else:
                 layer['olLayer']['source']['url'] = layers_config[layer['name']].get('url')
 
-
         if layer['type'] == 'wmts':
             if layers_config[layer['name']].get('hash'):
                 layer['olLayer']['source']['url'] = url_for(
@@ -164,20 +157,15 @@ def prepare_group_layers(app_config, layers, group_active, layers_config, visibl
                                                          filename='')
             del layer['olLayer']['source']['file']
 
-        if has_digitize and layer['type'] == 'digitize':
+        if layer['type'] == 'digitize':
             layer['olLayer']['source']['url'] = url_for(
-                'digitize_public.layer',
+                'digitize.layer',
                 name=layer['olLayer']['source']['layer']
             )
 
-            digitize_layer = DigitizeLayer.query.filter(DigitizeLayer.name == _layer['name']).first()
-            if digitize_layer is not None:
-                layer['style'] = digitize_layer.style
             if 'externalGraphicPrefix' not in layer:
-                layer['externalGraphicPrefix'] = url_for('digitize_public.icons',
+                layer['externalGraphicPrefix'] = url_for('digitize.icons',
                                                          filename='')
-        elif not has_digitize and layer['type'] == 'digitize':
-            current_app.logger.warn("Digitize layer requested but digitize extension not installed")
 
         group_layers.append(layer)
 
@@ -390,19 +378,14 @@ def prepare_catalog_layers_def(app_layers_def, layers_config, selected_group=Non
                                                              filename='')
                 del layer['olLayer']['source']['file']
 
-            if has_digitize and layer['type'] == 'digitize':
+            if layer['type'] == 'digitize':
                 layer['olLayer']['source']['url'] = url_for(
-                    'digitize_public.layer',
+                    'digitize.layer',
                     name=layer['olLayer']['source']['layer']
                 )
-                digitize_layer = DigitizeLayer.query.filter(DigitizeLayer.name == _layer['name']).first()
-                if digitize_layer is not None:
-                    layer['style'] = digitize_layer.style
                 if 'externalGraphicPrefix' not in layer:
-                    layer['externalGraphicPrefix'] = url_for('digitize_public.icons',
+                    layer['externalGraphicPrefix'] = url_for('digitize.icons',
                                                              filename='')
-            elif not has_digitize and layer['type'] == 'digitize':
-                current_app.logger.warn("Digitize layer requested but digitize extension not installed")
 
             layer['displayInLayerswitcher'] = True
             layer['permalink'] = False

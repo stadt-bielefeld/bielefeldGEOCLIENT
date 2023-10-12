@@ -4,3 +4,4 @@ from .layer import *
 from .project import *
 from .draw_schema import *
 from .settings import *
+from .feature import *

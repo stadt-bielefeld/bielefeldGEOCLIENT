@@ -7,3 +7,4 @@ from .user_settings import *
 from .admin import admin
 from .api import api
 from .alkis import alkis
+from .digitize import digitize
