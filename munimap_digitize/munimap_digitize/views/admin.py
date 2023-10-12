@@ -32,13 +32,13 @@ digitize_admin = Blueprint(
 
 @digitize_admin.before_request
 def check_permission():
-    access_allowed = check_group_permission(
-        [current_app.config.get('DIGITIZE_ADMIN_PERMISSION')]
-    )
     if current_user.is_anonymous:
         flash(_('You are not allowed to administrate the digitize layers'),
               'error')
         return redirect(url_for('user.login', next=LocalProxyRequest.url))
+    access_allowed = check_group_permission(
+        [current_app.config.get('DIGITIZE_ADMIN_PERMISSION')]
+    )
     if not access_allowed:
         if LocalProxyRequest.is_xhr:
             return jsonify(message='Not allowed')
