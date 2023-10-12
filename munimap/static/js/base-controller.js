@@ -7,12 +7,11 @@ import {transformExtent, transform} from 'ol/proj';
 
 angular.module('munimapBase')
     .controller('baseController', ['$rootScope', '$scope', '$window', '$timeout', '$translate', '$location', '$uibModal',
-        'munimapConfig', 'ControlsService', 'MapService', 'NotificationService', 'DrawService', 'PermalinkService',
-        'ClusterSelectService', 'Tour', 'SaveSettingsService', 'GeocoderService', 'CatalogService', 'PostMessageService',
-        'ReadyService',
+        'munimapConfig', 'ControlsService', 'MapService', 'NotificationService', 'DrawService', 'ClusterSelectService',
+        'Tour', 'SaveSettingsService', 'GeocoderService', 'CatalogService', 'PostMessageService', 'ReadyService',
         function($rootScope, $scope, $window, $timeout, $translate, $location, $uibModal, munimapConfig, ControlsService,
-                 MapService, NotificationService, DrawService, PermalinkService, ClusterSelectService, Tour,
-                 SaveSettingsService, GeocoderService, CatalogService, PostMessageService, ReadyService) {
+                 MapService, NotificationService, DrawService, ClusterSelectService, Tour, SaveSettingsService,
+                 GeocoderService, CatalogService, PostMessageService, ReadyService) {
 
             $scope.printEnabled = munimapConfig.components.print === true;
             $scope.searchEnabled = munimapConfig.components.search === true;
@@ -472,13 +471,6 @@ angular.module('munimapBase')
                     }
                     feature.properties.style = style;
                 });
-                return featureCollection;
-            };
-
-            $scope.extractPermalinkFromImport = function(featureCollection) {
-                if(angular.isDefined(featureCollection.properties) && angular.isDefined(featureCollection.properties.permalink)) {
-                    PermalinkService.applyPermalinkParameters(featureCollection.properties.permalink);
-                }
                 return featureCollection;
             };
 
