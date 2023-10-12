@@ -55,6 +55,7 @@ def layer_migrations():
         layer_dict = {
             'name': digitize_layer.name,
             'title': digitize_layer.title,
+            'type': 'digitize',
             'source': {
                 'name': digitize_layer.name,
                 'srs': 'EPSG:25832',
