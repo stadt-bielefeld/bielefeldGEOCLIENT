@@ -51,12 +51,14 @@ def layer_migrations():
     layer_dicts = []
     for digitize_layer in digitize_layers:
         digitize_props = digitize_layer.properties_schema.get('properties', {})
+        geom_types = {f['geometry']['type'] for f in digitize_layer.features}
         props = [{'name': prop, 'type': 'text', 'label': val['title']} for prop, val in digitize_props.items()]
         layer_dict = {
             'name': digitize_layer.name,
             'title': digitize_layer.title,
             'type': 'digitize',
             'source': {
+                'geom_type': ','.join(geom_types),
                 'name': digitize_layer.name,
                 'srs': 'EPSG:25832',
                 'properties': props
