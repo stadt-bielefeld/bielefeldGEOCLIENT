@@ -6,6 +6,9 @@
   "directories": {
     "doc": "docs"
   },
+  "engines": {
+    "node": "<17"
+  },
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack --watch --mode development"
