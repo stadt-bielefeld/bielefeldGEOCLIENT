@@ -28,7 +28,8 @@ from urllib.parse import urlencode
 
 from munimap import helper
 from munimap.app_layers_def import (
-    prepare_layers_def, 
+    prepare_layers_def,
+    prepare_draw_layers_def,
     prepare_catalog_layers_def, 
     prepare_catalog_layers_name,
     catalog_layer_by_name,
@@ -102,6 +103,7 @@ def index(config=None):
         return render_template('munimap/errors/app_config_error.html',
                                error=ex)
     layers_def = prepare_layers_def(app_config, current_app.layers)
+    draw_layers_def = prepare_draw_layers_def(app_config, current_app.layers)
 
     token = None
     if app_config.get('securityToken'):
@@ -131,8 +133,9 @@ def index(config=None):
         session.pop('project_setting_id')
 
     try:
-        apply_selectionlists_to_geoeditor(app_config, config)
+        apply_selectionlists_to_geoeditor(app_config)
     except helper.InvalidAppConfigError as ex:
+        ex.filename = config
         return render_template('munimap/errors/app_config_error.html',
                            error=ex)
 
@@ -160,6 +163,7 @@ def index(config=None):
             '/munimap/app/index.html',
             app_config=app_config,
             layers_def=layers_def,
+            draw_layers=draw_layers_def,
             project_settings=project_settings,
             settings=selected_settings,
             street_index_layer=current_app.config.get('PRINT_STREET_INDEX_LAYER'),

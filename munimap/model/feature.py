@@ -11,6 +11,7 @@ from geoalchemy2.types import Geometry
 from geoalchemy2.functions import ST_AsGeoJSON
 
 from munimap.extensions import db
+from munimap.helper import _l
 
 __all__ = ['Feature']
 
@@ -57,6 +58,56 @@ class Feature(db.Model):
                 **self.properties,
                 'modified': self.modified
             }
+        }
+
+    properties_schema_form_options = [
+        {
+            'type': 'fieldset',
+            'items': [
+                {
+                    'type': 'section',
+                    'htmlClass': 'col-xs-12',
+                    'items': ['*']
+                }
+            ]
+        }
+    ]
+
+    @classmethod
+    def properties_schema_from_prop_def(cls, prop_def):
+        properties = {}
+        for prop in prop_def:
+            if properties.get(prop['name']) is not None:
+                continue
+            p = {
+                'title': _l(prop['label']) if prop['label'] else _l(prop['name'])
+            }
+            if prop['type'] == 'text':
+                p['type'] = 'string'
+            elif prop['type'] == 'select':
+                p['type'] = 'string'
+                p['enum'] = [option['value'] for option in prop['select']]
+                # in order to add the labels of the select, we have to add a custom x-schema-form
+                p['x-schema-form'] = {
+                    'type': 'select',
+                    'titleMap': [{'value': option['value'], 'name': _l(option['label'])} for option in prop['select']]
+                }
+            elif prop['type'] == 'int':
+                p['type'] = 'integer'
+            elif prop['type'] == 'float':
+                p['type'] = 'number'
+            elif prop['type'] == 'date':
+                p['type'] = 'string'
+                p['format'] = 'date'
+            else:
+                p['type'] = prop['type']
+
+            properties[prop['name']] = p
+
+        return {
+            'type': 'object',
+            'title': _l('Attribute'),
+            'properties': properties
         }
 
     @classmethod

@@ -230,7 +230,7 @@ def load_app_config(config=None, without_404=False):
     return app_config
 
 
-def apply_selectionlists_to_geoeditor(app_config, app_config_path):
+def apply_selectionlists_to_geoeditor(app_config):
     if app_config.get('geoeditor') is None:
         return
     if app_config.get('geoeditor').get('formFields') is None:
@@ -239,25 +239,32 @@ def apply_selectionlists_to_geoeditor(app_config, app_config_path):
     form_fields = app_config['geoeditor']['formFields']
     for geometry_fields in form_fields.values():
         for field in geometry_fields:
-            if field['type'] != 'select' or not isinstance(field['select'], str):
+            selectionlist = resolve_selectionlist(field)
+            if selectionlist is None:
                 continue
+            field['select'] = selectionlist
 
-            file_path = selectionlist_file_path(field['select'])
+def resolve_selectionlist(prop):
+    if prop.get('type') != 'select' or not isinstance(prop.get('select'), str):
+        return
 
-            if not os.path.exists(file_path):
-                class PseudoYamlError:
-                    def __init__(self):
-                        self.problem = 'Referenced selectionlist %s does not exist' %field['select']
-                err = PseudoYamlError()
-                raise InvalidAppConfigError(err, app_config_path)
+    file_path = selectionlist_file_path(prop.get('select'))
 
-            try:
-                selectionlist_config = yaml.safe_load(open(file_path, 'r'))
-            except yaml.YAMLError as ex:
-                raise InvalidAppConfigError(ex, file_path)
-            field['select'] = selectionlist_config
+    if not os.path.exists(file_path):
+        class PseudoYamlError:
+            def __init__(self):
+                self.problem = 'Referenced selectionlist %s does not exist' % prop.get('select')
 
-   
+        err = PseudoYamlError()
+        raise InvalidAppConfigError(err, None)
+
+    try:
+        selectionlist_config = yaml.safe_load(open(file_path, 'r'))
+        return selectionlist_config
+    except yaml.YAMLError as ex:
+        raise InvalidAppConfigError(ex, file_path)
+
+
 def config_file_path(name):
     return os.path.join(os.path.abspath(
         current_app.config.get('LAYERS_CONF_DIR')),

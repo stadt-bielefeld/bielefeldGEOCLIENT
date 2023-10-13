@@ -230,13 +230,48 @@ def prepare_overlays(app_config, layers_config):
     return overlays
 
 
+def prepare_draw_layers(app_config, layers_config):
+    if not app_config.get('components', {}).get('digitize'):
+        return []
+    digitize_layer_names = app_config.get('digitizeConfig', {}).get('layers', [])
+    if not digitize_layer_names:
+        return []
+
+    layers = []
+    for group in current_app.anol_layers['overlays']:
+        for l in group['layers']:
+            if l['name'] in digitize_layer_names and l['type'] == 'digitize':
+                layers.append(l)
+
+    configLayers = [layers_config[l['name']] for l in layers]
+
+    allowedLayersForUser = layers_allowed_for_user(configLayers)
+    allowedDrawLayers = []
+
+    for allowedLayerForUser in allowedLayersForUser:
+        for layer in layers:
+            if allowedLayerForUser['name'] == layer['name']:
+                allowedDrawLayers.append(layer)
+                break
+    for allowedDrawLayer in allowedDrawLayers:
+        allowedDrawLayer['url'] = url_for(
+            'digitize.layer',
+            name=allowedDrawLayer['olLayer']['source']['layer']
+        )
+        allowedDrawLayer['active'] = True
+    return allowedDrawLayers
+
+
 def prepare_layers_def(app_config, layers_config):
     layers_def = {
         'backgroundLayer': prepare_background_layers(app_config, layers_config),
         'overlays': prepare_overlays(app_config, layers_config)
     }
-
     return layers_def
+
+
+def prepare_draw_layers_def(app_config, layers_config):
+    return prepare_draw_layers(app_config, layers_config)
 
 
 def names_from_app_layers_def(app_layers_def):

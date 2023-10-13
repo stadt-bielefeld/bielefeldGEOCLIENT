@@ -41,10 +41,16 @@ wmts_source_spec = {
     'directAccess': bool
 }
 
+select_type_spec = [{
+    required('value'): string_type,
+    'label': string_type
+}]
+
 digitize_properties_spec = [{
     required('name'): string_type,
     required('type'): one_of('text', 'int', 'float', 'select', 'boolean', 'date'),
     'label': string_type,
+    'select': one_of(string_type, select_type_spec)
 }]
 
 digitize_source_spec = {
