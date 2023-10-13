@@ -235,35 +235,6 @@ def list_available_icons():
     return icons
 
 
-@digitize.route('/<name>')
-def digitizer(name=None):
-    pass
-    # layer = Layer.by_name(name)
-    # app_config = load_app_config('digitize')
-    # layers_def = prepare_layers_def(app_config, current_app.layers)
-    # draw_layers = []
-    # for group in layer.feature_groups:
-    #     draw_layers.append({
-    #         'title': group.title,
-    #         # assigned group id to name, because anol layer needs a name
-    #         # to handle layer things internaly correct
-    #         'name': group.id,
-    #         'active': group.active,
-    #         'properties_schema': layer.properties_schema,
-    #         'properties_schema_form_options': layer.properties_schema_form_options,
-    #         'style': layer.style,
-    #         'style_schema': layer.style_schema,
-    #         'style_schema_form_options': layer.style_schema_form_options,
-    #         'label_schema': layer.label_schema,
-    #         'label_schema_form_options': layer.label_schema_form_options,
-    #         'url': url_for('digitize.group', id=group.id)
-    #     })
-    # return render_template('digitize/app/index.html', draw_layers=draw_layers,
-    #                        layers_def=layers_def,
-    #                        app_config=app_config,
-    #                        available_icons=list_available_icons())
-
-
 @digitize.route('/layer/<name>', methods=['GET'])
 def layer(name):
     feats = Feature.by_layer_name(name)
