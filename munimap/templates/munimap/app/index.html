@@ -195,6 +195,12 @@
     }
     {% if app_config.get('app',{})['contextMenu'] == 'index_intern.html' %}
     , {
+      text: 'Starte StreetSmart',
+      title: 'Startet die Anwendung StreetSmart mit der Straßenpanorama-Aufnahme (Cyclorama) an dieser Koordinate',
+      link: true,
+      callback: startStreetSmart
+    },
+    {
       text: 'Klick-Koordinaten',
       title: 'Startet eine Umrechnung der Koordinate in unterschiedliche Koordinatensysteme',
       link: true,
@@ -206,7 +212,7 @@
     function startGoogleMaps(obj) {
       let zoom = obj['zoom'] + 4
       let url = 'https://www.google.de/maps/@' + obj['coordinates']['EPSG:4326'][1] +
-        ',' + obj['coordinates']['EPSG:4326'][0] + ',' + zoom + 'z'
+        ',' + obj['coordinates']['EPSG:4326'][0] + ',' + zoom + 'z';
       return url;
     }
 
@@ -217,13 +223,20 @@
       let url = '{$ base_config.get('COORD_TRANSFORM_URL') $}?rw=' + rw + '&hw=' + hw;
       return url;
     }
+
+    function startStreetSmart(obj) {
+      let rw = obj['coordinates']['EPSG:25832'][0].toFixed(2);
+      let hw = obj['coordinates']['EPSG:25832'][1].toFixed(2);
+      let url = 'https://streetsmart.cyclomedia.com/streetsmart/?q=' + rw + ';' + hw + ';EPSG:25832';
+      return url;
+    }
     {% endif %}
 
     function startOSM(obj) {
-      let zoom = obj['zoom'] + 4
+      let zoom = obj['zoom'] + 4;
       let url = 'https://www.openstreetmap.org/#map=' + zoom +
         '/' + obj['coordinates']['EPSG:4326'][1] +
-        '/' + obj['coordinates']['EPSG:4326'][0]
+        '/' + obj['coordinates']['EPSG:4326'][0];
       return url;
     }
 
