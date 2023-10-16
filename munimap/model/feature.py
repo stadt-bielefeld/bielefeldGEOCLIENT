@@ -30,7 +30,6 @@ DEFAULT_STYLE = {
     'fontRotation': 0,
 }
 
-
 class Feature(db.Model):
     __tablename__ = 'digitize_features'
 
@@ -42,7 +41,9 @@ class Feature(db.Model):
     geojson = column_property(ST_AsGeoJSON(geometry))
 
     created = db.Column(db.DateTime, default=datetime.utcnow)
+    created_by = db.Column(db.Integer)
     modified = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    modified_by = db.Column(db.Integer)
 
     def __init__(self, geojson=None):
         if geojson is not None:
