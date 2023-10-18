@@ -335,6 +335,15 @@ def configure_logging(app):
         layers_logger.propagate = False
         layers_logger.addHandler(handler)
 
+    def add_digitize_logger(handler):
+        handler.setLevel(logging.WARN)
+        handler.setFormatter(formatter)
+
+        layers_logger = logging.getLogger('munimap.digitize')
+        layers_logger.setLevel(logging.ERROR)
+        layers_logger.propagate = False
+        layers_logger.addHandler(handler)
+
     def add_print_logger(handler):
         handler.setLevel(logging.INFO)
         handler.setFormatter(formatter)
@@ -386,6 +395,7 @@ def configure_logging(app):
         add_error_logger(logging.FileHandler(error_log))
         add_proxy_logger(logging.FileHandler(error_log))
         add_layers_logger(logging.FileHandler(error_log))
+        add_digitize_logger(logging.FileHandler(error_log))
         add_print_logger(logging.FileHandler(error_log))
 
     if log_both or app.config['LOG_MODE'] == 'STDOUT':
@@ -396,6 +406,7 @@ def configure_logging(app):
         add_error_logger(logging.StreamHandler(sys.stdout))
         add_proxy_logger(logging.StreamHandler(sys.stdout))
         add_layers_logger(logging.StreamHandler(sys.stdout))
+        add_digitize_logger(logging.StreamHandler(sys.stdout))
         add_print_logger(logging.StreamHandler(sys.stdout))
 
     if log_stats:
