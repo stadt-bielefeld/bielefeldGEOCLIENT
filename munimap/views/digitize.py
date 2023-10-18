@@ -50,16 +50,14 @@ def features():
     if source_name is None:
         abort(404)
 
-    feats = []
     for feature_json in feature_collection['features']:
         feature = Feature(geojson=feature_json)
         feature.layer_name = source_name
         feature.created_by = current_user.id
         feature.modified_by = current_user.id
-        feats.append(feature)
-
-    db.session.add_all(feats)
+        db.session.add(feature)
     db.session.commit()
+
     response = jsonify({
         'action': 'created',
         'message': _('Features for %(title)s added successfully', title=layer_name),
