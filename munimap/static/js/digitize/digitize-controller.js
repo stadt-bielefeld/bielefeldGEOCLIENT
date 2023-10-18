@@ -1,25 +1,27 @@
 angular.module('munimapDigitize')
-    .controller('digitizeController', ['$scope', '$rootScope', '$olOn', 'MapService', 'DrawService', 'SaveManagerService',
-        function ($scope, $rootScope, $olOn, MapService, DrawService, SaveManagerService) {
+    .controller('digitizeController', ['$scope', '$rootScope', '$olOn', 'MapService', 'DrawService', 'SaveManagerService', 'NotificationService',
+        function ($scope, $rootScope, $olOn, MapService, DrawService, SaveManagerService, NotificationService) {
 
             $scope.drawLayer = undefined;
 
             $scope.hasChanges = function () {
-                return Object.keys(SaveManagerService.changedLayers).length > 0;
+                if ($scope.drawLayer === undefined) {
+                  return false;
+                }
+                return $scope.drawLayer.name in SaveManagerService.changedLayers;
             };
 
             $scope.saveChanges = function () {
                 var lastActiveLayer = DrawService.activeLayer;
-                SaveManagerService.commitAll().then(
-                    function(responses) {
-                        angular.forEach(responses, function(response) {
+                SaveManagerService.commit($scope.drawLayer).then(
+                    function(responses_data) {
+                        angular.forEach(responses_data, function(response) {
                             NotificationService.addSuccess(response.message);
                         });
                         DrawService.changeLayer(lastActiveLayer);
-                    }, function(responses) {
-                        angular.forEach(responses, function(response) {
-                            NotificationService.addError(response.message);
-                        });
+                    }, function(response) {
+                        // TODO add error message to endpoints and check handling in savemanager
+                        NotificationService.addError(response.message);
                         DrawService.changeLayer(lastActiveLayer);
                     }
                 );

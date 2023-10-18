@@ -150,5 +150,7 @@ angular.module('munimap', [
         }])
     .config(['SaveManagerServiceProvider',
         function(SaveManagerServiceProvider) {
-            SaveManagerServiceProvider.setSaveUrl(digitizeSaveUrl);
+            SaveManagerServiceProvider.setSaveNewFeaturesUrl(digitizeSaveNewFeaturesUrl);
+            SaveManagerServiceProvider.setSaveChangedFeaturesUrl(digitizeSaveChangedFeaturesUrl);
+            SaveManagerServiceProvider.setSaveRemovedFeaturesUrl(digitizeSaveRemovedFeaturesUrl);
         }]);
