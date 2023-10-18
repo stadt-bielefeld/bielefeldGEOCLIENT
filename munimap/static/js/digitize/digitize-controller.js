@@ -20,7 +20,6 @@ angular.module('munimapDigitize')
                         });
                         DrawService.changeLayer(lastActiveLayer);
                     }, function(response) {
-                        // TODO add error message to endpoints and check handling in savemanager
                         NotificationService.addError(response.message);
                         DrawService.changeLayer(lastActiveLayer);
                     }
