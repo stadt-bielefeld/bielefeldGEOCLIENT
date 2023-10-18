@@ -1,0 +1,33 @@
+<div ng-if="digitizeEnabled"
+     ng-controller="digitizePopupController">
+    <div anol-feature-popup
+         layers="popupLayers"
+         class="munimap-digitize-popup"
+         open-for="openDigitizePopupFor"
+         on-close="onCloseDigitizePopup(feature)"
+         auto-pan-margin="50"
+         offset="[0, -20]"
+         alt-mobile-fullscreen="true">
+        <div ng-controller="popupController">
+            <div class="popup-header">
+              <h4>{$ _('Properties') $}</h4>
+            </div>
+            <div class="popup-content">
+                <div class="tab-content">
+                    <div class="digitize">
+                        <div anol-feature-properties-editor="feature"
+                            layer="layer"
+                            template-url="munimap/feature-properties-editor.html">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="popup-footer">
+                <button class="btn btn-default btn-sm pull-right"
+                        ng-click="popup.close()">
+                    {$ _('Close') $}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

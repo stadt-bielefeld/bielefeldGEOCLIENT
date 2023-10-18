@@ -150,7 +150,7 @@ angular.module('munimapGeoeditor')
                     }
                 );
             });
-          
+
             $scope.$parent.$parent.openGeoeditorPopup = function (layer, feature) {
                   if (angular.isUndefined(feature.get('style'))) {
                       var style = angular.copy(DefaultStyle);

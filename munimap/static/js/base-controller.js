@@ -43,14 +43,34 @@ angular.module('munimapBase')
             $scope.measureLabelSegmentsEnabled = munimapConfig.components.measureLabelSegments === true;
             $scope.drawEnabled = munimapConfig.components.draw === true;
             $scope.geoeditorEnabled = munimapConfig.components.geoeditor === true;
+            $scope.digitizeEnabled = munimapConfig.components.digitize === true;
 
             if ($scope.geoeditorEnabled) {
                 $scope.geoeditorConfig = munimapConfig.geoeditor;
             }
 
-            if ($scope.drawEnabled && $scope.geoeditorEnabled) {
-                // anol-draw does not support multiple instances. This causes draw and geoeditor to work on the same layer.
-                $scope.applicationError = 'The options draw and geoeditor cannot be enabled at the same time.';
+            const mutuallyExclusiveDrawComponents = [
+              $scope.drawEnabled,
+              $scope.geoeditorEnabled,
+              $scope.digitizeEnabled
+            ];
+            if (mutuallyExclusiveDrawComponents.filter(t => t).length > 1) {
+                // anol-draw does not support multiple instances. This causes the draw components to work on the same layer.
+                $scope.applicationError = 'The options draw, geoeditor and digitize cannot be enabled at the same time.';
+            }
+
+            if ($scope.digitizeEnabled) {
+              $scope.digitizeConfig = munimapConfig.digitizeConfig;
+              $scope.digitizeLayerGeomType = undefined;
+              $scope.$watch(function() {
+                  return DrawService.activeLayer;
+              }, function() {
+                  if (angular.isUndefined(DrawService.activeLayer)) {
+                    $scope.digitizeLayerGeomType = undefined;
+                  } else {
+                    $scope.digitizeLayerGeomType = DrawService.activeLayer.options.geomType;
+                  }
+              });
             }
 
             $scope.catalogEnabled = munimapConfig.components.catalog === true;
@@ -76,7 +96,7 @@ angular.module('munimapBase')
             CatalogService.setVariant($scope.catalogVariant);
             $scope.hideMetadata = munimapConfig.app.hideMetadata == true;
 
-            if($scope.drawEnabled === false && $scope.geoeditorEnabled === false) {
+            if(!$scope.drawEnabled && !$scope.geoeditorEnabled && !$scope.digitizeEnabled) {
                 DrawService.changeLayer(undefined);
                 $scope.popupLayers = [];
                 $scope.excludePopupLayers = [];

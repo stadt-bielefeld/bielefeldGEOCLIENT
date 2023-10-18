@@ -1,0 +1,77 @@
+<div ng-controller="digitizeController" class="digitize">
+    <h5 class="digitize-header">{{ drawTitle }}</h5>
+    <div class="btn-group digitize-draw-header">
+        <span>
+          {$ _('Topic') $}:
+        </span>
+        <span>
+          {{drawLayer.title}}
+        </span>
+    </div>
+    <div class="btn-group digitize-edit">
+        <button class="btn btn-default btn-sm draw-point"
+                ng-if="activeLayer.options.geomType === 'Point'"
+                ng-click="drawPoint()"
+                uib-tooltip="{$ _('Draw') $}"
+                tooltip-placement="bottom"
+                tooltip-popup-delay="{{ tooltipDelay }}"
+                tooltip-enable="{{ tooltipEnable }}"
+                tooltip-trigger="mouseenter">
+            <div class="draw-icon"></div>
+            {$ _('Draw') $}
+        </button>
+        <button class="btn btn-default btn-sm draw-line"
+                ng-if="activeLayer.options.geomType === 'LineString'"
+                ng-click="drawLine()"
+                uib-tooltip="{$ _('Draw') $}"
+                tooltip-placement="bottom"
+                tooltip-popup-delay="{{ tooltipDelay }}"
+                tooltip-enable="{{ tooltipEnable }}"
+                tooltip-trigger="mouseenter">
+            <div class="draw-icon"></div>
+            {$ _('Draw') $}
+        </button>
+        <button class="btn btn-default btn-sm draw-polygon"
+                ng-if="activeLayer.options.geomType === 'Polygon'"
+                ng-click="drawPolygon()"
+                uib-tooltip="{$ _('Draw') $}"
+                tooltip-placement="bottom"
+                tooltip-popup-delay="{{ tooltipDelay }}"
+                tooltip-enable="{{ tooltipEnable }}"
+                tooltip-trigger="mouseenter">
+            <div class="draw-icon"></div>
+            {$ _('Draw') $}
+        </button>
+        <button class="draw-edit btn btn-default btn-sm"
+                ng-class="{ active: modifyActive }"
+                ng-click="toggleModify()"
+                uib-tooltip="{$ _('Modify') $}"
+                tooltip-placement="bottom"
+                tooltip-popup-delay="{{ tooltipDelay }}"
+                tooltip-enable="{{ tooltipEnable }}"
+                tooltip-trigger="mouseenter">
+            <div class="draw-icon"></div>
+            {{ modifyLabel }}
+        </button>
+        <button ng-click="toggleRemove()"
+                class="btn btn-default btn-sm draw-remove"
+                ng-class="{ active: removeActive }"
+                uib-tooltip="{{ 'anol.draw.TOOLTIP_REMOVE' | translate }}"
+                tooltip-placement="bottom"
+                tooltip-popup-delay="{{ tooltipDelay }}"
+                tooltip-enable="{{ tooltipEnable }}"
+                tooltip-trigger="mouseenter">
+            <div class="draw-icon"></div>
+            {{ removeLabel }}
+        </button>
+    </div>
+    <div class="digitize-draw-footer">
+      <button class="btn btn-default btn-sm save-button"
+              ng-class="{'btn-success': hasChanges()}"
+              ng-disabled="!hasChanges()"
+              ng-click="saveChanges()">
+          <span class="glyphicon glyphicon-save"></span>
+          {$ _('Save') $}
+      </button>
+    </div>
+</div>
