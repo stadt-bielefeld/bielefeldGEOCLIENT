@@ -124,6 +124,11 @@ class Feature(db.Model):
         return q.all()
 
     @classmethod
+    def by_layer_name_and_id(cls, layer_name, feature_id):
+        q = cls.query.filter(cls.id == feature_id, cls.layer_name == layer_name)
+        return q.first()
+
+    @classmethod
     def as_feature_collection(cls, features):
         return {
             'type': 'FeatureCollection',
