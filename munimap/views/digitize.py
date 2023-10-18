@@ -86,7 +86,7 @@ def update_features():
     if source_name is None:
         abort(404)
 
-    added_some_feature = False
+    added_some_features = False
     for geojson_feature in feature_collection.get('features'):
         if geojson_feature.get('id') is None:
             digitize_log.error(f'Cannot update single feature for layer {layer_name}. Id missing.')
@@ -101,9 +101,9 @@ def update_features():
         feature.update_from_geojson(geojson_feature)
         feature.modified_by = current_user.id
         db.session.add(feature)
-        added_some_feature = True
+        added_some_features = True
 
-    if not added_some_feature:
+    if not added_some_features:
         abort(400)
 
     db.session.commit()
@@ -116,9 +116,46 @@ def update_features():
     return response
 
 
-@digitize.route('/features', methods=['DELETE'])
+@digitize.route('/features/delete', methods=['POST'])
 def remove_features():
-    pass
+    if LocalProxyRequest.json is None:
+        abort(400)
+    layer_name = LocalProxyRequest.json.get('name')
+    ids = LocalProxyRequest.json.get('ids')
+
+    if None in (layer_name, ids):
+        abort(400)
+
+    # checking layer permission
+    lyr = current_app.layers.get(layer_name)
+    if lyr is None:
+        abort(404)
+
+    source_name = lyr.get('source', {}).get('name')
+    if source_name is None:
+        abort(404)
+
+    removed_some_features = False
+    for feature_id in ids:
+        feature = Feature.by_layer_name_and_id(source_name, feature_id)
+        if feature is None:
+            digitize_log.error(f'Cannot delete single feature for layer {layer_name}. '
+                               f'Feature with id {feature_id} not found.')
+            continue
+        db.session.delete(feature)
+        removed_some_features = True
+
+    if not removed_some_features:
+        abort(400)
+
+    db.session.commit()
+
+    response = jsonify({
+        'action': 'deleted',
+        'message': _('Features for %(title)s deleted successfully', title=layer_name),
+    })
+    response.status_code = 200
+    return response
 
 
 def list_available_icons():
