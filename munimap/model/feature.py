@@ -1,4 +1,5 @@
 from datetime import datetime
+import json
 
 from sqlalchemy.orm import column_property
 from sqlalchemy.dialects.postgresql import JSONB
@@ -55,7 +56,7 @@ class Feature(db.Model):
         return {
             'id': self.id,
             'type': 'Feature',
-            'geometry': self.geojson,
+            'geometry': json.loads(self.geojson),
             'properties': {
                 **self.properties,
                 'modified': self.modified
