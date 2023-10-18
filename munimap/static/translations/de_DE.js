@@ -91,7 +91,8 @@ var deDETranslation = {
             'HEIGHT_TOO_BIG': 'Höchsthöhe: '
         },
         'savemanager': {
-            'SERVICE_UNAVAILABLE': 'Dienst nicht verfügbar'
+            'SERVICE_UNAVAILABLE': 'Dienst nicht verfügbar',
+            'SAVING_FAILED': 'Änderungen konnten nicht gespeichert werden.'
         },
         'scaleText': {
             'SCALE': 'Maßstab'
