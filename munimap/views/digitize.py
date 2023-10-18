@@ -2,18 +2,16 @@ import os
 from datetime import datetime, time
 
 from flask import (
-    Blueprint, jsonify, abort, url_for,
-    redirect, flash, current_app,
-    send_from_directory,
-    request as LocalProxyRequest
+    Blueprint, jsonify, abort, flash,
+    current_app, send_from_directory,
+    redirect, request as LocalProxyRequest,
+    url_for
 )
-
-import yaml
 
 from flask_login import current_user
 
 from munimap.extensions import db
-from munimap.helper import _, check_group_permission
+from munimap.helper import _
 from munimap.lib.yaml_loader import load_yaml_file
 from munimap.model import Feature
 
@@ -25,185 +23,59 @@ digitize = Blueprint(
 )
 
 
-@digitize.route('/admin/<name>/edit_properties', methods=['POST'])
-def edit_properties(name=None):
-    pass
-    # layer = Layer.by_name(name)
-    #
-    # form = EditPropertiesForm.from_schema(layer.properties_schema)
-    #
-    # if form.validate_on_submit():
-    #     schema = layer.properties_schema
-    #     for key in schema['properties'].keys():
-    #         schema['properties'][key]['title'] = form.data[key]
-    #     layer.properties_schema = schema
-    #     db.session.commit()
-    #     flash(_('Property updated'), 'success')
-    # else:
-    #     for field_name, errors in form.errors.items():
-    #         for error in errors:
-    #             flash(field_name + ': ' + error, 'error')
-    #
-    # return redirect(url_for('.properties', name=name))
-
-
-@digitize.route('/admin/<name>/add_property', methods=['POST'])
-def add_property(name=None):
-    pass
-    # form = AddPropertyForm()
-    # if form.validate_on_submit():
-    #     layer = Layer.by_name(name)
-    #     try:
-    #         layer.add_property({
-    #             'name': form.data['name'],
-    #             'title': form.data['title']
-    #         })
-    #     except ValueError:
-    #         flash(_('Property %(name)s already exists' % (
-    #             {'name': form.data['name']})), 'error')
-    #     else:
-    #         db.session.commit()
-    #         flash(_('Property %(name)s added', name=form.data['name']),
-    #               'success')
-    # else:
-    #     for field_name, errors in form.errors.items():
-    #         for error in errors:
-    #             flash(form[field_name].label.text + ': ' + error, 'error')
-    #
-    # return redirect(url_for('.properties', name=name))
-
-
-@digitize.route('/admin/<name>/remove_property/<key>', methods=['GET'])
-def remove_property(name=None, key=None):
-    pass
-    # layer = Layer.by_name(name)
-    # if key is None:
-    #     abort(404)
-    #
-    # schema = layer.properties_schema
-    # if key not in schema['properties']:
-    #     abort(404)
-    #
-    # del schema['properties'][key]
-    #
-    # layer.properties_schema = schema
-    # db.session.commit()
-    #
-    # for group in layer.feature_groups:
-    #     for feature in group.features:
-    #         if feature.properties.get(key):
-    #             del feature.properties[key]
-    # db.session.commit()
-    #
-    # flash(_('Property %(key)s removed', key=key), 'success')
-    # return redirect(url_for('.properties', name=name))
-
-
-def combine_date_and_time(_date, _time, default_time=[0, 0]):
-    if _date is None:
-        return None
-    if _time is None:
-        _time = time(default_time[0], default_time[1])
-    else:
-        _time = _time.time()
-    _date = datetime.combine(_date, _time)
-
-    return _date
-
-
-def validate_dates(form, start_date, end_date):
-    if start_date is None and end_date is None:
-        return True
-
-    valid = True
-    if start_date is not None and end_date is None:
-        form.end_date.errors.append(
-            _('Can not be empty if start date is set'))
-        valid = False
-
-    if end_date is not None and start_date is None:
-        form.start_date.errors.append(
-            _('Can not be empty if end date is set'))
-        valid = False
-
-    if valid:
-        if start_date >= end_date:
-            form.start_date.errors.append(
-                _('start date must be lower than end date'))
-            valid = False
-
-        if end_date <= start_date:
-            form.end_date.errors.append(
-                _('end date must be greater than start date'))
-            valid = False
-
-    return valid
-
-
-@digitize.context_processor
-def digitize_context_processor():
-    # TODO check if still needed
-    def is_admin():
-        return check_group_permission([
-            current_app.config.get('DIGITIZE_ADMIN_GROUP')
-        ])
-
-    return dict(is_admin=is_admin)
-
-
-@digitize.route('/group/<int:id>', methods=['GET'])
-def group(id):
-    pass
-    # group = FeatureGroup.by_id(id)
-    # return jsonify(group.resless_feature_collection)
-
-
-@digitize.route('/group/<int:id>', methods=['DELETE'])
-def remove_feature_group(id):
-    pass
-    # group = FeatureGroup.by_id(id)
-    # db.session.delete(group)
-    # db.session.commit()
-    # return jsonify({
-    #     'action': 'removed',
-    #     'message': _('Removed feature group successfully'),
-    # })
+@digitize.before_request
+def check_permission():
+    # users need to be logged in, in order to work with given endpoints
+    if current_user.is_anonymous:
+        flash(_('Access not allowed'), 'error')
+        return redirect(url_for('user.login', next=LocalProxyRequest.url))
 
 
 @digitize.route('/features', methods=['POST'])
 def features():
+    if LocalProxyRequest.json is None:
+        abort(400)
+    layer_name = LocalProxyRequest.json.get('name')
+    feature_collection = LocalProxyRequest.json.get('featureCollection')
+
+    if None in (layer_name, feature_collection):
+        abort(400)
+
+    # checking layer permission
+    lyr = current_app.layers.get(layer_name)
+    if lyr is None:
+        abort(404)
+
+    source_name = lyr.get('source', {}).get('name')
+    if source_name is None:
+        abort(404)
+
+    feats = []
+    for feature_json in feature_collection['features']:
+        feature = Feature(geojson=feature_json)
+        feature.layer_name = source_name
+        feature.created_by = current_user.id
+        feature.modified_by = current_user.id
+        feats.append(feature)
+
+    db.session.add_all(feats)
+    db.session.commit()
+    response = jsonify({
+        'action': 'created',
+        'message': _('Features for %(title)s added successfully', title=layer_name),
+    })
+    response.status_code = 200
+    return response
+
+
+@digitize.route('/features', methods=['PUT'])
+def update_features():
     pass
-    # if LocalProxyRequest.json is None:
-    #     abort(400)
-    #
-    # # got group_id from name, because group_id is assigned as name
-    # # see 'digitizer' below
-    # group_id = LocalProxyRequest.json.get('name')
-    # feature_collection = LocalProxyRequest.json.get('featureCollection')
-    #
-    # if None in (group_id, feature_collection):
-    #     abort(400)
-    #
-    # group = FeatureGroup.by_id(group_id)
-    #
-    # # TODO: Should all features be really deleted before creating? Why not adding only the new feature?
-    # # In case of error, all features will be deleted and none will be written.
-    # # Maybe refactor this
-    # group.delete_all_features()
-    #
-    # features = feature_collection.get('features', [])
-    #
-    # for feature in features:
-    #     feature = Feature(feature_group=group, geojson=feature)
-    #     db.session.add(feature)
-    # db.session.commit()
-    #
-    # response = jsonify({
-    #     'action': 'created',
-    #     'message': _('%(title)s saved successfully', title=group.title),
-    # })
-    # response.status_code = 200
-    # return response
+
+
+@digitize.route('/features', methods=['DELETE'])
+def remove_features():
+    pass
 
 
 def list_available_icons():

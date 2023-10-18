@@ -105,7 +105,9 @@
     var printUrl = '{$ url_for("export.print_post") $}';
     var streetIndexLayer = '{$ street_index_layer $}';
     var imageUrl = '{$ url_for("static", filename="img/") $}';
-    var digitizeSaveUrl = '{$ url_for("digitize.features") $}';
+    var digitizeSaveNewFeaturesUrl = '{$ url_for("digitize.features") $}';
+    var digitizeSaveChangedFeaturesUrl = '{$ url_for("digitize.update_features") $}';
+    var digitizeSaveRemovedFeaturesUrl = '{$ url_for("digitize.remove_features") $}';
   </script>
   {$ super() $}
 

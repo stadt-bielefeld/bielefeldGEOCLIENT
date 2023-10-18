@@ -30,6 +30,7 @@ DEFAULT_STYLE = {
     'fontRotation': 0,
 }
 
+
 class Feature(db.Model):
     __tablename__ = 'digitize_features'
 
