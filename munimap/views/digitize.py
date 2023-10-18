@@ -1,5 +1,4 @@
 import os
-from datetime import datetime, time
 
 from flask import (
     Blueprint, jsonify, abort, flash,
@@ -15,6 +14,8 @@ from munimap.helper import _
 from munimap.lib.yaml_loader import load_yaml_file
 from munimap.model import Feature
 
+import logging
+digitize_log = logging.getLogger('munimap.digitize')
 
 digitize = Blueprint(
     'digitize',
@@ -68,7 +69,51 @@ def features():
 
 @digitize.route('/features', methods=['PUT'])
 def update_features():
-    pass
+    if LocalProxyRequest.json is None:
+        abort(400)
+    layer_name = LocalProxyRequest.json.get('name')
+    feature_collection = LocalProxyRequest.json.get('featureCollection')
+
+    if None in (layer_name, feature_collection):
+        abort(400)
+
+    # checking layer permission
+    lyr = current_app.layers.get(layer_name)
+    if lyr is None:
+        abort(404)
+
+    source_name = lyr.get('source', {}).get('name')
+    if source_name is None:
+        abort(404)
+
+    added_some_feature = False
+    for geojson_feature in feature_collection.get('features'):
+        if geojson_feature.get('id') is None:
+            digitize_log.error(f'Cannot update single feature for layer {layer_name}. Id missing.')
+            continue
+        feature = Feature.by_layer_name_and_id(source_name, geojson_feature.get('id'))
+        if feature is None:
+            digitize_log.error(f'Cannot update single feature for layer {layer_name}. '
+                               f'Feature with id {geojson_feature.get("id")} not found.')
+            continue
+        if 'modified' in geojson_feature.get('properties'):
+            del geojson_feature['properties']['modified']
+        feature.update_from_geojson(geojson_feature)
+        feature.modified_by = current_user.id
+        db.session.add(feature)
+        added_some_feature = True
+
+    if not added_some_feature:
+        abort(400)
+
+    db.session.commit()
+
+    response = jsonify({
+        'action': 'updated',
+        'message': _('Features for %(title)s updated successfully', title=layer_name),
+    })
+    response.status_code = 200
+    return response
 
 
 @digitize.route('/features', methods=['DELETE'])
