@@ -107,7 +107,7 @@ class Feature(db.Model):
 
         return {
             'type': 'object',
-            'title': _l('Attribute'),
+            'title': _l('Attributes'),
             'properties': properties
         }
 

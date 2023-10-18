@@ -199,6 +199,7 @@ def anol_overlay_layer(layer_conf, layers_base_url=''):
         anol_layer['cluster'] = layer_conf.get('cluster', False)
 
     if layer_conf['type'] == 'digitize':
+        anol_layer['geom_type'] = layer_conf['source'].get('geom_type')
         prop_def = layer_conf['source'].get('properties')
         if prop_def is not None:
             for prop in prop_def:

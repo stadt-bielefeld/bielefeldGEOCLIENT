@@ -105,6 +105,7 @@
     var printUrl = '{$ url_for("export.print_post") $}';
     var streetIndexLayer = '{$ street_index_layer $}';
     var imageUrl = '{$ url_for("static", filename="img/") $}';
+    var digitizeSaveUrl = '{$ url_for("digitize.features") $}';
   </script>
   {$ super() $}
 
@@ -151,8 +152,8 @@
     .value('DrawIconsPrefix', '{$ url_for("munimap.draw_icons", filename="") $}');
 
     angular.module('munimap')
-    .config(['LayersServiceProvider', 'CatalogServiceProvider', 'SaveSettingsServiceProvider',
-      function(LayersServiceProvider, CatalogServiceProvider, SaveSettingsServiceProvider) {
+    .config(['LayersServiceProvider', 'CatalogServiceProvider', 'SaveSettingsServiceProvider', 'DrawServiceProvider',
+      function(LayersServiceProvider, CatalogServiceProvider, SaveSettingsServiceProvider, DrawServiceProvider) {
         var layers = {$ create_layers(layers_def) $};
         var drawLayers = [
         {% for layer in draw_layers %}
@@ -162,6 +163,7 @@
             displayInLayerswitcher: false,
             propertiesSchema: {$ layer["properties_schema"] | tojson $},
             propertiesSchemaFormOptions: {$ layer["properties_schema_form_options"] | tojson $},
+            geomType: '{$ layer["geom_type"] $}',
             {% if layer["style"] %}style: {$ layer["style"] | tojson $},{% endif %}
             editable: true,
             saveable: true,
@@ -175,6 +177,9 @@
         {% endfor %}
         ];
         LayersServiceProvider.setLayers(layers.concat(drawLayers));
+        if (drawLayers.length > 0) {
+          DrawServiceProvider.setActiveLayer(drawLayers[drawLayers.length - 1]);
+        }
         CatalogServiceProvider.setLoadUrl('{$ url_for("munimap.catalog_names", config=project_name) $}');
         SaveSettingsServiceProvider.setSaveUrl('{$ url_for("user.save_settings") $}');
         SaveSettingsServiceProvider.setLoadUrl('{$ url_for("user.load_settings") $}');

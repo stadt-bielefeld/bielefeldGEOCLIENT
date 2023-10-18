@@ -3,6 +3,7 @@ require('angular-ui-switch');
 import GeoJSON from 'ol/format/GeoJSON';
 
 angular.module('munimap', [
+    'schemaForm',
     'anol.geolocation',
     'anol.getfeatureinfo',
     'anol.measure',
@@ -10,8 +11,11 @@ angular.module('munimap', [
     'anol.print',
     'anol.scale',
     'anol.urlmarkers',
+    'anol.featurepropertieseditor',
+    'anol.savemanager',
     'munimapDraw',
     'munimapGeoeditor',
+    'munimapDigitize',
     'munimapBase.moveableModal',
     'munimapBase.alkisButton',
     'munimapBase.alkisSimple',
@@ -143,4 +147,8 @@ angular.module('munimap', [
                 pageMargins.push(px2mm(margin));
             });
             PrintPageServiceProvider.setPageMargins(pageMargins);
+        }])
+    .config(['SaveManagerServiceProvider',
+        function(SaveManagerServiceProvider) {
+            SaveManagerServiceProvider.setSaveUrl(digitizeSaveUrl);
         }]);

@@ -1,10 +1,11 @@
-.text-white
-  color: $white
-
-.tooltip-info
-  font-size:12px
-  vertical-align: super
-  cursor: pointer
+.munimap-digitize-draw
+  .anol-drawer-content
+    .anol-draw
+      .digitize
+        display: flex
+        flex-direction: column
+        .digitize-draw-header
+          padding-bottom: 10px
 
 .form-horizontal
   margin: 0px 15px 0px
@@ -33,9 +34,11 @@
       .control-label
         // padding-top: 0
         font-weight: bold
+      .has-feedback
+        .form-control
+          padding-right: 35px
       .form-control-feedback
-        top: 15px
-        right: 5px
+          right: 5px
       .help-block
         position: absolute
         margin-top: 0
@@ -55,43 +58,6 @@
   .form-group
     button
       margin-top: 10px
-
-/* index page */
-
-.list-group-item
-  cursor: pointer
-  &:hover
-    color: #555;
-    text-decoration: none;
-    background-color: #f5f5f5;
-
-.list-group-item a
-  margin-right: 10px
-  line-height: 1
-  cursor: pointer
-  color: #555;
-  &:hover
-    cursor: pointer
-    color: #555;
-    text-decoration: none;
-    background-color: #f5f5f5;
-
-/* side bar */
-.sidebar-header
-  .back-to-index
-    position: absolute
-    right: 3px
-    bottom: 3px
-    z-index: 1
-.sidebar-content
-  .editable-layer
-    .layer-title
-      display: inline-block
-      max-width: 75%
-    &.inactive
-      .layer-title
-        .glyphicon
-          opacity: 0.4
 
 /* map */
 
@@ -147,6 +113,10 @@
           min-width: 250px
           min-height: 160px
           position: relative
+
+          .munimap-datepicker
+            span.input-group-btn
+              vertical-align: bottom
 
           .properties
             .form-horizontal

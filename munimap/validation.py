@@ -56,6 +56,7 @@ digitize_properties_spec = [{
 digitize_source_spec = {
     'name': string_type,
     'srs': string_type,
+    'geom_type': one_of('Point', 'LineString', 'Polygon'),
     'properties': digitize_properties_spec
 }
 

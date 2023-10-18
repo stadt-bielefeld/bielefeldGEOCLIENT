@@ -16,6 +16,24 @@
     >
     </div>
 </div>
+<div anol-drawer
+    ng-if="digitizeEnabled"
+    class="munimap-digitize-draw"
+    label="'{$ _('Digitize') $}'"
+>
+    <div anol-draw
+         draw-title="'{$ _('Digitize') $}'"
+         modify-label="'{$ _('Modify') $}'"
+         remove-label="'{$ _('Remove') $}'"
+         template-url="munimap/digitize-draw.html"
+         post-draw-action="openDigitizePopup(layer, feature)"
+         post-delete-action="onDelete(layer, feature)"
+         on-modify-select="onModifySelect()"
+         live-measure="false"
+         short-text="true"
+    >
+    </div>
+</div>
 <div anol-map class="map" style="position: relative;">
   <div anol-url-markers></div>
   <div anol-attribution
@@ -23,6 +41,7 @@
   </div>
   {% include 'munimap/app/draw-popup.html' %}
   {% include 'munimap/app/geoeditor-popup.html' %}
+  {% include 'munimap/app/digitize-popup.html' %}
   <div anol-zoom
        ng-style="hasTouch ? mobileZoomButtonsPosition : desktopZoomButtonsPosition"
        tooltip-delay="{{ tooltipDelay}}">
@@ -266,6 +285,9 @@
 </script>
 <script type="text/ng-template" id="munimap/feature-label-editor.html">
     {% include 'munimap/app/ng-templates/feature-label-editor.html' %}
+</script>
+<script type="text/ng-template" id="munimap/feature-properties-editor.html">
+    {% include 'munimap/app/ng-templates/feature-properties-editor.html' %}
 </script>
 <script type="text/ng-template" id="munimap/feature-icons.html">
     {% include 'munimap/app/ng-templates/feature-icons.html' %}
