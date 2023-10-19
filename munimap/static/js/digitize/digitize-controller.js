@@ -18,10 +18,23 @@ angular.module('munimapDigitize')
                         angular.forEach(responses_data, function(response) {
                             NotificationService.addSuccess(response.message);
                         });
-                        DrawService.changeLayer(lastActiveLayer);
+                        // The refresh below triggers a change event
+                        // that we want to intercept to maintain a clean
+                        // state in the Settingsmanager afterwards.
+                        lastActiveLayer.olLayer.once('change', function(evt) {
+                            evt.stopPropagation();
+                            SaveManagerService.changesDone(lastActiveLayer.name);
+                            DrawService.changeLayer(lastActiveLayer);
+                        });
+                        lastActiveLayer.refresh();
                     }, function(response) {
                         NotificationService.addError(response.message);
-                        DrawService.changeLayer(lastActiveLayer);
+                        lastActiveLayer.olLayer.once('change', function() {
+                            evt.stopPropagation();
+                            SaveManagerService.changesDone(lastActiveLayer.name);
+                            DrawService.changeLayer(lastActiveLayer);
+                        });
+                        lastActiveLayer.refresh();
                     }
                 );
             };
