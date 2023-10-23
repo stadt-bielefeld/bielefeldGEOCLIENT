@@ -41,6 +41,18 @@ angular.module('munimapGeoeditor')
 
                     const geoJSON = geoJSONFormat.writeFeaturesObject(DrawService.activeLayer.getFeatures());
 
+                    // flatten form values
+                    for (const geoJSONFeature of geoJSON.features) {
+                        const {
+                            formValues,
+                            ...otherProps
+                        } = geoJSONFeature.properties;
+                        geoJSONFeature.properties = {
+                            ...formValues,
+                            ...otherProps
+                        };
+                    }
+
                     callback({
                         action: 'finishGeoEditing_response',
                         value: {
@@ -150,7 +162,7 @@ angular.module('munimapGeoeditor')
                     }
                 );
             });
-          
+
             $scope.$parent.$parent.openGeoeditorPopup = function (layer, feature) {
                   if (angular.isUndefined(feature.get('style'))) {
                       var style = angular.copy(DefaultStyle);
@@ -171,7 +183,7 @@ angular.module('munimapGeoeditor')
               // This following event is used to trigger an update of the popup configuration
               // when clicking on an existing geographic element on the map.
               // Without this event the popup element will show the configuration of the last
-              // created element, i.e, it can show tabs for content that should be shown, like the attribute form, 
+              // created element, i.e, it can show tabs for content that should be shown, like the attribute form,
               // even when there are no attributes present.
               $olOn(MapService.getMap(), 'singleclick', (evt) => {
                 MapService.getMap().forEachFeatureAtPixel(evt.pixel, function(feature, layer) {

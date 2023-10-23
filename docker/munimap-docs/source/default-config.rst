@@ -660,7 +660,7 @@ Suche nach Orten über Apache Solr.
           resultMarkerVisible: 0
           urlMarkerColor: E2001A
           autoSearchChars: 3
-          resultMarker: 
+          resultMarker:
               graphicFile: 'geocoder-marker.svg'
               graphicWidth: 32
               graphicHeight: 50
@@ -690,7 +690,7 @@ Suche nach Orten über den Kunden eigenen Catalog-Dienst.
         geocoder: Catalog
         selected: false
         geocoderOptions:
-            steps: 
+            steps:
               - getgemarkungen
               - getflure
               - getflurstuecke
@@ -705,7 +705,7 @@ Suche nach Orten über den Kunden eigenen Catalog-Dienst.
         resultMarkerVisible: 0
         urlMarkerColor: E2001A
         autoSearchChars: 1
-        resultMarker: 
+        resultMarker:
             graphicFile: 'geocoder-marker.svg'
             graphicWidth: 32
             graphicHeight: 50
@@ -1000,7 +1000,7 @@ In diesem Abschnitt werden die Konfigurationen des geoEDITOR-Moduls vorgestellt.
 
         ``geoJSON``
           geoJSON Objekt, welches die gezeichneten Geometrien in EPSG:4326 enthält. Die eingetragenen Formulardaten
-          sind der jeweiligen Geometrie unter dem Attribut ``properties.formValues`` angehängt. Der Style der jeweiligen
+          sind der jeweiligen Geometrie unter dem Attribut ``properties`` angehängt. Der Style der jeweiligen
           Geometrie ist unter dem Attribut ``properties.style`` angehängt.
 
         Bei erfolgloser Validierung antwortet die Schnittstelle mit einem ``finishGeoEditing_response`` Event, welches
