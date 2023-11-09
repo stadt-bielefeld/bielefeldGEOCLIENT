@@ -176,7 +176,7 @@ class Feature(db.Model):
             pass
 
         for key, value in properties.items():
-            properties[key] = str(value)
+            properties[key] = value
 
         geometry = from_shape(shape(geojson['geometry']), srid=25832)
         self.geometry = geometry
