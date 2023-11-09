@@ -5,7 +5,7 @@ angular.module('schemaForm').run(['$templateCache',
     function($templateCache) {
         $templateCache.put(
             'directives/decorators/bootstrap/datepicker/datepicker.html',
-            '<div ng-controller="datepickerController" class="form-group munimap-datepicker" ng-class="{\'has-error\': hasError()}"><div class="input-group"> <label class="control-label" ng-show="showTitle()">{{form.title}}</label> <input type="text" class="form-control" sf-field-model="replaceAll" uib-datepicker-popup="{{format}}" ng-model="$$value$$" is-open="datepickerOpen"/> <span class="input-group-btn"> <button type="button" class="btn btn-default" ng-click="openDatepicker()"> <i class="glyphicon glyphicon-calendar"></i> </button> </span> </div> </div>'
+            '<div ng-controller="datepickerController" class="form-group munimap-datepicker" ng-class="{\'has-error\': hasError()}"><div class="input-group"> <label class="control-label" ng-show="showTitle()">{{form.title}}</label> <input type="text" class="form-control" sf-field-model="replaceAll" uib-datepicker-popup="{{format}}" ng-model="dt" datepicker-options="datepickerOptions" is-open="datepickerOpen"/> <span class="input-group-btn"> <button type="button" class="btn btn-default" ng-click="openDatepicker()"> <i class="glyphicon glyphicon-calendar"></i> </button> </span> </div> </div>'
         );
     }
 ]);
@@ -40,4 +40,19 @@ angular.module('schemaForm')
         $scope.openDatepicker = function () {
           $scope.datepickerOpen = true;
         }
+
+        var dt = $scope.model[$scope.form.key[0]];
+        $scope.dt = dt ? new Date(dt) : undefined;
+
+        $scope.datepickerOptions = {
+          showWeeks: false,
+          ngModelOptions: {
+            timezone: 'UTC'
+          }
+        };
+        $scope.$watch('dt', function(newValue, _, scope) {
+          if (newValue) {
+            scope.model[scope.form.key[0]] = newValue.toISOString();
+          }
+        });
     }]);
