@@ -160,6 +160,10 @@ class Feature(db.Model):
 
         return _features
 
+    @staticmethod
+    def get_modified_timestamps(feats):
+        return [{'id': f.id, 'modified': f.modified} for f in feats]
+
     def update_from_geojson(self, geojson):
         # if feature has no properties, properties is None so default
         # value for get is never reached

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-17 17:01+0200\n"
+"POT-Creation-Date: 2023-11-28 17:12+0100\n"
 "PO-Revision-Date: 2015-12-11 10:51+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -36,7 +36,7 @@ msgstr "Maßstab 1 : %(scale)s"
 #: ../munimap/forms/admin.py:11 ../munimap/forms/admin.py:17
 #: ../munimap/forms/admin.py:22 ../munimap/forms/admin.py:27
 #: ../munimap/forms/admin.py:32 ../munimap/forms/admin.py:37
-#: ../munimap/forms/admin.py:42 ../munimap/model/feature.py:84
+#: ../munimap/forms/admin.py:42 ../munimap/model/feature.py:86
 #: ../munimap/templates/munimap/admin/ng-templates/group-form.html:6
 #: ../munimap/templates/munimap/admin/ng-templates/group-list.html:6
 #: ../munimap/templates/munimap/admin/ng-templates/layer-list.html:6
@@ -355,14 +355,14 @@ msgstr "Fett"
 msgid "Value must be lower or equal than {{schema.maximum}}"
 msgstr "Wert muss kleiner oder gleich {{schema.maximum}} sein"
 
-#: ../munimap/model/feature.py:84 ../munimap/model/feature.py:94
+#: ../munimap/model/feature.py:86 ../munimap/model/feature.py:96
 #, fuzzy
 msgid "label"
 msgstr "Text"
 
-#: ../munimap/model/feature.py:110
+#: ../munimap/model/feature.py:112
 msgid "Attributes"
-msgstr ""
+msgstr "Attribute"
 
 #: ../munimap/templates/munimap/admin/index.html:88
 #: ../munimap/templates/munimap/admin/index.html:125
@@ -730,6 +730,7 @@ msgstr "Speichern trotz Fehler"
 #: ../munimap/templates/munimap/admin/ng-templates/plugins-edit.html:48
 #: ../munimap/templates/munimap/admin/ng-templates/project-edit.html:46
 #: ../munimap/templates/munimap/admin/ng-templates/selectionlists-edit.html:46
+#: ../munimap/templates/munimap/app/ng-templates/digitize-draw.html:74
 #: ../munimap/templates/munimap/user/password.html:17
 #: ../munimap/templates/munimap/user/password_recover_set.html:17
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:75
@@ -1029,13 +1030,13 @@ msgstr "Geometrie löschen"
 msgid "GeoEditor"
 msgstr "Sachdaten"
 
-#: ../munimap/templates/munimap/app/index.html:119
+#: ../munimap/templates/munimap/app/index.html:124
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/index.html:39
 #: ../munimap_transport/munimap_transport/templates/transport/app/index.html:53
 msgid "Use ctrl + wheel to zoom"
 msgstr "Zum Zoomen Strg+Scrollen verwenden"
 
-#: ../munimap/templates/munimap/app/index.html:120
+#: ../munimap/templates/munimap/app/index.html:125
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/index.html:40
 #: ../munimap_transport/munimap_transport/templates/transport/app/index.html:54
 msgid "Use two fingers to move the map"
@@ -1055,7 +1056,7 @@ msgstr "Ändern"
 msgid "Remove geometry"
 msgstr "Löschen"
 
-#: ../munimap/templates/munimap/app/map.html:21
+#: ../munimap/templates/munimap/app/map.html:22
 #: ../munimap/templates/munimap/app/map.html:25
 #: ../munimap_digitize/munimap_digitize/templates/digitize/pages/index.html:3
 msgid "Digitize"
@@ -1066,7 +1067,7 @@ msgstr "Digitalisierung"
 msgid "Modify"
 msgstr "Bearbeiten"
 
-#: ../munimap/templates/munimap/app/map.html:116
+#: ../munimap/templates/munimap/app/map.html:117
 #: ../munimap/templates/munimap/app/ng-templates/sidebar-header.html:3
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/map.html:42
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/sidebar-header.html:3
@@ -1075,34 +1076,34 @@ msgstr "Bearbeiten"
 msgid "Close menu"
 msgstr "Menü schließen"
 
-#: ../munimap/templates/munimap/app/map.html:116
+#: ../munimap/templates/munimap/app/map.html:117
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/map.html:42
 #: ../munimap_transport/munimap_transport/templates/transport/app/map.html:74
 msgid "Open menu"
 msgstr "Menü öffnen"
 
-#: ../munimap/templates/munimap/app/map.html:128
+#: ../munimap/templates/munimap/app/map.html:129
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/map.html:52
 #: ../munimap_transport/munimap_transport/templates/transport/app/map.html:86
 msgid "Startposition"
 msgstr "Zurück zur Ausgangsposition"
 
-#: ../munimap/templates/munimap/app/map.html:249
+#: ../munimap/templates/munimap/app/map.html:250
 #: ../munimap_transport/munimap_transport/templates/transport/app/map.html:148
 msgid "UTM 32"
 msgstr "UTM 32"
 
-#: ../munimap/templates/munimap/app/map.html:250
+#: ../munimap/templates/munimap/app/map.html:251
 #: ../munimap_transport/munimap_transport/templates/transport/app/map.html:147
 msgid "WGS 84"
 msgstr "WGS 84"
 
-#: ../munimap/templates/munimap/app/map.html:251
+#: ../munimap/templates/munimap/app/map.html:252
 #: ../munimap_transport/munimap_transport/templates/transport/app/map.html:149
 msgid "Web Mercator"
 msgstr "Web Mercator"
 
-#: ../munimap/templates/munimap/app/map.html:265
+#: ../munimap/templates/munimap/app/map.html:266
 #: ../munimap_transport/munimap_transport/templates/transport/app/map.html:171
 msgid "Open Timetable"
 msgstr "Fahrplanauskunft öffnen"
@@ -1146,6 +1147,27 @@ msgstr "Thema"
 #: ../munimap/templates/munimap/app/ng-templates/digitize-draw.html:43
 msgid "Draw"
 msgstr "Zeichnen"
+
+#: ../munimap/templates/munimap/app/ng-templates/digitize-draw.html:78
+msgid "Layer was updated by others. Click to refresh data."
+msgstr "Layer wurde von anderen verändert. Zum Aktualisieren klicken."
+
+#: ../munimap/templates/munimap/app/ng-templates/digitize-draw.html:81
+msgid ""
+"Changes on edited/removed features that were also modified by others, "
+"will be reset. Other changes will be kept."
+msgstr ""
+"Änderungen von bearbeiteten/entfernten Features, die auch von anderen "
+"bearbeitet wurden, werden zurückgesetzt. Andere Änderungen bleiben erhalten."
+
+#: ../munimap/templates/munimap/app/ng-templates/digitize-draw.html:92
+#, fuzzy
+msgid "Refresh"
+msgstr "Aktualisieren"
+
+#: ../munimap/templates/munimap/app/ng-templates/digitize-draw.html:98
+msgid "Could not refresh digitize layer. Saving disabled until reconnected."
+msgstr "Digitalisierungslayer konnte nicht aktualisiert werden. Speichern wird deaktiviert, bis wieder verbunden."
 
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:1
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:5
@@ -1820,28 +1842,27 @@ msgstr "Plugin existiert bereits"
 msgid "Plugin %(name)s renamed to %(new_name)s"
 msgstr "Plugin %(name)s wurde zu %(new_name)s umbenannt"
 
-#: ../munimap/views/digitize.py:121
-#: ../munimap_digitize/munimap_digitize/views/admin.py:235
-msgid "Can not be empty if start date is set"
-msgstr "Eingabe erforderlich wenn Beginn nicht leer"
+#: ../munimap/views/digitize.py:34
+msgid "Access not allowed"
+msgstr "Zugang verweigert"
 
-#: ../munimap/views/digitize.py:126
-#: ../munimap_digitize/munimap_digitize/views/admin.py:240
-msgid "Can not be empty if end date is set"
-msgstr "Eingabe erforderlich wenn Ende nicht leer"
+#: ../munimap/views/digitize.py:67
+#, fuzzy, python-format
+msgid "Features for %(title)s added successfully"
+msgstr "Features für %(title)s erfolgreich hinzugefügt"
 
-#: ../munimap/views/digitize.py:132
-#: ../munimap_digitize/munimap_digitize/views/admin.py:246
-msgid "start date must be lower than end date"
-msgstr "Beginn muss früher als Ende sein"
+#: ../munimap/views/digitize.py:116
+#, fuzzy, python-format
+msgid "Features for %(title)s updated successfully"
+msgstr "Features für %(title)s erfolgreich aktualisiert"
 
-#: ../munimap/views/digitize.py:137
-#: ../munimap_digitize/munimap_digitize/views/admin.py:251
-msgid "end date must be greater than start date"
-msgstr "Ende muss später als Beginn sein"
+#: ../munimap/views/digitize.py:158
+#, fuzzy, python-format
+msgid "Features for %(title)s deleted successfully"
+msgstr "Features für %(title)s erfolgreich gelöscht"
 
-#: ../munimap/views/munimap.py:92 ../munimap/views/munimap.py:191
-#: ../munimap/views/munimap.py:236 ../munimap/views/munimap.py:274
+#: ../munimap/views/munimap.py:92 ../munimap/views/munimap.py:192
+#: ../munimap/views/munimap.py:237 ../munimap/views/munimap.py:275
 msgid "You are not allowed to open this app."
 msgstr "Sie haben nicht die nötige Berechtigung um die Anwendung zu öffnen."
 
@@ -2258,6 +2279,22 @@ msgstr "Eigenschaft %(key)s wurde entfernt"
 #: ../munimap_digitize/munimap_digitize/views/admin.py:207
 msgid "Style updated"
 msgstr "Darstellung aktualisiert"
+
+#: ../munimap_digitize/munimap_digitize/views/admin.py:235
+msgid "Can not be empty if start date is set"
+msgstr "Eingabe erforderlich wenn Beginn nicht leer"
+
+#: ../munimap_digitize/munimap_digitize/views/admin.py:240
+msgid "Can not be empty if end date is set"
+msgstr "Eingabe erforderlich wenn Ende nicht leer"
+
+#: ../munimap_digitize/munimap_digitize/views/admin.py:246
+msgid "start date must be lower than end date"
+msgstr "Beginn muss früher als Ende sein"
+
+#: ../munimap_digitize/munimap_digitize/views/admin.py:251
+msgid "end date must be greater than start date"
+msgstr "Ende muss später als Beginn sein"
 
 #: ../munimap_digitize/munimap_digitize/views/admin.py:282
 #, python-format
