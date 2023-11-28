@@ -108,6 +108,8 @@
     var digitizeSaveNewFeaturesUrl = '{$ url_for("digitize.features") $}';
     var digitizeSaveChangedFeaturesUrl = '{$ url_for("digitize.update_features") $}';
     var digitizeSaveRemovedFeaturesUrl = '{$ url_for("digitize.remove_features") $}';
+    var digitizePollingUrl = '{$ url_for("digitize.features_modified_timestamps") $}';
+    var digitizePollingInterval = {$ digitize_polling_interval $};
   </script>
   {$ super() $}
 

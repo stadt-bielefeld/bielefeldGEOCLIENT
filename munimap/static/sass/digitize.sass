@@ -2,10 +2,20 @@
   .anol-drawer-content
     .anol-draw
       .digitize
+        width: 250px
         display: flex
         flex-direction: column
         .digitize-draw-header
           padding-bottom: 10px
+        .digitize-edit
+          display: flex
+          flex-direction: row
+          button
+            flex: 1
+        .digitize-draw-footer
+          .error-text
+            span
+              color: $warning-color
 
 .form-horizontal
   margin: 0px 15px 0px

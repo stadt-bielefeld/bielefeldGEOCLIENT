@@ -23,6 +23,9 @@ digitize = Blueprint(
     url_prefix='/digitize'
 )
 
+# TODO adjust permission handling so that only layers with permissions can be requested/modified
+# TODO check for possible inconsistent states on update and delete. This might happen, if multiple clients
+#      send requests in between polling intervals
 
 @digitize.before_request
 def check_permission():
@@ -156,6 +159,19 @@ def remove_features():
     })
     response.status_code = 200
     return response
+
+
+@digitize.route('/features/modified_timestamps', methods=['GET'])
+def features_modified_timestamps():
+    name = LocalProxyRequest.args.get('layer')
+    if not name:
+        abort(400)
+    layer_name = current_app.layers.get(name, {}).get('source', {}).get('name')
+    if not layer_name:
+        abort(400)
+    feats = Feature.by_layer_name(layer_name)
+    modified_list = Feature.get_modified_timestamps(feats)
+    return jsonify(modified_list)
 
 
 def list_available_icons():

@@ -153,4 +153,6 @@ angular.module('munimap', [
             SaveManagerServiceProvider.setSaveNewFeaturesUrl(digitizeSaveNewFeaturesUrl);
             SaveManagerServiceProvider.setSaveChangedFeaturesUrl(digitizeSaveChangedFeaturesUrl);
             SaveManagerServiceProvider.setSaveRemovedFeaturesUrl(digitizeSaveRemovedFeaturesUrl);
+            SaveManagerServiceProvider.setPollingUrl(digitizePollingUrl);
+            SaveManagerServiceProvider.setPollingInterval(digitizePollingInterval);
         }]);
