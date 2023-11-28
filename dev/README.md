@@ -168,6 +168,13 @@ sudo chmod -R a+rwx dev/data/
 ```
 **Note**: Other commands are also set in the `manage.py`. You can check which commands exist by running `FLASK_APP=manage.py flask --help`
 
+## Run alembic to upgrade to latest revision
+
+While the database is up, run from the `bielefeldGEOCLIENT` folder:
+
+```
+alembic upgrade head
+```
 
 ## Debugging the application
 
