@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-11-29 10:12+0100\n"
+"POT-Creation-Date: 2023-11-29 12:58+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,7 +35,7 @@ msgstr ""
 #: ../munimap/forms/admin.py:11 ../munimap/forms/admin.py:17
 #: ../munimap/forms/admin.py:22 ../munimap/forms/admin.py:27
 #: ../munimap/forms/admin.py:32 ../munimap/forms/admin.py:37
-#: ../munimap/forms/admin.py:42 ../munimap/model/feature.py:86
+#: ../munimap/forms/admin.py:42 ../munimap/model/feature.py:93
 #: ../munimap/templates/munimap/admin/ng-templates/group-form.html:6
 #: ../munimap/templates/munimap/admin/ng-templates/group-list.html:6
 #: ../munimap/templates/munimap/admin/ng-templates/layer-list.html:6
@@ -354,11 +354,11 @@ msgstr ""
 msgid "Value must be lower or equal than {{schema.maximum}}"
 msgstr ""
 
-#: ../munimap/model/feature.py:86 ../munimap/model/feature.py:96
+#: ../munimap/model/feature.py:93 ../munimap/model/feature.py:103
 msgid "label"
 msgstr ""
 
-#: ../munimap/model/feature.py:112
+#: ../munimap/model/feature.py:119
 msgid "Attributes"
 msgstr ""
 
@@ -1816,23 +1816,33 @@ msgstr ""
 msgid "Plugin %(name)s renamed to %(new_name)s"
 msgstr ""
 
-#: ../munimap/views/digitize.py:34
+#: ../munimap/views/digitize.py:31
 msgid "Access not allowed"
 msgstr ""
 
-#: ../munimap/views/digitize.py:67
+#: ../munimap/views/digitize.py:64
 #, python-format
 msgid "Features for %(title)s added successfully"
 msgstr ""
 
-#: ../munimap/views/digitize.py:116
+#: ../munimap/views/digitize.py:136
 #, python-format
 msgid "Features for %(title)s updated successfully"
 msgstr ""
 
-#: ../munimap/views/digitize.py:158
+#: ../munimap/views/digitize.py:142
+#, python-format
+msgid "Not all changed features for %(title)s updated"
+msgstr ""
+
+#: ../munimap/views/digitize.py:214
 #, python-format
 msgid "Features for %(title)s deleted successfully"
+msgstr ""
+
+#: ../munimap/views/digitize.py:220
+#, python-format
+msgid "Not all provided features for %(title)s deleted"
 msgstr ""
 
 #: ../munimap/views/munimap.py:92 ../munimap/views/munimap.py:192

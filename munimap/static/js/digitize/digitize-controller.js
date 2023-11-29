@@ -18,7 +18,16 @@ angular.module('munimapDigitize')
                 SaveManagerService.commit($scope.drawLayer).then(
                     function(responses_data) {
                         angular.forEach(responses_data, function(response) {
-                            NotificationService.addSuccess(response.message);
+                            switch(response.status) {
+                                case 200:
+                                    NotificationService.addSuccess(response.data.message);
+                                    break;
+                                case 207:
+                                    NotificationService.addWarning(response.data.message);
+                                    break;
+                                default:
+                                    break;
+                            }
                         });
                     }, function(response) {
                         NotificationService.addError(response.message);
