@@ -9,7 +9,7 @@ angular.module('munimapDigitize')
 
             $scope.hasChanges = function () {
                 if ($scope.drawLayer === undefined) {
-                  return false;
+                    return false;
                 }
                 return SaveManagerService.hasChanges($scope.drawLayer.name);
             };
@@ -71,7 +71,7 @@ angular.module('munimapDigitize')
               $scope.showPollingError = true;
             };
 
-            $scope.$watch(function() {
+            $scope.$watch(function () {
                 return DrawService.activeLayer;
             }, function (newLayer, oldLayer) {
                 $scope.drawLayer = newLayer;

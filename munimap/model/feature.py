@@ -169,7 +169,7 @@ class Feature(db.Model):
 
     @staticmethod
     def get_modified_timestamps(feats):
-        return [{'id': f.id, 'modified': f.modified} for f in feats]
+        return [{'id': f.id, 'modified': f.modified.isoformat()} for f in feats]
 
     def update_from_geojson(self, geojson):
         # if feature has no properties, properties is None so default
