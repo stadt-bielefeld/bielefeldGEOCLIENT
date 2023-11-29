@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-11-28 17:12+0100\n"
+"POT-Creation-Date: 2023-11-29 10:12+0100\n"
 "PO-Revision-Date: 2015-12-11 10:51+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -356,7 +356,6 @@ msgid "Value must be lower or equal than {{schema.maximum}}"
 msgstr "Wert muss kleiner oder gleich {{schema.maximum}} sein"
 
 #: ../munimap/model/feature.py:86 ../munimap/model/feature.py:96
-#, fuzzy
 msgid "label"
 msgstr "Text"
 
@@ -1158,16 +1157,18 @@ msgid ""
 "will be reset. Other changes will be kept."
 msgstr ""
 "Änderungen von bearbeiteten/entfernten Features, die auch von anderen "
-"bearbeitet wurden, werden zurückgesetzt. Andere Änderungen bleiben erhalten."
+"bearbeitet wurden, werden zurückgesetzt. Andere Änderungen bleiben "
+"erhalten."
 
 #: ../munimap/templates/munimap/app/ng-templates/digitize-draw.html:92
-#, fuzzy
 msgid "Refresh"
 msgstr "Aktualisieren"
 
 #: ../munimap/templates/munimap/app/ng-templates/digitize-draw.html:98
 msgid "Could not refresh digitize layer. Saving disabled until reconnected."
-msgstr "Digitalisierungslayer konnte nicht aktualisiert werden. Speichern wird deaktiviert, bis wieder verbunden."
+msgstr ""
+"Digitalisierungslayer konnte nicht aktualisiert werden. Speichern wird "
+"deaktiviert, bis wieder verbunden."
 
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:1
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:5
@@ -1516,7 +1517,7 @@ msgid "user %(name)s removed"
 msgstr "Benutzer %(name)s wurde erfolgreich gelöscht"
 
 #: ../munimap/views/admin.py:306
-#, fuzzy, python-format
+#, python-format
 msgid "Username %(name)s already exists"
 msgstr "Kennung %(name)s ist bereits vorhanden"
 
@@ -1540,7 +1541,6 @@ msgid "group %(name)s removed"
 msgstr "Gruppe %(name)s wurde erfolgreich gelöscht"
 
 #: ../munimap/views/admin.py:406 ../munimap/views/admin.py:435
-#, fuzzy
 msgid "User or group does not exist"
 msgstr "Benutzer oder Gruppe existiert nicht"
 
@@ -1555,7 +1555,6 @@ msgid "\"%(user_name)s\" removed from \"%(group_name)s\""
 msgstr "Benutzer \"%(user_name)s\" aus Gruppe \"%(group_name)s\" entfernt"
 
 #: ../munimap/views/admin.py:464 ../munimap/views/admin.py:493
-#, fuzzy
 msgid "Layer or group does not exist"
 msgstr "Layer oder Gruppe existiert nicht"
 
@@ -1570,12 +1569,11 @@ msgid "\"%(layer_name)s removed from \"%(group_name)s\""
 msgstr "Layer \"%(layer_name)s aus Gruppe \"%(group_name)s\" entfernt"
 
 #: ../munimap/views/admin.py:522 ../munimap/views/admin.py:552
-#, fuzzy
 msgid "Project or group does not exist"
 msgstr "Projekt oder Gruppe existiert nicht"
 
 #: ../munimap/views/admin.py:530 ../munimap/views/admin.py:539
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(project_name)s\" added to \"%(group_name)s\""
 msgstr "Projekt \"%(project_name)s\" zu Gruppe \"%(group_name)s\" hinzugefügt"
 
@@ -1585,12 +1583,12 @@ msgid "\"%(project_name)s\" removed from \"%(group_name)s\""
 msgstr "Projekt \"%(project_name)s\" aus Gruppe \"%(group_name)s\" entfernt"
 
 #: ../munimap/views/admin.py:582 ../munimap/views/admin.py:591
-#, fuzzy, python-format
+#, python-format
 msgid "Project \"%(project)s protected"
 msgstr "Projekt \"%(project)s\" abgesichert"
 
 #: ../munimap/views/admin.py:605 ../munimap/views/admin.py:612
-#, fuzzy, python-format
+#, python-format
 msgid "Project \"%(project)s unprotected"
 msgstr "Absicherung von Projekt \"%(project)s\" entfernt"
 
@@ -1620,7 +1618,7 @@ msgid "Invalid JSON"
 msgstr "Ungültiges Format"
 
 #: ../munimap/views/admin.py:735
-#, fuzzy, python-format
+#, python-format
 msgid "Project with name \"%(name)s\" already exists"
 msgstr "Project mit dem %(name)s ist bereits vorhanden"
 
@@ -1634,7 +1632,6 @@ msgid "Project not exists"
 msgstr "Project existiert nicht"
 
 #: ../munimap/views/admin.py:777 ../munimap/views/admin.py:1020
-#, fuzzy
 msgid "Project does not exist"
 msgstr "Projekt existiert nicht"
 
@@ -1644,78 +1641,72 @@ msgid "Project %(name)s updated"
 msgstr "Project %(name)s wurde aktualisiert"
 
 #: ../munimap/views/admin.py:820 ../munimap/views/admin.py:828
-#, fuzzy
 msgid "Project config does not exist"
 msgstr "Projekt-Konfiguration existiert nicht"
 
 #: ../munimap/views/admin.py:837
-#, fuzzy
 msgid "Project config already exists"
 msgstr "Project-Konfiguration existiert bereits"
 
 #: ../munimap/views/admin.py:857
-#, fuzzy, python-format
+#, python-format
 msgid "Project %(name)s renamed to %(new_name)s"
 msgstr "Project %(name)s wurde zu %(new_name)s umbenannt"
 
 #: ../munimap/views/admin.py:878
-#, fuzzy, python-format
+#, python-format
 msgid "Project %(name)s removed"
 msgstr "Project %(name)s wurde gelöscht"
 
 #: ../munimap/views/admin.py:883 ../munimap/views/admin.py:909
-#, fuzzy, python-format
+#, python-format
 msgid "Project %(name)s not found"
 msgstr "Projekt \"%(name)s\" nicht vorhanden"
 
 #: ../munimap/views/admin.py:898
-#, fuzzy, python-format
+#, python-format
 msgid "Project %(name)s was transferred"
 msgstr "Project %(name)s wurde übertragen"
 
 #: ../munimap/views/admin.py:904 ../munimap/views/admin.py:1177
-#, fuzzy
 msgid "No project selected"
 msgstr "Kein gültiges Projekt ausgewählt"
 
 #: ../munimap/views/admin.py:920 ../munimap/views/admin.py:1030
 #: ../munimap/views/admin.py:1126 ../munimap/views/admin.py:1134
-#, fuzzy
 msgid "Map config does not exist"
 msgstr "Konfiguration existiert nicht"
 
 #: ../munimap/views/admin.py:929
-#, fuzzy, python-format
+#, python-format
 msgid "Map config \"%(name)s loaded"
 msgstr "Konfiguration %(name)s wurde hinzugefügt"
 
 #: ../munimap/views/admin.py:959 ../munimap/views/admin.py:1052
-#, fuzzy
 msgid "Config has some errors"
 msgstr "Konfiguration enthält Fehler"
 
 #: ../munimap/views/admin.py:977
-#, fuzzy
 msgid "Map config already exists"
 msgstr "Konfiguration existiert bereits"
 
 #: ../munimap/views/admin.py:1000
-#, fuzzy, python-format
+#, python-format
 msgid "Map config %(name)s created"
 msgstr "Konfiguration %(name)s wurde erstellt"
 
 #: ../munimap/views/admin.py:1084
-#, fuzzy, python-format
+#, python-format
 msgid "Map config %(name)s updated"
 msgstr "Konfiguration %(name)s wurde hinzugefügt"
 
 #: ../munimap/views/admin.py:1110
-#, fuzzy, python-format
+#, python-format
 msgid "Map config %(name)s removed"
 msgstr "Konfiguration %(name)s wurde hinzugefügt"
 
 #: ../munimap/views/admin.py:1115
-#, fuzzy, python-format
+#, python-format
 msgid "Map config %(name)s not found"
 msgstr "Konfiguration %(name)s wurde hinzugefügt"
 
@@ -1729,12 +1720,12 @@ msgid "map %(name)s renamed to %(new_name)s"
 msgstr "Karte %(name)s wurde zu %(new_name)s umbenannt"
 
 #: ../munimap/views/admin.py:1171
-#, fuzzy, python-format
+#, python-format
 msgid "Map config %(name)s was transferred"
 msgstr "Project %(name)s wurde übertragen"
 
 #: ../munimap/views/admin.py:1182
-#, fuzzy, python-format
+#, python-format
 msgid "Project %(name)s not successfully transferred"
 msgstr "Projekt \"%(name)s\" konnte nicht übertragen werden."
 
@@ -1764,7 +1755,7 @@ msgid "Selectionlist %(name)s updated"
 msgstr "Auswahlliste %(name)s wurde aktualisiert"
 
 #: ../munimap/views/admin.py:1318
-#, fuzzy, python-format
+#, python-format
 msgid "Selectionlist with name \"%(name)s\" already exists"
 msgstr "Auswahlliste mit dem %(name)s ist bereits vorhanden"
 
@@ -1788,7 +1779,6 @@ msgid "Selectionlist config does not exist"
 msgstr "Konfiguration für Auswahlliste existiert nicht"
 
 #: ../munimap/views/admin.py:1387
-#, fuzzy
 msgid "Selectionlist config already exists"
 msgstr "Konfiguration für Auswahlliste existiert bereits"
 
@@ -1847,17 +1837,17 @@ msgid "Access not allowed"
 msgstr "Zugang verweigert"
 
 #: ../munimap/views/digitize.py:67
-#, fuzzy, python-format
+#, python-format
 msgid "Features for %(title)s added successfully"
 msgstr "Features für %(title)s erfolgreich hinzugefügt"
 
 #: ../munimap/views/digitize.py:116
-#, fuzzy, python-format
+#, python-format
 msgid "Features for %(title)s updated successfully"
 msgstr "Features für %(title)s erfolgreich aktualisiert"
 
 #: ../munimap/views/digitize.py:158
-#, fuzzy, python-format
+#, python-format
 msgid "Features for %(title)s deleted successfully"
 msgstr "Features für %(title)s erfolgreich gelöscht"
 
