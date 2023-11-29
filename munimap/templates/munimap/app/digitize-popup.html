@@ -7,7 +7,9 @@
          on-close="onCloseDigitizePopup(feature)"
          auto-pan-margin="50"
          offset="[0, -20]"
-         alt-mobile-fullscreen="true">
+         alt-mobile-fullscreen="true"
+         feature-filter="featureFilter(feature)"
+    >
         <div ng-controller="popupController">
             <div class="popup-header">
               <h4>{$ _('Properties') $}</h4>
