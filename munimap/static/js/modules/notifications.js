@@ -28,6 +28,9 @@ angular.module('munimapBase.notification', [])
             NotificationService.prototype.addInfo = function(msg, options) {
                 this.add(msg, 'info', options);
             };
+            NotificationService.prototype.addWarning = function(msg, options) {
+                this.add(msg, 'warning', options);
+            };
             NotificationService.prototype.addSuccess = function(msg, options) {
                 this.add(msg, 'success', options);
             };
@@ -44,7 +47,7 @@ angular.module('munimapBase.notification', [])
 
     .directive('notifications', ['NotificationService', function(NotificationService) {
         return {
-            template: '<div ng-repeat="notification in notifications"><div ng-click="close(notification)" class="alert" ng-class="{\'alert-info\': notification.type === \'info\', \'alert-danger\': notification.type === \'error\', \'alert-success\': notification.type === \'success\'}">{{ notification.msg }}</div></div>',
+            template: '<div ng-repeat="notification in notifications"><div ng-click="close(notification)" class="alert" ng-class="{\'alert-info\': notification.type === \'info\', \'alert-danger\': notification.type === \'error\', \'alert-success\': notification.type === \'success\', \'alert-warning\': notification.type === \'warning\'}">{{ notification.msg }}</div></div>',
             link: function(scope) {
                 scope.notifications = NotificationService.notifications;
                 scope.close = function(notification) {
