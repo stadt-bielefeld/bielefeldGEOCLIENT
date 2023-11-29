@@ -228,7 +228,11 @@ def features_modified_timestamps():
     name = LocalProxyRequest.args.get('layer')
     if not name:
         abort(400)
-    layer_name = current_app.layers.get(name, {}).get('source', {}).get('name')
+    # checking layer permission
+    lyr = current_app.layers.get(name)
+    if lyr is None:
+        abort(404)
+    layer_name = lyr.get('source', {}).get('name')
     if not layer_name:
         abort(400)
     feats = Feature.by_layer_name(layer_name)
@@ -267,8 +271,14 @@ def list_available_icons():
 
 @digitize.route('/layer/<name>', methods=['GET'])
 def layer(name):
-    # TODO add check for layer permission
-    feats = Feature.by_layer_name(name)
+    # checking layer permission
+    lyr = current_app.layers.get(name)
+    if lyr is None:
+        abort(404)
+    layer_name = lyr.get('source', {}).get('name')
+    if not layer_name:
+        abort(400)
+    feats = Feature.by_layer_name(layer_name)
     feature_collection = Feature.as_feature_collection(feats)
     return jsonify(feature_collection)
 
