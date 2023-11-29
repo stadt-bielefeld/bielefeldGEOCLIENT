@@ -160,7 +160,7 @@ def prepare_group_layers(app_config, layers, group_active, layers_config, visibl
         if layer['type'] == 'digitize':
             layer['olLayer']['source']['url'] = url_for(
                 'digitize.layer',
-                name=layer['olLayer']['source']['layer']
+                name=layer['name']
             )
 
             if 'externalGraphicPrefix' not in layer:
@@ -256,7 +256,7 @@ def prepare_draw_layers(app_config, layers_config):
     for allowedDrawLayer in allowedDrawLayers:
         allowedDrawLayer['url'] = url_for(
             'digitize.layer',
-            name=allowedDrawLayer['olLayer']['source']['layer']
+            name=allowedDrawLayer['name']
         )
         allowedDrawLayer['active'] = True
     return allowedDrawLayers
@@ -416,7 +416,7 @@ def prepare_catalog_layers_def(app_layers_def, layers_config, selected_group=Non
             if layer['type'] == 'digitize':
                 layer['olLayer']['source']['url'] = url_for(
                     'digitize.layer',
-                    name=layer['olLayer']['source']['layer']
+                    name=layer['name']
                 )
                 if 'externalGraphicPrefix' not in layer:
                     layer['externalGraphicPrefix'] = url_for('digitize.icons',
