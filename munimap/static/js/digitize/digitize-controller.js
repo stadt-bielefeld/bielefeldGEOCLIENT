@@ -4,9 +4,12 @@ angular.module('munimapDigitize')
 
             $scope.drawLayer = undefined;
 
+            $scope.needsRefresh = false;
+            $scope.showPollingError = false;
+
             $scope.hasChanges = function () {
                 if ($scope.drawLayer === undefined) {
-                  return false;
+                    return false;
                 }
                 return SaveManagerService.hasChanges($scope.drawLayer.name);
             };
@@ -15,12 +18,25 @@ angular.module('munimapDigitize')
                 SaveManagerService.commit($scope.drawLayer).then(
                     function(responses_data) {
                         angular.forEach(responses_data, function(response) {
-                            NotificationService.addSuccess(response.message);
+                            switch(response.status) {
+                                case 200:
+                                    NotificationService.addSuccess(response.data.message);
+                                    break;
+                                case 207:
+                                    NotificationService.addWarning(response.data.message);
+                                    break;
+                                default:
+                                    break;
+                            }
                         });
                     }, function(response) {
                         NotificationService.addError(response.message);
                     }
                 );
+            };
+
+            $scope.refreshLayer = function () {
+                SaveManagerService.refreshLayer($scope.drawLayer);
             };
 
             $scope.$parent.$parent.openDigitizePopup = function (layer, feature) {
@@ -45,9 +61,21 @@ angular.module('munimapDigitize')
                 $rootScope.$broadcast('digitize:closePopup');
             };
 
-            $scope.$watch(function() {
+            var onPollingSuccess = function () {
+              $scope.needsRefresh = SaveManagerService.hasPollingChanges(DrawService.activeLayer);
+              $scope.showPollingError = false;
+            };
+
+            var onPollingError = function () {
+              $scope.needsRefresh = true;
+              $scope.showPollingError = true;
+            };
+
+            $scope.$watch(function () {
                 return DrawService.activeLayer;
-            }, function (newVal) {
-                $scope.drawLayer = newVal;
+            }, function (newLayer, oldLayer) {
+                $scope.drawLayer = newLayer;
+                SaveManagerService.stopPolling(oldLayer.name);
+                SaveManagerService.startPolling(newLayer.name, onPollingSuccess, onPollingError);
             });
         }]);

@@ -87,32 +87,62 @@ def update_features():
         abort(404)
 
     added_some_features = False
+    processed_features = []
     for geojson_feature in feature_collection.get('features'):
         if geojson_feature.get('id') is None:
+            processed_features.append({
+                'id': None,
+                # bad request
+                'status': 400
+            })
             digitize_log.error(f'Cannot update single feature for layer {layer_name}. Id missing.')
             continue
         feature = Feature.by_layer_name_and_id(source_name, geojson_feature.get('id'))
         if feature is None:
+            processed_features.append({
+                'id': geojson_feature.get('id'),
+                # not found
+                'status': 404
+            })
             digitize_log.error(f'Cannot update single feature for layer {layer_name}. '
                                f'Feature with id {geojson_feature.get("id")} not found.')
+            continue
+        if feature.is_newer_than(geojson_feature):
+            processed_features.append({
+                'id': geojson_feature.get('id'),
+                # conflict
+                'status': 409
+            })
             continue
         if 'modified' in geojson_feature.get('properties'):
             del geojson_feature['properties']['modified']
         feature.update_from_geojson(geojson_feature)
         feature.modified_by = current_user.id
         db.session.add(feature)
+        processed_features.append({
+            'id': geojson_feature.get('id'),
+            'status': 200
+        })
         added_some_features = True
 
     if not added_some_features:
         abort(400)
 
     db.session.commit()
-
-    response = jsonify({
-        'action': 'updated',
-        'message': _('Features for %(title)s updated successfully', title=layer_name),
-    })
-    response.status_code = 200
+    successful_features = [f for f in processed_features if f.get('status') == 200]
+    if len(successful_features) == len(processed_features):
+        response = jsonify({
+            'action': 'updated',
+            'message': _('Features for %(title)s updated successfully', title=layer_name),
+        })
+        response.status_code = 200
+    else:
+        response = jsonify({
+            'action': 'updated',
+            'message': _('Not all changed features for %(title)s updated', title=layer_name)
+        })
+        # multi-status
+        response.status_code = 207
     return response
 
 
@@ -121,9 +151,9 @@ def remove_features():
     if LocalProxyRequest.json is None:
         abort(400)
     layer_name = LocalProxyRequest.json.get('name')
-    ids = LocalProxyRequest.json.get('ids')
+    feature_collection = LocalProxyRequest.json.get('featureCollection')
 
-    if None in (layer_name, ids):
+    if layer_name is None or len(feature_collection.get('features')) == 0:
         abort(400)
 
     # checking layer permission
@@ -136,13 +166,39 @@ def remove_features():
         abort(404)
 
     removed_some_features = False
-    for feature_id in ids:
-        feature = Feature.by_layer_name_and_id(source_name, feature_id)
-        if feature is None:
-            digitize_log.error(f'Cannot delete single feature for layer {layer_name}. '
-                               f'Feature with id {feature_id} not found.')
+    processed_features = []
+    for geojson_feature in feature_collection.get('features'):
+        if geojson_feature.get('id') is None:
+            processed_features.append({
+                'id': None,
+                # bad request
+                'status': 400
+            })
+            digitize_log.error(f'Cannot delete single feature for layer {layer_name}. Id missing.')
             continue
+        feature = Feature.by_layer_name_and_id(source_name, geojson_feature.get('id'))
+        if feature is None:
+            processed_features.append({
+                'id': geojson_feature.get('id'),
+                # not found
+                'status': 404
+            })
+            digitize_log.error(f'Cannot delete single feature for layer {layer_name}. '
+                               f'Feature with id {geojson_feature.get("id")} not found.')
+            continue
+        if feature.is_newer_than(geojson_feature):
+            processed_features.append({
+                'id': geojson_feature.get('id'),
+                # conflict
+                'status': 409
+            })
+            continue
+
         db.session.delete(feature)
+        processed_features.append({
+            'id': geojson_feature.get('id'),
+            'status': 200
+        })
         removed_some_features = True
 
     if not removed_some_features:
@@ -150,12 +206,38 @@ def remove_features():
 
     db.session.commit()
 
-    response = jsonify({
-        'action': 'deleted',
-        'message': _('Features for %(title)s deleted successfully', title=layer_name),
-    })
-    response.status_code = 200
+    successful_features = [f for f in processed_features if f.get('status') == 200]
+    if len(successful_features) == len(processed_features):
+        response = jsonify({
+            'action': 'deleted',
+            'message': _('Features for %(title)s deleted successfully', title=layer_name),
+        })
+        response.status_code = 200
+    else:
+        response = jsonify({
+            'action': 'deleted',
+            'message': _('Not all provided features for %(title)s deleted', title=layer_name),
+        })
+        response.status_code = 207
+
     return response
+
+
+@digitize.route('/features/modified_timestamps', methods=['GET'])
+def features_modified_timestamps():
+    name = LocalProxyRequest.args.get('layer')
+    if not name:
+        abort(400)
+    # checking layer permission
+    lyr = current_app.layers.get(name)
+    if lyr is None:
+        abort(404)
+    layer_name = lyr.get('source', {}).get('name')
+    if not layer_name:
+        abort(400)
+    feats = Feature.by_layer_name(layer_name)
+    modified_list = Feature.get_modified_timestamps(feats)
+    return jsonify(modified_list)
 
 
 def list_available_icons():
@@ -189,7 +271,14 @@ def list_available_icons():
 
 @digitize.route('/layer/<name>', methods=['GET'])
 def layer(name):
-    feats = Feature.by_layer_name(name)
+    # checking layer permission
+    lyr = current_app.layers.get(name)
+    if lyr is None:
+        abort(404)
+    layer_name = lyr.get('source', {}).get('name')
+    if not layer_name:
+        abort(400)
+    feats = Feature.by_layer_name(layer_name)
     feature_collection = Feature.as_feature_collection(feats)
     return jsonify(feature_collection)
 

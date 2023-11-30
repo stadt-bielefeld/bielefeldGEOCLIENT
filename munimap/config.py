@@ -141,6 +141,8 @@ class DefaultConfig(object):
     #      application setup.
     DIGITIZE_ICONS_DIR = '/opt/etc/munimap/bielefeld/static/img/icons/'
     DIGITIZE_ICON_CONFIG_FILE = False
+    # Polling interval in ms
+    DIGITIZE_POLLING_INTERVAL = 15000
 
     # Transport default configurations
     TRANSPORT_OPERATOR = '%'

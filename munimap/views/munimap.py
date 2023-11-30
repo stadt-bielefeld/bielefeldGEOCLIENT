@@ -172,7 +172,8 @@ def index(config=None):
             label_schema=draw_schema.label_schema,
             label_schema_form_options=draw_schema.label_schema_form_options,
             available_icons=list_available_icons(),
-            project_name=config
+            project_name=config,
+            digitize_polling_interval=current_app.config.get('DIGITIZE_POLLING_INTERVAL')
         )
         resp = Response(rendered_index)
         resp.headers['Cache-Control'] = cache_control_header

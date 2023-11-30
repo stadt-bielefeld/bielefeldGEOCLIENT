@@ -59,7 +59,7 @@ class Feature(db.Model):
             'geometry': json.loads(self.geojson),
             'properties': {
                 **self.properties,
-                'modified': self.modified
+                'modified': self.modified.isoformat()
             }
         }
 
@@ -75,6 +75,13 @@ class Feature(db.Model):
             ]
         }
     ]
+
+    def is_newer_than(self, geojson_feature):
+        modified_iso = geojson_feature.get('properties', {}).get('modified')
+        if not modified_iso:
+            return True
+        modified = datetime.fromisoformat(modified_iso)
+        return self.modified > modified
 
     @classmethod
     def properties_schema_from_prop_def(cls, prop_def):
@@ -159,6 +166,10 @@ class Feature(db.Model):
             _features.append(base_feature)
 
         return _features
+
+    @staticmethod
+    def get_modified_timestamps(feats):
+        return [{'id': f.id, 'modified': f.modified.isoformat()} for f in feats]
 
     def update_from_geojson(self, geojson):
         # if feature has no properties, properties is None so default
