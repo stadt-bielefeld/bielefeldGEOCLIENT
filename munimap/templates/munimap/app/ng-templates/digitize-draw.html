@@ -68,7 +68,7 @@
     <div class="digitize-draw-footer">
         <button class="btn btn-default btn-sm save-button"
                 ng-class="{'btn-success': hasChanges()}"
-                ng-disabled="!hasChanges() || needsRefresh"
+                ng-disabled="!hasChanges() || needsRefresh || showPollingError"
                 ng-click="saveChanges()">
             <span class="glyphicon glyphicon-save"></span>
             {$ _('Save') $}
@@ -95,7 +95,7 @@
         <div ng-if="showPollingError">
             <small class="error-text">
                 <span class="glyphicon glyphicon-exclamation-sign"></span>
-                {$ _('Could not refresh digitize layer. Saving disabled until reconnected.') $}
+                {$ _('Could not connect to server. Saving disabled until reconnected.') $}
             </small>
         </div>
     </div>

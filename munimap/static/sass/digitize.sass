@@ -87,6 +87,7 @@
       top: 10px
 
     .anol-popup-content
+      width: 265px
       .popup-header
         padding: 10px
         background-color: $popup-digitize-header-color
@@ -169,15 +170,16 @@
                 padding: 1px
                 border: 2px solid $green-border
       .popup-footer
-        height: 40px
         margin: 0 15px 0 15px
         padding-top: 5px
-        border-top: 1px solid $grey-lighter
-        .remove-feature
-          padding-top: 8px
-          font-size: 0.8em
-          &:hover
-            text-decoration: none
+        padding-bottom: 5px
+        .polling-refresh
+          text-wrap: wrap
+          span
+            color: $warning-color
+        .action-buttons
+          display: flex
+          justify-content: flex-end
 
 $slider-track-height: 6px
 $slider-handle-width: 6px
