@@ -39,6 +39,7 @@ angular.module('munimapDigitize')
 
             $scope.refreshLayer = function () {
                 SaveManagerService.refreshLayer($scope.drawLayer);
+                $rootScope.$broadcast('digitize:closePopup');
             };
 
             $scope.$parent.$parent.openDigitizePopup = function (feature) {
