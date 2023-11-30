@@ -146,7 +146,7 @@ def update_features():
     return response
 
 
-@digitize.route('/features/delete', methods=['POST'])
+@digitize.route('/features', methods=['DELETE'])
 def remove_features():
     if LocalProxyRequest.json is None:
         abort(400)
