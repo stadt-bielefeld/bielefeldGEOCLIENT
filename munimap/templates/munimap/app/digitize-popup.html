@@ -25,10 +25,16 @@
                 </div>
             </div>
             <div class="popup-footer">
-                <button class="btn btn-default btn-sm pull-right"
-                        ng-click="popup.close()">
-                    {$ _('Close') $}
-                </button>
+                <div ng-if="needsRefresh" class="polling-refresh">
+                    <span class="glyphicon glyphicon-exclamation-sign"></span>
+                    <small>{$ _('Feature was updated by others. Please refresh before editing.') $}</small>
+                </div>
+                <div class="action-buttons">
+                  <button class="btn btn-default btn-sm"
+                          ng-click="popup.close()">
+                      {$ _('Close') $}
+                  </button>
+                </div>
             </div>
         </div>
     </div>

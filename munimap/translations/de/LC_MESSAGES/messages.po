@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-12-14 10:37+0100\n"
+"POT-Creation-Date: 2023-12-14 10:38+0100\n"
 "PO-Revision-Date: 2015-12-11 10:51+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -988,6 +988,12 @@ msgid "Properties"
 msgstr "Eigenschaften"
 
 #: ../munimap/templates/munimap/app/digitize-popup.html:30
+msgid "Feature was updated by others. Please refresh before editing."
+msgstr ""
+"Feature wurde von anderen verändert. Vor dem Editieren bitte "
+"aktualisieren."
+
+#: ../munimap/templates/munimap/app/digitize-popup.html:35
 #: ../munimap/templates/munimap/app/draw-popup.html:123
 #: ../munimap/templates/munimap/app/geoeditor-popup.html:111
 #: ../munimap/templates/munimap/app/ng-templates/settings-load.html:40
@@ -1178,10 +1184,10 @@ msgid "Refresh"
 msgstr "Aktualisieren"
 
 #: ../munimap/templates/munimap/app/ng-templates/digitize-draw.html:98
-msgid "Could not refresh digitize layer. Saving disabled until reconnected."
+msgid "Could not connect to server. Saving disabled until reconnected."
 msgstr ""
-"Digitalisierungslayer konnte nicht aktualisiert werden. Speichern wird "
-"deaktiviert, bis wieder verbunden."
+"Verbindung zum Server abgebrochen. Speichern wird deaktiviert, bis wieder"
+" verbunden."
 
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:1
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:5
