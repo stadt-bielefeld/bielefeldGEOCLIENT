@@ -29,8 +29,10 @@ angular.module('munimapDigitize')
                                     break;
                             }
                         });
+                        $rootScope.$broadcast('digitize:closePopup');
                     }, function(response) {
                         NotificationService.addError(response.message);
+                        $rootScope.$broadcast('digitize:closePopup');
                     }
                 );
             };
