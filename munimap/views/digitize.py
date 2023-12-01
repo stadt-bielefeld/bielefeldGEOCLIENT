@@ -240,35 +240,6 @@ def features_modified_timestamps():
     return jsonify(modified_list)
 
 
-def list_available_icons():
-    icon_files = os.listdir(current_app.config.get('DIGITIZE_ICONS_DIR'))
-
-    config_file = current_app.config.get('DIGITIZE_ICON_CONFIG_FILE')
-    if config_file:
-        config = load_yaml_file(config_file)
-
-    icons = []
-    for file in icon_files:
-        if not isinstance(file, str):
-            file = file.decode('utf-8')
-        if not file.endswith(".svg"):
-            continue
-
-        width, height = [18, 18]
-        if config_file:
-            for icon in config['icons']:
-                if icon['name'] == file:
-                    width, height = icon['size']
-
-        icons.append({
-            'filename': file,
-            'height': height,
-            'width': width,
-        })
-
-    return icons
-
-
 @digitize.route('/layer/<name>', methods=['GET'])
 def layer(name):
     # checking layer permission
@@ -285,7 +256,6 @@ def layer(name):
 
 @digitize.route('/icons/<path:filename>')
 def icons(filename):
-    # TODO check if we have to add a static property to the blueprint constructor
     return send_from_directory(
         current_app.config.get('DIGITIZE_ICONS_DIR'),
         filename
