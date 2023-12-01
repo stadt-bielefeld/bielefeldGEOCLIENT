@@ -1,3 +1,5 @@
+import {DigitizeState} from 'anol/src/modules/savemanager/digitize-state';
+
 angular.module('munimapDigitize')
     .controller('digitizeController', ['$scope', '$rootScope', '$olOn', 'MapService', 'DrawService', 'SaveManagerService', 'NotificationService',
         function ($scope, $rootScope, $olOn, MapService, DrawService, SaveManagerService, NotificationService) {
@@ -52,12 +54,14 @@ angular.module('munimapDigitize')
             // created element, i.e, it can show tabs for content that should be shown, like the attribute form,
             // even when there are no attributes present.
             $olOn(MapService.getMap(), 'singleclick', (evt) => {
-                MapService.getMap().forEachFeatureAtPixel(evt.pixel, function(feature) {
-                    $scope.$parent.$parent.openDigitizePopup(feature);
-                }, {
+                const features = MapService.getMap().getFeaturesAtPixel(evt.pixel, {
                     layerFilter: candidate => candidate === $scope.drawLayer.olLayer,
                     hitTolerance: 10
-                });
+                })
+                .filter(f => f.get('_digitizeState') !== DigitizeState.REMOVED);
+                if (features.length > 0) {
+                    $scope.$parent.$parent.openDigitizePopup(features[0]);
+                }
             });
 
             $scope.$parent.$parent.onDelete = function () {
