@@ -32,17 +32,6 @@ Anwendung
    administration
    url-parameter
 
-Digitalisierung
----------------
-
-.. toctree::
-   :maxdepth: 2
-   :glob:
-
-   digitize/user
-   digitize/admin
-   digitize/config
-
 .. Indices and tables
 .. ------------------
 
