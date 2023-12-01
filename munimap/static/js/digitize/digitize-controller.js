@@ -1,3 +1,5 @@
+import {DigitizeState} from 'anol/src/modules/savemanager/digitize-state';
+
 angular.module('munimapDigitize')
     .controller('digitizeController', ['$scope', '$rootScope', '$olOn', 'MapService', 'DrawService', 'SaveManagerService', 'NotificationService',
         function ($scope, $rootScope, $olOn, MapService, DrawService, SaveManagerService, NotificationService) {
@@ -29,18 +31,21 @@ angular.module('munimapDigitize')
                                     break;
                             }
                         });
+                        $rootScope.$broadcast('digitize:closePopup');
                     }, function(response) {
                         NotificationService.addError(response.message);
+                        $rootScope.$broadcast('digitize:closePopup');
                     }
                 );
             };
 
             $scope.refreshLayer = function () {
                 SaveManagerService.refreshLayer($scope.drawLayer);
+                $rootScope.$broadcast('digitize:closePopup');
             };
 
-            $scope.$parent.$parent.openDigitizePopup = function (layer, feature) {
-                $rootScope.$broadcast('digitize:openPopupFor', layer, feature);
+            $scope.$parent.$parent.openDigitizePopup = function (feature) {
+                $rootScope.$broadcast('digitize:openPopupFor', $scope.drawLayer, feature);
             };
 
             // This following event is used to trigger an update of the popup configuration
@@ -49,9 +54,14 @@ angular.module('munimapDigitize')
             // created element, i.e, it can show tabs for content that should be shown, like the attribute form,
             // even when there are no attributes present.
             $olOn(MapService.getMap(), 'singleclick', (evt) => {
-                MapService.getMap().forEachFeatureAtPixel(evt.pixel, function(feature, layer) {
-                    $scope.$parent.$parent.openDigitizePopup(layer, feature);
-                });
+                const features = MapService.getMap().getFeaturesAtPixel(evt.pixel, {
+                    layerFilter: candidate => candidate === $scope.drawLayer.olLayer,
+                    hitTolerance: 10
+                })
+                .filter(f => f.get('_digitizeState') !== DigitizeState.REMOVED);
+                if (features.length > 0) {
+                    $scope.$parent.$parent.openDigitizePopup(features[0]);
+                }
             });
 
             $scope.$parent.$parent.onDelete = function () {
@@ -61,14 +71,25 @@ angular.module('munimapDigitize')
                 $rootScope.$broadcast('digitize:closePopup');
             };
 
+            $scope.$on('SaveManagerService:polling', (evt, data) => {
+                if (data.layerName !== $scope.drawLayer.name) {
+                    return;
+                }
+                if (data.success) {
+                    onPollingSuccess();
+                } else {
+                    onPollingError();
+                }
+            });
+
             var onPollingSuccess = function () {
-              $scope.needsRefresh = SaveManagerService.hasPollingChanges(DrawService.activeLayer);
-              $scope.showPollingError = false;
+                $scope.needsRefresh = SaveManagerService.hasPollingChanges(DrawService.activeLayer);
+                $scope.showPollingError = false;
             };
 
             var onPollingError = function () {
-              $scope.needsRefresh = true;
-              $scope.showPollingError = true;
+                $scope.needsRefresh = false;
+                $scope.showPollingError = true;
             };
 
             $scope.$watch(function () {
@@ -76,6 +97,6 @@ angular.module('munimapDigitize')
             }, function (newLayer, oldLayer) {
                 $scope.drawLayer = newLayer;
                 SaveManagerService.stopPolling(oldLayer.name);
-                SaveManagerService.startPolling(newLayer.name, onPollingSuccess, onPollingError);
+                SaveManagerService.startPolling(newLayer.name);
             });
         }]);

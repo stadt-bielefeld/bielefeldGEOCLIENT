@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-11-29 12:58+0100\n"
+"POT-Creation-Date: 2023-11-30 16:27+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -972,13 +972,17 @@ msgstr ""
 msgid "Realy remove user?"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/digitize-popup.html:13
+#: ../munimap/templates/munimap/app/digitize-popup.html:15
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:9
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:18
 msgid "Properties"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/digitize-popup.html:28
+#: ../munimap/templates/munimap/app/digitize-popup.html:30
+msgid "Feature was updated by others. Please refresh before editing."
+msgstr ""
+
+#: ../munimap/templates/munimap/app/digitize-popup.html:35
 #: ../munimap/templates/munimap/app/draw-popup.html:92
 #: ../munimap/templates/munimap/app/geoeditor-popup.html:111
 #: ../munimap/templates/munimap/app/ng-templates/settings-load.html:40
@@ -1151,7 +1155,7 @@ msgid "Refresh"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/digitize-draw.html:98
-msgid "Could not refresh digitize layer. Saving disabled until reconnected."
+msgid "Could not connect to server. Saving disabled until reconnected."
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:1
@@ -1835,12 +1839,12 @@ msgstr ""
 msgid "Not all changed features for %(title)s updated"
 msgstr ""
 
-#: ../munimap/views/digitize.py:214
+#: ../munimap/views/digitize.py:213
 #, python-format
 msgid "Features for %(title)s deleted successfully"
 msgstr ""
 
-#: ../munimap/views/digitize.py:220
+#: ../munimap/views/digitize.py:219
 #, python-format
 msgid "Not all provided features for %(title)s deleted"
 msgstr ""
