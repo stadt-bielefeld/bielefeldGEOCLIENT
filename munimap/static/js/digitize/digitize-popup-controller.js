@@ -1,4 +1,4 @@
-import {DigitizeState} from "anol/src/modules/savemanager/digitize-state";
+import {DigitizeState} from 'anol/src/modules/savemanager/digitize-state';
 
 angular.module('munimapDigitize')
     .controller('digitizePopupController', ['$scope', 'SaveManagerService',
