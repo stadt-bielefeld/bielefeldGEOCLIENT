@@ -1316,7 +1316,7 @@ msgstr "Firma"
 
 #: ../munimap/templates/munimap/modals/alkis-legitimate.html:20
 msgid "reference"
-msgstr "Aktzenzeichen"
+msgstr "Aktenzeichen"
 
 #: ../munimap/templates/munimap/modals/alkis-legitimate.html:27
 msgid "person"
