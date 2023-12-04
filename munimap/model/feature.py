@@ -83,8 +83,8 @@ class Feature(db.Model):
         modified = datetime.fromisoformat(modified_iso)
         return self.modified > modified
 
-    @classmethod
-    def properties_schema_from_prop_def(cls, prop_def):
+    @staticmethod
+    def properties_schema_from_prop_def(prop_def):
         properties = {}
         for prop in prop_def:
             if properties.get(prop['name']) is not None:
@@ -135,8 +135,8 @@ class Feature(db.Model):
         q = cls.query.filter(cls.id == feature_id, cls.layer_name == layer_name)
         return q.first()
 
-    @classmethod
-    def as_feature_collection(cls, features):
+    @staticmethod
+    def as_feature_collection(features):
         return {
             'type': 'FeatureCollection',
             'features': [f.geojson_feature for f in features]
@@ -149,19 +149,19 @@ class Feature(db.Model):
         # use a dedicated index to increment on the feature iterations
         style_id = 0
         for feature in features:
-            id = str(style_id)
+            style_id_str = str(style_id)
             base_feature = {
                 'type': 'Feature',
                 'properties': {
-                    'mapfishStyleId': id,
+                    'mapfishStyleId': style_id_str,
                     '__layer__': feature.layer_name
                 },
-                'geometry': feature.geojson,
+                'geometry': json.loads(feature.geojson),
             }
             style = DEFAULT_STYLE.copy()
             style.update(layer['style'])
             # save the style intermediate to move them to the layer later
-            base_feature['properties']['__style__'] = (id, style)
+            base_feature['properties']['__style__'] = (style_id_str, style)
             style_id += 1
             _features.append(base_feature)
 
