@@ -10,17 +10,18 @@
          alt-mobile-fullscreen="true"
          feature-filter="featureFilter(feature)"
     >
-        <div ng-controller="popupController">
+        <div>
             <div class="popup-header">
               <h4>{$ _('Properties') $}</h4>
             </div>
             <div class="popup-content">
                 <div class="tab-content">
                     <div class="digitize">
-                        <div anol-feature-properties-editor="feature"
-                            layer="layer"
-                            template-url="munimap/feature-properties-editor.html">
-                        </div>
+                        <div
+                            anol-feature-properties-editor="featureEditorProps.feature"
+                            layer="featureEditorProps.layer"
+                            template-url="munimap/feature-properties-editor.html"
+                        ></div>
                     </div>
                 </div>
             </div>
@@ -31,7 +32,7 @@
                 </div>
                 <div class="action-buttons">
                   <button class="btn btn-default btn-sm"
-                          ng-click="popup.close()">
+                          ng-click="closePopup()">
                       {$ _('Close') $}
                   </button>
                 </div>
