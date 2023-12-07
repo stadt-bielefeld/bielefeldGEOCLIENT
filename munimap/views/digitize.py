@@ -1,17 +1,13 @@
-import os
-
 from flask import (
     Blueprint, jsonify, abort, flash,
-    current_app, send_from_directory,
-    redirect, request as LocalProxyRequest,
-    url_for
+    current_app, redirect,
+    request as LocalProxyRequest, url_for
 )
 
 from flask_login import current_user
 
 from munimap.extensions import db
 from munimap.helper import _
-from munimap.lib.yaml_loader import load_yaml_file
 from munimap.model import Feature
 
 import logging
@@ -252,11 +248,3 @@ def layer(name):
     feats = Feature.by_layer_name(layer_name)
     feature_collection = Feature.as_feature_collection(feats)
     return jsonify(feature_collection)
-
-
-@digitize.route('/icons/<path:filename>')
-def icons(filename):
-    return send_from_directory(
-        current_app.config.get('DIGITIZE_ICONS_DIR'),
-        filename
-    )

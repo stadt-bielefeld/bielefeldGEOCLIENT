@@ -137,9 +137,6 @@ class DefaultConfig(object):
     DIGITIZE_ADMIN_PERMISSION = 'digitize_admin'
     DIGITIZE_ADMIN_GROUP = 'digitize_admin'
     DIGITIZE_EDIT_GROUP = 'digitize_edit'
-    # TODO we might need to get one level down. Check if that works with default
-    #      application setup.
-    DIGITIZE_ICONS_DIR = '/opt/etc/munimap/bielefeld/static/img/icons/'
     DIGITIZE_ICON_CONFIG_FILE = False
     # Polling interval in ms
     DIGITIZE_POLLING_INTERVAL = 15000
