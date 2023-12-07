@@ -8,15 +8,21 @@ angular.module('munimapDigitize')
             $scope.featureFilter = featureFilter;
             $scope.needsRefresh = false;
             $scope.openDigitizePopupFor = undefined;
-            $scope.lastOpenedPopup = undefined;
+            $scope.featureEditorProps = {};
             $scope.formFields = undefined;
+            $scope.closePopup = () => {
+                $scope.openDigitizePopupFor = {
+                    coordinate: undefined
+                };
+                $scope.featureEditorProps = {};
+            };
 
             $scope.$on('digitize:openPopupFor', function (event, layer, feature) {
                 $scope.openDigitizePopupFor = {
                     layer: layer.olLayer,
                     feature: feature
                 };
-                $scope.lastOpenedPopup = {
+                $scope.featureEditorProps = {
                     layer: layer,
                     feature: feature
                 };
@@ -24,18 +30,15 @@ angular.module('munimapDigitize')
             });
 
             $scope.$on('digitize:closePopup', function () {
-                $scope.openDigitizePopupFor = {
-                    coordinate: undefined
-                };
-                $scope.lastOpenedPopup = undefined;
+                $scope.closePopup();
             });
 
             $scope.$on('SaveManagerService:polling', (evt, data) => {
-                if ($scope.lastOpenedPopup === undefined) {
+                if (Object.keys($scope.featureEditorProps).length === 0) {
                     return;
                 }
-                const layerName = $scope.lastOpenedPopup.layer.name;
-                const feature = $scope.lastOpenedPopup.feature;
+                const layerName = $scope.featureEditorProps.layer.name;
+                const feature = $scope.featureEditorProps.feature;
                 if (data.layerName !== layerName) {
                     return;
                 }
@@ -43,7 +46,7 @@ angular.module('munimapDigitize')
                     return;
                 }
                 if (data.success) {
-                    $scope.needsRefresh = SaveManagerService.hasFeaturePollingChanges(feature.getId(), $scope.lastOpenedPopup.layer);
+                    $scope.needsRefresh = SaveManagerService.hasFeaturePollingChanges(feature.getId(), $scope.featureEditorProps.layer);
                 } else {
                     $scope.needsRefresh = false;
                 }
