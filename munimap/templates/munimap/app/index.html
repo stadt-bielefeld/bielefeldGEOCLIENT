@@ -168,6 +168,7 @@
             propertiesSchema: {$ layer["properties_schema"] | tojson $},
             propertiesSchemaFormOptions: {$ layer["properties_schema_form_options"] | tojson $},
             geomType: '{$ layer["geom_type"] $}',
+            externalGraphicPrefix: {$ layer["externalGraphicPrefix"] $},
             {% if layer["style"] %}style: {$ layer["style"] | tojson $},{% endif %}
             editable: true,
             saveable: true,
