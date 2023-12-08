@@ -48,6 +48,7 @@ Munimap is an interactive online map with a plenty of abilities. Define theme ba
 
 Adds ability to create and publish extra data.
 
+[//]: # (TODO update screenshot to fit new layout)
 ![Munimap](./screenshots/munimap_digitize.png)
 
 #### Features

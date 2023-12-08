@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-12-14 10:38+0100\n"
+"POT-Creation-Date: 2023-12-14 10:43+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -153,80 +153,51 @@ msgstr ""
 #: ../munimap/templates/munimap/app/draw-popup.html:32
 #: ../munimap/templates/munimap/app/geoeditor-popup.html:14
 #: ../munimap/templates/munimap/app/geoeditor-popup.html:35
-#: ../munimap_digitize/munimap_digitize/model/layer.py:73
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:10
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:30
 msgid "Style"
 msgstr ""
 
 #: ../munimap/model/draw_schema.py:50
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:47
-#: ../munimap_digitize/munimap_digitize/model/layer.py:76
 msgid "Radius"
 msgstr ""
 
 #: ../munimap/model/draw_schema.py:57 ../munimap/model/draw_schema.py:346
 #: ../munimap/templates/munimap/app/ng-templates/feature-icons.html:19
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:48
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:98
-#: ../munimap_digitize/munimap_digitize/model/layer.py:83
-#: ../munimap_digitize/munimap_digitize/model/layer.py:377
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/feature-icons.html:19
 msgid "rotation"
 msgstr ""
 
 #: ../munimap/model/draw_schema.py:64
-#: ../munimap_digitize/munimap_digitize/model/layer.py:90
 msgid "strokeWidth"
 msgstr ""
 
 #: ../munimap/model/draw_schema.py:71
-#: ../munimap_digitize/munimap_digitize/model/layer.py:97
 msgid "strokeColor"
 msgstr ""
 
 #: ../munimap/model/draw_schema.py:77 ../munimap/model/draw_schema.py:96
-#: ../munimap_digitize/munimap_digitize/model/layer.py:103
-#: ../munimap_digitize/munimap_digitize/model/layer.py:122
 msgid "opacity"
 msgstr ""
 
 #: ../munimap/model/draw_schema.py:85
-#: ../munimap_digitize/munimap_digitize/model/layer.py:111
 msgid "strokeDashstyle"
 msgstr ""
 
 #: ../munimap/model/draw_schema.py:90
-#: ../munimap_digitize/munimap_digitize/model/layer.py:116
 msgid "fillColor"
 msgstr ""
 
 #: ../munimap/model/draw_schema.py:110
-#: ../munimap_digitize/munimap_digitize/model/layer.py:136
 msgid "Point styling"
 msgstr ""
 
 #: ../munimap/model/draw_schema.py:122 ../munimap/model/draw_schema.py:145
 #: ../munimap/model/draw_schema.py:201 ../munimap/model/draw_schema.py:241
 #: ../munimap/model/draw_schema.py:297 ../munimap/model/draw_schema.py:444
-#: ../munimap_digitize/munimap_digitize/model/layer.py:148
-#: ../munimap_digitize/munimap_digitize/model/layer.py:171
-#: ../munimap_digitize/munimap_digitize/model/layer.py:228
-#: ../munimap_digitize/munimap_digitize/model/layer.py:268
-#: ../munimap_digitize/munimap_digitize/model/layer.py:325
-#: ../munimap_digitize/munimap_digitize/model/layer.py:475
 msgid "Value is not a valid number"
 msgstr ""
 
 #: ../munimap/model/draw_schema.py:123 ../munimap/model/draw_schema.py:146
 #: ../munimap/model/draw_schema.py:202 ../munimap/model/draw_schema.py:242
 #: ../munimap/model/draw_schema.py:298 ../munimap/model/draw_schema.py:445
-#: ../munimap_digitize/munimap_digitize/model/layer.py:149
-#: ../munimap_digitize/munimap_digitize/model/layer.py:172
-#: ../munimap_digitize/munimap_digitize/model/layer.py:229
-#: ../munimap_digitize/munimap_digitize/model/layer.py:269
-#: ../munimap_digitize/munimap_digitize/model/layer.py:326
-#: ../munimap_digitize/munimap_digitize/model/layer.py:476
 msgid "Value must be greater or equal than {{schema.minimum}}"
 msgstr ""
 
@@ -237,56 +208,38 @@ msgid "Value must be lower or equal than {{schema.maximum}})"
 msgstr ""
 
 #: ../munimap/model/draw_schema.py:162
-#: ../munimap_digitize/munimap_digitize/model/layer.py:189
 msgid "Stroke styling"
 msgstr ""
 
 #: ../munimap/model/draw_schema.py:222
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:63
-#: ../munimap_digitize/munimap_digitize/model/layer.py:249
 msgid "solid"
 msgstr ""
 
 #: ../munimap/model/draw_schema.py:223
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:64
-#: ../munimap_digitize/munimap_digitize/model/layer.py:250
 msgid "dot"
 msgstr ""
 
 #: ../munimap/model/draw_schema.py:224
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:65
-#: ../munimap_digitize/munimap_digitize/model/layer.py:251
 msgid "dash"
 msgstr ""
 
 #: ../munimap/model/draw_schema.py:225
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:66
-#: ../munimap_digitize/munimap_digitize/model/layer.py:252
 msgid "dashdot"
 msgstr ""
 
 #: ../munimap/model/draw_schema.py:226
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:67
-#: ../munimap_digitize/munimap_digitize/model/layer.py:253
 msgid "longdash"
 msgstr ""
 
 #: ../munimap/model/draw_schema.py:227
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:68
-#: ../munimap_digitize/munimap_digitize/model/layer.py:254
 msgid "longdashdot"
 msgstr ""
 
 #: ../munimap/model/draw_schema.py:260
-#: ../munimap_digitize/munimap_digitize/model/layer.py:287
 msgid "Fill styling"
 msgstr ""
 
 #: ../munimap/model/draw_schema.py:313
-#: ../munimap_digitize/munimap_digitize/model/layer.py:341
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/edit_group.html:22
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/edit_layer.html:19
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/properties.html:36
 msgid "Update"
 msgstr ""
 
@@ -295,62 +248,42 @@ msgstr ""
 #: ../munimap/templates/munimap/app/draw-popup.html:44
 #: ../munimap/templates/munimap/app/geoeditor-popup.html:15
 #: ../munimap/templates/munimap/app/geoeditor-popup.html:47
-#: ../munimap_digitize/munimap_digitize/model/layer.py:354
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:11
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:42
 msgid "Labeling"
 msgstr ""
 
 #: ../munimap/model/draw_schema.py:326
-#: ../munimap_digitize/munimap_digitize/model/layer.py:357
 msgid "Label"
 msgstr ""
 
 #: ../munimap/model/draw_schema.py:330
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:86
-#: ../munimap_digitize/munimap_digitize/model/layer.py:361
 msgid "Font weight"
 msgstr ""
 
 #: ../munimap/model/draw_schema.py:335
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:75
-#: ../munimap_digitize/munimap_digitize/model/layer.py:366
 msgid "Font size"
 msgstr ""
 
 #: ../munimap/model/draw_schema.py:340
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:94
-#: ../munimap_digitize/munimap_digitize/model/layer.py:371
 msgid "Font color"
 msgstr ""
 
 #: ../munimap/model/draw_schema.py:370
-#: ../munimap_digitize/munimap_digitize/model/layer.py:401
 msgid "Text styling"
 msgstr ""
 
 #: ../munimap/model/draw_schema.py:428
-#: ../munimap_digitize/munimap_digitize/model/layer.py:459
 msgid "Normal"
 msgstr ""
 
 #: ../munimap/model/draw_schema.py:429
-#: ../munimap_digitize/munimap_digitize/model/layer.py:460
 msgid "Italic"
 msgstr ""
 
 #: ../munimap/model/draw_schema.py:430
-#: ../munimap_digitize/munimap_digitize/model/layer.py:461
 msgid "Bold"
 msgstr ""
 
 #: ../munimap/model/draw_schema.py:446
-#: ../munimap_digitize/munimap_digitize/model/layer.py:150
-#: ../munimap_digitize/munimap_digitize/model/layer.py:173
-#: ../munimap_digitize/munimap_digitize/model/layer.py:230
-#: ../munimap_digitize/munimap_digitize/model/layer.py:270
-#: ../munimap_digitize/munimap_digitize/model/layer.py:327
-#: ../munimap_digitize/munimap_digitize/model/layer.py:477
 msgid "Value must be lower or equal than {{schema.maximum}}"
 msgstr ""
 
@@ -367,8 +300,6 @@ msgstr ""
 #: ../munimap/templates/munimap/admin/index.html:138
 #: ../munimap/templates/munimap/admin/ng-templates/user-duplicate.html:43
 #: ../munimap/templates/munimap/app/ng-templates/catalog.html:10
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/index.html:48
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/sidebar.html:13
 msgid "Groups"
 msgstr ""
 
@@ -377,8 +308,6 @@ msgstr ""
 #: ../munimap/templates/munimap/admin/index.html:135
 #: ../munimap/templates/munimap/admin/index.html:159
 #: ../munimap/templates/munimap/app/ng-templates/catalog.html:96
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/index.html:7
-#: ../munimap_digitize/munimap_digitize/templates/digitize/pages/index.html:16
 msgid "Layers"
 msgstr ""
 
@@ -443,9 +372,6 @@ msgstr ""
 #: ../munimap/templates/munimap/admin/index.html:145
 #: ../munimap/templates/munimap/admin/index.html:149
 #: ../munimap/templates/munimap/admin/index.html:151
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/group.html:22
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/layer.html:16
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/properties.html:50
 msgid "Add"
 msgstr ""
 
@@ -460,7 +386,6 @@ msgstr ""
 #: ../munimap/templates/munimap/admin/ng-templates/project-list.html:50
 #: ../munimap/templates/munimap/admin/ng-templates/selectionlists-list.html:31
 #: ../munimap/templates/munimap/admin/ng-templates/user-list.html:67
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/index.html:73
 msgid "Edit"
 msgstr ""
 
@@ -543,7 +468,6 @@ msgstr ""
 #: ../munimap/templates/munimap/admin/ng-templates/project-list.html:57
 #: ../munimap/templates/munimap/admin/ng-templates/selectionlists-list.html:35
 #: ../munimap/templates/munimap/admin/ng-templates/selectionlists-list.html:38
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/base.html:50
 msgid "Delete"
 msgstr ""
 
@@ -565,8 +489,6 @@ msgstr ""
 #: ../munimap/templates/munimap/app/draw-popup.html:117
 #: ../munimap/templates/munimap/app/ng-templates/settings-load.html:28
 #: ../munimap/templates/munimap/user/ng-templates/upload-modal.html:20
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/base.html:49
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:104
 msgid "Cancel"
 msgstr ""
 
@@ -618,10 +540,6 @@ msgstr ""
 #: ../munimap/templates/munimap/app/draw-popup.html:116
 #: ../munimap/templates/munimap/app/map.html:27
 #: ../munimap/templates/munimap/app/ng-templates/settings-load.html:27
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/index.html:43
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/index.html:75
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/properties.html:29
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:103
 msgid "Remove"
 msgstr ""
 
@@ -727,7 +645,6 @@ msgstr ""
 #: ../munimap/templates/munimap/app/ng-templates/digitize-draw.html:74
 #: ../munimap/templates/munimap/user/password.html:17
 #: ../munimap/templates/munimap/user/password_recover_set.html:17
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:75
 msgid "Save"
 msgstr ""
 
@@ -973,22 +890,19 @@ msgid "Realy remove user?"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/digitize-popup.html:15
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:9
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:18
 msgid "Properties"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/digitize-popup.html:30
+#: ../munimap/templates/munimap/app/digitize-popup.html:31
 msgid "Feature was updated by others. Please refresh before editing."
 msgstr ""
 
-#: ../munimap/templates/munimap/app/digitize-popup.html:35
+#: ../munimap/templates/munimap/app/digitize-popup.html:36
 #: ../munimap/templates/munimap/app/draw-popup.html:123
 #: ../munimap/templates/munimap/app/geoeditor-popup.html:111
 #: ../munimap/templates/munimap/app/ng-templates/settings-load.html:40
 #: ../munimap/templates/munimap/app/ng-templates/settings-save.html:24
 #: ../munimap/templates/munimap/modals/alkis-legitimate.html:50
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:110
 msgid "Close"
 msgstr ""
 
@@ -1002,8 +916,6 @@ msgstr ""
 #: ../munimap/templates/munimap/app/draw-popup.html:56
 #: ../munimap/templates/munimap/app/geoeditor-popup.html:16
 #: ../munimap/templates/munimap/app/geoeditor-popup.html:59
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:12
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:54
 msgid "Marker"
 msgstr ""
 
@@ -1021,28 +933,23 @@ msgstr ""
 
 #: ../munimap/templates/munimap/app/draw-popup.html:92
 #: ../munimap/templates/munimap/app/geoeditor-popup.html:88
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:79
 msgid "While a marker is selected, feature cannot be styled"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/draw-popup.html:115
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:102
 msgid "Realy remove feature?"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/draw-popup.html:119
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/popup.html:106
 msgid "Remove feature"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/index.html:124
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/index.html:39
 #: ../munimap_transport/munimap_transport/templates/transport/app/index.html:53
 msgid "Use ctrl + wheel to zoom"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/index.html:125
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/index.html:40
 #: ../munimap_transport/munimap_transport/templates/transport/app/index.html:54
 msgid "Use two fingers to move the map"
 msgstr ""
@@ -1053,7 +960,6 @@ msgstr ""
 
 #: ../munimap/templates/munimap/app/map.html:7
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:50
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:57
 msgid "Modify or shift geometry"
 msgstr ""
 
@@ -1063,7 +969,6 @@ msgstr ""
 
 #: ../munimap/templates/munimap/app/map.html:22
 #: ../munimap/templates/munimap/app/map.html:25
-#: ../munimap_digitize/munimap_digitize/templates/digitize/pages/index.html:3
 msgid "Digitize"
 msgstr ""
 
@@ -1074,21 +979,17 @@ msgstr ""
 
 #: ../munimap/templates/munimap/app/map.html:117
 #: ../munimap/templates/munimap/app/ng-templates/sidebar-header.html:3
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/map.html:42
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/sidebar-header.html:3
 #: ../munimap_transport/munimap_transport/templates/transport/app/map.html:74
 #: ../munimap_transport/munimap_transport/templates/transport/app/ng-templates/sidebar-header.html:3
 msgid "Close menu"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/map.html:117
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/map.html:42
 #: ../munimap_transport/munimap_transport/templates/transport/app/map.html:74
 msgid "Open menu"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/map.html:129
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/map.html:52
 #: ../munimap_transport/munimap_transport/templates/transport/app/map.html:86
 msgid "Startposition"
 msgstr ""
@@ -1119,7 +1020,6 @@ msgid "Catalog"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/sidebar.html:26
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/sidebar.html:17
 msgid "Draw controls"
 msgstr ""
 
@@ -1172,47 +1072,38 @@ msgid "Could not connect to server. Saving disabled until reconnected."
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:1
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:5
 msgid "Add geometry"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:5
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:10
 msgid "anol.draw.TOOLTIP_POINT"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:12
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:17
 msgid "Draw point"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:16
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:22
 msgid "anol.draw.TOOLTIP_LINE"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:23
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:29
 msgid "Draw line"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:27
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:34
 msgid "anol.draw.TOOLTIP_POLYGON"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:34
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:41
 msgid "Draw polygon"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:39
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:46
 msgid "anol.draw.TOOLTIP_TEXT"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:46
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:53
 msgid "Draw text"
 msgstr ""
 
@@ -1221,12 +1112,10 @@ msgid "Delete all geometries"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/feature-icons.html:29
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/feature-icons.html:29
 msgid "Unselect"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/feature-properties-editor.html:9
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/feature-properties-editor.html:6
 msgid "No feature properties"
 msgstr ""
 
@@ -1267,9 +1156,6 @@ msgid "No settings for project saved."
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/settings-load.html:13
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:34
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:209
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/properties.html:17
 msgid "Name"
 msgstr ""
 
@@ -1498,7 +1384,6 @@ msgid "Group not exists"
 msgstr ""
 
 #: ../munimap/views/admin.py:198
-#: ../munimap_digitize/munimap_digitize/views/admin.py:319
 #, python-format
 msgid "Group %(name)s updated"
 msgstr ""
@@ -1837,31 +1722,31 @@ msgstr ""
 msgid "Plugin %(name)s renamed to %(new_name)s"
 msgstr ""
 
-#: ../munimap/views/digitize.py:31
+#: ../munimap/views/digitize.py:27
 msgid "Access not allowed"
 msgstr ""
 
-#: ../munimap/views/digitize.py:64
+#: ../munimap/views/digitize.py:60
 #, python-format
 msgid "Features for %(title)s added successfully"
 msgstr ""
 
-#: ../munimap/views/digitize.py:136
+#: ../munimap/views/digitize.py:132
 #, python-format
 msgid "Features for %(title)s updated successfully"
 msgstr ""
 
-#: ../munimap/views/digitize.py:142
+#: ../munimap/views/digitize.py:138
 #, python-format
 msgid "Not all changed features for %(title)s updated"
 msgstr ""
 
-#: ../munimap/views/digitize.py:213
+#: ../munimap/views/digitize.py:209
 #, python-format
 msgid "Features for %(title)s deleted successfully"
 msgstr ""
 
-#: ../munimap/views/digitize.py:219
+#: ../munimap/views/digitize.py:215
 #, python-format
 msgid "Not all provided features for %(title)s deleted"
 msgstr ""
@@ -1931,392 +1816,6 @@ msgstr ""
 msgid "Delete project successfully"
 msgstr ""
 
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:24
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:39
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:160
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:215
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/properties.html:18
-msgid "Title"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:37
-msgid "Only characters are allowed"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:52
-msgid "Stroke color"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:53
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:71
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:95
-msgid "Color must be in format \"#fff\" or \"#ffffff\""
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:55
-msgid "Stroke width"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:57
-msgid "Stroke opacity"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:59
-msgid "Stroke dashstyle"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:70
-msgid "Fill color"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:73
-msgid "Fill opacity"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:90
-msgid "normal"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:91
-msgid "italic"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:92
-msgid "bold"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:163
-msgid "Max scale"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:171
-msgid "Min scale"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:179
-msgid "Start date"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:183
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:197
-msgid "DD.MM.YYYY"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:186
-msgid "Start time"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:190
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:204
-msgid "hh:mm"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:193
-msgid "Ends at"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:200
-msgid "End time"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/forms/admin.py:212
-msgid "Only 0-9 a-z and _ allowed"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/forms/validators.py:10
-msgid "Group name already exists"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/forms/validators.py:22
-msgid "Layer name already exists"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/forms/validators.py:34
-#, python-format
-msgid "value must be lower %(other_name)s value"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/forms/validators.py:45
-#, python-format
-msgid "value must be lower or equal %(other_name)s value"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/forms/validators.py:56
-#, python-format
-msgid "value must be greater %(other_name)s value"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/forms/validators.py:66
-#, python-format
-msgid "value must be greater or equal %(other_name)s value"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/forms/validators.py:90
-#, python-format
-msgid "Can not be empty if %(other_name)s is set"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/base.html:3
-msgid "Digitize Admin"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/base.html:33
-msgid "Back to Overview"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/base.html:43
-msgid "Confirm delete"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/edit_group.html:7
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/group.html:7
-#, python-format
-msgid "Group for %(layer_title)s"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/edit_layer.html:7
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/index.html:40
-msgid "Edit layer"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/index.html:9
-msgid "DIGITIZE ADMIN INFOTEXT - LAYERS"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/index.html:14
-#: ../munimap_digitize/munimap_digitize/templates/digitize/pages/index.html:23
-msgid "Add Layer"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/index.html:18
-#: ../munimap_digitize/munimap_digitize/templates/digitize/pages/index.html:34
-msgid "No Layers available"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/index.html:29
-msgid "Actions"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/index.html:31
-#: ../munimap_digitize/munimap_digitize/templates/digitize/pages/index.html:48
-msgid "Edit in map"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/index.html:34
-msgid "Edit Properties"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/index.html:37
-msgid "Edit Style"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/index.html:42
-#, python-format
-msgid "Really delete layer %(title)s?"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/index.html:50
-msgid "DIGITIZE ADMIN INFOTEXT - GROUPS"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/index.html:62
-msgid "Deactivate"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/index.html:62
-msgid "Activate"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/index.html:66
-msgid "activated at"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/index.html:68
-msgid "Deactivated"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/index.html:70
-msgid "active till"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/index.html:74
-#, python-format
-msgid "Really delete group %(title)s?"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/index.html:82
-msgid "Add Group"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/index.html:93
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/sidebar-header.html:14
-msgid "Back to startpage"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/layer.html:7
-msgid "New layer"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/properties.html:7
-#, python-format
-msgid "Properties for %(layer_title)s"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/properties.html:28
-#, python-format
-msgid "Really delete property %(key)s?"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/properties.html:42
-msgid "Add new property"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/admin/style.html:41
-#, python-format
-msgid "Style for %(layer_title)s"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/sidebar.html:4
-msgid "Background layers"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/sidebar.html:9
-#: ../munimap_transport/munimap_transport/templates/transport/app/sidebar.html:4
-msgid "Overlay layers"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:2
-msgid "Current active group:"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:3
-msgid "No group active"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:58
-msgid "Off"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:67
-msgid "On"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/layerswitcher-groups.html:9
-msgid "This is an active group"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/layerswitcher-groups.html:25
-msgid "Edit group"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/layerswitcher-groups.html:38
-msgid "Center map on group"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/pages/index.html:10
-msgid ""
-"Please select a layer to edit. If you logged in as administrator you can "
-"edit layers properties."
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/templates/digitize/pages/index.html:43
-msgid "Administrate"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/views/admin.py:36
-msgid "You are not allowed to administrate the digitize layers"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/views/admin.py:88
-msgid "activated"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/views/admin.py:88
-msgid "deactivated"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/views/admin.py:90
-#, python-format
-msgid "Group %(group)s %(status)s"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/views/admin.py:124
-msgid "Property updated"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/views/admin.py:144
-#, python-format
-msgid "Property %(name)s already exists"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/views/admin.py:148
-#, python-format
-msgid "Property %(name)s added"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/views/admin.py:179
-#, python-format
-msgid "Property %(key)s removed"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/views/admin.py:209
-msgid "Style updated"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/views/admin.py:237
-msgid "Can not be empty if start date is set"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/views/admin.py:242
-msgid "Can not be empty if end date is set"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/views/admin.py:248
-msgid "start date must be lower than end date"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/views/admin.py:253
-msgid "end date must be greater than start date"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/views/admin.py:284
-#, python-format
-msgid "Group %(name)s added"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/views/admin.py:342
-#, python-format
-msgid "Group %(name)s removed"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/views/admin.py:353
-#, python-format
-msgid "Layer %(name)s added"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/views/admin.py:366
-#, python-format
-msgid "Layer %(name)s updated"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/views/admin.py:377
-#, python-format
-msgid "Layer %(name)s removed"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/views/digitize.py:53
-msgid "You are not allowed to use the digitize module without a login"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/views/digitize.py:80
-msgid "Removed feature group successfully"
-msgstr ""
-
-#: ../munimap_digitize/munimap_digitize/views/digitize.py:113
-#, python-format
-msgid "%(title)s saved successfully"
-msgstr ""
-
 #: ../munimap_transport/munimap_transport/queries.py:141
 #, python-format
 msgid "From %(_from)s via %(via)s to %(to)s"
@@ -2341,6 +1840,10 @@ msgstr ""
 
 #: ../munimap_transport/munimap_transport/templates/transport/app/map.html:160
 msgid "open"
+msgstr ""
+
+#: ../munimap_transport/munimap_transport/templates/transport/app/sidebar.html:4
+msgid "Overlay layers"
 msgstr ""
 
 #: ../munimap_transport/munimap_transport/templates/transport/app/sidebar.html:10

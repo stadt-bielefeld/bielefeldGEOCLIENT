@@ -134,10 +134,6 @@ class DefaultConfig(object):
     ACCEPT_LANGUAGES = ['de']
 
     # Digitize default configurations
-    DIGITIZE_ADMIN_PERMISSION = 'digitize_admin'
-    DIGITIZE_ADMIN_GROUP = 'digitize_admin'
-    DIGITIZE_EDIT_GROUP = 'digitize_edit'
-    DIGITIZE_ICON_CONFIG_FILE = False
     # Polling interval in ms
     DIGITIZE_POLLING_INTERVAL = 15000
 
