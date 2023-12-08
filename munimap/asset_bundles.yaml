@@ -57,18 +57,6 @@ transport-js:
     - dist/runtime~transport.bundle.js
     - dist/transport.bundle.js
 
-digitize-js:
-  output: digitize.js
-  contents:
-    - dist/runtime~digitize.bundle.js
-    - dist/digitize.bundle.js
-
-digitize-admin-js:
-  output: digitize_admin.js
-  contents:
-    - dist/runtime~digitize_admin.bundle.js
-    - dist/digitize_admin.bundle.js
-
 static-app-js:
   output: static_app.js
   contents:
