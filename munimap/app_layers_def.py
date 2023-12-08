@@ -81,7 +81,7 @@ def prepare_background_layers(app_config, layers_config):
         for layer in explicits:
             for background in background_layers:
                 if background['name'] == layer:
-                    sorted_backgrounds.append(background) 
+                    sorted_backgrounds.append(background)
         background_layers = sorted_backgrounds
     return background_layers
 
@@ -140,7 +140,7 @@ def prepare_group_layers(app_config, layers, group_active, layers_config, visibl
                     'munimap.wmts_proxy',
                     url_hash=layers_config[layer['name']]['hash']
                 )
-            else: 
+            else:
                 layer['olLayer']['source']['url'] = layers_config[layer['name']].get('url')
 
         if layer['type'] == 'dynamic_geojson':
@@ -162,9 +162,8 @@ def prepare_group_layers(app_config, layers, group_active, layers_config, visibl
                 'digitize.layer',
                 name=layer['name']
             )
-
             if 'externalGraphicPrefix' not in layer:
-                layer['externalGraphicPrefix'] = url_for('digitize.icons',
+                layer['externalGraphicPrefix'] = url_for('munimap.icons',
                                                          filename='')
 
         group_layers.append(layer)
@@ -225,7 +224,7 @@ def prepare_overlays(app_config, layers_config):
         for layer in explicits:
             for overlay in overlays:
                 if overlay['name'] == layer:
-                    sorted_overlays.append(overlay) 
+                    sorted_overlays.append(overlay)
         overlays = sorted_overlays
     return overlays
 
@@ -259,6 +258,9 @@ def prepare_draw_layers(app_config, layers_config):
             name=allowedDrawLayer['name']
         )
         allowedDrawLayer['active'] = True
+        if 'externalGraphicPrefix' not in allowedDrawLayer:
+            allowedDrawLayer['externalGraphicPrefix'] = url_for('munimap.icons', filename='')
+
     return allowedDrawLayers
 
 
@@ -356,7 +358,7 @@ def prepare_catalog_layers_def(app_layers_def, layers_config, selected_group=Non
             _group['catalog']['visible'] = True
             _group['layers'] = []
             _group['catalogLayer'] = True
-        
+
         if selected_group and selected_group != _group['name']:
             continue
 
@@ -377,7 +379,7 @@ def prepare_catalog_layers_def(app_layers_def, layers_config, selected_group=Non
 
             if group['name'] in fi_catalog_layers and not _layer.get('catalog'):
                 layer['catalog']['visible'] = False
-            else: 
+            else:
                 layer['catalog']['visible'] = True
 
             if layer['name'] in used_layer_names:
@@ -408,9 +410,6 @@ def prepare_catalog_layers_def(app_layers_def, layers_config, selected_group=Non
             if layer['type'] == 'static_geojson':
                 layer['olLayer']['source']['url'] = url_for(
                     'munimap.static_geojson', filename=layer['olLayer']['source']['file'])
-                if 'externalGraphicPrefix' not in layer:
-                    layer['externalGraphicPrefix'] = url_for('munimap.icons',
-                                                             filename='')
                 del layer['olLayer']['source']['file']
 
             if layer['type'] == 'digitize':
@@ -418,9 +417,6 @@ def prepare_catalog_layers_def(app_layers_def, layers_config, selected_group=Non
                     'digitize.layer',
                     name=layer['name']
                 )
-                if 'externalGraphicPrefix' not in layer:
-                    layer['externalGraphicPrefix'] = url_for('digitize.icons',
-                                                             filename='')
 
             layer['displayInLayerswitcher'] = True
             layer['permalink'] = False
@@ -430,9 +426,9 @@ def prepare_catalog_layers_def(app_layers_def, layers_config, selected_group=Non
             if (_layer.get('catalog') or selected_layer) and layer['name'] not in overlay_layers_names:
                 overlay_layers_names.append(layer['name'])
                 overlay_layers.append(layer)
-            
+
             _group['layers'].append(layer)
-        
+
         if _has_group and _group['name'] not in group_names:
             group_names.append(_group['name'])
             group_layers.append(_group)
@@ -486,7 +482,7 @@ def prepare_catalog_layers_name(app_layers_def, layers_config, selected=None):
                 _group['catalog']['title'] = _group['title']
             elif not layer['catalog'].get('title'):
                 _group['catalog']['title'] = _group['title']
-            
+
             _group['layers'] = []
 
         for _layer in group['layers']:
@@ -506,7 +502,7 @@ def prepare_catalog_layers_name(app_layers_def, layers_config, selected=None):
 
             if group['name'] in fi_catalog_layers and not _layer.get('catalog'):
                 visible = False
-            else: 
+            else:
                 visible = True
 
             if selected and _layer['name'] not in selected:
@@ -522,12 +518,12 @@ def prepare_catalog_layers_name(app_layers_def, layers_config, selected=None):
                     'abstract': layer.get('abstract'),
                     'metadataUrl': layer.get('metadataUrl'),
                 })
-            
+
             _group['layers'].append(layer)
 
         if selected and _group['name'] not in selected:
             continue
-       
+
         if not selected and len(_group['layers']) == 0:
             group_names.append(_group['name'])
             continue
