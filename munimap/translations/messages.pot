@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-12-08 14:47+0100\n"
+"POT-Creation-Date: 2023-12-12 15:21+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -98,7 +98,7 @@ msgid "Export Project"
 msgstr ""
 
 #: ../munimap/forms/project_settings.py:22
-#: ../munimap/templates/munimap/user/projects.html:31
+#: ../munimap/templates/munimap/user/projects.html:39
 msgid "Start Project"
 msgstr ""
 
@@ -1323,19 +1323,23 @@ msgstr ""
 msgid "project \"%(name)s\" missing"
 msgstr ""
 
-#: ../munimap/templates/munimap/user/projects.html:40
+#: ../munimap/templates/munimap/user/projects.html:26
+msgid "Digitize Application"
+msgstr ""
+
+#: ../munimap/templates/munimap/user/projects.html:48
 msgid "Start project with selected settings"
 msgstr ""
 
-#: ../munimap/templates/munimap/user/projects.html:60
+#: ../munimap/templates/munimap/user/projects.html:68
 msgid "Export selected project settings"
 msgstr ""
 
-#: ../munimap/templates/munimap/user/projects.html:68
+#: ../munimap/templates/munimap/user/projects.html:76
 msgid "Import settings"
 msgstr ""
 
-#: ../munimap/templates/munimap/user/projects.html:69
+#: ../munimap/templates/munimap/user/projects.html:77
 msgid "Import selected project settings"
 msgstr ""
 
@@ -1705,31 +1709,27 @@ msgstr ""
 msgid "Plugin %(name)s renamed to %(new_name)s"
 msgstr ""
 
-#: ../munimap/views/digitize.py:27
-msgid "Access not allowed"
-msgstr ""
-
-#: ../munimap/views/digitize.py:60
+#: ../munimap/views/digitize.py:59
 #, python-format
 msgid "Features for %(title)s added successfully"
 msgstr ""
 
-#: ../munimap/views/digitize.py:132
+#: ../munimap/views/digitize.py:131
 #, python-format
 msgid "Features for %(title)s updated successfully"
 msgstr ""
 
-#: ../munimap/views/digitize.py:138
+#: ../munimap/views/digitize.py:137
 #, python-format
 msgid "Not all changed features for %(title)s updated"
 msgstr ""
 
-#: ../munimap/views/digitize.py:209
+#: ../munimap/views/digitize.py:208
 #, python-format
 msgid "Features for %(title)s deleted successfully"
 msgstr ""
 
-#: ../munimap/views/digitize.py:215
+#: ../munimap/views/digitize.py:214
 #, python-format
 msgid "Not all provided features for %(title)s deleted"
 msgstr ""
@@ -1779,23 +1779,23 @@ msgstr ""
 msgid "Recovery link is not valid anymore. Please request a new one"
 msgstr ""
 
-#: ../munimap/views/user_settings.py:122
+#: ../munimap/views/user_settings.py:123
 msgid "Error project successfully"
 msgstr ""
 
-#: ../munimap/views/user_settings.py:164
+#: ../munimap/views/user_settings.py:165
 msgid "Import project successfully"
 msgstr ""
 
-#: ../munimap/views/user_settings.py:221
+#: ../munimap/views/user_settings.py:222
 msgid "Save project successfully"
 msgstr ""
 
-#: ../munimap/views/user_settings.py:244 ../munimap/views/user_settings.py:252
+#: ../munimap/views/user_settings.py:245 ../munimap/views/user_settings.py:253
 msgid "Load project successfully"
 msgstr ""
 
-#: ../munimap/views/user_settings.py:319
+#: ../munimap/views/user_settings.py:320
 msgid "Delete project successfully"
 msgstr ""
 
