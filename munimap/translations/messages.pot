@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-12-11 17:11+0100\n"
+"POT-Creation-Date: 2023-12-11 17:30+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1151,6 +1151,10 @@ msgstr ""
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:46
 #: ../munimap_digitize/munimap_digitize/templates/digitize/app/ng-templates/draw.html:53
 msgid "Draw text"
+msgstr ""
+
+#: ../munimap/templates/munimap/app/ng-templates/draw.html:66
+msgid "Delete all geometries"
 msgstr ""
 
 #: ../munimap/templates/munimap/app/ng-templates/feature-icons.html:29

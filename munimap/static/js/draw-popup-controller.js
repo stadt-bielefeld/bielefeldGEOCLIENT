@@ -35,7 +35,7 @@ angular.module('munimapDraw')
             $scope.feature = $scope.popup.feature;
             $scope.layer = $scope.popup.layer;
 
-            $scope.hasFormValues = currentFeature.get('formValues');
+            $scope.hasFormValues = currentFeature.get('formValues') !== undefined;
 
             var style = currentFeature.get('style');
             if(style === undefined) {

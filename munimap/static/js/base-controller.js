@@ -480,12 +480,16 @@ angular.module('munimapBase')
                         style,
                         ...formValues
                     } = feature.properties;
-                    feature.properties = {
-                        style,
-                        formValues
-                    };
+                    feature.properties = {style};
+                    if (Object.keys(formValues).length > 0) {
+                        feature.properties.formValues = formValues;
+                    }
                 });
                 return featureCollection;
+            };
+
+            $scope.removeAllFeatures = (layer) => {
+                layer.clear();
             };
 
             $scope.restartTour = function() {
