@@ -5,7 +5,7 @@ angular.module('schemaForm').run(['$templateCache',
     function($templateCache) {
         $templateCache.put(
             'directives/decorators/bootstrap/datepicker/datepicker.html',
-            '<div ng-controller="datepickerController" class="form-group munimap-datepicker" ng-class="{\'has-error\': hasError()}"><div class="input-group"> <label class="control-label" ng-show="showTitle()">{{form.title}}</label> <input type="text" class="form-control" sf-field-model="replaceAll" uib-datepicker-popup="{{format}}" ng-model="dt" datepicker-options="datepickerOptions" is-open="datepickerOpen"/> <span class="input-group-btn"> <button type="button" class="btn btn-default" ng-click="openDatepicker()"> <i class="glyphicon glyphicon-calendar"></i> </button> </span> </div> </div>'
+            '<div ng-controller="datepickerController" class="form-group munimap-datepicker" ng-class="{\'has-error\': hasError()}"><div class="input-group"> <label class="control-label" ng-show="showTitle()">{{form.title}}</label> <input type="text" class="form-control" sf-field-model="replaceAll" uib-datepicker-popup="{{format}}" datepicker-append-to-body="true" clear-text="Leeren" close-text="Schließen" current-text="Heute" ng-model="dt" datepicker-options="datepickerOptions" is-open="datepickerOpen"/> <span class="input-group-btn"> <button type="button" class="btn btn-default" ng-click="openDatepicker()"> <i class="glyphicon glyphicon-calendar"></i> </button> </span> </div> </div>'
         );
     }
 ]);
