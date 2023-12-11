@@ -4,7 +4,7 @@ angular.module('munimapDraw')
         $scope.popupTabContent = 'style';
         $scope.isPoint = undefined;
         $scope.isText = undefined;
-
+        $scope.hasFormValues = false;
 
         var lastStyle = {};
 
@@ -35,6 +35,7 @@ angular.module('munimapDraw')
             $scope.feature = $scope.popup.feature;
             $scope.layer = $scope.popup.layer;
 
+            $scope.hasFormValues = currentFeature.get('formValues');
 
             var style = currentFeature.get('style');
             if(style === undefined) {

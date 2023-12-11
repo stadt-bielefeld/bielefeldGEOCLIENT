@@ -474,6 +474,20 @@ angular.module('munimapBase')
                 return featureCollection;
             };
 
+            $scope.propsToFormValues = function(featureCollection) {
+                featureCollection.features.forEach(feature => {
+                    const {
+                        style,
+                        ...formValues
+                    } = feature.properties;
+                    feature.properties = {
+                        style,
+                        formValues
+                    };
+                });
+                return featureCollection;
+            };
+
             $scope.restartTour = function() {
                 if(Tour === false) {
                     return;
