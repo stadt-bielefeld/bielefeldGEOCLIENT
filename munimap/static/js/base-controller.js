@@ -1,6 +1,7 @@
 require('angular-ui-bootstrap');
 require('bootstrap-tour');
 import 'spectrum-colorpicker/spectrum';
+import 'spectrum-colorpicker/i18n/jquery.spectrum-de';
 
 import {TOUCH as hasTouch} from 'ol/has';
 import {transformExtent, transform} from 'ol/proj';
