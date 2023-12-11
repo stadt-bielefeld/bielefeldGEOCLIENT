@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-12-14 10:43+0100\n"
+"POT-Creation-Date: 2023-12-14 10:45+0100\n"
 "PO-Revision-Date: 2015-12-11 10:51+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -99,7 +99,7 @@ msgid "Export Project"
 msgstr "Exportieren"
 
 #: ../munimap/forms/project_settings.py:22
-#: ../munimap/templates/munimap/user/projects.html:31
+#: ../munimap/templates/munimap/user/projects.html:39
 msgid "Start Project"
 msgstr "Projekt starten"
 
@@ -1358,19 +1358,23 @@ msgstr "Zum Administrationsbereich"
 msgid "project \"%(name)s\" missing"
 msgstr "Projekt \"%(name)s\" nicht vorhanden"
 
-#: ../munimap/templates/munimap/user/projects.html:40
+#: ../munimap/templates/munimap/user/projects.html:26
+msgid "Digitize Application"
+msgstr "Digitalisierungsanwendung"
+
+#: ../munimap/templates/munimap/user/projects.html:48
 msgid "Start project with selected settings"
 msgstr "Startet das Projekt mit den gewählten Einstellungen"
 
-#: ../munimap/templates/munimap/user/projects.html:60
+#: ../munimap/templates/munimap/user/projects.html:68
 msgid "Export selected project settings"
 msgstr "Exportiert die gewählten Einstellungen"
 
-#: ../munimap/templates/munimap/user/projects.html:68
+#: ../munimap/templates/munimap/user/projects.html:76
 msgid "Import settings"
 msgstr "Importieren"
 
-#: ../munimap/templates/munimap/user/projects.html:69
+#: ../munimap/templates/munimap/user/projects.html:77
 msgid "Import selected project settings"
 msgstr "Importiert die gewählten Einstellungen"
 
@@ -1740,31 +1744,27 @@ msgstr "Plugin existiert bereits"
 msgid "Plugin %(name)s renamed to %(new_name)s"
 msgstr "Plugin %(name)s wurde zu %(new_name)s umbenannt"
 
-#: ../munimap/views/digitize.py:27
-msgid "Access not allowed"
-msgstr "Zugang verweigert"
-
-#: ../munimap/views/digitize.py:60
+#: ../munimap/views/digitize.py:59
 #, python-format
 msgid "Features for %(title)s added successfully"
 msgstr "Features für %(title)s erfolgreich hinzugefügt"
 
-#: ../munimap/views/digitize.py:132
+#: ../munimap/views/digitize.py:131
 #, python-format
 msgid "Features for %(title)s updated successfully"
 msgstr "Features für %(title)s erfolgreich aktualisiert"
 
-#: ../munimap/views/digitize.py:138
+#: ../munimap/views/digitize.py:137
 #, python-format
 msgid "Not all changed features for %(title)s updated"
 msgstr "Nicht alle Features von %(title)s konnten aktualisiert werden·"
 
-#: ../munimap/views/digitize.py:209
+#: ../munimap/views/digitize.py:208
 #, python-format
 msgid "Features for %(title)s deleted successfully"
 msgstr "Features für %(title)s erfolgreich gelöscht"
 
-#: ../munimap/views/digitize.py:215
+#: ../munimap/views/digitize.py:214
 #, python-format
 msgid "Not all provided features for %(title)s deleted"
 msgstr "Nicht alle Features für %(title)s konnten gelöscht werden"
@@ -1822,23 +1822,23 @@ msgstr ""
 "Link zum zurücksetzen des Passworts ist abgelaufen. Bitte fordern Sie "
 "einen neuen Link an."
 
-#: ../munimap/views/user_settings.py:122
+#: ../munimap/views/user_settings.py:123
 msgid "Error project successfully"
 msgstr "Fehler in den Einstellungen"
 
-#: ../munimap/views/user_settings.py:164
+#: ../munimap/views/user_settings.py:165
 msgid "Import project successfully"
 msgstr "Einstellungen erfolgreich eingeloggt"
 
-#: ../munimap/views/user_settings.py:221
+#: ../munimap/views/user_settings.py:222
 msgid "Save project successfully"
 msgstr "Einstellungen erfolgreich gespeichert"
 
-#: ../munimap/views/user_settings.py:244 ../munimap/views/user_settings.py:252
+#: ../munimap/views/user_settings.py:245 ../munimap/views/user_settings.py:253
 msgid "Load project successfully"
 msgstr "Einstellungen erfolgreich geladen"
 
-#: ../munimap/views/user_settings.py:319
+#: ../munimap/views/user_settings.py:320
 msgid "Delete project successfully"
 msgstr "Einstellungen erfolgreich gelöscht"
 

@@ -21,6 +21,14 @@
                 {% else %}
                   <h4>
                     {$ project['app']['title'] $}
+                    {% if project.get('components', {}).get('digitize') %}
+                      <span class="digitize-indicator glyphicon glyphicon-tint" aria-hidden="true"
+                        uib-tooltip="{$ _('Digitize Application') $}"
+                        tooltip-popup-delay="200"
+                        tooltip-enable="true"
+                        tooltip-trigger="mouseenter"
+                      ></span>
+                    {% endif %}
                   </h4>
                 {% endif %}
               </div>
