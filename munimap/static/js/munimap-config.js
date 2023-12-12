@@ -4,6 +4,7 @@ import GeoJSON from 'ol/format/GeoJSON';
 
 angular.module('munimap', [
     'schemaForm',
+    'anol.datepicker',
     'anol.geolocation',
     'anol.getfeatureinfo',
     'anol.measure',

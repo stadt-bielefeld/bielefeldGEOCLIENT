@@ -13,6 +13,7 @@ require('anol/src/modules/attribution/attribution-directive.js');
 require('anol/src/modules/catalog/catalog-directive.js');
 require('anol/src/modules/catalog/catalog-service.js');
 
+require('anol/src/modules/datepicker/datepicker-directive.js');
 require('anol/src/modules/featurepopup/dragpopup-directive.js');
 require('anol/src/modules/draw/draw-directive.js');
 require('anol/src/modules/draw/draw-service.js');
