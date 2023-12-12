@@ -24,8 +24,7 @@ digitize = Blueprint(
 def check_permission():
     # users need to be logged in, in order to work with given endpoints
     if current_user.is_anonymous:
-        flash(_('Access not allowed'), 'error')
-        return redirect(url_for('user.login', next=LocalProxyRequest.url))
+        abort(401)
 
 
 @digitize.route('/features', methods=['POST'])
