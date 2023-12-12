@@ -58,9 +58,17 @@
     </switch>
     <strong>An</strong>
 </div>
+<div class="mt-1 mb-1">
+    <button
+        type="button"
+        class="btn btn-link remove-geometries-btn"
+        ng-click="$parent.removeAllFeatures(activeLayer)"
+    >{$ _('Delete all geometries') $}</button>
+</div>
 
 <div anol-featureexchange
      layer="activeLayer"
      pre-download="$parent.preDownload"
+     post-upload="$parent.propsToFormValues"
      template-url="munimap/featureexchange.html">
 </div>
