@@ -7,7 +7,7 @@ angular.module('munimapGeoeditor')
             $scope.$on('geoeditor:openPopupFor', function (event, layer, feature) {
                 // in case we are opening an already existent element, check if the feature has formValues. 
                 // If not, then initialize it as an empty object
-                feature.set('formValues', feature.get('formValues') || {})
+                feature.set('formValues', feature.get('formValues') || {});
 
                 let showForm = true;
 

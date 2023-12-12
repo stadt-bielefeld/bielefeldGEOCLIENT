@@ -950,7 +950,8 @@ In diesem Abschnitt werden die Konfigurationen des geoEDITOR-Moduls vorgestellt.
       Wenn kein Label angegeben ist, wird der ``name`` des Feldes verwendet.
 
     ``type``
-      Der Datentyp des Datenfelds. Erlaubte Werte sind `"text"` für Texte, `"int"` für ganze Zahlen, `"float"` für Dezimalzahlen und `"select"` für Auswahllisten.
+      Der Datentyp des Datenfelds. Erlaubte Werte sind `"text"` für Texte, `"int"` für ganze Zahlen, `"float"` für Dezimalzahlen,
+      `"boolean"` für boolesche Werte, `"date"` für Datumseinträge und `"select"` für Auswahllisten.
 
     ``select``
       Enthält die Auswahllistenkonfiguration. Dieser Wert wird nur berücksichtigt, wenn als ``type`` `"select"` angegeben wurde.
