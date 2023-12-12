@@ -2,7 +2,7 @@ ARG ANOL_COMMIT_HASH=8b8a2f45e2da43940d825933fa40ca2095dc51e8
 
 
 
-FROM node:14.18.1-alpine3.14 as CLIENTBUILDER
+FROM node:14.18.1-alpine3.14 as clientbuilder
 
 ARG ANOL_COMMIT_HASH
 RUN apk add --no-cache wget unzip
@@ -33,7 +33,7 @@ RUN npm run build
 
 
 
-FROM python:3.9.13-buster as BUILDER
+FROM python:3.9.13-bullseye as builder
 
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -45,9 +45,9 @@ RUN pip install --upgrade pip \
 
 RUN mkdir -p /pkg
 # We have to build the client bevor packing everything into a python package
-COPY --from=CLIENTBUILDER /app/munimap /pkg/munimap
-COPY --from=CLIENTBUILDER /app/munimap_digitize /pkg/munimap_digitize
-COPY --from=CLIENTBUILDER /app/munimap_transport /pkg/munimap_transport
+COPY --from=clientbuilder /app/munimap /pkg/munimap
+COPY --from=clientbuilder /app/munimap_digitize /pkg/munimap_digitize
+COPY --from=clientbuilder /app/munimap_transport /pkg/munimap_transport
 
 COPY ./MANIFEST.in /pkg/MANIFEST.in
 COPY ./setup.cfg /pkg/setup.cfg
@@ -61,7 +61,7 @@ RUN cd munimap_transport && python setup.py clean && python setup.py egg_info sd
 
 
 
-FROM python:3.9.13-buster as RUNNER
+FROM python:3.9.13-bullseye as runner
 
 # TODO check which libs are actually needed
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
@@ -92,7 +92,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     librsvg2-dev \
     libfcgi-dev \
     fonts-dejavu-extra \
-    ttf-unifont \
+    fonts-unifont \
     locales \
     software-properties-common \
     && rm -rf /var/lib/apt/lists/*
@@ -153,9 +153,9 @@ RUN pip install --upgrade pip && pip install \
     scriptinep3==0.3.1
 
 COPY ./gunicorn.conf /opt/etc/munimap/gunicorn.conf
-COPY --from=BUILDER /pkg/dist/munimap-*.tar /opt/pkgs
-COPY --from=BUILDER /pkg/munimap_digitize/dist/munimap_digitize-*.tar /opt/pkgs
-COPY --from=BUILDER /pkg/munimap_transport/dist/munimap_transport-*.tar /opt/pkgs
+COPY --from=builder /pkg/dist/munimap-*.tar /opt/pkgs
+COPY --from=builder /pkg/munimap_digitize/dist/munimap_digitize-*.tar /opt/pkgs
+COPY --from=builder /pkg/munimap_transport/dist/munimap_transport-*.tar /opt/pkgs
 
 RUN pip install -f file:///opt/pkgs \
     munimap \
