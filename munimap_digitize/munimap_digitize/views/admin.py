@@ -6,6 +6,8 @@ from flask import (
     request as LocalProxyRequest
 )
 
+import yaml
+
 from flask_login import current_user
 
 from munimap.extensions import db
@@ -30,18 +32,44 @@ digitize_admin = Blueprint(
 
 @digitize_admin.before_request
 def check_permission():
-    access_allowed = check_group_permission(
-        [current_app.config.get('DIGITIZE_ADMIN_PERMISSION')]
-    )
     if current_user.is_anonymous:
         flash(_('You are not allowed to administrate the digitize layers'),
               'error')
         return redirect(url_for('user.login', next=LocalProxyRequest.url))
+    access_allowed = check_group_permission(
+        [current_app.config.get('DIGITIZE_ADMIN_PERMISSION')]
+    )
     if not access_allowed:
         if LocalProxyRequest.is_xhr:
             return jsonify(message='Not allowed')
         return abort(403)
 
+@digitize_admin.route('/admin/migrations')
+def layer_migrations():
+    """Temporary route for listing migrated digitize_layers"""
+    digitize_layers = Layer.query.all()
+    layer_dicts = []
+    for digitize_layer in digitize_layers:
+        digitize_props = digitize_layer.properties_schema.get('properties', {})
+        geom_types = {f['geometry']['type'] for f in digitize_layer.features}
+        props = [{'name': prop, 'type': 'text', 'label': val['title']} for prop, val in digitize_props.items()]
+        layer_dict = {
+            'name': digitize_layer.name,
+            'title': digitize_layer.title,
+            'type': 'digitize',
+            'source': {
+                'geom_type': ','.join(geom_types),
+                'name': digitize_layer.name,
+                'srs': 'EPSG:25832',
+                'properties': props
+            }
+        }
+        if digitize_layer.style is not None:
+            layer_dict['style'] = digitize_layer.style
+        layer_dicts.append(layer_dict)
+
+    yaml_layers = yaml.dump({'layers': layer_dicts})
+    return '<pre><code>'+yaml_layers+'</code></pre>'
 
 @digitize_admin.route('/admin')
 @digitize_admin.route('/admin/<name>')
