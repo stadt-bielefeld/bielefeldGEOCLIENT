@@ -97,7 +97,7 @@ def projects():
             selected_default_settings[name] = { 
                 'defaultProject': str(settings.mm_project_settings_id)
             }
-        
+
     return render_template(
         'munimap/user/projects.html',
         projects=projects,
@@ -106,6 +106,7 @@ def projects():
         is_admin=is_admin,
         form=form
     )
+
 
 @user.route("/settings/import", methods=["POST"])
 def import_settings():

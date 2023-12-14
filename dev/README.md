@@ -100,7 +100,6 @@ npm start
       ```
       pip3 install -r requirements.txt
       pip3 install -e ../
-      pip3 install --no-index -e ../munimap_digitize/
       pip3 install --no-index -e ../munimap_transport/
       ```
   - As long as the custom print layouts are still using the mapfish cli, we need to copy the icons to the mapfish config dir:
@@ -168,6 +167,13 @@ sudo chmod -R a+rwx dev/data/
 ```
 **Note**: Other commands are also set in the `manage.py`. You can check which commands exist by running `FLASK_APP=manage.py flask --help`
 
+## Run alembic to upgrade to latest revision
+
+While the database is up, run from the `bielefeldGEOCLIENT` folder:
+
+```
+alembic upgrade head
+```
 
 ## Debugging the application
 

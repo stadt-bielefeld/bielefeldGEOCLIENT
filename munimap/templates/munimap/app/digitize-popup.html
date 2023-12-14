@@ -1,0 +1,42 @@
+<div ng-if="digitizeEnabled"
+     ng-controller="digitizePopupController">
+    <div anol-feature-popup
+         layers="popupLayers"
+         class="munimap-digitize-popup"
+         open-for="openDigitizePopupFor"
+         on-close="onCloseDigitizePopup(feature)"
+         auto-pan-margin="50"
+         offset="[0, -20]"
+         alt-mobile-fullscreen="true"
+         feature-filter="featureFilter(feature)"
+    >
+        <div>
+            <div class="popup-header">
+              <h4>{$ _('Properties') $}</h4>
+            </div>
+            <div class="popup-content">
+                <div class="tab-content">
+                    <div class="digitize">
+                        <div
+                            anol-feature-properties-editor="featureEditorProps.feature"
+                            layer="featureEditorProps.layer"
+                            template-url="munimap/feature-properties-editor.html"
+                        ></div>
+                    </div>
+                </div>
+            </div>
+            <div class="popup-footer">
+                <div ng-if="needsRefresh" class="polling-refresh">
+                    <span class="glyphicon glyphicon-exclamation-sign"></span>
+                    <small>{$ _('Feature was updated by others. Please refresh before editing.') $}</small>
+                </div>
+                <div class="action-buttons">
+                  <button class="btn btn-default btn-sm"
+                          ng-click="closePopup()">
+                      {$ _('Close') $}
+                  </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

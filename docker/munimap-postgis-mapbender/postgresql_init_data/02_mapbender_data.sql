@@ -31,17 +31,13 @@ VALUES
 INSERT INTO public.mb_group
   (mb_group_id, mb_group_name, mb_group_owner, mb_group_description, mb_group_title, mb_group_ext_id, mb_group_address, mb_group_postcode, mb_group_city, mb_group_stateorprovince, mb_group_country, mb_group_voicetelephone, mb_group_facsimiletelephone, mb_group_email, mb_group_logo_path, mb_group_homepage)
 VALUES
-  (318, 'mm_admin', 2, '', 'mm_admin', NULL, '', '', '', '', '', '', '', '', '', NULL),
-  (319, 'digitize_admin', 2, '', 'digitize_admin', NULL, '', '', '', '', '', '', '', '', '', NULL),
-  (320, 'digitize_edit', 2, '', 'digitize_edit', NULL, '', '', '', '', '', '', '', '', '', NULL);
+  (318, 'mm_admin', 2, '', 'mm_admin', NULL, '', '', '', '', '', '', '', '', '', NULL);
 
 
 INSERT INTO public.mb_user_mb_group
   (fkey_mb_user_id, fkey_mb_group_id, mb_user_mb_group_type)
 VALUES
-  (2, 318, 1),
-  (2, 319, 1),
-  (2, 320, 1);
+  (2, 318, 1);
 
 
 INSERT INTO public.mm_projects

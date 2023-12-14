@@ -100,6 +100,7 @@ def create_app(config=None, config_file=None):
     from munimap.views.admin import admin
     from munimap.views.alkis import alkis
     from munimap.views.api import api
+    from munimap.views.digitize import digitize
 
     app.register_blueprint(frontend)
     app.register_blueprint(munimap)
@@ -109,17 +110,7 @@ def create_app(config=None, config_file=None):
     app.register_blueprint(admin)
     app.register_blueprint(alkis)
     app.register_blueprint(api)
-
-    try:
-        from munimap_digitize.views import digitize, digitize_admin, digitize_public
-    except ImportError as exc:
-        if 'munimap_digitize' not in str(exc):
-            app.logger.error(traceback.format_exc(exc))
-    else:
-        app.logger.info('munimap_digitize loaded')
-        app.register_blueprint(digitize)
-        app.register_blueprint(digitize_admin)
-        app.register_blueprint(digitize_public)
+    app.register_blueprint(digitize)
 
     try:
         from munimap_transport.views import transport
@@ -344,6 +335,15 @@ def configure_logging(app):
         layers_logger.propagate = False
         layers_logger.addHandler(handler)
 
+    def add_digitize_logger(handler):
+        handler.setLevel(logging.WARN)
+        handler.setFormatter(formatter)
+
+        layers_logger = logging.getLogger('munimap.digitize')
+        layers_logger.setLevel(logging.ERROR)
+        layers_logger.propagate = False
+        layers_logger.addHandler(handler)
+
     def add_print_logger(handler):
         handler.setLevel(logging.INFO)
         handler.setFormatter(formatter)
@@ -395,6 +395,7 @@ def configure_logging(app):
         add_error_logger(logging.FileHandler(error_log))
         add_proxy_logger(logging.FileHandler(error_log))
         add_layers_logger(logging.FileHandler(error_log))
+        add_digitize_logger(logging.FileHandler(error_log))
         add_print_logger(logging.FileHandler(error_log))
 
     if log_both or app.config['LOG_MODE'] == 'STDOUT':
@@ -405,6 +406,7 @@ def configure_logging(app):
         add_error_logger(logging.StreamHandler(sys.stdout))
         add_proxy_logger(logging.StreamHandler(sys.stdout))
         add_layers_logger(logging.StreamHandler(sys.stdout))
+        add_digitize_logger(logging.StreamHandler(sys.stdout))
         add_print_logger(logging.StreamHandler(sys.stdout))
 
     if log_stats:

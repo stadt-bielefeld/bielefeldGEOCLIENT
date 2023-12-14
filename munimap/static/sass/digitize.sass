@@ -1,13 +1,25 @@
-.text-white
-  color: $white
-
-.tooltip-info
-  font-size:12px
-  vertical-align: super
-  cursor: pointer
+.munimap-digitize-draw
+  .anol-drawer-content
+    .anol-draw
+      .digitize
+        width: 250px
+        display: flex
+        flex-direction: column
+        .digitize-draw-header
+          padding-bottom: 10px
+        .digitize-edit
+          display: flex
+          flex-direction: row
+          button
+            flex: 1
+        .digitize-draw-footer
+          .error-text
+            span
+              color: $warning-color
 
 .form-horizontal
-  margin: 0px 15px 0px
+  margin: 0 15px 0
+
   fieldset
     border-bottom: 1px solid $grey-lighter
     padding-bottom: 1em
@@ -21,11 +33,11 @@
       color: $grey
     .checkbox
       .control-label
-        padding-top: 0;
+        padding-top: 0
     .control-label, .checkbox
       font-weight: bold
     .checkbox input[type="checkbox"]
-      margin-left: 0;
+      margin-left: 0
     .form-group
       padding: 0
       margin-top: 5px
@@ -33,9 +45,11 @@
       .control-label
         // padding-top: 0
         font-weight: bold
+      .has-feedback
+        .form-control
+          padding-right: 35px
       .form-control-feedback
-        top: 15px
-        right: 5px
+          right: 5px
       .help-block
         position: absolute
         margin-top: 0
@@ -56,43 +70,6 @@
     button
       margin-top: 10px
 
-/* index page */
-
-.list-group-item
-  cursor: pointer
-  &:hover
-    color: #555;
-    text-decoration: none;
-    background-color: #f5f5f5;
-
-.list-group-item a
-  margin-right: 10px
-  line-height: 1
-  cursor: pointer
-  color: #555;
-  &:hover
-    cursor: pointer
-    color: #555;
-    text-decoration: none;
-    background-color: #f5f5f5;
-
-/* side bar */
-.sidebar-header
-  .back-to-index
-    position: absolute
-    right: 3px
-    bottom: 3px
-    z-index: 1
-.sidebar-content
-  .editable-layer
-    .layer-title
-      display: inline-block
-      max-width: 75%
-    &.inactive
-      .layer-title
-        .glyphicon
-          opacity: 0.4
-
 /* map */
 
 .munimap-digitize-popup
@@ -110,6 +87,7 @@
       top: 10px
 
     .anol-popup-content
+      width: 265px
       .popup-header
         padding: 10px
         background-color: $popup-digitize-header-color
@@ -118,6 +96,17 @@
           margin: 0
 
       .popup-content
+        .schema-form-checkbox
+          margin-left: -15px
+          padding-bottom: 5px
+          width: 100%
+          label
+            padding-left: 0
+            font-weight: bold
+            input
+              margin-top: 10px
+              margin-bottom: 4px
+
         @media (min-width: $screen-xs)
           .nav-tabs
             position: absolute
@@ -148,6 +137,10 @@
           min-height: 160px
           position: relative
 
+          .munimap-datepicker
+            .anol-date-picker
+                display: table
+
           .properties
             .form-horizontal
               fieldset
@@ -167,7 +160,7 @@
               width: 300px
 
           .marker
-            margin: 10px 15px 0px
+            margin: 10px 15px 0
             padding-bottom: 10px
             .marker-icon
               max-width: 30px
@@ -177,15 +170,16 @@
                 padding: 1px
                 border: 2px solid $green-border
       .popup-footer
-        height: 40px
-        margin: 0px 15px 0px 15px
+        margin: 0 15px 0 15px
         padding-top: 5px
-        border-top: 1px solid $grey-lighter
-        .remove-feature
-          padding-top: 8px
-          font-size: 0.8em
-          &:hover
-            text-decoration: none
+        padding-bottom: 5px
+        .polling-refresh
+          text-wrap: wrap
+          span
+            color: $warning-color
+        .action-buttons
+          display: flex
+          justify-content: flex-end
 
 $slider-track-height: 6px
 $slider-handle-width: 6px

@@ -7,8 +7,6 @@ module.exports  = {
     entry: {
         app: './munimap/static/js/app.js',
         transport: './munimap_transport/munimap_transport/static/js/app.js',
-        digitize: './munimap_digitize/munimap_digitize/static/js/app.js',
-        digitize_admin: './munimap_digitize/munimap_digitize/static/js/static-digitize-app.js',
         admin: './munimap/static/js/admin/admin.js',
         static_app:  './munimap/static/js/static-app.js',
         vendor: ['angular', 'jquery', 'angular-ui-bootstrap', 'core-js']

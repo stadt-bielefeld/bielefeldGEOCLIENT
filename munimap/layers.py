@@ -10,8 +10,9 @@ from collections import OrderedDict
 from copy import deepcopy
 from flask import current_app
 
-from munimap.helper import merge_dict, _l
+from munimap.helper import merge_dict, _l, resolve_selectionlist, InvalidAppConfigError
 from munimap.validation import validate_layers_conf
+from munimap.model import Feature
 
 import logging
 log = logging.getLogger('munimap.layers')
@@ -196,6 +197,22 @@ def anol_overlay_layer(layer_conf, layers_base_url=''):
 
     if layer_conf['type'] in ('postgis', 'static_geojson', 'digitize'):
         anol_layer['cluster'] = layer_conf.get('cluster', False)
+
+    if layer_conf['type'] == 'digitize':
+        anol_layer['geom_type'] = layer_conf['source'].get('geom_type')
+        prop_def = layer_conf['source'].get('properties')
+        if prop_def is not None:
+            for prop in prop_def:
+                try:
+                    selectionlist = resolve_selectionlist(prop)
+                except InvalidAppConfigError as ex:
+                    log.error(f'Could not resolve selectionlist for layer {layer_conf["name"]}: {ex}')
+                    continue
+                if selectionlist is not None:
+                    prop['select'] = selectionlist
+            properties_schema = Feature.properties_schema_from_prop_def(prop_def)
+            anol_layer['properties_schema'] = properties_schema
+            anol_layer['properties_schema_form_options'] = Feature.properties_schema_form_options
 
     if style:
         if 'externalGraphicPrefix' in style:

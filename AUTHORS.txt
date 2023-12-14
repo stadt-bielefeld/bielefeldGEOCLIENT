@@ -7,7 +7,7 @@ Authors
 -------
 
 Dominik Helle <support@omniscale.de>
-Jan Suleiman <jsuleiman@terrestris.de>
-Simon Seyock <sseyock@terrestris.de>
-Markus Schneider <mschneider@terrestris.de>
+Jan Suleiman <suleiman@terrestris.de>
+Simon Seyock <seyock@terrestris.de>
+Markus Schneider <schneider@terrestris.de>
 

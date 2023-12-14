@@ -1,5 +1,0 @@
-include setup.py
-include setup.cfg
-
-recursive-include munimap_digitize *
-recursive-exclude munimap_digitize *.pyc *.pyd .DS_Store *.rej *.orig *.lck .empty

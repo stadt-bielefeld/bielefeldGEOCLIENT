@@ -4,10 +4,10 @@ from munimap.application import create_app
 from munimap.extensions import db
 import click
 
-config_file=os.getenv('FLASK_MUNIMAP_CONFIG', './configs/munimap.conf')
-debug=os.getenv('FLASK_DEBUG', '0')
-host=os.getenv('FLASK_RUN_HOST', '0.0.0.0')
-port=os.getenv('FLASK_RUN_PORT',5000)
+config_file = os.getenv('FLASK_MUNIMAP_CONFIG', './configs/munimap.conf')
+debug = os.getenv('FLASK_DEBUG', '0')
+host = os.getenv('FLASK_RUN_HOST', '0.0.0.0')
+port = os.getenv('FLASK_RUN_PORT', 5000)
 
 
 app = create_app(config_file=config_file)
@@ -33,7 +33,7 @@ def babel_init_lang(lang='de'):
 @cli_manager.command()
 def babel_refresh():
     "Extract messages and update translation files."
-    sh('pybabel extract -F ../munimap/babel.cfg -k lazy_gettext -k _l -o ../munimap/translations/messages.pot ../munimap ../munimap_digitize ../munimap_transport')
+    sh('pybabel extract -F ../munimap/babel.cfg -k lazy_gettext -k _l -o ../munimap/translations/messages.pot ../munimap ../munimap_transport')
     sh('pybabel update -i ../munimap/translations/messages.pot -d ../munimap/translations')
 
 
@@ -54,10 +54,6 @@ def create_db():
 
     alembic_cfg = Config(app.config.get('ALEMBIC_CONF'))
     command.stamp(alembic_cfg, "head")
-
-    from munimap_digitize.model import fixtures
-    db.session.add_all(fixtures.all())
-    db.session.commit()
 
 
 @cli_manager.command()

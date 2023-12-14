@@ -20,7 +20,6 @@ RUN cd /anol && npm ci
 RUN mkdir -p /app
 
 COPY ./munimap /app/munimap
-COPY ./munimap_digitize /app/munimap_digitize
 COPY ./munimap_transport /app/munimap_transport
 COPY ./package.json /app/package.json
 COPY ./package-lock.json /app/package-lock.json
@@ -46,7 +45,6 @@ RUN pip install --upgrade pip \
 RUN mkdir -p /pkg
 # We have to build the client bevor packing everything into a python package
 COPY --from=clientbuilder /app/munimap /pkg/munimap
-COPY --from=clientbuilder /app/munimap_digitize /pkg/munimap_digitize
 COPY --from=clientbuilder /app/munimap_transport /pkg/munimap_transport
 
 COPY ./MANIFEST.in /pkg/MANIFEST.in
@@ -56,7 +54,6 @@ COPY ./setup.py /pkg/setup.py
 WORKDIR /pkg
 
 RUN python setup.py clean && python setup.py egg_info sdist --formats=tar
-RUN cd munimap_digitize && python setup.py clean && python setup.py egg_info sdist --formats=tar
 RUN cd munimap_transport && python setup.py clean && python setup.py egg_info sdist --formats=tar
 
 
@@ -115,10 +112,8 @@ RUN mkdir -p /opt/munimap \
     && mkdir -p /opt/pkgs \
     && mkdir -p /opt/var \
     && mkdir -p /opt/var/mapfish \
-    && mkdir -p /opt/etc/munimap/app-configs \
-    && mkdir -p /opt/etc/munimap/map-configs \
-    && mkdir -p /opt/etc/munimap/selectionlists-configs \
-    && mkdir -p /opt/etc/munimap/plugins \
+    && mkdir -p /opt/etc/munimap/data \
+    && mkdir -p /opt/etc/munimap/configs \
     && mkdir -p /opt/etc/munimap/bielefeld \
     && mkdir -p /opt/etc/munimap/printqueue \
     && mkdir -p /opt/etc/munimap/printqueue/job-specs \
@@ -154,13 +149,11 @@ RUN pip install --upgrade pip && pip install \
 
 COPY ./gunicorn.conf /opt/etc/munimap/gunicorn.conf
 COPY --from=builder /pkg/dist/munimap-*.tar /opt/pkgs
-COPY --from=builder /pkg/munimap_digitize/dist/munimap_digitize-*.tar /opt/pkgs
 COPY --from=builder /pkg/munimap_transport/dist/munimap_transport-*.tar /opt/pkgs
 
 RUN pip install -f file:///opt/pkgs \
     munimap \
-    munimap_transport \
-    munimap_digitize
+    munimap_transport
 
 # Hack to disable https for following script.
 RUN PYTHONHTTPSVERIFY=0 python -c "import hyphen.dictools; hyphen.dictools.is_installed('de') or hyphen.dictools.install('de')"
@@ -173,4 +166,5 @@ WORKDIR /opt/etc/munimap
 
 # cat will print a "no such file or directory" if /certs is empty. This can be ignored.
 CMD cat /certs/*.pem >> /etc/ssl/certs/ca-certificates.crt; \
+    alembic -c configs/alembic.ini upgrade head && \
     gunicorn -c /opt/etc/munimap/gunicorn.conf "munimap.application:create_app(config_file='/opt/etc/munimap/configs/munimap.conf')"

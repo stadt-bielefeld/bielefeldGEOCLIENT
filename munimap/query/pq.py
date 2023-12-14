@@ -4,10 +4,7 @@ import sqlalchemy as sa
 from shapely.wkb import loads
 from shapely.geometry import mapping
 
-try:
-    from munimap_digitize.model import Layer as DigitizeLayer
-except ImportError:
-    print('munimap_digitize not loaded')
+from munimap.model import Feature
 
 class LayerNotFoundError(Exception):
     pass
@@ -55,8 +52,8 @@ def query(q, queryable_layers):
         layer_type = queryable_layers[layer]['type']
         if layer_type == 'digitize':
             layer_name = queryable_layers[layer]['source']['name']
-            digitize_layer = DigitizeLayer.by_name(layer_name)
-            features = features + digitize_layer.mapfish_features
+            digitize_features = Feature.by_layer_name(layer_name)
+            features = features + Feature.mapfish_features(digitize_features, queryable_layers[layer])
 
         if layer_type == 'postgis':
             sql = queryable_layers[layer]['source']['query']
