@@ -91,6 +91,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#tiledwms"><code class="docutils literal notranslate"><span class="pre">tiledwms</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#wmts"><code class="docutils literal notranslate"><span class="pre">wmts</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#postgis"><code class="docutils literal notranslate"><span class="pre">postgis</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#digitize"><code class="docutils literal notranslate"><span class="pre">digitize</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -102,11 +103,6 @@
 <li class="toctree-l1"><a class="reference internal" href="tour.html">Tour</a></li>
 <li class="toctree-l1"><a class="reference internal" href="administration.html">Administrationsbereich</a></li>
 <li class="toctree-l1"><a class="reference internal" href="url-parameter.html">URL-Parameter</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="digitize/user.html">Digitalisieren</a></li>
-<li class="toctree-l1"><a class="reference internal" href="digitize/admin.html">Digitalisieren-Administrationsbereich</a></li>
-<li class="toctree-l1"><a class="reference internal" href="digitize/config.html">Digitalisieren-Konfiguration</a></li>
 </ul>
 
         </div>
@@ -564,6 +560,75 @@ Layer mit einer Namenserweiterung dürfen weder nicht in <cite>groups</cite> auf
 <p>Das <cite>where-statement</cite> <strong>geometry &amp;&amp; !bbox!</strong> sorgt dafür, dass die Anfrage an die Datenbank nur Geometrien des aktuellen Kartenausschnitts zurückliefert.</p>
 </div>
 </div>
+<div class="section" id="digitize">
+<span id="digitizesource"></span><h3><code class="docutils literal notranslate"><span class="pre">digitize</span></code><a class="headerlink" href="#digitize" title="Link zu dieser Überschrift">¶</a></h3>
+<blockquote>
+<div><dl>
+<dt>name</dt><dd><p>Name des Layers. Über diesen Wert wird die Zugehörigkeit eines Features in der Digitalisierungstabelle hergestellt.
+Daher muss dieser Name eindeutigt sein. Dieses Attribut ist verpflichtend.</p>
+</dd>
+<dt>geom_type</dt><dd><p>Geometrietyp des Layers. Erlaubte Werte: <cite>Point</cite>, <cite>LineString</cite>, <cite>Polygon</cite>. Dieses Attribut ist verpflichtend.</p>
+</dd>
+<dt>srs</dt><dd><p>Koordinatenreferenzsystem des Layers.</p>
+</dd>
+<dt>properties</dt><dd><p>Die Attribute des Layers. Liste von Objekten, mit den Attributen <cite>name</cite>, <cite>type</cite>, <cite>label</cite>, <cite>select</cite>.</p>
+<dl class="simple">
+<dt>name</dt><dd><p>String. Name des Attributs. Dieses Attribut ist verpflichtend.</p>
+</dd>
+<dt>type</dt><dd><p>String. Typ des Attributs. Erlaubte Werte: <cite>text</cite>, <cite>int</cite>, <cite>float</cite>, <cite>boolean</cite>, <cite>date</cite>, <cite>select</cite>. Dieses Attribut ist verpflichtend.</p>
+</dd>
+<dt>label</dt><dd><p>String. Darstellungstext des Attributs. Per default wird der Wert von <cite>name</cite> verwendet.</p>
+</dd>
+<dt>select</dt><dd><p>Nur bei <cite>type: select</cite>. Entweder ein String, der eine Auswahlliste referenziert, oder eine direkte Auswahlliste.
+Siehe dazu auch <a class="reference internal" href="selectionlists-config.html#selectionlistconf"><span class="std std-ref">Auswahllisten-Definition</span></a>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">layers</span>
+  <span class="l l-Scalar l-Scalar-Plain">- name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">example_layer</span>
+    <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Example Layer</span>
+    <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">digitize</span>
+    <span class="l l-Scalar l-Scalar-Plain">source</span><span class="p p-Indicator">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">example_digitize_layer</span>
+      <span class="nt">geom_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">LineString</span>
+      <span class="nt">srs</span><span class="p">:</span> <span class="s">&#39;EPSG:25832&#39;</span>
+      <span class="nt">properties</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">label</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Some Text</span>
+          <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">some_text</span>
+          <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">text</span>
+        <span class="p p-Indicator">-</span> <span class="nt">label</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Some Int</span>
+          <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">some_int</span>
+          <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">int</span>
+        <span class="p p-Indicator">-</span> <span class="nt">label</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Some Float</span>
+          <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">some_float</span>
+          <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">float</span>
+        <span class="p p-Indicator">-</span> <span class="nt">label</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Some Boolean</span>
+          <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">some_bool</span>
+          <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">boolean</span>
+        <span class="p p-Indicator">-</span> <span class="nt">label</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Some Date</span>
+          <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">some_date</span>
+          <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">date</span>
+        <span class="p p-Indicator">-</span> <span class="nt">label</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Direct Select</span>
+          <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">direct_select</span>
+          <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">select</span>
+          <span class="nt">select</span><span class="p">:</span>
+            <span class="p p-Indicator">-</span> <span class="nt">value</span><span class="p">:</span> <span class="s">&#39;foo&#39;</span>
+              <span class="nt">label</span><span class="p">:</span> <span class="s">&#39;hans&#39;</span>
+            <span class="p p-Indicator">-</span> <span class="nt">value</span><span class="p">:</span> <span class="s">&#39;bar&#39;</span>
+              <span class="nt">label</span><span class="p">:</span> <span class="s">&#39;peter&#39;</span>
+        <span class="p p-Indicator">-</span> <span class="nt">label</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Referenced Select</span>
+          <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">referenced_select</span>
+          <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">select</span>
+          <span class="nt">select</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">digitize_dev_select</span>
+<span class=" -Error">    </span><span class="nt">style</span><span class="p">:</span>
+      <span class="nt">radius</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+      <span class="nt">strokeColor</span><span class="p">:</span> <span class="s">&#39;#c00&#39;</span>
+      <span class="nt">fillColor</span><span class="p">:</span> <span class="s">&#39;#00c&#39;</span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 
@@ -579,7 +644,7 @@ Layer mit einer Namenserweiterung dürfen weder nicht in <cite>groups</cite> auf
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021, Stadt Bielefeld.
-      <span class="lastupdated">Zuletzt aktualisiert am 2023-12-12.
+      <span class="lastupdated">Zuletzt aktualisiert am 2023-12-14.
       </span></p>
   </div>
 

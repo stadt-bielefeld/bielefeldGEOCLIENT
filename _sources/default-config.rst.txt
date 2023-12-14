@@ -37,6 +37,9 @@ Die Konfiguration ist in einzelne Abschnitte unterteilt die in der nachfolgenden
   ``urlMarkersConfig``
     Konfiguration des UrlMarkers-Moduls
 
+  ``digitizeConfig``
+    Konfiguration des Digitize-Moduls
+
 
 app
 ---
@@ -328,6 +331,11 @@ Folgende Komponenten stehen zur Verfügung:
     Fügt der Anwendung den geoEDITOR hinzu. Dieser erlaubt das Erstellen und Editieren von Geometrien und deren Attributen. Um den geoEDITOR in seiner Default Konfiguration zu verwenden, muss lediglich der Wert `true` angegeben werden.
     Konfigurationen für diese Komponente werden im Abschnitt `geoeditorConfig`_ vorgenommen. Standardwert: `false`.
 
+  ``digitize``
+    Macht aus der Anwendung eine Digitalisierungsanwendung. Dies erlaubt das Erstellen und Editieren von vordefinierten
+    Digitalisierungslayern. Sowohl Geometrien als auch Attribute können hier editiert werden. Um das digitize-Modul zu verwenden,
+    muss sowohl der Wert `true` angegeben werden, als auch mindestens ein Digitalisierungslayer unter `digitizeConfig`_
+    konfiguriert werden. Standardwert: `false`.
 
 componentPositions
 ------------------
@@ -568,7 +576,7 @@ In diesem Abschnitt werden die Konfigurationen des Such-Moduls vorgestellt.
 
 
   ``selected``
-      Defineirt die Standardsuche. Wenn mehrere Suchen definiert sind, wird diese als erste, aktive Suche verwendet. Werte `true` oder `false`.
+      Definiert die Standardsuche. Wenn mehrere Suchen definiert sind, wird diese als erste, aktive Suche verwendet. Werte `true` oder `false`.
 
   ``zoom``
       Detailstufe, die nach Auswahl eines Ergebnisses eingestellt wird. Ist `zoom` nicht angegeben, erfolgt keine Veränderung der Detailstufe.
@@ -597,6 +605,17 @@ In diesem Abschnitt werden die Konfigurationen des Such-Moduls vorgestellt.
   ``availableInUrlGeocode``
       Wenn der Wert auf `true` gesetzt wird, ist die Konfiguration über das URL-Geocode verfügbar. Default `false`.
 
+
+digitizeConfig
+--------------
+
+In diesem Abschnitt werden die Konfigurationen des Digitize-Moduls vorgestellt.
+
+
+  ``layers``
+    Eine Liste der Namen der für die Anwendung bereitzustellenden Digitalisierungslayer. Diese Layer können in der Anwendung editiert werden.
+    Es sind ausschließlich Layer des Typs `digitize` erlaubt. Siehe dazu auch :ref:`digitize<digitizesource>`. Aktuell
+    wird das Editieren von genau einem Digitalisierungslayer unterstützt. Dieser Wert ist verpflichtend, wenn `components.digitize: True` ist.
 
 Geocoder
 """"""""
@@ -931,7 +950,8 @@ In diesem Abschnitt werden die Konfigurationen des geoEDITOR-Moduls vorgestellt.
       Wenn kein Label angegeben ist, wird der ``name`` des Feldes verwendet.
 
     ``type``
-      Der Datentyp des Datenfelds. Erlaubte Werte sind `"text"` für Texte, `"int"` für ganze Zahlen, `"float"` für Dezimalzahlen und `"select"` für Auswahllisten.
+      Der Datentyp des Datenfelds. Erlaubte Werte sind `"text"` für Texte, `"int"` für ganze Zahlen, `"float"` für Dezimalzahlen,
+      `"boolean"` für boolesche Werte, `"date"` für Datumseinträge und `"select"` für Auswahllisten.
 
     ``select``
       Enthält die Auswahllistenkonfiguration. Dieser Wert wird nur berücksichtigt, wenn als ``type`` `"select"` angegeben wurde.

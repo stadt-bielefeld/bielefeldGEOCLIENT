@@ -43,7 +43,7 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Anwendungen</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#neue-anwendung-erstellen">Neue Anwendung erstellen</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#digitze-app">Digitze-App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#digitize-app">Digitize-App</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#transport-app">Transport-App</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#statische-dateien-und-templates">Statische Dateien und Templates</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#anwendung-als-iframe-einbinden">Anwendung als IFrame einbinden</a></li>
@@ -65,11 +65,6 @@
 <li class="toctree-l1"><a class="reference internal" href="tour.html">Tour</a></li>
 <li class="toctree-l1"><a class="reference internal" href="administration.html">Administrationsbereich</a></li>
 <li class="toctree-l1"><a class="reference internal" href="url-parameter.html">URL-Parameter</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="digitize/user.html">Digitalisieren</a></li>
-<li class="toctree-l1"><a class="reference internal" href="digitize/admin.html">Digitalisieren-Administrationsbereich</a></li>
-<li class="toctree-l1"><a class="reference internal" href="digitize/config.html">Digitalisieren-Konfiguration</a></li>
 </ul>
 
         </div>
@@ -170,10 +165,11 @@ Zusätzlich können weitere Anwendungen (kurz Apps) konfiguriert werden, die z.B
 </pre></div>
 </div>
 </div>
-<div class="section" id="digitze-app">
-<h2>Digitze-App<a class="headerlink" href="#digitze-app" title="Link zu dieser Überschrift">¶</a></h2>
-<p>Die Kartenanwendung für das Digitalisieren von Objekten ist unter <cite>/digitize</cite> zu erreichen. Hierzu gehörig ist die Konfigurationsdatei <cite>digitize.yaml</cite>.</p>
-<p>Die Anwendung wird von Munimap gesondert behandelt. Daher können für die Digitze-App nur die Layer konfiguriert werden.</p>
+<div class="section" id="digitize-app">
+<h2>Digitize-App<a class="headerlink" href="#digitize-app" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Der Endpunkt <cite>/digitize</cite>, unter dem in früheren Versionen die Digitalisierungsanwendung bereitgestellt wurde,
+wurde in der aktuellen Version entfernt. Mittlerweile kann jede Anwendung für das Digitalisieren von Objekten
+verwendet werden. Weitere Infos unter <a class="reference internal" href="default-config.html#defaultconf"><span class="std std-ref">App-Optionen</span></a>.</p>
 </div>
 <div class="section" id="transport-app">
 <h2>Transport-App<a class="headerlink" href="#transport-app" title="Link zu dieser Überschrift">¶</a></h2>
@@ -267,7 +263,7 @@ Zusätzlich können weitere Anwendungen (kurz Apps) konfiguriert werden, die z.B
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021, Stadt Bielefeld.
-      <span class="lastupdated">Zuletzt aktualisiert am 2023-12-12.
+      <span class="lastupdated">Zuletzt aktualisiert am 2023-12-14.
       </span></p>
   </div>
 

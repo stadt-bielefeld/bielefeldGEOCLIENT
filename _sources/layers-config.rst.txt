@@ -515,3 +515,79 @@ Wie WMS, Karten werden jedoch in 256x256 Pixel große Kacheln abgerufen.
 
 
 .. note:: Das `where-statement` **geometry && !bbox!** sorgt dafür, dass die Anfrage an die Datenbank nur Geometrien des aktuellen Kartenausschnitts zurückliefert.
+
+
+.. _digitizesource:
+
+``digitize``
+""""""""""""
+
+  name
+      Name des Layers. Über diesen Wert wird die Zugehörigkeit eines Features in der Digitalisierungstabelle hergestellt.
+      Daher muss dieser Name eindeutigt sein. Dieses Attribut ist verpflichtend.
+
+  geom_type
+      Geometrietyp des Layers. Erlaubte Werte: `Point`, `LineString`, `Polygon`. Dieses Attribut ist verpflichtend.
+
+  srs
+      Koordinatenreferenzsystem des Layers.
+
+  properties
+      Die Attribute des Layers. Liste von Objekten, mit den Attributen `name`, `type`, `label`, `select`.
+
+      name
+          String. Name des Attributs. Dieses Attribut ist verpflichtend.
+
+      type
+          String. Typ des Attributs. Erlaubte Werte: `text`, `int`, `float`, `boolean`, `date`, `select`. Dieses Attribut ist verpflichtend.
+
+      label
+          String. Darstellungstext des Attributs. Per default wird der Wert von `name` verwendet.
+
+      select
+          Nur bei `type: select`. Entweder ein String, der eine Auswahlliste referenziert, oder eine direkte Auswahlliste.
+          Siehe dazu auch :ref:`Auswahllisten-Definition<selectionlistconf>`.
+
+
+.. code-block:: yaml
+
+    layers
+      - name: example_layer
+        title: Example Layer
+        type: digitize
+        source:
+          name: example_digitize_layer
+          geom_type: LineString
+          srs: 'EPSG:25832'
+          properties:
+            - label: Some Text
+              name: some_text
+              type: text
+            - label: Some Int
+              name: some_int
+              type: int
+            - label: Some Float
+              name: some_float
+              type: float
+            - label: Some Boolean
+              name: some_bool
+              type: boolean
+            - label: Some Date
+              name: some_date
+              type: date
+            - label: Direct Select
+              name: direct_select
+              type: select
+              select:
+                - value: 'foo'
+                  label: 'hans'
+                - value: 'bar'
+                  label: 'peter'
+            - label: Referenced Select
+              name: referenced_select
+              type: select
+              select: digitize_dev_select
+        style:
+          radius: 10
+          strokeColor: '#c00'
+          fillColor: '#00c'

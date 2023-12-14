@@ -55,7 +55,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#geolocationconfig">geolocationConfig</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#searchconfig">searchConfig</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#searchconfig">searchConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#digitizeconfig">digitizeConfig</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#geocoder">Geocoder</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#nominatim">Nominatim</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#solr">Solr</a></li>
@@ -87,11 +88,6 @@
 <li class="toctree-l1"><a class="reference internal" href="tour.html">Tour</a></li>
 <li class="toctree-l1"><a class="reference internal" href="administration.html">Administrationsbereich</a></li>
 <li class="toctree-l1"><a class="reference internal" href="url-parameter.html">URL-Parameter</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="digitize/user.html">Digitalisieren</a></li>
-<li class="toctree-l1"><a class="reference internal" href="digitize/admin.html">Digitalisieren-Administrationsbereich</a></li>
-<li class="toctree-l1"><a class="reference internal" href="digitize/config.html">Digitalisieren-Konfiguration</a></li>
 </ul>
 
         </div>
@@ -143,6 +139,8 @@
 <dt><code class="docutils literal notranslate"><span class="pre">geolocationConfig</span></code></dt><dd><p>Konfiguration des Geolocation-Moduls</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">urlMarkersConfig</span></code></dt><dd><p>Konfiguration des UrlMarkers-Moduls</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">digitizeConfig</span></code></dt><dd><p>Konfiguration des Digitize-Moduls</p>
 </dd>
 </dl>
 </div></blockquote>
@@ -379,6 +377,11 @@ Außerdem kann definiert werden, ob neben den Gruppen die für den Katalog geken
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">geoeditor</span></code></dt><dd><p>Fügt der Anwendung den geoEDITOR hinzu. Dieser erlaubt das Erstellen und Editieren von Geometrien und deren Attributen. Um den geoEDITOR in seiner Default Konfiguration zu verwenden, muss lediglich der Wert <cite>true</cite> angegeben werden.
 Konfigurationen für diese Komponente werden im Abschnitt <a class="reference internal" href="#geoeditorconfig">geoeditorConfig</a> vorgenommen. Standardwert: <cite>false</cite>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">digitize</span></code></dt><dd><p>Macht aus der Anwendung eine Digitalisierungsanwendung. Dies erlaubt das Erstellen und Editieren von vordefinierten
+Digitalisierungslayern. Sowohl Geometrien als auch Attribute können hier editiert werden. Um das digitize-Modul zu verwenden,
+muss sowohl der Wert <cite>true</cite> angegeben werden, als auch mindestens ein Digitalisierungslayer unter <a class="reference internal" href="#digitizeconfig">digitizeConfig</a>
+konfiguriert werden. Standardwert: <cite>false</cite>.</p>
 </dd>
 </dl>
 </div></blockquote>
@@ -644,7 +647,7 @@ PostMessage-Event hören, wird ausschließlich das zuletzt registrierte Plugin f
 <p>In diesem Abschnitt werden die Konfigurationen des Such-Moduls vorgestellt.</p>
 <blockquote>
 <div><dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">selected</span></code></dt><dd><p>Defineirt die Standardsuche. Wenn mehrere Suchen definiert sind, wird diese als erste, aktive Suche verwendet. Werte <cite>true</cite> oder <cite>false</cite>.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">selected</span></code></dt><dd><p>Definiert die Standardsuche. Wenn mehrere Suchen definiert sind, wird diese als erste, aktive Suche verwendet. Werte <cite>true</cite> oder <cite>false</cite>.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">zoom</span></code></dt><dd><p>Detailstufe, die nach Auswahl eines Ergebnisses eingestellt wird. Ist <cite>zoom</cite> nicht angegeben, erfolgt keine Veränderung der Detailstufe.</p>
 </dd>
@@ -663,6 +666,18 @@ PostMessage-Event hören, wird ausschließlich das zuletzt registrierte Plugin f
 <dt><code class="docutils literal notranslate"><span class="pre">availableInSearchBox</span></code></dt><dd><p>Wenn der Wert auf <cite>false</cite> gesetzt wird, ist die Konfiguration in der Suchbox nicht verfügbar. Default <cite>true</cite>.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">availableInUrlGeocode</span></code></dt><dd><p>Wenn der Wert auf <cite>true</cite> gesetzt wird, ist die Konfiguration über das URL-Geocode verfügbar. Default <cite>false</cite>.</p>
+</dd>
+</dl>
+</div></blockquote>
+</div>
+<div class="section" id="digitizeconfig">
+<h2>digitizeConfig<a class="headerlink" href="#digitizeconfig" title="Link zu dieser Überschrift">¶</a></h2>
+<p>In diesem Abschnitt werden die Konfigurationen des Digitize-Moduls vorgestellt.</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">layers</span></code></dt><dd><p>Eine Liste der Namen der für die Anwendung bereitzustellenden Digitalisierungslayer. Diese Layer können in der Anwendung editiert werden.
+Es sind ausschließlich Layer des Typs <cite>digitize</cite> erlaubt. Siehe dazu auch <a class="reference internal" href="layers-config.html#digitizesource"><span class="std std-ref">digitize</span></a>. Aktuell
+wird das Editieren von genau einem Digitalisierungslayer unterstützt. Dieser Wert ist verpflichtend, wenn <cite>components.digitize: True</cite> ist.</p>
 </dd>
 </dl>
 </div></blockquote>
@@ -962,7 +977,8 @@ Folgende Subattribute müssen/können für ein Datenfeld konfiguriert werden:</p
 <dt><code class="docutils literal notranslate"><span class="pre">label</span></code></dt><dd><p>Das Label des Datenfelds. Dies ist der Text, der neben/über dem Eingabefeld erscheint.
 Wenn kein Label angegeben ist, wird der <code class="docutils literal notranslate"><span class="pre">name</span></code> des Feldes verwendet.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">type</span></code></dt><dd><p>Der Datentyp des Datenfelds. Erlaubte Werte sind <cite>„text“</cite> für Texte, <cite>„int“</cite> für ganze Zahlen, <cite>„float“</cite> für Dezimalzahlen und <cite>„select“</cite> für Auswahllisten.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">type</span></code></dt><dd><p>Der Datentyp des Datenfelds. Erlaubte Werte sind <cite>„text“</cite> für Texte, <cite>„int“</cite> für ganze Zahlen, <cite>„float“</cite> für Dezimalzahlen,
+<cite>„boolean“</cite> für boolesche Werte, <cite>„date“</cite> für Datumseinträge und <cite>„select“</cite> für Auswahllisten.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">select</span></code></dt><dd><p>Enthält die Auswahllistenkonfiguration. Dieser Wert wird nur berücksichtigt, wenn als <code class="docutils literal notranslate"><span class="pre">type</span></code> <cite>„select“</cite> angegeben wurde.
 Kann entweder eine Liste der verfügbaren Optionen mit den Eigenschaften <code class="docutils literal notranslate"><span class="pre">value</span></code> und <code class="docutils literal notranslate"><span class="pre">label</span></code> oder einen Verweis auf eine ausgelagerte Selektionskonfiguration enthalten.
@@ -1117,7 +1133,7 @@ ein Objekt mit folgenden Attributen zurückliefert:</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021, Stadt Bielefeld.
-      <span class="lastupdated">Zuletzt aktualisiert am 2023-12-12.
+      <span class="lastupdated">Zuletzt aktualisiert am 2023-12-14.
       </span></p>
   </div>
 

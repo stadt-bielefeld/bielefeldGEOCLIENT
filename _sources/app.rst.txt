@@ -83,12 +83,12 @@ Im Folgenden eine umfangreiche beispielhafte Konfiguration einer Anwendung.
         - "a4-landscape"
 
 
-Digitze-App
------------
+Digitize-App
+------------
 
-Die Kartenanwendung für das Digitalisieren von Objekten ist unter `/digitize` zu erreichen. Hierzu gehörig ist die Konfigurationsdatei `digitize.yaml`.
-
-Die Anwendung wird von Munimap gesondert behandelt. Daher können für die Digitze-App nur die Layer konfiguriert werden.
+Der Endpunkt `/digitize`, unter dem in früheren Versionen die Digitalisierungsanwendung bereitgestellt wurde,
+wurde in der aktuellen Version entfernt. Mittlerweile kann jede Anwendung für das Digitalisieren von Objekten
+verwendet werden. Weitere Infos unter :ref:`App-Optionen<defaultconf>`.
 
 
 Transport-App
