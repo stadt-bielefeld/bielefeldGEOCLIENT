@@ -33,7 +33,7 @@ angular.module('munimapDigitize')
                 $scope.closePopup();
             });
 
-            $scope.$on('SaveManagerService:polling', (evt, data) => {
+            const handleSaveManagerEvt = (evt, data) => {
                 if (Object.keys($scope.featureEditorProps).length === 0) {
                     return;
                 }
@@ -50,5 +50,9 @@ angular.module('munimapDigitize')
                 } else {
                     $scope.needsRefresh = false;
                 }
-            });
+            };
+
+            $scope.$on('SaveManagerService:polling', handleSaveManagerEvt);
+
+            $scope.$on('SaveManagerService:refreshLayer', handleSaveManagerEvt);
         }]);
