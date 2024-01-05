@@ -1,14 +1,14 @@
 # Translations template for PROJECT.
-# Copyright (C) 2023 ORGANIZATION
+# Copyright (C) 2024 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-12-14 10:45+0100\n"
+"POT-Creation-Date: 2024-01-05 10:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,7 +35,7 @@ msgstr ""
 #: ../munimap/forms/admin.py:11 ../munimap/forms/admin.py:17
 #: ../munimap/forms/admin.py:22 ../munimap/forms/admin.py:27
 #: ../munimap/forms/admin.py:32 ../munimap/forms/admin.py:37
-#: ../munimap/forms/admin.py:42 ../munimap/model/feature.py:93
+#: ../munimap/forms/admin.py:42 ../munimap/model/feature.py:131
 #: ../munimap/templates/munimap/admin/ng-templates/group-form.html:6
 #: ../munimap/templates/munimap/admin/ng-templates/group-list.html:6
 #: ../munimap/templates/munimap/admin/ng-templates/layer-list.html:6
@@ -287,11 +287,27 @@ msgstr ""
 msgid "Value must be lower or equal than {{schema.maximum}}"
 msgstr ""
 
-#: ../munimap/model/feature.py:93 ../munimap/model/feature.py:103
+#: ../munimap/model/feature.py:131 ../munimap/model/feature.py:141
 msgid "label"
 msgstr ""
 
-#: ../munimap/model/feature.py:119
+#: ../munimap/model/feature.py:156
+msgid "Created on"
+msgstr ""
+
+#: ../munimap/model/feature.py:160
+msgid "Created by"
+msgstr ""
+
+#: ../munimap/model/feature.py:164
+msgid "Last modified on"
+msgstr ""
+
+#: ../munimap/model/feature.py:168
+msgid "Last modified by"
+msgstr ""
+
+#: ../munimap/model/feature.py:174
 msgid "Attributes"
 msgstr ""
 
@@ -1731,22 +1747,22 @@ msgstr ""
 msgid "Features for %(title)s added successfully"
 msgstr ""
 
-#: ../munimap/views/digitize.py:131
+#: ../munimap/views/digitize.py:129
 #, python-format
 msgid "Features for %(title)s updated successfully"
 msgstr ""
 
-#: ../munimap/views/digitize.py:137
+#: ../munimap/views/digitize.py:135
 #, python-format
 msgid "Not all changed features for %(title)s updated"
 msgstr ""
 
-#: ../munimap/views/digitize.py:208
+#: ../munimap/views/digitize.py:206
 #, python-format
 msgid "Features for %(title)s deleted successfully"
 msgstr ""
 
-#: ../munimap/views/digitize.py:214
+#: ../munimap/views/digitize.py:212
 #, python-format
 msgid "Not all provided features for %(title)s deleted"
 msgstr ""
