@@ -1,7 +1,8 @@
 Tour
 ####
 
-Für jede Tour ist eine eigene HTML-Datei anzulegen. Die Tour wird innerhalb dieser als Javascript in einem `<script>`-Tag definiert.
+Für jede Tour ist eine eigene JavaScript-Datei (.js) anzulegen. Die Tour wird innerhalb dieser
+als `Immediately Invoked Function Expression (IIFE) <https://developer.mozilla.org/en-US/docs/Glossary/IIFE>`_ definiert.
 
 
 Aufbau einer Tour
@@ -15,7 +16,7 @@ Minimaler Aufbau einer Tour:
 
 .. code-block:: html
 
-    <script type="text/javascript">
+    (function() {
         // beinhaltet die einzelnen Tour-Schritte
         var steps = [];
         // initialisiert die Tour
@@ -24,7 +25,7 @@ Minimaler Aufbau einer Tour:
         });
         // macht die Tour der Anwendung bekannt
         angular.module('munimap').value('Tour', tour);
-    </script>
+    })();
 
 
 Außer dem `steps`-Attribut kann das Tour-Objekt alle auf `http://bootstraptour.com/api/ <http://bootstraptour.com/api/>`_ im Abschnitt `Global options` angegebenen Optionen beinhalten.
@@ -85,7 +86,7 @@ Beispiel für die Verwendung des `template`-Attributes mit einer Funktion um den
 Definition der Schritte
 -----------------------
 
-Ein Schritt wird durch ein Javascript Objekt repräsentiert. Mehrere Schritte werden in der `steps` Variable als Liste abgelegt.
+Ein Schritt wird durch ein JavaScript Objekt repräsentiert. Mehrere Schritte werden in der `steps` Variable als Liste abgelegt.
 
 Ein `step`-Objekt beinhaltet mindestens die Attribute `element` und `content` wenn der Text an einem Element angezeigt oder `orphan: true` und `content` wenn der Text mittig in der Anwendung platziert werden soll.
 

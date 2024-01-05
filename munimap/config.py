@@ -45,6 +45,7 @@ class DefaultConfig(object):
     APP_CONFIG_DIR = '/opt/etc/munimap/app-configs'
     SELECTIONLISTS_CONFIG_DIR = '/opt/etc/munimap/selectionlists-configs'
     PLUGIN_DIR = '/opt/etc/munimap/plugins'
+    TOUR_DIR = '/opt/etc/munimap/tours'
 
     ASSETS_DEBUG = False
     ASSETS_BUNDLES_CONF = path.join(path.dirname(__file__), 'asset_bundles.yaml')

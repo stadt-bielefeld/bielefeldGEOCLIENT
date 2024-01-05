@@ -292,6 +292,12 @@ def plugin_file_path(name):
         name + '.js'
     )
 
+def tour_file_path(name):
+    return os.path.join(os.path.abspath(
+        current_app.config.get('TOUR_DIR')),
+        name + '.js'
+    )
+
 
 def list_projects():
     configs = glob.glob(os.path.join(os.path.abspath(
