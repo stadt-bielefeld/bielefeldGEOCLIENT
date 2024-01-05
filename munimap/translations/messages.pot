@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-05 10:47+0100\n"
+"POT-Creation-Date: 2024-01-05 16:41+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1742,27 +1742,27 @@ msgstr ""
 msgid "Plugin %(name)s renamed to %(new_name)s"
 msgstr ""
 
-#: ../munimap/views/digitize.py:59
+#: ../munimap/views/digitize.py:60
 #, python-format
 msgid "Features for %(title)s added successfully"
 msgstr ""
 
-#: ../munimap/views/digitize.py:129
+#: ../munimap/views/digitize.py:131
 #, python-format
 msgid "Features for %(title)s updated successfully"
 msgstr ""
 
-#: ../munimap/views/digitize.py:135
+#: ../munimap/views/digitize.py:137
 #, python-format
 msgid "Not all changed features for %(title)s updated"
 msgstr ""
 
-#: ../munimap/views/digitize.py:206
+#: ../munimap/views/digitize.py:208
 #, python-format
 msgid "Features for %(title)s deleted successfully"
 msgstr ""
 
-#: ../munimap/views/digitize.py:212
+#: ../munimap/views/digitize.py:214
 #, python-format
 msgid "Not all provided features for %(title)s deleted"
 msgstr ""

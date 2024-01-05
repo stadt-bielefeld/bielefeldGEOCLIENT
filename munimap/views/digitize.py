@@ -46,8 +46,9 @@ def features():
     if source_name is None:
         abort(404)
 
+    prop_def = lyr.get('source', {}).get('properties')
     for feature_json in feature_collection['features']:
-        feature = Feature(geojson=feature_json)
+        feature = Feature(geojson=feature_json, prop_def=prop_def)
         feature.layer_name = source_name
         feature.created_by = current_user.id
         feature.modified_by = current_user.id
@@ -81,6 +82,7 @@ def update_features():
     if source_name is None:
         abort(404)
 
+    prop_def = lyr.get('source', {}).get('properties')
     added_some_features = False
     processed_features = []
     for geojson_feature in feature_collection.get('features'):
@@ -109,7 +111,7 @@ def update_features():
                 'status': 409
             })
             continue
-        feature.update_from_geojson(geojson_feature)
+        feature.update_from_geojson(geojson_feature, prop_def)
         feature.modified_by = current_user.id
         db.session.add(feature)
         processed_features.append({

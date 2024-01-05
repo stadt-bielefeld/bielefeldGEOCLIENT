@@ -7,18 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-05 10:47+0100\n"
+"POT-Creation-Date: 2024-01-05 16:41+0100\n"
 "PO-Revision-Date: 2015-12-11 10:51+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
 "Language-Team: de <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.11.0\n"
-"X-Language: de_DE\n"
-"X-Source-Language: en_US\n"
 
 #: ../munimap/layers.py:129 ../munimap/layers.py:226
 #, python-format
@@ -725,11 +723,10 @@ msgid "Delete Project?"
 msgstr "Projekt löschen?"
 
 #: ../munimap/templates/munimap/admin/ng-templates/project-list.html:64
-msgid ""
-"When project is unprotected all assignments of this project will be lost?"
+msgid "When project is unprotected all assignments of this project will be lost?"
 msgstr ""
-"Wenn die Absicherung des Projektes entfernt wird, werden alle dieses Projekt "
-"betreffenden Zuweisungen verloren gehen!"
+"Wenn die Absicherung des Projektes entfernt wird, werden alle dieses "
+"Projekt betreffenden Zuweisungen verloren gehen!"
 
 #: ../munimap/templates/munimap/admin/ng-templates/project-list.html:74
 msgid "When project is removed all assignments of this project will be lost"
@@ -924,7 +921,8 @@ msgstr "Eigenschaften"
 #: ../munimap/templates/munimap/app/digitize-popup.html:31
 msgid "Feature was updated by others. Please refresh before editing."
 msgstr ""
-"Feature wurde von anderen verändert. Vor dem Editieren bitte aktualisieren."
+"Feature wurde von anderen verändert. Vor dem Editieren bitte "
+"aktualisieren."
 
 #: ../munimap/templates/munimap/app/digitize-popup.html:36
 #: ../munimap/templates/munimap/app/draw-popup.html:123
@@ -1090,11 +1088,12 @@ msgstr "Layer wurde von anderen verändert. Zum Aktualisieren klicken."
 
 #: ../munimap/templates/munimap/app/ng-templates/digitize-draw.html:81
 msgid ""
-"Changes on edited/removed features that were also modified by others, will "
-"be reset. Other changes will be kept."
+"Changes on edited/removed features that were also modified by others, "
+"will be reset. Other changes will be kept."
 msgstr ""
 "Änderungen von bearbeiteten/entfernten Features, die auch von anderen "
-"bearbeitet wurden, werden zurückgesetzt. Andere Änderungen bleiben erhalten."
+"bearbeitet wurden, werden zurückgesetzt. Andere Änderungen bleiben "
+"erhalten."
 
 #: ../munimap/templates/munimap/app/ng-templates/digitize-draw.html:92
 msgid "Refresh"
@@ -1103,8 +1102,8 @@ msgstr "Aktualisieren"
 #: ../munimap/templates/munimap/app/ng-templates/digitize-draw.html:98
 msgid "Could not connect to server. Saving disabled until reconnected."
 msgstr ""
-"Verbindung zum Server abgebrochen. Speichern wird deaktiviert, bis wieder "
-"verbunden."
+"Verbindung zum Server abgebrochen. Speichern wird deaktiviert, bis wieder"
+" verbunden."
 
 #: ../munimap/templates/munimap/app/ng-templates/draw.html:1
 msgid "Add geometry"
@@ -1152,8 +1151,7 @@ msgstr "Deselektieren"
 
 #: ../munimap/templates/munimap/app/ng-templates/feature-properties-editor.html:9
 msgid "No feature properties"
-msgstr ""
-"Die Geometrie besitzt keine Eigenschaften, die bearbeitet werden können"
+msgstr "Die Geometrie besitzt keine Eigenschaften, die bearbeitet werden können"
 
 #: ../munimap/templates/munimap/app/ng-templates/featureexchange.html:4
 msgid "Download"
@@ -1762,27 +1760,27 @@ msgstr "Plugin existiert bereits"
 msgid "Plugin %(name)s renamed to %(new_name)s"
 msgstr "Plugin %(name)s wurde zu %(new_name)s umbenannt"
 
-#: ../munimap/views/digitize.py:59
+#: ../munimap/views/digitize.py:60
 #, python-format
 msgid "Features for %(title)s added successfully"
 msgstr "Features für %(title)s erfolgreich hinzugefügt"
 
-#: ../munimap/views/digitize.py:129
+#: ../munimap/views/digitize.py:131
 #, python-format
 msgid "Features for %(title)s updated successfully"
 msgstr "Features für %(title)s erfolgreich aktualisiert"
 
-#: ../munimap/views/digitize.py:135
+#: ../munimap/views/digitize.py:137
 #, python-format
 msgid "Not all changed features for %(title)s updated"
 msgstr "Nicht alle Features von %(title)s konnten aktualisiert werden·"
 
-#: ../munimap/views/digitize.py:206
+#: ../munimap/views/digitize.py:208
 #, python-format
 msgid "Features for %(title)s deleted successfully"
 msgstr "Features für %(title)s erfolgreich gelöscht"
 
-#: ../munimap/views/digitize.py:212
+#: ../munimap/views/digitize.py:214
 #, python-format
 msgid "Not all provided features for %(title)s deleted"
 msgstr "Nicht alle Features für %(title)s konnten gelöscht werden"
@@ -1799,20 +1797,20 @@ msgstr "Kennung oder Passwort nicht korrekt"
 #: ../munimap/views/user.py:55
 msgid "User not active. Please contact us."
 msgstr ""
-"Benutzeraccount ist nicht aktiv. Für einen erneuten Zugriff melden Sie sich "
-"bitte bei uns."
+"Benutzeraccount ist nicht aktiv. Für einen erneuten Zugriff melden Sie "
+"sich bitte bei uns."
 
 #: ../munimap/views/user.py:57
 msgid "Useraccount is expired. Please contact us."
 msgstr ""
-"Benutzeraccount ist abgelaufen. Für einen erneuten Zugriff melden Sie sich "
-"bitte bei uns."
+"Benutzeraccount ist abgelaufen. Für einen erneuten Zugriff melden Sie "
+"sich bitte bei uns."
 
 #: ../munimap/views/user.py:59 ../munimap/views/user.py:60
 msgid "Too many invalid attempts. Please contact us."
 msgstr ""
-"Zu viele fehlgeschlagene Login-Versuche. Bitte über Passwort vergessen ein "
-"neues Passwort setzen."
+"Zu viele fehlgeschlagene Login-Versuche. Bitte über Passwort vergessen "
+"ein neues Passwort setzen."
 
 #: ../munimap/views/user.py:70
 msgid "Logged in successfully"
@@ -1837,8 +1835,8 @@ msgstr "E-Mail für das Zurücksetzen des Passworts wurde versandt."
 #: ../munimap/views/user.py:135
 msgid "Recovery link is not valid anymore. Please request a new one"
 msgstr ""
-"Link zum zurücksetzen des Passworts ist abgelaufen. Bitte fordern Sie einen "
-"neuen Link an."
+"Link zum zurücksetzen des Passworts ist abgelaufen. Bitte fordern Sie "
+"einen neuen Link an."
 
 #: ../munimap/views/user_settings.py:123
 msgid "Error project successfully"
@@ -1947,8 +1945,7 @@ msgstr "Haltestelle als Ziel übernehmen"
 #~ msgstr "Passwort zurücksetzen"
 
 #~ msgid "Too many invalid attempts. Please contact us"
-#~ msgstr ""
-#~ "Zu viele fehlgeschlagene Login-Versuche. Bitte melden Sie sich bei uns."
+#~ msgstr "Zu viele fehlgeschlagene Login-Versuche. Bitte melden Sie sich bei uns."
 
 #~ msgid "AdEditd"
 #~ msgstr ""
@@ -1973,3 +1970,4 @@ msgstr "Haltestelle als Ziel übernehmen"
 
 #~ msgid "Sachdaten"
 #~ msgstr ""
+
