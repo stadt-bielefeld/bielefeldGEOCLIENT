@@ -48,9 +48,9 @@ class Feature(db.Model):
     modified = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     modified_by = db.Column(db.Integer)
 
-    def __init__(self, geojson=None):
+    def __init__(self, geojson=None, prop_def=None):
         if geojson is not None:
-            self.update_from_geojson(geojson)
+            self.update_from_geojson(geojson, prop_def)
 
     @property
     def geojson_feature(self):
@@ -226,15 +226,19 @@ class Feature(db.Model):
     def get_modified_timestamps(feats):
         return [{'id': f.id, 'modified': f.modified.isoformat()} for f in feats]
 
-    def update_from_geojson(self, geojson):
+    def update_from_geojson(self, geojson, prop_def=None):
         # if feature has no properties, properties is None so default
         # value for get is never reached
         properties = geojson.get('properties')
         if properties is None:
             properties = {}
 
+        if prop_def is None:
+            prop_def = []
+
         protected_keys = ['style', '_id', 'created', 'created_by', 'modified', 'modified_by']
-        stripped_properties = {k: properties[k] for k in properties.keys() if k not in protected_keys}
+        allowed_keys = [k['name'] for k in prop_def if k not in protected_keys]
+        stripped_properties = {k: properties[k] for k in allowed_keys}
 
         geometry = from_shape(shape(geojson['geometry']), srid=25832)
         self.geometry = geometry
