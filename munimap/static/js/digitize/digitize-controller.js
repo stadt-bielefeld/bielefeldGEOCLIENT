@@ -71,7 +71,17 @@ angular.module('munimapDigitize')
                 $rootScope.$broadcast('digitize:closePopup');
             };
 
-            $scope.$on('SaveManagerService:polling', (evt, data) => {
+            const onPollingSuccess = function () {
+                $scope.needsRefresh = SaveManagerService.hasPollingChanges(DrawService.activeLayer);
+                $scope.showPollingError = false;
+            };
+
+            const onPollingError = function () {
+                $scope.needsRefresh = false;
+                $scope.showPollingError = true;
+            };
+
+            const handleSaveManagerEvt = (evt, data) => {
                 if (data.layerName !== $scope.drawLayer.name) {
                     return;
                 }
@@ -80,17 +90,11 @@ angular.module('munimapDigitize')
                 } else {
                     onPollingError();
                 }
-            });
-
-            var onPollingSuccess = function () {
-                $scope.needsRefresh = SaveManagerService.hasPollingChanges(DrawService.activeLayer);
-                $scope.showPollingError = false;
             };
 
-            var onPollingError = function () {
-                $scope.needsRefresh = false;
-                $scope.showPollingError = true;
-            };
+            $scope.$on('SaveManagerService:polling', handleSaveManagerEvt);
+
+            $scope.$on('SaveManagerService:refreshLayer', handleSaveManagerEvt);
 
             $scope.$watch(function () {
                 return DrawService.activeLayer;
