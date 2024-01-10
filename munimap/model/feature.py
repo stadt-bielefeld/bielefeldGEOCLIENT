@@ -13,6 +13,7 @@ from geoalchemy2.functions import ST_AsGeoJSON
 
 from munimap.extensions import db
 from munimap.helper import _l
+from munimap.model import MBUser
 
 __all__ = ['Feature']
 
@@ -59,22 +60,59 @@ class Feature(db.Model):
             'geometry': json.loads(self.geojson),
             'properties': {
                 **self.properties,
-                'modified': self.modified.isoformat()
+                'modified': self.modified.isoformat(),
+                'modified_by': self.get_modified_by_user_name(),
+                'created': self.created.isoformat(),
+                'created_by': self.get_created_by_user_name()
             }
         }
 
-    properties_schema_form_options = [
-        {
-            'type': 'fieldset',
-            'items': [
-                {
-                    'type': 'section',
-                    'htmlClass': 'col-xs-12',
-                    'items': ['*']
-                }
-            ]
-        }
-    ]
+    @staticmethod
+    def properties_schema_form_options(prop_def):
+        items = [prop['name'] for prop in prop_def]
+        static_items = [
+            {
+                'key': 'created_by',
+                'type': 'plaintext'
+            },
+            {
+                'key': 'created',
+                'type': 'plaintext',
+                'limitto': 10
+            },
+            {
+                'key': 'modified_by',
+                'type': 'plaintext'
+            },
+            {
+                'key': 'modified',
+                'type': 'plaintext',
+                'limitto': 10
+            }
+        ]
+        return [
+            {
+                'type': 'fieldset',
+                'items': [
+                    {
+                        'type': 'section',
+                        'htmlClass': 'col-xs-12',
+                        'items': items + [
+                            {
+                                'type': 'section',
+                                'htmlClass': 'col-xs-6 left-section',
+                                'items': [static_items[0], static_items[1]]
+                            },
+                            {
+                                'type': 'section',
+                                'htmlClass': 'col-xs-6',
+                                'items': [static_items[2], static_items[3]]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
 
     def is_newer_than(self, geojson_feature):
         modified_iso = geojson_feature.get('properties', {}).get('modified')
@@ -113,6 +151,23 @@ class Feature(db.Model):
                 p['type'] = prop['type']
 
             properties[prop['name']] = p
+
+        properties['created'] = {
+            'title': _l('Created on'),
+            'type': 'string'
+        }
+        properties['created_by'] = {
+            'title': _l('Created by'),
+            'type': 'string'
+        }
+        properties['modified'] = {
+            'title': _l('Last modified on'),
+            'type': 'string'
+        }
+        properties['modified_by'] = {
+            'title': _l('Last modified by'),
+            'type': 'string'
+        }
 
         return {
             'type': 'object',
@@ -177,18 +232,22 @@ class Feature(db.Model):
         properties = geojson.get('properties')
         if properties is None:
             properties = {}
-        try:
-            del properties['style']
-        except KeyError:
-            pass
-        try:
-            del properties['_id']
-        except KeyError:
-            pass
 
-        for key, value in properties.items():
-            properties[key] = value
+        protected_keys = ['style', '_id', 'created', 'created_by', 'modified', 'modified_by']
+        stripped_properties = {k: properties[k] for k in properties.keys() if k not in protected_keys}
 
         geometry = from_shape(shape(geojson['geometry']), srid=25832)
         self.geometry = geometry
-        self.properties = properties
+        self.properties = stripped_properties
+
+    def get_modified_by_user_name(self):
+        user = MBUser.by_id_without_404(self.modified_by)
+        if not user:
+            return
+        return user.name
+
+    def get_created_by_user_name(self):
+        user = MBUser.by_id_without_404(self.created_by)
+        if not user:
+            return
+        return user.name

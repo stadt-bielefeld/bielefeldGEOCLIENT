@@ -212,7 +212,7 @@ def anol_overlay_layer(layer_conf, layers_base_url=''):
                     prop['select'] = selectionlist
             properties_schema = Feature.properties_schema_from_prop_def(prop_def)
             anol_layer['properties_schema'] = properties_schema
-            anol_layer['properties_schema_form_options'] = Feature.properties_schema_form_options
+            anol_layer['properties_schema_form_options'] = Feature.properties_schema_form_options(prop_def)
 
     if style:
         if 'externalGraphicPrefix' in style:

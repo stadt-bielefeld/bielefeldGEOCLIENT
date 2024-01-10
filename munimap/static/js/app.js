@@ -24,6 +24,7 @@ require('./settings-modal-controller.js');
 require('./modules/confirm.js');
 require('./modules/colorpicker.js');
 require('./modules/datepicker.js');
+require('./modules/plaintext.js');
 require('./modules/notifications.js');
 require('./modules/sidebar.js');
 require('./modules/servicebutton.js');

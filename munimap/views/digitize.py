@@ -109,8 +109,6 @@ def update_features():
                 'status': 409
             })
             continue
-        if 'modified' in geojson_feature.get('properties'):
-            del geojson_feature['properties']['modified']
         feature.update_from_geojson(geojson_feature)
         feature.modified_by = current_user.id
         db.session.add(feature)
