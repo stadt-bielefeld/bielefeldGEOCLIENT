@@ -87,22 +87,23 @@
              
   <div class="section" id="tour">
 <h1>Tour<a class="headerlink" href="#tour" title="Link zu dieser Überschrift">¶</a></h1>
-<p>Für jede Tour ist eine eigene HTML-Datei anzulegen. Die Tour wird innerhalb dieser als Javascript in einem <cite>&lt;script&gt;</cite>-Tag definiert.</p>
+<p>Für jede Tour ist eine eigene JavaScript-Datei (.js) anzulegen. Die Tour wird innerhalb dieser
+als <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Glossary/IIFE">Immediately Invoked Function Expression (IIFE)</a> definiert.</p>
 <div class="section" id="aufbau-einer-tour">
 <h2>Aufbau einer Tour<a class="headerlink" href="#aufbau-einer-tour" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Eine Tour besteht aus dem Tour-Objekt, dem die einzelnen Schritte (<cite>steps</cite>) als Liste übergeben werden. Die Tour wird dann der Anwendung bekannt gemacht.</p>
 <p>Der Übersichtlichkeit halber erfolgt die Definition der Schritte in einer eigenen Variable <cite>steps</cite>. Die Liste mit den Schritten kann aber genauso gut direkt in der Tour-Objekt unter <cite>steps</cite> geschrieben werden.</p>
 <p>Minimaler Aufbau einer Tour:</p>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>
-    <span class="c1">// beinhaltet die einzelnen Tour-Schritte</span>
-    <span class="kd">var</span> <span class="nx">steps</span> <span class="o">=</span> <span class="p">[];</span>
-    <span class="c1">// initialisiert die Tour</span>
-    <span class="kd">var</span> <span class="nx">tour</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Tour</span><span class="p">({</span>
-        <span class="nx">steps</span><span class="o">:</span> <span class="nx">steps</span>
-    <span class="p">});</span>
-    <span class="c1">// macht die Tour der Anwendung bekannt</span>
-    <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">&#39;munimap&#39;</span><span class="p">).</span><span class="nx">value</span><span class="p">(</span><span class="s1">&#39;Tour&#39;</span><span class="p">,</span> <span class="nx">tour</span><span class="p">);</span>
-<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>(function() {
+    // beinhaltet die einzelnen Tour-Schritte
+    var steps = [];
+    // initialisiert die Tour
+    var tour = new Tour({
+        steps: steps
+    });
+    // macht die Tour der Anwendung bekannt
+    angular.module(&#39;munimap&#39;).value(&#39;Tour&#39;, tour);
+})();
 </pre></div>
 </div>
 <p>Außer dem <cite>steps</cite>-Attribut kann das Tour-Objekt alle auf <a class="reference external" href="http://bootstraptour.com/api/">http://bootstraptour.com/api/</a> im Abschnitt <cite>Global options</cite> angegebenen Optionen beinhalten.</p>
@@ -152,7 +153,7 @@
 </div>
 <div class="section" id="definition-der-schritte">
 <h2>Definition der Schritte<a class="headerlink" href="#definition-der-schritte" title="Link zu dieser Überschrift">¶</a></h2>
-<p>Ein Schritt wird durch ein Javascript Objekt repräsentiert. Mehrere Schritte werden in der <cite>steps</cite> Variable als Liste abgelegt.</p>
+<p>Ein Schritt wird durch ein JavaScript Objekt repräsentiert. Mehrere Schritte werden in der <cite>steps</cite> Variable als Liste abgelegt.</p>
 <p>Ein <cite>step</cite>-Objekt beinhaltet mindestens die Attribute <cite>element</cite> und <cite>content</cite> wenn der Text an einem Element angezeigt oder <cite>orphan: true</cite> und <cite>content</cite> wenn der Text mittig in der Anwendung platziert werden soll.</p>
 <p><cite>element</cite> legt fest, zu welchem Element der Anwendung der <cite>step</cite> angezeigt werden soll. Das Element wird über einen CSS-Selektor identifiziert, der nur ein Element zurückliefern darf.</p>
 <p><cite>content</cite> legt den anzuzeigenden Inhalt fest. Dieser kann in HTML-Notation definiert werden.</p>
