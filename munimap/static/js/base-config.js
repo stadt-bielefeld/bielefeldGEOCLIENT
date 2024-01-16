@@ -98,6 +98,7 @@ angular.module('munimapBase', [
 ])
 
     .value('Tour', false)
+    .value('ContextMenuItems', false)
 
     .config(['$locationProvider', function ($locationProvider) {
         $locationProvider.hashPrefix('');

@@ -299,6 +299,13 @@ def tour_file_path(name):
     )
 
 
+def contextmenu_file_path(name):
+    return os.path.join(os.path.abspath(
+        current_app.config.get('CONTEXTMENU_DIR')),
+        name + '.js'
+    )
+
+
 def list_projects():
     configs = glob.glob(os.path.join(os.path.abspath(
         current_app.config.get('APP_CONFIG_DIR')),

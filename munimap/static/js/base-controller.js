@@ -9,9 +9,9 @@ import {transformExtent, transform} from 'ol/proj';
 angular.module('munimapBase')
     .controller('baseController', ['$rootScope', '$scope', '$window', '$timeout', '$translate', '$location', '$uibModal',
         'munimapConfig', 'ControlsService', 'MapService', 'NotificationService', 'DrawService', 'ClusterSelectService',
-        'Tour', 'SaveSettingsService', 'GeocoderService', 'CatalogService', 'PostMessageService', 'ReadyService',
+        'Tour', 'ContextMenuItems', 'SaveSettingsService', 'GeocoderService', 'CatalogService', 'PostMessageService', 'ReadyService',
         function($rootScope, $scope, $window, $timeout, $translate, $location, $uibModal, munimapConfig, ControlsService,
-                 MapService, NotificationService, DrawService, ClusterSelectService, Tour, SaveSettingsService,
+                 MapService, NotificationService, DrawService, ClusterSelectService, Tour, ContextMenuItems, SaveSettingsService,
                  GeocoderService, CatalogService, PostMessageService, ReadyService) {
 
             $scope.printEnabled = munimapConfig.components.print === true;
@@ -600,16 +600,14 @@ angular.module('munimapBase')
                     });
                 }
 
-                if (typeof contextmenuItems !== 'undefined') {
-                    if (angular.isDefined(contextmenuItems)) {
-                        var contextmenu = new anol.control.ContextMenu({
-                            width: 180,
-                            items: contextmenuItems
-                        });
-                        var map = MapService.getMap();
-                        map.addControl(contextmenu);
-                        contextmenu.enable();
-                    }
+                if (ContextMenuItems) {
+                    var contextmenu = new anol.control.ContextMenu({
+                        width: 180,
+                        items: ContextMenuItems
+                    });
+                    var map = MapService.getMap();
+                    map.addControl(contextmenu);
+                    contextmenu.enable();
                 }
             };
 
