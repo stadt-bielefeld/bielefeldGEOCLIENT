@@ -33,7 +33,12 @@ def check_permission():
     if current_app.config.get('DEBUG'):
         requested_ip = '127.0.0.1'
 
-    if requested_ip in current_app.config.get('ALLOW_UPLOAD_CONFIG'):
+    whitelist = current_app.config.get('ALLOW_UPLOAD_CONFIG', [])
+    # x-forwarded-for header may contain a comma separated list of IPs.
+    # So we have to check if any of those IP addresses is in our whitelist.
+    requested_ips = requested_ip.split(',')
+    in_allowed_list = any([True for ip in requested_ips if ip.strip() in whitelist])
+    if in_allowed_list:
         access_allowed = True
 
     if not access_allowed:
