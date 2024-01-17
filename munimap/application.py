@@ -86,9 +86,7 @@ def create_app(config=None, config_file=None):
         folder = app.static_folder
         default_static_file = os.path.join(folder, filename)
         if not os.path.exists(default_static_file):
-            custom_static_folder = app.config.get('CUSTOM_STATIC_DIR')
-            if custom_static_folder is not None:
-                folder = custom_static_folder
+            folder = app.config.get('CUSTOM_STATIC_DIR', folder)
         return send_from_directory(folder, filename)
 
     app.view_functions['static'] = _static
