@@ -47,6 +47,10 @@ class DefaultConfig(object):
     PLUGIN_DIR = '/opt/etc/munimap/plugins'
     TOUR_DIR = '/opt/etc/munimap/tours'
     CONTEXTMENU_DIR = '/opt/etc/munimap/contextmenus'
+    # Directory that serves static files. When requesting static
+    # files, the application will first check the flask default directory,
+    # before checking this directory.
+    CUSTOM_STATIC_DIR = '/opt/etc/munimap/custom_static'
 
     ASSETS_DEBUG = False
     ASSETS_BUNDLES_CONF = path.join(path.dirname(__file__), 'asset_bundles.yaml')
