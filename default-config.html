@@ -183,7 +183,7 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">iframe</span></code></dt><dd><p>Ermöglicht eine App die auf eine externe Anwendung verlinkt. Als Wert muss der Link zur Zielseite angegeben werden.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">contextMenu</span></code></dt><dd><p>Wenn aktiviert, wird durch Rechtsklick das Kontextmenü aktiviert. Es kann der Name (ohne Pfad) der zu nutzenden Datei angegeben werden oder <cite>true</cite> (dann wird <cite>index.html</cite> verwendet). Standardwert <cite>false</cite>. Weitere Details im <a class="reference internal" href="#context-menu"><span class="std std-ref">Abschnitt Kontextmenü</span></a>.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">contextMenu</span></code></dt><dd><p>Wenn aktiviert, wird durch Rechtsklick das Kontextmenü aktiviert. Es kann der Name (ohne Pfad und ohne Dateiendung) der zu nutzenden Datei angegeben werden oder <cite>true</cite> (dann wird <cite>index.js</cite> verwendet). Standardwert <cite>false</cite>. Weitere Details im <a class="reference internal" href="#context-menu"><span class="std std-ref">Abschnitt Kontextmenü</span></a>.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">showLogin</span></code></dt><dd><p>Der Login in der Sidebar wird nicht angezeigt. Standardwert <cite>false</cite>.</p>
 </dd>
@@ -898,23 +898,29 @@ wird das Editieren von genau einem Digitalisierungslayer unterstützt. Dieser We
 </div>
 <div class="section" id="kontextmenu">
 <span id="context-menu"></span><h2>Kontextmenü<a class="headerlink" href="#kontextmenu" title="Link zu dieser Überschrift">¶</a></h2>
-<p>Das Kontextmenü wird ein einem eigenen Template definiert, das über die Konfigurationsoption <cite>contextMenu</cite> gesteuert wird. Es wird nur angezeigt, wenn die Komponente aktiviert ist. Alle Einträge die in der Variable <code class="docutils literal notranslate"><span class="pre">contextmenuItems</span></code> enthalten sind, werden angezeigt.</p>
+<p>Das Kontextmenü wird ein einem eigenen Template definiert, das über die Konfigurationsoption <cite>contextMenu</cite> gesteuert wird.
+Es wird nur angezeigt, wenn die Komponente aktiviert ist. Für jedes Kontextmenü ist eine eigene JavaScript-Datei (.js)
+anzulegen. Das Kontextmenü wird innerhalb dieser als <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Glossary/IIFE">Immediately Invoked Function Expression (IIFE)</a> definiert.</p>
 <p>Beispiel:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">let</span> <span class="n">contextmenuItems</span> <span class="o">=</span> <span class="p">[{</span>
-    <span class="n">text</span><span class="p">:</span> <span class="s1">&#39;Starte OpenStreetMap&#39;</span><span class="p">,</span>
-    <span class="n">title</span><span class="p">:</span> <span class="s1">&#39;Startet OpenStreetMap an dieser Koordinate&#39;</span><span class="p">,</span>
-    <span class="n">link</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
-    <span class="n">callback</span><span class="p">:</span> <span class="n">startOSM</span>
-  <span class="p">}</span>
-<span class="p">];</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">let</span> <span class="n">contextmenuItems</span> <span class="o">=</span> <span class="p">[{</span>
+      <span class="n">text</span><span class="p">:</span> <span class="s1">&#39;Starte OpenStreetMap&#39;</span><span class="p">,</span>
+      <span class="n">title</span><span class="p">:</span> <span class="s1">&#39;Startet OpenStreetMap an dieser Koordinate&#39;</span><span class="p">,</span>
+      <span class="n">link</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+      <span class="n">callback</span><span class="p">:</span> <span class="n">startOSM</span>
+    <span class="p">}</span>
+  <span class="p">];</span>
 
-<span class="n">function</span> <span class="n">startOSM</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="p">{</span>
-  <span class="n">let</span> <span class="n">zoom</span> <span class="o">=</span> <span class="n">obj</span><span class="p">[</span><span class="s1">&#39;zoom&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">4</span>
-  <span class="n">let</span> <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.openstreetmap.org/#map=&#39;</span> <span class="o">+</span> <span class="n">zoom</span> <span class="o">+</span>
-    <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">obj</span><span class="p">[</span><span class="s1">&#39;coordinates&#39;</span><span class="p">][</span><span class="s1">&#39;EPSG:4326&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span>
-    <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">obj</span><span class="p">[</span><span class="s1">&#39;coordinates&#39;</span><span class="p">][</span><span class="s1">&#39;EPSG:4326&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-  <span class="k">return</span> <span class="n">url</span><span class="p">;</span>
-<span class="p">}</span>
+  <span class="n">function</span> <span class="n">startOSM</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">let</span> <span class="n">zoom</span> <span class="o">=</span> <span class="n">obj</span><span class="p">[</span><span class="s1">&#39;zoom&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">4</span>
+    <span class="n">let</span> <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.openstreetmap.org/#map=&#39;</span> <span class="o">+</span> <span class="n">zoom</span> <span class="o">+</span>
+      <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">obj</span><span class="p">[</span><span class="s1">&#39;coordinates&#39;</span><span class="p">][</span><span class="s1">&#39;EPSG:4326&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span>
+      <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">obj</span><span class="p">[</span><span class="s1">&#39;coordinates&#39;</span><span class="p">][</span><span class="s1">&#39;EPSG:4326&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">url</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">angular</span><span class="o">.</span><span class="n">module</span><span class="p">(</span><span class="s1">&#39;munimap&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;ContextMenuItems&#39;</span><span class="p">,</span> <span class="n">contextmenuItems</span><span class="p">);</span>
+<span class="p">})();</span>
 </pre></div>
 </div>
 </div>
@@ -1133,7 +1139,7 @@ ein Objekt mit folgenden Attributen zurückliefert:</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021, Stadt Bielefeld.
-      <span class="lastupdated">Zuletzt aktualisiert am 2024-01-10.
+      <span class="lastupdated">Zuletzt aktualisiert am 2024-01-17.
       </span></p>
   </div>
 
