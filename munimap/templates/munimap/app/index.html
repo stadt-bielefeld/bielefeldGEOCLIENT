@@ -198,93 +198,11 @@
     <script type="text/javascript" src="{$ url_for('frontend.tours', name=app_config['app']['tour']) $}"></script>
   {% endif %}
 
-
-  <script type="text/javascript">
-    let contextmenuItems = [{
-      text: 'Starte 3D-Stadtmodell',
-      title: 'Startet das 3D-Stadtmodell an dieser Koordinate',
-      link: true,
-      callback: start3D
-    },
-    {
-      text: 'Starte Schrägluftbilder',
-      title: 'Startet den Schrägluftbild-Viewer an dieser Koordinate',
-      link: true,
-      callback: startAero
-    },
-    {
-      text: 'Starte OpenStreetMap',
-      title: 'Startet OpenStreetMap an dieser Koordinate',
-      link: true,
-      callback: startOSM
-    },
-    {
-      text: 'Starte Google Maps',
-      title: 'Startet Google Maps an dieser Koordinate',
-      link: true,
-      callback: startGoogleMaps
-    }
-    {% if app_config.get('app',{})['contextMenu'] == 'index_intern.html' %}
-    , {
-      text: 'Starte StreetSmart',
-      title: 'Startet die Anwendung StreetSmart mit der Straßenpanorama-Aufnahme (Cyclorama) an dieser Koordinate',
-      link: true,
-      callback: startStreetSmart
-    },
-    {
-      text: 'Klick-Koordinaten',
-      title: 'Startet eine Umrechnung der Koordinate in unterschiedliche Koordinatensysteme',
-      link: true,
-      callback: startCoordTransform
-    }
-    {% endif %}
-    ];
-
-    function startGoogleMaps(obj) {
-      let zoom = obj['zoom'] + 4
-      let url = 'https://www.google.de/maps/@' + obj['coordinates']['EPSG:4326'][1] +
-        ',' + obj['coordinates']['EPSG:4326'][0] + ',' + zoom + 'z';
-      return url;
-    }
-
-    {% if app_config.get('app',{})['contextMenu'] == 'index_intern.html' %}
-    function startCoordTransform(obj) {
-      let rw = obj['coordinates']['EPSG:25832'][0].toFixed(1);
-      let hw = obj['coordinates']['EPSG:25832'][1].toFixed(1);
-      let url = '{$ base_config.get('COORD_TRANSFORM_URL') $}?rw=' + rw + '&hw=' + hw;
-      return url;
-    }
-
-    function startStreetSmart(obj) {
-      let rw = obj['coordinates']['EPSG:25832'][0].toFixed(2);
-      let hw = obj['coordinates']['EPSG:25832'][1].toFixed(2);
-      let url = 'https://streetsmart.cyclomedia.com/streetsmart/?q=' + rw + ';' + hw + ';EPSG:25832';
-      return url;
-    }
-    {% endif %}
-
-    function startOSM(obj) {
-      let zoom = obj['zoom'] + 4;
-      let url = 'https://www.openstreetmap.org/#map=' + zoom +
-        '/' + obj['coordinates']['EPSG:4326'][1] +
-        '/' + obj['coordinates']['EPSG:4326'][0];
-      return url;
-    }
-
-    {% if app_config.get('app',{})['contextMenu'] == 'index_intern.html' %}
-    const geoplexBaseURL = '{$ base_config.get('GEOPLEX_BASE_INTERN_URL') $}';
-    {% else %}
-    const geoplexBaseURL = '{$ base_config.get('GEOPLEX_BASE_EXTERN_URL') $}';
-    {% endif %}
-
-    function startAero(obj) {
-      return geoplexBaseURL + '?x=' + obj.coordinates['EPSG:25832'][0] + '&y=' + obj.coordinates['EPSG:25832'][1] + '&yaw=0&elevation=150';
-    }
-
-    function start3D(obj) {
-      return geoplexBaseURL + '?state=cesium&x=' + obj.coordinates['EPSG:25832'][0] + '&y=' + obj.coordinates['EPSG:25832'][1] + '&yaw=0&elevation=150';
-    }
-  </script>
+  {% if app_config.get('app', {}).get('contextMenu') == True %}
+    <script type="text/javascript" src="{$ url_for('frontend.contextmenus', name='index') $}"></script>
+  {% elif app_config.get('app', {}).get('contextMenu') %}
+    <script type="text/javascript" src="{$ url_for('frontend.contextmenus', name=app_config['app'].get('contextMenu')) $}"></script>
+  {% endif %}
 
 {% endblock %}
 

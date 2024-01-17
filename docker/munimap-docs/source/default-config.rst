@@ -98,7 +98,7 @@ Im Nachfolgenden werden die Konfigurationsattribute zum grundlegenden Verhalten 
     Ermöglicht eine App die auf eine externe Anwendung verlinkt. Als Wert muss der Link zur Zielseite angegeben werden.
 
   ``contextMenu``
-    Wenn aktiviert, wird durch Rechtsklick das Kontextmenü aktiviert. Es kann der Name (ohne Pfad) der zu nutzenden Datei angegeben werden oder `true` (dann wird `index.html` verwendet). Standardwert `false`. Weitere Details im :ref:`Abschnitt Kontextmenü <context_menu>`.
+    Wenn aktiviert, wird durch Rechtsklick das Kontextmenü aktiviert. Es kann der Name (ohne Pfad und ohne Dateiendung) der zu nutzenden Datei angegeben werden oder `true` (dann wird `index.js` verwendet). Standardwert `false`. Weitere Details im :ref:`Abschnitt Kontextmenü <context_menu>`.
 
 
   ``showLogin``
@@ -861,26 +861,32 @@ Um ALKIS-Dienste nutzen zu können, müssen die IP Syscon ALKIS-Dienste vorliege
 Kontextmenü
 -----------
 
-Das Kontextmenü wird ein einem eigenen Template definiert, das über die Konfigurationsoption `contextMenu` gesteuert wird. Es wird nur angezeigt, wenn die Komponente aktiviert ist. Alle Einträge die in der Variable ``contextmenuItems`` enthalten sind, werden angezeigt.
+Das Kontextmenü wird ein einem eigenen Template definiert, das über die Konfigurationsoption `contextMenu` gesteuert wird.
+Es wird nur angezeigt, wenn die Komponente aktiviert ist. Für jedes Kontextmenü ist eine eigene JavaScript-Datei (.js)
+anzulegen. Das Kontextmenü wird innerhalb dieser als `Immediately Invoked Function Expression (IIFE) <https://developer.mozilla.org/en-US/docs/Glossary/IIFE>`_ definiert.
 
 
 Beispiel::
 
-  let contextmenuItems = [{
-      text: 'Starte OpenStreetMap',
-      title: 'Startet OpenStreetMap an dieser Koordinate',
-      link: true,
-      callback: startOSM
-    }
-  ];
+  (function() {
+    let contextmenuItems = [{
+        text: 'Starte OpenStreetMap',
+        title: 'Startet OpenStreetMap an dieser Koordinate',
+        link: true,
+        callback: startOSM
+      }
+    ];
 
-  function startOSM(obj) {
-    let zoom = obj['zoom'] + 4
-    let url = 'https://www.openstreetmap.org/#map=' + zoom +
-      '/' + obj['coordinates']['EPSG:4326'][1] +
-      '/' + obj['coordinates']['EPSG:4326'][0]
-    return url;
-  }
+    function startOSM(obj) {
+      let zoom = obj['zoom'] + 4
+      let url = 'https://www.openstreetmap.org/#map=' + zoom +
+        '/' + obj['coordinates']['EPSG:4326'][1] +
+        '/' + obj['coordinates']['EPSG:4326'][0]
+      return url;
+    }
+
+    angular.module('munimap').value('ContextMenuItems', contextmenuItems);
+  })();
 
 
 geoeditorConfig

@@ -8,7 +8,7 @@ from flask import (
     abort,
     send_file,
 )
-from munimap.helper import plugin_file_path, tour_file_path
+from munimap.helper import plugin_file_path, tour_file_path, contextmenu_file_path
 
 frontend = Blueprint('frontend', __name__)
 
@@ -37,5 +37,15 @@ def tours(name):
     try:
         # name cannot contain a '/' so the following is ok:
         return send_file(tour_file_path(name))
+    except IOError:
+        abort(404)
+
+
+@frontend.route('/contextmenus', defaults={'name': ''})
+@frontend.route('/contextmenus/<string:name>')
+def contextmenus(name):
+    try:
+        # name cannot contain a '/' so the following is ok:
+        return send_file(contextmenu_file_path(name))
     except IOError:
         abort(404)
