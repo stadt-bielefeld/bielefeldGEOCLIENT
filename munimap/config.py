@@ -27,9 +27,13 @@ class DefaultConfig(object):
     LOG_STATS_BACKUP_COUNT = 5
     LOG_STATS_WHITELIST = ['http://localhost']
 
-    # TODO Check if this acutally applies
-    ALLOW_UPLOAD_CONFIG = ['127.0.0.1']
-    API_PRODUCTION_URL = 'http://localhost:8080'
+    # Access token of the target server.
+    # This should match the API_ACCESS_RECEIVE_TOKEN
+    # of the target server.
+    API_ACCESS_SEND_TOKEN = False
+    # Access token to compare incoming requests with.
+    API_ACCESS_RECEIVE_TOKEN = False
+    API_PRODUCTION_URL = 'http://localhost'
 
     PREFERRED_URL_SCHEME = 'http'
 
