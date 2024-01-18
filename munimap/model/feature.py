@@ -60,9 +60,9 @@ class Feature(db.Model):
             'geometry': json.loads(self.geojson),
             'properties': {
                 **self.properties,
-                'modified': self.modified.isoformat(),
+                'modified': self.modified.isoformat() if self.modified is not None else None,
                 'modified_by': self.get_modified_by_user_name(),
-                'created': self.created.isoformat(),
+                'created': self.created.isoformat() if self.created is not None else None,
                 'created_by': self.get_created_by_user_name()
             }
         }
@@ -117,8 +117,11 @@ class Feature(db.Model):
     def is_newer_than(self, geojson_feature):
         modified_iso = geojson_feature.get('properties', {}).get('modified')
         if not modified_iso:
-            return True
+            # If both are none, we want the geojson_feature to be treated as newer
+            return self.modified is not None
         modified = datetime.fromisoformat(modified_iso)
+        if self.modified is None:
+            return False
         return self.modified > modified
 
     @staticmethod
@@ -224,7 +227,10 @@ class Feature(db.Model):
 
     @staticmethod
     def get_modified_timestamps(feats):
-        return [{'id': f.id, 'modified': f.modified.isoformat()} for f in feats]
+        return [{
+            'id': f.id,
+            'modified': f.modified.isoformat() if f.modified is not None else None
+        } for f in feats]
 
     def update_from_geojson(self, geojson, prop_def=None):
         # if feature has no properties, properties is None so default
