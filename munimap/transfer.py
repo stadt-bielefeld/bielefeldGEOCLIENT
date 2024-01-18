@@ -14,12 +14,11 @@ def transfer_config(filename, type_='map'):
     if not os.path.exists(filename):
         return False
 
-    files = {
-        'upload_file': open(filename, 'rb'),
-    }
+    files = {'upload_file': open(filename, 'rb')}
+    headers = {}
     api_access_token = current_app.config.get('API_ACCESS_SEND_TOKEN')
     if api_access_token:
-        files['access_token'] = api_access_token
+        headers['Authorization'] = f'munimap-token {api_access_token}'
 
     if type_ == 'map':
         url = "%s%s" % (
@@ -34,7 +33,7 @@ def transfer_config(filename, type_='map'):
 
     log.info('send config to %s', url)
 
-    r = requests.post(url, files=files)
+    r = requests.post(url, files=files, headers=headers)
     if not r.ok:
         return False
     content = json.loads(r.content)

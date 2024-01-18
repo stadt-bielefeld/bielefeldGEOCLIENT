@@ -29,11 +29,12 @@ def check_permission():
     if not api_access_receive_token:
         return abort(403)
 
-    access_token_file = LocalProxyRequest.files.get('access_token')
-    if access_token_file is None:
+    auth_header = LocalProxyRequest.headers.get('Authorization', '').split(' ')
+    if len(auth_header) != 2:
         return abort(403)
-
-    access_token = access_token_file.read().decode('utf-8')
+    scheme, access_token = auth_header
+    if scheme != 'munimap-token' or not access_token:
+        return abort(403)
 
     access_allowed = access_token == api_access_receive_token
     if not access_allowed:
