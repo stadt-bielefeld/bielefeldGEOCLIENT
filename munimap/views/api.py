@@ -24,18 +24,19 @@ api = Blueprint('api', __name__, url_prefix='/api')
 
 @api.before_request
 def check_permission():
-    access_allowed = False
+    api_access_receive_token = current_app.config.get('API_ACCESS_RECEIVE_TOKEN')
 
-    if not current_app.config.get('ALLOW_UPLOAD_CONFIG'):
+    if not api_access_receive_token:
         return abort(403)
 
-    requested_ip = LocalProxyRequest.headers.get('X-Forwarded-For', False)
-    if current_app.config.get('DEBUG'):
-        requested_ip = '127.0.0.1'
+    auth_header = LocalProxyRequest.headers.get('Authorization', '').split(' ')
+    if len(auth_header) != 2:
+        return abort(403)
+    scheme, access_token = auth_header
+    if scheme != 'munimap-token' or not access_token:
+        return abort(403)
 
-    if requested_ip in current_app.config.get('ALLOW_UPLOAD_CONFIG'):
-        access_allowed = True
-
+    access_allowed = access_token == api_access_receive_token
     if not access_allowed:
         if LocalProxyRequest.is_xhr:
             return jsonify(message='Not allowed')
