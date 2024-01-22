@@ -117,7 +117,8 @@ class Feature(db.Model):
     def is_newer_than(self, geojson_feature):
         modified_iso = geojson_feature.get('properties', {}).get('modified')
         if not modified_iso:
-            # If both are none, we want the geojson_feature to be treated as newer
+            # If both are `None`, we treat the geojson_feature as newer
+            # If only the geojson_feature has `modifed == None` we treat self as newer
             return self.modified is not None
         modified = datetime.fromisoformat(modified_iso)
         if self.modified is None:
