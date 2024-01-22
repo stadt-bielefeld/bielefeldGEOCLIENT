@@ -245,7 +245,7 @@ class Feature(db.Model):
 
         protected_keys = ['style', '_id', 'created', 'created_by', 'modified', 'modified_by']
         allowed_keys = [k['name'] for k in prop_def if k not in protected_keys]
-        stripped_properties = {k: properties[k] for k in allowed_keys}
+        stripped_properties = {k: properties[k] for k in allowed_keys if k in properties}
 
         geometry = from_shape(shape(geojson['geometry']), srid=25832)
         self.geometry = geometry
