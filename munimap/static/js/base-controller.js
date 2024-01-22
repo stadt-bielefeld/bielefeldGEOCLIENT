@@ -428,69 +428,80 @@ angular.module('munimapBase')
                 popup.close();
             };
 
-            $scope.preDownload = function(featureCollection) {
-                angular.forEach(featureCollection.features, function(feature) {
-                    if(angular.isUndefined(feature.properties.style)) {
-                        return;
-                    }
-                    var featureStyle = feature.properties.style;
-                    var style;
-                    // atm icon style is not included in draw functionality
-                    // add here also when added
-                    switch(feature.geometry.type) {
-                    case 'LineString':
+            const prepareStyleForDownload = function(feature) {
+                var featureStyle = feature.properties.style
+                var style;
+                // atm icon style is not included in draw functionality
+                // add here also when added
+                switch(feature.geometry.type) {
+                case 'LineString':
+                    style = angular.extend({}, {
+                        strokeWidth: featureStyle.strokeWidth,
+                        strokeColor: featureStyle.strokeColor,
+                        strokeOpacity: featureStyle.strokeOpacity,
+                        strokeDashstyle: featureStyle.strokeDashstyle
+                    });
+                    break;
+                case 'Polygon':
+                    style = angular.extend({}, {
+                        strokeWidth: featureStyle.strokeWidth,
+                        strokeColor: featureStyle.strokeColor,
+                        strokeOpacity: featureStyle.strokeOpacity,
+                        strokeDashstyle: featureStyle.strokeDashstyle,
+                        fillColor: featureStyle.fillColor,
+                        fillOpacity: featureStyle.fillOpacity
+                    });
+                    break;
+                case 'Point':
+                    // see $scope.textDrawn
+                    if(featureStyle.externalGraphic !== undefined) {
                         style = angular.extend({}, {
-                            strokeWidth: featureStyle.strokeWidth,
-                            strokeColor: featureStyle.strokeColor,
-                            strokeOpacity: featureStyle.strokeOpacity,
-                            strokeDashstyle: featureStyle.strokeDashstyle
+                            externalGraphic: featureStyle.externalGraphic,
+                            graphicXAnchor: featureStyle.graphicXAnchor,
+                            graphicYAnchor: featureStyle.graphicYAnchor,
+                            graphicWidth: featureStyle.graphicWidth,
+                            graphicHeight: featureStyle.graphicHeight,
+                            graphicRotation: featureStyle.graphicRotation
                         });
-                        break;
-                    case 'Polygon':
+                    } else if(featureStyle.radius !== 0) {
                         style = angular.extend({}, {
                             strokeWidth: featureStyle.strokeWidth,
                             strokeColor: featureStyle.strokeColor,
                             strokeOpacity: featureStyle.strokeOpacity,
                             strokeDashstyle: featureStyle.strokeDashstyle,
                             fillColor: featureStyle.fillColor,
-                            fillOpacity: featureStyle.fillOpacity
+                            fillOpacity: featureStyle.fillOpacity,
+                            radius: featureStyle.radius
                         });
-                        break;
-                    case 'Point':
-                        // see $scope.textDrawn
-                        if(featureStyle.externalGraphic !== undefined) {
-                            style = angular.extend({}, {
-                                externalGraphic: featureStyle.externalGraphic,
-                                graphicXAnchor: featureStyle.graphicXAnchor,
-                                graphicYAnchor: featureStyle.graphicYAnchor,
-                                graphicWidth: featureStyle.graphicWidth,
-                                graphicHeight: featureStyle.graphicHeight,
-                                graphicRotation: featureStyle.graphicRotation
-                            });
-                        } else if(featureStyle.radius !== 0) {
-                            style = angular.extend({}, {
-                                strokeWidth: featureStyle.strokeWidth,
-                                strokeColor: featureStyle.strokeColor,
-                                strokeOpacity: featureStyle.strokeOpacity,
-                                strokeDashstyle: featureStyle.strokeDashstyle,
-                                fillColor: featureStyle.fillColor,
-                                fillOpacity: featureStyle.fillOpacity,
-                                radius: featureStyle.radius
-                            });
-                        } else {
-                            style = angular.extend({}, {
-                                text: featureStyle.text,
-                                fontWeight: featureStyle.fontWeight,
-                                fontSize: featureStyle.fontSize,
-                                fontColor: featureStyle.fontColor,
-                                fontRotation: featureStyle.fontRotation
-                            });
-                        }
-                        break;
-                    default:
-                        style = {};
+                    } else {
+                        style = angular.extend({}, {
+                            text: featureStyle.text,
+                            fontWeight: featureStyle.fontWeight,
+                            fontSize: featureStyle.fontSize,
+                            fontColor: featureStyle.fontColor,
+                            fontRotation: featureStyle.fontRotation
+                        });
                     }
-                    feature.properties.style = style;
+                    break;
+                default:
+                    style = {};
+                }
+                return style;
+            };
+
+            const propsFromFormValues = function(feature) {
+                return {
+                    style: feature.properties.style,
+                    ...feature.properties.formValues
+                };
+            };
+
+            $scope.preDownload = function(featureCollection) {
+                angular.forEach(featureCollection.features, function(feature) {
+                    if(angular.isDefined(feature.properties.style)) {
+                        feature.properties.style = prepareStyleForDownload(feature);
+                    }
+                    feature.properties = propsFromFormValues(feature);
                 });
                 return featureCollection;
             };
