@@ -7,7 +7,7 @@ var deDETranslation = {
             'TOOLTIP_DRAW_POINT': 'Punkt zeichnen',
             'TOOLTIP_DRAW_LINE': 'Linie zeichnen',
             'TOOLTIP_DRAW_POLYGON': 'Polygon zeichnen',
-            'TOOLTIP_REMOVE': 'Ausgewählte Geometrie entfernen',
+            'TOOLTIP_REMOVE': 'Zum Entfernen Geometrie auswählen',
             'DRAW_LAYER_TITLE': 'Zeichenlayer'
         },
         'featureexchange': {
