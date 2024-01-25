@@ -78,7 +78,7 @@ class Feature(db.Model):
             {
                 'key': 'created',
                 'type': 'plaintext',
-                'limitto': 10
+                'format': 'date'
             },
             {
                 'key': 'modified_by',
@@ -87,7 +87,7 @@ class Feature(db.Model):
             {
                 'key': 'modified',
                 'type': 'plaintext',
-                'limitto': 10
+                'format': 'date'
             }
         ]
         return [
