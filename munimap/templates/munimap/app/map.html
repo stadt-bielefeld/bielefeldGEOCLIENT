@@ -170,6 +170,12 @@
        deactivated-callback="$parent.$parent.onAreaMeasureDeactivated"
        activated-callback="$parent.$parent.onAreaMeasureActivated">
     </a>
+    {% if base_config.get("TIMETABLE_DEFAULT_CTIY") == 'Bielefeld' %}
+    <a href="https://beteiligung.nrw.de/portal/bielefeld/beteiligung/themen/1001101" title="Aufruf des Bielefelder Mängelmelders" 
+      target="_blank" class="list-group-item">
+      Mängelmelder BI
+    </a>
+    {% endif %}
     {% if not current_user.is_anonymous %}
     <a ng-click="openSaveSettingsModal()" class="list-group-item" ng-if="saveSettingsEnabled">
       Einstellungen speichern
