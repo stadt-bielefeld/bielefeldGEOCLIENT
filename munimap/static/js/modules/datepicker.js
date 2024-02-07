@@ -1,12 +1,16 @@
 require('angular-ui-bootstrap');
 require('angular-schema-form');
 
-angular.module('schemaForm').run(['$templateCache', 
+angular.module('schemaForm').run(['$templateCache',
     function($templateCache) {
         $templateCache.put(
             'directives/decorators/bootstrap/datepicker/datepicker.html',
-            '<div class="form-group munimap-datepicker" ng-class="{\'has-error\': hasError()}"><label class="control-label" ng-show="showTitle()">{{form.title}}</label><div class="input-group"><anol-date-picker class="anol-date-picker" date="$$value$$" /></div></div>'
-        );
+            `<div class="form-group munimap-datepicker" ng-class="{\'has-error\': hasError()}">
+  <label class="control-label" ng-show="showTitle()">{{form.title}}</label>
+  <div class="input-group">
+    <anol-date-picker class="anol-date-picker" date="$$value$$" />
+  </div>
+</div>`);
     }
 ]);
 
