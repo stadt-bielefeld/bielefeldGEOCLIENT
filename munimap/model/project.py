@@ -6,13 +6,11 @@ __all__ = ['ProtectedProject']
 project_group = db.Table(
     'mm_project_group', db.metadata,
     db.Column('mm_project_id', db.Integer, db.ForeignKey('mm_projects.id')),
-    db.Column('mb_group_id', db.Integer, db.ForeignKey('mb_group.mb_group_id')),
-    info={'bind_key': 'mapbender'}
+    db.Column('mb_group_id', db.Integer, db.ForeignKey('mb_group.mb_group_id'))
 )
 
 class ProtectedProject(db.Model):
     __tablename__ = 'mm_projects'
-    __bind_key__ = 'mapbender'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False, unique=True)

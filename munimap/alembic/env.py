@@ -2,12 +2,10 @@
 from alembic import context
 from sqlalchemy import engine_from_config, pool
 from logging.config import fileConfig
-from os import getenv
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
-# config.set_main_option('sqlalchemy.url', getenv('MUNIMAP_MUNIMAP_DB_CONNECTION', 'postgresql://postgres:postgres@localhost:5555/munimap'))
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.

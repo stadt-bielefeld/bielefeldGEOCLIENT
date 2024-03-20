@@ -5,7 +5,6 @@ __all__ = ['MBGroup']
 
 class MBGroup(db.Model):
     __tablename__ = 'mb_group'
-    __bind_key__ = 'mapbender'
 
     mb_group_id = db.Column(db.Integer(), primary_key=True)
     mb_group_name = db.Column(db.String, nullable=False)
