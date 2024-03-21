@@ -120,6 +120,13 @@ def layer_allowed_for_user(layer):
     if current_user.is_anonymous:
         return False
 
+    admin_allowed = check_group_permission(
+        current_app.config.get('ADMIN_GROUPS')
+    )
+
+    if admin_allowed:
+        return True
+
     # raises 404 when layer not found
     protected_layer = ProtectedLayer.by_name(layer['name'])
 
