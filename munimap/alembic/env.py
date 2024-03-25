@@ -25,6 +25,12 @@ target_metadata = db.metadata
 # ... etc.
 
 
+def include_name(name, type_, parent_names):
+    if type_ == 'table':
+        return name != 'spatial_ref_sys'
+    return True
+
+
 def run_migrations_offline():
     """Run migrations in 'offline' mode.
 
@@ -39,7 +45,11 @@ def run_migrations_offline():
     """
     url = config.get_main_option("sqlalchemy.url")
     context.configure(
-        url=url, target_metadata=target_metadata, literal_binds=True)
+        url=url,
+        target_metadata=target_metadata,
+        literal_binds=True,
+        include_name=include_name
+    )
 
     with context.begin_transaction():
         context.run_migrations()
@@ -60,7 +70,8 @@ def run_migrations_online():
     with connectable.connect() as connection:
         context.configure(
             connection=connection,
-            target_metadata=target_metadata
+            target_metadata=target_metadata,
+            include_name=include_name
         )
 
         with context.begin_transaction():

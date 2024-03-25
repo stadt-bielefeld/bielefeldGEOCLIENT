@@ -16,8 +16,8 @@ depends_on = None
 
 
 def upgrade():
-    op.execute('drop view if exists search_wfs_view;')
-    op.execute('drop view if exists registrating_groups;')
+    op.execute('drop view if exists search_wfs_view')
+    op.execute('drop view if exists registrating_groups')
     op.execute('drop table if exists gui_wms')
     op.execute('drop table if exists gui_wfs_conf')
     op.execute('drop table if exists wfs_conf_element')
@@ -112,9 +112,13 @@ def upgrade():
     op.execute('alter table mb_user drop column if exists mb_user_online_resource')
     op.execute('alter table mb_user_mb_group drop constraint if exists fkey_mb_user_mb_group_mb_use_id')
     op.execute('alter table mb_user_mb_group drop constraint if exists mb_user_mb_group_ibfk_1')
-    op.create_foreign_key(None, 'mb_user_mb_group', 'mb_user', ['fkey_mb_user_id'], ['mb_user_id'])
-    op.create_foreign_key(None, 'mb_user_mb_group', 'mb_group', ['fkey_mb_group_id'], ['mb_group_id'])
     op.execute('alter table mb_user_mb_group drop column if exists mb_user_mb_group_type')
+    op.execute('alter table mb_user_mb_group drop constraint if exists fkey_mb_user_mb_group_user_id')
+    op.execute('alter table mb_user_mb_group drop constraint if exists fkey_mb_user_mb_group_group_id')
+    op.create_foreign_key('fkey_mb_user_mb_group_user_id', 'mb_user_mb_group', 'mb_user', ['fkey_mb_user_id'], ['mb_user_id'])
+    op.create_foreign_key('fkey_mb_user_mb_group_group_id', 'mb_user_mb_group', 'mb_group', ['fkey_mb_group_id'], ['mb_group_id'])
+    op.execute('alter table mb_user_mb_group alter column fkey_mb_user_id drop default')
+    op.execute('alter table mb_user_mb_group alter column fkey_mb_group_id drop default')
     op.alter_column('mm_project_default_settings', 'mm_project_id',
                     existing_type=sa.INTEGER(),
                     nullable=False)

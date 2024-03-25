@@ -11,8 +11,8 @@ __all__ = ['MBUser', 'AnonymousUser', 'DummyUser', 'EmailVerification']
 
 mb_user_mb_group = db.Table(
     'mb_user_mb_group', db.metadata,
-    db.Column('fkey_mb_user_id', db.Integer, db.ForeignKey('mb_user.mb_user_id')),
-    db.Column('fkey_mb_group_id', db.Integer, db.ForeignKey('mb_group.mb_group_id'))
+    db.Column('fkey_mb_user_id', db.Integer, db.ForeignKey('mb_user.mb_user_id', name='fkey_mb_user_mb_group_user_id'), nullable=False),
+    db.Column('fkey_mb_group_id', db.Integer, db.ForeignKey('mb_group.mb_group_id', name='fkey_mb_user_mb_group_group_id'), nullable=False)
 )
 
 RECOVER_VALID_FOR = datetime.timedelta(days=1)

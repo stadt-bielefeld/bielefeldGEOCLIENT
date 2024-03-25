@@ -175,10 +175,11 @@ While the database is up, run from the `bielefeldGEOCLIENT` folder:
 alembic upgrade head
 ```
 
-To create a revision run:
+To create and apply a revision run:
 
 ```bash
-alembic revision [--autogenerate] -m "<migration name>"
+# adjust model
+alembic revision --autogenerate -m "<migration name>"
 sudo chown -R "$USER" munimap/alembic/versions/*.py
 # adjust migration
 alembic upgrade head
