@@ -98,6 +98,7 @@ def upgrade():
     op.execute('drop table if exists mb_log')
     op.execute('drop table if exists mb_proxy_log')
     op.execute('drop table if exists gui_category')
+    op.execute('drop table if exists mb_metadata')
     op.execute('drop index if exists idx_mb_user_id')
     op.execute('drop index if exists idx_mb_user_name')
     op.execute('alter table mb_user drop column if exists mb_user_for_attention_of')
@@ -120,6 +121,18 @@ def upgrade():
     op.alter_column('mm_project_default_settings', 'mm_project_settings_id',
                     existing_type=sa.INTEGER(),
                     nullable=False)
+    op.execute('alter table mb_group drop column if exists mb_group_address')
+    op.execute('alter table mb_group drop column if exists mb_group_email')
+    op.execute('alter table mb_group drop column if exists mb_group_country')
+    op.execute('alter table mb_group drop column if exists mb_group_owner')
+    op.execute('alter table mb_group drop column if exists mb_group_stateorprovince')
+    op.execute('alter table mb_group drop column if exists mb_group_postcode')
+    op.execute('alter table mb_group drop column if exists mb_group_facsimiletelephone')
+    op.execute('alter table mb_group drop column if exists mb_group_voicetelephone')
+    op.execute('alter table mb_group drop column if exists mb_group_logo_path')
+    op.execute('alter table mb_group drop column if exists mb_group_ext_id')
+    op.execute('alter table mb_group drop column if exists mb_group_homepage')
+    op.execute('alter table mb_group drop column if exists mb_group_city')
 
 
 def downgrade():

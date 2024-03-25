@@ -8,20 +8,8 @@ class MBGroup(db.Model):
 
     mb_group_id = db.Column(db.Integer(), primary_key=True)
     mb_group_name = db.Column(db.String, nullable=False)
-    mb_group_owner = db.Column(db.Integer())
     mb_group_description = db.Column(db.String(), nullable=False, default='')
     mb_group_title = db.Column(db.String(), nullable=False, default='')
-    mb_group_ext_id = db.Column(db.Integer())
-    mb_group_address = db.Column(db.String(), nullable=False, default='')
-    mb_group_postcode = db.Column(db.String(), nullable=False, default='')
-    mb_group_city = db.Column(db.String(), nullable=False, default='')
-    mb_group_stateorprovince = db.Column(db.String(), nullable=False, default='')
-    mb_group_country = db.Column(db.String(), nullable=False, default='')
-    mb_group_voicetelephone = db.Column(db.String(), nullable=False, default='')
-    mb_group_facsimiletelephone = db.Column(db.String(), nullable=False, default='')
-    mb_group_email = db.Column(db.String(), nullable=False, default='')
-    mb_group_logo_path = db.Column(db.String(), nullable=False, default='')
-    mb_group_homepage = db.Column(db.String(), nullable=False, default='')
 
     @property
     def id(self):
