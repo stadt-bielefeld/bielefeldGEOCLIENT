@@ -8,14 +8,12 @@ __all__ = ['ProtectedLayer']
 layer_group = db.Table(
     'mm_layer_group', db.metadata,
     db.Column('mm_layer_id', db.Integer, db.ForeignKey('mm_layers.id')),
-    db.Column('mb_group_id', db.Integer, db.ForeignKey('mb_group.mb_group_id')),
-    info={'bind_key': 'mapbender'}
+    db.Column('mb_group_id', db.Integer, db.ForeignKey('mb_group.mb_group_id'))
 )
 
 
 class ProtectedLayer(db.Model):
     __tablename__ = 'mm_layers'
-    __bind_key__ = 'mapbender'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False, unique=True)
