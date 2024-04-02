@@ -347,8 +347,8 @@ def prepare_catalog_layers_def(app_layers_def, layers_config, selected_group=Non
         if len(group['layers']) == 0:
             continue
         _has_group = False
+        _group = deepcopy(group)
         if group['catalog'] or not selected_layer:
-            _group = deepcopy(group)
             if type(_group['catalog']) == bool:
                 _group['catalog'] = {}
                 _group['catalog']['title'] = _group['title']
@@ -475,8 +475,8 @@ def prepare_catalog_layers_name(app_layers_def, layers_config, selected=None):
             continue
 
         _has_group = False
+        _group = deepcopy(group)
         if group['catalog'] or selected:
-            _group = deepcopy(group)
             if type(_group['catalog']) == bool:
                 _group['catalog'] = {}
                 _group['catalog']['title'] = _group['title']
