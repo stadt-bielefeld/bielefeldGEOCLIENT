@@ -386,7 +386,7 @@ angular.module('munimapBase')
                 $scope.deactivateDrawText = undefined;
                 feature.set('isText', true);
                 feature.set('style', {
-                    'radius': 0
+                    text: ''
                 });
             };
 
@@ -454,7 +454,7 @@ angular.module('munimapBase')
                     break;
                 case 'Point':
                     // see $scope.textDrawn
-                    if(featureStyle.externalGraphic !== undefined) {
+                    if(angular.isDefined(featureStyle.externalGraphic)) {
                         style = angular.extend({}, {
                             externalGraphic: featureStyle.externalGraphic,
                             graphicXAnchor: featureStyle.graphicXAnchor,
@@ -463,7 +463,7 @@ angular.module('munimapBase')
                             graphicHeight: featureStyle.graphicHeight,
                             graphicRotation: featureStyle.graphicRotation
                         });
-                    } else if(featureStyle.radius !== 0) {
+                    } else if(angular.isDefined(featureStyle.radius)) {
                         style = angular.extend({}, {
                             strokeWidth: featureStyle.strokeWidth,
                             strokeColor: featureStyle.strokeColor,
