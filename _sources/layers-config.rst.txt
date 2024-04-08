@@ -52,7 +52,7 @@ Legt fest, ob der Layer aktiv ist. Aktive Layer werden, soweit in der :ref:`defa
 Soll die Gruppe im Katalog auftauchen kann dies hier eingesetllt werden. Standartwert `false`. Zusätzlich kann hier auch noch ein Titel mit angegeben werden.
 
 .. code-block:: yaml
- 
+
     catalog:
       title: Parken Mobilität
 
@@ -62,15 +62,15 @@ Deckkraft des Layers.
 
 ``metadataUrl``
 """""""""""""""
-Externe URL zum Anzeigen von Metadaten, wird u.a. im Katalog verwendet. 
+Externe URL zum Anzeigen von Metadaten, wird u.a. im Katalog verwendet.
 
 ``background``
 """"""""""""""
-Definiert ob ein Layer ein Hintergrundlayer ist. Standardwert: `false`. 
+Definiert ob ein Layer ein Hintergrundlayer ist. Standardwert: `false`.
 
 ``directAccess``
 """"""""""""""""
-Ist der Parameter gesetzt, wird der Dienst direkt abgefragt und nicht über die Anwendung die als Proxy dient.. 
+Ist der Parameter gesetzt, wird der Dienst direkt abgefragt und nicht über die Anwendung die als Proxy dient..
 
 
 ``cluster``
@@ -79,7 +79,7 @@ Definiert ob ein Layer geclustert werden soll. Dies gilt nur für Layer mit dem 
 
 ``abstract``
 """"""""""""
-Beschreibung welche Daten in dem Layer angezeigt werden, wird u.a. in der Darstellung des Katalogs verwendet. 
+Beschreibung welche Daten in dem Layer angezeigt werden, wird u.a. in der Darstellung des Katalogs verwendet.
 
 ``type``
 """"""""
@@ -154,6 +154,20 @@ Für alle Arten von Layern kann das Attribut `url` verwendet werden. Hierbei mus
 """"""""""""""""
 Pro Layer kann auch eine eigene Suche definiert werden,
 
+
+``printTileSize``
+"""""""""""""""""
+Für WMS-Layer (type `wms` oder `tiledwms`) kann eine `printTileSize` eingestellt werden. Wenn diese gesetzt ist, dann fragt mapfish print den WMS als Kacheln ab. Der Parameter muss ein Array mit zwei ganzzahligen Pixel-Angaben sein.
+
+.. code-block:: yaml
+
+    layers:
+      - name: wms_1
+        title: WMS 1
+        type: wms
+        printTileSize: [1024, 1024]
+        source:
+          [...]
 
 .. _style:
 
@@ -293,26 +307,26 @@ Beispiel
 Soll die Gruppe im Katalog auftauchen kann dies hier eingesetllt werden. Standartwert `false`. Zusätzlich kann hier auch noch ein Titel mit angegeben werden.
 
 .. code-block:: yaml
- 
+
     catalog:
       title: Parken Mobilität
 
 
 ``abstract``
 """"""""""""
-Beschreibung welche Daten in der Gruppe angezeigt werden, wird u.a. in der Darstellung des Katalogs verwendet. 
+Beschreibung welche Daten in der Gruppe angezeigt werden, wird u.a. in der Darstellung des Katalogs verwendet.
 
 
 ``legend``
 """"""""""
 Konfiguration der anzuzeigenden Legende des Gruppe. Fehlt dieses Attribut oder ist der Wert `null` gesetzt, erfolgt keine Anzeige einer Legende für diesen Gruppe.
 
-Ist eine Legende in der Gruppe definiert werden alle Legenden der Layer unterdrückt. Es wird nur die Angabe einer URL unterstützt und keine GetLegendGraphics wie zum Beispiel bei Layern. 
+Ist eine Legende in der Gruppe definiert werden alle Legenden der Layer unterdrückt. Es wird nur die Angabe einer URL unterstützt und keine GetLegendGraphics wie zum Beispiel bei Layern.
 
 
 ``metadataUrl``
 """""""""""""""
-Externe URL zum Anzeigen von Metadaten, wird u.a. im Katalog verwendet. 
+Externe URL zum Anzeigen von Metadaten, wird u.a. im Katalog verwendet.
 
 Beispiel
 

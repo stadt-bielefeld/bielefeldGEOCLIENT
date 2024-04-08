@@ -64,6 +64,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#featureinfo"><code class="docutils literal notranslate"><span class="pre">featureinfo</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#legend"><code class="docutils literal notranslate"><span class="pre">legend</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#searchconfig"><code class="docutils literal notranslate"><span class="pre">searchConfig</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#printtilesize"><code class="docutils literal notranslate"><span class="pre">printTileSize</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#style"><code class="docutils literal notranslate"><span class="pre">style</span></code></a></li>
 </ul>
 </li>
@@ -264,6 +265,19 @@
 <div class="section" id="searchconfig">
 <h3><code class="docutils literal notranslate"><span class="pre">searchConfig</span></code><a class="headerlink" href="#searchconfig" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Pro Layer kann auch eine eigene Suche definiert werden,</p>
+</div>
+<div class="section" id="printtilesize">
+<h3><code class="docutils literal notranslate"><span class="pre">printTileSize</span></code><a class="headerlink" href="#printtilesize" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Für WMS-Layer (type <cite>wms</cite> oder <cite>tiledwms</cite>) kann eine <cite>printTileSize</cite> eingestellt werden. Wenn diese gesetzt ist, dann fragt mapfish print den WMS als Kacheln ab. Der Parameter muss ein Array mit zwei ganzzahligen Pixel-Angaben sein.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">layers</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">wms_1</span>
+    <span class="nt">title</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">WMS 1</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">wms</span>
+    <span class="nt">printTileSize</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">1024</span><span class="p p-Indicator">,</span> <span class="nv">1024</span><span class="p p-Indicator">]</span>
+    <span class="nt">source</span><span class="p">:</span>
+      <span class="p p-Indicator">[</span><span class="nv">...</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="style">
 <span id="id1"></span><h3><code class="docutils literal notranslate"><span class="pre">style</span></code><a class="headerlink" href="#style" title="Link zu dieser Überschrift">¶</a></h3>
