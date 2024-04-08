@@ -347,6 +347,10 @@ def mapfish_wms_layer(layer_conf, is_background, layers_base_url='',
         'layers': layer_conf['source']['layers'],
         'customParams': {}
     }
+    printTileSize = layer_conf.get('printTileSize')
+    if printTileSize is not None:
+        mapfish_layer['type'] = 'TiledWMS'
+        mapfish_layer['tileSize'] = printTileSize
     # make all request transparent, also background layers
     # can be transparent
     mapfish_layer['customParams']['transparent'] = True

@@ -193,7 +193,7 @@ def mapfish_layers(requested_layers, bbox=None, srs=None, dpi=None, scale=None, 
             if 'internal_type' in layer:
                 del layer['internal_type']
 
-        elif layer['type'] == 'WMS':
+        elif layer['type'] == 'WMS' or layer['type'] == 'TiledWMS':
             if dpi is not None:
                 layer['customParams']['dpi'] = dpi
                 layer['customParams']['map_resolution'] = dpi
