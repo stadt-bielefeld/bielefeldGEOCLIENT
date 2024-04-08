@@ -480,7 +480,7 @@ def prepare_catalog_layers_name(app_layers_def, layers_config, selected=None):
             if type(_group['catalog']) == bool:
                 _group['catalog'] = {}
                 _group['catalog']['title'] = _group['title']
-            elif not layer['catalog'].get('title'):
+            elif not _group['catalog'].get('title'):
                 _group['catalog']['title'] = _group['title']
 
             _group['layers'] = []
@@ -528,7 +528,7 @@ def prepare_catalog_layers_name(app_layers_def, layers_config, selected=None):
             group_names.append(_group['name'])
             continue
 
-        if _has_group and _group['name'] not in group_names:
+        if _has_group and group['catalog'] and _group['name'] not in group_names:
             group_names.append(_group['name'])
             group_layers.append({
                 'title': _group['catalog']['title'],
