@@ -130,7 +130,7 @@ result_marker_spec = {
     'graphicWidth': number(),
     'graphicHeight': number(),
     'graphicYAnchor': number(),
-    'graphicScale': number(), 
+    'graphicScale': number(),
     'strokeWidth': number(),
     'strokeColor': string_type,
     'strokeOpacity': number(),
@@ -179,7 +179,7 @@ group_spec = {
     'showGroup': bool,
     'singleSelect': bool,
     'catalog': one_of(bool, catalog_spec),
-    'abstract': string_type, 
+    'abstract': string_type,
     'metadataUrl': string_type,
     'legend': one_of(legend_spec, 'GetLegendGraphic'),
     'defaultVisibleLayers': [string_type],
@@ -190,10 +190,12 @@ layers_conf_spec = {
     required('groups'): [group_spec],
     required('layers'): [type_spec('type', {
         'wms': combined(layer_commons, {
-            'source': wms_source_spec
+            'source': wms_source_spec,
+            'printTileSize': [number()]
         }),
         'tiledwms': combined(layer_commons, {
-            'source': wms_source_spec
+            'source': wms_source_spec,
+            'printTileSize': [number()]
         }),
         'wmts': combined(layer_commons, {
             'source': wmts_source_spec
