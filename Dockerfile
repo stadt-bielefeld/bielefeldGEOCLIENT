@@ -1,4 +1,4 @@
-ARG ANOL_COMMIT_HASH=8b8a2f45e2da43940d825933fa40ca2095dc51e8
+ARG ANOL_COMMIT_HASH=2cb346052f6c37a00bebfb0189c4049dafd44f5b
 
 
 
@@ -151,9 +151,7 @@ COPY ./gunicorn.conf /opt/etc/munimap/gunicorn.conf
 COPY --from=builder /pkg/dist/munimap-*.tar /opt/pkgs
 COPY --from=builder /pkg/munimap_transport/dist/munimap_transport-*.tar /opt/pkgs
 
-RUN pip install -f file:///opt/pkgs \
-    munimap \
-    munimap_transport
+RUN pip install /opt/pkgs/munimap-*.tar /opt/pkgs/munimap_transport-*.tar
 
 # Hack to disable https for following script.
 RUN PYTHONHTTPSVERIFY=0 python -c "import hyphen.dictools; hyphen.dictools.is_installed('de') or hyphen.dictools.install('de')"

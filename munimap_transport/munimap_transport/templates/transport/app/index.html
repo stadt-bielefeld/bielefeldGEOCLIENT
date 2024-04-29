@@ -66,7 +66,7 @@
   </script>
 
   {% if app_config['app']['tour'] %}
-    {% include 'munimap/app/tours/' + app_config['app']['tour'] %}
+    <script type="text/javascript" src="{$ url_for('frontend.tours', name=app_config['app']['tour']) $}"></script>
   {% endif %}
 
 {% endblock %}

@@ -89,9 +89,6 @@ class DefaultConfig(object):
     SQLALCHEMY_LAYER_DATABASE_URI = ''
 
     SQLALCHEMY_DATABASE_URI = ''
-    SQLALCHEMY_BINDS = {
-        'mapbender': ''
-    }
     SQLALCHEMY_ECHO = False
     SQLALCHEMY_DATABASE_SCHEMA = 'public'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
@@ -200,14 +197,10 @@ class TestConfig(object):
 
     LAYERS_CONF = path.join(here, 'test/data/test_layers_conf.yaml')
 
-    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres@localhost:5555/munimap_test'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres@localhost:5556/mapbender_test'
 
     SQLALCHEMY_LAYER_DATABASE_URI = 'postgresql://postgres:postgres@localhost:5556/osmdata_test'
     SQLALCHEMY_DATABASE_SCHEMA = 'munimaptest'
-
-    SQLALCHEMY_BINDS = {
-        'mapbender': 'postgresql://postgres:postgres@localhost:5556/mapbender_test'
-    }
 
     MAP_ICONS_DIR = path.join(here, 'test/data/mapfish/icons')
     MAPFISH_ICONS_DIR = MAP_ICONS_DIR

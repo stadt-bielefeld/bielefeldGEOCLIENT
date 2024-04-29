@@ -8,14 +8,12 @@ __all__ = ['ProjectSettings', 'ProjectDefaultSettings']
 project_settings_user = db.Table(
     'mm_project_settings_user', db.metadata,
     db.Column('mm_project_settings_id', db.Integer, db.ForeignKey('mm_project_settings.id')),
-    db.Column('mb_user_id', db.Integer, db.ForeignKey('mb_user.mb_user_id')),
-    info={'bind_key': 'mapbender'}
+    db.Column('mb_user_id', db.Integer, db.ForeignKey('mb_user.mb_user_id'))
 )
 
 
 class ProjectDefaultSettings(db.Model):
     __tablename__ = 'mm_project_default_settings'
-    __bind_key__ = 'mapbender'
 
     id = db.Column(db.Integer, primary_key=True)
 
@@ -32,7 +30,7 @@ class ProjectDefaultSettings(db.Model):
     @classmethod
     def by_project_and_user(cls, project, user):
         q = cls.query.filter(
-            and_(cls.mm_project_id == project.id, 
+            and_(cls.mm_project_id == project.id,
                 cls.mb_user_id == user.id
             )
         )
@@ -45,7 +43,6 @@ class ProjectDefaultSettings(db.Model):
 
 class ProjectSettings(db.Model):
     __tablename__ = 'mm_project_settings'
-    __bind_key__ = 'mapbender'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)

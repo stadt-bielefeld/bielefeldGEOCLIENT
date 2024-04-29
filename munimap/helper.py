@@ -2,9 +2,7 @@ import os
 import re
 import yaml
 import glob
-import urllib.request, urllib.parse, urllib.error
 
-from functools import wraps
 from flask import request, abort, current_app, url_for
 
 from flask_login import current_user
@@ -43,28 +41,6 @@ def request_for_static():
         return False
 
 
-def required_roles(*roles):
-    """"
-    Decorater for views to check if user has the permissons
-    to enter the view.
-
-    Example:
-
-    from munimap.helper import required_roles
-    @user.route('/test/')
-    @required_roles('edit')
-
-    """
-    def wrapper(f):
-        @wraps(f)
-        def wrapped(*args, **kwargs):
-            if check_user_permission(roles):
-                return f(*args, **kwargs)
-            return abort(403)
-        return wrapped
-    return wrapper
-
-
 def check_group_permission(roles):
     for group in current_user.groups:
         if group.name in roles:
@@ -73,10 +49,19 @@ def check_group_permission(roles):
 
 
 def check_project_permission(project):
+    if check_admin_permission():
+        return True
+
     for group in current_user.groups:
         if group in project.groups:
             return True
     return False
+
+
+def check_admin_permission():
+    return check_group_permission(
+        current_app.config.get('ADMIN_GROUPS')
+    )
 
 
 def check_layer_permission(layer):
@@ -119,6 +104,9 @@ def layer_allowed_for_user(layer):
 
     if current_user.is_anonymous:
         return False
+
+    if check_admin_permission():
+        return True
 
     # raises 404 when layer not found
     protected_layer = ProtectedLayer.by_name(layer['name'])

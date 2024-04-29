@@ -31,3 +31,4 @@ node_modules
 projects/*/assets
 munimap/assets/
 *.code-workspace
+/docker/munimap-mapproxy/mapproxy_cache_data/

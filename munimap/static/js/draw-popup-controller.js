@@ -58,8 +58,7 @@ angular.module('munimapDraw')
                     fontColor: style.fontColor,
                     fontSize: style.fontSize,
                     fontWeight: style.fontWeight,
-                    fontRotation: style.fontRotation,
-                    radius: 0
+                    fontRotation: style.fontRotation
                 };
             } else if($scope.isPoint && $scope.isMarker) {
                 $scope.popupTabContent = $scope.defaultPopupTabContent || 'marker';
@@ -74,7 +73,7 @@ angular.module('munimapDraw')
             } else {
                 $scope.popupTabContent = $scope.defaultPopupTabContent || 'style';
                 style = {
-                    radius: style.radius === 0 ? undefined : style.radius,
+                    radius: style.radius,
                     strokeColor: style.strokeColor,
                     strokeOpacity: style.strokeOpacity,
                     strokeWidth: style.strokeWidth,

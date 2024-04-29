@@ -1,21 +1,18 @@
 import hashlib
-import sys
-import bcrypt
 import uuid
 import datetime
 
 from flask_login import UserMixin, AnonymousUserMixin as LoginAnonymousUser
 from flask import current_app, url_for
 from munimap.extensions import db
-from sqlalchemy import or_, func
+from sqlalchemy import func
 
 __all__ = ['MBUser', 'AnonymousUser', 'DummyUser', 'EmailVerification']
 
 mb_user_mb_group = db.Table(
     'mb_user_mb_group', db.metadata,
-    db.Column('fkey_mb_user_id', db.Integer, db.ForeignKey('mb_user.mb_user_id')),
-    db.Column('fkey_mb_group_id', db.Integer, db.ForeignKey('mb_group.mb_group_id')),
-    info={'bind_key': 'mapbender'}
+    db.Column('fkey_mb_user_id', db.Integer, db.ForeignKey('mb_user.mb_user_id', name='fkey_mb_user_mb_group_user_id'), nullable=False),
+    db.Column('fkey_mb_group_id', db.Integer, db.ForeignKey('mb_group.mb_group_id', name='fkey_mb_user_mb_group_group_id'), nullable=False)
 )
 
 RECOVER_VALID_FOR = datetime.timedelta(days=1)
@@ -48,7 +45,6 @@ class DummyUser(UserMixin):
 
 class MBUser(db.Model, UserMixin):
     __tablename__ = 'mb_user'
-    __bind_key__ = 'mapbender'
 
     mb_user_id = db.Column(db.Integer(), primary_key=True)
     mb_user_name = db.Column(db.String(), nullable=False)
@@ -61,25 +57,17 @@ class MBUser(db.Model, UserMixin):
     mb_user_email = db.Column(db.String())
     mb_user_phone = db.Column(db.String())
     mb_user_department = db.Column(db.String())
-    # mb_user_resolution = db.Column(db.Integer(), nullable=False, default=72)
     mb_user_organisation_name = db.Column(db.String())
     mb_user_position_name = db.Column(db.String())
-    # mb_user_phone1 = db.Column(db.String())
     mb_user_facsimile = db.Column(db.String())
     mb_user_delivery_point = db.Column(db.String())
     mb_user_city = db.Column(db.String())
     mb_user_postal_code = db.Column(db.Integer())
     mb_user_country = db.Column(db.String())
-    # mb_user_online_resource = db.Column(db.String())
-    # mb_user_realname = db.Column(db.String())
     mb_user_street = db.Column(db.String())
     mb_user_housenumber = db.Column(db.String())
-    # mb_user_reference = db.Column(db.String())
-    # mb_user_for_attention_of = db.Column(db.String())
     mb_user_valid_from = db.Column(db.Date())
     mb_user_valid_to = db.Column(db.Date())
-    # mb_user_password_ticket = db.Column(db.String())
-    # mb_user_digest = db.Column(db.String())
     mb_user_firstname = db.Column(db.String(), default='')
     mb_user_lastname = db.Column(db.String(), default='')
     mb_user_academictitle = db.Column(db.String(), default='')
@@ -145,13 +133,13 @@ class MBUser(db.Model, UserMixin):
 
     @property
     def valid_to(self):
-        if self.mb_user_valid_to: 
+        if self.mb_user_valid_to:
             return self.mb_user_valid_to.strftime("%d.%m.%Y")
         return None
 
     @property
     def valid_from(self):
-        if self.mb_user_valid_from: 
+        if self.mb_user_valid_from:
             return self.mb_user_valid_from.strftime("%d.%m.%Y")
         return None
 
@@ -188,7 +176,7 @@ class MBUser(db.Model, UserMixin):
         if not password:
             raise ValueError("Password must be non empty.")
         self.mb_user_password = hashlib.md5(password.encode('utf-8')).hexdigest()
-  
+
     def check_password(self, password):
         if not self.mb_user_password:
             return False
@@ -240,13 +228,12 @@ class MBUser(db.Model, UserMixin):
 
 class EmailVerification(db.Model):
     __tablename__ = 'password_recovery'
-    __bind_key__ = 'mapbender'
 
     id = db.Column(db.Integer, primary_key=True)
     hash = db.Column(db.String, unique=True, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('mb_user.mb_user_id'))
     valid_till = db.Column(
-        db.DateTime, 
+        db.DateTime,
         default=lambda: datetime.datetime.utcnow() + RECOVER_VALID_FOR
     )
 
@@ -258,7 +245,7 @@ class EmailVerification(db.Model):
 
     @classmethod
     def recover(cls, user):
-        return EmailVerification(user=user, hash=str(uuid.uuid4()))
+        return EmailVerification(user_id=user.id, hash=str(uuid.uuid4()))
 
     @property
     def url(self):
