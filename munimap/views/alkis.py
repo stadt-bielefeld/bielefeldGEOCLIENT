@@ -16,7 +16,7 @@ from munimap.alkis import (
     get_id_via_wms_get_feature_info
 )
 
-from munimap.alkis_log import create_legimiation_log
+from munimap.alkis_log import create_legitimation_log
 
 from munimap.alkis_selection import (
     request_owner,
@@ -30,11 +30,11 @@ from munimap.alkis_selection import (
 
 alkis = Blueprint("alkis", __name__, url_prefix='/alkis')
 
-def parse_legimation_request(request):
-    company = request.args.get('company')
-    reference = request.args.get('reference')
-    person = request.args.get('person')
-    kind = request.args.get('kind')
+def parse_legitimation_request(request):
+    company = request.args.get('company', '')
+    reference = request.args.get('reference', '')
+    person = request.args.get('person', '')
+    kind = request.args.get('kind', '')
     return company, reference, person, kind
 
 # Informationen zum Flurstueck (Auskunft)
@@ -63,9 +63,9 @@ def info(feature_id=None):
             'url': '%s%s' % (current_app.config.get('ALKIS_BASE_URL'), response['getFlurstuecksinfoDocumentResponse'][0]['url'])
         }
 
-        if (current_app.config.get('ALKIS_LEGITIMATION_GROUP') in current_user.groups_list):
-            company, reference, person, kind = parse_legimation_request(request)
-            create_legimiation_log(feature_id, company, reference, person, kind)
+        #if (current_app.config.get('ALKIS_LEGITIMATION_GROUP') in current_user.groups_list):
+        company, reference, person, kind = parse_legitimation_request(request)
+        create_legitimation_log("info", feature_id, company, reference, person, kind)
         return jsonify(response)
 
     return jsonify(params)
@@ -106,9 +106,9 @@ def pdf():
 
     url_params = urllib.parse.urlencode(params)
 
-    if (current_app.config.get('ALKIS_LEGITIMATION_GROUP') in current_user.groups_list):
-        company, reference, person, kind = parse_legimation_request(request)
-        create_legimiation_log(feature_id, company, reference, person, kind)
+    #if (current_app.config.get('ALKIS_LEGITIMATION_GROUP') in current_user.groups_list):
+    company, reference, person, kind = parse_legitimation_request(request)
+    create_legitimation_log("pdf", feature_id, company, reference, person, kind)
 
     return jsonify({
         'success': True,
@@ -153,9 +153,9 @@ def official(feature_id=None):
 
     url_params = urllib.parse.urlencode(params)
 
-    if (current_app.config.get('ALKIS_LEGITIMATION_GROUP') in current_user.groups_list):
-        company, reference, person, kind = parse_legimation_request(request)
-        create_legimiation_log(feature_id, company, reference, person, kind)
+    #if (current_app.config.get('ALKIS_LEGITIMATION_GROUP') in current_user.groups_list):
+    company, reference, person, kind = parse_legitimation_request(request)
+    create_legitimation_log("official", feature_id, company, reference, person, kind)
 
     return jsonify({
         'success': True,
@@ -190,11 +190,21 @@ def select_by_address():
 @alkis.route("/selection/owner", methods=["GET"])
 def select_by_owner():
     parcel = request_fs_via_owner(request.args)
+
+    company, reference, person, kind = parse_legitimation_request(request)
+    create_legitimation_log("request_fs_via_owner", request.args.get('id', ''), company, reference, person, kind)
+
     return jsonify(parcel)
 
 @alkis.route("/selection/search_owner", methods=["GET"])
 def search_owner():
     parcel = request_owner(request.args)
+
+    searchArgString = 'nachnameoderfirma=' + request.args.get('name', '') + ', vorname=' + request.args.get('firstname', '') + ', namensbestandteil=' + request.args.get('component', '')
+
+    company, reference, person, kind = parse_legitimation_request(request)
+    create_legitimation_log("request_owner", searchArgString, company, reference, person, kind)
+
     return jsonify(parcel)
 
 

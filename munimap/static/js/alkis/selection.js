@@ -255,11 +255,10 @@ angular.module('munimapBase.alkisSelection', ['anol.map', 'ngStorage'])
                     scope.searchByOwner = function(id) {
                         scope.showWaitingOverlay();
                         scope.responseData = {};
-                        var data = {
-                            id: id
-                        };
+                        let legParams = alkisLegimationService.model;
+                        legParams['id'] = id;
                         AlkisService.searchOwner(
-                            AlkisSelectionByOwnerUrl, data).then(
+                            AlkisSelectionByOwnerUrl, legParams).then(
                             function(response) {
                                 scope.responseData = response.data;
                                 scope.hideWaitingOverlay();
@@ -271,8 +270,9 @@ angular.module('munimapBase.alkisSelection', ['anol.map', 'ngStorage'])
                         scope.showWaitingOverlay();
                         scope.responseData = {};
                         scope.ownerData = {};
+                        let mergedParams = angular.merge(alkisLegimationService.model, scope.owner);
                         AlkisService.searchOwner(
-                            AlkisSelectionSearchOwnerUrl, scope.owner).then(
+                            AlkisSelectionSearchOwnerUrl, mergedParams).then(
                             function(response) {
                                 scope.ownerData = response.data;
                                 scope.ownerData.label = 'ownerdisplay';

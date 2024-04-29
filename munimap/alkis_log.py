@@ -9,7 +9,7 @@ from werkzeug.exceptions import BadRequest, BadGateway
 from urllib3.exceptions import InsecureRequestWarning
 import datetime
 
-def create_legimiation_log(id, company, reference, person, kind):
+def create_legitimation_log(functionname, id, company, reference, person, kind):
     now = datetime.datetime.now()
     filename = '%s-%s.csv' % (now.strftime("%Y"), now.strftime("%m"))
     alkis_log = os.path.join(
@@ -35,13 +35,14 @@ def create_legimiation_log(id, company, reference, person, kind):
         )
 
         if with_headers:
-            csv_headers = ["Flurstücks-ID", "Benutzername", "Firma", "Aktenzeichen", 
+            csv_headers = ["Funktion", "Flurstücks-ID", "Benutzername", "Firma", "Aktenzeichen", 
                 "Sachbearbeiter", "Art des berechtigten Interesses", "Uhrzeit", "Datum"]
             writer.writerow([h.encode("latin1") for h in csv_headers])
 
         time = now.strftime("%H:%M:%S")
         date = now.strftime("%d.%m.%Y")
         writer.writerow([
+            functionname.encode('latin1'),
             id,
             current_user.mb_user_name.encode('latin1'),
             company.encode('latin1'),

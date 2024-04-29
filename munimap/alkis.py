@@ -91,17 +91,17 @@ def request_alkis_session():
             'user': current_user.mb_user_name,
         }
 
-    log.info('request session for %s', params['user'])
+    log.info('request session')
     API_URL = current_app.config.get('ALKIS_SESSION_URL')
     log.info('API-URL %s', API_URL)
-    log.info('with params %s', params)
+    log.info('with params')
     r = requests.get(API_URL, params=params)
     if not r.ok:
         log.info('BAD REQUEST - got session response %s', r.content)
         raise BadRequest()
 
     content = json.loads(r.content)
-    log.info('got session response %s', content)
+    log.info('got session response')
     return content['session']
 
 
@@ -115,10 +115,10 @@ def request_alkis_info(alkis_id):
         'response': 'json'
     }
 
-    log.info('request alkis info getFlurstuecksinfoDocument for %s', alkis_id)
+    log.info('request alkis info getFlurstuecksinfoDocument',)
 
     API_URL = current_app.config.get('ALKIS_INFO_URL') + 'getFlurstuecksinfoDocument'
-    log.info('API_URL %s', API_URL + urlencode_params(params))
+    log.info('API_URL %s', API_URL)
     r = requests.get(API_URL, params=params)
 
     if not r.ok:
@@ -126,6 +126,6 @@ def request_alkis_info(alkis_id):
         raise BadRequest()
 
     content = json.loads(r.content)
-    log.info('got alkis info response %s', content)
+    log.info('got alkis info response')
 
     return content

@@ -29,7 +29,7 @@ def request_fs_via_owner(params):
         log.info('BAD REQUEST  %s', r.content)
         raise BadRequest()
 
-    log.info('got alkis info response %s', r.content)
+    log.info('got alkis info response')
     content = yaml.safe_load(r.content)
     return content
 
@@ -50,14 +50,14 @@ def request_owner(params):
     log.info('request alkis info getEigentuemer')
     API_URL = current_app.config.get('ALKIS_INFO_URL') + 'getEigentuemer?'
     params = urlencode_params(params)
-    log.info('API_URL %s', API_URL + params)
+    log.info('API_URL %s', API_URL)
     r = requests.get(API_URL + params)
 
     if not r.ok:
         log.info('BAD REQUEST %s', r.content)
         raise BadRequest()
 
-    log.info('got alkis info response %s', r.content)
+    log.info('got alkis info response')
     content = yaml.safe_load(r.content)
     return content
 
@@ -78,7 +78,7 @@ def request_fs_via_fsk(params):
     API_URL = current_app.config.get('ALKIS_INFO_URL') + 'getFlurstuecke?'
 
     params = urlencode_params(params)
-    log.info('API_URL %s', API_URL + params)
+    log.info('API_URL %s', API_URL)
     r = requests.get(API_URL + params)
 
     if not r.ok:
@@ -109,7 +109,7 @@ def request_fs_via_address(params):
     API_URL = current_app.config.get('ALKIS_INFO_URL') + 'getFlurstueckeFromLage?'
 
     params = urlencode_params(params)
-    log.info('API_URL %s', API_URL + params)
+    log.info('API_URL %s', API_URL)
     r = requests.get(API_URL + params)
 
     if not r.ok:

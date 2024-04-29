@@ -30,6 +30,11 @@ components:
         variant: abstract
     draw: true
     saveSettings: true
+    alkis:
+        simple: true
+        selection: true
+        pdf: true
+        official: true
 
 backgrounds:
     explicit:
