@@ -35,20 +35,20 @@ def create_legitimation_log(functionname, id, company, reference, person, kind):
         )
 
         if with_headers:
-            csv_headers = ["Funktion", "Flurstücks-ID", "Benutzername", "Firma", "Aktenzeichen", 
+            csv_headers = ["Funktion", "Flurstücks-ID/ Suchbegriffe", "Benutzername", "Firma", "Aktenzeichen", 
                 "Sachbearbeiter", "Art des berechtigten Interesses", "Uhrzeit", "Datum"]
-            writer.writerow([h.encode("latin1") for h in csv_headers])
+            writer.writerow([h for h in csv_headers])
 
         time = now.strftime("%H:%M:%S")
         date = now.strftime("%d.%m.%Y")
         writer.writerow([
-            functionname.encode('latin1'),
+            functionname,
             id,
-            current_user.mb_user_name.encode('latin1'),
-            company.encode('latin1'),
-            reference.encode('latin1'),
-            person.encode('latin1'),
-            kind.encode('latin1'),
+            current_user.mb_user_name,
+            company,
+            reference,
+            person,
+            kind,
             time,
             date
         ])

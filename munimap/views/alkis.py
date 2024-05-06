@@ -50,17 +50,23 @@ def info(feature_id=None):
             'Y': request.args.get('Y'),
             'HEIGHT': request.args.get('HEIGHT'),
         }
-        feature_id = get_id_via_wms_get_feature_info(
+        
+        alkis_id = get_id_via_wms_get_feature_info(
             ALKIS_GML_WMS,
             params,
             element='id'
         )
+        feature_id = get_id_via_wms_get_feature_info(
+            ALKIS_GML_WMS,
+            params,
+            element='flurstueckskennzeichen'
+        )
 
-    if feature_id:
-        response = request_alkis_info(alkis_id=feature_id)
+    if alkis_id:
+        response = request_alkis_info(alkis_id=alkis_id)
         response = {
             'success': True,
-            'url': '%s%s' % (current_app.config.get('ALKIS_BASE_URL'), response['getFlurstuecksinfoDocumentResponse'][0]['url'])
+            'url': '%s%s' % (current_app.config.get('ALKIS_BASE_URL'), "/Flurstuecksinfo?ipconnectid=alkisadmin~alkisadmin&format=html&fid=DENW13AL0000mNmz&token=4ba81758-b39d-405b-8b1a-3350728e9266&t=1711551130163&aktenzeichen=null&abfragegrund=null")
         }
 
         #if (current_app.config.get('ALKIS_LEGITIMATION_GROUP') in current_user.groups_list):
