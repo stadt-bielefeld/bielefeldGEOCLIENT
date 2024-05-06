@@ -66,7 +66,7 @@ def info(feature_id=None):
         response = request_alkis_info(alkis_id=alkis_id)
         response = {
             'success': True,
-            'url': '%s%s' % (current_app.config.get('ALKIS_BASE_URL'), "/Flurstuecksinfo?ipconnectid=alkisadmin~alkisadmin&format=html&fid=DENW13AL0000mNmz&token=4ba81758-b39d-405b-8b1a-3350728e9266&t=1711551130163&aktenzeichen=null&abfragegrund=null")
+            'url': '%s%s' % (current_app.config.get('ALKIS_BASE_URL'), response['getFlurstuecksinfoDocumentResponse'][0]['url'])
         }
 
         #if (current_app.config.get('ALKIS_LEGITIMATION_GROUP') in current_user.groups_list):
