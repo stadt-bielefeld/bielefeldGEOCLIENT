@@ -528,10 +528,15 @@ def prepare_catalog_layers_name(app_layers_def, layers_config, selected=None):
             group_names.append(_group['name'])
             continue
 
-        if _has_group and group['catalog'] and _group['name'] not in group_names:
+        # selected layers should be listed regardless if they have
+        # catalog = True. This ensures these layers can
+        # be added via GFI.
+        is_selected = selected and _group['name'] in selected
+
+        if _has_group and (_group['catalog'] or is_selected) and _group['name'] not in group_names:
             group_names.append(_group['name'])
             group_layers.append({
-                'title': _group['catalog']['title'],
+                'title': _group['catalog']['title'] if _group['catalog'] else _group['name'],
                 'predefined': _group.get('predefined', False),
                 'name': _group['name'],
                 'visible': True,
