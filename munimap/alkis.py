@@ -101,8 +101,13 @@ def request_alkis_session():
         raise BadRequest()
 
     content = json.loads(r.content)
+    session = content['session']
+    if not isinstance(session, str):
+        log.info('BAD REQUEST - got session response %s', session)
+        raise BadRequest()
+
     log.info('got session response')
-    return content['session']
+    return session
 
 
 def request_alkis_info(alkis_id):
