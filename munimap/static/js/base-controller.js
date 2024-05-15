@@ -27,6 +27,11 @@ angular.module('munimapBase')
             $scope.alkisButtonEnabled = munimapConfig.components.alkis === true;
             $scope.searchDropdown = munimapConfig.components.searchDropdown === true;
 
+            if ($scope.overviewMapEnabled && munimapConfig.overviewmapConfig) {
+                $scope.overviewMapLayer = munimapConfig.overviewmapConfig.layerName;
+                $scope.overviewMapCollapsed = munimapConfig.overviewmapConfig.collapsed !== false;
+            }
+
             $scope.disableFeatureInfo = munimapConfig.app.disableFeatureInfo === true;
 
             if (munimapConfig.components.alkis) {
