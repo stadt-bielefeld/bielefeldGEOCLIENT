@@ -50,6 +50,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#components">components</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#componentpositions">componentPositions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#communication">communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overviewmapconfig">overviewmapConfig</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#printconfig">printConfig</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#availablepagelayouts"><code class="docutils literal notranslate"><span class="pre">availablePageLayouts</span></code></a></li>
 </ul>
@@ -131,6 +132,8 @@
 <dt><code class="docutils literal notranslate"><span class="pre">components</span></code></dt><dd><p>Konfiguration und (De-)Aktivierung der einzelnen Komponenten der Anwendung</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">communication</span></code></dt><dd><p>Konfiguration der PostMessage Schnittstelle der Anwendung</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">overviewmapConfig</span></code></dt><dd><p>Konfiguration des OverviewMap-Moduls</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">printConfig</span></code></dt><dd><p>Konfiguration des Druck-Moduls</p>
 </dd>
@@ -549,6 +552,26 @@ PostMessage-Event hören, wird ausschließlich das zuletzt registrierte Plugin f
 </dd>
 </dl>
 </div></blockquote>
+</div>
+<div class="section" id="overviewmapconfig">
+<h2>overviewmapConfig<a class="headerlink" href="#overviewmapconfig" title="Link zu dieser Überschrift">¶</a></h2>
+<p>In diesem Abschnitt werden die Konfigurationen des OverviewMap-Moduls vorgestellt.</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">layerName</span></code></dt><dd><p>Name des Layers, der in der OverviewMap dargestellt werden soll.
+Wird kein Layer angegeben, werden alle in der Karte sichtbaren Layer verwendet.
+Wichtig: Der angegebene Layer muss als Backgroundlayer in der Anwendung vorhanden sein.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">collapsed</span></code></dt><dd><p>Legt fest, ob die OverviewMap bei Start der Anwendung eingeklappt ist oder nicht. Mögliche Werte sind <cite>true</cite> und <cite>false</cite>. Standardwert <cite>true</cite>.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>Beispiel:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">overviewmapConfig</span><span class="p">:</span>
+  <span class="n">layerName</span><span class="p">:</span> <span class="s1">&#39;mein-background-layer-name&#39;</span>
+  <span class="n">collapsed</span><span class="p">:</span> <span class="n">false</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="printconfig">
 <h2>printConfig<a class="headerlink" href="#printconfig" title="Link zu dieser Überschrift">¶</a></h2>

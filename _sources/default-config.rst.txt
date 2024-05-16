@@ -25,6 +25,9 @@ Die Konfiguration ist in einzelne Abschnitte unterteilt die in der nachfolgenden
   ``communication``
     Konfiguration der PostMessage Schnittstelle der Anwendung
 
+  ``overviewmapConfig``
+    Konfiguration des OverviewMap-Moduls
+
   ``printConfig``
      Konfiguration des Druck-Moduls
 
@@ -466,6 +469,25 @@ Folgende Konfigurationsoptionen werden unterstützt:
         plugins:
           - 'zoomToBbox' # Referenziert JavaScript Plugin mit dem Namen 'zoomToBbox'
 
+
+overviewmapConfig
+-----------------
+
+In diesem Abschnitt werden die Konfigurationen des OverviewMap-Moduls vorgestellt.
+
+  ``layerName``
+    Name des Layers, der in der OverviewMap dargestellt werden soll.
+    Wird kein Layer angegeben, werden alle in der Karte sichtbaren Layer verwendet.
+    Wichtig: Der angegebene Layer muss als Backgroundlayer in der Anwendung vorhanden sein.
+
+  ``collapsed``
+    Legt fest, ob die OverviewMap bei Start der Anwendung eingeklappt ist oder nicht. Mögliche Werte sind `true` und `false`. Standardwert `true`.
+
+Beispiel::
+
+    overviewmapConfig:
+      layerName: 'mein-background-layer-name'
+      collapsed: false
 
 printConfig
 -----------
