@@ -233,7 +233,11 @@
 </dl>
 </div></blockquote>
 <p>Für Layer vom <cite>type</cite> <cite>wms</cite> oder <cite>tiledwms</cite> steht das Attribut <cite>featureCount</cite> zur Verfügung. Hiermit wird festgelegt, für wie viele übereinander liegende Features Informationen angezeigt werden sollen. Der Default-Wert ist 1.</p>
-<p>Für Layer vom <cite>type</cite> <cite>wms</cite> oder <cite>tiledwms</cite>, deren <cite>GetFeatureInfo</cite>-Abfrage das <cite>INFO_FORAMT</cite> <cite>application/vnd.ogc.gml</cite> unterstützen kann das Attribute <cite>gml</cite> auf <cite>true</cite> gesetzt werden um die abgefragte Geometrie in der Karte hervorzuheben. Mit dem Attribute <cite>gmlStyle</cite> kann ein Styling für die zurückgelieferten Geometrien definiert werden. Wie ein Styling zu definieren ist, ist im Abschnitt <a class="reference internal" href="#style"><span class="std std-ref">Style</span></a> erläutert.</p>
+<p>Für Layer vom <cite>type</cite> <cite>wms</cite> oder <cite>tiledwms</cite>, deren <cite>GetFeatureInfo</cite>-Abfrage das <cite>INFO_FORAMT</cite> <cite>application/vnd.ogc.gml</cite>
+unterstützen kann das Attribut <cite>gml</cite> auf <cite>true</cite> gesetzt werden um die abgefragte Geometrie in der Karte hervorzuheben.
+Mit dem Attribut <cite>gmlStyle</cite> kann ein Styling für die zurückgelieferten Geometrien definiert werden. Wie ein Styling zu
+definieren ist, ist im Abschnitt <a class="reference internal" href="#style"><span class="std std-ref">Style</span></a> erläutert. Zusätzlich kann durch das Setzen des Attributs <cite>catalog</cite>
+auf <cite>true</cite> festgelegt werden, ob Nutzer im GML enthaltene Layer in die Anwendung hinzufügen können.</p>
 <p>Für Layer vom <cite>type</cite> <cite>postgis</cite> wird immer ein durch die Anwendung erzeugtes Popup verwendet. Die anzuzeigenden Eigenschaften einer Geometrie sind im Attribut <cite>properties</cite> als Liste zu definieren.</p>
 <p>Beispiel für WMS-GetFeatureInfo Ergebnis im Kartenpopup mit definierter Breite, Höhe und maximale Anzahl übereinander liegender Features, für die Informationen abgerufen werden sollen:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">layers</span><span class="p">:</span>
@@ -248,6 +252,7 @@
       <span class="nt">height</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">250</span>
       <span class="nt">featureCount</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
       <span class="nt">gml</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+      <span class="nt">catalog</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
       <span class="nt">gmlStyle</span><span class="p">:</span>
         <span class="nt">strokeWidth</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
         <span class="nt">strokeColor</span><span class="p">:</span> <span class="s">&#39;#f00&#39;</span>
@@ -658,7 +663,7 @@ Siehe dazu auch <a class="reference internal" href="selectionlists-config.html#s
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021, Stadt Bielefeld.
-      <span class="lastupdated">Zuletzt aktualisiert am 2024-05-15.
+      <span class="lastupdated">Zuletzt aktualisiert am 2024-05-16.
       </span></p>
   </div>
 
