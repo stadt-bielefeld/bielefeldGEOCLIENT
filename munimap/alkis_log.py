@@ -41,10 +41,15 @@ def create_legitimation_log(functionname, id, company, reference, person, kind):
 
         time = now.strftime("%H:%M:%S")
         date = now.strftime("%d.%m.%Y")
+
+        user_name = "guest"
+        if not current_user.is_anonymous:
+            user_name = current_user.mb_user_name
+
         writer.writerow([
             functionname,
             id,
-            current_user.mb_user_name,
+            user_name,
             company,
             reference,
             person,
