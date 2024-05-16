@@ -112,7 +112,11 @@ Für Layer vom `type` `wms` oder `tiledwms` ist das Attribut `target` zu verwend
 
 Für Layer vom `type` `wms` oder `tiledwms` steht das Attribut `featureCount` zur Verfügung. Hiermit wird festgelegt, für wie viele übereinander liegende Features Informationen angezeigt werden sollen. Der Default-Wert ist 1.
 
-Für Layer vom `type` `wms` oder `tiledwms`, deren `GetFeatureInfo`-Abfrage das `INFO_FORAMT` `application/vnd.ogc.gml` unterstützen kann das Attribute `gml` auf `true` gesetzt werden um die abgefragte Geometrie in der Karte hervorzuheben. Mit dem Attribute `gmlStyle` kann ein Styling für die zurückgelieferten Geometrien definiert werden. Wie ein Styling zu definieren ist, ist im Abschnitt :ref:`Style <style>` erläutert.
+Für Layer vom `type` `wms` oder `tiledwms`, deren `GetFeatureInfo`-Abfrage das `INFO_FORAMT` `application/vnd.ogc.gml`
+unterstützen kann das Attribut `gml` auf `true` gesetzt werden um die abgefragte Geometrie in der Karte hervorzuheben.
+Mit dem Attribut `gmlStyle` kann ein Styling für die zurückgelieferten Geometrien definiert werden. Wie ein Styling zu
+definieren ist, ist im Abschnitt :ref:`Style <style>` erläutert. Zusätzlich kann durch das Setzen des Attributs `catalog`
+auf `true` festgelegt werden, ob Nutzer im GML enthaltene Layer in die Anwendung hinzufügen können.
 
 Für Layer vom `type` `postgis` wird immer ein durch die Anwendung erzeugtes Popup verwendet. Die anzuzeigenden Eigenschaften einer Geometrie sind im Attribut `properties` als Liste zu definieren.
 
@@ -133,6 +137,7 @@ Beispiel für WMS-GetFeatureInfo Ergebnis im Kartenpopup mit definierter Breite,
           height: 250
           featureCount: 10
           gml: true
+          catalog: true
           gmlStyle:
             strokeWidth: 2
             strokeColor: '#f00'
