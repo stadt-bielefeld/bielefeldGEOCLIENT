@@ -22,4 +22,5 @@ require('./transport-config.js');
 require('./layers.js');
 require('./transport-controller.js');
 require('./route-controller.js');
+require('./transport-api-service.js');
 require('./timetable-controller.js');

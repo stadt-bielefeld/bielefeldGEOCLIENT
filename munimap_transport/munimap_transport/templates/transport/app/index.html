@@ -55,7 +55,10 @@
     .constant('ProjectSettings', [])
     .constant('routesUrl', '{$ url_for("transport.route") $}')
     .constant('stationLayerURL', '{$ url_for("transport.stations") $}')
-    .constant('stationPointLayerURL', '{$ url_for("transport.station_points") $}');
+    .constant('stationPointLayerURL', '{$ url_for("transport.station_points") $}')
+    .constant('timetableServiceURL', {$ config['TIMETABLE_SERVICE_URL'] | tojson $})
+    .constant('timetableStopfinderAPI', {$ config['TIMETABLE_STOPFINDER_API'] | tojson $})
+    .constant('timetableTripAPI', {$ config['TIMETABLE_TRIP_API'] | tojson $});
 
     angular.module('munimap')
     .config(['LayersServiceProvider',

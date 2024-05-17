@@ -148,19 +148,12 @@ class DefaultConfig(object):
     TRANSPORT_OPERATOR = '%'
     TRANSPORT_MAX_EXTENT = [-180, -85, 180, 85]  # to limit and speed-up db queries
 
-    TIMETABLE_SERVICE_URL = 'http://efa.vrr.de/vrr/XSLT_TRIP_REQUEST2'
-    TIMETABLE_SERVICE_CHARSET = 'ISO-8859-15'
+    TIMETABLE_SERVICE_URL = 'https://westfalenfahrplan.de'
+    TIMETABLE_STOPFINDER_API = '/nwl-efa/XML_STOPFINDER_REQUEST?coordOutputFormat=WGS84[dd.dddd]&language=de&locationInfoActive=1&locationServerActive=1&nwlStopFinderMacro=1&outputFormat=rapidJSON&serverInfo=1&sl3plusStopFinderMacro=1&type_sf=stop&version=10.4.18.18'
+    TIMETABLE_TRIP_API = '/nwlsl3+/trip?lng=de&sharedLink=true'
 
     TIMETABLE_DEFAULT_CTIY = 'Bielefeld'
 
-    TIMETABLE_STATIC_FIELDS = [
-        ('language', 'de'),
-        ('0', 'sessionID'),
-        ('type_origin', 'stop'),
-        ('type_destination', 'stop'),
-        # timetable style for given company
-        ('itdLPxx_transpCompany', 'mobiel2')
-    ]
     TIMETABLE_DOCUMENTS_CSV = False
     TIMETABLE_DOCUMENTS_BASE_URL = ''
 
