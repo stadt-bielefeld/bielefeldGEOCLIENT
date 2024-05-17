@@ -64,7 +64,7 @@ angular.module('munimapBase')
 
                 TransportApi.prototype.getStop = function (opts) {
                     return this.createStopRequest(opts).then(res => {
-                        const stop = res.data.locations?.filter(i => i.isBest).shift();
+                        const stop = res.data.locations?.[0];
                         if (!stop) {
                             return;
                         }
