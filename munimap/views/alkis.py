@@ -41,27 +41,20 @@ def parse_legitimation_request(request):
 @alkis.route("/info", methods=["GET"])
 @alkis.route("/info/<feature_id>", methods=["GET"])
 def info(feature_id=None):
-    ALKIS_GML_WMS = current_app.config.get('ALKIS_GML_WMS')
-    params = {
-        'BBOX': request.args.get('BBOX'),
-        'WIDTH': request.args.get('WIDTH'),
-        'X':  request.args.get('X'),
-        'Y': request.args.get('Y'),
-        'HEIGHT': request.args.get('HEIGHT'),
-    }
-    
     if not feature_id:
+        ALKIS_GML_WMS = current_app.config.get('ALKIS_GML_WMS')
+        params = {
+            'BBOX': request.args.get('BBOX'),
+            'WIDTH': request.args.get('WIDTH'),
+            'X':  request.args.get('X'),
+            'Y': request.args.get('Y'),
+            'HEIGHT': request.args.get('HEIGHT'),
+        }
         feature_id = get_id_via_wms_get_feature_info(
             ALKIS_GML_WMS,
             params,
             element='id'
-        )    
-        
-    log_fsk = get_id_via_wms_get_feature_info(
-        ALKIS_GML_WMS,
-        params,
-        element='flurstueckskennzeichen'
-    )
+        )
 
     if feature_id:
         response = request_alkis_info(alkis_id=feature_id)
@@ -72,7 +65,7 @@ def info(feature_id=None):
 
         #if (current_app.config.get('ALKIS_LEGITIMATION_GROUP') in current_user.groups_list):
         company, reference, person, kind = parse_legitimation_request(request)
-        create_legitimation_log("info", log_fsk, company, reference, person, kind)
+        create_legitimation_log("info", feature_id, company, reference, person, kind)
         return jsonify(response)
 
     return jsonify(params)
