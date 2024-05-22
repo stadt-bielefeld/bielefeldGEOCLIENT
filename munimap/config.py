@@ -150,6 +150,7 @@ class DefaultConfig(object):
 
     TIMETABLE_SERVICE_URL = 'https://westfalenfahrplan.de'
     TIMETABLE_STOPFINDER_API = '/nwl-efa/XML_STOPFINDER_REQUEST?coordOutputFormat=WGS84[dd.dddd]&language=de&locationInfoActive=1&locationServerActive=1&nwlStopFinderMacro=1&outputFormat=rapidJSON&serverInfo=1&sl3plusStopFinderMacro=1&type_sf=stop&version=10.4.18.18'
+    TIMETABLE_STOPFINDER_PRIORITIES = ['bielefeld', 'bi-']
     TIMETABLE_TRIP_API = '/nwlsl3+/trip?lng=de&sharedLink=true'
 
     TIMETABLE_DEFAULT_CTIY = 'Bielefeld'

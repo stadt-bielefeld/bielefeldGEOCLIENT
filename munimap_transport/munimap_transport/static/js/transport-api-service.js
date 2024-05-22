@@ -1,11 +1,11 @@
 angular.module('munimapBase')
-    .provider('TransportApiService', [function (timetableServiceURL, timetableStopfinderAPI, timetableTripAPI) {
-        this.$get = ['$http', 'timetableServiceURL', 'timetableStopfinderAPI', 'timetableTripAPI',
-            function($http, timetableServiceURL, timetableStopfinderAPI, timetableTripAPI) {
+    .provider('TransportApiService', [function (timetableServiceURL, timetableStopfinderAPI, timetableTripAPI, timetableStopfinderPriorities) {
+        this.$get = ['$http', 'timetableServiceURL', 'timetableStopfinderAPI', 'timetableTripAPI', 'timetableStopfinderPriorities',
+            function($http, timetableServiceURL, timetableStopfinderAPI, timetableTripAPI, timetableStopfinderPriorities) {
                 const TransportApi = function () {};
 
                 TransportApi.prototype.createStopRequest = function (opts) {
-                    const stopName = `${opts.place ? opts.place : ''}%20${opts.name ? opts.name : ''}`;
+                    const stopName = opts.name ? opts.name : '';
                     let url = new URL(timetableStopfinderAPI, timetableServiceURL);
                     // We cannot use the searchParams features of the URL class here since
                     // the API endpoint expects space in the query parameter 'name_sf' to be
@@ -64,9 +64,22 @@ angular.module('munimapBase')
 
                 TransportApi.prototype.getStop = function (opts) {
                     return this.createStopRequest(opts).then(res => {
-                        const stop = res.data.locations?.[0];
+
+                        const fallbackStop = res.data.locations?.[0];
+                        if (!timetableStopfinderPriorities) {
+                            return fallbackStop?.id;
+                        }
+                        // We iterate over the list of prioritized keywords and
+                        // return the stop with the highest priority. Keywords in
+                        // timetableStopfinderPriorities are ordered by descending priority.
+                        const stop = timetableStopfinderPriorities.reduce((prev, cur) => {
+                            if (prev) {
+                                return prev;
+                            }
+                            return res.data.locations?.find(item => item.name.toLowerCase().includes(cur.toLowerCase()));
+                        }, undefined);
                         if (!stop) {
-                            return;
+                            return fallbackStop?.id;
                         }
                         return stop.id;
                     });
