@@ -58,7 +58,8 @@
     .constant('stationPointLayerURL', '{$ url_for("transport.station_points") $}')
     .constant('timetableServiceURL', {$ config['TIMETABLE_SERVICE_URL'] | tojson $})
     .constant('timetableStopfinderAPI', {$ config['TIMETABLE_STOPFINDER_API'] | tojson $})
-    .constant('timetableTripAPI', {$ config['TIMETABLE_TRIP_API'] | tojson $});
+    .constant('timetableTripAPI', {$ config['TIMETABLE_TRIP_API'] | tojson $})
+    .constant('timetableStopfinderPriorities', {$ config['TIMETABLE_STOPFINDER_PRIORITIES'] | tojson $});
 
     angular.module('munimap')
     .config(['LayersServiceProvider',
