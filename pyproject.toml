@@ -1,0 +1,44 @@
+[build-system]
+requires = ['hatchling']
+build-backend = 'hatchling.build'
+
+[project]
+name = 'munimap'
+version = '1.0'
+maintainers = [
+    { name = 'terrestris GmbH & Co. KG', email = 'info@terrestris.de' }
+]
+description = 'Municipality map with street index, search grid, etc.'
+dependencies = [
+    'bcrypt==3.2.2',
+    'dictspec==0.2.1',
+    'Flask==0.12.5',
+    'Flask-Assets==0.12',
+    'Flask-Babel==0.9',
+    'Babel==2.11.0',
+    'pytz==2022.7.1',
+    'Flask-Login==0.5.0',
+    'flask-mailman==0.1.5',
+    'Flask-Minify==0.39',
+    'Flask-SQLAlchemy==2.5.1',
+    'Flask-WTF==0.15.1',
+    'GeoAlchemy2==0.11.1',
+    'itsdangerous==2.0.1',
+    'Jinja2==3.0.3',
+    'libsass==0.8.3',
+    'markupsafe==2.0.1',
+    'psycopg2==2.9.3',
+    'PyHyphen==4.0.3',
+    'PyYAML==6.0',
+    'reportlab==3.6.9',
+    'Rtree==1.00',
+    'Shapely==1.8.2',
+    'speaklater3==1.4',
+    'SQLAlchemy==1.4.36',
+    'WTForms==2.3.3',
+    'WTForms-SQLAlchemy==0.3'
+]
+classifiers = [
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python :: 3.9"
+]

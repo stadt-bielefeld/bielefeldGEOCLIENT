@@ -1,6 +1,0 @@
-include setup.py
-include setup.cfg
-
-recursive-include munimap *
-recursive-exclude munimap *.pyc *.pyd .DS_Store *.rej *.orig *.lck .empty
-recursive-exclude munimap/static/.webassets-cache *
