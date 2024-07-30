@@ -90,6 +90,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     fonts-unifont \
     locales \
     software-properties-common \
+    jq \
     && rm -rf /var/lib/apt/lists/*
 
 

@@ -1,0 +1,28 @@
+name: Tests
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  run-application:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+#
+#      - name: Set up BuildX
+#        uses: docker/setup-buildx-action@v3
+
+      - name: Run Docker Compose
+        uses: hoverkraft-tech/compose-action@v2.0.1
+        with:
+          cwd: docker
+          compose-flags: --profile prod
+          up-flags: --detach
+
+      - name: Wait for Container healthy
+        uses: raschmitt/wait-for-healthy-container@v1
+        with:
+          container-name: munimap-app
+          timeout: 120
