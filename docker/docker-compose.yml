@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   munimap-nginx:
     image: docker.terrestris.de/library/nginx:1.21.0-alpine
@@ -43,13 +41,11 @@ services:
       - ./munimap-app/munimap.conf:/opt/etc/munimap/configs/munimap.conf
       - ../dev/data:/opt/etc/munimap/data
       - ../dev/printqueue:/opt/etc/munimap/printqueue
-    environment:
-      # Because of failing DIN A0 prints in production, the heap size needed to be increased to 4gb
-      # TODO: When removing the mapfish CLI, this option can be removed from this container
-      JAVA_OPTS: -Xmx4096m -Djava.awt.headless=true
     depends_on:
-      - munimap-postgis
-      - munimap-postgis-mapbender
+      munimap-postgis:
+        condition: service_healthy
+      munimap-postgis-mapbender:
+        condition: service_healthy
     profiles:
       - prod
 
@@ -69,8 +65,10 @@ services:
       # TODO: When removing the mapfish CLI this option can be removed from this container
       JAVA_OPTS: -Xmx4096m -Djava.awt.headless=true
     depends_on:
-      - munimap-postgis
-      - munimap-postgis-mapbender
+      munimap-postgis:
+        condition: service_healthy
+      munimap-postgis-mapbender:
+        condition: service_healthy
     profiles:
       - prod
 
@@ -81,10 +79,14 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-    #command: ["postgres", "-c", "log_statement=all"]
     volumes:
       - ./munimap-postgis/postgresql_init_data:/docker-entrypoint-initdb.d
       - ./munimap-postgis/postgresql_data:/var/lib/postgresql/data:Z
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d stadtplan"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
 
   munimap-postgis-mapbender:
     image: docker.terrestris.de/postgis/postgis:10-2.5-alpine
@@ -93,13 +95,17 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-    #command: ["postgres", "-c", "log_statement=all"]
     volumes:
       - ./munimap-postgis-mapbender/postgresql_init_data:/docker-entrypoint-initdb.d
       - ./munimap-postgis-mapbender/postgresql_data:/var/lib/postgresql/data:Z
     profiles:
       - dev
       - prod
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d mapbender"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
 
   munimap-print:
     restart: unless-stopped
