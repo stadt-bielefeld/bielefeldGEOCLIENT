@@ -2,7 +2,7 @@ ARG ANOL_COMMIT_HASH=2cb346052f6c37a00bebfb0189c4049dafd44f5b
 
 
 
-FROM node:14.18.1-alpine3.14 as clientbuilder
+FROM node:14.18.1-alpine3.14 AS clientbuilder
 
 ARG ANOL_COMMIT_HASH
 RUN apk add --no-cache wget unzip
@@ -32,7 +32,7 @@ RUN npm run build
 
 
 
-FROM python:3.9.13-bullseye as builder
+FROM python:3.9.13-bullseye AS builder
 
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -40,25 +40,23 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip install --upgrade pip \
-    && pip install wheel setuptools
+    && pip install build
 
 RUN mkdir -p /pkg
 # We have to build the client bevor packing everything into a python package
 COPY --from=clientbuilder /app/munimap /pkg/munimap
 COPY --from=clientbuilder /app/munimap_transport /pkg/munimap_transport
 
-COPY ./MANIFEST.in /pkg/MANIFEST.in
-COPY ./setup.cfg /pkg/setup.cfg
-COPY ./setup.py /pkg/setup.py
+COPY ./pyproject.toml /pkg/pyproject.toml
 
 WORKDIR /pkg
 
-RUN python setup.py clean && python setup.py egg_info sdist --formats=tar
-RUN cd munimap_transport && python setup.py clean && python setup.py egg_info sdist --formats=tar
+RUN python -m build
+RUN cd munimap_transport && python -m build
 
 
 
-FROM python:3.9.13-bullseye as runner
+FROM python:3.9.13-bullseye AS runner
 
 # TODO check which libs are actually needed
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
@@ -92,6 +90,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     fonts-unifont \
     locales \
     software-properties-common \
+    jq \
     && rm -rf /var/lib/apt/lists/*
 
 
@@ -148,10 +147,10 @@ RUN pip install --upgrade pip && pip install \
     scriptinep3==0.3.1
 
 COPY ./gunicorn.conf /opt/etc/munimap/gunicorn.conf
-COPY --from=builder /pkg/dist/munimap-*.tar /opt/pkgs
-COPY --from=builder /pkg/munimap_transport/dist/munimap_transport-*.tar /opt/pkgs
+COPY --from=builder /pkg/dist/munimap-*.whl /opt/pkgs
+COPY --from=builder /pkg/munimap_transport/dist/munimap_transport-*.whl /opt/pkgs
 
-RUN pip install /opt/pkgs/munimap-*.tar /opt/pkgs/munimap_transport-*.tar
+RUN pip install /opt/pkgs/munimap-*.whl /opt/pkgs/munimap_transport-*.whl
 
 # Hack to disable https for following script.
 RUN PYTHONHTTPSVERIFY=0 python -c "import hyphen.dictools; hyphen.dictools.is_installed('de') or hyphen.dictools.install('de')"
@@ -161,6 +160,8 @@ ENV JAVA_HOME=/usr/lib/jvm/temurin-8-jre-amd64
 RUN mkdir -p /certs
 
 WORKDIR /opt/etc/munimap
+
+HEALTHCHECK CMD curl -s http://localhost:8080/health | jq -e '.healthy == true' > /dev/null || exit 1
 
 # cat will print a "no such file or directory" if /certs is empty. This can be ignored.
 CMD cat /certs/*.pem >> /etc/ssl/certs/ca-certificates.crt; \

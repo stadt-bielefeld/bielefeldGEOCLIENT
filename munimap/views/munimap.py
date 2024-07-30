@@ -24,13 +24,11 @@ from flask import (
 
 from flask_login import current_user
 from urllib3.exceptions import InsecureRequestWarning
-from urllib.parse import urlencode
 
 from munimap import helper
 from munimap.app_layers_def import (
     prepare_layers_def,
     prepare_draw_layers_def,
-    prepare_catalog_layers_def, 
     prepare_catalog_layers_name,
     catalog_layer_by_name,
     catalog_group_by_name,
@@ -84,7 +82,7 @@ def list_available_icons():
 @munimap.route('/app/<config>/')
 @log_stats(request, current_user, route_name='munimap.index')
 def index(config=None):
-    if config: 
+    if config:
         project = ProtectedProject.by_name_without_404(config)
         if project is not None:
             if current_user.is_anonymous:
@@ -112,7 +110,7 @@ def index(config=None):
         else:
             token_url = app_config.get('securityToken').get('baseurl')
             token = request_security_session(
-                token_url, 
+                token_url,
                 app_config.get('securityToken')
             )
     # set name for default map for config
@@ -149,7 +147,7 @@ def index(config=None):
         if token:
             iframe_url = '%s?token=%s' % (iframe_url, token)
         rendered_iframe = render_template(
-            '/munimap/app/iframe.html', 
+            '/munimap/app/iframe.html',
             iframe_url=iframe_url,
             app_config=app_config,
             project_name=config
@@ -184,7 +182,7 @@ def index(config=None):
 @munimap.route('/app/<config>/catalog')
 @log_stats(request, current_user, route_name='munimap.catalog_names')
 def catalog_names(config=None):
-    if config: 
+    if config:
         project = ProtectedProject.by_name_without_404(config)
         if project is not None:
             if current_user.is_anonymous:
@@ -204,7 +202,7 @@ def catalog_names(config=None):
     except helper.InvalidAppConfigError as ex:
         return render_template('munimap/errors/app_config_error.html',
                                error=ex)
-                        
+
     if not app_config.get('components').get('catalog'):
         return jsonify(
             layers= {},
@@ -229,7 +227,7 @@ def catalog_names(config=None):
 @log_stats(request, current_user, route_name='munimap.gfi_catalog_names')
 def gfi_catalog_names(config=None):
     names = request.json.get('names', [])
-    if config: 
+    if config:
         project = ProtectedProject.by_name_without_404(config)
         if project is not None:
             if current_user.is_anonymous:
@@ -241,7 +239,7 @@ def gfi_catalog_names(config=None):
 
             if not helper.check_project_permission(project):
                 abort(403)
-                
+
     if config == 'default':
         config = None
 
@@ -267,7 +265,7 @@ def gfi_catalog_names(config=None):
 @munimap.route('/app/<config>/catalog/<_type>/<name>/')
 @log_stats(request, current_user, route_name='munimap.catalog_layer')
 def catalog_layer(config=None, _type=None, name=None):
-    if config: 
+    if config:
         project = ProtectedProject.by_name_without_404(config)
         if project is not None:
             if current_user.is_anonymous:
@@ -279,7 +277,7 @@ def catalog_layer(config=None, _type=None, name=None):
 
             if not helper.check_project_permission(project):
                 abort(403)
-                
+
     if config == 'default':
         config = None
 
@@ -297,7 +295,7 @@ def catalog_layer(config=None, _type=None, name=None):
             layers=layers,
             groups=groups,
         )
-    
+
     if _type == 'layer':
         layers, _ = catalog_layer_by_name(
             layers_def, current_app.layers, name
@@ -312,7 +310,7 @@ def catalog_layer(config=None, _type=None, name=None):
         return jsonify(
             groups=groups
         )
-    
+
 @munimap.route('/icons/<path:filename>')
 def icons(filename):
     return send_from_directory(
@@ -509,7 +507,7 @@ def handle_wms_get_feature_info(service_url, layers, request):
         requested_layers += layer['source']['layers']
         layer_names.append(layer['name'])
     requested_layers = ','.join(requested_layers)
-    
+
     srs = layer['source']['srs']
     _format = request_args.get('FORMAT')
     info_format = request_args.get('INFO_FORMAT')
@@ -542,7 +540,7 @@ def handle_wms_get_feature_info(service_url, layers, request):
         CRS=srs,
         WIDTH=width,
         HEIGHT=height,
-        BBOX=bbox        
+        BBOX=bbox
     )
 
     proxy_log.debug('munimap layers: %s; url: %s; params: %s',
@@ -703,3 +701,10 @@ def static_geojson(filename):
         current_app.config.get('GEOJSON_DATA_PATH'),
         filename
     )
+
+
+@munimap.route('/health', methods=['GET'])
+def get_health():
+    return jsonify({
+        'healthy': True
+    })

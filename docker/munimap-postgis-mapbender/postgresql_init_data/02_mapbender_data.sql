@@ -1,5 +1,8 @@
 \connect mapbender;
 
+INSERT INTO public.alembic_version (version_num)
+VALUES ('1ea185ba1c63');
+
 INSERT INTO public.mb_user (
   mb_user_id,
   mb_user_name,
