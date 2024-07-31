@@ -94,8 +94,8 @@ services:
     ports:
       - 5556:5432
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: mapbender
+      POSTGRES_PASSWORD: mapbender
     volumes:
       - ./munimap-postgis-mapbender/postgresql_init_data:/docker-entrypoint-initdb.d
       - ./munimap-postgis-mapbender/postgresql_data:/var/lib/postgresql/data:Z
