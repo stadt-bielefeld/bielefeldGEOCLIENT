@@ -1,5 +1,3 @@
-CREATE DATABASE mapbender;
-
 \connect mapbender;
 
 CREATE EXTENSION IF NOT EXISTS postgis;
