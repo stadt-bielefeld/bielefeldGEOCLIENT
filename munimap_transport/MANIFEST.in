@@ -1,5 +1,0 @@
-include setup.py
-include setup.cfg
-
-recursive-include munimap_transport *
-recursive-exclude munimap_transport *.pyc *.pyd .DS_Store *.rej *.orig *.lck .empty
