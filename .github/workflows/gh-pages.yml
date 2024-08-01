@@ -13,13 +13,13 @@ jobs:
       - name: Build
         uses: ammaraskar/sphinx-action@master
         with:
-          docs-folder: "docker/munimap-docs/"
+          docs-folder: "munimap_docs/"
 
       - name: Add .nojekyll file
-        run: sudo touch docker/munimap-docs/build/html/.nojekyll # we need sudo here as we otherwise do not have the permissions to write into the build dir.
+        run: sudo touch munimap_docs/build/html/.nojekyll # we need sudo here as we otherwise do not have the permissions to write into the build dir.
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.2.3
         with:
           branch: gh-pages
-          folder: docker/munimap-docs/build/html
+          folder: munimap_docs/build/html
