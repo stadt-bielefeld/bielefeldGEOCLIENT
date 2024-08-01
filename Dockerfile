@@ -138,13 +138,9 @@ RUN apt update -y && apt install temurin-8-jre -y
 RUN wget -q -O- https://repo1.maven.org/maven2/org/mapfish/print/print-cli/3.9.0/print-cli-3.9.0-tar.tar | tar -x -C /opt/var/mapfish
 
 RUN pip install --upgrade pip && pip install \
-    wheel \
-    setuptools \
     gunicorn==21.2.0 \
     eventlet==0.33.3 \
-    dnspython==2.3.0 \
-    alembic==1.7.7 \
-    scriptinep3==0.3.1
+    dnspython==2.3.0
 
 COPY ./gunicorn.conf /opt/etc/munimap/gunicorn.conf
 COPY --from=builder /pkg/dist/munimap-*.whl /opt/pkgs
