@@ -157,7 +157,7 @@ RUN mkdir -p /certs
 
 WORKDIR /opt/etc/munimap
 
-HEALTHCHECK CMD curl -s http://localhost:8080/health | jq -e '.healthy == true' > /dev/null || exit 1
+HEALTHCHECK --start-period=60 CMD curl -s http://localhost:8080/health | jq -e '.healthy == true' > /dev/null || exit 1
 
 # cat will print a "no such file or directory" if /certs is empty. This can be ignored.
 CMD cat /certs/*.pem >> /etc/ssl/certs/ca-certificates.crt; \
