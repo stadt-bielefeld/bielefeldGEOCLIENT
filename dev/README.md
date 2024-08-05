@@ -124,7 +124,6 @@ npm start
     docker-compose --profile dev up
 ```
 
-
 ## Start the python backend (flask)
 
 - Then repeat these commands from the initial setup in another terminal:
