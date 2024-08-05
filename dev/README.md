@@ -102,7 +102,7 @@ npm start
   - Install language support
     - `python -c "import hyphen.dictools; hyphen.dictools.install('de')"`
     
-    ## Update translations (optional)
+## Update translations (optional)
   - Install locales. Run the command and then use the arrow key to search for "de_DE.UTF-8 UTF-8" and "de_DE ISO 8859-1" and select with the space bar. Tab to OK and confirm with Enter. Select "de_DE.UTF-8" as standard.
     ```
     sudo dpkg-reconfigure locales
