@@ -45,5 +45,6 @@ require('./munimap-config.js');
 require('../../../munimap_transport/munimap_transport/static/js/layers.js');
 require('../../../munimap_transport/munimap_transport/static/js/transport-controller.js');
 require('../../../munimap_transport/munimap_transport/static/js/route-controller.js');
+require('../../../munimap_transport/munimap_transport/static/js/transport-api-service.js');
 require('../../../munimap_transport/munimap_transport/static/js/timetable-controller.js');
 
