@@ -29,7 +29,7 @@ dependencies = [
     'markupsafe==2.0.1',
     'psycopg2==2.9.9',
     'PyHyphen==4.0.4',
-    'PyYAML==6.0',
+    'PyYAML==6.0.2',
     'reportlab==3.6.9',
     'Rtree==1.00',
     'Shapely==1.8.2',
