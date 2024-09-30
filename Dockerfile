@@ -1,6 +1,6 @@
 ARG ANOL_COMMIT_HASH=2cb346052f6c37a00bebfb0189c4049dafd44f5b
 
-FROM node:14.18.1-alpine3.14 AS clientbuilder
+FROM node:14.19.3-alpine3.14 AS clientbuilder
 
 ARG ANOL_COMMIT_HASH
 RUN apk add --no-cache wget unzip
