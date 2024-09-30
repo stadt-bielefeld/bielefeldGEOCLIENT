@@ -32,7 +32,7 @@ dependencies = [
     'PyYAML==6.0.2',
     'reportlab==3.6.13',
     'Rtree==1.00',
-    'Shapely==1.8.2',
+    'Shapely==1.8.5.post1',
     'speaklater3==1.4',
     'SQLAlchemy==1.4.54',
     'WTForms==2.3.3',
