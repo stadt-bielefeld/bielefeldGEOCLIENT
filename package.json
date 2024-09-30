@@ -7,7 +7,7 @@
     "doc": "docs"
   },
   "engines": {
-    "node": "<17"
+    "node": "<21"
   },
   "scripts": {
     "build": "webpack --mode production",
