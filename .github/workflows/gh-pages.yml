@@ -20,7 +20,7 @@ jobs:
         run: sudo touch munimap_docs/build/html/.nojekyll # we need sudo here as we otherwise do not have the permissions to write into the build dir.
 
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.2.3
+        uses: JamesIves/github-pages-deploy-action@v4.6.8
         with:
           branch: gh-pages
           folder: munimap_docs/build/html
