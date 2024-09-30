@@ -87,7 +87,7 @@ services:
       retries: 10
 
   munimap-postgis-mapbender:
-    image: docker.terrestris.de/postgis/postgis:10-2.5-alpine
+    image: docker.terrestris.de/postgis/postgis:12-2.5-alpine
     ports:
       - 5556:5432
     environment:
