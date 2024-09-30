@@ -62,7 +62,7 @@
     "jquery": "^3.6.0",
     "jquery-ui": "^1.12.1",
     "ngstorage": "^0.3.11",
-    "ol": "^5.2.0",
+    "ol": "^10.0.0",
     "ol-ext": "^3.0.1",
     "proj4": "^2.4.4",
     "spectrum-colorpicker": "^1.8.0",
