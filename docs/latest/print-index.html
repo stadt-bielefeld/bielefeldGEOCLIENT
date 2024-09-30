@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Straßenindex &mdash; bielefeldGEOCLIENT / munimap  Dokumentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=245627df"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/translations.js?v=79cc9f76"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
+    <link rel="search" title="Suche" href="search.html" />
+    <link rel="next" title="Tour" href="tour.html" />
+    <link rel="prev" title="Beispiel" href="example-config.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            bielefeldGEOCLIENT / munimap
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="app.html">Anwendungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="default-config.html">App-Optionen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layer.html">Layer-Definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layers-config.html">Layer-Optionen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="selectionlists-config.html">Auswahllisten-Definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javascript-plugins.html">JavaScript-Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example-config.html">Beispiel</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Straßenindex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tour.html">Tour</a></li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Administrationsbereich</a></li>
+<li class="toctree-l1"><a class="reference internal" href="url-parameter.html">URL-Parameter</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">bielefeldGEOCLIENT / munimap</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Straßenindex</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/print-index.rst.txt" rel="nofollow"> Quelltext anzeigen</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="straszenindex">
+<h1>Straßenindex<a class="headerlink" href="#straszenindex" title="Link to this heading"></a></h1>
+<p>Die Straßenindizes werden beim Druckexport automatisch als PDF erzeugt und mit dem Druckergebnis in einer ZIP Datei ausgeliefert.</p>
+<p>Die Indizes können auch manuell Abgerufen werden. Hierfür steht die URL <code class="docutils literal notranslate"><span class="pre">/index.FORMAT</span></code> zur Verfügung. Folgende Parameter werden unterstützt:</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">layers</span></code></dt><dd><p>Für den Straßenindex muss hier <code class="docutils literal notranslate"><span class="pre">street_labels</span></code> verwendet werden. Es können aber auch andere PostGIS Layer angegeben werden.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">srs</span></code></dt><dd><p>25832 für UTM-32</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">width</span></code> und <code class="docutils literal notranslate"><span class="pre">height</span></code></dt><dd><p>Breite und Höhe des Exports. Genaue Werte spielen zur Zeit keine Rolle.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">cellx</span></code> und <code class="docutils literal notranslate"><span class="pre">celly</span></code></dt><dd><p>Die Anzahl der Gitterzellen in X- und Y-Richtung.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">bbox</span></code></dt><dd><p>BBOX des Exports.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">limit</span></code></dt><dd><p>Maximale Anzahl an Einträgen im Index. Sollte für einen vollständigen Stadtplanindex bei mindestens 10000 liegen.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>Als Format werden PDF, JSON und CSV unterstützt. Die URLs lauten jeweils <code class="docutils literal notranslate"><span class="pre">/index.pdf</span></code>, <code class="docutils literal notranslate"><span class="pre">/index.json</span></code> und <code class="docutils literal notranslate"><span class="pre">/index.csv</span></code>.</p>
+<p>Beispielaufruf:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/index.csv?layers=street_labels&amp;srs=25832&amp;height=100&amp;width=100&amp;
+cellsy=23&amp;cellsx=20&amp;bbox=457000,5751000,476000,5773000&amp;limit=10000
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="example-config.html" class="btn btn-neutral float-left" title="Beispiel" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="tour.html" class="btn btn-neutral float-right" title="Tour" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Stadt Bielefeld.
+      <span class="lastupdated">Zuletzt aktualisiert am 2024-09-30.
+      </span></p>
+  </div>
+
+  Erstellt mit <a href="https://www.sphinx-doc.org/">Sphinx</a> mit einem
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    bereitgestellt von <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <h3>Versionen</h3>
+<ul id="versions-list"></ul>
+<script>
+    fetch('../config/versions.json')
+        .then(response => {
+            return response.json();
+        })
+        .then(versions => {
+            const menu = document.querySelector('#versions-list');
+            for (const version of versions) {
+                const a = document.createElement('a');
+                a.href = `https://stadt-bielefeld.github.io/bielefeldGEOCLIENT/${version}/`;
+                a.textContent = version;
+                const li = document.createElement('li');
+                li.append(a);
+                menu.append(li);
+            }
+        });
+</script><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
