@@ -26,7 +26,7 @@ dependencies = [
     'itsdangerous==2.0.1',
     'Jinja2==3.0.3',
     'libsass==0.23.0',
-    'markupsafe==2.0.1',
+    'markupsafe==2.1.5',
     'psycopg2==2.9.9',
     'PyHyphen==4.0.4',
     'PyYAML==6.0.2',
