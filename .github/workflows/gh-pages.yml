@@ -11,16 +11,37 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
 
-      - name: Build
-        uses: ammaraskar/sphinx-action@master
-        with:
-          docs-folder: "munimap_docs/"
+      - name: Install dependencies
+        run: pip install -r munimap_docs/requirements.txt
 
-      - name: Add .nojekyll file
-        run: sudo touch munimap_docs/build/html/.nojekyll # we need sudo here as we otherwise do not have the permissions to write into the build dir.
+      - name: Build documentation
+        run: sphinx-build munimap_docs docs_build -D html_context.current_version=${{ github.ref_name }}
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.6.8
         with:
-          branch: gh-pages
-          folder: munimap_docs/build/html
+          folder: docs_build
+          target-folder: docs/latest
+
+      - name: Deploy docs to a folder named after the new tag to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4.6.8
+        with:
+          folder: docs_build
+          target-folder: docs/${{ github.ref_name }}
+
+      - name: Update versions config
+        # read existing versions from gh-pages branch, add new version, sort, dedupe and write results to config/versions.json
+        run: |
+          mkdir config
+          git show gh-pages:docs/config/versions.json \
+          | jq -r '(. + ["${{ github.ref_name }}"])[]' \
+          | sort -V \
+          | uniq \
+          | jq -R -s -c 'split("\n")[:-1]' \
+          > config/versions.json
+
+      - name: Deploy config folder to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4.6.8
+        with:
+          folder: config
+          target-folder: docs/config
