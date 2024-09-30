@@ -37,7 +37,7 @@ dependencies = [
     'SQLAlchemy==1.4.54',
     'WTForms==2.3.3',
     'WTForms-SQLAlchemy==0.3',
-    'alembic==1.7.7',
+    'alembic==1.13.3',
     'blinker==1.8.2',
     'click==8.1.7',
     'natsort==8.1.0'
