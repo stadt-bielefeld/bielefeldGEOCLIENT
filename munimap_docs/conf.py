@@ -186,3 +186,7 @@ htmlhelp_basename = 'bielefeldGEOCLIENTdoc'
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {'https://docs.python.org/': None}
+
+html_context = {
+    'docsBaseUrl': 'https://stadt-bielefeld.github.io/bielefeldGEOCLIENT'
+}
