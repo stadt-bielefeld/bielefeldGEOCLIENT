@@ -11,7 +11,7 @@ maintainers = [
 dependencies = [
     'Flask==0.12.5',
     'Flask-Assets==0.12',
-    'natsort==8.1.0'
+    'natsort==8.4.0'
 ]
 classifiers = [
     "License :: OSI Approved :: BSD License",
