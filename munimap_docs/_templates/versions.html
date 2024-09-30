@@ -1,19 +1,29 @@
-<h3>{{ _('Versions') }}</h3>
-<ul id="versions-list"></ul>
-<script>
-    fetch('../config/versions.json')
-        .then(response => {
-            return response.json();
-        })
-        .then(versions => {
-            const menu = document.querySelector('#versions-list');
-            for (const version of versions) {
-                const a = document.createElement('a');
-                a.href = `{{ docsBaseUrl}}/${version}/`;
-                a.textContent = version;
-                const li = document.createElement('li');
-                li.append(a);
-                menu.append(li);
-            }
-        });
-</script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    Version: {{ current_version }}
+    <span class="fa fa-caret-down"></span>
+  </span>
+    <div class="rst-other-versions">
+        <dl id="versions-list">
+            <dt>{{ _('Versions') }}</dt>
+            <dd><a href="{{ url }}/index.html">{{ the_version }}</a></dd>
+        </dl>
+    </div>
+    <script>
+        fetch('../config/versions.json')
+            .then(response => {
+                return response.json();
+            })
+            .then(versions => {
+                const list = document.querySelector('#versions-list');
+                for (const version of versions) {
+                    const a = document.createElement('a');
+                    a.href = `{{ docsBaseUrl}}/${version}/`;
+                    a.textContent = version;
+                    const dd = document.createElement('dd');
+                    dd.append(a);
+                    list.append(dd);
+                }
+            });
+    </script>
+</div>
