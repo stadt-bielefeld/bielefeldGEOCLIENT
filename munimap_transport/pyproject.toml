@@ -9,7 +9,7 @@ maintainers = [
     { name = 'terrestris GmbH & Co. KG', email = 'info@terrestris.de' }
 ]
 dependencies = [
-    'Flask==0.12.5',
+    'Flask==3.0.3',
     'Flask-Assets==0.12',
     'natsort==8.4.0'
 ]
