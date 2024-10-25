@@ -36,7 +36,7 @@ dependencies = [
     'speaklater3==1.4',
     'SQLAlchemy==1.4.54',
     'WTForms==2.3.3',
-    'WTForms-SQLAlchemy==0.3',
+    'WTForms-SQLAlchemy==0.4.2',
     'alembic==1.13.3',
     'blinker==1.8.2',
     'click==8.1.7',
