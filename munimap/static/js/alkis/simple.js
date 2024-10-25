@@ -122,6 +122,7 @@ angular.module('munimapBase.alkisService', ['anol.map'])
                 'Grenznachbar',
                 'Erwerber', 
                 'Kreditangelegenheiten',
+                'Auftragsbearbeitung für Gutachtenerstellung',
                 'Mieter/Pächter', 
                 'Erstellung von Bauantrag', 
                 'Ermächtigung/Vollmacht liegt vor', 
