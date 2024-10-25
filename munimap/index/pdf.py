@@ -25,9 +25,9 @@ from reportlab.platypus.doctemplate import _doNothing, FrameBreak
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import mm
 
-if 'de' not in hyphen.dictools.list_installed():
-    hyphen.dictools.install('de')
-hyphenator = hyphen.Hyphenator('de')
+if not hyphen.dictools.is_installed('de_DE'):
+    hyphen.dictools.install('de_DE')
+hyphenator = hyphen.Hyphenator('de_DE')
 
 
 from reportlab.pdfbase import pdfmetrics
