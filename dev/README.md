@@ -109,7 +109,7 @@ npm start
     ```
   - In another terminal the docker dev environment needs to be started
     - `cd ../docker/`
-    - `docker-compose --profile dev up`
+    - `docker compose --profile dev up`
   - Update translations
     ```
     export FLASK_APP="manage.py"
@@ -121,7 +121,7 @@ npm start
 
 ```bash
     cd docker/
-    docker-compose --profile dev up
+    docker compose --profile dev up
 ```
 
 ## Start the python backend (flask)
