@@ -10,7 +10,7 @@ maintainers = [
 ]
 dependencies = [
     'Flask==0.12.5',
-    'Flask-Assets==0.12',
+    'Flask-Assets==2.1.0',
     'natsort==8.4.0'
 ]
 classifiers = [
