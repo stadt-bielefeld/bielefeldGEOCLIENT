@@ -1,4 +1,3 @@
-import { TOUCH as hasTouch } from 'ol/has';
 import { unByKey } from 'ol/Observable.js';
 import Overlay from 'ol/Overlay';
 import Style from 'ol/style/Style';
@@ -40,7 +39,7 @@ angular.module('munimapBase.alkisOfficial', ['anol.map', 'munimapBase.alkisServi
                         scope.tooltipDelay = angular.isDefined(scope.tooltipDelay) ?
                             scope.tooltipDelay : 500;
                         scope.tooltipEnable = angular.isDefined(scope.tooltipEnable) ?
-                            scope.tooltipEnable : !hasTouch;
+                            scope.tooltipEnable : !('ontouchstart' in window);
 
                         $rootScope.alkisPrintPreviewCenter = undefined;
                         $rootScope.popup = undefined;

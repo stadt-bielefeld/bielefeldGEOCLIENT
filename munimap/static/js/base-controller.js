@@ -3,7 +3,6 @@ require('bootstrap-tour');
 import 'spectrum-colorpicker/spectrum';
 import 'spectrum-colorpicker/i18n/jquery.spectrum-de';
 
-import {TOUCH as hasTouch} from 'ol/has';
 import {transformExtent, transform} from 'ol/proj';
 
 angular.module('munimapBase')
@@ -187,7 +186,7 @@ angular.module('munimapBase')
                 openItems: openItem ? [openItem] : []
             };
 
-            $scope.showTooltip = !(hasTouch);
+            $scope.showTooltip = !('ontouchstart' in window);
 
             $scope.pointMeasureResultSrs = 'EPSG:25832';
             $rootScope.pointMeasureResultSrs = $scope.pointMeasureResultSrs;

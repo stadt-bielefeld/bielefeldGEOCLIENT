@@ -62,7 +62,6 @@ require('anol/src/modules/drawer/drawer-directive.js');
 import View from 'ol/View';
 import { transformExtent, transform } from 'ol/proj';
 import { defaults as defaultInteractions } from 'ol/interaction';
-import { TOUCH as hasTouch } from 'ol/has';
 import PinchZoom from 'ol/interaction/PinchZoom';
 import DragPan from 'ol/interaction/DragPan';
 import ExtendedMouseWheelZoom from './ol3-ext/extended-mouse-wheel-zoom.js';
@@ -160,7 +159,7 @@ angular.module('munimapBase', [
             }));
         }
 
-        if (hasTouch) {
+        if ('ontouchstart' in window) {
             // disablePinchZoom
             if (munimapConfig.app.disablePinchZoom !== true) {
                 interactions.pinchZoom = true;
