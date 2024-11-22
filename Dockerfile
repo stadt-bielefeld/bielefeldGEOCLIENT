@@ -59,6 +59,7 @@ FROM python:3.9.13-bullseye AS runner
 # TODO check which libs are actually needed
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     build-essential \
+    ca-certificates \
     python3-dev \
     libpython3-dev \
     python3-gdal \
@@ -151,13 +152,14 @@ RUN PYTHONHTTPSVERIFY=0 python -c "import hyphen.dictools; hyphen.dictools.is_in
 
 ENV JAVA_HOME=/usr/lib/jvm/temurin-8-jre-amd64
 
-RUN mkdir -p /certs
-
 WORKDIR /opt/etc/munimap
 
 HEALTHCHECK CMD curl -s http://localhost:8080/health | jq -e '.healthy == true' > /dev/null || exit 1
 
-# cat will print a "no such file or directory" if /certs is empty. This can be ignored.
-CMD cat /certs/*.pem >> /etc/ssl/certs/ca-certificates.crt; \
-    alembic -c configs/alembic.ini upgrade head && \
-    gunicorn -c /opt/etc/munimap/gunicorn.conf "munimap.application:create_app(config_file='/opt/etc/munimap/configs/munimap.conf')"
+RUN mkdir -p /certs
+
+COPY ./entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
+
+CMD ["gunicorn", "-c", "/opt/etc/munimap/gunicorn.conf", "munimap.application:create_app(config_file='/opt/etc/munimap/configs/munimap.conf')"]
