@@ -46,3 +46,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
+      - name: Create a GitHub release page
+        uses: ncipollo/release-action@v1
+        with:
+          generateReleaseNotes: true
