@@ -58,8 +58,8 @@ angular.module('munimapDigitize')
                     layerFilter: candidate => candidate === $scope.drawLayer.olLayer,
                     hitTolerance: 10
                 })
-                ?.filter(f => f.get('_digitizeState') !== DigitizeState.REMOVED);
-                if (features && features.length > 0) {
+                .filter(f => f.get('_digitizeState') !== DigitizeState.REMOVED);
+                if (features.length > 0) {
                     $scope.$parent.$parent.openDigitizePopup(features[0]);
                 }
             });
