@@ -160,6 +160,9 @@
 
 .anol-scale-line
   bottom: 0.5em
+  // needed, since otherwise scaleline will
+  // overlap the overviewmap control
+  z-index: -1
   .anol-scale-line-inner
     .ol-scale-line
       background: none
