@@ -8,7 +8,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  ANOL_COMMIT_HASH: 9b26749f287ba5cd95808f6c28e8a853c67e5c78
+  ANOL_COMMIT_HASH: 0321be740950aec3348d604e9b646a740ec94e72
 
 jobs:
   build-and-push-image:
