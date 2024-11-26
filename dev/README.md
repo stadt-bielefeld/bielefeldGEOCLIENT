@@ -1,5 +1,12 @@
 # MuniMap Repository
 
+## Publishing
+
+1. Update version in `pyproject.toml`
+2. Update commit hash of anol in `.github/workflows/publish.yml` if needed
+3. Push tag according to version number of previous step
+4. Publish pipeline will start automatically
+
 ## Requirements
 
 * git
