@@ -14,7 +14,7 @@ update-ca-certificates
 
 # run alembic
 
-if [ "$RUN_ALEMBIC" = true ] ; then
+if [ "$RUN_ALEMBIC" = "true" ] ; then
   alembic -c configs/alembic.ini upgrade head
 fi
 
