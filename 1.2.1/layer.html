@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Layer-Definition &mdash; bielefeldGEOCLIENT / munimap  Dokumentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=245627df"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/translations.js?v=79cc9f76"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
+    <link rel="search" title="Suche" href="search.html" />
+    <link rel="next" title="Layer-Optionen" href="layers-config.html" />
+    <link rel="prev" title="App-Optionen" href="default-config.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            bielefeldGEOCLIENT / munimap
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="app.html">Anwendungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="default-config.html">App-Optionen</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Layer-Definition</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#neuen-layer-erstellen">Neuen Layer erstellen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#neue-gruppe-erstellen">Neue Gruppe erstellen</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="layers-config.html">Layer-Optionen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="selectionlists-config.html">Auswahllisten-Definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javascript-plugins.html">JavaScript-Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example-config.html">Beispiel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="print-index.html">Straßenindex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tour.html">Tour</a></li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Administrationsbereich</a></li>
+<li class="toctree-l1"><a class="reference internal" href="url-parameter.html">URL-Parameter</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">bielefeldGEOCLIENT / munimap</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Layer-Definition</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/layer.rst.txt" rel="nofollow"> Quelltext anzeigen</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="layer-definition">
+<h1>Layer-Definition<a class="headerlink" href="#layer-definition" title="Link to this heading"></a></h1>
+<p>Die Layer können in unterschiedlichen Konfiguration definiert werden, die von der Anwendung zusammen gefasst werden. Innerhalb eine Konfiguration können folgenden Bereich definiert werden:</p>
+<p><code class="docutils literal notranslate"><span class="pre">layers</span></code>: Definition der einzelnen Layer.
+<code class="docutils literal notranslate"><span class="pre">groups</span></code>: Liste von Gruppen. Jeder Gruppe können ein oder mehrere Layer zugeordnet werden.</p>
+<p>Beispiel:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">groups</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example_group</span>
+
+<span class="nt">layers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example_layer</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Example Layer</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wms</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://www.example.org/wms/service?&quot;</span>
+<span class="w">      </span><span class="nt">fomat</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;image/png&quot;</span>
+<span class="w">      </span><span class="nt">layers</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example</span>
+<span class="w">      </span><span class="nt">srs</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;EPSG:4326&quot;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">group_layer</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Group Layer</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wms</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://www.example.org/wms/service?&quot;</span>
+<span class="w">      </span><span class="nt">fomat</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;image/png&quot;</span>
+<span class="w">      </span><span class="nt">layers</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example</span>
+<span class="w">      </span><span class="nt">srs</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;EPSG:4326&quot;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Alle Layer die in einer der Anwendungen verwendet werden sollen müssen in der <code class="docutils literal notranslate"><span class="pre">layers_config.yaml</span></code> konfiguriert sein. Über <code class="docutils literal notranslate"><span class="pre">status</span></code> sowie den <code class="docutils literal notranslate"><span class="pre">layers</span></code> und <code class="docutils literal notranslate"><span class="pre">groups</span></code> Optionen der App-Konfiguration kann dann für jede Anwendung konfiguriert werden, welche Layer in dieser Anwendung eingebunden werden sollen.</p>
+</div>
+<section id="neuen-layer-erstellen">
+<h2>Neuen Layer erstellen<a class="headerlink" href="#neuen-layer-erstellen" title="Link to this heading"></a></h2>
+<p>Um eine neuen Layer zu erstellen muss dieser in der Konfigurationsdatei hinzugefügt werden. Es kann zwischen verschiedenen Typen ausgewählt werden. Je nach Layer-<cite>type</cite> werden unterschiedliche Attribute benötigt. Ausführliche Beschreibung der Quellen finden sich im Kapitel <a class="reference internal" href="layers-config.html#id11"><span class="std std-ref">Source</span></a></p>
+<p>Im Folgenden sind einige Beispiele konfiguriert.</p>
+<p>Externen WMS Dienst einbinden:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">layers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omniscale_gray</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OSM Omniscale Grayscale</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wms</span>
+<span class="w">    </span><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">inactive</span>
+<span class="w">    </span><span class="nt">attribution</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;©</span><span class="nv"> </span><span class="s">2016</span><span class="nv"> </span><span class="s">Omniscale</span><span class="nv"> </span><span class="s">•</span><span class="nv"> </span><span class="s">Kartendaten:</span><span class="nv"> </span><span class="s">OpenStreetMap</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">(Lizenz:</span><span class="nv"> </span><span class="s">ODbL)&#39;</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://maps.omniscale.net/wms/mapsosc-b697cf5a/grayscale/service?&quot;</span>
+<span class="w">      </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;image/png&quot;</span>
+<span class="w">      </span><span class="nt">layers</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">osm</span>
+<span class="w">      </span><span class="nt">srs</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;EPSG:25832&quot;</span>
+</pre></div>
+</div>
+<p>Vektordaten einbinden</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">layers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">polygons</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">polygons base</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgis</span>
+<span class="w">    </span><span class="nt">attribution</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Vektordaten:</span><span class="nv"> </span><span class="s">OpenStreetMap</span><span class="nv"> </span><span class="s">(Lizenz:</span><span class="nv"> </span><span class="s">ODbL)&#39;</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">polygon</span>
+<span class="w">      </span><span class="nt">srid</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">25832</span>
+<span class="w">      </span><span class="nt">query</span><span class="p">:</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">SELECT geometry</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">FROM alkis_buildings</span>
+<span class="w">    </span><span class="nt">style</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">simple</span>
+<span class="w">      </span><span class="nt">strokeColor</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;#c3c&#39;</span>
+<span class="w">      </span><span class="nt">strokeWidth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">      </span><span class="nt">fillColor</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;#c6c&#39;</span>
+<span class="w">    </span><span class="nt">featureinfo</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;_popup&#39;</span>
+<span class="w">      </span><span class="nt">properties</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">name</span>
+<span class="w">    </span><span class="nt">legend</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">polygon</span>
+</pre></div>
+</div>
+</section>
+<section id="neue-gruppe-erstellen">
+<h2>Neue Gruppe erstellen<a class="headerlink" href="#neue-gruppe-erstellen" title="Link to this heading"></a></h2>
+<p>In einer Gruppe können mehrere Layer zusammen gefasst werden. Diese können dann zum Beispiel für die Themenkarten erstellt werden.</p>
+<p>Eine ausführliche Beschreibung aller Eigenschaften einer Gruppe finden sich im Kapitel <a class="reference internal" href="layers-config.html#groups"><span class="std std-ref">groups</span></a></p>
+<p>Beispiel:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">groups</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">altkleidercontainer</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Altkleidercontainer</span>
+<span class="w">    </span><span class="nt">layers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">altkleidercontainer</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bodenrichtwerte</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Bodenrichtwerte 2016</span>
+<span class="w">    </span><span class="nt">layers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bodenrichtwerte_t</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bodenrichtwerte_brwznr_t</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="default-config.html" class="btn btn-neutral float-left" title="App-Optionen" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="layers-config.html" class="btn btn-neutral float-right" title="Layer-Optionen" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Stadt Bielefeld.
+      <span class="lastupdated">Zuletzt aktualisiert am 2024-11-26.
+      </span></p>
+  </div>
+
+  Erstellt mit <a href="https://www.sphinx-doc.org/">Sphinx</a> mit einem
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    bereitgestellt von <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    Version: 1.2.1
+    <span class="fa fa-caret-down"></span>
+  </span>
+    <div class="rst-other-versions">
+        <dl id="versions-list">
+            <dt>Versionen</dt>
+            <dd><a href="/index.html"></a></dd>
+        </dl>
+    </div>
+    <script>
+        fetch('../config/versions.json')
+            .then(response => {
+                return response.json();
+            })
+            .then(versions => {
+                const list = document.querySelector('#versions-list');
+                for (const version of versions) {
+                    const a = document.createElement('a');
+                    a.href = `https://stadt-bielefeld.github.io/bielefeldGEOCLIENT/${version}/`;
+                    a.textContent = version;
+                    const dd = document.createElement('dd');
+                    dd.append(a);
+                    list.append(dd);
+                }
+            });
+    </script>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
