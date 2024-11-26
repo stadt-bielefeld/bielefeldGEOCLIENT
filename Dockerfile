@@ -160,6 +160,9 @@ RUN mkdir -p /certs
 
 COPY ./entrypoint.sh /entrypoint.sh
 
+# Flag to decide if alembic should be run before starting the application
+ENV RUN_ALEMBIC="true"
+
 ENTRYPOINT ["/entrypoint.sh"]
 
 CMD ["gunicorn", "-c", "/opt/etc/munimap/gunicorn.conf", "munimap.application:create_app(config_file='/opt/etc/munimap/configs/munimap.conf')"]
