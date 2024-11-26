@@ -1,6 +1,7 @@
 
 
 import jinja2
+import importlib.metadata
 
 from flask import (
     Blueprint,
@@ -16,7 +17,15 @@ frontend = Blueprint('frontend', __name__)
 @frontend.route('/pages/<name>')
 def pages(name):
     try:
-        return render_template('/munimap/pages/%s.html' % (name))
+        app_version = importlib.metadata.version('munimap')
+        release_link = f'https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/releases/tag/{app_version}'
+        documentation_link = f'https://stadt-bielefeld.github.io/bielefeldGEOCLIENT/{app_version}/index.html'
+        return render_template(
+            '/munimap/pages/%s.html' % (name),
+            app_version=app_version,
+            release_link=release_link,
+            documentation_link=documentation_link
+        )
     except jinja2.TemplateNotFound:
         abort(404)
 
