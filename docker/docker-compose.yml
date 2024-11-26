@@ -62,6 +62,7 @@ services:
       # Because of failing DIN A0 prints in production, the heap size needed to be increased to 4gb
       # TODO: When removing the mapfish CLI this option can be removed from this container
       JAVA_OPTS: -Xmx4096m -Djava.awt.headless=true
+      RUN_ALEMBIC: false
     depends_on:
       munimap-postgis:
         condition: service_healthy
