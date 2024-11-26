@@ -1,4 +1,3 @@
-import { TOUCH as hasTouch } from 'ol/has';
 import { unByKey } from 'ol/Observable.js';
 import { getForViewAndSize } from 'ol/extent.js';
 import Overlay from 'ol/Overlay';
@@ -167,7 +166,7 @@ angular.module('munimapBase.alkisSimple', ['anol.map', 'munimapBase.alkisService
                         scope.tooltipDelay = angular.isDefined(scope.tooltipDelay) ?
                             scope.tooltipDelay : 500;
                         scope.tooltipEnable = angular.isDefined(scope.tooltipEnable) ?
-                            scope.tooltipEnable : !hasTouch;
+                            scope.tooltipEnable : !('ontouchstart' in window);
 
                         const url = angular.isDefined(scope.url) ? scope.url : undefined;
                         scope.map = MapService.getMap();

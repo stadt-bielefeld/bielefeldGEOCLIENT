@@ -62,8 +62,8 @@
     "jquery": "^3.6.0",
     "jquery-ui": "^1.12.1",
     "ngstorage": "^0.3.11",
-    "ol": "^5.2.0",
-    "ol-ext": "^3.0.1",
+    "ol": "^10.2.1",
+    "ol-ext": "^4.0.24",
     "proj4": "^2.4.4",
     "spectrum-colorpicker": "^1.8.0",
     "uglifyjs-webpack-plugin": "^2.1.3"
