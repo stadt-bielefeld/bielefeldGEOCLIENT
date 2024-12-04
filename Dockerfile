@@ -30,7 +30,7 @@ RUN npm run build
 
 
 
-FROM python:3.9.13-bullseye AS builder
+FROM python:3.13.1-bullseye AS builder
 
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -54,7 +54,7 @@ RUN cd munimap_transport && python -m build
 
 
 
-FROM python:3.9.13-bullseye AS runner
+FROM python:3.13.1-bullseye AS runner
 
 # TODO check which libs are actually needed
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
