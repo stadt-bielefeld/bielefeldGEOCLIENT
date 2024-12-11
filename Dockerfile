@@ -1,4 +1,4 @@
-ARG ANOL_COMMIT_HASH=2cb346052f6c37a00bebfb0189c4049dafd44f5b
+ARG ANOL_COMMIT_HASH=08b57ecd563a1add5b4bdacdd026ffe4df603d20
 
 FROM node:14.19.3-alpine3.14 AS clientbuilder
 
@@ -136,7 +136,8 @@ RUN apt update -y && apt install temurin-8-jre -y
 
 RUN wget -q -O- https://repo1.maven.org/maven2/org/mapfish/print/print-cli/3.9.0/print-cli-3.9.0-tar.tar | tar -x -C /opt/var/mapfish
 
-RUN pip install --upgrade pip && pip install \
+RUN pip install --upgrade pip && \
+    pip install \
     gunicorn==21.2.0 \
     eventlet==0.33.3 \
     dnspython==2.3.0
@@ -155,6 +156,8 @@ ENV JAVA_HOME=/usr/lib/jvm/temurin-8-jre-amd64
 WORKDIR /opt/etc/munimap
 
 HEALTHCHECK CMD curl -s http://localhost:8080/health | jq -e '.healthy == true' > /dev/null || exit 1
+
+ENV REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
 
 RUN mkdir -p /certs
 
