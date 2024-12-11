@@ -5,10 +5,10 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 module.exports  = {
     devtool: 'eval-source-map',
     entry: {
-        app: './munimap/static/js/app.js',
-        transport: './munimap_transport/munimap_transport/static/js/app.js',
-        admin: './munimap/static/js/admin/admin.js',
-        static_app:  './munimap/static/js/static-app.js',
+        app: './munimap/frontend/js/app.js',
+        transport: './munimap_transport/munimap_transport/frontend/js/app.js',
+        admin: './munimap/frontend/js/admin/admin.js',
+        static_app:  './munimap/frontend/js/static-app.js',
         vendor: ['angular', 'jquery', 'angular-ui-bootstrap', 'core-js']
     },
     output: {
