@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beispiel &mdash; bielefeldGEOCLIENT / munimap  Dokumentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=245627df"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/translations.js?v=79cc9f76"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
+    <link rel="search" title="Suche" href="search.html" />
+    <link rel="next" title="Straßenindex" href="print-index.html" />
+    <link rel="prev" title="JavaScript-Plugins" href="javascript-plugins.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            bielefeldGEOCLIENT / munimap
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="app.html">Anwendungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="default-config.html">App-Optionen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layer.html">Layer-Definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layers-config.html">Layer-Optionen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="selectionlists-config.html">Auswahllisten-Definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javascript-plugins.html">JavaScript-Plugins</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Beispiel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#beispiel-fur-die-konfiguration-von-hintergrund-und-themenkarten">Beispiel für die Konfiguration von Hintergrund- und Themenkarten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#beispiel-der-anwendungskonfiguration">Beispiel der Anwendungskonfiguration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="print-index.html">Straßenindex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tour.html">Tour</a></li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Administrationsbereich</a></li>
+<li class="toctree-l1"><a class="reference internal" href="url-parameter.html">URL-Parameter</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">bielefeldGEOCLIENT / munimap</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Beispiel</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/example-config.rst.txt" rel="nofollow"> Quelltext anzeigen</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="beispiel">
+<h1>Beispiel<a class="headerlink" href="#beispiel" title="Link to this heading"></a></h1>
+<section id="beispiel-fur-die-konfiguration-von-hintergrund-und-themenkarten">
+<h2>Beispiel für die Konfiguration von Hintergrund- und Themenkarten<a class="headerlink" href="#beispiel-fur-die-konfiguration-von-hintergrund-und-themenkarten" title="Link to this heading"></a></h2>
+<p>Im folgenden wird das Zusammenspiel zwischen <cite>layers_conf.yaml</cite> und <cite>default_conf.yaml</cite> an einem Beispiel verdeutlicht. In der <cite>layers_conf.yaml</cite> wurde auf die Angabe der jeweiligen <cite>source</cite>-Attribute der Übersichtlichkeit halber verzichtet.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">groups</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">point_group</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Point Group</span>
+<span class="w">    </span><span class="nt">layers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pubs</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bars</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nightclubs</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">line_group</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Line Group</span>
+<span class="w">    </span><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">inactive</span>
+<span class="w">    </span><span class="nt">layers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">residential</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">primary</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">motorway</span>
+<span class="nt">layers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mono_background</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Mono Background</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">color_background</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Color Background</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aerial_background</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Aerial Background</span>
+<span class="w">    </span><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">inactive</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pubs</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pubs</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bars</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Bars</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nightclubs</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Nightclubs</span>
+<span class="w">    </span><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">inactive</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">residential</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Residential</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">primary</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Primary</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">motorway</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Motorway</span>
+<span class="w">    </span><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">inactive</span>
+</pre></div>
+</div>
+<p>Würde diese <cite>layers_yaml.conf</cite> zusammen mit einer <cite>default-config.yaml</cite>, in der keine Konfiguration der Attribute <cite>groups</cite> und <cite>layers</cite> vorgenommen wurde, verwendet werden, stünden dem Benutzer die Hintergrundkarten <cite>mono_background</cite> und <cite>color_background</cite> sowie die Gruppe <cite>point_group</cite> mit den Layern <cite>pubs</cite> und <cite>bars</cite> zur Verfügung. Alle anderen Hintergrundkarten, Gruppen und Layer sind mit <cite>status: inactive</cite> deaktiviert.</p>
+<p>Nachfolgend werden mit der <cite>default-config.yaml</cite> durch Verwendung der <cite>include</cite>, <cite>exclude</cite> und <cite>explicit</cite> Attribute ausschließlich die Hintergrundkarte <cite>aerial_background</cite>, sowie die Gruppen <cite>point_group</cite> nur mit dem Layer <cite>pubs</cite> und die Gruppe <cite>line_group</cite> mit allen ihr zugeordneten Layern dem Benutzer bereitgestellt.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">groups</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">include</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">line_group</span>
+<span class="nt">layers</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">exclude</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bars</span>
+<span class="w">  </span><span class="nt">include</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">motorway</span>
+</pre></div>
+</div>
+</section>
+<section id="beispiel-der-anwendungskonfiguration">
+<h2>Beispiel der Anwendungskonfiguration<a class="headerlink" href="#beispiel-der-anwendungskonfiguration" title="Link to this heading"></a></h2>
+<p>Im folgenden eine beispielhafte Konfiguration der Anwendung. Es wurden alle Einstellmöglichkeiten mit Ausnahme der Konfigurationen für Hintergrundkarten, Gruppen und Themenkarten verwendet, auf die im vorherigen Beispiel bereits eingegangen wurde.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">app</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">tooltipDelay</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2000</span>
+<span class="w">  </span><span class="nt">sidebarOpen</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<span class="w">  </span><span class="nt">preferredLanguage</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;de_DE&#39;</span>
+<span class="nt">map</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">center</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">8.2175</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">53.1512</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">centerProjection</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;EPSG:4326&quot;</span>
+<span class="w">  </span><span class="nt">zoom</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12</span>
+<span class="w">  </span><span class="nt">projection</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;EPSG:4326&quot;</span>
+<span class="w">  </span><span class="nt">projectionExtent</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">47</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">54</span>
+<span class="w">  </span><span class="nt">maxExtent</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">47</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">54</span>
+<span class="w">  </span><span class="nt">minZoom</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
+<span class="w">  </span><span class="nt">maxZoom</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">19</span>
+<span class="nt">componentes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">geolocation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="w">  </span><span class="nt">layerswitcher</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="w">  </span><span class="nt">legend</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="w">  </span><span class="nt">print</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="w">  </span><span class="nt">scaleLine</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="w">  </span><span class="nt">search</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="nt">searchConfig</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">zoom</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">14</span>
+<span class="w">  </span><span class="nt">geocoder</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Nominatim</span>
+<span class="w">  </span><span class="nt">geocoderOptions</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">limit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">  </span><span class="nt">resultMarkerVisible</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3000</span>
+<span class="w">  </span><span class="nt">resultMarker</span><span class="p">:</span>
+<span class="w">     </span><span class="nt">graphicFile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">highlight-result.svg</span>
+<span class="w">     </span><span class="nt">graphicWidth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">     </span><span class="nt">graphicHeight</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">     </span><span class="nt">graphicScale</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="nt">geolocationConfig</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">tracking</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<span class="w">  </span><span class="nt">zoom</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">14</span>
+<span class="nt">printConfig</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">chooseCells</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="w">  </span><span class="nt">chooseStreetIndex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="w">  </span><span class="nt">availablePageLayouts</span><span class="p">:</span>
+<span class="w">    </span><span class="s">&quot;a4-portrait&quot;</span><span class="p p-Indicator">:</span>
+<span class="w">      </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A4</span>
+<span class="w">      </span><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;glyphicon-resize-vertical&quot;</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">210</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">297</span>
+<span class="w">    </span><span class="s">&quot;a4-landscape&quot;</span><span class="p p-Indicator">:</span>
+<span class="w">      </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A4</span>
+<span class="w">      </span><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;glyphicon-resize-horizontal&quot;</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">297</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">210</span>
+<span class="w">  </span><span class="nt">pageLayouts</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;a4-portrait&quot;</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;a4-landscape&quot;</span>
+<span class="nt">urlMarkersConfig</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">markerStyle</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">radius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">    </span><span class="nt">strokeWidth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">  </span><span class="nt">defaultSrs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EPSG:4326</span>
+<span class="w">  </span><span class="nt">popupOffset</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-10</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="javascript-plugins.html" class="btn btn-neutral float-left" title="JavaScript-Plugins" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="print-index.html" class="btn btn-neutral float-right" title="Straßenindex" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Stadt Bielefeld.
+      <span class="lastupdated">Zuletzt aktualisiert am 2024-12-11.
+      </span></p>
+  </div>
+
+  Erstellt mit <a href="https://www.sphinx-doc.org/">Sphinx</a> mit einem
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    bereitgestellt von <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    Version: 1.3.0
+    <span class="fa fa-caret-down"></span>
+  </span>
+    <div class="rst-other-versions">
+        <dl id="versions-list">
+            <dt>Versionen</dt>
+            <dd><a href="/index.html"></a></dd>
+        </dl>
+    </div>
+    <script>
+        fetch('../config/versions.json')
+            .then(response => {
+                return response.json();
+            })
+            .then(versions => {
+                const list = document.querySelector('#versions-list');
+                for (const version of versions) {
+                    const a = document.createElement('a');
+                    a.href = `https://stadt-bielefeld.github.io/bielefeldGEOCLIENT/${version}/`;
+                    a.textContent = version;
+                    const dd = document.createElement('dd');
+                    dd.append(a);
+                    list.append(dd);
+                }
+            });
+    </script>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

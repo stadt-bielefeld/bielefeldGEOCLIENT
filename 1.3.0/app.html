@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anwendungen &mdash; bielefeldGEOCLIENT / munimap  Dokumentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=245627df"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/translations.js?v=79cc9f76"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
+    <link rel="search" title="Suche" href="search.html" />
+    <link rel="next" title="App-Optionen" href="default-config.html" />
+    <link rel="prev" title="Dokumentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            bielefeldGEOCLIENT / munimap
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Anwendungen</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#neue-anwendung-erstellen">Neue Anwendung erstellen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#digitize-app">Digitize-App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#transport-app">Transport-App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#statische-dateien-und-templates">Statische Dateien und Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#anwendung-als-iframe-einbinden">Anwendung als IFrame einbinden</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#layout-bearbeiten">Layout bearbeiten</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pfad-zu-den-sass-dateien"><code class="docutils literal notranslate"><span class="pre">Pfad</span> <span class="pre">zu</span> <span class="pre">den</span> <span class="pre">Sass-Dateien</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variables-sass"><code class="docutils literal notranslate"><span class="pre">_variables.sass</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#project-sass"><code class="docutils literal notranslate"><span class="pre">project.sass</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="default-config.html">App-Optionen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layer.html">Layer-Definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layers-config.html">Layer-Optionen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="selectionlists-config.html">Auswahllisten-Definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javascript-plugins.html">JavaScript-Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example-config.html">Beispiel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="print-index.html">Straßenindex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tour.html">Tour</a></li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Administrationsbereich</a></li>
+<li class="toctree-l1"><a class="reference internal" href="url-parameter.html">URL-Parameter</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">bielefeldGEOCLIENT / munimap</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Anwendungen</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/app.rst.txt" rel="nofollow"> Quelltext anzeigen</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="anwendungen">
+<h1>Anwendungen<a class="headerlink" href="#anwendungen" title="Link to this heading"></a></h1>
+<p>Munimap stellt eine Kartenanwendung bereit, die direkt unter <code class="docutils literal notranslate"><span class="pre">/stadtplan</span></code> erreichbar ist.
+Zusätzlich können weitere Anwendungen (kurz Apps) konfiguriert werden, die z.B. nur eine kleinere Layerauswahl oder andere Komponenten beinhalten.</p>
+<p>Mit Hilfe verschiedener Konfigurationsdateien können die Haupt- und Spezialanwendungen angepasst werden. Diese können über den Administrationsbereich bearbeitet werden.</p>
+<section id="neue-anwendung-erstellen">
+<h2>Neue Anwendung erstellen<a class="headerlink" href="#neue-anwendung-erstellen" title="Link to this heading"></a></h2>
+<p>Um eine neue Anwendung zu erstellen muss eine neue Konfigurationsdatei angelegt werden. Der Name der Konfigurationsdatei ist auch gleichzeitig Teil der URL unter der die Anwendung abgerufen werden kann.</p>
+<p>Aus <strong>schulweg.yaml</strong> wird die Anwendung unter <strong>/schulweg</strong></p>
+<p>In der Konfiguration können alle Optionen angegeben werden die in der <a class="reference internal" href="default-config.html#defaultconf"><span class="std std-ref">App-Konfiguration</span></a> definiert sind. Alle Optionen die nicht überschrieben werden, werden aus der Standard-Konfiguration (<code class="docutils literal notranslate"><span class="pre">default-config.yaml</span></code>) übernommen.</p>
+<p>Im Folgenden eine umfangreiche beispielhafte Konfiguration einer Anwendung.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">app</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">tooltipDelay</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2000</span>
+<span class="w">  </span><span class="nt">sidebarOpen</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<span class="w">  </span><span class="nt">preferredLanguage</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;de_DE&#39;</span>
+<span class="nt">map</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">center</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">8.2175</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">53.1512</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">centerProjection</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;EPSG:4326&quot;</span>
+<span class="w">  </span><span class="nt">zoom</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12</span>
+<span class="w">  </span><span class="nt">projection</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;EPSG:4326&quot;</span>
+<span class="w">  </span><span class="nt">projectionExtent</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">47</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">54</span>
+<span class="w">  </span><span class="nt">maxExtent</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">47</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">54</span>
+<span class="w">  </span><span class="nt">minZoom</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
+<span class="w">  </span><span class="nt">maxZoom</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">19</span>
+<span class="nt">components</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">geolocation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="w">  </span><span class="nt">layerswitcher</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="w">  </span><span class="nt">legend</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="w">  </span><span class="nt">print</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="w">  </span><span class="nt">scaleLine</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="w">  </span><span class="nt">search</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="nt">searchConfig</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">zoom</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">14</span>
+<span class="w">  </span><span class="nt">geocoder</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Nominatim</span>
+<span class="w">  </span><span class="nt">geocoderOptions</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">resultMarkerVisible</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3000</span>
+<span class="w">  </span><span class="nt">resultMarker</span><span class="p">:</span>
+<span class="w">     </span><span class="nt">graphicFile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">highlight-result.svg</span>
+<span class="w">     </span><span class="nt">graphicWidth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">     </span><span class="nt">graphicHeight</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">     </span><span class="nt">graphicScale</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="nt">geolocationConfig</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">tracking</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<span class="w">  </span><span class="nt">zoom</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">14</span>
+<span class="nt">printConfig</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">chooseCells</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="w">  </span><span class="nt">chooseStreetIndex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="w">  </span><span class="nt">availablePageLayouts</span><span class="p">:</span>
+<span class="w">    </span><span class="s">&quot;a4-portrait&quot;</span><span class="p p-Indicator">:</span>
+<span class="w">      </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A4</span>
+<span class="w">      </span><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;glyphicon-resize-vertical&quot;</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">210</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">297</span>
+<span class="w">    </span><span class="s">&quot;a4-landscape&quot;</span><span class="p p-Indicator">:</span>
+<span class="w">      </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A4</span>
+<span class="w">      </span><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;glyphicon-resize-horizontal&quot;</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">297</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">210</span>
+<span class="w">  </span><span class="nt">pageLayouts</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;a4-portrait&quot;</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;a4-landscape&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="digitize-app">
+<h2>Digitize-App<a class="headerlink" href="#digitize-app" title="Link to this heading"></a></h2>
+<p>Der Endpunkt <cite>/digitize</cite>, unter dem in früheren Versionen die Digitalisierungsanwendung bereitgestellt wurde,
+wurde in der aktuellen Version entfernt. Mittlerweile kann jede Anwendung für das Digitalisieren von Objekten
+verwendet werden. Weitere Infos unter <a class="reference internal" href="default-config.html#defaultconf"><span class="std std-ref">App-Optionen</span></a>.</p>
+</section>
+<section id="transport-app">
+<h2>Transport-App<a class="headerlink" href="#transport-app" title="Link to this heading"></a></h2>
+<p>Die Kartenanwendung für den ÖPNV ist unter <cite>/mobiel</cite> zu erreichen. Hierzu gehörig ist die Konfigurationsdatei <cite>transport.yaml</cite>.</p>
+<p>In ihr können eingeschränkt Einstellungen vorgenommen werden, die auch in der Standard-Anwendung zur Verfügung stehen.</p>
+</section>
+<section id="statische-dateien-und-templates">
+<h2>Statische Dateien und Templates<a class="headerlink" href="#statische-dateien-und-templates" title="Link to this heading"></a></h2>
+<p>Unter <code class="docutils literal notranslate"><span class="pre">/opt/etc/munimap/bielefeld/</span></code> befinden sich die Verzeichnisse <code class="docutils literal notranslate"><span class="pre">static</span></code> und <code class="docutils literal notranslate"><span class="pre">templates</span></code>. Dort abgelegte Dateien werden von Munimap bevorzugt verwendet. So können z.B. Bilder und einzelne Seiten überschrieben werden.</p>
+<p>So sind im Verzeichnis <code class="docutils literal notranslate"><span class="pre">/opt/etc/munimap/bielefeld/templates/munimap/pages</span></code> Dateien für die Nutzungsbedingungen und Info-Seiten abgelegt.</p>
+<p>Außerdem kann die E-Mail, welche für das Passwort vergessen verschickt wird, hier abgelegt und geändert werden.</p>
+<p>Das <code class="docutils literal notranslate"><span class="pre">assets</span></code> Verzeichnis wird intern verwendet und sollte nicht verändert werden.</p>
+</section>
+<section id="anwendung-als-iframe-einbinden">
+<h2>Anwendung als IFrame einbinden<a class="headerlink" href="#anwendung-als-iframe-einbinden" title="Link to this heading"></a></h2>
+<p>Die Kartenanwendung kann mit Hilfe eines IFrames auch innerhalb einer Webseite eingebunden werden. Hierzu ist die Url zur Kartenanwendung inklusive der Url-Parameter <cite>map</cite> und <cite>layers</cite> in das <cite>src</cite>-Attribut des IFrames einzutragen.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;&lt;Basis-Url&gt;#?map=9,468420,5763801,EPSG:25832&amp;layers=stadtplan_bi&quot;</span>
+        <span class="na">style</span><span class="o">=</span><span class="s">&quot;width: 100%; height: 600px;&quot;</span>
+        <span class="na">frameborder</span><span class="o">=</span><span class="s">&quot;0&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="layout-bearbeiten">
+<h2>Layout bearbeiten<a class="headerlink" href="#layout-bearbeiten" title="Link to this heading"></a></h2>
+<p>Das Layout der Anwendungen kann mit Hilfe der vorhandenen Sass-Dateien angepasst. Sass ist eine Stylesheet-Sprache die als Präprozessor die Erzeugung von CSS erleichtert. Ausführliche Informationen zu Sass sind auf der offiziellen <a class="reference external" href="http://sass-lang.com/">Homepage von Sass</a> zu finden.</p>
+<p>Eines der Hauptunterschiede zu CSS sind die verschachtelten Regeln. Durch diese können komplexe Selektoren einfach gelesen und geschrieben werden. In dem Projekt wird die SCSS-Syntax verwendet. Das bedeutet, dass keine Klammern oder Semikolons gesetzt werden müssen wie dies etwa bei CSS nötig ist.</p>
+<p>Beispiel</p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">header</span>
+<span class="w">  </span><span class="nt">background</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">FFFFFF</span>
+
+<span class="w">  </span><span class="p">.</span><span class="nc">error</span>
+<span class="w">    </span><span class="nt">color</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">FF0000</span>
+
+<span class="w">  </span><span class="nt">a</span>
+<span class="w">    </span><span class="nt">text-decoration</span><span class="o">:</span><span class="w"> </span><span class="nt">none</span>
+<span class="w">    </span><span class="o">&amp;</span><span class="p">:</span><span class="nd">hover</span>
+<span class="w">      </span><span class="nt">text-decoration</span><span class="o">:</span><span class="w"> </span><span class="nt">underline</span>
+</pre></div>
+</div>
+<p>Dies wird vom System kompiliert zu:</p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">header</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="mh">#FFFFFF</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">#</span><span class="nn">header</span><span class="w"> </span><span class="p">.</span><span class="nc">error</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#FF0000</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">#</span><span class="nn">header</span><span class="w"> </span><span class="nt">a</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">text-decoration</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span>
+<span class="p">}</span>
+<span class="p">#</span><span class="nn">header</span><span class="w"> </span><span class="nt">a</span><span class="p">:</span><span class="nd">hover</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">text-decoration</span><span class="p">:</span><span class="w"> </span><span class="kc">underline</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="pfad-zu-den-sass-dateien">
+<h3><code class="docutils literal notranslate"><span class="pre">Pfad</span> <span class="pre">zu</span> <span class="pre">den</span> <span class="pre">Sass-Dateien</span></code><a class="headerlink" href="#pfad-zu-den-sass-dateien" title="Link to this heading"></a></h3>
+<p>Die Sass-Dateien sind im Repository unter <cite>conf/munimpa/project/static/sass</cite> zu abgelegt und müssen nach Änderungen mit den entsprechenden Daten auf dem Server unter <code class="docutils literal notranslate"><span class="pre">/opt/etc/munimap/bielefeld/sass</span></code> ausgetauscht werden.</p>
+</section>
+<section id="variables-sass">
+<h3><code class="docutils literal notranslate"><span class="pre">_variables.sass</span></code><a class="headerlink" href="#variables-sass" title="Link to this heading"></a></h3>
+<p>Farbwerte, Abstände und auch Schriftgrößen die in der Anwendung verwendet werden, werden mit Hilfe von Variablen gesetzt. Sass ermöglicht es diese an einer Stelle zu definieren um diese dann wieder zu verwenden.</p>
+<p>Die Variablen können dementsprechend überschrieben werden und sind gesammelt in der Datei <code class="docutils literal notranslate"><span class="pre">_variables.sass</span></code> zu finden. Variablen werden mit einem führenden $-Zeichen definiert.</p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="o">$</span><span class="nt">sidebar-text-color</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">787878</span>
+<span class="o">$</span><span class="nt">sidebar-item-highlight-color</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">ccc</span>
+</pre></div>
+</div>
+</section>
+<section id="project-sass">
+<h3><code class="docutils literal notranslate"><span class="pre">project.sass</span></code><a class="headerlink" href="#project-sass" title="Link to this heading"></a></h3>
+<p>Alle Layout-Einstellungen können über die Projekt-Datei überschrieben werden. Einzelne Layouts pro App sind nicht möglich.</p>
+<p>Beispielhafte hier das Überschrieben der Höhe der Sitebar</p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">side-bar</span>
+<span class="w">    </span><span class="p">.</span><span class="nc">sidebar-header</span>
+<span class="w">        </span><span class="nt">height</span><span class="o">:</span><span class="w"> </span><span class="nt">55px</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Dokumentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="default-config.html" class="btn btn-neutral float-right" title="App-Optionen" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Stadt Bielefeld.
+      <span class="lastupdated">Zuletzt aktualisiert am 2024-12-11.
+      </span></p>
+  </div>
+
+  Erstellt mit <a href="https://www.sphinx-doc.org/">Sphinx</a> mit einem
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    bereitgestellt von <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    Version: 1.3.0
+    <span class="fa fa-caret-down"></span>
+  </span>
+    <div class="rst-other-versions">
+        <dl id="versions-list">
+            <dt>Versionen</dt>
+            <dd><a href="/index.html"></a></dd>
+        </dl>
+    </div>
+    <script>
+        fetch('../config/versions.json')
+            .then(response => {
+                return response.json();
+            })
+            .then(versions => {
+                const list = document.querySelector('#versions-list');
+                for (const version of versions) {
+                    const a = document.createElement('a');
+                    a.href = `https://stadt-bielefeld.github.io/bielefeldGEOCLIENT/${version}/`;
+                    a.textContent = version;
+                    const dd = document.createElement('dd');
+                    dd.append(a);
+                    list.append(dd);
+                }
+            });
+    </script>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
