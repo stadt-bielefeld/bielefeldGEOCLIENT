@@ -1,11 +1,9 @@
 ARG ANOL_COMMIT_HASH=08b57ecd563a1add5b4bdacdd026ffe4df603d20
 
-FROM node:14.19.3-alpine3.14 AS clientbuilder
+FROM node:22-alpine@sha256:6e80991f69cc7722c561e5d14d5e72ab47c0d6b6cfb3ae50fb9cf9a7b30fdf97 AS clientbuilder
 
 ARG ANOL_COMMIT_HASH
 RUN apk add --no-cache wget unzip
-
-RUN npm i -g npm@7
 
 RUN mkdir -p tmp/anol
 RUN cd /tmp/anol \

@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports  = {
     devtool: 'eval-source-map',
@@ -9,11 +8,11 @@ module.exports  = {
         transport: './munimap_transport/munimap_transport/frontend/js/app.js',
         admin: './munimap/frontend/js/admin/admin.js',
         static_app:  './munimap/frontend/js/static-app.js',
-        vendor: ['angular', 'jquery', 'angular-ui-bootstrap', 'core-js']
+        vendor: ['angular', 'jquery', 'angular-ui-bootstrap']
     },
     output: {
         filename: '[name].bundle.js',
-        path: path.resolve(__dirname, './munimap/static/dist'),
+        path: path.resolve(__dirname, './munimap/static/js'),
         chunkFilename: '[name].bundle.js',
         publicPath: '/',
     },
@@ -56,7 +55,7 @@ module.exports  = {
     optimization: {
         splitChunks: {
             cacheGroups: {
-                vendor: {
+                defaultVendors: {
                     chunks: 'initial',
                     name: 'vendor',
                     test: 'vendor',
@@ -64,19 +63,7 @@ module.exports  = {
                 },
             }
         },
-        runtimeChunk: true,
-        minimizer: [
-            new UglifyJsPlugin({
-                cache: true,
-                parallel: true,
-                uglifyOptions: {
-                    compress: true,
-                    ecma: 5,
-                    mangle: false
-                },
-                sourceMap: true
-            })
-        ]
+        runtimeChunk: true
     },
     plugins: [
         new webpack.ProvidePlugin({
