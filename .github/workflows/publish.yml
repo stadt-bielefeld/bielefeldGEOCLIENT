@@ -8,7 +8,6 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  ANOL_COMMIT_HASH: 2cb346052f6c37a00bebfb0189c4049dafd44f5b
 
 jobs:
   build-and-push-image:
@@ -41,8 +40,6 @@ jobs:
         with:
           context: .
           push: true
-          build-args: |
-            ANOL_COMMIT_HASH=${{ env.ANOL_COMMIT_HASH }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
