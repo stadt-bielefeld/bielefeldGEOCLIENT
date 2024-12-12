@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const CopyPlugin = require("copy-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports  = {
     devtool: 'eval-source-map',
@@ -12,9 +13,9 @@ module.exports  = {
         vendor: ['angular', 'jquery', 'angular-ui-bootstrap']
     },
     output: {
-        filename: '[name].bundle.js',
-        path: path.resolve(__dirname, './munimap/static/js'),
-        chunkFilename: '[name].bundle.js',
+        filename: 'js/[name].bundle.js',
+        path: path.resolve(__dirname, './munimap/static'),
+        chunkFilename: 'js/[name].bundle.js',
         publicPath: '/',
     },
     resolve: {
@@ -33,7 +34,7 @@ module.exports  = {
                 use: {
                     loader: 'file-loader',
                     options: {
-                        name: 'ace-builds/[name].js'
+                        name: 'js/ace-builds/[name].js'
                     }
                 }
             },
@@ -50,6 +51,17 @@ module.exports  = {
                         presets: ['@babel/env']
                     }
                 }
+            },
+            {
+                test: /\.s[ac]ss$/i,
+                use: [
+                    // Extract CSS into own files
+                    MiniCssExtractPlugin.loader,
+                    // Translates CSS into CommonJS
+                    "css-loader",
+                    // Compiles Sass to CSS
+                    "sass-loader",
+                ],
             }
         ]
     },
@@ -67,6 +79,9 @@ module.exports  = {
         runtimeChunk: true
     },
     plugins: [
+        new MiniCssExtractPlugin({
+            filename: 'css/[name].css'
+        }),
         new webpack.ProvidePlugin({
           'window.jQuery': 'jquery',
           $: 'jquery',
@@ -74,6 +89,7 @@ module.exports  = {
         }),
         new CopyPlugin({
             patterns: [
+                { from: "./munimap/frontend/css", to: path.resolve(__dirname, './munimap/static/css') },
                 { from: "./munimap/frontend/img", to: path.resolve(__dirname, './munimap/static/img') },
                 { from: "./munimap/frontend/fonts", to: path.resolve(__dirname, './munimap/static/fonts') },
                 { from: "./munimap/frontend/translations", to: path.resolve(__dirname, './munimap/static/translations') }
