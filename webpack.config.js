@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports  = {
     devtool: 'eval-source-map',
@@ -70,6 +71,13 @@ module.exports  = {
           'window.jQuery': 'jquery',
           $: 'jquery',
           jQuery: 'jquery',
+        }),
+        new CopyPlugin({
+            patterns: [
+                { from: "./munimap/frontend/img", to: path.resolve(__dirname, './munimap/static/img') },
+                { from: "./munimap/frontend/fonts", to: path.resolve(__dirname, './munimap/static/fonts') },
+                { from: "./munimap/frontend/translations", to: path.resolve(__dirname, './munimap/static/translations') }
+            ],
         })
     ]
 };
