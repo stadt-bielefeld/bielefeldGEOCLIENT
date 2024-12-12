@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col-xs-12">
-    <h4>{$ _('Legitimate interest') $}</h4>
+    <h4>{$ _('Legitimate interest') $}</h4>
     <div ng-repeat="log in logs">
-        <a class="btn btn-default btn-xs" 
-            ng-href="{$ url_for('admin.download_alkis_log', _external=True) $}{{log}}?time={{date}}" 
+        <a class="btn btn-default btn-xs"
+            ng-href="{$ url_for('admin.download_alkis_log', _external=True) $}{{log}}?time={{date}}"
             target="_blank">
-            {{ log }}
+            {{ log }}
         </a>
         <confirm class="btn btn-danger btn-xs"
             on-confirm="removeLog(log)"

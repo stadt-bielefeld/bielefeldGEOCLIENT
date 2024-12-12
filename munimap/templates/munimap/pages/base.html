@@ -46,19 +46,19 @@
             {% if not current_user.is_anonymous %}
               <li>
                 <a href="{$ url_for('user.logout') $}">
-                  {$ _('Logout') $}
+                  {$ _('Logout') $}
                 </a>
-                ({$ current_user.name $})
+                ({$ current_user.name $})
               </li>
             {% endif %}
             <li>
             <a href="{$ url_for('frontend.pages', name='about') $}">
-              {$ _('About') $}
+              {$ _('About') $}
             </a>
             </li>
             <li>
               <a href="{$ url_for('frontend.pages', name='nutzungsbedingungen') $}">
-                {$ _('Terms of Use') $}
+                {$ _('Terms of Use') $}
               </a>
             </li>
           </ul>
