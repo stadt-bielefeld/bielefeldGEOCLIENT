@@ -56,10 +56,6 @@ class DefaultConfig(object):
     # before checking this directory.
     CUSTOM_STATIC_DIR = '/opt/etc/munimap/custom_static'
 
-    ASSETS_DEBUG = False
-    ASSETS_BUNDLES_CONF = path.join(path.dirname(__file__), 'asset_bundles.yaml')
-    ASSETS_MERGE_SASS = False
-
     DEFAULT_APP_CONFIG = 'default-config.yaml'
 
     TMP_DIR = '/tmp'
