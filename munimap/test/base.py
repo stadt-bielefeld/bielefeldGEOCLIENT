@@ -6,14 +6,13 @@ from munimap.application import create_app
 from munimap.config import TestConfig
 import sqlalchemy as sa
 
-from munimap.extensions import db, assets
+from munimap.extensions import db
 from munimap.queue.queue import SqliteQueue
 
 from munimap.model import fixtures
 
 here = os.path.dirname(__file__)
 
-assets._named_bundles = {}
 app = create_app(config=TestConfig)
 
 

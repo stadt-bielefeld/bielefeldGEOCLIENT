@@ -56,10 +56,6 @@ class DefaultConfig(object):
     # before checking this directory.
     CUSTOM_STATIC_DIR = '/opt/etc/munimap/custom_static'
 
-    ASSETS_DEBUG = False
-    ASSETS_BUNDLES_CONF = path.join(path.dirname(__file__), 'asset_bundles.yaml')
-    ASSETS_MERGE_SASS = False
-
     DEFAULT_APP_CONFIG = 'default-config.yaml'
 
     TMP_DIR = '/tmp'
@@ -101,9 +97,9 @@ class DefaultConfig(object):
     DRAW_ICONS_SUB_DIR = 'draw'
     DRAW_ICONS_CONFIG_FILE = 'draw_icons.yaml'
 
-    MAP_ICONS_DIR = '/opt/etc/munimap/bielefeld/static/img/icons'
-    MAPFISH_ICONS_DIR = '/opt/etc/munimap/bielefeld/static/img/icons'
-    MAPFISH_CLI_ICONS_DIR = '/opt/etc/munimap/bielefeld/static/img/icons'
+    MAP_ICONS_DIR = '/opt/etc/munimap/bielefeld/frontend/img/icons'
+    MAPFISH_ICONS_DIR = '/opt/etc/munimap/bielefeld/frontend/img/icons'
+    MAPFISH_CLI_ICONS_DIR = '/opt/etc/munimap/bielefeld/frontend/img/icons'
 
     GEOJSON_DATA_PATH = './geojson/'
 

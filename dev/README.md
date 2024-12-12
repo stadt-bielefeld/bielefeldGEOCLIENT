@@ -104,7 +104,7 @@ npm start
       ```
   - As long as the custom print layouts are still using the mapfish cli, we need to copy the icons to the mapfish config dir:
       ```
-       cp -r ../munimap/static/img/icons/* configs/mapfish/icons/
+       cp -r ../munimap/frontend/img/icons/* configs/mapfish/icons/
       ```
   - Install language support
     - `python -c "import hyphen.dictools; hyphen.dictools.install('de')"`

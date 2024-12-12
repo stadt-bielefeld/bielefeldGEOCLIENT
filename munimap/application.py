@@ -2,7 +2,6 @@
 
 
 import os
-import fnmatch
 import sys
 import locale
 import logging
@@ -10,14 +9,11 @@ import tempfile
 from logging.handlers import RotatingFileHandler
 
 import jinja2
-import sass
 import datetime
-import webassets.filter
 import traceback
-from tempfile import NamedTemporaryFile
 from threading import Lock
 
-from flask import Flask, send_from_directory, request as LocalProxyRequest, Request, \
+from flask import Flask, send_from_directory, request as LocalProxyRequest, \
     jsonify, redirect, url_for, make_response, render_template, \
     current_app
 from flask_babel import Babel
@@ -36,7 +32,7 @@ from munimap import model
 from munimap.query import pq
 from munimap.helper import request_for_static, nl2br, touch_last_changes_file
 from munimap.model import DummyUser, MBUser
-from munimap.extensions import db, login_manager, assets, mail
+from munimap.extensions import db, login_manager, mail
 
 
 def create_app(config=None, config_file=None):
@@ -139,7 +135,6 @@ def configure_extensions(app):
     mail.init_app(app)
     db.init_app(app)
     configure_login(app)
-    configure_assets(app)
     configure_logging(app)
     configure_i18n(app)
     configure_template_filters(app)
@@ -175,103 +170,6 @@ def configure_login(app):
         if user.is_disabled:
             return None
         return user
-
-
-def configure_assets(app):
-    assets.app = app
-    assets.init_app(app)
-
-    # store assets within PROJECT_DIR
-    if app.config.get('PROJECT_DIR'):
-        assets.url = '/static/assets'
-        assets.static_url_prefix = 'assets'
-        assets.append_path(app.static_folder)
-        assets.directory = os.path.join(app.config.get('PROJECT_DIR'), 'assets')
-
-        # access to fonts loaded by css files ( ../fonts in css)
-        @app.route('/static/assets/fonts/<path:filename>')
-        def static_fonts(filename):
-            return send_from_directory(
-                os.path.join(app.static_folder, 'fonts'),
-                filename)
-
-        # access to images loaded by css files ( ../img in css)
-        @app.route('/static/assets/img/<path:filename>')
-        def static_img(filename):
-            return send_from_directory(
-                os.path.join(app.static_folder, 'img'),
-                filename)
-
-        @app.route('/static/assets/<path:filename>')
-        def static_assets(filename):
-            return send_from_directory(assets.directory, filename)
-
-    if not app.debug:
-        assets.cache = True
-
-    class LibSassFilter(webassets.filter.Filter):
-        name = 'libsass'
-        max_debug_level = None
-
-        def input(self, _in, out, source_path, output_path, **kw):
-            out.write(_in.read())
-
-        def output(self, _in, out, **kwargs):
-            self._compile_sass(_in, out)
-
-        def _compile_sass(self, _in, out, cd=None):
-            f = NamedTemporaryFile(delete=False, suffix='.sass')
-            f.write(_in.read().encode('utf-8'))
-            f.close()
-            compiled = sass.compile(filename=f.name)
-
-            # remove temp file
-            os.remove(f.name)
-            out.write(compiled)
-
-    webassets.filter.register_filter(LibSassFilter)
-
-    def collect_project_files(folder, search_for):
-        # iterate through project folder and save project files
-        project_files = []
-        for root, dirnames, filenames in os.walk(folder):
-            for filename in fnmatch.filter(filenames, search_for):
-                project_files.append(os.path.join(root, filename))
-        return project_files
-
-    def assign_project_files(content_list, project_files):
-        new_bundle_content = []
-        for index, content in enumerate(content_list):
-            # replace files from project or add the original one
-            overwrite = False
-            for project_file in project_files:
-                if content in project_file:
-                    new_bundle_content.append(project_file)
-                    overwrite = True
-            if not overwrite:
-                new_bundle_content.append(content)
-
-        # append individual files from project
-        for project_file in project_files:
-            if project_file not in new_bundle_content:
-                new_bundle_content.append(project_file)
-
-        return tuple(new_bundle_content)
-
-    try:
-        project_sass_files = collect_project_files(os.path.join(app.config.get('PROJECT_DIR'), 'static', 'sass'), '*.sass')
-
-        loader = webassets.loaders.YAMLLoader(app.config.get('ASSETS_BUNDLES_CONF'))
-        for name, bundle in loader.load_bundles().items():
-            if name == 'app-css' and app.config.get('ASSETS_MERGE_SASS'):
-                # check if project overwrite some sass files
-                bundle.contents = assign_project_files(list(bundle.contents), project_sass_files)
-
-            assets.register(name, bundle)
-    except webassets.env.RegisterError:
-        # ignore errors when registering bundles multiple times
-        if not app.testing:
-            raise
 
 
 def configure_logging(app):
