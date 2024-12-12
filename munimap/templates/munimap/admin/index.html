@@ -3,9 +3,8 @@
 {% block javascript %}
     {$ super() $}
 
-    <script type="text/javascript" src="url_for('static', filename='js/vendor.bundle.js')"></script>
-    <script type="text/javascript" src="url_for('static', filename='js/runtime~admin.bundle.js')"></script>
-    <script type="text/javascript" src="url_for('static', filename='js/admin.bundle.js')"></script>
+    <script type="text/javascript" src="{$ url_for('static', filename='js/vendor.bundle.js') $}"></script>
+    <script type="text/javascript" src="{$ url_for('static', filename='js/admin.bundle.js') $}"></script>
 
     <script type="text/javascript">
         angular.module('munimapAdmin')
