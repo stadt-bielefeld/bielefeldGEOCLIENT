@@ -1,3 +1,15 @@
+@import "helpers/variables"
+@import "helpers/mixins"
+@import "helpers/media_queries"
+@import "helpers/placeholders"
+
+@import "components/digitize"
+@import "components/general"
+@import "components/geoeditor"
+@import "components/map"
+@import "components/pages"
+@import "components/sidebar"
+@import "components/timetable"
 
 /* Add additionaml media query to show on mobile devices */
 
@@ -308,3 +320,212 @@
   .tooltip + .btn,
   .tooltip + .btn-group
     margin-left: -1px
+
+
+// TODO: is this also needed in admin?
+
+$sidebar-header-height: 4em
+$sidebar-header-link-height: 2.5em
+$sidebar-header-scale-height: 2.8em
+$sidebar-footer-height: 7em
+$panel-heading-color: #eee
+
+.side-bar
+  .sidebar-header
+    text-align: left
+    img
+      &.single-app-link-logo
+        height: 5em
+        margin: 5px
+      &.top-logo
+        width: auto
+        height: 43px
+        display: inline-block
+        vertical-align: top
+      &.app-link-logo
+        width: auto
+        margin-top: 7px
+        height: 28px
+    span
+      height: 2.5em
+      line-height: 2.5em
+    span.title
+      height: 100%
+      line-height: 20px
+      font-weight: bold
+      font-family: Arial, serif
+      vertical-align: bottom
+      display: inline-block
+      padding-top: 23px
+      width: 220px
+
+    .transport-link-logo
+      width: 100%
+      height: 3em
+      background-color: $popup-transport-header-background-color
+    a
+      display: inline-block
+      color: $sidebar-text-color
+      font-size: 14px
+      text-decoration: none
+      margin-left: 0em
+    h1
+      font-size: 16px
+      width: 100%
+      display: inline-block
+      margin-left: 0.5em
+      margin-top: 0.5em
+      color: $sidebar-layer-active-text-color
+
+    .sidebar-closer
+      display: block
+      position: absolute
+      right: 0
+      top: 0
+      width: 2.5em
+      height: 2.5em
+      line-height: 2.5em
+      margin-top: 0.25em
+      text-align: center
+      border-radius: 4px 0 0 4px
+      background-color: $panel-heading-color
+
+
+  .sidebar-footer
+    height: auto
+    height: $sidebar-footer-height
+    ul
+      li:first-child
+        margin-bottom: 1em
+
+  .sidebar-content
+    height: calc(100% - #{$sidebar-header-height + $sidebar-footer-height + $sidebar-header-link-height})
+    &.hide-link
+      height: calc(100% - #{$sidebar-header-height + $sidebar-footer-height})
+    &.with-scale
+      height: calc(100% - #{$sidebar-header-height + $sidebar-footer-height + $sidebar-header-link-height + $sidebar-header-scale-height})
+    &.with-scale.hide-link
+      height: calc(100% - #{$sidebar-header-height + $sidebar-footer-height + $sidebar-header-scale-height})
+    .panel-group
+      margin-bottom: 0
+      .panel-default
+        .panel-heading
+          background-color: $panel-heading-color
+          &:hover
+            background-color: $panel-heading-color
+          span:last-child
+            line-height: inherit
+      .panel-default.panel-open
+        .panel-heading
+          background-color: $sidebar-layer-active-text-color
+          border-color: darken($sidebar-layer-active-text-color, 10)
+          opacity: 0.8
+          .panel-title
+            color: white
+            font-weight: bold
+          .glyphicon
+            color: white
+
+    .overlay-layerswitcher
+      .overlay-item
+        .layer-title
+          color: $sidebar-layer-active-text-color
+          width: 180px
+          span
+            color: inherit
+        .show-legend
+          background-image: url('../img/info-active.svg')
+        .inactive
+          .show-legend
+            background-image: url('../img/info.svg')
+        .group-item
+          span.close-layer-group
+            color: rgba(0, 0, 0, 0.6)
+            &:before
+              content: "\e259"
+          .group-layers-container .child-title span
+            width: 170px
+
+    .anol-print
+      button.start-print-button
+        width: 100%
+
+    .anol-catalog
+      .layer-title
+        color: $sidebar-layer-active-text-color
+      .show-legend
+        background-image: url('../img/info-active.svg')
+      .inactive
+        .show-legend
+          background-image: url('../img/info.svg')
+
+
+.transport-map
+  .button-layer-wrapper
+    .btn-group
+      button
+        &.active, &:hover
+          border-color: #002680
+          color: white
+          &:last-child
+            background-color: #002680
+          &:first-child
+            border-color: #E52629
+            color: #e52629
+
+.anol-popup-container
+  max-width: 100%
+  @media (max-width: $screen-xs)
+    &.mobile-fullscreen
+      height: 85%
+
+.anol-attribution
+  z-index: 10
+  button.anol-info-white
+    background-image: url('../img/attribution-symbol.svg')
+    background-size: 0.9em 0.9em
+  ul
+    background-color: white
+    padding: 0.35em
+    margin-top: 0
+    margin-left: 0
+    border-radius: 4px 0 0 4px
+
+.anol-searchbox
+  width: 300px
+
+.popover.tour .tour-content .popover-title
+  color: rgb(227,0,20)
+
+@media (max-width: $screen-xs)
+  .anol-searchbox
+    width: 75%
+  .side-bar
+    .sidebar-header
+      span.title
+        width: 80%
+      .sidebar-content .overlay-layerswitcher
+        .overlay-item
+          .layer-title
+            width: 270px
+          .group-item .group-layers-container .child-title span
+            width: 260px
+
+
+@media (max-width: $screen-xxs)
+  .anol-searchbox
+    width: 70%
+  .side-bar .sidebar-content .overlay-layerswitcher
+    .overlay-item
+      .layer-title
+        width: 180px
+      .group-item .group-layers-container .child-title span
+        width: 170px
+
+@media (max-width: $screen-xs)
+  .popover.tour
+    max-width: 280px
+    width: 280px
+    .tour-content .popover-content
+      max-height: 300px
+      overflow: auto
