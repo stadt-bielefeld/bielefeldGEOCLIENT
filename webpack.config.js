@@ -6,10 +6,22 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports  = {
     devtool: 'eval-source-map',
     entry: {
-        app: './munimap/frontend/js/app.js',
-        transport: './munimap_transport/munimap_transport/frontend/js/app.js',
-        admin: './munimap/frontend/js/admin/admin.js',
-        static_app:  './munimap/frontend/js/static-app.js',
+        app: {
+            import: './munimap/frontend/js/app.js',
+            dependOn: 'vendor',
+        },
+        transport: {
+            import: './munimap_transport/munimap_transport/frontend/js/app.js',
+            dependOn: 'vendor'
+        },
+        admin: {
+            import: './munimap/frontend/js/admin/admin.js',
+            dependOn: 'vendor'
+        },
+        static_app: {
+            import: './munimap/frontend/js/static-app.js',
+            dependOn: 'vendor'
+        },
         vendor: ['angular', 'jquery', 'angular-ui-bootstrap']
     },
     output: {
@@ -73,10 +85,9 @@ module.exports  = {
                     name: 'vendor',
                     test: 'vendor',
                     enforce: true
-                },
+                }
             }
-        },
-        runtimeChunk: true
+        }
     },
     plugins: [
         new MiniCssExtractPlugin({
