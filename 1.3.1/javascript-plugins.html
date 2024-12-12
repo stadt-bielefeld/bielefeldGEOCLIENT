@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JavaScript-Plugins &mdash; bielefeldGEOCLIENT / munimap  Dokumentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=245627df"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/translations.js?v=79cc9f76"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
+    <link rel="search" title="Suche" href="search.html" />
+    <link rel="next" title="Beispiel" href="example-config.html" />
+    <link rel="prev" title="Auswahllisten-Definition" href="selectionlists-config.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            bielefeldGEOCLIENT / munimap
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="app.html">Anwendungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="default-config.html">App-Optionen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layer.html">Layer-Definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layers-config.html">Layer-Optionen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="selectionlists-config.html">Auswahllisten-Definition</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">JavaScript-Plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#neues-plugin-erstellen">Neues Plugin erstellen</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#registercommunicationplugin">registerCommunicationPlugin()</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#plugins-referenzieren">Plugins referenzieren</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="example-config.html">Beispiel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="print-index.html">Straßenindex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tour.html">Tour</a></li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Administrationsbereich</a></li>
+<li class="toctree-l1"><a class="reference internal" href="url-parameter.html">URL-Parameter</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">bielefeldGEOCLIENT / munimap</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">JavaScript-Plugins</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/javascript-plugins.rst.txt" rel="nofollow"> Quelltext anzeigen</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="javascript-plugins">
+<span id="id1"></span><h1>JavaScript-Plugins<a class="headerlink" href="#javascript-plugins" title="Link to this heading"></a></h1>
+<p>JavaScript Plugins ermöglichen das Erweitern der Munimap Anwendung um nutzergenerierte Funktionalität.
+Hierdurch wird Administratoren die Möglichkeit gegeben, eigene JavaScript Funktionen zu erstellen und in Munimap einzubinden.
+Die erzeugten Funktionen können ausschließlich mittels PostMessage getriggert werden.</p>
+<section id="neues-plugin-erstellen">
+<h2>Neues Plugin erstellen<a class="headerlink" href="#neues-plugin-erstellen" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>JavaScript Plugins können im Administrationsbereich erstellt werden. Dazu in der Seitennavigation auf den Reiter
+<code class="docutils literal notranslate"><span class="pre">Plugins</span></code> klicken.</p>
+</div>
+<p>Jedes Plugin muss folgende Konventionen einhalten:</p>
+<ul class="simple">
+<li><p>Ein Plugin muss immer die Funktion <code class="docutils literal notranslate"><span class="pre">registerCommunicationPlugin('&lt;eventName&gt;',</span> <span class="pre">&lt;PluginFunktion&gt;)</span></code> genau ein Mal aufrufen.
+Weitere Funktionsaufrufe sind nicht gestattet.</p></li>
+<li><p>Die Logik eines Plugins muss innerhalb der <code class="docutils literal notranslate"><span class="pre">&lt;PluginFunktion&gt;</span></code> definiert werden.</p></li>
+<li><p>Die PostMessage-Events <code class="docutils literal notranslate"><span class="pre">munimapReady</span></code>, <code class="docutils literal notranslate"><span class="pre">finishGeoEditing</span></code> und <code class="docutils literal notranslate"><span class="pre">printGeoEditing</span></code> können nicht durch Plugins überschrieben werden.</p></li>
+</ul>
+<p>Soll bspw. ein Plugin für das PostMessage-Event <cite>zoomToBbox</cite> erstellt werden, könnte dies folgendermaßen aussehen:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">registerCommunicationPlugin</span><span class="p">(</span><span class="s1">&#39;zoomToBbox&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span><span class="w"> </span><span class="nx">context</span><span class="p">,</span><span class="w"> </span><span class="nx">postMessage</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="c1">// Zoome auf die in value spezifizierte BoundingBox</span>
+<span class="w">  </span><span class="nx">context</span><span class="p">.</span><span class="nx">map</span><span class="p">.</span><span class="nx">getView</span><span class="p">().</span><span class="nx">fit</span><span class="p">(</span><span class="nx">value</span><span class="p">.</span><span class="nx">bbox</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Antworte der Anwendung, dass die Karte</span>
+<span class="w">  </span><span class="c1">// jetzt genau auf den Ausschnitt der BoundBox ausgerichtet ist</span>
+<span class="w">  </span><span class="nx">postMessage</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">action</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;zoomToBbox_response&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">success</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">});</span>
+
+<span class="p">});</span>
+</pre></div>
+</div>
+<section id="registercommunicationplugin">
+<h3>registerCommunicationPlugin()<a class="headerlink" href="#registercommunicationplugin" title="Link to this heading"></a></h3>
+<p>Diese Funktion registriert das Plugin für das angegebene PostMessage-Event. Jedes JavaScript Plugin darf
+ausschließlich den Aufruf zu <code class="docutils literal notranslate"><span class="pre">registerCommunicationPlugin()</span></code> enthalten.</p>
+<p><code class="docutils literal notranslate"><span class="pre">registerCommunicationPlugin()</span></code> hat folgende Funktionssignatur:</p>
+<p><code class="docutils literal notranslate"><span class="pre">registerCommunicationPlugin(eventName,</span> <span class="pre">eventFunction(value,</span> <span class="pre">context,</span> <span class="pre">postMessage))</span></code>.</p>
+<blockquote>
+<div><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">eventName</span></code></dt><dd><p>String. Die Referenz auf das zu lauschende PostMessage-Event.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">eventFunction</span></code></dt><dd><p>Die Funktion, die ausgeführt wird, wenn das PostMessage-Event <code class="docutils literal notranslate"><span class="pre">eventName</span></code> von einer aufrufenden Anwendung gefeuert wird.</p>
+<p>Folgende Argumente werden der Funktion hinzugefügt:</p>
+<blockquote>
+<div><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">value</span></code></dt><dd><p>Der Wert, der über PostMessage mitgesendet wurde. Die Struktur von <code class="docutils literal notranslate"><span class="pre">value</span></code> wird von der Anwendung spezifiziert,
+die das jeweilige PostMessage-Event feuert.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">context</span></code></dt><dd><p>Ein Objekt, welches Kontextvariablen der Munimap Anwendung bereitstellt. Dazu gehören:</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">appName</span></code></dt><dd><p>Der Name der Munimap Anwendung</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">map</span></code></dt><dd><p>Das Map-Objekt der Munimap Anwendung</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">mapSrs</span></code></dt><dd><p>Das Koordinatenreferenzsystem der Munimap Anwendung</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">olGeoJSON</span></code></dt><dd><p>Die OpenLayers GeoJSON format Klasse. Details in <a class="reference external" href="https://openlayers.org/en/v5.3.0/apidoc/module-ol_format_GeoJSON-GeoJSON.html">OpenLayers Dokumentation</a></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">olWKT</span></code></dt><dd><p>Die OpenLayers WKT format Klasse. Details in <a class="reference external" href="https://openlayers.org/en/v5.3.0/apidoc/module-ol_format_WKT-WKT.html">OpenLayers Dokumentation</a></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ol</span></code></dt><dd><p>Vollständiger Zugriff auf alle OpenLayers Funktionalitäten. Details in <a class="reference external" href="https://openlayers.org/en/v5.3.0/apidoc/">OpenLayers Dokumentation</a></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">LayersService</span></code></dt><dd><p>Der anol LayersService. Mit Hilfe von <code class="docutils literal notranslate"><span class="pre">.addSystemLayer</span></code> lassen sich Layer hinzufügen. Neue Layer können mit den anol Funktionalitäten erzeugt werden: <a class="reference external" href="https://github.com/terrestris/anol/tree/master/src/anol/layer">https://github.com/terrestris/anol/tree/master/src/anol/layer</a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">MapService</span></code></dt><dd><p>Der anol MapService.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">DrawService</span></code></dt><dd><p>Der anol DrawService.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">PrintPageService</span></code></dt><dd><p>Der anol PrintPageService.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">PrintService</span></code></dt><dd><p>Der anol PrintService.</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">postMessage</span></code></dt><dd><p>Eine Funktion, die aufgerufen werden kann um eine Antwort an die Anwendung zu schicken, die das PostMessage-Event
+gefeuert hat. Dies geschieht ebenfalls mittels PostMessage.
+<code class="docutils literal notranslate"><span class="pre">postMessage</span></code> erwartet als Argument ein Objekt mit folgenden Attributen:</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">action</span></code></dt><dd><p>Der Name der PostMessage-Events, das gefeuert werden soll</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">value</span></code></dt><dd><p>Ein Objekt mit beliebigem Inhalt, welches die Antwortdaten enthält</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+</section>
+<section id="plugins-referenzieren">
+<h2>Plugins referenzieren<a class="headerlink" href="#plugins-referenzieren" title="Link to this heading"></a></h2>
+<p>JavaScript Plugins können in den App-Optionen unter <code class="docutils literal notranslate"><span class="pre">communication</span></code> durch ihren Pluginnamen referenziert werden.
+Genaue Details dazu finden sich unter <a class="reference internal" href="default-config.html#defaultconf-communication"><span class="std std-ref">Communication</span></a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="selectionlists-config.html" class="btn btn-neutral float-left" title="Auswahllisten-Definition" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="example-config.html" class="btn btn-neutral float-right" title="Beispiel" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Stadt Bielefeld.
+      <span class="lastupdated">Zuletzt aktualisiert am 2024-12-12.
+      </span></p>
+  </div>
+
+  Erstellt mit <a href="https://www.sphinx-doc.org/">Sphinx</a> mit einem
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    bereitgestellt von <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    Version: 1.3.1
+    <span class="fa fa-caret-down"></span>
+  </span>
+    <div class="rst-other-versions">
+        <dl id="versions-list">
+            <dt>Versionen</dt>
+            <dd><a href="/index.html"></a></dd>
+        </dl>
+    </div>
+    <script>
+        fetch('../config/versions.json')
+            .then(response => {
+                return response.json();
+            })
+            .then(versions => {
+                const list = document.querySelector('#versions-list');
+                for (const version of versions) {
+                    const a = document.createElement('a');
+                    a.href = `https://stadt-bielefeld.github.io/bielefeldGEOCLIENT/${version}/`;
+                    a.textContent = version;
+                    const dd = document.createElement('dd');
+                    dd.append(a);
+                    list.append(dd);
+                }
+            });
+    </script>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
