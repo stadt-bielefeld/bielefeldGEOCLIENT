@@ -71,7 +71,7 @@
 
 {% block javascript %}
   {$ super() $}
-  <script type="text/javascript" src="{$ url_for('static', filename='dist/vendor.bundle.js') $}"></script>
-  <script type="text/javascript" src="{$ url_for('static', filename='dist/static_app.bundle.js') $}"></script>
-  <script type="text/javascript" src="{$ url_for('static', filename='dist/runtime~static_app.bundle.js') $}"></script>
-  {% endblock %}
+  <script type="text/javascript" src="{$ url_for('static', filename='js/vendor.bundle.js') $}"></script>
+  <script type="text/javascript" src="{$ url_for('static', filename='js/static_app.bundle.js') $}"></script>
+  <script type="text/javascript" src="{$ url_for('static', filename='js/runtime~static_app.bundle.js') $}"></script>
+{% endblock %}

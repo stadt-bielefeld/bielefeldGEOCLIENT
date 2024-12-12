@@ -7,7 +7,6 @@ from flask import (
 )
 from flask.wrappers import Response
 
-from munimap.extensions import assets
 from munimap.helper import load_app_config
 from munimap.app_layers_def import prepare_layers_def
 
@@ -24,9 +23,6 @@ transport = Blueprint(
     static_url_path='/static',
     url_prefix='/mobiel'
 )
-
-# add assets for transport application
-assets.append_path(transport.static_folder)
 
 
 @transport.route('/')

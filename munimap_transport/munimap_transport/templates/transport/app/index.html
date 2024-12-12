@@ -45,9 +45,9 @@
   </script>
 
   {$ super() $}
-  {% assets "transport-js" %}
-      <script type="text/javascript" src="{$ ASSET_URL $}"></script>
-  {% endassets %}   
+  <script type="text/javascript" src="{$ url_for('static', filename='js/runtime~transport.bundle.js') $}"></script>
+  <script type="text/javascript" src="{$ url_for('static', filename='js/transport.bundle.js') $}"></script>
+
   <script type="text/javascript">
     angular.module('munimapBase')
     .constant('KeyZoomText', '{$ _('Use ctrl + wheel to zoom') $}')

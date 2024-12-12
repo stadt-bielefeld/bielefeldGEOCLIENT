@@ -2,13 +2,11 @@
 
 {% block javascript %}
     {$ super() $}
-    {% assets "vendor-libs-js" %}
-        <script type="text/javascript" src="{$ ASSET_URL $}"></script>
-    {% endassets %}
 
-    {% assets "admin-js" %}
-        <script type="text/javascript" src="{$ ASSET_URL $}"></script>
-    {% endassets %}
+    <script type="text/javascript" src="url_for('static', filename='js/vendor.bundle.js')"></script>
+    <script type="text/javascript" src="url_for('static', filename='js/runtime~admin.bundle.js')"></script>
+    <script type="text/javascript" src="url_for('static', filename='js/admin.bundle.js')"></script>
+
     <script type="text/javascript">
         angular.module('munimapAdmin')
         .constant('CSRFToken', '{$ group_form.csrf_token.current_token $}')

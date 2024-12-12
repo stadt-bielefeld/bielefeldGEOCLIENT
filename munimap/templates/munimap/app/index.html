@@ -113,9 +113,8 @@
   </script>
   {$ super() $}
 
-  {% assets "app-js" %}
-     <script type="text/javascript" src="{$ ASSET_URL $}"></script>
-  {% endassets %}
+  <script type="text/javascript" src="{$ url_for('static', filename='js/runtime~app.bundle.js') $}"></script>
+  <script type="text/javascript" src="{$ url_for('static', filename='js/app.bundle.js') $}"></script>
 
   <script type="text/javascript">
     var selectedSettings = {$ settings|tojson $};
