@@ -4,7 +4,6 @@
 .DS_Store
 .idea/
 .vagrant
-.webassets-cache
 dev/anol
 dev/configs/mapfish/icons/
 dev/configs/mapfish/*.yaml
@@ -28,8 +27,6 @@ docker/munimap-docs/build/
 munimap/frontend/build
 munimap/test/logs/*.log
 node_modules
-projects/*/assets
-munimap/assets/
 *.code-workspace
 /docker/munimap-mapproxy/mapproxy_cache_data/
 /munimap/static/
