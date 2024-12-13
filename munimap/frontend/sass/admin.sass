@@ -1,9 +1,18 @@
+@import "helpers/variables"
+@import "helpers/mixins"
+@import "helpers/media_queries"
+@import "helpers/placeholders"
+
 $sidebar-width: 300px
 $highlight-color: #fcf8e3
 $header-height: 80px
 $header-line-height: 50px
 $header-search-line-height: 60px
 $header-font-size: 28px
+
+@import "components/general"
+@import "components/pages"
+@import "components/sidebar"
 
 // overwrite variables set in project.sass to get same look
 $sidebar-item-highlight-color: $sidebar-layer-active-text-color

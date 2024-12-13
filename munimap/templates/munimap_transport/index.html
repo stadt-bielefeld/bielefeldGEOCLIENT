@@ -1,6 +1,10 @@
 {% extends "munimap/app/base.html" %}
 {% from "munimap/macros/layers.html" import create_layers %}
 
+{% block header %}
+  <link href="{$ url_for('static', filename='css/transport.css') $}" rel="stylesheet" type="text/css">
+{% endblock %}
+
 {% block body %}
   <div class="app-content hide"
        ng-controller="transportController"
@@ -24,11 +28,11 @@
     </script>
 
     {% block sidebar %}
-      {% include 'transport/sidebar.html' %}
+      {% include 'munimap_transport/sidebar.html' %}
     {% endblock %}
 
     {% block map %}
-      {% include 'transport/map.html' %}
+      {% include 'munimap_transport/map.html' %}
     {% endblock %}
   </div>
 

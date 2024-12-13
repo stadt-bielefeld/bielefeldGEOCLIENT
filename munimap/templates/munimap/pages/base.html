@@ -1,5 +1,10 @@
 {% extends "munimap/base.html" %}
 
+{% block header %}
+<!-- TODO: we could generate specific css just for pages -->
+<link href="{$ url_for('static', filename='css/app.css') $}" rel="stylesheet" type="text/css">
+{% endblock %}
+
 {% block body %}
 
   {% block navbar %}
