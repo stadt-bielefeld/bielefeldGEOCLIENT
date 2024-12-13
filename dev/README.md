@@ -35,7 +35,7 @@ wget -q -O- https://repo1.maven.org/maven2/org/mapfish/print/print-cli/3.9.0/pri
 cd ../../
 git clone git@github.com:terrestris/anol.git
 cd anol/
-npm i
+npm i --omit=dev
 ```
 
 * Install (and watch) the bielefeldGEOCLIENT frontend

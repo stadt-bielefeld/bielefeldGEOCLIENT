@@ -1,4 +1,4 @@
-ARG ANOL_COMMIT_HASH=08b57ecd563a1add5b4bdacdd026ffe4df603d20
+ARG ANOL_COMMIT_HASH=63de4627b24c5b886352858c2e52f60dcc3f16c0
 
 FROM node:22-alpine@sha256:6e80991f69cc7722c561e5d14d5e72ab47c0d6b6cfb3ae50fb9cf9a7b30fdf97 AS clientbuilder
 
@@ -11,7 +11,7 @@ RUN cd /tmp/anol \
     && unzip anol.zip \
     && mv anol-$ANOL_COMMIT_HASH /anol
 
-RUN cd /anol && npm ci
+RUN cd /anol && npm ci --omit=dev
 
 RUN mkdir -p /app
 
