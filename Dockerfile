@@ -16,7 +16,6 @@ RUN cd /anol && npm ci
 RUN mkdir -p /app
 
 COPY ./munimap /app/munimap
-COPY ./munimap_transport /app/munimap_transport
 COPY ./package.json /app/package.json
 COPY ./package-lock.json /app/package-lock.json
 COPY ./webpack.config.js /app/webpack.config.js
@@ -41,14 +40,12 @@ RUN pip install --upgrade pip \
 RUN mkdir -p /pkg
 # We have to build the client bevor packing everything into a python package
 COPY --from=clientbuilder /app/munimap /pkg/munimap
-COPY --from=clientbuilder /app/munimap_transport /pkg/munimap_transport
 
 COPY ./pyproject.toml /pkg/pyproject.toml
 
 WORKDIR /pkg
 
 RUN python -m build
-RUN cd munimap_transport && python -m build
 
 
 
@@ -142,9 +139,8 @@ RUN pip install --upgrade pip && \
 
 COPY ./gunicorn.conf /opt/etc/munimap/gunicorn.conf
 COPY --from=builder /pkg/dist/munimap-*.whl /opt/pkgs
-COPY --from=builder /pkg/munimap_transport/dist/munimap_transport-*.whl /opt/pkgs
 
-RUN pip install /opt/pkgs/munimap-*.whl /opt/pkgs/munimap_transport-*.whl
+RUN pip install /opt/pkgs/munimap-*.whl
 
 # Hack to disable https for following script.
 RUN PYTHONHTTPSVERIFY=0 python -c "import hyphen.dictools; hyphen.dictools.is_installed('de_DE') or hyphen.dictools.install('de_DE')"

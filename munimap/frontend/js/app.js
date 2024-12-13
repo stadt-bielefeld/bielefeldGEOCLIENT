@@ -44,9 +44,9 @@ require('./alkis/official.js');
 
 require('./munimap-config.js');
 
-require('../../../munimap_transport/munimap_transport/frontend/js/layers.js');
-require('../../../munimap_transport/munimap_transport/frontend/js/transport-controller.js');
-require('../../../munimap_transport/munimap_transport/frontend/js/route-controller.js');
-require('../../../munimap_transport/munimap_transport/frontend/js/transport-api-service.js');
-require('../../../munimap_transport/munimap_transport/frontend/js/timetable-controller.js');
+require('./munimap_transport/layers.js');
+require('./munimap_transport/transport-controller.js');
+require('./munimap_transport/route-controller.js');
+require('./munimap_transport/transport-api-service.js');
+require('./munimap_transport/timetable-controller.js');
 

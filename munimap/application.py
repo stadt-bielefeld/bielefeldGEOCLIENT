@@ -96,6 +96,7 @@ def create_app(config=None, config_file=None):
     from munimap.views.alkis import alkis
     from munimap.views.api import api
     from munimap.views.digitize import digitize
+    from munimap.views.transport import transport
 
     app.register_blueprint(frontend)
     app.register_blueprint(munimap)
@@ -106,15 +107,7 @@ def create_app(config=None, config_file=None):
     app.register_blueprint(alkis)
     app.register_blueprint(api)
     app.register_blueprint(digitize)
-
-    try:
-        from munimap_transport.views import transport
-    except ImportError as exc:
-        if 'munimap_transport' not in str(exc):
-            app.logger.error(traceback.format_exc(exc))
-    else:
-        app.logger.info('munimap_transport loaded')
-        app.register_blueprint(transport)
+    app.register_blueprint(transport)
 
     with app.app_context():
         load_layers(app, app.config.get('LAYERS_CONF_DIR'), True)

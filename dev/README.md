@@ -100,7 +100,6 @@ npm start
       ```
       pip install -r requirements.txt
       pip install -e ../
-      pip install --no-index -e ../munimap_transport/
       ```
   - As long as the custom print layouts are still using the mapfish cli, we need to copy the icons to the mapfish config dir:
       ```

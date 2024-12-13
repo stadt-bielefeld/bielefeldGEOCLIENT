@@ -10,9 +10,9 @@ from flask.wrappers import Response
 from munimap.helper import load_app_config
 from munimap.app_layers_def import prepare_layers_def
 
-from munimap_transport.timetables import csv_to_timetable_json, create_night_timetable_json
+from munimap.munimap_transport.timetables import csv_to_timetable_json, create_night_timetable_json
 
-from munimap_transport.queries import query_stations, query_route
+from munimap.munimap_transport.queries import query_stations, query_route
 
 
 transport = Blueprint(
@@ -30,7 +30,7 @@ def app():
     app_config = load_app_config('transport')
     layers_def = prepare_layers_def(app_config, current_app.layers)
     return render_template(
-        'transport/app/index.html',
+        'munimap_transport/index.html',
         layers_def=layers_def,
         app_config=app_config,
         timetable_documents=timetable_documents(),

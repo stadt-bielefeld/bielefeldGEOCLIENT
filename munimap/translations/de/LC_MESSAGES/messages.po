@@ -974,12 +974,12 @@ msgid "Remove feature"
 msgstr "Geometrie löschen"
 
 #: ../munimap/templates/munimap/app/index.html:124
-#: ../munimap_transport/munimap_transport/templates/transport/app/index.html:53
+#: ../munimap/templates/munimap_transport/transport/index.html:53
 msgid "Use ctrl + wheel to zoom"
 msgstr "Zum Zoomen Strg+Scrollen verwenden"
 
 #: ../munimap/templates/munimap/app/index.html:125
-#: ../munimap_transport/munimap_transport/templates/transport/app/index.html:54
+#: ../munimap/templates/munimap_transport/transport/index.html:54
 msgid "Use two fingers to move the map"
 msgstr "Zum Verschieben zwei Finger benutzen"
 
@@ -1008,38 +1008,38 @@ msgstr "Bearbeiten"
 
 #: ../munimap/templates/munimap/app/map.html:117
 #: ../munimap/templates/munimap/app/ng-templates/sidebar-header.html:3
-#: ../munimap_transport/munimap_transport/templates/transport/app/map.html:74
-#: ../munimap_transport/munimap_transport/templates/transport/app/ng-templates/sidebar-header.html:3
+#: ../munimap/templates/munimap_transport/transport/map.html:74
+#: ../munimap/templates/munimap_transport/transport/ng-templates/sidebar-header.html:3
 msgid "Close menu"
 msgstr "Menü schließen"
 
 #: ../munimap/templates/munimap/app/map.html:117
-#: ../munimap_transport/munimap_transport/templates/transport/app/map.html:74
+#: ../munimap/templates/munimap_transport/transport/map.html:74
 msgid "Open menu"
 msgstr "Menü öffnen"
 
 #: ../munimap/templates/munimap/app/map.html:129
-#: ../munimap_transport/munimap_transport/templates/transport/app/map.html:86
+#: ../munimap/templates/munimap_transport/transport/map.html:86
 msgid "Startposition"
 msgstr "Zurück zur Ausgangsposition"
 
 #: ../munimap/templates/munimap/app/map.html:250
-#: ../munimap_transport/munimap_transport/templates/transport/app/map.html:148
+#: ../munimap/templates/munimap_transport/transport/map.html:148
 msgid "UTM 32"
 msgstr "UTM 32"
 
 #: ../munimap/templates/munimap/app/map.html:251
-#: ../munimap_transport/munimap_transport/templates/transport/app/map.html:147
+#: ../munimap/templates/munimap_transport/transport/map.html:147
 msgid "WGS 84"
 msgstr "WGS 84"
 
 #: ../munimap/templates/munimap/app/map.html:252
-#: ../munimap_transport/munimap_transport/templates/transport/app/map.html:149
+#: ../munimap/templates/munimap_transport/transport/map.html:149
 msgid "Web Mercator"
 msgstr "Web Mercator"
 
 #: ../munimap/templates/munimap/app/map.html:266
-#: ../munimap_transport/munimap_transport/templates/transport/app/map.html:171
+#: ../munimap/templates/munimap_transport/transport/map.html:171
 msgid "Open Timetable"
 msgstr "Fahrplanauskunft öffnen"
 
@@ -1868,64 +1868,64 @@ msgstr "Von %(_from)s über %(via)s nach %(to)s"
 msgid "From %(_from)s to %(to)s"
 msgstr "Von %(_from)s nach %(to)s"
 
-#: ../munimap_transport/munimap_transport/templates/transport/app/map.html:134
+#: ../munimap/templates/munimap_transport/transport/map.html:134
 msgid "Restart tour"
 msgstr "Tour starten"
 
-#: ../munimap_transport/munimap_transport/templates/transport/app/map.html:160
+#: ../munimap/templates/munimap_transport/transport/map.html:160
 msgid "Menu"
 msgstr "Menü"
 
-#: ../munimap_transport/munimap_transport/templates/transport/app/map.html:160
+#: ../munimap/templates/munimap_transport/transport/map.html:160
 msgid "close"
 msgstr "schließen"
 
-#: ../munimap_transport/munimap_transport/templates/transport/app/map.html:160
+#: ../munimap/templates/munimap_transport/transport/map.html:160
 msgid "open"
 msgstr "öffnen"
 
-#: ../munimap_transport/munimap_transport/templates/transport/app/sidebar.html:4
+#: ../munimap/templates/munimap_transport/transport/sidebar.html:4
 msgid "Overlay layers"
 msgstr "Themen"
 
-#: ../munimap_transport/munimap_transport/templates/transport/app/sidebar.html:10
+#: ../munimap/templates/munimap_transport/transport/sidebar.html:10
 msgid "Search"
 msgstr "Suche"
 
-#: ../munimap_transport/munimap_transport/templates/transport/app/timetable.html:4
+#: ../munimap/templates/munimap_transport/transport/timetable.html:4
 msgid "Timetable"
 msgstr "Fahrplanauskunft"
 
-#: ../munimap_transport/munimap_transport/templates/transport/app/timetable.html:36
+#: ../munimap/templates/munimap_transport/transport/timetable.html:36
 msgid "From"
 msgstr "Von"
 
-#: ../munimap_transport/munimap_transport/templates/transport/app/timetable.html:39
-#: ../munimap_transport/munimap_transport/templates/transport/app/timetable.html:52
+#: ../munimap/templates/munimap_transport/transport/timetable.html:39
+#: ../munimap/templates/munimap_transport/transport/timetable.html:52
 msgid "Station"
 msgstr "Haltestelle"
 
-#: ../munimap_transport/munimap_transport/templates/transport/app/timetable.html:48
+#: ../munimap/templates/munimap_transport/transport/timetable.html:48
 msgid "To"
 msgstr "Nach"
 
-#: ../munimap_transport/munimap_transport/templates/transport/app/timetable.html:60
+#: ../munimap/templates/munimap_transport/transport/timetable.html:60
 msgid "Date"
 msgstr "Datum"
 
-#: ../munimap_transport/munimap_transport/templates/transport/app/timetable.html:69
+#: ../munimap/templates/munimap_transport/transport/timetable.html:69
 msgid "Time"
 msgstr "Uhrzeit"
 
-#: ../munimap_transport/munimap_transport/templates/transport/app/timetable.html:81
+#: ../munimap/templates/munimap_transport/transport/timetable.html:81
 msgid "Search connection"
 msgstr "Verbindung suchen"
 
-#: ../munimap_transport/munimap_transport/templates/transport/app/ng-templates/station-properties.html:11
+#: ../munimap/templates/munimap_transport/transport/ng-templates/station-properties.html:11
 msgid "Select station as start"
 msgstr "Haltestelle als Start übernehmen"
 
-#: ../munimap_transport/munimap_transport/templates/transport/app/ng-templates/station-properties.html:18
+#: ../munimap/templates/munimap_transport/transport/ng-templates/station-properties.html:18
 msgid "Select station as stop"
 msgstr "Haltestelle als Ziel übernehmen"
 

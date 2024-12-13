@@ -11,7 +11,7 @@ module.exports  = {
             dependOn: 'vendor',
         },
         transport: {
-            import: './munimap_transport/munimap_transport/frontend/js/app.js',
+            import: './munimap/frontend/js/munimap_transport/app.js',
             dependOn: 'vendor'
         },
         admin: {
