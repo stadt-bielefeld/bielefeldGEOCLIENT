@@ -1,3 +1,6 @@
+@use "../helpers/media_queries"
+@use "../helpers/variables"
+
 .timetable-control
     top: 10.5em
     left: 0.5em
@@ -18,7 +21,7 @@
   z-index: 2001
   &.bottom
     &:after
-      border-bottom-color: $popup-transport-header-background-color
+      border-bottom-color: variables.$popup-transport-header-background-color
   &.top
     &:after
       border-top-color: white
@@ -27,7 +30,7 @@
     white-space: normal
 
     .transport-content
-      background-color: $popup-transport-content-background-color
+      background-color: variables.$popup-transport-content-background-color
 
     .ref-badge
       border-radius: 4px
@@ -38,16 +41,16 @@
       line-height: 30px
 
     .badge.bus
-      background-color: $bus-badge-color
+      background-color: variables.$bus-badge-color
 
     .badge.tram
-      background-color: $tram-badge-color
+      background-color: variables.$tram-badge-color
 
     .badge.night
-      background-color: $night-badge-color
+      background-color: variables.$night-badge-color
 
     .badge.other-operator
-      background-color: $other-operator-badge-color !important
+      background-color: variables.$other-operator-badge-color !important
 
     h4,
     .transport-content,
@@ -57,7 +60,7 @@
       padding: 10px
 
     h4
-      background-color: $popup-transport-header-background-color
+      background-color: variables.$popup-transport-header-background-color
       color: white
       margin-top: 0px
       margin-bottom: 0px
@@ -66,20 +69,20 @@
         cursor: pointer
 
     .select-station-content
-      background-color: $popup-subroute-content-background-color
+      background-color: variables.$popup-subroute-content-background-color
       padding-top: 5px
       padding-bottom: 5px
 
     .subroute-content,
     .construction-content
-      background-color: $popup-subroute-content-background-color
+      background-color: variables.$popup-subroute-content-background-color
 
       li
         color: gray
         margin-bottom: 5px
         &::before
           content: " "
-          border-color: transparent $popup-transport-header-background-color
+          border-color: transparent variables.$popup-transport-header-background-color
           border-style: solid
           border-width: 4px 0 4px 6px
           display: inline-block
@@ -93,8 +96,8 @@
       overflow: auto
 
     .timetable-content
-      border-top: 1px solid $popup-transport-content-background-color
-      border-bottom: 1px solid $popup-transport-content-background-color
+      border-top: 1px solid variables.$popup-transport-content-background-color
+      border-bottom: 1px solid variables.$popup-transport-content-background-color
       padding-top: 5px
       padding-bottom: 5px
       ul
@@ -131,7 +134,7 @@
         margin-left: 0px
 
 
-@media (max-width: $screen-sm)
+@media (max-width: media_queries.$screen-sm)
   .timetable-informations.form-xs-hidden
     display: none
 

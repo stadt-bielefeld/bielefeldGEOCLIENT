@@ -1,8 +1,12 @@
+@use "../helpers/media_queries"
+@use "../helpers/mixins"
+@use "../helpers/variables"
+
 .side-bar
   .sidebar-closer
     display: none
 
-  @media screen and (max-width: $screen-sm)
+  @media screen and (max-width: media_queries.$screen-sm)
     .sidebar-header
       .sidebar-closer
         display: block
@@ -14,7 +18,7 @@
         margin-top: 0.25em
         text-align: center
         border-radius: 4px 0 0 4px
-        background-color: $sidebar-item-highlight-color
+        background-color: variables.$sidebar-item-highlight-color
 
   .sidebar-header
     // top: 0
@@ -23,11 +27,11 @@
     // height: $sidebar-header-height
 
     h3
-      color: $sidebar-item-highlight-text-color
+      color: variables.$sidebar-item-highlight-text-color
       margin-top: 10px
 
   .sidebar-footer
-    height: $sidebar-footer-height
+    height: variables.$sidebar-footer-height
     bottom: 0
     width: 100%
     position: absolute
@@ -38,9 +42,9 @@
 
   .sidebar-content
     margin-top: 1em
-    margin-bottom: $sidebar-footer-height
+    margin-bottom: variables.$sidebar-footer-height
     overflow: auto
-    height: calc(100% - #{$sidebar-header-height + $sidebar-footer-height})
+    height: calc(100% - #{variables.$sidebar-header-height + variables.$sidebar-footer-height})
 
     .panel-group
       .panel
@@ -51,7 +55,7 @@
 
         + .panel
           margin: 0
-          border-top: 1px solid $sidebar-item-highlight-color
+          border-top: 1px solid variables.$sidebar-item-highlight-color
 
       .panel-open
         + .panel
@@ -59,22 +63,22 @@
 
     .panel-default
       .panel-heading
-        background-color: $sidebar-color
+        background-color: variables.$sidebar-color
         border-radius: 0
         cursor: pointer
 
         .panel-title
-          color: $sidebar-text-color
+          color: variables.$sidebar-text-color
 
         &:hover
-          background-color: $sidebar-item-highlight-color
+          background-color: variables.$sidebar-item-highlight-color
           .panel-title
-            color: $sidebar-item-highlight-text-color
+            color: variables.$sidebar-item-highlight-text-color
 
 
       .panel-collapse
         .panel-body
-          background-color: $white
+          background-color: variables.$white
           max-height: 400px
           overflow: auto
           overflow-x: hidden
@@ -83,10 +87,10 @@
 
     .panel-default.panel-open
       .panel-heading
-        background-color: $sidebar-item-highlight-color
+        background-color: variables.$sidebar-item-highlight-color
         .panel-title
           font-weight: bold
-          color: $sidebar-item-highlight-text-color
+          color: variables.$sidebar-item-highlight-text-color
 
     // background-layerswitcher
     .background-layer-container
@@ -211,7 +215,7 @@
           .legend-container
             position: relative
             .legend-items
-              @include box-shadow(0, 0, 8px, $shadow-color)
+              @include mixins.box-shadow(0, 0, 8px, variables.$shadow-color)
               display: none
               background-color: #fff
               position: fixed
@@ -243,7 +247,7 @@
       .legend-container
         position: relative
         .legend-items
-          @include box-shadow(0, 0, 8px, $shadow-color)
+          @include mixins.box-shadow(0, 0, 8px, variables.$shadow-color)
           display: none
           background-color: #fff
           position: fixed

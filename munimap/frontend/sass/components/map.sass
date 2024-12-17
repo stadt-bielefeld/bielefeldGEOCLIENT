@@ -1,3 +1,8 @@
+@use "sass:color"
+@use "../helpers/media_queries"
+@use "../helpers/mixins"
+@use "../helpers/variables"
+
 .position-fixed
   position: fixed
 
@@ -8,25 +13,25 @@
 
 .ol-control
   button, button:focus
-    background-color: $map-button-color
+    background-color: variables.$map-button-color
     border-radius: 0
-    color:  $map-button-text-color
+    color:  variables.$map-button-text-color
     line-height: 1.3em
-    @include rounded-corner($map-button-radius)
+    @include mixins.rounded-corner(variables.$map-button-radius)
 
     outline: none
 
     &:hover
       text-decoration: none
-      background-color: $map-button-color-hover
+      background-color: variables.$map-button-color-hover
 
     &.active
-      background-color: $map-button-color-active
+      background-color: variables.$map-button-color-active
       &:hover
-        background-color: $map-button-color-active
+        background-color: variables.$map-button-color-active
 
     &.disabled
-      background-color: $map-button-color-disabled
+      background-color: variables.$map-button-color-disabled
 
     .glyphicon
       top: 0
@@ -39,13 +44,13 @@
         right: 0.025em
 
     .glyphicon, .ol-compass
-      color: $map-button-text-color
+      color: variables.$map-button-text-color
 
 // overwrite openlayers zoom
 .ol-zoom
   .ol-zoom-in,
   .ol-zoom-out
-    @include rounded-corner($map-button-radius)
+    @include mixins.rounded-corner(variables.$map-button-radius)
 
 // set drag zoom style
 .ol-dragzoom
@@ -55,7 +60,7 @@
 //placement and style for overview map
 .ol-overviewmap
   .ol-overviewmap-map
-    border: 1px solid $map-button-color
+    border: 1px solid variables.$map-button-color
     width: 200px
     height: 200px
 
@@ -135,11 +140,11 @@
 
 
   .form-control
-    border: 1px solid $map-button-color
+    border: 1px solid variables.$map-button-color
     border-radius: 0
 
     &:focus
-      @include box-shadow(0, 0, 8px, $shadow-color)
+      @include mixins.box-shadow(0, 0, 8px, variables.$shadow-color)
 
 // overwrite map icon locations
 .anol-geolocation
@@ -156,7 +161,7 @@
 
 .anol-popup
   border: none
-  @include box-shadow(0, 0, 8px, $shadow-color)
+  @include mixins.box-shadow(0, 0, 8px, variables.$shadow-color)
 
 .anol-scale-line
   bottom: 0.5em
@@ -168,8 +173,8 @@
       background: none
       .ol-scale-line-inner
         border-width: 2px
-        border-color: $map-button-color $map-button-color
-        color: $map-button-color
+        border-color: variables.$map-button-color variables.$map-button-color
+        color: variables.$map-button-color
 
 /*
  * Map button positions
@@ -301,7 +306,7 @@
 .anol-popup-container
   z-index: 3
   .anol-popup
-    background-color: $popup-background-color
+    background-color: variables.$popup-background-color
 
     .anol-popup-content
       .popup-content
@@ -309,21 +314,21 @@
 
     &.top
       &:after
-        border-top-color: $popup-background-color
+        border-top-color: variables.$popup-background-color
     &.bottom
       &:after
-        border-bottom-color: $popup-background-color
+        border-bottom-color: variables.$popup-background-color
     &.left
       &:after
-        border-left-color: $popup-background-color
+        border-left-color: variables.$popup-background-color
     &.right
       &:after
-        border-right-color: $popup-background-color
+        border-right-color: variables.$popup-background-color
 
   .nav-tabs > li.active > a,
   .nav-tabs > li.active > a:hover,
   .nav-tabs > li.active > a:focus
-      background-color: $popup-background-color
+      background-color: variables.$popup-background-color
 
 .anol-popup-mobile
   width: 100vw
@@ -335,11 +340,11 @@
   .anol-popup-closer
     position: absolute
 
-@media (max-width: $screen-xs)
+@media (max-width: variables.$screen-xs)
   .hide-for-mobile
     display: none
 
-@media (min-width: $screen-xs)
+@media (min-width: variables.$screen-xs)
   .hide-for-desktop
     display: none
   .anol-popup-mobile
@@ -349,7 +354,7 @@
   left: 10px
   bottom: 10px
   padding: 3px
-  background-color: $map-logo-background-color
+  background-color: variables.$map-logo-background-color
 
 
 .ol-ctx-menu-container
@@ -422,11 +427,11 @@
  */
 .munimap-draw-popup
   &.anol-popup
-    background-color: $popup-digitize-background-color
+    background-color: variables.$popup-digitize-background-color
     padding: 0
 
     &.top:after
-      border-top-color: $popup-digitize-background-color
+      border-top-color: variables.$popup-digitize-background-color
 
     .anol-popup-closer
       color: white
@@ -437,13 +442,13 @@
     .anol-popup-content
       .popup-header
         padding: 10px
-        background-color: $popup-digitize-header-color
-        color: $popup-digitize-header-text-color
+        background-color: variables.$popup-digitize-header-color
+        color: variables.$popup-digitize-header-text-color
         h4
           margin: 0
 
       .popup-content
-        @media (min-width: $screen-xs)
+        @media (min-width: variables.$screen-xs)
           .nav-tabs
             position: absolute
             left: -44px
@@ -451,10 +456,10 @@
             border: none
             li
               border-radius: 4px
-              @include full-box-shadow(-4px, -1px, 8px, -4px, $shadow-color)
+              @include mixins.full-box-shadow(-4px, -1px, 8px, -4px, variables.$shadow-color)
               a
                 border: none
-                background-color: $popup-digitize-background-color
+                background-color: variables.$popup-digitize-background-color
                 &:hover
                   border: none
                 &:focus
@@ -463,9 +468,9 @@
 
               &:not(.active)
                 a
-                  background-color: darken($popup-digitize-background-color, 5%)
+                  background-color: color.adjust(variables.$popup-digitize-background-color, $lightness: -5%)
                   &:hover
-                    background-color: $popup-digitize-background-color
+                    background-color: variables.$popup-digitize-background-color
 
         .tab-content
           font-size: 0.8em
@@ -500,12 +505,12 @@
               padding: 3px
               &.selected
                 padding: 1px
-                border: 2px solid $green-border
+                border: 2px solid variables.$green-border
       .popup-footer
         height: 40px
         margin: 0px 15px 0px 15px
         padding-top: 5px
-        border-top: 1px solid $grey-lighter
+        border-top: 1px solid variables.$grey-lighter
         .remove-feature
           padding-top: 8px
           font-size: 0.8em
@@ -601,7 +606,7 @@ hr.alkis
 .no-background
   background-color: transparent
 
-@media (max-width: $screen-sm)
+@media (max-width: media_queries.$screen-sm)
   .map-logo
     img
       max-width: 100px

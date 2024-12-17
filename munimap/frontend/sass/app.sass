@@ -1,17 +1,20 @@
-@import "helpers/variables"
-@import "helpers/mixins"
-@import "helpers/media_queries"
-@import "helpers/placeholders"
+@use "sass:color"
+@use "sass:math"
 
-@import "components/digitize"
-@import "components/general"
-@import "components/geoeditor"
-@import "components/map"
-@import "components/pages"
-@import "components/sidebar"
-@import "components/timetable"
+@use "helpers/variables"
+@use "helpers/mixins"
+@use "helpers/media_queries"
+@use "helpers/placeholders"
 
-/* Add additionaml media query to show on mobile devices */
+@use "components/digitize"
+@use "components/general"
+@use "components/geoeditor"
+@use "components/map"
+@use "components/pages"
+@use "components/sidebar"
+@use "components/timetable"
+
+/* Add additional media query to show on mobile devices */
 
 .iframe-project-link
   position: absolute
@@ -23,7 +26,7 @@
 .visible-xxs
   display: none
 
-@media (max-width: $screen-xs)
+@media (max-width: variables.$screen-xs)
   .visible-xxs
     display: block !important
 
@@ -34,8 +37,8 @@
   position: absolute
   width: 100%
   height: 100%
-  background-color: $white
-  @include no-select()
+  background-color: variables.$white
+  @include mixins.no-select()
 
   .side-bar
     display: inline-block
@@ -43,12 +46,12 @@
     height: 100%
     overflow: hidden
     position: relative
-    width: $sidebar-width
-    background-color: $sidebar-color
-    box-shadow: -6px 6px 24px $shadow-color
+    width: variables.$sidebar-width
+    background-color: variables.$sidebar-color
+    box-shadow: -6px 6px 24px variables.$shadow-color
     z-index: 3
 
-    @media screen and (max-width: $screen-xs)
+    @media screen and (max-width: variables.$screen-xs)
       width: 100%
 
     .mobile-searchbox
@@ -84,7 +87,7 @@
     height: 100%
     @extend %clearfix
 
-  @media (max-width: $screen-xs)
+  @media (max-width: variables.$screen-xs)
     .side-bar:not(.ng-hide) ~ .map,
     .featureinfo-container:not(.ng-hide) ~ .map
       display: none
@@ -92,13 +95,13 @@
   .featureinfo-container
     padding: 1em
 
-    @media (min-width: $screen-sm)
+    @media (min-width: media_queries.$screen-sm)
       position: absolute
       top: 0
       right: 0
       z-index: 1
 
-      background-color: $white
+      background-color: variables.$white
       opacity: 0.9
       border-bottom-left-radius: 4px
 
@@ -118,12 +121,12 @@
         max-height: 300px
         overflow: auto
 
-    @media (max-width: $screen-sm)
+    @media (max-width: media_queries.$screen-sm)
       position: relative
       width: 100%
       height: 100%
       overflow: auto
-      background-color: $sidebar-color
+      background-color: variables.$sidebar-color
 
       .featureinfo-popup-closer
         display: none
@@ -138,7 +141,7 @@
         text-align: center
         border-radius: 4px 0 0 4px
         margin-top: 0.25em
-        background-color: $sidebar-item-highlight-color
+        background-color: variables.$sidebar-item-highlight-color
 
 .app-content:not(.show) + .loading
   width: 100%
@@ -150,15 +153,15 @@
 
   .logo
     background: url('../img/logo.png') no-repeat center center fixed
-    background-size: $background-logo-width
+    background-size: variables.$background-logo-width
     position: absolute
     opacity: 0.25
-    height: $background-logo-height
-    width: $background-logo-width
+    height: variables.$background-logo-height
+    width: variables.$background-logo-width
     top: 50%
     left: 50%
-    margin-top: -$background-logo-height/2
-    margin-left: -$background-logo-width/2
+    margin-top: math.div(-1 * variables.$background-logo-height, 2)
+    margin-left: math.div(-1 * variables.$background-logo-width, 2)
 
 .ol-control
   &.tour-step-backdrop
@@ -264,11 +267,11 @@
         float: left
         margin-right: 5px
       .added
-        color: $sidebar-layer-active-text-color
+        color: variables.$sidebar-layer-active-text-color
       a
-        color: $text-color
+        color: variables.$text-color
         &:hover
-          color: $sidebar-layer-active-text-color
+          color: variables.$sidebar-layer-active-text-color
           text-decoration: none
           cursor: pointer
 
@@ -289,14 +292,14 @@
         border: 0
         border-radius: 0
       a:hover
-        color: $sidebar-item-highlight-text-color
+        color: variables.$sidebar-item-highlight-text-color
 
       &.active > a,
       &.active > a:hover,
       &.active > a:focus
         color: white
         font-weight: bold
-        background-color: $sidebar-layer-active-text-color
+        background-color: variables.$sidebar-layer-active-text-color
         opacity: 0.8
 
 @media (min-width: 992px)
@@ -321,13 +324,10 @@
   .tooltip + .btn-group
     margin-left: -1px
 
-
-// TODO: is this also needed in admin?
-
-$sidebar-header-height: 4em
+variables.$sidebar-header-height: 4em
 $sidebar-header-link-height: 2.5em
 $sidebar-header-scale-height: 2.8em
-$sidebar-footer-height: 7em
+variables.$sidebar-footer-height: 7em
 $panel-heading-color: #eee
 
 .side-bar
@@ -362,10 +362,10 @@ $panel-heading-color: #eee
     .transport-link-logo
       width: 100%
       height: 3em
-      background-color: $popup-transport-header-background-color
+      background-color: variables.$popup-transport-header-background-color
     a
       display: inline-block
-      color: $sidebar-text-color
+      color: variables.$sidebar-text-color
       font-size: 14px
       text-decoration: none
       margin-left: 0em
@@ -375,7 +375,7 @@ $panel-heading-color: #eee
       display: inline-block
       margin-left: 0.5em
       margin-top: 0.5em
-      color: $sidebar-layer-active-text-color
+      color: variables.$sidebar-layer-active-text-color
 
     .sidebar-closer
       display: block
@@ -393,19 +393,19 @@ $panel-heading-color: #eee
 
   .sidebar-footer
     height: auto
-    height: $sidebar-footer-height
+    height: variables.$sidebar-footer-height
     ul
       li:first-child
         margin-bottom: 1em
 
   .sidebar-content
-    height: calc(100% - #{$sidebar-header-height + $sidebar-footer-height + $sidebar-header-link-height})
+    height: calc(100% - #{variables.$sidebar-header-height + variables.$sidebar-footer-height + $sidebar-header-link-height})
     &.hide-link
-      height: calc(100% - #{$sidebar-header-height + $sidebar-footer-height})
+      height: calc(100% - #{variables.$sidebar-header-height + variables.$sidebar-footer-height})
     &.with-scale
-      height: calc(100% - #{$sidebar-header-height + $sidebar-footer-height + $sidebar-header-link-height + $sidebar-header-scale-height})
+      height: calc(100% - #{variables.$sidebar-header-height + variables.$sidebar-footer-height + $sidebar-header-link-height + $sidebar-header-scale-height})
     &.with-scale.hide-link
-      height: calc(100% - #{$sidebar-header-height + $sidebar-footer-height + $sidebar-header-scale-height})
+      height: calc(100% - #{variables.$sidebar-header-height + variables.$sidebar-footer-height + $sidebar-header-scale-height})
     .panel-group
       margin-bottom: 0
       .panel-default
@@ -417,8 +417,8 @@ $panel-heading-color: #eee
             line-height: inherit
       .panel-default.panel-open
         .panel-heading
-          background-color: $sidebar-layer-active-text-color
-          border-color: darken($sidebar-layer-active-text-color, 10)
+          background-color: variables.$sidebar-layer-active-text-color
+          border-color: color.adjust(variables.$sidebar-layer-active-text-color, $lightness: -10%)
           opacity: 0.8
           .panel-title
             color: white
@@ -429,7 +429,7 @@ $panel-heading-color: #eee
     .overlay-layerswitcher
       .overlay-item
         .layer-title
-          color: $sidebar-layer-active-text-color
+          color: variables.$sidebar-layer-active-text-color
           width: 180px
           span
             color: inherit
@@ -452,7 +452,7 @@ $panel-heading-color: #eee
 
     .anol-catalog
       .layer-title
-        color: $sidebar-layer-active-text-color
+        color: variables.$sidebar-layer-active-text-color
       .show-legend
         background-image: url('../img/info-active.svg')
       .inactive
@@ -475,7 +475,7 @@ $panel-heading-color: #eee
 
 .anol-popup-container
   max-width: 100%
-  @media (max-width: $screen-xs)
+  @media (max-width: variables.$screen-xs)
     &.mobile-fullscreen
       height: 85%
 
@@ -497,7 +497,7 @@ $panel-heading-color: #eee
 .popover.tour .tour-content .popover-title
   color: rgb(227,0,20)
 
-@media (max-width: $screen-xs)
+@media (max-width: variables.$screen-xs)
   .anol-searchbox
     width: 75%
   .side-bar
@@ -512,7 +512,7 @@ $panel-heading-color: #eee
             width: 260px
 
 
-@media (max-width: $screen-xxs)
+@media (max-width: variables.$screen-xxs)
   .anol-searchbox
     width: 70%
   .side-bar .sidebar-content .overlay-layerswitcher
@@ -522,7 +522,7 @@ $panel-heading-color: #eee
       .group-item .group-layers-container .child-title span
         width: 170px
 
-@media (max-width: $screen-xs)
+@media (max-width: variables.$screen-xs)
   .popover.tour
     max-width: 280px
     width: 280px

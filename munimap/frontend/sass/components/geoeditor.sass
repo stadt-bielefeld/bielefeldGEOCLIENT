@@ -1,3 +1,5 @@
+@use "../helpers/variables"
+
 .badge
   font-size: 12px
 
@@ -59,12 +61,12 @@ $geoeditor-remove-texts-break: 350px
 
 .sidebar-open
   .geoeditor
-    @media (max-width: $geoeditor-compact-layout-break + $sidebar-width)
+    @media (max-width: $geoeditor-compact-layout-break + variables.$sidebar-width)
       @include compact-design
       .geoeditor-header
         max-width: 330px
 
-    @media (max-width: $geoeditor-remove-texts-break + $sidebar-width)
+    @media (max-width: $geoeditor-remove-texts-break + variables.$sidebar-width)
       .geoeditor-button-text
         display: none
 
@@ -113,9 +115,9 @@ $drawer-lower-position-break: 1100px
 
 .sidebar-open
   .anol-drawer
-    max-width: calc(100% - 4em - #{$sidebar-width})
+    max-width: calc(100% - 4em - #{variables.$sidebar-width})
 
-    @media (max-width: $drawer-lower-position-break + $sidebar-width)
+    @media (max-width: $drawer-lower-position-break + variables.$sidebar-width)
       top: 4em
 
 .sidebar-closed
