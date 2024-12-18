@@ -1,5 +1,9 @@
 {% extends "munimap/base.html" %}
 
+{% block header %}
+<link href="{$ url_for('static', filename='css/app.css') $}" rel="stylesheet" type="text/css">
+{% endblock %}
+
 {% block body %}
 
   {% block navbar %}
@@ -46,19 +50,19 @@
             {% if not current_user.is_anonymous %}
               <li>
                 <a href="{$ url_for('user.logout') $}">
-                  {$ _('Logout') $}
+                  {$ _('Logout') $}
                 </a>
-                ({$ current_user.name $})
+                ({$ current_user.name $})
               </li>
             {% endif %}
             <li>
             <a href="{$ url_for('frontend.pages', name='about') $}">
-              {$ _('About') $}
+              {$ _('About') $}
             </a>
             </li>
             <li>
               <a href="{$ url_for('frontend.pages', name='nutzungsbedingungen') $}">
-                {$ _('Terms of Use') $}
+                {$ _('Terms of Use') $}
               </a>
             </li>
           </ul>
@@ -71,7 +75,6 @@
 
 {% block javascript %}
   {$ super() $}
-  <script type="text/javascript" src="{$ url_for('static', filename='dist/vendor.bundle.js') $}"></script>
-  <script type="text/javascript" src="{$ url_for('static', filename='dist/static_app.bundle.js') $}"></script>
-  <script type="text/javascript" src="{$ url_for('static', filename='dist/runtime~static_app.bundle.js') $}"></script>
-  {% endblock %}
+  <script type="text/javascript" src="{$ url_for('static', filename='js/vendor.bundle.js') $}"></script>
+  <script type="text/javascript" src="{$ url_for('static', filename='js/static_app.bundle.js') $}"></script>
+{% endblock %}

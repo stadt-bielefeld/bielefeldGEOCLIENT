@@ -49,7 +49,7 @@
                                                 </a>
                                                 {% endif %}
                                                 <div class="inline-padding"
-                                                    uib-popover="{{ layer.abstract }}"
+                                                    uib-popover="{{ layer.abstract }}"
                                                     popover-trigger="'mouseenter'"
                                                     popover-append-to-body=true
                                                     popover-popup-delay=200
@@ -57,10 +57,10 @@
                                                     >
                                                     <a ng-click="addGroupToMap(layer)"
                                                        ng-show="addedGroups.indexOf(layer.name) === -1">
-                                                        {{ layer.title }}
+                                                        {{ layer.title }}
                                                     </a>
                                                     <a ng-show="addedGroups.indexOf(layer.name) !== -1" class="added">
-                                                        {{ layer.title }}
+                                                        {{ layer.title }}
                                                     </a>
                                                 </div>
                                             </div>
@@ -68,7 +68,7 @@
 
                                         <div class="col-sm-8 catalog-abstract" ng-if="variant == 'abstract'">
                                             <div ng-if="layer.abstract">
-                                                {{  layer.abstract | limitTo:abstractLimit }}{{ layer.abstract.length > abstractLimit ? '...' : ''}}
+                                                {{ layer.abstract | limitTo:abstractLimit }}{{ layer.abstract.length > abstractLimit ? '...' : '' }}
 
                                                 <a class="btn btn-xs btn-default"
                                                     ng-click="abstractLimit = layer.abstract.length"
@@ -126,7 +126,7 @@
                                             ng-class="{'col-sm-4': variant == 'abstract'}">
                                             <div class="catalog-title">
                                                 {% if app_config['app']['hideMetadata'] == False %}
-                                                <a class="btn btn-xs btn-default float" target="_blank" href="{{ layer.metadataUrl }}" ng-if="layer.metadataUrl">
+                                                <a class="btn btn-xs btn-default float" target="_blank" href="{{ layer.metadataUrl }}" ng-if="layer.metadataUrl">
                                                     <span class="glyphicon glyphicon-info-sign"></span>
                                                 </a>
                                                 <a class="btn-none float" target="_blank" ng-if="!layer.metadataUrl">
@@ -134,24 +134,24 @@
                                                 </a>
                                                 {% endif %}
                                                 <div class="inline-padding"
-                                                    uib-popover="{{ layer.abstract }}"
+                                                    uib-popover="{{ layer.abstract }}"
                                                     popover-trigger="'mouseenter'"
                                                     popover-append-to-body=true
                                                     popover-popup-delay=200
                                                     popover-enable=popoverEnabled
                                                     >
                                                     <a ng-click="addToMap(layer)" ng-show="addedLayers.indexOf(layer.name) === -1">
-                                                        {{ layer.title }}
+                                                        {{ layer.title }}
                                                     </a>
                                                     <a ng-show="addedLayers.indexOf(layer.name) !== -1" class="added">
-                                                        {{ layer.title }}
+                                                        {{ layer.title }}
                                                     </a>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-sm-8 catalog-abstract" ng-if="variant == 'abstract'">
                                             <div ng-if="layer.abstract">
-                                                {{  layer.abstract | limitTo:abstractLimit }}{{ layer.abstract.length > abstractLimit ? '...' : ''}}
+                                                {{ layer.abstract | limitTo:abstractLimit }}{{ layer.abstract.length > abstractLimit ? '...' : '' }}
 
                                                 <a class="btn btn-xs btn-default"
                                                     ng-click="abstractLimit = layer.abstract.length"

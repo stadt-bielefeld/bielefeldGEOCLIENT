@@ -1,20 +1,33 @@
 const path = require('path');
 const webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports  = {
     devtool: 'eval-source-map',
     entry: {
-        app: './munimap/static/js/app.js',
-        transport: './munimap_transport/munimap_transport/static/js/app.js',
-        admin: './munimap/static/js/admin/admin.js',
-        static_app:  './munimap/static/js/static-app.js',
-        vendor: ['angular', 'jquery', 'angular-ui-bootstrap', 'core-js']
+        app: {
+            import: './munimap/frontend/js/app.js',
+            dependOn: 'vendor',
+        },
+        transport: {
+            import: './munimap/frontend/js/munimap_transport/app.js',
+            dependOn: 'vendor'
+        },
+        admin: {
+            import: './munimap/frontend/js/admin/admin.js',
+            dependOn: 'vendor'
+        },
+        static_app: {
+            import: './munimap/frontend/js/static-app.js',
+            dependOn: 'vendor'
+        },
+        vendor: ['angular', 'jquery', 'angular-ui-bootstrap']
     },
     output: {
-        filename: '[name].bundle.js',
-        path: path.resolve(__dirname, './munimap/static/dist'),
-        chunkFilename: '[name].bundle.js',
+        filename: 'js/[name].bundle.js',
+        path: path.resolve(__dirname, './munimap/static'),
+        chunkFilename: 'js/[name].bundle.js',
         publicPath: '/',
     },
     resolve: {
@@ -33,7 +46,7 @@ module.exports  = {
                 use: {
                     loader: 'file-loader',
                     options: {
-                        name: 'ace-builds/[name].js'
+                        name: 'js/ace-builds/[name].js'
                     }
                 }
             },
@@ -50,39 +63,61 @@ module.exports  = {
                         presets: ['@babel/env']
                     }
                 }
+            },
+            {
+                test: /\.s[ac]ss$/i,
+                use: [
+                    // Extract CSS into own files
+                    MiniCssExtractPlugin.loader,
+                    // Translates CSS into CommonJS
+                    {
+                        loader: "css-loader",
+                        options: {
+                            url: false
+                        }
+                    },
+                    {
+                        loader: 'resolve-url-loader'
+                    },
+                    // Compiles Sass to CSS
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true // important for resolve-url-loader
+                        }
+                    },
+                ],
             }
         ]
     },
     optimization: {
         splitChunks: {
             cacheGroups: {
-                vendor: {
+                defaultVendors: {
                     chunks: 'initial',
                     name: 'vendor',
                     test: 'vendor',
                     enforce: true
-                },
+                }
             }
-        },
-        runtimeChunk: true,
-        minimizer: [
-            new UglifyJsPlugin({
-                cache: true,
-                parallel: true,
-                uglifyOptions: {
-                    compress: true,
-                    ecma: 5,
-                    mangle: false
-                },
-                sourceMap: true
-            })
-        ]
+        }
     },
     plugins: [
+        new MiniCssExtractPlugin({
+            filename: 'css/[name].css'
+        }),
         new webpack.ProvidePlugin({
           'window.jQuery': 'jquery',
           $: 'jquery',
           jQuery: 'jquery',
+        }),
+        new CopyPlugin({
+            patterns: [
+                { from: "./munimap/frontend/css", to: path.resolve(__dirname, './munimap/static/css') },
+                { from: "./munimap/frontend/img", to: path.resolve(__dirname, './munimap/static/img') },
+                { from: "./munimap/frontend/fonts", to: path.resolve(__dirname, './munimap/static/fonts') },
+                { from: "./munimap/frontend/translations", to: path.resolve(__dirname, './munimap/static/translations') }
+            ],
         })
     ]
 };

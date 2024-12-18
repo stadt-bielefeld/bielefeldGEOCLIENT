@@ -1,0 +1,79 @@
+{% extends "munimap/app/base.html" %}
+{% from "munimap/macros/layers.html" import create_layers %}
+
+{% block header %}
+  <link href="{$ url_for('static', filename='css/transport.css') $}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block body %}
+  <div class="app-content hide"
+       ng-controller="transportController"
+       ng-class="{'show': appReady === true}">
+
+    <!-- featureinfo target -->
+    <div class="featureinfo-container"
+         ng-show="showFeatureInfo">
+      <span class="featureinfo-popup-closer glyphicon glyphicon-remove pointer"
+            ng-click="showFeatureInfo = false">
+      </span>
+      <div class="featureinfo-fullscreen-closer pointer"
+           ng-click="showFeatureInfo = false">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      </div>
+      <div class="featureinfo-target"></div>
+    </div>
+
+    <script type="text/ng-template" id="catalogModalContent.html">
+      {% include 'munimap/modals/base-catalog-modal.html' %}
+    </script>
+
+    {% block sidebar %}
+      {% include 'munimap_transport/sidebar.html' %}
+    {% endblock %}
+
+    {% block map %}
+      {% include 'munimap_transport/map.html' %}
+    {% endblock %}
+  </div>
+
+  <!-- loading image -->
+  <div class="loading">
+    <div class="logo logo-transport"></div>
+   </div>
+{% endblock %}
+
+{% block javascript %}
+  <script type="text/javascript">
+    var appConfig = {$ app_config | tojson $};
+    var imageUrl = '{$ url_for("static", filename="img/") $}';
+  </script>
+
+  {$ super() $}
+  <script type="text/javascript" src="{$ url_for('static', filename='js/transport.bundle.js') $}"></script>
+
+  <script type="text/javascript">
+    angular.module('munimapBase')
+    .constant('KeyZoomText', '{$ _('Use ctrl + wheel to zoom') $}')
+    .constant('TwoFingersPinchDragText', '{$ _('Use two fingers to move the map') $}')
+    .constant('ProjectSettings', [])
+    .constant('routesUrl', '{$ url_for("transport.route") $}')
+    .constant('stationLayerURL', '{$ url_for("transport.stations") $}')
+    .constant('stationPointLayerURL', '{$ url_for("transport.station_points") $}')
+    .constant('timetableServiceURL', {$ config['TIMETABLE_SERVICE_URL'] | tojson $})
+    .constant('timetableStopfinderAPI', {$ config['TIMETABLE_STOPFINDER_API'] | tojson $})
+    .constant('timetableTripAPI', {$ config['TIMETABLE_TRIP_API'] | tojson $})
+    .constant('timetableStopfinderPriorities', {$ config['TIMETABLE_STOPFINDER_PRIORITIES'] | tojson $});
+
+    angular.module('munimap')
+    .config(['LayersServiceProvider',
+      function(LayersServiceProvider) {
+        LayersServiceProvider.setLayers({$ create_layers(layers_def) $});
+      }]
+    );
+  </script>
+
+  {% if app_config['app']['tour'] %}
+    <script type="text/javascript" src="{$ url_for('frontend.tours', name=app_config['app']['tour']) $}"></script>
+  {% endif %}
+
+{% endblock %}

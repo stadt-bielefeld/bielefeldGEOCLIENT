@@ -1,0 +1,150 @@
+@use "../helpers/media_queries"
+@use "../helpers/variables"
+
+.timetable-control
+    top: 10.5em
+    left: 0.5em
+
+.ol-touch
+  .timetable-control
+    top: 16.5em
+
+.station-layer-popup.anol-popup
+  width: 250px !important
+  padding: 0
+  .anol-popup-closer
+    color: white
+    top: 10px
+    right: 10px
+    font-size: 18px
+
+  z-index: 2001
+  &.bottom
+    &:after
+      border-bottom-color: variables.$popup-transport-header-background-color
+  &.top
+    &:after
+      border-top-color: white
+
+  .anol-popup-content
+    white-space: normal
+
+    .transport-content
+      background-color: variables.$popup-transport-content-background-color
+
+    .ref-badge
+      border-radius: 4px
+
+    .ref-operator
+      font-size: 11px
+      font-style: italic
+      line-height: 30px
+
+    .badge.bus
+      background-color: variables.$bus-badge-color
+
+    .badge.tram
+      background-color: variables.$tram-badge-color
+
+    .badge.night
+      background-color: variables.$night-badge-color
+
+    .badge.other-operator
+      background-color: variables.$other-operator-badge-color !important
+
+    h4,
+    .transport-content,
+    .subroute-content,
+    .select-station-content,
+    .construction-content
+      padding: 10px
+
+    h4
+      background-color: variables.$popup-transport-header-background-color
+      color: white
+      margin-top: 0px
+      margin-bottom: 0px
+      cursor: default
+      &.station-properties-header
+        cursor: pointer
+
+    .select-station-content
+      background-color: variables.$popup-subroute-content-background-color
+      padding-top: 5px
+      padding-bottom: 5px
+
+    .subroute-content,
+    .construction-content
+      background-color: variables.$popup-subroute-content-background-color
+
+      li
+        color: gray
+        margin-bottom: 5px
+        &::before
+          content: " "
+          border-color: transparent variables.$popup-transport-header-background-color
+          border-style: solid
+          border-width: 4px 0 4px 6px
+          display: inline-block
+          height: 0
+          width: 0
+          top: 0
+          position: relative
+
+    .subroute-content
+      max-height: 250px
+      overflow: auto
+
+    .timetable-content
+      border-top: 1px solid variables.$popup-transport-content-background-color
+      border-bottom: 1px solid variables.$popup-transport-content-background-color
+      padding-top: 5px
+      padding-bottom: 5px
+      ul
+        margin: 0
+        margin-top: 5px
+        margin-bottom: 5px
+
+    .timetable-content, .select-station-content
+      li
+        &::before
+          content: " "
+          border-color: transparent #002857
+          border-style: solid
+          border-width: 4px 0 4px 6px
+          display: inline-block
+          height: 0
+          width: 0
+          top: 0
+          position: relative
+      a, a:hover a:visited
+        color: gray
+        margin-bottom: 5px
+
+
+      &.has-subroute-element
+        margin-bottom: 20px
+
+    .list-inline
+      margin-bottom: 0px
+      margin-left: 0px
+      li
+        padding-right: 3px
+        padding-left: 0px
+        margin-left: 0px
+
+
+@media (max-width: media_queries.$screen-sm)
+  .timetable-informations.form-xs-hidden
+    display: none
+
+  .timetable-informations.form-xs-visible
+    top: 0px
+    right: 0px
+    width: 100%
+    height: 100%
+    z-index: 10
+
+  .timetable-informations .row
+    margin-left: 0
+    margin-right: 0

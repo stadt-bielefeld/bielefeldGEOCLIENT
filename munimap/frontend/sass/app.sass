@@ -1,0 +1,531 @@
+@use "sass:color"
+@use "sass:math"
+
+@use "helpers/variables"
+@use "helpers/mixins"
+@use "helpers/media_queries"
+@use "helpers/placeholders"
+
+@use "components/digitize"
+@use "components/general"
+@use "components/geoeditor"
+@use "components/map"
+@use "components/pages"
+@use "components/sidebar"
+@use "components/timetable"
+
+/* Add additional media query to show on mobile devices */
+
+.iframe-project-link
+  position: absolute
+  right: 10px
+  top: 0
+  padding: 5px
+  background: white
+
+.visible-xxs
+  display: none
+
+@media (max-width: variables.$screen-xs)
+  .visible-xxs
+    display: block !important
+
+/* Components */
+
+.app-content
+  display: block
+  position: absolute
+  width: 100%
+  height: 100%
+  background-color: variables.$white
+  @include mixins.no-select()
+
+  .side-bar
+    display: inline-block
+    float: left
+    height: 100%
+    overflow: hidden
+    position: relative
+    width: variables.$sidebar-width
+    background-color: variables.$sidebar-color
+    box-shadow: -6px 6px 24px variables.$shadow-color
+    z-index: 3
+
+    @media screen and (max-width: variables.$screen-xs)
+      width: 100%
+
+    .mobile-searchbox
+      width: 100%
+      left: 0
+      top: 0
+      .result-menu
+        width: 100%
+        box-shadow: none
+        padding: 5px
+        list-style: none
+        max-height: 200px
+        overflow: auto
+        li
+          margin-bottom: 3px
+      .alert
+        margin-bottom: 10px
+        margin-top: 10px
+        padding: 8px
+        cursor: default
+      button.search
+        border-color: #cccccc
+      input
+        border: 1px solid #ccc
+        border-radius: 4px
+        border-top-right-radius: 0px
+        border-bottom-right-radius: 0px
+      .form-control:focus
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6)
+
+  .map
+    overflow: hidden
+    height: 100%
+    @extend %clearfix
+
+  @media (max-width: variables.$screen-xs)
+    .side-bar:not(.ng-hide) ~ .map,
+    .featureinfo-container:not(.ng-hide) ~ .map
+      display: none
+
+  .featureinfo-container
+    padding: 1em
+
+    @media (min-width: media_queries.$screen-sm)
+      position: absolute
+      top: 0
+      right: 0
+      z-index: 1
+
+      background-color: variables.$white
+      opacity: 0.9
+      border-bottom-left-radius: 4px
+
+      .featureinfo-popup-closer
+        position: absolute
+        top: 0.2em
+        right: 0.2em
+        color: #ccc
+
+      .featureinfo-fullscreen-closer
+        display: none
+
+      .featureinfo-target
+        min-width: 120px
+        min-height: 90px
+        max-width: 400px
+        max-height: 300px
+        overflow: auto
+
+    @media (max-width: media_queries.$screen-sm)
+      position: relative
+      width: 100%
+      height: 100%
+      overflow: auto
+      background-color: variables.$sidebar-color
+
+      .featureinfo-popup-closer
+        display: none
+
+      .featureinfo-fullscreen-closer
+        display: block
+        position: absolute
+        right: 0
+        top: 0
+        width: 3em
+        line-height: 2.5em
+        text-align: center
+        border-radius: 4px 0 0 4px
+        margin-top: 0.25em
+        background-color: variables.$sidebar-item-highlight-color
+
+.app-content:not(.show) + .loading
+  width: 100%
+  height: auto
+  bottom: 0px
+  top: 0px
+  left: 0px
+  position: absolute
+
+  .logo
+    background: url('../img/logo.png') no-repeat center center fixed
+    background-size: variables.$background-logo-width
+    position: absolute
+    opacity: 0.25
+    height: variables.$background-logo-height
+    width: variables.$background-logo-width
+    top: 50%
+    left: 50%
+    margin-top: math.div(-1 * variables.$background-logo-height, 2)
+    margin-left: math.div(-1 * variables.$background-logo-width, 2)
+
+.ol-control
+  &.tour-step-backdrop
+    position: absolute
+  &.tools-container-control
+    &.tour-step-backdrop
+      z-index: 1101
+
+.mt-1
+  margin-top: 1em
+
+.mt-5
+  margin-top: 5em
+
+.mb-1
+  margin-bottom: 1em
+
+.mr-1
+  margin-right: 1em
+
+.feedback-button span
+  color: white
+  background: rgba(0, 0, 0, 0.7)
+  border: 1px solid rgba(0, 0, 0, 0.7)
+  transform: scale(1.2, 1)
+
+.low-margin
+  margin: 0 0 5px
+
+#load-projects
+  td.project-name
+    cursor: pointer
+
+.catalog-tabs
+  .form-horizontal
+    margin-top: 1em
+
+.alkis-icon
+  &:before
+    color: white
+    content: "A"
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+    font-size: 20px
+
+.modal.left
+  .modal-dialog
+    position: fixed
+    margin: auto
+    width: 600px
+    bottom: 10px
+    left: 10px
+
+  .modal-content
+    overflow-y: auto
+
+
+
+.catalog-modal
+  .modal-dialog
+    margin: 10px auto !important
+
+  .modal-body
+    overflow-y: auto
+    overflow-x: hidden
+    max-height: calc(100vh - 80px)
+
+    .toggle-variant-button
+      position: absolute
+      right: 10px
+      display: block
+      padding: 10px 15px
+      background-color: #eee
+      cursor: pointer
+      &.second
+        right: 62px
+      &.active
+        color: white
+        background-color: #337ab7
+      .glyphicon
+        font-size: 18px
+        color: inherit
+
+    .striped
+      background-color: #eee
+
+    .catalog-title
+      padding: 4px
+      margin: 1px
+
+    .catalog-mouse-over
+      padding-top: 0 !important
+      padding-bottom: 0 !important
+
+    .catalog-abstract, .catalog-div
+      padding-top: 4px
+      padding-bottom: 4px
+      cursor: default
+      .inline
+        display: inline
+      .inline-padding
+        padding-left: 2.5em
+      .float
+        float: left
+        margin-right: 5px
+      .added
+        color: variables.$sidebar-layer-active-text-color
+      a
+        color: variables.$text-color
+        &:hover
+          color: variables.$sidebar-layer-active-text-color
+          text-decoration: none
+          cursor: pointer
+
+      .btn-none
+        display: inline-block
+        padding: 1px 4px
+        border: 1px solid transparent
+
+    .nav-tabs > li
+      float: left
+      // margin-bottom: -2px
+      &:not(:first-child)
+        margin-left: 5px
+      a, a:hover, a:focus
+        background-color: #eeeeee
+        color: #787878
+        font-size: 16px
+        border: 0
+        border-radius: 0
+      a:hover
+        color: variables.$sidebar-item-highlight-text-color
+
+      &.active > a,
+      &.active > a:hover,
+      &.active > a:focus
+        color: white
+        font-weight: bold
+        background-color: variables.$sidebar-layer-active-text-color
+        opacity: 0.8
+
+@media (min-width: 992px)
+  .catalog-modal
+    .modal-dialog
+      width: 900px !important
+
+@media (min-width: 768px)
+  .catalog-modal
+    .modal-dialog
+      width: 700px
+      margin: 30px auto
+
+.anol-popup
+  .popup-content
+    max-height: 500px
+    overflow-y: scroll
+
+// fix tooltips in button groups
+.btn-group
+  .tooltip + .btn,
+  .tooltip + .btn-group
+    margin-left: -1px
+
+variables.$sidebar-header-height: 4em
+$sidebar-header-link-height: 2.5em
+$sidebar-header-scale-height: 2.8em
+variables.$sidebar-footer-height: 7em
+$panel-heading-color: #eee
+
+.side-bar
+  .sidebar-header
+    text-align: left
+    img
+      &.single-app-link-logo
+        height: 5em
+        margin: 5px
+      &.top-logo
+        width: auto
+        height: 43px
+        display: inline-block
+        vertical-align: top
+      &.app-link-logo
+        width: auto
+        margin-top: 7px
+        height: 28px
+    span
+      height: 2.5em
+      line-height: 2.5em
+    span.title
+      height: 100%
+      line-height: 20px
+      font-weight: bold
+      font-family: Arial, serif
+      vertical-align: bottom
+      display: inline-block
+      padding-top: 23px
+      width: 220px
+
+    .transport-link-logo
+      width: 100%
+      height: 3em
+      background-color: variables.$popup-transport-header-background-color
+    a
+      display: inline-block
+      color: variables.$sidebar-text-color
+      font-size: 14px
+      text-decoration: none
+      margin-left: 0em
+    h1
+      font-size: 16px
+      width: 100%
+      display: inline-block
+      margin-left: 0.5em
+      margin-top: 0.5em
+      color: variables.$sidebar-layer-active-text-color
+
+    .sidebar-closer
+      display: block
+      position: absolute
+      right: 0
+      top: 0
+      width: 2.5em
+      height: 2.5em
+      line-height: 2.5em
+      margin-top: 0.25em
+      text-align: center
+      border-radius: 4px 0 0 4px
+      background-color: $panel-heading-color
+
+
+  .sidebar-footer
+    height: auto
+    height: variables.$sidebar-footer-height
+    ul
+      li:first-child
+        margin-bottom: 1em
+
+  .sidebar-content
+    height: calc(100% - #{variables.$sidebar-header-height + variables.$sidebar-footer-height + $sidebar-header-link-height})
+    &.hide-link
+      height: calc(100% - #{variables.$sidebar-header-height + variables.$sidebar-footer-height})
+    &.with-scale
+      height: calc(100% - #{variables.$sidebar-header-height + variables.$sidebar-footer-height + $sidebar-header-link-height + $sidebar-header-scale-height})
+    &.with-scale.hide-link
+      height: calc(100% - #{variables.$sidebar-header-height + variables.$sidebar-footer-height + $sidebar-header-scale-height})
+    .panel-group
+      margin-bottom: 0
+      .panel-default
+        .panel-heading
+          background-color: $panel-heading-color
+          &:hover
+            background-color: $panel-heading-color
+          span:last-child
+            line-height: inherit
+      .panel-default.panel-open
+        .panel-heading
+          background-color: variables.$sidebar-layer-active-text-color
+          border-color: color.adjust(variables.$sidebar-layer-active-text-color, $lightness: -10%)
+          opacity: 0.8
+          .panel-title
+            color: white
+            font-weight: bold
+          .glyphicon
+            color: white
+
+    .overlay-layerswitcher
+      .overlay-item
+        .layer-title
+          color: variables.$sidebar-layer-active-text-color
+          width: 180px
+          span
+            color: inherit
+        .show-legend
+          background-image: url('../img/info-active.svg')
+        .inactive
+          .show-legend
+            background-image: url('../img/info.svg')
+        .group-item
+          span.close-layer-group
+            color: rgba(0, 0, 0, 0.6)
+            &:before
+              content: "\e259"
+          .group-layers-container .child-title span
+            width: 170px
+
+    .anol-print
+      button.start-print-button
+        width: 100%
+
+    .anol-catalog
+      .layer-title
+        color: variables.$sidebar-layer-active-text-color
+      .show-legend
+        background-image: url('../img/info-active.svg')
+      .inactive
+        .show-legend
+          background-image: url('../img/info.svg')
+
+
+.transport-map
+  .button-layer-wrapper
+    .btn-group
+      button
+        &.active, &:hover
+          border-color: #002680
+          color: white
+          &:last-child
+            background-color: #002680
+          &:first-child
+            border-color: #E52629
+            color: #e52629
+
+.anol-popup-container
+  max-width: 100%
+  @media (max-width: variables.$screen-xs)
+    &.mobile-fullscreen
+      height: 85%
+
+.anol-attribution
+  z-index: 10
+  button.anol-info-white
+    background-image: url('../img/attribution-symbol.svg')
+    background-size: 0.9em 0.9em
+  ul
+    background-color: white
+    padding: 0.35em
+    margin-top: 0
+    margin-left: 0
+    border-radius: 4px 0 0 4px
+
+.anol-searchbox
+  width: 300px
+
+.popover.tour .tour-content .popover-title
+  color: rgb(227,0,20)
+
+@media (max-width: variables.$screen-xs)
+  .anol-searchbox
+    width: 75%
+  .side-bar
+    .sidebar-header
+      span.title
+        width: 80%
+      .sidebar-content .overlay-layerswitcher
+        .overlay-item
+          .layer-title
+            width: 270px
+          .group-item .group-layers-container .child-title span
+            width: 260px
+
+
+@media (max-width: variables.$screen-xxs)
+  .anol-searchbox
+    width: 70%
+  .side-bar .sidebar-content .overlay-layerswitcher
+    .overlay-item
+      .layer-title
+        width: 180px
+      .group-item .group-layers-container .child-title span
+        width: 170px
+
+@media (max-width: variables.$screen-xs)
+  .popover.tour
+    max-width: 280px
+    width: 280px
+    .tour-content .popover-content
+      max-height: 300px
+      overflow: auto

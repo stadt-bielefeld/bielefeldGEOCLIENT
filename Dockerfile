@@ -1,11 +1,9 @@
-ARG ANOL_COMMIT_HASH=08b57ecd563a1add5b4bdacdd026ffe4df603d20
+ARG ANOL_COMMIT_HASH=63de4627b24c5b886352858c2e52f60dcc3f16c0
 
-FROM node:14.19.3-alpine3.14 AS clientbuilder
+FROM node:22-alpine@sha256:6e80991f69cc7722c561e5d14d5e72ab47c0d6b6cfb3ae50fb9cf9a7b30fdf97 AS clientbuilder
 
 ARG ANOL_COMMIT_HASH
 RUN apk add --no-cache wget unzip
-
-RUN npm i -g npm@7
 
 RUN mkdir -p tmp/anol
 RUN cd /tmp/anol \
@@ -13,12 +11,11 @@ RUN cd /tmp/anol \
     && unzip anol.zip \
     && mv anol-$ANOL_COMMIT_HASH /anol
 
-RUN cd /anol && npm ci
+RUN cd /anol && npm ci --omit=dev
 
 RUN mkdir -p /app
 
 COPY ./munimap /app/munimap
-COPY ./munimap_transport /app/munimap_transport
 COPY ./package.json /app/package.json
 COPY ./package-lock.json /app/package-lock.json
 COPY ./webpack.config.js /app/webpack.config.js
@@ -43,14 +40,12 @@ RUN pip install --upgrade pip \
 RUN mkdir -p /pkg
 # We have to build the client bevor packing everything into a python package
 COPY --from=clientbuilder /app/munimap /pkg/munimap
-COPY --from=clientbuilder /app/munimap_transport /pkg/munimap_transport
 
 COPY ./pyproject.toml /pkg/pyproject.toml
 
 WORKDIR /pkg
 
 RUN python -m build
-RUN cd munimap_transport && python -m build
 
 
 
@@ -144,9 +139,8 @@ RUN pip install --upgrade pip && \
 
 COPY ./gunicorn.conf /opt/etc/munimap/gunicorn.conf
 COPY --from=builder /pkg/dist/munimap-*.whl /opt/pkgs
-COPY --from=builder /pkg/munimap_transport/dist/munimap_transport-*.whl /opt/pkgs
 
-RUN pip install /opt/pkgs/munimap-*.whl /opt/pkgs/munimap_transport-*.whl
+RUN pip install /opt/pkgs/munimap-*.whl
 
 # Hack to disable https for following script.
 RUN PYTHONHTTPSVERIFY=0 python -c "import hyphen.dictools; hyphen.dictools.is_installed('de_DE') or hyphen.dictools.install('de_DE')"

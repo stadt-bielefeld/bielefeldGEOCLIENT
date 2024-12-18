@@ -1,0 +1,45 @@
+<div sidebar="sidebar">
+  <div sidebar-item="overlays"
+       ng-if="layerswitcherEnabled"
+       item-title="{$ _('Overlay layers') $}">
+    <div anol-layerswitcher template-url="munimap/layerswitcher-overlays.html" class="overlay-layerswitcher"></div>
+  </div>
+
+  <div sidebar-item="search"
+       ng-if="searchEnabled"
+       item-title="{$ _('Search') $}"
+       class="visible-xs">
+        <div
+           template-url="munimap/searchbox-mobile.html"
+           anol-geocoder-searchbox
+           show-search-dropdown="$parent.searchDropdown"
+           graphic-file-url="{$ url_for('static', filename='img/') $}"
+           to-url-marker="true"
+          >
+      </div>
+  </div>
+</div>
+
+<script type="text/ng-template" id="munimap/sidebar.html">
+  {% include 'munimap/app/ng-templates/sidebar.html' %}
+</script>
+
+<script type="text/ng-template" id="munimap/sidebar-item.html">
+  {% include 'munimap/app/ng-templates/sidebar-item.html' %}
+</script>
+
+<script type="text/ng-template" id="munimap/sidebar-header.html">
+  {% include 'munimap_transport/ng-templates/sidebar-header.html' %}
+</script>
+
+<script type="text/ng-template" id="munimap/sidebar-footer.html">
+  {% include 'munimap_transport/ng-templates/sidebar-footer.html' %}
+</script>
+
+<script type="text/ng-template" id="munimap/layerswitcher-overlays.html">
+  {% include 'munimap/app/ng-templates/layerswitcher-overlays.html' %}
+</script>
+
+<script type="text/ng-template" id="munimap/searchbox-mobile.html">
+  {% include 'munimap/app/ng-templates/searchbox-mobile.html' %}
+</script>

@@ -4,7 +4,6 @@
 .DS_Store
 .idea/
 .vagrant
-.webassets-cache
 dev/anol
 dev/configs/mapfish/icons/
 dev/configs/mapfish/*.yaml
@@ -25,10 +24,9 @@ docker/munimap-postgis-mapbender/postgresql_data
 docker/munimap-postgis/postgresql_data
 docker/munimap-mapserver/logs
 docker/munimap-docs/build/
-munimap/static/build
+munimap/frontend/build
 munimap/test/logs/*.log
 node_modules
-projects/*/assets
-munimap/assets/
 *.code-workspace
 /docker/munimap-mapproxy/mapproxy_cache_data/
+/munimap/static/

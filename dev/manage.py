@@ -33,7 +33,7 @@ def babel_init_lang(lang='de'):
 @cli_manager.command()
 def babel_refresh():
     "Extract messages and update translation files."
-    sh('pybabel extract -F ../munimap/babel.cfg -k lazy_gettext -k _l -o ../munimap/translations/messages.pot ../munimap ../munimap_transport')
+    sh('pybabel extract -F ../munimap/babel.cfg -k lazy_gettext -k _l -o ../munimap/translations/messages.pot ../munimap')
     sh('pybabel update -i ../munimap/translations/messages.pot -d ../munimap/translations')
 
 

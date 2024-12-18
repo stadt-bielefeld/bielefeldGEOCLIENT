@@ -1,0 +1,23 @@
+@use "variables"
+
+//== Media queries breakpoints
+//
+//## Define the breakpoints at which your layout will change, adapting to different screen sizes.
+// copied from bootstrap https://github.com/twbs/bootstrap/
+
+// Extra small screen / phone
+variables.$screen-xs:         480px
+
+// Small screen / tablet
+$screen-sm:         768px
+
+// Medium screen / desktop
+$screen-md:         992px
+
+// Large screen / wide desktop
+$screen-lg:         1200px
+
+// So media queries don't overlap when required, provide a maximum
+$screen-xs-max:     ($screen-sm - 1)
+$screen-sm-max:     ($screen-md - 1)
+$screen-md-max:     ($screen-lg - 1)
