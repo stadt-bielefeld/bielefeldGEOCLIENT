@@ -1,16 +1,26 @@
-$sidebar-width: 300px
+
+@use "helpers/variables"
+@use "helpers/mixins"
+@use "helpers/media_queries"
+@use "helpers/placeholders"
+
+variables.$sidebar-width: 300px
 $highlight-color: #fcf8e3
-$header-height: 80px
+variables.$header-height: 80px
 $header-line-height: 50px
 $header-search-line-height: 60px
 $header-font-size: 28px
 
+@use "components/general"
+@use "components/pages"
+@use "components/sidebar"
+
 // overwrite variables set in project.sass to get same look
-$sidebar-item-highlight-color: $sidebar-layer-active-text-color
+variables.$sidebar-item-highlight-color: variables.$sidebar-layer-active-text-color
 $panel-heading-color: #eee
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak
-  display: none !important;
+  display: none !important
 
 .mt-1
     margin-top: 10px
@@ -19,32 +29,32 @@ body.waiting, body.waiting *
     cursor: wait !important
 
 #sidebar
-    left: $sidebar-width
-    margin-left: -$sidebar-width
-    width: $sidebar-width
+    left: variables.$sidebar-width
+    margin-left: -(variables.$sidebar-width)
+    width: variables.$sidebar-width
     position: fixed
     height: 100%
-    color: $sidebar-text-color
+    color: variables.$sidebar-text-color
     border-radius: 0
     border: none
-    background-color: $sidebar-color
-    box-shadow: -6px 6px 24px $shadow-color
+    background-color: variables.$sidebar-color
+    box-shadow: -6px 6px 24px variables.$shadow-color
     z-index: 2
     .header
         margin-left: -15px
         margin-right: -15px
-        height: $header-height
+        height: variables.$header-height
         .brand
             padding: 0
             img
                 margin: 5px
                 width: auto
-                height: $header-height - 10px
+                height: variables.$header-height - 10px
     .sidebar-footer
         bottom: 24px
         position: absolute
         width: 272px
-        background-color: $sidebar-color
+        background-color: variables.$sidebar-color
         border: none
 
     .nav.nav-pills
@@ -56,18 +66,18 @@ body.waiting, body.waiting *
                 margin-left: -15px
                 margin-right: -15px
                 background-color: $panel-heading-color
-                color: $sidebar-text-color
+                color: variables.$sidebar-text-color
                 &:hover
-                    color: $sidebar-item-highlight-text-color
+                    color: variables.$sidebar-item-highlight-text-color
             &.active
                 a
                     font-weight: bold
-                    background-color: $sidebar-item-highlight-color
+                    background-color: variables.$sidebar-item-highlight-color
                     color: white
-                    opacity: 0.8;
+                    opacity: 0.8
 
 #content
-    padding-left: $sidebar-width
+    padding-left: variables.$sidebar-width
     margin-bottom: -3em
     h3
         margin-top: 0
@@ -76,11 +86,11 @@ body.waiting, body.waiting *
         .button-bar
             max-width: 1000px
             margin-bottom: 1em
-        .ace_editor 
-            width: 100%;
-            max-width: 1000px;
-            min-height: 400px !important; 
-            border: 1px solid  $sidebar-text-color
+        .ace_editor
+            width: 100%
+            max-width: 1000px
+            min-height: 400px !important
+            border: 1px solid  variables.$sidebar-text-color
 
     .navbar
         border-radius: 0
@@ -88,11 +98,11 @@ body.waiting, body.waiting *
         position: fixed
         width: 100%
         z-index: 1
-        box-shadow: 18px -6px 24px $shadow-color
+        box-shadow: 18px -6px 24px variables.$shadow-color
 
-        height: $header-height
-        background-color: $sidebar-color
-        color: $sidebar-text-color
+        height: variables.$header-height
+        background-color: variables.$sidebar-color
+        color: variables.$sidebar-text-color
         border: none
         .navbar-brand
             font-size: $header-font-size
@@ -107,14 +117,14 @@ body.waiting, body.waiting *
                     font-size: 20px
                     // adjust when header-height changes
                     line-height: $header-line-height
-                    height: $header-height
+                    height: variables.$header-height
                 &.active
                     a
-                        background-color: $sidebar-item-highlight-color
+                        background-color: variables.$sidebar-item-highlight-color
                         color: white
-                        opacity: 0.8;
+                        opacity: 0.8
         .navbar-form
-            height: $header-height
+            height: variables.$header-height
             line-height: $header-search-line-height
             position: fixed
             right: 0
@@ -172,11 +182,11 @@ table.table
     tbody
         tr
             td
-                -webkit-transition: background-color 0.25s linear;
-                -moz-transition: background-color 0.25s linear;
-                -ms-transition: background-color 0.25s linear;
-                -o-transition: background-color 0.25s linear;
-                transition: background-color 0.25s linear;
+                -webkit-transition: background-color 0.25s linear
+                -moz-transition: background-color 0.25s linear
+                -ms-transition: background-color 0.25s linear
+                -o-transition: background-color 0.25s linear
+                transition: background-color 0.25s linear
                 .opacity
                     opacity: 0.5
             &.highlight
@@ -185,9 +195,9 @@ table.table
 
 .project-list
     margin-left: 15px
-    list-style-type: none;
+    list-style-type: none
     li.striped
-        background-color: #F2F2F2;
+        background-color: #F2F2F2
     .digitize-indicator
         font-size: medium
 
@@ -198,8 +208,8 @@ table.table
     margin-top: 0
 
 .col-break
-    word-break: break-all;
-    word-wrap: break-word;
+    word-break: break-all
+    word-wrap: break-word
     min-width: 120px
 
 .col-button

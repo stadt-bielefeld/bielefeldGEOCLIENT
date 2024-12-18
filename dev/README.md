@@ -35,7 +35,7 @@ wget -q -O- https://repo1.maven.org/maven2/org/mapfish/print/print-cli/3.9.0/pri
 cd ../../
 git clone git@github.com:terrestris/anol.git
 cd anol/
-npm i
+npm i --omit=dev
 ```
 
 * Install (and watch) the bielefeldGEOCLIENT frontend
@@ -100,7 +100,6 @@ npm start
       ```
       pip install -r requirements.txt
       pip install -e ../
-      pip install --no-index -e ../munimap_transport/
       ```
   - As long as the custom print layouts are still using the mapfish cli, we need to copy the icons to the mapfish config dir:
       ```

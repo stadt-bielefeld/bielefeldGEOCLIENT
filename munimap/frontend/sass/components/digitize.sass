@@ -1,3 +1,9 @@
+@use "sass:color"
+@use "sass:math"
+
+@use "../helpers/mixins"
+@use "../helpers/variables"
+
 .munimap-digitize-draw
   .anol-drawer-content
     .anol-draw
@@ -15,13 +21,13 @@
         .digitize-draw-footer
           .error-text
             span
-              color: $warning-color
+              color: variables.$warning-color
 
 .form-horizontal
   margin: 0 15px 0
 
   fieldset
-    border-bottom: 1px solid $grey-lighter
+    border-bottom: 1px solid variables.$grey-lighter
     padding-bottom: 1em
     padding-top: 1em
     legend
@@ -30,7 +36,7 @@
       margin-bottom: 0
       padding-top: 5px
       border: none
-      color: $grey
+      color: variables.$grey
     .checkbox
       .control-label
         padding-top: 0
@@ -58,9 +64,9 @@
         width: 100%
         height: 30px
       .slider-value-label
-        color: $text-color
-        background-color: $popup-digitize-background-color
-        border: 1px solid lighten($text-color, 80%)
+        color: variables.$text-color
+        background-color: variables.$popup-digitize-background-color
+        border: 1px solid color.adjust(variables.$text-color, $lightness: 80%)
         font-weight: normal
         min-width: 30px
         text-align: center
@@ -74,11 +80,11 @@
 
 .munimap-digitize-popup
   &.anol-popup
-    background-color: $popup-digitize-background-color
+    background-color: variables.$popup-digitize-background-color
     padding: 0
 
     &.top:after
-      border-top-color: $popup-digitize-background-color
+      border-top-color: variables.$popup-digitize-background-color
 
     .anol-popup-closer
       color: white
@@ -90,8 +96,8 @@
       width: 265px
       .popup-header
         padding: 10px
-        background-color: $popup-digitize-header-color
-        color: $popup-digitize-header-text-color
+        background-color: variables.$popup-digitize-header-color
+        color: variables.$popup-digitize-header-text-color
         h4
           margin: 0
 
@@ -107,7 +113,7 @@
               margin-top: 10px
               margin-bottom: 4px
 
-        @media (min-width: $screen-xs)
+        @media (min-width: variables.$screen-xs)
           .nav-tabs
             position: absolute
             left: -44px
@@ -115,10 +121,10 @@
             border: none
             li
               border-radius: 4px
-              @include full-box-shadow(-4px, -1px, 8px, -4px, $shadow-color)
+              @include mixins.full-box-shadow(-4px, -1px, 8px, -4px, variables.$shadow-color)
               a
                 border: none
-                background-color: $popup-digitize-background-color
+                background-color: variables.$popup-digitize-background-color
                 &:hover
                   border: none
                 &:focus
@@ -127,9 +133,9 @@
 
               &:not(.active)
                 a
-                  background-color: darken($popup-digitize-background-color, 5%)
+                  background-color: color.adjust(variables.$popup-digitize-background-color, $lightness: -5%)
                   &:hover
-                    background-color: $popup-digitize-background-color
+                    background-color: variables.$popup-digitize-background-color
 
         .tab-content
           font-size: 0.8em
@@ -175,7 +181,7 @@
               padding: 3px
               &.selected
                 padding: 1px
-                border: 2px solid $green-border
+                border: 2px solid variables.$green-border
       .popup-footer
         margin: 0 15px 0 15px
         padding-top: 5px
@@ -183,7 +189,7 @@
         .polling-refresh
           text-wrap: wrap
           span
-            color: $warning-color
+            color: variables.$warning-color
         .action-buttons
           display: flex
           justify-content: flex-end
@@ -191,10 +197,11 @@
 $slider-track-height: 6px
 $slider-handle-width: 6px
 $slider-handle-height: $slider-track-height * 2
+
 .slider.slider-horizontal
   .slider-track
     height: $slider-track-height
-    margin-top: -($slider-track-height / 3)
+    margin-top: math.div(-$slider-track-height, 3)
   .slider-selection
     background-image: none
     box-shadow: none
@@ -205,8 +212,8 @@ $slider-handle-height: $slider-track-height * 2
     margin-top: 8px
     border-radius: 33%
     background-image: none
-    background-color: $text-color
-    @include background-linear-gradient(lighten($text-color, 90%), $text-color)
+    background-color: variables.$text-color
+    @include mixins.background-linear-gradient(color.adjust(variables.$text-color, $lightness: 90%), variables.$text-color)
     &:before
       content: ''
 
@@ -246,7 +253,7 @@ $slider-handle-height: $slider-track-height * 2
     padding: 5px
 
   .draw-icon
-    background-image: url('../img/draw-toolbar-spritesheet-black.svg')
+    background-image: url('../../img/draw-toolbar-spritesheet-black.svg')
     background-size: 200px auto
     height: 12px
     width: 10px

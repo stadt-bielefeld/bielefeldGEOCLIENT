@@ -1,3 +1,8 @@
+@use "helpers/variables"
+@use "helpers/media_queries"
+
+@use "app"
+
 .timetable-informations
   right: 10px
   top: 10px
@@ -8,7 +13,7 @@
     background-color: white
 
   h4
-    background-color: $popup-transport-header-background-color
+    background-color: variables.$popup-transport-header-background-color
     color: white
     margin-top: 0px
     margin-bottom: 0px
@@ -25,7 +30,7 @@
   label
     margin-bottom: 0px
 
-@media (max-width: $screen-sm)
+@media (max-width: media_queries.$screen-sm)
   .timetable-informations.form-xs-hidden
     display: none
 
@@ -59,15 +64,15 @@
         position: absolute
         text-align: center
         width: 100%
-        pointer-events: none;
+        pointer-events: none
 
-        @media (max-width: $screen-sm)
+        @media (max-width: media_queries.$screen-sm)
           text-align: left
           margin-left: 10px
 
         button
-          background-color: $button-layer-background-color
-          color: $button-layer-text-color
+          background-color: variables.$button-layer-background-color
+          color: variables.$button-layer-text-color
           box-shadow: none
           outline: none !important
           pointer-events: auto
@@ -75,20 +80,20 @@
 
           &.active
             background-color: #F8F7F2
-            color:  $button-layer-active-color
+            color:  variables.$button-layer-active-color
             box-shadow: none
-            border-color: $button-layer-active-color
+            border-color: variables.$button-layer-active-color
             span
-              color:  $button-layer-active-color
+              color:  variables.$button-layer-active-color
 
-          @media (min-width: $screen-sm)
+          @media (min-width: media_queries.$screen-sm)
             &:hover
               background-color: #F8F7F2
-              color:  $button-layer-active-color
+              color: variables.$button-layer-active-color
               box-shadow: none
-              border-color: $button-layer-active-color
+              border-color: variables.$button-layer-active-color
               span
-                color:  $button-layer-active-color
+                color:  variables.$button-layer-active-color
 
         .overlay-layer
           margin-right: 15px
@@ -106,7 +111,7 @@
       z-index: 2001
       &.bottom
         &:after
-          border-bottom-color: $popup-transport-header-background-color
+          border-bottom-color: variables.$popup-transport-header-background-color
       &.top
         &:after
           border-top-color: white
@@ -115,7 +120,7 @@
         white-space: normal
 
         .transport-content
-          background-color: $popup-transport-content-background-color
+          background-color: variables.$popup-transport-content-background-color
 
         .ref-badge
           border-radius: 4px
@@ -123,19 +128,19 @@
         .ref-operator
           font-size: 11px
           font-style: italic
-          line-height: 30px 
-        
+          line-height: 30px
+
         .badge.bus
-          background-color: $bus-badge-color
+          background-color: variables.$bus-badge-color
 
         .badge.tram
-          background-color: $tram-badge-color
+          background-color: variables.$tram-badge-color
 
         .badge.night
-          background-color: $night-badge-color
-        
+          background-color: variables.$night-badge-color
+
         .badge.other-operator
-          background-color: $other-operator-badge-color !important
+          background-color: variables.$other-operator-badge-color !important
 
         h4,
         .transport-content,
@@ -145,7 +150,7 @@
           padding: 10px
 
         h4
-          background-color: $popup-transport-header-background-color
+          background-color: variables.$popup-transport-header-background-color
           color: white
           margin-top: 0px
           margin-bottom: 0px
@@ -154,20 +159,20 @@
             cursor: pointer
 
         .select-station-content
-          background-color: $popup-subroute-content-background-color
+          background-color: variables.$popup-subroute-content-background-color
           padding-top: 5px
           padding-bottom: 5px
 
         .subroute-content,
         .construction-content
-          background-color: $popup-subroute-content-background-color
+          background-color: variables.$popup-subroute-content-background-color
 
           li
             color: gray
             margin-bottom: 5px
             &::before
               content: " "
-              border-color: transparent $popup-transport-header-background-color
+              border-color: transparent variables.$popup-transport-header-background-color
               border-style: solid
               border-width: 4px 0 4px 6px
               display: inline-block
@@ -181,8 +186,8 @@
           overflow: auto
 
         .timetable-content
-          border-top: 1px solid $popup-transport-content-background-color
-          border-bottom: 1px solid $popup-transport-content-background-color
+          border-top: 1px solid variables.$popup-transport-content-background-color
+          border-bottom: 1px solid variables.$popup-transport-content-background-color
           padding-top: 5px
           padding-bottom: 5px
           ul
@@ -223,7 +228,7 @@
     width: 133px
     height: auto
 
-@media (max-width: $screen-sm)
+@media (max-width: media_queries.$screen-sm)
   .map-logo
     bottom: 50px
-    
+
