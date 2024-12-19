@@ -761,7 +761,7 @@ Es ist möglich Marker oder sichtbare BBOXen über die Url der Kartenanwendung h
 Beispiel Urls::
 
   [...]/stadtplan/#?marker=color:ff0000|label:foo|coord:8.53,52.01|srs:4326
-  [...]/stadtplan/#?marker=bbox:467157,5768668,467295,5768602|srs:25832|fit:true
+  [...]/stadtplan/#?marker=bbox:467157,5768602,467295,5768668|srs:25832|fit:true
 
 Nachfolgend werden die einzelnen Url Parameter erläutert:
 
@@ -769,7 +769,7 @@ Nachfolgend werden die einzelnen Url Parameter erläutert:
     Koordinate des Markers
 
   ``bbox``
-    Ausdehnung der anzuzeigenden BBOX
+    Ausdehnung der anzuzeigenden BBOX in dem Format <x-min>,<y-min>,<x-max>,<y-max>
 
   ``color``
     Farbe des Markers

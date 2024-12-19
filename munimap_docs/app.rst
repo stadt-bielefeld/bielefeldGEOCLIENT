@@ -168,31 +168,17 @@ Dies wird vom System kompiliert zu:
 ``Pfad zu den Sass-Dateien``
 """"""""""""""""""""""""""""
 
-Die Sass-Dateien sind im Repository unter `conf/munimpa/project/static/sass` zu abgelegt und müssen nach Änderungen mit den entsprechenden Daten auf dem Server unter ``/opt/etc/munimap/bielefeld/sass`` ausgetauscht werden.
+Die Sass-Dateien sind im Repository unter `conf/munimpa/project/frontend/sass` abgelegt und werden automatisch als CSS mit deployed, das generierte CSS kann ggf. im Image ausgetauscht werden durch einen Mount nach .
 
 
-``_variables.sass``
+``variables.sass``
 """""""""""""""""""
 
 Farbwerte, Abstände und auch Schriftgrößen die in der Anwendung verwendet werden, werden mit Hilfe von Variablen gesetzt. Sass ermöglicht es diese an einer Stelle zu definieren um diese dann wieder zu verwenden.
 
-Die Variablen können dementsprechend überschrieben werden und sind gesammelt in der Datei ``_variables.sass`` zu finden. Variablen werden mit einem führenden $-Zeichen definiert.
+Die Variablen können dementsprechend überschrieben werden und sind gesammelt in der Datei ``variables.sass`` zu finden. Variablen werden mit einem führenden $-Zeichen definiert und müssen ihren Namespace als Prefix erhalten.
 
 .. code-block:: css
 
-    $sidebar-text-color: #787878
-    $sidebar-item-highlight-color: #ccc
-
-
-``project.sass``
-""""""""""""""""
-
-Alle Layout-Einstellungen können über die Projekt-Datei überschrieben werden. Einzelne Layouts pro App sind nicht möglich.
-
-Beispielhafte hier das Überschrieben der Höhe der Sitebar
-
-.. code-block:: css
-
-    .side-bar
-        .sidebar-header
-            height: 55px
+    variables.$sidebar-text-color: #787878
+    $other-sidebar-item-highlight-color: #ccc
