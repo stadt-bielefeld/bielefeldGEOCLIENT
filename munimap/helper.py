@@ -19,10 +19,15 @@ __all__ = ['_', '_l']
 
 
 class InvalidAppConfigError(Exception):
-    def __init__(self, ex, filename):
+    def __init__(self, ex, filename, reason):
+        """
+        :param ex: an exception or None
+        :param filename: filename of the configuration
+        :param reason: a reason for the error. Will be overwritten if the exception has a `problem` attribute
+        """
         self.filename = filename
         self.position = None
-        self.reason = None
+        self.reason = reason
         if hasattr(ex, 'problem_mark'):
             self.position = [
                 ex.problem_mark.line + 1,
@@ -214,6 +219,15 @@ def load_app_config(config=None, without_404=False):
         app_config['printConfig']['pageMargins'] = current_app.config.get(
             'MAPFISH_PRINT_MAP_MARGINS', [0, 0, 0, 0]
         )
+
+    if 'components' in app_config:
+        mutually_exclusive_draw_components = [
+            app_config['components'].get('draw', False),
+            app_config['components'].get('geoeditor', False),
+            app_config['components'].get('digitize', False)
+        ]
+        if len([c for c in mutually_exclusive_draw_components if c]) > 1:
+            raise InvalidAppConfigError(None, config + '.yaml', 'The options draw, geoeditor and digitize cannot be enabled at the same time.')
 
     return app_config
 
