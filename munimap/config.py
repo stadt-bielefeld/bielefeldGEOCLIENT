@@ -7,10 +7,6 @@ class DefaultConfig(object):
     Default configuration for a newsmeme application.
     """
 
-    # TODO It is not recommended to set DEBUG value at runtime.
-    #      Better set it as environment variable before startup.
-    DEBUG = True
-
     MATOMO = False
     MATOMO_URL = ''
     MATOMO_IMAGE_URL = ''
@@ -179,9 +175,6 @@ class DefaultConfig(object):
 
 class TestConfig(object):
     here = path.dirname(__file__)
-
-    DEBUG = True
-    ASSETS_DEBUG = True
 
     APP_CONFIG_DIR = path.join(here, 'test/data/app/')
 

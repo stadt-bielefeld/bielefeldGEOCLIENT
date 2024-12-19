@@ -33,6 +33,8 @@ services:
       context: ../
       args:
         ANOL_COMMIT_HASH: master
+#    environment:
+#      FLASK_DEBUG: 1
     volumes:
       - ../dev/configs:/opt/etc/munimap/configs
       - ./munimap-app/alembic.ini:/opt/etc/munimap/configs/alembic.ini
