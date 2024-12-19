@@ -53,16 +53,6 @@ angular.module('munimapBase')
                 $scope.geoeditorConfig = munimapConfig.geoeditor;
             }
 
-            const mutuallyExclusiveDrawComponents = [
-              $scope.drawEnabled,
-              $scope.geoeditorEnabled,
-              $scope.digitizeEnabled
-            ];
-            if (mutuallyExclusiveDrawComponents.filter(t => t).length > 1) {
-                // anol-draw does not support multiple instances. This causes the draw components to work on the same layer.
-                $scope.applicationError = 'The options draw, geoeditor and digitize cannot be enabled at the same time.';
-            }
-
             if ($scope.digitizeEnabled) {
               $scope.digitizeConfig = munimapConfig.digitizeConfig;
               $scope.digitizeLayerGeomType = undefined;

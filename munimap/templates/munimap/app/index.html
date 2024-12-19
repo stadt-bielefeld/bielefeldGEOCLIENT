@@ -11,11 +11,6 @@
 {% endblock %}
 
 {% block body %}
-  <div ng-show="applicationError"
-       class="alert alert-danger text-center"
-       ng-cloak>
-    <pre>{{ applicationError }}</pre>
-  </div>
   <div class="app-content hide"
        ng-controller="transportController"
        ng-class="{'show': appReady === true}">

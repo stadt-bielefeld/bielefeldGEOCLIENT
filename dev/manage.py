@@ -5,7 +5,7 @@ from munimap.extensions import db
 import click
 
 config_file = os.getenv('FLASK_MUNIMAP_CONFIG', './configs/munimap.conf')
-debug = os.getenv('FLASK_DEBUG', '0')
+debug = os.getenv('FLASK_DEBUG', '0') == '1'
 host = os.getenv('FLASK_RUN_HOST', '0.0.0.0')
 port = os.getenv('FLASK_RUN_PORT', 5000)
 
@@ -19,8 +19,8 @@ def run_munimap():
     app.logger.info("Preparing to run munimap")
     app.logger.info(f"Starting application {app.name}")
     app.logger.info(f"Using {config_file} as config file")
-    app.logger.info(f"Debugger is {debug == '1'}")
-    app.run(host=host, port=int(port), debug=debug=="1", threaded=True)
+    app.logger.info(f"Debugger is {debug}")
+    app.run(host=host, port=int(port), debug=debug, threaded=True)
 
 @cli_manager.command()
 @click.option('--lang', default='de', help='selects language to initialize')
