@@ -828,7 +828,7 @@ wird das Editieren von genau einem Digitalisierungslayer unterstützt. Dieser We
 <p>Es ist möglich Marker oder sichtbare BBOXen über die Url der Kartenanwendung hinzuzufügen. Dazu muss an die Url zur Anwendung <cite>#?marker=</cite> angehängt werden. Für jeden in der Url definierten Marker ist eine der beiden Eigenschaften <cite>coord</cite> oder <cite>bbox</cite> anzugeben. Optional können zur Option <cite>coord</cite> noch <cite>color</cite> und <cite>label</cite> angegeben werden. Die Optionen <cite>srs</cite> und <cite>fit</cite> können sowohl zu <cite>coord</cite>, als auch zu <cite>bbox</cite> angegeben werden.</p>
 <p>Beispiel Urls:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="o">/</span><span class="n">stadtplan</span><span class="o">/</span><span class="c1">#?marker=color:ff0000|label:foo|coord:8.53,52.01|srs:4326</span>
-<span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="o">/</span><span class="n">stadtplan</span><span class="o">/</span><span class="c1">#?marker=bbox:467157,5768668,467295,5768602|srs:25832|fit:true</span>
+<span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="o">/</span><span class="n">stadtplan</span><span class="o">/</span><span class="c1">#?marker=bbox:467157,5768602,467295,5768668|srs:25832|fit:true</span>
 </pre></div>
 </div>
 <p>Nachfolgend werden die einzelnen Url Parameter erläutert:</p>
@@ -836,7 +836,7 @@ wird das Editieren von genau einem Digitalisierungslayer unterstützt. Dieser We
 <div><dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">coord</span></code></dt><dd><p>Koordinate des Markers</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">bbox</span></code></dt><dd><p>Ausdehnung der anzuzeigenden BBOX</p>
+<dt><code class="docutils literal notranslate"><span class="pre">bbox</span></code></dt><dd><p>Ausdehnung der anzuzeigenden BBOX in dem Format &lt;x-min&gt;,&lt;y-min&gt;,&lt;x-max&gt;,&lt;y-max&gt;</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">color</span></code></dt><dd><p>Farbe des Markers</p>
 </dd>
@@ -1167,7 +1167,7 @@ ein Objekt mit folgenden Attributen zurückliefert:</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021, Stadt Bielefeld.
-      <span class="lastupdated">Zuletzt aktualisiert am 2024-12-18.
+      <span class="lastupdated">Zuletzt aktualisiert am 2024-12-19.
       </span></p>
   </div>
 
@@ -1183,7 +1183,7 @@ ein Objekt mit folgenden Attributen zurückliefert:</p>
   </div>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
-    Version: 1.4.0
+    Version: 1.4.1
     <span class="fa fa-caret-down"></span>
   </span>
     <div class="rst-other-versions">

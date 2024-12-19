@@ -54,8 +54,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#anwendung-als-iframe-einbinden">Anwendung als IFrame einbinden</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#layout-bearbeiten">Layout bearbeiten</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#pfad-zu-den-sass-dateien"><code class="docutils literal notranslate"><span class="pre">Pfad</span> <span class="pre">zu</span> <span class="pre">den</span> <span class="pre">Sass-Dateien</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#variables-sass"><code class="docutils literal notranslate"><span class="pre">_variables.sass</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#project-sass"><code class="docutils literal notranslate"><span class="pre">project.sass</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variables-sass"><code class="docutils literal notranslate"><span class="pre">variables.sass</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -232,24 +231,14 @@ verwendet werden. Weitere Infos unter <a class="reference internal" href="defaul
 </div>
 <section id="pfad-zu-den-sass-dateien">
 <h3><code class="docutils literal notranslate"><span class="pre">Pfad</span> <span class="pre">zu</span> <span class="pre">den</span> <span class="pre">Sass-Dateien</span></code><a class="headerlink" href="#pfad-zu-den-sass-dateien" title="Link to this heading"></a></h3>
-<p>Die Sass-Dateien sind im Repository unter <cite>conf/munimpa/project/static/sass</cite> zu abgelegt und müssen nach Änderungen mit den entsprechenden Daten auf dem Server unter <code class="docutils literal notranslate"><span class="pre">/opt/etc/munimap/bielefeld/sass</span></code> ausgetauscht werden.</p>
+<p>Die Sass-Dateien sind im Repository unter <cite>conf/munimpa/project/frontend/sass</cite> abgelegt und werden automatisch als CSS mit deployed, das generierte CSS kann ggf. im Image ausgetauscht werden durch einen Mount nach .</p>
 </section>
 <section id="variables-sass">
-<h3><code class="docutils literal notranslate"><span class="pre">_variables.sass</span></code><a class="headerlink" href="#variables-sass" title="Link to this heading"></a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">variables.sass</span></code><a class="headerlink" href="#variables-sass" title="Link to this heading"></a></h3>
 <p>Farbwerte, Abstände und auch Schriftgrößen die in der Anwendung verwendet werden, werden mit Hilfe von Variablen gesetzt. Sass ermöglicht es diese an einer Stelle zu definieren um diese dann wieder zu verwenden.</p>
-<p>Die Variablen können dementsprechend überschrieben werden und sind gesammelt in der Datei <code class="docutils literal notranslate"><span class="pre">_variables.sass</span></code> zu finden. Variablen werden mit einem führenden $-Zeichen definiert.</p>
-<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="o">$</span><span class="nt">sidebar-text-color</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">787878</span>
-<span class="o">$</span><span class="nt">sidebar-item-highlight-color</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">ccc</span>
-</pre></div>
-</div>
-</section>
-<section id="project-sass">
-<h3><code class="docutils literal notranslate"><span class="pre">project.sass</span></code><a class="headerlink" href="#project-sass" title="Link to this heading"></a></h3>
-<p>Alle Layout-Einstellungen können über die Projekt-Datei überschrieben werden. Einzelne Layouts pro App sind nicht möglich.</p>
-<p>Beispielhafte hier das Überschrieben der Höhe der Sitebar</p>
-<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">side-bar</span>
-<span class="w">    </span><span class="p">.</span><span class="nc">sidebar-header</span>
-<span class="w">        </span><span class="nt">height</span><span class="o">:</span><span class="w"> </span><span class="nt">55px</span>
+<p>Die Variablen können dementsprechend überschrieben werden und sind gesammelt in der Datei <code class="docutils literal notranslate"><span class="pre">variables.sass</span></code> zu finden. Variablen werden mit einem führenden $-Zeichen definiert und müssen ihren Namespace als Prefix erhalten.</p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="nt">variables</span><span class="o">.$</span><span class="nt">sidebar-text-color</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">787878</span>
+<span class="o">$</span><span class="nt">other-sidebar-item-highlight-color</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">ccc</span>
 </pre></div>
 </div>
 </section>
@@ -268,7 +257,7 @@ verwendet werden. Weitere Infos unter <a class="reference internal" href="defaul
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021, Stadt Bielefeld.
-      <span class="lastupdated">Zuletzt aktualisiert am 2024-12-18.
+      <span class="lastupdated">Zuletzt aktualisiert am 2024-12-19.
       </span></p>
   </div>
 
@@ -284,7 +273,7 @@ verwendet werden. Weitere Infos unter <a class="reference internal" href="defaul
   </div>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
-    Version: 1.4.0
+    Version: 1.4.1
     <span class="fa fa-caret-down"></span>
   </span>
     <div class="rst-other-versions">
