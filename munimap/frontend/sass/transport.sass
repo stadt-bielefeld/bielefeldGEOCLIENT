@@ -3,49 +3,6 @@
 
 @use "app"
 
-.timetable-informations
-  right: 10px
-  top: 10px
-  padding: 0
-  background-color: white
-  width: 230px
-  &:hover
-    background-color: white
-
-  h4
-    background-color: variables.$popup-transport-header-background-color
-    color: white
-    margin-top: 0px
-    margin-bottom: 0px
-
-  .closer
-    color: white
-
-  h4,form
-    padding: 10px
-
-  .row
-    margin-bottom: 10px
-
-  label
-    margin-bottom: 0px
-
-@media (max-width: media_queries.$screen-sm)
-  .timetable-informations.form-xs-hidden
-    display: none
-
-  .timetable-informations.form-xs-visible
-    top: 0px
-    right: 0px
-    width: 100%
-    height: 100%
-    z-index: 10
-
-  .timetable-informations .row
-    margin-left: 0
-    margin-right: 0
-
-
 .app-content:not(.show) + .loading
   .logo-transport
     background: url('../img/logo_transport.png') no-repeat center center fixed
