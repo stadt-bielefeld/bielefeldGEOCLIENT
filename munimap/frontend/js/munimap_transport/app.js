@@ -5,8 +5,6 @@ import '@babel/polyfill';
 proj4.defs('EPSG:25832', '+proj=utm +zone=32 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs');
 register(proj4);
 
-import '../../../../munimap/frontend/sass/transport.sass';
-
 require('angular');
 require('anol/src/anol/anol.js');
 

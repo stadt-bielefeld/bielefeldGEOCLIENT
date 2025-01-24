@@ -1,7 +1,5 @@
 import '@babel/polyfill';
 
-import "../../sass/admin.sass";
-
 require('angular');
 
 require('./base.js');

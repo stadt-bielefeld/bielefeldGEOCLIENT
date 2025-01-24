@@ -22,7 +22,10 @@ module.exports  = {
             import: './munimap/frontend/js/static-app.js',
             dependOn: 'vendor'
         },
-        vendor: ['angular', 'jquery', 'angular-ui-bootstrap']
+        vendor: ['angular', 'jquery', 'angular-ui-bootstrap'],
+        appStyle: {
+            import: './munimap/frontend/sass/appStyle.sass'
+        }
     },
     output: {
         filename: 'js/[name].bundle.js',
