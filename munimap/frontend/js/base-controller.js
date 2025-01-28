@@ -608,7 +608,8 @@ angular.module('munimapBase')
                 if (ContextMenuItems) {
                     var contextmenu = new anol.control.ContextMenu({
                         width: 180,
-                        items: ContextMenuItems
+                        items: ContextMenuItems,
+                        defaultItems: false
                     });
                     var map = MapService.getMap();
                     map.addControl(contextmenu);
