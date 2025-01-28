@@ -44,14 +44,26 @@ module.exports  = {
     },
     module: {
         rules: [
+            // Small workaround for ace-builds to work.
+            // For some reason, the worker-javascript.js will be requested by ace under
+            // js/ace-builds/worker-javascript.js
+            // whereas the worker-yaml will be requested by ace under
+            // js/worker-yaml.js.
+            // So we handle the two files separately here and put them under different
+            // locations respectively.
             {
-                test: /ace-builds.*worker-.*\.js$/,
-                use: {
-                    loader: 'file-loader',
-                    options: {
-                        name: 'js/ace-builds/[name].js'
-                    }
-                }
+                test: /ace-builds.*worker-yaml\.js$/,
+                type: 'asset/resource',
+                generator: {
+                 filename: 'js/[name].js'
+               }
+            },
+            {
+                test: /ace-builds.*worker-javascript\.js$/,
+                type: 'asset/resource',
+                generator: {
+                 filename: 'js/ace-builds/[name].js'
+               }
             },
             {
                 test: /\.html$/,
