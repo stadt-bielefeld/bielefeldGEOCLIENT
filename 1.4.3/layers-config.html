@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Layer-Optionen &mdash; bielefeldGEOCLIENT / munimap  Dokumentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=245627df"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/translations.js?v=79cc9f76"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
+    <link rel="search" title="Suche" href="search.html" />
+    <link rel="next" title="Auswahllisten-Definition" href="selectionlists-config.html" />
+    <link rel="prev" title="Layer-Definition" href="layer.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            bielefeldGEOCLIENT / munimap
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="app.html">Anwendungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="default-config.html">App-Optionen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layer.html">Layer-Definition</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Layer-Optionen</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#layers">layers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#name"><code class="docutils literal notranslate"><span class="pre">name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#title"><code class="docutils literal notranslate"><span class="pre">title</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#attribution"><code class="docutils literal notranslate"><span class="pre">attribution</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#base"><code class="docutils literal notranslate"><span class="pre">base</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#status"><code class="docutils literal notranslate"><span class="pre">status</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#catalog"><code class="docutils literal notranslate"><span class="pre">catalog</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opacity"><code class="docutils literal notranslate"><span class="pre">opacity</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#metadataurl"><code class="docutils literal notranslate"><span class="pre">metadataUrl</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#background"><code class="docutils literal notranslate"><span class="pre">background</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#directaccess"><code class="docutils literal notranslate"><span class="pre">directAccess</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cluster"><code class="docutils literal notranslate"><span class="pre">cluster</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#abstract"><code class="docutils literal notranslate"><span class="pre">abstract</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#type"><code class="docutils literal notranslate"><span class="pre">type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-index"><code class="docutils literal notranslate"><span class="pre">create_index</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#source"><code class="docutils literal notranslate"><span class="pre">source</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#featureinfo"><code class="docutils literal notranslate"><span class="pre">featureinfo</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#legend"><code class="docutils literal notranslate"><span class="pre">legend</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#searchconfig"><code class="docutils literal notranslate"><span class="pre">searchConfig</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#printtilesize"><code class="docutils literal notranslate"><span class="pre">printTileSize</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#style"><code class="docutils literal notranslate"><span class="pre">style</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#groups">groups</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4"><code class="docutils literal notranslate"><span class="pre">title</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5"><code class="docutils literal notranslate"><span class="pre">layers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6"><code class="docutils literal notranslate"><span class="pre">status</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#showgroup"><code class="docutils literal notranslate"><span class="pre">showGroup</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#singleselect"><code class="docutils literal notranslate"><span class="pre">singleSelect</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#defaultvisiblelayers"><code class="docutils literal notranslate"><span class="pre">defaultVisibleLayers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7"><code class="docutils literal notranslate"><span class="pre">catalog</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8"><code class="docutils literal notranslate"><span class="pre">abstract</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9"><code class="docutils literal notranslate"><span class="pre">legend</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10"><code class="docutils literal notranslate"><span class="pre">metadataUrl</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#layer-fur-den-druck">Layer für den Druck</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#name-print"><code class="docutils literal notranslate"><span class="pre">[name]_print</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#name-raw"><code class="docutils literal notranslate"><span class="pre">[name]_raw</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#layer-quellen">Layer Quellen</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#wms"><code class="docutils literal notranslate"><span class="pre">wms</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tiledwms"><code class="docutils literal notranslate"><span class="pre">tiledwms</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#wmts"><code class="docutils literal notranslate"><span class="pre">wmts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#postgis"><code class="docutils literal notranslate"><span class="pre">postgis</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#digitize"><code class="docutils literal notranslate"><span class="pre">digitize</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="selectionlists-config.html">Auswahllisten-Definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javascript-plugins.html">JavaScript-Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example-config.html">Beispiel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="print-index.html">Straßenindex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tour.html">Tour</a></li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Administrationsbereich</a></li>
+<li class="toctree-l1"><a class="reference internal" href="url-parameter.html">URL-Parameter</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">bielefeldGEOCLIENT / munimap</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Layer-Optionen</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/layers-config.rst.txt" rel="nofollow"> Quelltext anzeigen</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="layer-optionen">
+<span id="layersconf"></span><h1>Layer-Optionen<a class="headerlink" href="#layer-optionen" title="Link to this heading"></a></h1>
+<section id="layers">
+<h2>layers<a class="headerlink" href="#layers" title="Link to this heading"></a></h2>
+<p>Konfigurationen eines Layers. Auf Einzelheiten zu komplexeren Konfigurationseinträgen wird jeweils in einem gesonderten Abschnitt eingegangen.</p>
+<section id="name">
+<h3><code class="docutils literal notranslate"><span class="pre">name</span></code><a class="headerlink" href="#name" title="Link to this heading"></a></h3>
+<p>Zur Identifikation genutzter Name des Layers. Muss eindeutig sein.</p>
+</section>
+<section id="title">
+<h3><code class="docutils literal notranslate"><span class="pre">title</span></code><a class="headerlink" href="#title" title="Link to this heading"></a></h3>
+<p>Angezeigter Name des Layers.</p>
+</section>
+<section id="attribution">
+<h3><code class="docutils literal notranslate"><span class="pre">attribution</span></code><a class="headerlink" href="#attribution" title="Link to this heading"></a></h3>
+<p>Attributierung, die zu dem Layer in der Karte angezeigt wird.</p>
+</section>
+<section id="base">
+<h3><code class="docutils literal notranslate"><span class="pre">base</span></code><a class="headerlink" href="#base" title="Link to this heading"></a></h3>
+<p>Name des Layers, dessen Konfiguration als Basis des Layers herangezogen wird. Es werden alle Eigenschaften vererbt und können dann gezielt überschrieben werden.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">layers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wms_background</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WMS Background</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wms</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://www.example.org/wms/service?&quot;</span>
+<span class="w">      </span><span class="nt">fomat</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;image/png&quot;</span>
+<span class="w">      </span><span class="nt">layers</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">color</span>
+<span class="w">      </span><span class="nt">srs</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;EPSG:4326&quot;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mono_background</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Mono background</span>
+<span class="w">    </span><span class="nt">base</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wms_background</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">layers</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mono</span>
+</pre></div>
+</div>
+</section>
+<section id="status">
+<h3><code class="docutils literal notranslate"><span class="pre">status</span></code><a class="headerlink" href="#status" title="Link to this heading"></a></h3>
+<p>Legt fest, ob der Layer aktiv ist. Aktive Layer werden, soweit in der <a class="reference internal" href="default-config.html#defaultconf"><span class="std std-ref">default-config.yaml</span></a> oder einer <cite>App-Konfiguration</cite> nicht anders angegeben, in der Karte angezeigt. Mögliche Werte sind <cite>active</cite> und <cite>inactive</cite>. Fehlt dieses Attribut, wird der Layer auf <cite>active</cite> gesetzt.</p>
+</section>
+<section id="catalog">
+<h3><code class="docutils literal notranslate"><span class="pre">catalog</span></code><a class="headerlink" href="#catalog" title="Link to this heading"></a></h3>
+<p>Soll die Gruppe im Katalog auftauchen kann dies hier eingesetllt werden. Standartwert <cite>false</cite>. Zusätzlich kann hier auch noch ein Titel mit angegeben werden.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">catalog</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Parken Mobilität</span>
+</pre></div>
+</div>
+</section>
+<section id="opacity">
+<h3><code class="docutils literal notranslate"><span class="pre">opacity</span></code><a class="headerlink" href="#opacity" title="Link to this heading"></a></h3>
+<p>Deckkraft des Layers.</p>
+</section>
+<section id="metadataurl">
+<h3><code class="docutils literal notranslate"><span class="pre">metadataUrl</span></code><a class="headerlink" href="#metadataurl" title="Link to this heading"></a></h3>
+<p>Externe URL zum Anzeigen von Metadaten, wird u.a. im Katalog verwendet.</p>
+</section>
+<section id="background">
+<h3><code class="docutils literal notranslate"><span class="pre">background</span></code><a class="headerlink" href="#background" title="Link to this heading"></a></h3>
+<p>Definiert ob ein Layer ein Hintergrundlayer ist. Standardwert: <cite>false</cite>.</p>
+</section>
+<section id="directaccess">
+<h3><code class="docutils literal notranslate"><span class="pre">directAccess</span></code><a class="headerlink" href="#directaccess" title="Link to this heading"></a></h3>
+<p>Ist der Parameter gesetzt, wird der Dienst direkt abgefragt und nicht über die Anwendung die als Proxy dient..</p>
+</section>
+<section id="cluster">
+<h3><code class="docutils literal notranslate"><span class="pre">cluster</span></code><a class="headerlink" href="#cluster" title="Link to this heading"></a></h3>
+<p>Definiert ob ein Layer geclustert werden soll. Dies gilt nur für Layer mit dem <cite>type</cite> <cite>postgis</cite>. Der Standartwert für diese Option ist <cite>false</cite>. Alle Layer mit <cite>cluster</cite> <cite>true</cite> die zur selben Gruppe gehören, werden zusammen geclustert.</p>
+</section>
+<section id="abstract">
+<h3><code class="docutils literal notranslate"><span class="pre">abstract</span></code><a class="headerlink" href="#abstract" title="Link to this heading"></a></h3>
+<p>Beschreibung welche Daten in dem Layer angezeigt werden, wird u.a. in der Darstellung des Katalogs verwendet.</p>
+</section>
+<section id="type">
+<h3><code class="docutils literal notranslate"><span class="pre">type</span></code><a class="headerlink" href="#type" title="Link to this heading"></a></h3>
+<p>Mögliche Typen sind <cite>wms</cite>, <cite>tiledwms</cite>, <cite>wmts</cite>, <cite>postgis</cite> und <cite>digitize</cite>. Je nach angegebenen <cite>type</cite> wird eine entsprechende <cite>source</cite> erwartet.</p>
+</section>
+<section id="create-index">
+<h3><code class="docutils literal notranslate"><span class="pre">create_index</span></code><a class="headerlink" href="#create-index" title="Link to this heading"></a></h3>
+<p>Diese Option ist nur für Layer mit dem <cite>type</cite> <cite>postgis</cite> und <cite>digitize</cite> gültig. Sie legt fest, ob für den Layer beim Drucken ein Index-Dokument erstellt und ein Kachelgitter zu der Karte hinzugefügt werden soll. Der Standartwert für diese Option ist <cite>true</cite>.</p>
+</section>
+<section id="source">
+<h3><code class="docutils literal notranslate"><span class="pre">source</span></code><a class="headerlink" href="#source" title="Link to this heading"></a></h3>
+<p>Konfiguration der Datenquelle des Layers. Einzelheiten unter <a class="reference internal" href="#id11">source</a>.</p>
+</section>
+<section id="featureinfo">
+<h3><code class="docutils literal notranslate"><span class="pre">featureinfo</span></code><a class="headerlink" href="#featureinfo" title="Link to this heading"></a></h3>
+<p>Konfiguration der Informationsabfrage des Layers. Dies gilt nur für Layer mit dem <cite>type</cite> <cite>postgis</cite>, <cite>wms</cite> oder <cite>tiledwms</cite>. Fehlt dieses Attribut oder ist der Wert <cite>null</cite> gesetzt, erfolgt keine Informationsabfrage für diesen Layer.</p>
+<p>Konfiguriert, ob in der Kartenanwendung eine <cite>GetFeatureInfo</cite>-Abfrage für Layer vom <cite>type</cite> <cite>wms</cite> oder <cite>tiledwms</cite> durchgeführt bzw. Informationen zu einer Geometrie für Layer vom <cite>type</cite> <cite>postgis</cite> angezeigt werden soll.</p>
+<p>Für Layer vom <cite>type</cite> <cite>wms</cite> oder <cite>tiledwms</cite> ist das Attribut <cite>target</cite> zu verwenden. Es definiert, wie das Ergebnis der <cite>GetFeatureInfo</cite>-Abfrage durch die Anwendung dargestellt wird. Mögliche Werte sind:</p>
+<blockquote>
+<div><dl class="simple">
+<dt><cite>_popup</cite></dt><dd><p>Zeigt die Antwort der Anfrage in einem IFrame in einem, durch die Anwendung erzeugten, Popup. Zusätzlich können über die Attribute <cite>width</cite> und <cite>height</cite> die Breite bzw. Höhe des IFrames in Pixel eingestellt werden. Der Default-Wert für <cite>width</cite> beträgt 300, der Default-Wert für <cite>height</cite> beträgt 150. Diese werden verwendet, wenn das entsprechendne Attribut nicht gesetzt wurde.</p>
+</dd>
+<dt><cite>_blank</cite></dt><dd><p>Zeigt die Antwort der Abfrage in einem neuen Browserfenster bzw. einem neuen Browsertab.</p>
+</dd>
+<dt>CSS-Identifikators (Klasse oder ID eines Elements)</dt><dd><p>Zeigt die Antwort der Abfrage im angegebenen Element. Hierbei werden die der Antwort evtl. vorkommende HTML-Tags <cite>meta</cite>, <cite>link</cite>, <cite>title</cite> und <cite>script</cite> vor dem Anzeigen entfernt.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>Für Layer vom <cite>type</cite> <cite>wms</cite> oder <cite>tiledwms</cite> steht das Attribut <cite>featureCount</cite> zur Verfügung. Hiermit wird festgelegt, für wie viele übereinander liegende Features Informationen angezeigt werden sollen. Der Default-Wert ist 1.</p>
+<p>Für Layer vom <cite>type</cite> <cite>wms</cite> oder <cite>tiledwms</cite>, deren <cite>GetFeatureInfo</cite>-Abfrage das <cite>INFO_FORAMT</cite> <cite>application/vnd.ogc.gml</cite>
+unterstützen kann das Attribut <cite>gml</cite> auf <cite>true</cite> gesetzt werden um die abgefragte Geometrie in der Karte hervorzuheben.
+Mit dem Attribut <cite>gmlStyle</cite> kann ein Styling für die zurückgelieferten Geometrien definiert werden. Wie ein Styling zu
+definieren ist, ist im Abschnitt <a class="reference internal" href="#style"><span class="std std-ref">Style</span></a> erläutert. Zusätzlich kann durch das Setzen des Attributs <cite>catalog</cite>
+auf <cite>true</cite> festgelegt werden, ob Nutzer im GML enthaltene Layer in die Anwendung hinzufügen können.</p>
+<p>Für Layer vom <cite>type</cite> <cite>postgis</cite> wird immer ein durch die Anwendung erzeugtes Popup verwendet. Die anzuzeigenden Eigenschaften einer Geometrie sind im Attribut <cite>properties</cite> als Liste zu definieren.</p>
+<p>Beispiel für WMS-GetFeatureInfo Ergebnis im Kartenpopup mit definierter Breite, Höhe und maximale Anzahl übereinander liegender Features, für die Informationen abgerufen werden sollen:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">layers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wms_1</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WMS 1</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wms</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">[</span><span class="nv">...</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">featureinfo</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;_popup&#39;</span>
+<span class="w">      </span><span class="nt">width</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500</span>
+<span class="w">      </span><span class="nt">height</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">250</span>
+<span class="w">      </span><span class="nt">featureCount</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">      </span><span class="nt">gml</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">catalog</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">gmlStyle</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">strokeWidth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">        </span><span class="nt">strokeColor</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;#f00&#39;</span>
+<span class="w">        </span><span class="nt">fillColor</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;#00f&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="legend">
+<h3><code class="docutils literal notranslate"><span class="pre">legend</span></code><a class="headerlink" href="#legend" title="Link to this heading"></a></h3>
+<p>Konfiguration der anzuzeigenden Legende des Layers. Fehlt dieses Attribut oder ist der Wert <cite>null</cite> gesetzt, erfolgt keine Anzeige einer Legende für diesen Layer.</p>
+<p>Konfiguriert die Angezeigte Legende des Layers. Für Layer vom <cite>type</cite> <cite>wms</cite> oder <cite>tiledwms</cite> werden keine Attribute benötigt. In diesem Fall wird eine <cite>GetLegendGraphic</cite>-Anfrage gestellt und das Ergebnis als Legendenbild eingebunden.</p>
+<p>Für Layer vom <cite>type</cite> <cite>postgis</cite> kann das Attribute <cite>type</cite> verwendet werden um eine Legende zu erzeugen. In <cite>type</cite> ist hierbei der Geometrietyp (<cite>Point</cite>, <cite>Line</cite>, <cite>Polygon</cite>) anzugeben, der als Legende dargestellt werden soll. Dieser wird dann in der für den Layer angegebenen Darstellung angezeigt.</p>
+<p>Für alle Arten von Layern kann das Attribut <cite>url</cite> verwendet werden. Hierbei muss <cite>url</cite> auf eine Grafik verweisen, die als Legende angezeigt werden soll.</p>
+</section>
+<section id="searchconfig">
+<h3><code class="docutils literal notranslate"><span class="pre">searchConfig</span></code><a class="headerlink" href="#searchconfig" title="Link to this heading"></a></h3>
+<p>Pro Layer kann auch eine eigene Suche definiert werden,</p>
+</section>
+<section id="printtilesize">
+<h3><code class="docutils literal notranslate"><span class="pre">printTileSize</span></code><a class="headerlink" href="#printtilesize" title="Link to this heading"></a></h3>
+<p>Für WMS-Layer (type <cite>wms</cite> oder <cite>tiledwms</cite>) kann eine <cite>printTileSize</cite> eingestellt werden. Wenn diese gesetzt ist, dann fragt mapfish print den WMS als Kacheln ab. Der Parameter muss ein Array mit zwei ganzzahligen Pixel-Angaben sein.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">layers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wms_1</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WMS 1</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wms</span>
+<span class="w">    </span><span class="nt">printTileSize</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1024</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1024</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">[</span><span class="nv">...</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+</section>
+<section id="style">
+<span id="id1"></span><h3><code class="docutils literal notranslate"><span class="pre">style</span></code><a class="headerlink" href="#style" title="Link to this heading"></a></h3>
+<p>Konfiguration der Darstellung des Layers. Dies gilt nur für Layer mit dem <cite>type</cite> <cite>postgis</cite>. Einzelheiten unter <cite>style</cite>.</p>
+<p>Für nicht definierte Attribute wird der jeweilige <a class="reference external" href="http://openlayers.org">Standardwert von OpenLayers 5</a> verwendet.</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Layer, die weder <cite>groups</cite> zugeordnet sind, stehen in der Anwendung nicht zur Verfügung.</p>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">radius</span></code></dt><dd><p>Radius für Punkte. Angabe in Pixel.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">strokeColor</span></code></dt><dd><p>Linienfarbe für Punkte, Linien und Polygone. Angabe als Hex- oder RGB-Wert.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">strokeWidth</span></code></dt><dd><p>Linienbreite für Punkte, Linien und Polygone. Angabe in Pixel.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">strokeDashstyle</span></code></dt><dd><p>Linienart für Punkte, Linien und Polygone. Mögliche Werte sind <cite>solid</cite>, <cite>dot</cite>, <cite>dash</cite>, <cite>dashdot</cite>, <cite>longdash</cite> und <cite>longdashdot</cite>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">strokeOpacity</span></code></dt><dd><p>Liniendeckkraft für Punkte, Linien und Polygone. Werte zwischen 0 (durchsichtig) bis 1 (deckend).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">fillColor</span></code></dt><dd><p>Füllfarbe für Punkte und Polygon. Angabe als Hex- oder RGB-Wert.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">fillOpacity</span></code></dt><dd><p>Fülldeckkraft für Punkte und Polygone. Werte zwischen 0 (durchsichtig) bis 1 (deckend).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">graphicFile</span></code></dt><dd><p>Grafik für Punkte. <cite>graphicWidth</cite> und <cite>graphicHeight</cite> sind mit anzugeben.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">graphicWidth</span></code></dt><dd><p>Breite der Grafik. Angabe in Pixel.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">graphicHeight</span></code></dt><dd><p>Höhe der Grafik. Angabe in Pixel.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">graphicRotation</span></code></dt><dd><p>Winkel um den die Grafik rotiert werden soll.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">graphicXAnchor</span></code></dt><dd><p>Horizontale Platzierung der Grafik relativ zur Punktgeometrie. Angabe in Pixel. Wenn nicht angegeben, wird die Grafik horizontal zentriert positioniert.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">graphicYAnchor</span></code></dt><dd><p>Vertikale Platzierung der Grafik relativ zur Punktgeometrie. Angabe in Pixel. Wenn nicht angegeben, wird die Grafik vertikal zentriert positioniert.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">graphicScale</span></code></dt><dd><p>Skalierungsfaktor für die Grafik. Werte zwischen 0 und 1 verkleinern die Grafik. Werte größer als 1 vergrößern die Grafik. Werte unter 0 spiegeln die Grafik, verhalten sich ansonsten wie positive Werte.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">text</span></code></dt><dd><p>Text der als Beschriftung der Geometrie angezeigt werden soll.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">propertyLabel</span></code></dt><dd><p>Eigenschaft der Geometrie, die als Beschriftung angezeigt werden soll.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">fontWeight</span></code></dt><dd><p>Schriftstärke. Mögliche Werte sind <cite>normal</cite>, <cite>italic</cite> und <cite>bold</cite>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">fontSize</span></code></dt><dd><p>Schriftgröße. Hierbei ist die Einheit mit anzugeben. Erlaubt sind alle gängigen <a class="reference external" href="https://wiki.selfhtml.org/wiki/CSS/Eigenschaften/Schriftformatierung/font-size">CSS Eigenschaften</a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">fontFace</span></code></dt><dd><p>Schriftart. Diese muss im System vorhanden sein.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">fontColor</span></code></dt><dd><p>Schriftfarbe. Angabe als Hex- oder RGB-Wert.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="groups">
+<span id="id2"></span><h2>groups<a class="headerlink" href="#groups" title="Link to this heading"></a></h2>
+<p>Liste mit Gruppen, die in der Anwendung verfügbar sein sollen.</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Um einen Layer in der Anwendung anzeigen zu können, muss dieser einer Gruppe zugeordnet werden.</p>
+</div>
+<p>Eine Gruppe wird mit folgenden Attributen konfiguriert:</p>
+<section id="id3">
+<h3><code class="docutils literal notranslate"><span class="pre">name</span></code><a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<p>Zur Identifikation genutzter Name der Gruppe. Muss eindeutig sein.</p>
+</section>
+<section id="id4">
+<h3><code class="docutils literal notranslate"><span class="pre">title</span></code><a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<p>Angezeigter Name der Gruppe.</p>
+</section>
+<section id="id5">
+<h3><code class="docutils literal notranslate"><span class="pre">layers</span></code><a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<p>Liste mit der Gruppe zugeordneten Layern</p>
+</section>
+<section id="id6">
+<h3><code class="docutils literal notranslate"><span class="pre">status</span></code><a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<p>Legt fest, ob die Gruppe aktiv ist. Aktive Gruppen werden, soweit in der <cite>default-config.yaml</cite> oder einer <cite>App-Konfiguration</cite> nicht anders angegeben, in der Karte angezeigt.</p>
+<p>Mögliche Werte sind <cite>active</cite> und <cite>inactive</cite>. Fehlt dieses Attribut, ist Gruppe automatisch auf <cite>active</cite> gesetzt.</p>
+</section>
+<section id="showgroup">
+<h3><code class="docutils literal notranslate"><span class="pre">showGroup</span></code><a class="headerlink" href="#showgroup" title="Link to this heading"></a></h3>
+<p>Die Gruppe wird in der Layerauswahl wie ein Layer angezeigt. Nur bei Gruppen mit einem Layer verwenden. Standartwert <cite>true</cite>.</p>
+</section>
+<section id="singleselect">
+<h3><code class="docutils literal notranslate"><span class="pre">singleSelect</span></code><a class="headerlink" href="#singleselect" title="Link to this heading"></a></h3>
+<p>Es kann nur ein Layer innerhalb der Gruppe sichtbar sein. Schaltet der Nutzer einen anderen Layer sichtbar, werden alle weiteren Layer nicht sichtbar.</p>
+<p>Dieses Attribut darf nicht zusammen mit <cite>defaultVisibleLayers</cite> verwendet werden.</p>
+</section>
+<section id="defaultvisiblelayers">
+<h3><code class="docutils literal notranslate"><span class="pre">defaultVisibleLayers</span></code><a class="headerlink" href="#defaultvisiblelayers" title="Link to this heading"></a></h3>
+<p>Legt fest, welche Layer einer Gruppe beim aktivieren der Gruppe sichtbar geschaltet werden. Alle anderen Layer können
+nur mittels Klick auf den jeweiligen Layer sichtbar geschaltet werden.</p>
+<p>Dieses Attribut darf nicht zusammen mit <cite>singleSelect</cite> verwendet werden.</p>
+<p>Beispiel</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">groups</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- name</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lichtsignalanlagen</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;Ampeln&#39;</span>
+<span class="w">    </span><span class="nt">layers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lichtsignalanlagen_p</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bodenrichtwerte_t</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bodenrichtwerte_brwznr_t</span>
+<span class="w">    </span><span class="nt">defaultVisibleLayers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lichtsignalanlagen_p</span>
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h3><code class="docutils literal notranslate"><span class="pre">catalog</span></code><a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<p>Soll die Gruppe im Katalog auftauchen kann dies hier eingesetllt werden. Standartwert <cite>false</cite>. Zusätzlich kann hier auch noch ein Titel mit angegeben werden.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">catalog</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Parken Mobilität</span>
+</pre></div>
+</div>
+</section>
+<section id="id8">
+<h3><code class="docutils literal notranslate"><span class="pre">abstract</span></code><a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+<p>Beschreibung welche Daten in der Gruppe angezeigt werden, wird u.a. in der Darstellung des Katalogs verwendet.</p>
+</section>
+<section id="id9">
+<h3><code class="docutils literal notranslate"><span class="pre">legend</span></code><a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<p>Konfiguration der anzuzeigenden Legende des Gruppe. Fehlt dieses Attribut oder ist der Wert <cite>null</cite> gesetzt, erfolgt keine Anzeige einer Legende für diesen Gruppe.</p>
+<p>Ist eine Legende in der Gruppe definiert werden alle Legenden der Layer unterdrückt. Es wird nur die Angabe einer URL unterstützt und keine GetLegendGraphics wie zum Beispiel bei Layern.</p>
+</section>
+<section id="id10">
+<h3><code class="docutils literal notranslate"><span class="pre">metadataUrl</span></code><a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
+<p>Externe URL zum Anzeigen von Metadaten, wird u.a. im Katalog verwendet.</p>
+<p>Beispiel</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">groups</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- name</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lichtsignalanlagen</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;Ampeln&#39;</span>
+<span class="w">    </span><span class="nt">catalog</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">inactive</span>
+<span class="w">    </span><span class="nt">showGroup</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">abstract</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ampeln Abstract</span>
+<span class="w">    </span><span class="nt">metadataUrl</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;http://www.example.org&#39;</span>
+<span class="w">    </span><span class="nt">layers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lichtsignalanlagen_p</span>
+
+<span class="w w-Error">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bodenrichtwerte</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Bodenrichtwerte 2016</span>
+<span class="w">    </span><span class="nt">layers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bodenrichtwerte_t</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bodenrichtwerte_brwznr_t</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="layer-fur-den-druck">
+<h2>Layer für den Druck<a class="headerlink" href="#layer-fur-den-druck" title="Link to this heading"></a></h2>
+<p>Um den Druck zu optimieren gibt es die Möglichkeit, über die Namenserweiterungen <cite>_print</cite> und <cite>_raw</cite> alternative Dienste zu konfigurieren. So kann z.B. ein Layer <cite>karte</cite> im Druck automatisch durch den Layer <cite>karte_print</cite> ausgetauscht werden. Der <cite>print_karte</cite> Layer kann hierbei gesondert konfiguriert werden (WMS statt WMTS, höhere DPI, etc.).
+Layer mit einer Namenserweiterung dürfen weder nicht in <cite>groups</cite> auftauchen.</p>
+<section id="name-print">
+<h3><code class="docutils literal notranslate"><span class="pre">[name]_print</span></code><a class="headerlink" href="#name-print" title="Link to this heading"></a></h3>
+<p>Wird im Druck anstelle des in der Karte sichtbaren Layers verwendet. So kann z.B. eine hoch aufgelöste Variante des Layers benutzt werden.</p>
+<p>Beispiel:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">layers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example_layer</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Example Layer</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wms</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">[</span><span class="nv">...</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example_layer_print</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Example Layer</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wms</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">[</span><span class="nv">...</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+</section>
+<section id="name-raw">
+<h3><code class="docutils literal notranslate"><span class="pre">[name]_raw</span></code><a class="headerlink" href="#name-raw" title="Link to this heading"></a></h3>
+<p>Wird im Druck anstelle des in der Karte sichtbaren Layers verwendet, wenn ein Vektor-Formate gedruckt wird.</p>
+<p>Beispiel:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">layers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example_layer</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Example Layer</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wms</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">[</span><span class="nv">...</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example_layer_raw</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Example Layer</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wms</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">[</span><span class="nv">...</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="layer-quellen">
+<span id="id11"></span><h2>Layer Quellen<a class="headerlink" href="#layer-quellen" title="Link to this heading"></a></h2>
+<p>Konfiguration der Datenquelle eines Layers. Je nach Layer-<cite>type</cite> werden unterschiedliche Attribute benötigt. Nachfolgend sind die <cite>source</cite>-Attribute zum zugehörigen Layer-<cite>type</cite> aufgeführt.</p>
+<section id="wms">
+<h3><code class="docutils literal notranslate"><span class="pre">wms</span></code><a class="headerlink" href="#wms" title="Link to this heading"></a></h3>
+<blockquote>
+<div><dl class="simple">
+<dt>url</dt><dd><p>URL des Dienstes. Diese muss mit <cite>?</cite> oder <cite>&amp;</cite> enden.</p>
+</dd>
+<dt>format</dt><dd><p>Bildtyp. Z.B. ‚image/png‘.</p>
+</dd>
+<dt>layers</dt><dd><p>Liste zu verwendender Layer.</p>
+</dd>
+<dt>srs</dt><dd><p>Zu verwendendes Koordinatensystem.</p>
+</dd>
+<dt>encoding</dt><dd><p>Zeichenencoding der Antwort auf eine <cite>GetFeatureInfo</cite>-Anfrage. Fehlt das Attribut wird <cite>utf-8</cite> verwendet.</p>
+</dd>
+</dl>
+</div></blockquote>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">layers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example_layer</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Example Layer</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wms</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://www.example.org/wms/service?&quot;</span>
+<span class="w">      </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;image/png&quot;</span>
+<span class="w">      </span><span class="nt">layers</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example</span>
+<span class="w">      </span><span class="nt">srs</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;EPSG:4326&quot;</span>
+<span class="w">      </span><span class="nt">encoding</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;iso8859-15&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="tiledwms">
+<h3><code class="docutils literal notranslate"><span class="pre">tiledwms</span></code><a class="headerlink" href="#tiledwms" title="Link to this heading"></a></h3>
+<p>Wie WMS, Karten werden jedoch in 256x256 Pixel große Kacheln abgerufen.</p>
+</section>
+<section id="wmts">
+<h3><code class="docutils literal notranslate"><span class="pre">wmts</span></code><a class="headerlink" href="#wmts" title="Link to this heading"></a></h3>
+<blockquote>
+<div><dl class="simple">
+<dt>url</dt><dd><p>URL des Dienstes. Diese muss mit <cite>/</cite> enden.</p>
+</dd>
+<dt>format</dt><dd><p>Bildtyp. Z.B. ‚image/png‘.</p>
+</dd>
+<dt>layer</dt><dd><p>Layer des Dienstes, der verwendet werden soll.</p>
+</dd>
+<dt>srs</dt><dd><p>Zu verwendendes Koordinatensystem.</p>
+</dd>
+<dt>extent</dt><dd><p>Gültigkeitsbereich des Dienstes. Siehe Capabilities-Dokument des Dienstes.</p>
+</dd>
+<dt>matrixSet</dt><dd><p>Zu verwendendes Matrix-Set.</p>
+</dd>
+<dt>levels</dt><dd><p>Anzahl im Matrix-Set enthaltener Detailstufen.</p>
+</dd>
+<dt>hqUrl</dt><dd><p>URL des Dienstes, der für Clients mit hochaufgelösten Displays verwendet werden soll.</p>
+</dd>
+<dt>hqLayer</dt><dd><p>Layer des Dienstes, der für Clients mit hochaufgelösten Displays verwendet werden soll.</p>
+</dd>
+<dt>hqMatrixSet</dt><dd><p>Matrix-Set des Dienstes, das für Clients mit hochaufgelösten Displays verwendet werden soll.</p>
+</dd>
+</dl>
+</div></blockquote>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">layers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example_layer</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Example Layer</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wmts</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://www.example.org/wmts/&quot;</span>
+<span class="w">      </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;image/png&quot;</span>
+<span class="w">      </span><span class="nt">layer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example</span>
+<span class="w">      </span><span class="nt">srs</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;EPSG:4326&quot;</span>
+<span class="w">      </span><span class="nt">extent</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">6</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">47</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">15</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">54</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">matrixSet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">epsg_4326</span>
+<span class="w">      </span><span class="nt">levels</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">19</span>
+<span class="w">      </span><span class="nt">hqUrl</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://www.example.org/wmts_hq/&quot;</span>
+<span class="w">      </span><span class="nt">hqLayer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example_hq</span>
+<span class="w">      </span><span class="nt">hqMatrixSet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">epsg_4326_hq</span>
+</pre></div>
+</div>
+</section>
+<section id="postgis">
+<h3><code class="docutils literal notranslate"><span class="pre">postgis</span></code><a class="headerlink" href="#postgis" title="Link to this heading"></a></h3>
+<blockquote>
+<div><dl class="simple">
+<dt>type</dt><dd><p>Geometrietyp, den der SQL-Query zurückliefert</p>
+</dd>
+<dt>query</dt><dd><p>SQL-Query, der anzuzeigende Geometrien aus der Datenbank selektiert.</p>
+</dd>
+</dl>
+</div></blockquote>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">layers</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- name</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example_layer</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Example Layer</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgis</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">source</span><span class="p p-Indicator">:</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">point</span>
+<span class="w">      </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SELECT geometry FROM points_table WHERE geometry &amp;&amp; !bbox!</span>
+<span class="w w-Error">    </span><span class="nt">style</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">radius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">      </span><span class="nt">strokeColor</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;#c00&#39;</span>
+<span class="w">      </span><span class="nt">fillColor</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;#00c&#39;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Das <cite>where-statement</cite> <strong>geometry &amp;&amp; !bbox!</strong> sorgt dafür, dass die Anfrage an die Datenbank nur Geometrien des aktuellen Kartenausschnitts zurückliefert.</p>
+</div>
+</section>
+<section id="digitize">
+<span id="digitizesource"></span><h3><code class="docutils literal notranslate"><span class="pre">digitize</span></code><a class="headerlink" href="#digitize" title="Link to this heading"></a></h3>
+<blockquote>
+<div><dl>
+<dt>name</dt><dd><p>Name des Layers. Über diesen Wert wird die Zugehörigkeit eines Features in der Digitalisierungstabelle hergestellt.
+Daher muss dieser Name eindeutigt sein. Dieses Attribut ist verpflichtend.</p>
+</dd>
+<dt>geom_type</dt><dd><p>Geometrietyp des Layers. Erlaubte Werte: <cite>Point</cite>, <cite>LineString</cite>, <cite>Polygon</cite>. Dieses Attribut ist verpflichtend.</p>
+</dd>
+<dt>srs</dt><dd><p>Koordinatenreferenzsystem des Layers.</p>
+</dd>
+<dt>properties</dt><dd><p>Die Attribute des Layers. Liste von Objekten, mit den Attributen <cite>name</cite>, <cite>type</cite>, <cite>label</cite>, <cite>select</cite>.</p>
+<dl class="simple">
+<dt>name</dt><dd><p>String. Name des Attributs. Dieses Attribut ist verpflichtend.</p>
+</dd>
+<dt>type</dt><dd><p>String. Typ des Attributs. Erlaubte Werte: <cite>text</cite>, <cite>int</cite>, <cite>float</cite>, <cite>boolean</cite>, <cite>date</cite>, <cite>select</cite>. Dieses Attribut ist verpflichtend.</p>
+</dd>
+<dt>label</dt><dd><p>String. Darstellungstext des Attributs. Per default wird der Wert von <cite>name</cite> verwendet.</p>
+</dd>
+<dt>select</dt><dd><p>Nur bei <cite>type: select</cite>. Entweder ein String, der eine Auswahlliste referenziert, oder eine direkte Auswahlliste.
+Siehe dazu auch <a class="reference internal" href="selectionlists-config.html#selectionlistconf"><span class="std std-ref">Auswahllisten-Definition</span></a>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">layers</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- name</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example_layer</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Example Layer</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">digitize</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">source</span><span class="p p-Indicator">:</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example_digitize_layer</span>
+<span class="w">      </span><span class="nt">geom_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LineString</span>
+<span class="w">      </span><span class="nt">srs</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;EPSG:25832&#39;</span>
+<span class="w">      </span><span class="nt">properties</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Some Text</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">some_text</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">text</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Some Int</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">some_int</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">int</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Some Float</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">some_float</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Some Boolean</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">some_bool</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">boolean</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Some Date</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">some_date</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">date</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Direct Select</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">direct_select</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">select</span>
+<span class="w">          </span><span class="nt">select</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;foo&#39;</span>
+<span class="w">              </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;hans&#39;</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;bar&#39;</span>
+<span class="w">              </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;peter&#39;</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Referenced Select</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">referenced_select</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">select</span>
+<span class="w">          </span><span class="nt">select</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">digitize_dev_select</span>
+<span class="w w-Error">    </span><span class="nt">style</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">radius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">      </span><span class="nt">strokeColor</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;#c00&#39;</span>
+<span class="w">      </span><span class="nt">fillColor</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;#00c&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="layer.html" class="btn btn-neutral float-left" title="Layer-Definition" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="selectionlists-config.html" class="btn btn-neutral float-right" title="Auswahllisten-Definition" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Stadt Bielefeld.
+      <span class="lastupdated">Zuletzt aktualisiert am 2025-01-28.
+      </span></p>
+  </div>
+
+  Erstellt mit <a href="https://www.sphinx-doc.org/">Sphinx</a> mit einem
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    bereitgestellt von <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    Version: 1.4.3
+    <span class="fa fa-caret-down"></span>
+  </span>
+    <div class="rst-other-versions">
+        <dl id="versions-list">
+            <dt>Versionen</dt>
+            <dd><a href="/index.html"></a></dd>
+        </dl>
+    </div>
+    <script>
+        fetch('../config/versions.json')
+            .then(response => {
+                return response.json();
+            })
+            .then(versions => {
+                const list = document.querySelector('#versions-list');
+                for (const version of versions) {
+                    const a = document.createElement('a');
+                    a.href = `https://stadt-bielefeld.github.io/bielefeldGEOCLIENT/${version}/`;
+                    a.textContent = version;
+                    const dd = document.createElement('dd');
+                    dd.append(a);
+                    list.append(dd);
+                }
+            });
+    </script>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
