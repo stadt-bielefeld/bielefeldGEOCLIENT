@@ -7,6 +7,9 @@ class DefaultConfig(object):
     Default configuration for a newsmeme application.
     """
 
+    # path to a yaml file containing the logging config
+    LOGGING_CONFIG = '/opt/etc/munimap/configs/logging.yaml'
+
     MATOMO = False
     MATOMO_URL = ''
     MATOMO_IMAGE_URL = ''
@@ -15,12 +18,6 @@ class DefaultConfig(object):
 
     ADMIN_PARTY = False
 
-    LOG_DIR = '/opt/log/munimap'
-
-    LOG_STATS = False
-    LOG_STATS_FILENAME = '/opt/log/munimap/stats.log'
-    LOG_STATS_MAX_BYTES = 1000000  # 1MB
-    LOG_STATS_BACKUP_COUNT = 5
     LOG_STATS_WHITELIST = ['http://localhost']
 
     # Access token of the target server.
@@ -63,11 +60,6 @@ class DefaultConfig(object):
     ALKIS_WFS_PARAMETER = 'SERVICE=WFS&VERSION=1.0.0&REQUEST=GetFeature&TYPENAME=Flurstuecke'
 
     ALKIS_LOG_DIR = '/tmp/'
-    ALKIS_LOG = 'munimap.alkis.log'
-    TOKEN_LOG = 'munimap.token.log'
-    DEBUG_LOG = 'munimap.debug.log'
-    ERROR_LOG = 'munimap.error.log'
-    TRANSFER_LOG = 'munimap.transfer.log'
 
     MAX_INVALID_LOGIN_ATTEMPTS = 3
 
@@ -118,9 +110,6 @@ class DefaultConfig(object):
     PRINT_USE_BROKER = True
     PRINT_QUEUEFILE = '/opt/etc/munimap/printqueue/printqueue.sqlite'
     PRINT_STREET_INDEX_LAYER = 'street_labels'
-    PRINT_LOG_DIR = '/opt/etc/munimap/printqueue'
-    PRINT_DEBUG_LOG = 'printqueue.debug.log'
-    PRINT_ERROR_LOG = 'printqueue.error.log'
 
     INVERT_LEFT_GRID_LABELS = True
     INVERT_TOP_GRID_LABELS = False
@@ -166,6 +155,8 @@ class DefaultConfig(object):
 
     NO_LOGIN_INFORMATION = 'Bitte kontaktieren Sie den Adminstrator <a href="mailto:admin@example.org">admin@example.org</a>'
     USER_LOGOUT_URL = '/'
+    # whether the mail should be sent or just outputted to the log
+    MAIL_DEBUG = False
 
     COORD_TRANSFORM_URL = ''
 

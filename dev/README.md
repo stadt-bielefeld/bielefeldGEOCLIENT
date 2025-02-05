@@ -162,7 +162,7 @@ The application should now be available via [http://localhost:5000/](http://loca
 The docs are available via [http://localhost:8082/](http://localhost:8082/) (Proxied to [http://localhost:4000](http://localhost:4000))
 
 Start print queue/broker (make sure to adjust the path to printqueue.sqlite according to `PRINT_QUEUEFILE`):
-- `JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ python -m munimap.queue.worker -q /tmp/printqueue.sqlite`
+- `JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ python -m munimap.queue.worker -q /tmp/printqueue.sqlite -l dev/configs/logging.yaml`
 
 If you are running the dev setup and the prod setup after each other it can be that some of the permissions are not fitting. Try
 ```
@@ -217,7 +217,7 @@ Then, you will be able to run the tests
 
 If you need to work on changing the documentation, this is done using [Sphinx](https://www.sphinx-doc.org/en/master/).
 
-Firts of all, you need to install the requirements defined on `requirements-docs.txt`. To do so, run `pip install -r requirements-docs.txt`. Make sure you are on your virtual environment, altough not mandatory.
+First of all, you need to install the requirements defined on `requirements-docs.txt`. To do so, run `pip install -r requirements-docs.txt`. Make sure you are on your virtual environment, altough not mandatory.
 
 A source is already provided and can be found in `munimap-docs` folder (`../docker/munimap-docs/` if you are currently on `dev/`).  
 
