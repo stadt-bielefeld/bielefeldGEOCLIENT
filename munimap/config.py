@@ -7,6 +7,7 @@ class DefaultConfig(object):
     Default configuration for a newsmeme application.
     """
 
+    # path to a yaml file containing the logging config
     LOGGING_CONFIG = '/opt/etc/munimap/configs/logging.yaml'
 
     MATOMO = False
@@ -57,6 +58,8 @@ class DefaultConfig(object):
     ALKIS_WITH_OWNER_OFFICIAL = 'ALKIS_EIGENTUEMER_IBR'
     ALKIS_WFS_URL = '/umn/wms_alkis_arbeitsausgabe_v01.asp?'
     ALKIS_WFS_PARAMETER = 'SERVICE=WFS&VERSION=1.0.0&REQUEST=GetFeature&TYPENAME=Flurstuecke'
+
+    ALKIS_LOG_DIR = '/tmp/'
 
     MAX_INVALID_LOGIN_ATTEMPTS = 3
 
@@ -152,6 +155,7 @@ class DefaultConfig(object):
 
     NO_LOGIN_INFORMATION = 'Bitte kontaktieren Sie den Adminstrator <a href="mailto:admin@example.org">admin@example.org</a>'
     USER_LOGOUT_URL = '/'
+    # whether the mail should be sent or just outputted to the log
     MAIL_DEBUG = False
 
     COORD_TRANSFORM_URL = ''
