@@ -106,7 +106,7 @@ def recover_password():
         )
 
         if current_app.config.get('MAIL_DEBUG'):
-            print(msg.body)
+            logger.info(msg.body)
         else:
             msg.send(msg)
 
