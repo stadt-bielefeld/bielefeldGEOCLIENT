@@ -1,5 +1,5 @@
 
-import json
+import logging
 
 import datetime
 
@@ -10,39 +10,30 @@ from flask import (
     redirect,
     url_for,
     request,
-    current_app,
-    jsonify,
-    session,
-    Response,
-    make_response
+    current_app
 )
 
-from werkzeug.exceptions import BadRequest, NotFound
+from werkzeug.exceptions import NotFound
 
 from flask_mailman import EmailMessage
 from flask_login import login_user, logout_user, login_required, current_user
-from flask_babel import gettext as _, to_user_timezone
-from munimap.extensions import db, mail
+from flask_babel import gettext as _
+from munimap.extensions import db
 
 # from munimap.extensions import db
 from munimap.model import (
-    MBUser, 
-    ProtectedProject, 
-    ProjectDefaultSettings, 
+    MBUser,
     EmailVerification,
 )
-from munimap.helper import load_app_config, check_group_permission
 from munimap.forms.user import (
     LoginForm, 
     UserChangePassword, 
     UserRecoverPassword, 
     RecoverRequestForm,
 )
-from munimap.forms.project_settings import ProjectSettingsForm
-from munimap.model import ProjectSettings
 
 user = Blueprint("user", __name__, url_prefix='/user')
-
+logger = logging.getLogger('munimap')
 
 @user.route("/login", methods=["GET", "POST"])
 def login():
@@ -114,7 +105,7 @@ def recover_password():
             to=[user.email]
         )
 
-        if current_app.config.get('DEBUG'):
+        if current_app.config.get('MAIL_DEBUG'):
             print(msg.body)
         else:
             msg.send(msg)

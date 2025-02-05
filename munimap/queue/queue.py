@@ -13,6 +13,8 @@ except ImportError:
     from _dummy_thread import get_ident
 
 import logging
+import logging.config
+import yaml
 log = logging.getLogger('munimap.print')
 
 
@@ -275,13 +277,17 @@ if __name__ == '__main__':
     parser = optparse.OptionParser()
     parser.add_option('-c', '--concurrency', type=int, default=2)
     parser.add_option('-q', '--queue-file', help='queue storage', default='/tmp/printqueue.sqlite')
+    parser.add_option('-l', '--log-config', default='/opt/etc/munimap/configs/logging.yaml')
     parser.add_option('--add-job', help='add job and exit')
     parser.add_option('--get-job', help='query job and exit')
     parser.add_option('--list-jobs', default=False, action='store_true', help='list all jobs and exit')
     options, args = parser.parse_args()
 
+    if options.log_config is not None:
+        with open(options.log_config) as file:
+            logging_config = yaml.safe_load(file)
+            logging.config.dictConfig(logging_config)
 
-    logging.basicConfig(level=logging.DEBUG)
 
     def echo(job):
         return job
