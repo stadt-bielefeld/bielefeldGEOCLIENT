@@ -24,7 +24,9 @@ wms_source_spec = {
     required('layers'): [string_type],
     'srs': string_type,
     'encoding': string_type,
-    'directAccess': bool
+    'directAccess': bool,
+    'styles': [string_type],
+    'transparent': bool
 }
 
 wmts_source_spec = {
