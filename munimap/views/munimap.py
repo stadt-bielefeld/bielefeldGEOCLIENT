@@ -404,12 +404,9 @@ def handle_wms_get_map(service_url, layers, request):
     srs = layer['source']['srs']
     _format = layer['source']['format']
 
-    # TODO define styles and transparent in layers_conf.yaml?
-    # not defined in layers_conf.yaml
+    # openlayers adds all parameters capitalized
     styles = request_args.get('STYLES')
     transparent = request_args.get('TRANSPARENT')
-
-    # openlayers add all parameters capitalized
     width = request_args.get('WIDTH')
     height = request_args.get('HEIGHT')
     bbox = request_args.get('BBOX')

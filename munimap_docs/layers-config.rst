@@ -433,6 +433,12 @@ Konfiguration der Datenquelle eines Layers. Je nach Layer-`type` werden untersch
   encoding
       Zeichenencoding der Antwort auf eine `GetFeatureInfo`-Anfrage. Fehlt das Attribut wird `utf-8` verwendet.
 
+  styles
+      Styles die vom WMS abgfragt werden sollen. Hier muss eine Liste angegeben werden.
+
+  transparent
+      Bestimmt, ob der WMS mit dem `TRANSPARENT` parameter auf `TRUE` oder `FALSE` abgefragt wird.
+
 
 .. code-block:: yaml
 

@@ -161,6 +161,10 @@ def anol_overlay_layer(layer_conf, layers_base_url=''):
         }
         if layer_conf['type'] in ('wms'):
             source['projection'] = layer_conf['source']['srs']
+        if layer_conf['source'].get('styles'):
+            source['params']['STYLES'] = ','.join(layer_conf['source']['styles'])
+        if layer_conf['source'].get('transparent') is not None:
+            source['params']['TRANSPARENT'] = 'TRUE' if layer_conf['source']['transparent'] else 'FALSE'
     elif layer_conf['type'] == 'wmts':
         layer_name = layer_conf['name']
         if layer_conf.get('source').get('directAccess'):
