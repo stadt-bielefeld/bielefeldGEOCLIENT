@@ -65,6 +65,18 @@ static_geojson_source_spec = {
     'srs': string_type,
 }
 
+sensorthings_url_parameters_spec = {
+    required('root'): one_of('Things', 'Datastreams'),
+    'filter': string_type,
+    'expand': string_type,
+}
+
+sensorthings_source_spec = {
+    required('url'): string_type,
+    required('urlParameters'): sensorthings_url_parameters_spec,
+    'loadInCurrentExtent': bool,
+}
+
 style_spec = {
     'type': 'simple',
     'radius': number(),
@@ -215,6 +227,10 @@ layers_conf_spec = {
             'source': static_geojson_source_spec,
             'style': style_spec,
             'cluster': one_of(cluster_spec, bool),
+        }),
+        'sensorthings': combined(layer_commons, {
+            'source': sensorthings_source_spec,
+            'style': style_spec,
         })
     })]
     # 'meta': [meta_spec]
