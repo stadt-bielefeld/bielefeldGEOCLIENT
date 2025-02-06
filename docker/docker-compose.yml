@@ -39,7 +39,6 @@ services:
       - ../dev/configs:/opt/etc/munimap/configs
       - ./munimap-app/alembic.ini:/opt/etc/munimap/configs/alembic.ini
       - ./munimap-app/munimap.conf:/opt/etc/munimap/configs/munimap.conf
-      - ./munimap-app/logging.yaml:/opt/etc/munimap/configs/logging.yaml
       - ../dev/data:/opt/etc/munimap/data
       - ../dev/printqueue:/opt/etc/munimap/printqueue
     depends_on:
