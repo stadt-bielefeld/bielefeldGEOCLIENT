@@ -155,6 +155,8 @@ ENV REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
 
 RUN mkdir -p /certs
 
+COPY ./munimap/logging.yaml /opt/etc/munimap/configs/logging.yaml
+
 COPY ./entrypoint.sh /entrypoint.sh
 
 # Flag to decide if alembic should be run before starting the application
