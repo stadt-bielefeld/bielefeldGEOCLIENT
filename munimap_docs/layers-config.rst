@@ -83,7 +83,7 @@ Beschreibung welche Daten in dem Layer angezeigt werden, wird u.a. in der Darste
 
 ``type``
 """"""""
-Mögliche Typen sind `wms`, `tiledwms`, `wmts`, `postgis` und `digitize`. Je nach angegebenen `type` wird eine entsprechende `source` erwartet.
+Mögliche Typen sind `wms`, `tiledwms`, `wmts`, `postgis`, `digitize` und `sensorthings`. Je nach angegebenen `type` wird eine entsprechende `source` erwartet.
 
 ``create_index``
 """"""""""""""""
@@ -616,3 +616,48 @@ Wie WMS, Karten werden jedoch in 256x256 Pixel große Kacheln abgerufen.
           radius: 10
           strokeColor: '#c00'
           fillColor: '#00c'
+
+
+``sensorthings``
+""""""""""""""""
+
+  url
+      URL des Dienstes.
+
+  urlParameters
+      Weitere Parameter, die für die Integration eines SensorThings Layers nötig sind.
+
+      root
+          String. Typ des Startknotens der Abfrage. Entweder `"Things"` oder `"Datastreams"`.
+          Dieses Attribut ist verpflichtend.
+
+      filter
+          String. SensorThings API Filter.
+
+      expand
+          String. Zusätzliche Attribute, die dem Request via SensorThingsAPI expand mit abgefragt werden sollen.
+
+  loadInCurrentExtent
+      Boolean. True, falls ausschließlich Daten aus dem aktuellen Kartenausschnitt abgefragt werden sollen.
+      Der Default ist `false`.
+
+
+.. code-block:: yaml
+
+    layers:
+      - name: lufttemperatur_sta
+        title: "Lufttemperatur STA"
+        type: sensorthings
+        source:
+          url: 'https://geoportal.kreis-herford.de/iot'
+          urlParameters:
+            root: 'Datastreams'
+            filter: "substringof('Temperaturmessungen', name)"
+            expand: 'Thing/Locations($filter=properties/kleinraeumig eq null),Sensor,Observations($orderby=phenomenonTime%20desc;$top=1)'
+          loadInCurrentExtent: true
+        style:
+          type: simple
+          strokeColor: '#c3c'
+          strokeWidth: 1
+          fillColor: '#c6c'
+          fillOpacity: 0.2
