@@ -14,12 +14,13 @@ handlers:
     stream: ext://sys.stdout
 
   stats:
-    class: logging.handlers.RotatingFileHandler
-    level: ERROR # i.e.: turned off
-    formatter: stats
-    filename: /opt/etc/munimap/data/stats/stats.log
-    maxBytes: 1000000
-    backupCount: 5
+    class: logging.NullHandler
+#    class: logging.handlers.RotatingFileHandler
+#    level: DEBUG
+#    formatter: stats
+#    filename: dev/data/stats/stats.log
+#    maxBytes: 1000000
+#    backupCount: 5
 
 loggers:
   munimap:
@@ -59,7 +60,7 @@ loggers:
   
   munimap.print:
     level: INFO
-    handlers: [ console ]
+    handlers: [console]
     propagate: no
   
   munimap.stats:
