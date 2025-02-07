@@ -105,7 +105,7 @@ RUN mkdir -p /opt/munimap \
     && mkdir -p /opt/pkgs \
     && mkdir -p /opt/var \
     && mkdir -p /opt/var/mapfish \
-    && mkdir -p /opt/etc/munimap/data \
+    && mkdir -p /opt/etc/munimap/data/stats \
     && mkdir -p /opt/etc/munimap/configs \
     && mkdir -p /opt/etc/munimap/bielefeld \
     && mkdir -p /opt/etc/munimap/printqueue \

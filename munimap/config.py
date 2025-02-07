@@ -4,7 +4,7 @@ import datetime
 
 class DefaultConfig(object):
     """
-    Default configuration for a newsmeme application.
+    Default configuration
     """
 
     # path to a yaml file containing the logging config
