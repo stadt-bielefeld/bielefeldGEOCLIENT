@@ -29,37 +29,37 @@ loggers:
     propagate: no
 
   munimap.proxy:
-    level: ERROR
+    level: DEBUG
     handlers: [console]
     propagate: no
 
   munimap.alkis:
-    level: INFO
+    level: DEBUG
     handlers: [console]
     propagate: no
 
   munimap.transfer:
-    level: INFO
+    level: DEBUG
     handlers: [console]
     propagate: no
 
   munimap.token:
-    level: INFO
+    level: DEBUG
     handlers: [console]
     propagate: no
   
   munimap.layers:
-    level: INFO
+    level: DEBUG
     handlers: [console]
     propagate: no
   
   munimap.digitize:
-    level: WARN
+    level: DEBUG
     handlers: [console]
     propagate: no
   
   munimap.print:
-    level: INFO
+    level: DEBUG
     handlers: [console]
     propagate: no
   
