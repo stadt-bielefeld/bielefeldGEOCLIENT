@@ -111,6 +111,8 @@ services:
   munimap-print:
     restart: unless-stopped
     image: docker.terrestris.de/camptocamp/mapfish_print:3.30.11
+    ports:
+      - 8888:8080
     environment:
       # Because of failing DIN A0 prints in production, the heap size needed to be increased to 4gb
       JAVA_OPTS: -Xmx4096m -Djava.awt.headless=true
