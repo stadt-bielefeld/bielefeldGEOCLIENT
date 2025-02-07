@@ -325,8 +325,10 @@ def create_mapfish_layers(conf, layers_base_url='', default_protocol=''):
         is_background = layer_conf in conf['backgrounds']
         if mapfish_layer_factory is not None:
             try:
-                mapfish_layers[layer_conf['name']] = mapfish_layer_factory(
+                layer = mapfish_layer_factory(
                     layer_conf, is_background, layers_base_url, default_protocol)
+                mapfish_layers[layer_conf['name']] = layer
+                log.debug(f'Created mapfish layer {layer_conf["name"]} with config {str(layer)}')
             except WMTSMatrixError as ex:
                 log.warn(ex)
                 continue
@@ -354,6 +356,8 @@ def mapfish_wms_layer(layer_conf, is_background, layers_base_url='',
     # make all request transparent, also background layers
     # can be transparent
     mapfish_layer['customParams']['transparent'] = True
+    if layer_conf['source'].get('styles'):
+        mapfish_layer['customParams']['styles'] = ','.join(layer_conf['source']['styles'])
     return mapfish_layer
 
 

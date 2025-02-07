@@ -124,6 +124,9 @@ def mapfish_layers(requested_layers, bbox=None, srs=None, dpi=None, scale=None, 
             name = print_name
 
         layer = deepcopy(current_app.mapfish_layers[name])
+
+        log.debug(f'Adding layer {name} to print spec with config {str(layer)}')
+
         if layer['type'] == 'geojson' and bbox and srs:
             if 'internal_type' in layer and layer['internal_type'] in ('postgis', 'digitize'):
                 layer['geoJson'] = query_feature_collection(MapRequest(
