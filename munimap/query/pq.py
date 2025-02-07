@@ -1,3 +1,4 @@
+import logging
 from collections import OrderedDict
 import sqlalchemy as sa
 
@@ -5,6 +6,9 @@ from shapely.wkb import loads
 from shapely.geometry import mapping
 
 from munimap.model import Feature
+
+log = logging.getLogger('munimap.layers')
+
 
 class LayerNotFoundError(Exception):
     pass
@@ -36,6 +40,7 @@ def load_layers(config, default_db_uri, db_schema, db_echo=False):
                 engines[uri] = engine
 
             layer['source']['db_engine'] = engine
+        log.debug(f'Added queryable layer {layer["name"]} with config {str(layer)}')
         queryable_layers[layer['name']] = layer
 
     return queryable_layers
