@@ -1,7 +1,7 @@
 
 
 import csv
-from io import BytesIO
+from io import StringIO
 
 from flask import (
     Blueprint,
@@ -63,7 +63,7 @@ def index_csv():
     delimiter = request.args.get('delimiter', ';')[0]
     req = MapRequest.from_req(request)
     fc = query_feature_collection(req, current_app.pg_layers)
-    buf = BytesIO()
+    buf = StringIO()
     w = csv.writer(buf, delimiter=delimiter)
     for f in fc['features']:
         if f['properties'].get('__ref__'):
