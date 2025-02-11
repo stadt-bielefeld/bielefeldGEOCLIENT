@@ -82,8 +82,7 @@ class MBUser(db.Model, UserMixin):
     email_verification = db.relationship(
         'EmailVerification',
         backref='user',
-        uselist=False,
-        cascade='all, delete-orphan'
+        cascade='all, delete'
     )
 
     @property
