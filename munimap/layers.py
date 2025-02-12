@@ -172,6 +172,16 @@ def anol_overlay_layer(layer_conf, layers_base_url=''):
         source['extent'] = layer_conf['source']['extent']
         source['levels'] = layer_conf['source']['levels']
         source['matrixSet'] = layer_conf['source']['matrixSet']
+    elif layer_conf['type'] == 'sensorthings':
+        source = {
+            'url': layer_conf['source']['url'],
+            'urlParameters': {
+                'root': layer_conf['source']['urlParameters']['root'],
+                'filter': layer_conf['source']['urlParameters']['filter'],
+                'expand': layer_conf['source']['urlParameters']['expand']
+            },
+            'loadInCurrentExtent': layer_conf['source']['loadInCurrentExtent']
+        }
     else:
         raise UnsupportedLayerError(
             'overlay layer type "%s" is not supported' % layer_conf['type'])
