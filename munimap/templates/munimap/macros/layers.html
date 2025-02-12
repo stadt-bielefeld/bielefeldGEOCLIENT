@@ -35,6 +35,8 @@ new anol.layer.Group({
         new anol.layer.DynamicGeoJSON({$ layer | tojson $})
     {% elif layer['type'] in ('static_geojson', 'digitize') %}
         new anol.layer.StaticGeoJSON({$ layer | tojson $})
+    {% elif layer['type'] == 'sensorthings' %}
+        new anol.layer.SensorThings({$ layer | tojson $})
     {% endif %}
 {% endmacro %}
 
