@@ -13,7 +13,7 @@ dependencies = [
     'bcrypt==3.2.2',
     'dictspec==0.2.1',
     'Flask==0.12.5',
-    'Flask-Babel==0.12.2',
+    'Flask-Babel==4.0.0',
     'Babel==2.16.0',
     'pytz==2024.2',
     'Flask-Login==0.5.0',
