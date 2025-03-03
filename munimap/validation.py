@@ -68,7 +68,6 @@ static_geojson_source_spec = {
 }
 
 sensorthings_url_parameters_spec = {
-    required('root'): one_of('Things', 'Datastreams'),
     'filter': string_type,
     'expand': string_type,
 }
@@ -76,7 +75,7 @@ sensorthings_url_parameters_spec = {
 sensorthings_source_spec = {
     required('url'): string_type,
     required('urlParameters'): sensorthings_url_parameters_spec,
-    'loadInCurrentExtent': bool,
+    'refreshInterval': number()
 }
 
 style_spec = {
