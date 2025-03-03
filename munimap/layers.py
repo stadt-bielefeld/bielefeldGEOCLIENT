@@ -180,11 +180,10 @@ def anol_overlay_layer(layer_conf, layers_base_url=''):
         source = {
             'url': layer_conf['source']['url'],
             'urlParameters': {
-                'root': layer_conf['source']['urlParameters']['root'],
                 'filter': layer_conf['source']['urlParameters']['filter'],
                 'expand': layer_conf['source']['urlParameters']['expand']
             },
-            'loadInCurrentExtent': layer_conf['source']['loadInCurrentExtent']
+            'refreshInterval': layer_conf['source']['refreshInterval']
         }
     else:
         raise UnsupportedLayerError(
