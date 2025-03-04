@@ -1,5 +1,3 @@
-
-
 import csv
 from io import StringIO
 
@@ -59,7 +57,6 @@ def index_pdf():
 
 @vector.route('/index.csv', methods=['GET'])
 def index_csv():
-    encoding = request.args.get('encoding', 'latin-1')
     delimiter = request.args.get('delimiter', ';')[0]
     req = MapRequest.from_req(request)
     fc = query_feature_collection(req, current_app.pg_layers)
@@ -67,7 +64,7 @@ def index_csv():
     w = csv.writer(buf, delimiter=delimiter)
     for f in fc['features']:
         if f['properties'].get('__ref__'):
-            w.writerow((f['properties']['name'].encode(encoding), f['properties']['__ref__']))
+            w.writerow((f['properties']['name'], f['properties']['__ref__']))
 
     buf.seek(0)
     resp = Response(buf.read())
