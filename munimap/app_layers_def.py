@@ -18,6 +18,25 @@ def is_active(name, active, includes=[], excludes=[], explicits=[]):
         return True
     return False
 
+def hash_url_if_needed(layer, layers_config):
+    endpoint_map = {
+        'wms': 'munimap.wms_proxy',
+        'tiledwms': 'munimap.wms_proxy',
+        'wmts': 'munimap.wmts_proxy',
+        'sensorthings': 'munimap.sensorthings_proxy'
+    }
+    layer_type = layer['type']
+    if layer_type in endpoint_map.keys() and layers_config[layer['name']].get('hash'):
+        params = {
+            'url_hash': layers_config[layer['name']]['hash']
+        }
+        if layer_type == 'sensorthings':
+            params['layer_name'] = layer['name']
+        return url_for(
+            endpoint_map[layer_type],
+            **params
+        )
+    return layers_config[layer['name']].get('url')
 
 def prepare_background_layers(app_config, layers_config):
     background_layers = []
@@ -52,24 +71,8 @@ def prepare_background_layers(app_config, layers_config):
             continue
 
         background_layer = deepcopy(layer)
-        if background_layer['type'] in ['wms', 'tiledwms']:
-            if layers_config[background_layer['name']].get('hash'):
-                background_layer['olLayer']['source']['url'] = url_for(
-                    'munimap.wms_proxy',
-                    url_hash=layers_config[background_layer['name']]['hash']
-                )
-            else:
-                background_layer['olLayer']['source']['url'] = layers_config[background_layer['name']].get('url')
 
-        elif background_layer['type'] == 'wmts':
-            if layers_config[background_layer['name']].get('hash'):
-                background_layer['olLayer']['source']['url'] = url_for(
-                    'munimap.wmts_proxy',
-                    url_hash=layers_config[background_layer['name']]['hash']
-                )
-            else:
-                background_layer['olLayer']['source']['url'] = layers_config[background_layer['name']].get('url')
-
+        background_layer['olLayer']['source']['url'] = hash_url_if_needed(background_layer, layers_config)
         background_layer['olLayer']['visible'] = (
             'map' in app_config and
             app_config['map'].get('defaultBackground') == background_layer['name']
@@ -125,23 +128,7 @@ def prepare_group_layers(app_config, layers, group_active, layers_config, visibl
             (layer['name'] in app_config['map'].get('defaultOverlays', []) or
              layer['name'] in visibles_in_group))
 
-        if layer['type'] in ['wms', 'tiledwms']:
-            if layers_config[layer['name']].get('hash'):
-                layer['olLayer']['source']['url'] = url_for(
-                    'munimap.wms_proxy',
-                    url_hash=layers_config[layer['name']]['hash']
-                )
-            else:
-                layer['olLayer']['source']['url'] = layers_config[layer['name']].get('url')
-
-        if layer['type'] == 'wmts':
-            if layers_config[layer['name']].get('hash'):
-                layer['olLayer']['source']['url'] = url_for(
-                    'munimap.wmts_proxy',
-                    url_hash=layers_config[layer['name']]['hash']
-                )
-            else:
-                layer['olLayer']['source']['url'] = layers_config[layer['name']].get('url')
+        layer['olLayer']['source']['url'] = hash_url_if_needed(layer, layers_config)
 
         if layer['type'] == 'dynamic_geojson':
             layer['olLayer']['source']['url'] = url_for('vector.geojson') + '?'
@@ -317,23 +304,7 @@ def prepare_catalog_layers_def(app_layers_def, layers_config, selected_group=Non
         background_layer['permalink'] = False
         background_layer['catalogLayer'] = True
         background_layer['olLayer']['visible'] = True
-        if background_layer['type'] in ('wms', 'tiledwms'):
-            if layers_config[background_layer['name']].get('hash'):
-                background_layer['olLayer']['source']['url'] = url_for(
-                    'munimap.wms_proxy',
-                    url_hash=layers_config[layer['name']]['hash']
-                )
-            else:
-                background_layer['olLayer']['source']['url'] = layers_config[background_layer['name']].get('url')
-
-        if background_layer['type'] == 'wmts':
-            if layers_config[background_layer['name']].get('hash'):
-                background_layer['olLayer']['source']['url'] = url_for(
-                    'munimap.wmts_proxy',
-                    url_hash=layers_config[layer['name']]['hash']
-                )
-            else:
-                background_layer['olLayer']['source']['url'] = layers_config[background_layer['name']].get('url')
+        background_layer['olLayer']['source']['url'] = hash_url_if_needed(background_layer, layers_config)
 
         background_layers.append(background_layer)
 
@@ -386,22 +357,7 @@ def prepare_catalog_layers_def(app_layers_def, layers_config, selected_group=Non
                 layer['predefined'] = True
             if layer['type'] == 'dynamic_geojson':
                 layer['olLayer']['source']['url'] = url_for('vector.geojson') + '?'
-            if layer['type'] in ('wms', 'tiledwms'):
-                if layers_config[layer['name']].get('hash'):
-                    layer['olLayer']['source']['url'] = url_for(
-                        'munimap.wms_proxy',
-                        url_hash=layers_config[layer['name']]['hash']
-                    )
-                else:
-                    layer['olLayer']['source']['url'] = layers_config[layer['name']].get('url')
-            if layer['type'] == 'wmts':
-                if layers_config[layer['name']].get('hash'):
-                    layer['olLayer']['source']['url'] = url_for(
-                        'munimap.wmts_proxy',
-                        url_hash=layers_config[layer['name']]['hash']
-                    )
-                else:
-                    layer['olLayer']['source']['url'] = layers_config[layer['name']].get('url')
+            layer['olLayer']['source']['url'] = hash_url_if_needed(layer, layers_config)
 
             # set to default icon location if not specified
             if 'externalGraphicPrefix' not in layer:

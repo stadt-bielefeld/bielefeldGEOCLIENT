@@ -185,6 +185,8 @@ def anol_overlay_layer(layer_conf, layers_base_url=''):
             },
             'refreshInterval': layer_conf['source']['refreshInterval']
         }
+        if layer_conf.get('source').get('directAccess'):
+            source['layer'] = layer_conf.get('source').get('layer')
     else:
         raise UnsupportedLayerError(
             'overlay layer type "%s" is not supported' % layer_conf['type'])
@@ -776,7 +778,7 @@ def load_layers_config(config_folder, protected_layer_names=[], proxy_hash_salt=
         layer['source'] = Source(layer['source'])
         if 'style' in layer:
             layer['style'] = Style(layer['style'])
-        if layer['type'] in ['wms', 'wmts', 'tiledwms']:
+        if layer['type'] in ['wms', 'wmts', 'tiledwms', 'sensorthings']:
             direct_access = layer['source'].get('directAccess', False)
             # hash is used to address hidden proxied URLs
             # if direct access is set the origin url will be used
