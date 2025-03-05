@@ -1,0 +1,36 @@
+name: Release
+
+on: workflow_dispatch
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  publish:
+    runs-on: ubuntu-22.04
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Install poetry
+        uses: abatilo/actions-poetry@v4
+
+      - name: Checkout sources
+        uses: actions/checkout@v4
+        with:
+          # Disabling shallow clone is needed for correctly determining next release with semantic release
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Semantic release
+        id: semantic
+        uses: cycjimmy/semantic-release-action@v4
+        with:
+          extra_plugins: |
+            @semantic-release/changelog
+            @semantic-release/git
+            @semantic-release/exec
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

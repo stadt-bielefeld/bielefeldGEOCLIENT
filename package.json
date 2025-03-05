@@ -13,14 +13,9 @@
     "build": "webpack --mode production",
     "start": "webpack --watch --mode development"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@bitbucket.org/Omniscale/munimap.git"
-  },
   "keywords": [],
-  "author": "terestris GmbH & Co. KG <info@terrestris.de>",
+  "author": "terrestris GmbH & Co. KG <info@terrestris.de>",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/Omniscale/munimap#readme",
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
     "@priotas/angular-bootstrap-slider": "^1.1.26",
