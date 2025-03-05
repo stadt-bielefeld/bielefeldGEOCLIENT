@@ -675,6 +675,9 @@ def wmts_proxy(url_hash=None, layer=None, grid=None, zoom=None, x=None, y=None, 
 
     layer = current_app.layers[layer]
 
+    if not helper.layer_allowed_for_user(layer):
+        raise Forbidden()
+
     service_response = handle_wmts(url, layer, request, grid, zoom, x, y)
 
     if not service_response.ok:
