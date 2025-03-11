@@ -1,3 +1,10 @@
+## [1.4.8](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/v1.4.7...v1.4.8) (2025-03-11)
+
+
+### Bug Fixes
+
+* integrate docker build into release workflow ([072d95a](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/072d95a65cc8ba9463118bd53d34d6844d468bcf))
+
 ## [1.4.7](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/v1.4.6...v1.4.7) (2025-03-05)
 
 
