@@ -1,3 +1,10 @@
+## [1.4.11](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/v1.4.10...v1.4.11) (2025-03-11)
+
+
+### Bug Fixes
+
+* use correct output name for github action ([30f7e4b](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/30f7e4bf1faa97788ba738936e7feebf71b8cd0c))
+
 ## [1.4.10](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/v1.4.9...v1.4.10) (2025-03-11)
 
 
