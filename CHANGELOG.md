@@ -1,3 +1,10 @@
+## [1.4.9](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/v1.4.8...v1.4.9) (2025-03-11)
+
+
+### Bug Fixes
+
+* make image name lowercase ([58c9e93](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/58c9e93b2701d339f0fc0e5643101bbca40d875d))
+
 ## [1.4.8](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/v1.4.7...v1.4.8) (2025-03-11)
 
 

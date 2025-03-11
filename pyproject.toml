@@ -4,7 +4,7 @@ build-backend = 'hatchling.build'
 
 [project]
 name = 'munimap'
-version = "1.4.8"
+version = "1.4.9"
 maintainers = [
     { name = 'terrestris GmbH & Co. KG', email = 'info@terrestris.de' }
 ]
