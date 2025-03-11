@@ -1,3 +1,10 @@
+## [1.4.10](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/v1.4.9...v1.4.10) (2025-03-11)
+
+
+### Bug Fixes
+
+* use underscore instead of dash ([27998b2](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/27998b2a96fa106e60c2792642e93e7aa4f24773))
+
 ## [1.4.9](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/v1.4.8...v1.4.9) (2025-03-11)
 
 
