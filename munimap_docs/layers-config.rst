@@ -627,19 +627,14 @@ Wie WMS, Karten werden jedoch in 256x256 Pixel große Kacheln abgerufen.
   urlParameters
       Weitere Parameter, die für die Integration eines SensorThings Layers nötig sind.
 
-      root
-          String. Typ des Startknotens der Abfrage. Entweder `"Things"` oder `"Datastreams"`.
-          Dieses Attribut ist verpflichtend.
-
       filter
           String. SensorThings API Filter.
 
       expand
-          String. Zusätzliche Attribute, die dem Request via SensorThingsAPI expand mit abgefragt werden sollen.
+          String. Zusätzliche Attribute, die dem Request via SensorThingsAPI expand mit abgefragt werden sollen. Für die FeatureInfo-Anzeige ist es erforderlich die `"Observations"` anzugeben, um den gemessenen Wert und den passenden Zeitpunkt angeben zu können. Es ist wichtig hervorzuheben, dass `"Datastreams"` als `root` verwendet werden, somit müssen die Pfade in diesem Teil entsprechend dieser Quelle angegeben werden.
 
-  loadInCurrentExtent
-      Boolean. True, falls ausschließlich Daten aus dem aktuellen Kartenausschnitt abgefragt werden sollen.
-      Der Default ist `false`.
+  refreshInterval
+      Angabe der Abstände (in Sekunden), in denen die Anfrage erneut abgeschickt werden soll.
 
 
 .. code-block:: yaml
@@ -651,13 +646,17 @@ Wie WMS, Karten werden jedoch in 256x256 Pixel große Kacheln abgerufen.
         source:
           url: 'https://geoportal.kreis-herford.de/iot'
           urlParameters:
-            root: 'Datastreams'
             filter: "substringof('Temperaturmessungen', name)"
-            expand: 'Thing/Locations($filter=properties/kleinraeumig eq null),Sensor,Observations($orderby=phenomenonTime%20desc;$top=1)'
-          loadInCurrentExtent: true
+            expand: 'Thing/Locations($filter=properties/kleinraeumig eq null),Sensor,Observations($orderby=phenomenonTime desc;$top=1)'
+          refreshInterval: 3
         style:
           type: simple
+          radius: 10
           strokeColor: '#c3c'
           strokeWidth: 1
           fillColor: '#c6c'
           fillOpacity: 0.2
+        featureinfo:
+          target: '_popup'
+          width: 150
+          height: 100
