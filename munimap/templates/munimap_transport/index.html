@@ -1,5 +1,4 @@
 {% extends "munimap/app/base.html" %}
-{% from "munimap/macros/layers.html" import create_layers %}
 
 {% block body %}
   <div class="app-content hide"
@@ -63,7 +62,10 @@
     angular.module('munimap')
     .config(['LayersServiceProvider',
       function(LayersServiceProvider) {
-        LayersServiceProvider.setLayers({$ create_layers(layers_def) $});
+        const backgroundLayers = LayersServiceProvider.initBackgroundLayers({$ layers_def['backgroundLayer'] | tojson | safe $});
+        const overlayLayers = LayersServiceProvider.initOverlayLayers({$ layers_def['overlays'] | tojson | safe $});
+        const layers = backgroundLayers.concat(overlayLayers);
+        LayersServiceProvider.setLayers(layers);
       }]
     );
   </script>
