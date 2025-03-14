@@ -162,6 +162,9 @@ COPY ./entrypoint.sh /entrypoint.sh
 # Flag to decide if alembic should be run before starting the application
 ENV RUN_ALEMBIC="true"
 
+# Flag to decide if icons should be copied to the mapfish config dir before starting the application
+ENV COPY_ICONS_TO_MAPFISH_CONFIG_DIR="true"
+
 ENTRYPOINT ["/entrypoint.sh"]
 
 CMD ["gunicorn", "-c", "/opt/etc/munimap/gunicorn.conf", "munimap.application:create_app(config_file='/opt/etc/munimap/configs/munimap.conf')"]
