@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/v1.4.11...v1.5.0) (2025-03-14)
+
+
+### Features
+
+* copy icons to mapfish config in entrypoint ([00d74e3](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/00d74e36888a05820833575bf28a167af77c1bd0))
+
 ## [1.4.11](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/v1.4.10...v1.4.11) (2025-03-11)
 
 
