@@ -631,10 +631,10 @@ Wie WMS, Karten werden jedoch in 256x256 Pixel große Kacheln abgerufen.
           String. SensorThings API Filter.
 
       expand
-          String. Zusätzliche Attribute, die dem Request via SensorThingsAPI expand mit abgefragt werden sollen. Sollen Werte aus den `"Observations"` in der Feature Info-Anzeige dargestellt werden, so müssen die `"Observations"` auch hier angegeben werden. Es ist wichtig hervorzuheben, dass `"Datastreams"` als `root` verwendet werden, somit müssen die Pfade in diesem Teil relativ zu dieser Quelle angegeben werden.
+          String. Zusätzliche Attribute, die dem Request via SensorThingsAPI expand mit abgefragt werden sollen. Sollen Werte aus den `"Observations"` in der Feature Info-Anzeige dargestellt werden, so müssen die `"Observations"` auch hier angegeben werden. `"Datastreams"` werden als `root` verwendet, wodurch die Pfade relativ zu dieser Quelle angegeben werden müssen.
 
   refreshInterval
-      Angabe der Abstände (in Sekunden), in denen die Anfrage erneut abgeschickt werden soll.
+      Angabe der Abstände (in Sekunden), in denen die Anfrage erneut abgeschickt werden soll. Defaultmäßig beträgt dieser Wert 5 Sekunden.
 
 
 .. code-block:: yaml
