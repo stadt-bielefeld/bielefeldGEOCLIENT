@@ -61,8 +61,9 @@
               <label for="transparency-slider">{{ (layer.opacity() * 100).toFixed(0) }}%</label>
             </div>
             <!-- FIXME Each visible layer in a group contains all visible layers of the group. So you need to set all opacities to 0 in order to see an effect.  -->
-            <i class="toggle-transparency-slider glyphicon glyphicon-option-horizontal float-right pointer" 
-                ng-if="layerIsVisibleByName(layer.name)" ng-click="toggleTransparencySlider(layer)"></i>
+            <img class="toggle-transparency-slider float-right pointer" src="{$ url_for('static', filename='img/transparency.svg') $}" 
+                alt="Transparenz einstellen" title="Transparenz einstellen"
+                ng-if="layerIsVisibleByName(layer.name)" ng-click="toggleTransparencySlider(layer)"/>
             <i class="glyphicon glyphicon-remove float-right pointer" ng-if="removeLayerEnabled"
                 ng-click="removeLayer(layer)"></i>
           </div>
