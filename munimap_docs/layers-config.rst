@@ -627,19 +627,14 @@ Wie WMS, Karten werden jedoch in 256x256 Pixel große Kacheln abgerufen.
   urlParameters
       Weitere Parameter, die für die Integration eines SensorThings Layers nötig sind.
 
-      root
-          String. Typ des Startknotens der Abfrage. Entweder `"Things"` oder `"Datastreams"`.
-          Dieses Attribut ist verpflichtend.
-
       filter
           String. SensorThings API Filter.
 
       expand
-          String. Zusätzliche Attribute, die dem Request via SensorThingsAPI expand mit abgefragt werden sollen.
+          String. Zusätzliche Attribute, die dem Request via SensorThingsAPI expand mit abgefragt werden sollen. Sollen Werte aus den `"Observations"` in der Feature Info-Anzeige dargestellt werden, so müssen die `"Observations"` auch hier angegeben werden. `"Datastreams"` werden als `root` verwendet, wodurch die Pfade relativ zu dieser Quelle angegeben werden müssen.
 
-  loadInCurrentExtent
-      Boolean. True, falls ausschließlich Daten aus dem aktuellen Kartenausschnitt abgefragt werden sollen.
-      Der Default ist `false`.
+  refreshInterval
+      Angabe der Abstände (in Sekunden), in denen die Anfrage erneut abgeschickt werden soll. Defaultmäßig beträgt dieser Wert 5 Sekunden.
 
 
 .. code-block:: yaml
@@ -651,13 +646,18 @@ Wie WMS, Karten werden jedoch in 256x256 Pixel große Kacheln abgerufen.
         source:
           url: 'https://geoportal.kreis-herford.de/iot'
           urlParameters:
-            root: 'Datastreams'
             filter: "substringof('Temperaturmessungen', name)"
-            expand: 'Thing/Locations($filter=properties/kleinraeumig eq null),Sensor,Observations($orderby=phenomenonTime%20desc;$top=1)'
-          loadInCurrentExtent: true
+            expand: 'Thing/Locations($filter=properties/kleinraeumig eq null),Sensor,Observations($orderby=phenomenonTime desc;$top=1)'
+          refreshInterval: 3
         style:
           type: simple
+          radius: 10
           strokeColor: '#c3c'
           strokeWidth: 1
           fillColor: '#c6c'
           fillOpacity: 0.2
+        featureinfo:
+          target: '_popup'
+          width: 150
+          height: 100
+          properties: ['name', 'description', 'Observations[0].result', 'unitOfMeasurement.symbol', 'Observations[0].phenomenonTime']
