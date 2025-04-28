@@ -164,24 +164,44 @@
           position: relative
           a, a:hover
             text-decoration: none
-          .toggle-transparency-slider
-            margin: 0 1ex
-            height: 1.2em
-          .transparency-slider
-            display: inline-flex
-            margin: 0 auto
-            label
-              width: 36px
-              margin-left: 1ex
-          .group-line
+          .layer-line
             display: flex
             justify-content: space-between
             align-items: center
+            width: -webkit-fill-available
+            min-height: 2em
+          .backdrop
+            position: fixed
+            top: 0
+            left: 0
+            right: 0
+            bottom: 0
+            z-index: 10
+            // pointer-events: none
+          .layer-details
+            position: relative
+            z-index: 11
+            display: flex
+            flex-direction: column
+            margin-left: 1.25em
+            padding: 0.5em 0px 0.5em 0px
+            gap: 10px
+            .transparency-slider
+              display: flex
+              flex-direction: column
+              label
+                display: flex
+              img
+                height: 1.2em
+              input
+                margin-left: 24px
+                width: auto
+            .transparency-slider img, .glyphicon
+              margin-right: 5px
+            .metadata, .remove-layer
+              width: fit-content
           .group-layers-container
             padding-left: 1.3em
-            display: flex
-            justify-content: space-between
-            align-items: center
             .child-title
               width: auto
               height: inherit
@@ -205,7 +225,7 @@
 
           span.open-layer-group
             position: relative
-            top: 2px
+            top: 7px
             display: inline-block
             font-family: 'Glyphicons Halflings'
             font-style: normal
@@ -216,7 +236,7 @@
               content: "\e258"
           span.close-layer-group
             position: relative
-            top: 2px
+            top: 7px
             display: inline-block
             font-family: 'Glyphicons Halflings'
             font-style: normal

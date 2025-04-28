@@ -21,51 +21,73 @@
           'close-layer-group': !group.options.collapsed}"
           ng-click="group.options.collapsed=!group.options.collapsed">
         </span>
-        <a class="float-left" ng-if="group.options.metadataUrl && hideMetadata == false" 
-            ng-hide="group.showTransparencySlider" target="_blank" ng-href="{{ group.options.metadataUrl }}">
-          <span class="glyphicon glyphicon-info-sign"></span>
-        </a>
         <span ng-if="!group.options.metadataUrl && hideMetadata == false" ng-hide="group.showTransparencySlider" class="glyphicon glyphicon-none float-left"></span>
-        <div class="group-line" ng-class="{'title-wrapper-group': !group.options.metadataUrl && hideMetadata == false }">
+        <div class="layer-line" ng-class="{'title-wrapper-group': !group.options.metadataUrl && hideMetadata == false }">
           <span class="layer-title" ng-hide="group.showTransparencySlider"
               ng-click="toggleGroupVisibleByName(group.name)">
             {{ group.title }}
           </span>
-          <div ng-if="groupIsVisibleByName(group.name) && group.showTransparencySlider" class="transparency-slider">
+          <i class="toggle-layer-details glyphicon glyphicon-option-vertical float-right pointer" 
+              ng-click="toggleDetails(group)" title="Details anzeigen"></i>
+        </div>
+        <div class="backdrop" ng-if="group.showDetails" ng-click="toggleDetails(group)"></div>
+        <div ng-if="group.showDetails" class="layer-details slide-top">
+          <div class="transparency-slider">
+            <label for="transparency-slider">
+              <img src="{$ url_for('static', filename='img/transparency.svg') $}" 
+                  alt="Transparenz einstellen" title="Transparenz einstellen"/>
+              Deckkraft: {{ (group.opacityGetterSetter() * 100).toFixed(0) }}%
+            </label>
             <input id="transparency-slider" type="range" min="0" max="1" step="0.01"
-              ng-model="group.opacityGetterSetter" ng-model-options="{getterSetter: true}"/>
-            <label for="transparency-slider">{{ (group.opacity * 100).toFixed(0) }}%</label>
+                ng-model="group.opacityGetterSetter" ng-model-options="{getterSetter: true}"/>
           </div>
-          <img class="toggle-transparency-slider float-right pointer" src="{$ url_for('static', filename='img/transparency.svg') $}" 
-            alt="Transparenz einstellen" title="Transparenz einstellen"
-            ng-if="groupIsVisibleByName(group.name)" ng-click="group.toggleTransparencySlider()"/>
-          <i class="glyphicon glyphicon-remove float-right pointer" ng-if="removeLayerEnabled"
-            ng-click="removeLayer(group)"></i>
+          <a class="metadata float-left" ng-if="group.options.metadataUrl && hideMetadata == false" 
+              ng-hide="group.showTransparencySlider" target="_blank" ng-href="{{ group.options.metadataUrl }}">
+            <span class="glyphicon glyphicon-info-sign"></span>
+            Metadaten
+            <i class="glyphicon glyphicon-new-window"></i>
+          </a>
+          <div class="remove-layer pointer" ng-if="removeLayerEnabled" ng-click="removeLayer(group)">
+            <i class="glyphicon glyphicon-remove"></i>
+            Layer entfernen
+          </div>
         </div>
         <div ui-sortable="sortableLayer" ng-model=group.layers>
           <div class="group-layers-container" ng-repeat="layer in group.layers" 
-            ng-if="layer.displayInLayerswitcher !== false" 
-            ng-show="!group.options.collapsed"
-            ng-class="{'inactive': !layerIsVisibleByName(layer.name)}">
-            <a ng-if="layer.metadataUrl && hideMetadata == false" ng-hide="layer.showTransparencySlider" target="_blank" ng-href="{{ layer.metadataUrl }}">
-              <span class="glyphicon glyphicon-info-sign"></span>                    
-            </a>
-            <span ng-if="!layer.metadataUrl && hideMetadata == false" ng-hide="layer.showTransparencySlider" class="glyphicon glyphicon-none"></span>                          
-            <div ng-hide="layer.showTransparencySlider" class="layer-title child-title"
-              ng-click="toggleLayerVisibleByName(layer.name)">
-                <span>{{ layer.title }}</span>
+              ng-if="layer.displayInLayerswitcher !== false" 
+              ng-show="!group.options.collapsed"
+              ng-class="{'inactive': !layerIsVisibleByName(layer.name)}">
+            <div class="layer-line">
+              <span ng-if="!layer.metadataUrl && hideMetadata == false" class="glyphicon glyphicon-none"></span>                          
+              <div class="layer-title child-title" ng-click="toggleLayerVisibleByName(layer.name)">
+                  <span>{{ layer.title }}</span>
+              </div>
+              <i class="toggle-layer-details glyphicon glyphicon-option-vertical float-right pointer" 
+                  ng-click="toggleDetails(layer)" title="Details anzeigen"></i>
             </div>
-            <div ng-if="layerIsVisibleByName(layer.name) && layer.showTransparencySlider" class="transparency-slider">
-              <input id="transparency-slider" type="range" min="0" max="1" step="0.01"
-                ng-model="layer.opacity" ng-model-options="{getterSetter: true}"/>
-              <label for="transparency-slider">{{ (layer.opacity() * 100).toFixed(0) }}%</label>
+            <div class="backdrop" ng-if="layer.showDetails" ng-click="toggleDetails(layer)"></div>
+            <div ng-if="layer.showDetails" class="layer-details" ng-blur="layer.setDetailsVisible(false)">
+              <!-- FIXME Each visible layer in a group contains all visible layers of the group. So you need to set all opacities to 0 in order to see an effect.  -->
+              <div class="transparency-slider">
+                <label for="transparency-slider">
+                  <img src="{$ url_for('static', filename='img/transparency.svg') $}" 
+                      alt="Transparenz einstellen" title="Transparenz einstellen"/>
+                  Deckkraft: {{ (layer.opacity() * 100).toFixed(0) }}%
+                </label>
+                <input id="transparency-slider" type="range" min="0" max="1" step="0.01"
+                    ng-model="layer.opacity" ng-model-options="{getterSetter: true}"/>
+              </div>
+              <a class="metadata" ng-if="layer.metadataUrl && hideMetadata == false" 
+                  target="_blank" ng-href="{{ layer.metadataUrl }}">
+                <span class="glyphicon glyphicon-info-sign"></span>
+                Metadaten
+                <i class="glyphicon glyphicon-new-window"></i>
+              </a>
+              <div class="remove-layer pointer" ng-if="removeLayerEnabled" ng-click="removeLayer(layer)">
+                <i class="glyphicon glyphicon-remove"></i>
+                Layer entfernen
+              </div>
             </div>
-            <!-- FIXME Each visible layer in a group contains all visible layers of the group. So you need to set all opacities to 0 in order to see an effect.  -->
-            <img class="toggle-transparency-slider float-right pointer" src="{$ url_for('static', filename='img/transparency.svg') $}" 
-                alt="Transparenz einstellen" title="Transparenz einstellen"
-                ng-if="layerIsVisibleByName(layer.name)" ng-click="toggleTransparencySlider(layer)"/>
-            <i class="glyphicon glyphicon-remove float-right pointer" ng-if="removeLayerEnabled"
-                ng-click="removeLayer(layer)"></i>
           </div>
         </div>
       </div>
