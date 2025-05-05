@@ -36,13 +36,13 @@
             </span>
           </div>
           <div>
-            <i title="Transparenz einstellen" ng-click="toggleDetails(group)" 
-                class="toggle-layer-details glyphicon glyphicon-adjust pointer {{ group.showDetails ? 'active' : '' }}"></i>
+            <i title="Transparenz einstellen" ng-click="group.toggleConfig()" 
+                class="toggle-layer-conf glyphicon glyphicon-adjust pointer {{ group.showConfig ? 'active' : '' }}"></i>
             <i title="Gruppe entfernen" class="glyphicon glyphicon-remove pointer" 
                 ng-if="removeLayerEnabled" ng-click="removeLayer(group)"></i>
           </div>
         </div>
-        <div ng-if="group.showDetails" class="layer-details slide-top">
+        <div ng-if="group.showConfig" class="layer-conf slide-top">
           <div class="transparency-slider">
             <label for="transparency-slider">
               Deckkraft: {{ (group.opacityGetterSetter() * 100).toFixed(0) }}%
