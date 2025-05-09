@@ -45,10 +45,10 @@
         <div ng-if="group.showConfig" class="layer-conf slide-top">
           <div class="transparency-slider">
             <label for="transparency-slider">
-              Deckkraft: {{ (group.opacityGetterSetter() * 100).toFixed(0) }}%
+              Transparenz: {{ (group.transparency() * 100).toFixed(0) }}%
             </label>
             <input id="transparency-slider" type="range" min="0" max="1" step="0.01"
-                ng-model="group.opacityGetterSetter" ng-model-options="{getterSetter: true}"/>
+                ng-model="group.transparency" ng-model-options="{getterSetter: true}"/>
           </div>
         </div>
         <div ui-sortable="sortableLayer" ng-model=group.layers>
