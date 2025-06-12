@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/v1.5.0...v1.5.1) (2025-06-12)
+
+
+### Bug Fixes
+
+* update anol version ([3fce39f](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/3fce39f81c3d25671f7bca0258d9e9c60ed0144a))
+
 # [1.5.0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/v1.4.11...v1.5.0) (2025-03-14)
 
 
