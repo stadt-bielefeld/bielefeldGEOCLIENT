@@ -7,6 +7,14 @@ set -e
 for file in /certs/*.crt; do
     if [ -e "$file" ]; then
         cp "$file" /usr/local/share/ca-certificates/
+
+        # also install certificates in java truststore for custom prints
+        keytool -importcert -trustcacerts \
+           -file "$file" \
+           -alias $(basename $file) \
+           -keystore "$JAVA_HOME/lib/security/cacerts" \
+           -storepass changeit \
+           -noprompt
     fi
 done
 
