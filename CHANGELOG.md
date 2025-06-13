@@ -1,3 +1,10 @@
+## [1.5.2](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/v1.5.1...v1.5.2) (2025-06-13)
+
+
+### Bug Fixes
+
+* install certs in java truststore ([2118105](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/21181054e203e5f23fe05da8fbe7986d969cffec))
+
 ## [1.5.1](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/v1.5.0...v1.5.1) (2025-06-12)
 
 
