@@ -1,3 +1,24 @@
+## [1.5.2](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/v1.5.1...v1.5.2) (2025-06-13)
+
+
+### Bug Fixes
+
+* install certs in java truststore ([2118105](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/21181054e203e5f23fe05da8fbe7986d969cffec))
+
+## [1.5.1](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/v1.5.0...v1.5.1) (2025-06-12)
+
+
+### Bug Fixes
+
+* update anol version ([3fce39f](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/3fce39f81c3d25671f7bca0258d9e9c60ed0144a))
+
+# [1.5.0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/v1.4.11...v1.5.0) (2025-03-14)
+
+
+### Features
+
+* copy icons to mapfish config in entrypoint ([00d74e3](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/00d74e36888a05820833575bf28a167af77c1bd0))
+
 ## [1.4.11](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/v1.4.10...v1.4.11) (2025-03-11)
 
 

@@ -7,6 +7,14 @@ set -e
 for file in /certs/*.crt; do
     if [ -e "$file" ]; then
         cp "$file" /usr/local/share/ca-certificates/
+
+        # also install certificates in java truststore for custom prints
+        keytool -importcert -trustcacerts \
+           -file "$file" \
+           -alias $(basename $file) \
+           -keystore "$JAVA_HOME/lib/security/cacerts" \
+           -storepass changeit \
+           -noprompt
     fi
 done
 
@@ -14,8 +22,15 @@ update-ca-certificates
 
 # run alembic
 
-if [ "$RUN_ALEMBIC" = "true" ] ; then
+if [ "$RUN_ALEMBIC" = "true" ]; then
   alembic -c configs/alembic.ini upgrade head
+fi
+
+# copy icons to mapfish config dir
+
+if [ "$COPY_ICONS_TO_MAPFISH_CONFIG_DIR" = "true" ]; then
+  MUNIMAP_LOCATION=$(pip show munimap | grep Location | awk '{ print $2; }')
+  cp -r $MUNIMAP_LOCATION/munimap/static/img/icons /opt/etc/munimap/configs/mapfish
 fi
 
 # run the actual CMD

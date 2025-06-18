@@ -1,4 +1,4 @@
-ARG ANOL_COMMIT_HASH=2ab635d606486b67162b09af4a2e5c68fae77825
+ARG ANOL_COMMIT_HASH=8b73023afbe195846d9aedb4d09bec9c518eaafe
 
 FROM node:22-alpine@sha256:6e80991f69cc7722c561e5d14d5e72ab47c0d6b6cfb3ae50fb9cf9a7b30fdf97 AS clientbuilder
 
@@ -161,6 +161,9 @@ COPY ./entrypoint.sh /entrypoint.sh
 
 # Flag to decide if alembic should be run before starting the application
 ENV RUN_ALEMBIC="true"
+
+# Flag to decide if icons should be copied to the mapfish config dir before starting the application
+ENV COPY_ICONS_TO_MAPFISH_CONFIG_DIR="true"
 
 ENTRYPOINT ["/entrypoint.sh"]
 
