@@ -5,6 +5,9 @@ from urllib3.util import parse_url
 from flask import current_app
 
 log = logging.getLogger('munimap.stats')
+handler = logging.StreamHandler()
+handler.setFormatter(logging.Formatter('%(asctime)s|%(name)s|%(message)s'))
+log.addHandler(handler)
 
 
 def log_stats(request, current_user, use_referrer=False, route_name='munimap.index', app_attr='config', url_from_response=False):
@@ -77,8 +80,8 @@ def _log_stats(url, req, res, user, use_referrer, route_name, app_attr):
     referrer = referrer if referrer else ''
     user_agent = user_agent if user_agent else ''
 
-    msg = f'{user_name};{user_department};{app};{ip};{url};{status_code};' \
-          f'{content_length};{host};{referrer};{user_agent}'
+    msg = f'{user_name}|{user_department}|{app}|{ip}|{url}|{status_code}|' \
+          f'{content_length}|{host}|{referrer}|{user_agent}'
     log.info(msg)
 
 
