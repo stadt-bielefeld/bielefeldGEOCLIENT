@@ -14,6 +14,7 @@
 * docker
 * docker-compose
 * Node (>= 10)
+* nvm
 * Python (>=3.9)
 * Java 8 (openjdk-8-jre)
 * virtualenv
@@ -42,6 +43,7 @@ npm i --omit=dev
 
 ```
 cd ../bielefeldGEOCLIENT/
+nvm install
 npm i
 npm start
 ```
