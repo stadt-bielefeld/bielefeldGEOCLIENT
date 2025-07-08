@@ -1,5 +1,5 @@
 import os
-from scriptine.shell import sh
+from shell import shell
 from munimap.application import create_app
 from munimap.extensions import db
 import click
@@ -26,21 +26,21 @@ def run_munimap():
 @click.option('--lang', default='de', help='selects language to initialize')
 def babel_init_lang(lang='de'):
     "Initialize new language."
-    sh('pybabel init -i ../munimap/translations/messages.pot -d ../munimap/translations -l %s' %
+    shell('pybabel init -i ../munimap/translations/messages.pot -d ../munimap/translations -l %s' %
        (lang,))
 
 
 @cli_manager.command()
 def babel_refresh():
     "Extract messages and update translation files."
-    sh('pybabel extract -F ../munimap/babel.cfg -k lazy_gettext -k _l -o ../munimap/translations/messages.pot ../munimap')
-    sh('pybabel update -i ../munimap/translations/messages.pot -d ../munimap/translations')
+    shell('pybabel extract -F ../munimap/babel.cfg -k lazy_gettext -k _l -o ../munimap/translations/messages.pot ../munimap')
+    shell('pybabel update -i ../munimap/translations/messages.pot -d ../munimap/translations')
 
 
 @cli_manager.command()
 def babel_compile():
     "Compile translations."
-    sh('pybabel compile -d ../munimap/translations')
+    shell('pybabel compile -d ../munimap/translations')
 
 
 @cli_manager.command()
