@@ -1,1 +1,1 @@
-scriptinep3==0.3.1
+shell==1.0.1
