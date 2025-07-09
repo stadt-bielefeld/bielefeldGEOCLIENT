@@ -1,5 +1,5 @@
 from dictspec.validator import validate, ValidationError
-from dictspec.spec import one_of, number, required, type_spec, combined
+from dictspec.spec import one_of, number, required, type_spec, combined, anything
 from dictspec.compat import string_type
 
 
@@ -101,6 +101,121 @@ style_spec = {
     'fontFace': string_type,
     'fontColor': string_type,
     'fontOffsetY': number(),
+}
+
+expression_spec = [anything()]
+
+color_spec = one_of([number()], string_type)
+
+line_cap_spec = one_of('butt', 'round', 'square')
+
+line_join_spec = one_of('bevel', 'round', 'miter')
+
+declutter_mode_spec = one_of('declutter', 'obstacle', 'none')
+
+origin_spec = one_of('bottom-left', 'bottom-right', 'top-left', 'top-right')
+
+anchor_units_spec = one_of('pixels', 'fraction')
+
+align_spec = one_of('left', 'right', 'center', 'end', 'start')
+
+justify_spec = one_of('left', 'center', 'right')
+
+baseline_spec = one_of('bottom', 'top', 'middle', 'alphabetic', 'hanging', 'ideographic')
+
+flat_style_spec = {
+    # TODO add support for shape (also in anol)
+    # TODO check how to properly use nested one_of types
+    'circle-radius': one_of(number(), expression_spec),
+    'circle-fill-color': one_of(color_spec, expression_spec),
+    'circle-stroke-color': one_of(color_spec, string_type, expression_spec),
+    'circle-stroke-width': one_of(number(), expression_spec),
+    'circle-stroke-line-cap':  one_of(line_cap_spec, expression_spec),
+    'circle-stroke-line-join': one_of(line_join_spec, expression_spec),
+    'circle-stroke-line-dash': one_of([number()], expression_spec),
+    'circle-stroke-line-dash-offset': one_of(number(), expression_spec),
+    'circle-stroke-miter-limit': one_of(number(), expression_spec),
+    'circle-displacement': one_of([number()], expression_spec),
+    'circle-scale': one_of([number()], expression_spec),
+    'circle-opacity': one_of(number(), expression_spec),
+    'circle-rotation': one_of(number(), expression_spec),
+    'circle-rotate-with-view': one_of(bool(), expression_spec),
+    'circle-declutter-mode': declutter_mode_spec,
+    'fill-color': one_of(color_spec, expression_spec),
+    'fill-pattern-src': one_of(string_type, expression_spec),
+    'fill-pattern-size': one_of([number()], expression_spec),
+    'fill-pattern-offset': one_of([number()], expression_spec),
+    'fill-pattern-offset-origin': origin_spec,
+    'icon-src': string_type,
+    'icon-anchor': one_of([number()], expression_spec),
+    'icon-anchor-origin': origin_spec,
+    'icon-anchor-x-units': anchor_units_spec,
+    'icon-anchor-y-units': anchor_units_spec,
+    'icon-color': one_of(color_spec, expression_spec),
+    'icon-cross-origin': string_type,
+    'icon-offset': one_of([number()], expression_spec),
+    'icon-displacement': one_of([number()], expression_spec),
+    'icon-offset-origin': origin_spec,
+    'icon-opacity': one_of(number(), expression_spec),
+    'icon-scale': one_of([number()], expression_spec),
+    'icon-width': one_of(number(), expression_spec),
+    'icon-height': one_of(number(), expression_spec),
+    'icon-rotation': one_of(number(), expression_spec),
+    'icon-rotate-with-view': one_of(bool(), expression_spec),
+    'icon-size': one_of([number()], expression_spec),
+    'icon-declutter-mode': declutter_mode_spec,
+    'stroke-color': one_of(color_spec, expression_spec),
+    'stroke-width': one_of(number(), expression_spec),
+    'stroke-line-cap': one_of(line_cap_spec, expression_spec),
+    'stroke-line-join': one_of(line_join_spec, expression_spec),
+    'stroke-line-dash': one_of([number()], expression_spec),
+    'stroke-line-dash-offset': one_of(number(), expression_spec),
+    'stroke-miter-limit': one_of(number(), expression_spec),
+    'stroke-offset': one_of(number(), expression_spec),
+    'stroke-pattern-src': string_type,
+    'stroke-pattern-offset': one_of([number()], expression_spec),
+    'stroke-pattern-offset-origin': origin_spec,
+    'stroke-pattern-size': one_of([number()], expression_spec),
+    'stroke-pattern-spacing': one_of(number(), expression_spec),
+    'text-value': one_of(string_type, expression_spec),
+    'text-font': one_of(string_type, expression_spec),
+    'text-max-angle': one_of(number(), expression_spec),
+    'text-offset-x': one_of(number(), expression_spec),
+    'text-offset-y': one_of(number(), expression_spec),
+    'text-overflow': one_of(bool(), expression_spec),
+    'text-placement': one_of(string_type, expression_spec),
+    'text-repeat': one_of(number(), expression_spec),
+    'text-scale': one_of([number()], expression_spec),
+    'text-rotate-with-view': one_of(bool(), expression_spec),
+    'text-rotation': one_of(number(), expression_spec),
+    'text-align': one_of(align_spec, expression_spec),
+    'text-justify': one_of(justify_spec, expression_spec),
+    'text-baseline': one_of(baseline_spec, expression_spec),
+    'text-padding': one_of([number()], expression_spec),
+    'text-fill-color': one_of(color_spec, expression_spec),
+    'text-background-fill-color': one_of(color_spec, expression_spec),
+    'text-stroke-color': one_of(color_spec, expression_spec),
+    'text-stroke-line-cap': one_of(line_cap_spec, expression_spec),
+    'text-stroke-line-join': one_of(line_join_spec, expression_spec),
+    'text-stroke-line-dash': one_of([number()], expression_spec),
+    'text-stroke-line-dash-offset': one_of(number(), expression_spec),
+    'text-stroke-miter-limit': one_of(number(), expression_spec),
+    'text-stroke-width': one_of(number(), expression_spec),
+    'text-background-stroke-color': one_of(color_spec, expression_spec),
+    'text-background-stroke-line-cap': one_of(line_cap_spec, expression_spec),
+    'text-background-stroke-line-join': one_of(line_join_spec, expression_spec),
+    'text-background-stroke-line-dash': one_of([number()], expression_spec),
+    'text-background-stroke-line-dash-offset': one_of(number(), expression_spec),
+    'text-background-stroke-miter-limit': one_of(number(), expression_spec),
+    'text-background-stroke-width': one_of(number(), expression_spec),
+    'text-declutter-mode': declutter_mode_spec,
+    'z-index': one_of(number(), expression_spec)
+}
+
+flat_style_rule_spec = {
+    required('style'): flat_style_spec,
+    'filter': anything(),
+    'else': bool,
 }
 
 legend_spec = {
@@ -229,9 +344,10 @@ layers_conf_spec = {
             'style': style_spec,
             'cluster': one_of(cluster_spec, bool),
         }),
+        # TODO enable clustering and test it
         'sensorthings': combined(layer_commons, {
             'source': sensorthings_source_spec,
-            'style': style_spec,
+            'style': one_of(flat_style_spec, [flat_style_rule_spec]),
         })
     })]
     # 'meta': [meta_spec]

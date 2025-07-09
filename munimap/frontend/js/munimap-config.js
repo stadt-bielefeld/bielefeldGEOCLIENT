@@ -47,7 +47,8 @@ angular.module('munimap', [
                 var backgroundLayers = [];
                 var overlayLayers = [];
                 var otherLayers = [];
-                var featureCollection;
+                var customLayers = [];
+                var fc_layer_payloads = {};
                 if(rawPrintArgs.templateValues.streetIndex === true) {
                     indexLayers.push(streetIndexLayer);
                 }
@@ -58,9 +59,30 @@ angular.module('munimap', [
                     if(layer.name === 'printOfficalInfoLayer') {
                         return;
                     }
-                    if(layer.name === 'draw_layer') {
+
+                    if (layer instanceof anol.layer.SensorThings) {
                         var features = layer.getFeatures();
-                        featureCollection = features.length > 0 ? format.writeFeaturesObject(layer.getFeatures()) : featureCollection;
+                        const featureCollection = features.length > 0 ? format.writeFeaturesObject(features) : undefined;
+                        if (featureCollection) {
+                            fc_layer_payloads[layer.name] = {
+                                featureCollection,
+                                type: 'sensorthings'
+                            };
+                            // only push layer names if there are features
+                            overlayLayers.push(layer.name);
+                        }
+                    } else if (['draw_layer', 'lineMeasureLayer', 'areaMeasureLayer'].includes(layer.name)) {
+                        const isDrawLayer = layer.name === 'draw_layer';
+                        const features = isDrawLayer ? layer.getFeatures() : layer.olLayer.getSource().getFeatures();
+                        const featureCollection = features.length > 0 ? format.writeFeaturesObject(features) : undefined;
+                        if (featureCollection) {
+                            fc_layer_payloads[layer.name] = {
+                                featureCollection,
+                                type: isDrawLayer ? 'draw' : 'measure'
+                            };
+                            // only push layer names if there are features
+                            customLayers.push(layer.name);
+                        }
                     } else {
                         if (layer.isBackground) {
                             backgroundLayers.push(layer.name);
@@ -90,12 +112,12 @@ angular.module('munimap', [
                     srs: srs,
                     layers: layers,
                     indexLayers: indexLayers,
-                    measure_feature_collection: rawPrintArgs.measure_feature_collection,
                     cells: [
                         rawPrintArgs.templateValues.cellsX,
                         rawPrintArgs.templateValues.cellsY
                     ],
-                    feature_collection: featureCollection
+                    custom_layers: customLayers,
+                    fc_layer_payloads: fc_layer_payloads
                 };
                 if ('printMode' in rawPrintArgs) {
                     printArgs.printMode = rawPrintArgs.printMode

@@ -192,8 +192,8 @@ class PrintRequest(MapRequest):
         self.res = calc_res(self.page_size, self.bbox, self.dpi)
         self.calc_scale = self.res / 0.00028
         self.name = kw.get('name')
-        self.feature_collection = kw.get('feature_collection')
-        self.measure_feature_collection = kw.get('measure_feature_collection')
+        self.custom_layers = kw.get('custom_layers')
+        self.fc_layer_payloads = kw.get('fc_layer_payloads')
 
     @classmethod
     def from_json(cls, param):
@@ -219,8 +219,8 @@ class PrintRequest(MapRequest):
 
         param['cellsx'] = param['cellsx'] or 0 # set to 0 in case of None
         param['cellsy'] = param['cellsy'] or 0 # set to 0 in case of None
-        param['feature_collection'] = check_dict(param, 'feature_collection', {})
-        param['measure_feature_collection'] = check_dict(param, 'measure_feature_collection', {})
+        param['fc_layer_payloads'] = check_dict(param, 'fc_layer_payloads', {})
+        param['custom_layers'] = check_list(param, 'custom_layers', [])
         return cls(**param)
 
     @property

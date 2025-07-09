@@ -21,6 +21,7 @@ import requests
 from flask import current_app, render_template
 from flask_babel import gettext as _
 
+from munimap.helper import flatstyle_to_sld
 from munimap.query.feature_collection import query_feature_collection
 from munimap.print_requests import MapRequest
 from munimap.layers import (mapfish_grid_layer, mapfish_numeration_layer,
@@ -104,7 +105,22 @@ def prepare_style_for_mapfish(style, requested_opacity, internal_type='postgis',
         style['pointRadius'] = style['radius']
 
 
-def mapfish_layers(requested_layers, bbox=None, srs=None, dpi=None, scale=None, is_custom=False):
+def prepare_flatstyle_for_mapfish(flatstyle, is_custom):
+    def replace_icon_src(style):
+        base_path = current_app.config.get('MAPFISH_ICONS_DIR')
+        if is_custom:
+            base_path = current_app.config.get('MAPFISH_CLI_ICONS_DIR')
+        if 'icon-src' in style:
+            style['icon-src'] = os.path.abspath(os.path.join(base_path, style['icon-src']))
+
+    if type(flatstyle) is list:
+        for style_item in flatstyle:
+            replace_icon_src(style_item['style'])
+    else:
+        replace_icon_src(flatstyle)
+
+
+def mapfish_layers(requested_layers, bbox=None, srs=None, dpi=None, scale=None, icons_dir='', fc_layer_payloads=None, is_custom=False):
     if len(requested_layers) == 0:
         return []
     # convert list of strings to needed format
@@ -127,7 +143,17 @@ def mapfish_layers(requested_layers, bbox=None, srs=None, dpi=None, scale=None, 
 
         log.debug(f'Adding layer {name} to print spec with config {str(layer)}')
 
-        if layer['type'] == 'geojson' and bbox and srs:
+        if layer['type'] == 'geojson' and layer['internal_type'] == 'sensorthings':
+            fc = fc_layer_payloads.get(name, {'featureCollection': {}}).get('featureCollection', {})
+            # we only add this layer, if it contains at least one feature
+            if len(fc.get('features', [])) == 0:
+                continue
+            layer['geoJson'] = fc
+            prepare_flatstyle_for_mapfish(layer['style'], is_custom)
+            layer['style'] = flatstyle_to_sld(layer['style'], current_app.config.get("GEOSTYLER_CLI_CMD"))
+            del layer['internal_type']
+
+        elif layer['type'] == 'geojson' and bbox and srs:
             if 'internal_type' in layer and layer['internal_type'] in ('postgis', 'digitize'):
                 layer['geoJson'] = query_feature_collection(MapRequest(
                     bbox=bbox,
@@ -219,7 +245,8 @@ def extract_opacity_from_rgba(rgba):
 
 
 def create_spec_json(req, is_custom=False, icons_dir=''):
-    print_layers = mapfish_layers(req.layers, req.bbox, req.srs, req.dpi, req.calc_scale, is_custom=is_custom)
+    print_layers = mapfish_layers(req.layers, req.bbox, req.srs, req.dpi, req.calc_scale, icons_dir, req.fc_layer_payloads, is_custom=is_custom)
+
     numeration_features = query_feature_collection(
         MapRequest(
             bbox=req.bbox, layers=[
@@ -229,11 +256,13 @@ def create_spec_json(req, is_custom=False, icons_dir=''):
             ], srs=req.srs, limit=req.limit
         ), current_app.pg_layers)
 
-    if req.feature_collection:
-        print_layers.insert(0, mapfish_feature_collection_layer(req.feature_collection, icons_dir))
+    draw_layers = [l for l in req.custom_layers if req.fc_layer_payloads.get(l, {}).get('type') == 'draw']
+    for draw_layer in draw_layers:
+        print_layers.insert(0, mapfish_feature_collection_layer(req.fc_layer_payloads.get(draw_layer).get('featureCollection'), icons_dir))
 
-    if req.measure_feature_collection:
-        print_layers.insert(0, mapfish_measure_feature_collection_layer(req.measure_feature_collection))
+    measure_layers = [l for l in req.custom_layers if req.fc_layer_payloads.get(l, {}).get('type') == 'measure']
+    for measure_layer in measure_layers:
+        print_layers.insert(0, mapfish_measure_feature_collection_layer(req.fc_layer_payloads.get(measure_layer).get('featureCollection')))
 
     if len(numeration_features) > 0:
         print_layers.insert(0, mapfish_numeration_layer(numeration_features,

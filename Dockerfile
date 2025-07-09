@@ -105,6 +105,7 @@ RUN mkdir -p /opt/munimap \
     && mkdir -p /opt/pkgs \
     && mkdir -p /opt/var \
     && mkdir -p /opt/var/mapfish \
+    && mkdir -p /opt/var/geostyler-cli \
     && mkdir -p /opt/etc/munimap/data/stats \
     && mkdir -p /opt/etc/munimap/configs \
     && mkdir -p /opt/etc/munimap/bielefeld \
@@ -130,6 +131,11 @@ RUN add-apt-repository --yes https://packages.adoptium.net/artifactory/deb
 RUN apt update -y && apt install temurin-8-jre -y
 
 RUN wget -q -O- https://repo1.maven.org/maven2/org/mapfish/print/print-cli/3.9.0/print-cli-3.9.0-tar.tar | tar -x -C /opt/var/mapfish
+
+RUN wget -q -O /tmp/geostyler-linux.zip https://github.com/geostyler/geostyler-cli/releases/download/v5.0.0/geostyler-linux.zip \
+    && cd /opt/var/geostyler-cli \
+    && unzip /tmp/geostyler-linux.zip \
+    && rm /tmp/geostyler-linux.zip
 
 RUN pip install --upgrade pip && \
     pip install \

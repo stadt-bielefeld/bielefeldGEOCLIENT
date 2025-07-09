@@ -17,6 +17,7 @@
 * Python (>=3.9)
 * Java 8 (openjdk-8-jre)
 * virtualenv
+* geostyler-cli (>= 5.0.0)
 
 ## Initial development setup
 
@@ -28,6 +29,16 @@ The following steps are required once:
 cd ../dev/
 wget -q -O- https://repo1.maven.org/maven2/org/mapfish/print/print-cli/3.9.0/print-cli-3.9.0-tar.tar | tar -x -C ./mapfish
 ``` 
+
+* Download geostyler-cli
+
+```
+wget -q -O /tmp/geostyler-linux.zip https://github.com/geostyler/geostyler-cli/releases/download/v5.0.0/geostyler-linux.zip
+cd ../dev/
+mkdir geostyler-cli
+cd geostyler-cli
+unzip /tmp/geostyler-linux.zip
+```
 
 * Clone and install anol
 
