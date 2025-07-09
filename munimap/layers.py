@@ -332,7 +332,7 @@ def create_mapfish_layers(conf, layers_base_url='', default_protocol=''):
         elif layer_conf['type'] == 'wmts':
             mapfish_layer_factory = mapfish_wmts_layer
         elif layer_conf['type'] in ('postgis', 'digitize',
-                                    'dynamic_geojson', 'static_geojson'):
+                                    'dynamic_geojson', 'static_geojson', 'sensorthings'):
             mapfish_layer_factory = mapfish_geojson_layer
         else:
             log.warn('layer type "%s" is not supported' % layer_conf['type'])
@@ -441,6 +441,10 @@ def mapfish_geojson_layer(layer_conf, is_background, layers_base_url='',
         mapfish_layer['style'] = {
             'version': 2
         }
+    elif layer_conf['type'] == 'sensorthings':
+        mapfish_layer['internal_type'] = 'sensorthings'
+        if layer_conf['style']:
+            mapfish_layer['style'] = layer_conf['style']
     elif layer_conf['type'] == 'postgis':
         mapfish_layer['internal_type'] = 'postgis'
         mapfish_layer['style'] = {
@@ -776,8 +780,6 @@ def load_layers_config(config_folder, protected_layer_names=[], proxy_hash_salt=
     for layer_config in yaml_content['layers']:
         layer = Layer(layer_config)
         layer['source'] = Source(layer['source'])
-        if 'style' in layer:
-            layer['style'] = Style(layer['style'])
         if layer['type'] in ['wms', 'wmts', 'tiledwms', 'sensorthings']:
             direct_access = layer['source'].get('directAccess', False)
             # hash is used to address hidden proxied URLs
