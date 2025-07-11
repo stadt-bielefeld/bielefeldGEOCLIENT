@@ -83,7 +83,7 @@ Beschreibung welche Daten in dem Layer angezeigt werden, wird u.a. in der Darste
 
 ``type``
 """"""""
-Mögliche Typen sind `wms`, `tiledwms`, `wmts`, `postgis` und `digitize`. Je nach angegebenen `type` wird eine entsprechende `source` erwartet.
+Mögliche Typen sind `wms`, `tiledwms`, `wmts`, `postgis`, `digitize` und `sensorthings`. Je nach angegebenen `type` wird eine entsprechende `source` erwartet.
 
 ``create_index``
 """"""""""""""""
@@ -616,3 +616,61 @@ Wie WMS, Karten werden jedoch in 256x256 Pixel große Kacheln abgerufen.
           radius: 10
           strokeColor: '#c00'
           fillColor: '#00c'
+
+
+``sensorthings``
+""""""""""""""""
+
+  Hinweis1: SensorThings Layer verwenden als Stilformat OpenLayers Flat Styles, und unterstützen
+  dadurch auch attributives Styling. Die genaue Syntax kann der offiziellen
+  `OpenLayers Dokumentation <https://openlayers.org/en/latest/apidoc/module-ol_style_flat.html>`_
+  entnommen werden.
+
+  Hinweis2: Aktuell gibt es noch kein gesondertes Handling für Icons. Dementsprechend muss hier der
+  vollständige Pfad angegeben werden. Bei Icons, die von der Anwendung selbst gehostet werden, kann
+  der Domainname ausgelassen werden, bspw. `/icons/bus-18.svg` anstatt
+  `https://stadtplan.bielefeld.de/icons/bus-18.svg`. Im Druck können aktuell noch keine Icons verwendet werden.
+
+  url
+      URL des Dienstes.
+
+  urlParameters
+      Weitere Parameter, die für die Integration eines SensorThings Layers nötig sind.
+
+      filter
+          String. SensorThings API Filter.
+
+      expand
+          String. Zusätzliche Attribute, die dem Request via SensorThingsAPI expand mit abgefragt werden sollen. Sollen Werte aus den `"Observations"` in der Feature Info-Anzeige dargestellt werden, so müssen die `"Observations"` auch hier angegeben werden. `"Datastreams"` werden als `root` verwendet, wodurch die Pfade relativ zu dieser Quelle angegeben werden müssen.
+
+  refreshInterval
+      Angabe der Abstände (in Sekunden), in denen die Anfrage erneut abgeschickt werden soll. Per Default beträgt dieser Wert 5 Sekunden.
+
+
+.. code-block:: yaml
+
+    layers:
+      - name: lufttemperatur_sta
+        title: "Lufttemperatur STA"
+        type: sensorthings
+        source:
+          url: 'https://geoportal.kreis-herford.de/iot'
+          urlParameters:
+            filter: "substringof('Temperaturmessungen', name)"
+            expand: 'Thing/Locations($filter=properties/kleinraeumig eq null),Sensor,Observations($orderby=phenomenonTime desc;$top=1)'
+          refreshInterval: 3
+        style:
+          circle-radius: 10
+          circle-fill-color: [204, 102, 204, 0.2]
+          circle-stroke-color: '#c3c'
+          circle-stroke-width: 1
+        featureinfo:
+          target: '_popup'
+          width: 150
+          height: 100
+          properties:
+            - 'name'
+            - 'description'
+            - 'Observations.0.result'
+            - 'unitOfMeasurement.symbol'
+            - 'Observations.0.phenomenonTime'

@@ -105,6 +105,9 @@ class DefaultConfig(object):
     # in px
     MAPFISH_PRINT_MAP_MARGINS = [20, 20, 40, 20]
 
+    # The path to the geostyler-cli executable
+    GEOSTYLER_CLI_CMD = '/opt/var/geostyler-cli/geostyler'
+
     PRINT_JOBSPEC_DIR = '/opt/etc/munimap/printqueue/job-specs'
     PRINT_OUTDIR = '/opt/etc/munimap/printqueue/print-output'
     PRINT_USE_BROKER = True
