@@ -621,6 +621,11 @@ Wie WMS, Karten werden jedoch in 256x256 Pixel große Kacheln abgerufen.
 ``sensorthings``
 """"""""""""""""
 
+  Hinweis: SensorThings Layer verwenden als Stilformat OpenLayers Flat Styles, und unterstützen
+  dadurch auch attributives Styling. Die genaue Syntax kann der offiziellen
+  `OpenLayers Dokumentation <https://openlayers.org/en/latest/apidoc/module-ol_style_flat.html>`_
+  entnommen werden.
+
   url
       URL des Dienstes.
 
@@ -634,7 +639,7 @@ Wie WMS, Karten werden jedoch in 256x256 Pixel große Kacheln abgerufen.
           String. Zusätzliche Attribute, die dem Request via SensorThingsAPI expand mit abgefragt werden sollen. Sollen Werte aus den `"Observations"` in der Feature Info-Anzeige dargestellt werden, so müssen die `"Observations"` auch hier angegeben werden. `"Datastreams"` werden als `root` verwendet, wodurch die Pfade relativ zu dieser Quelle angegeben werden müssen.
 
   refreshInterval
-      Angabe der Abstände (in Sekunden), in denen die Anfrage erneut abgeschickt werden soll. Defaultmäßig beträgt dieser Wert 5 Sekunden.
+      Angabe der Abstände (in Sekunden), in denen die Anfrage erneut abgeschickt werden soll. Per Default beträgt dieser Wert 5 Sekunden.
 
 
 .. code-block:: yaml
@@ -650,14 +655,17 @@ Wie WMS, Karten werden jedoch in 256x256 Pixel große Kacheln abgerufen.
             expand: 'Thing/Locations($filter=properties/kleinraeumig eq null),Sensor,Observations($orderby=phenomenonTime desc;$top=1)'
           refreshInterval: 3
         style:
-          type: simple
-          radius: 10
-          strokeColor: '#c3c'
-          strokeWidth: 1
-          fillColor: '#c6c'
-          fillOpacity: 0.2
+          circle-radius: 10
+          circle-fill-color: [204, 102, 204, 0.2]
+          circle-stroke-color: '#c3c'
+          circle-stroke-width: 1
         featureinfo:
           target: '_popup'
           width: 150
           height: 100
-          properties: ['name', 'description', 'Observations[0].result', 'unitOfMeasurement.symbol', 'Observations[0].phenomenonTime']
+          properties:
+            - 'name'
+            - 'description'
+            - 'Observations.0.result'
+            - 'unitOfMeasurement.symbol'
+            - 'Observations.0.phenomenonTime'
