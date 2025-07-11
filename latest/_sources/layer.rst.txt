@@ -1,7 +1,8 @@
 Layer-Definition
 ================
 
-Die Layer können in unterschiedlichen Konfiguration definiert werden, die von der Anwendung zusammen gefasst werden. Innerhalb eine Konfiguration können folgenden Bereich definiert werden:
+Die Layer können in unterschiedlichen Konfigurationen definiert werden, die von der Anwendung zusammen
+gefasst werden. Innerhalb einer Konfiguration können folgende Bereiche definiert werden:
 
 ``layers``: Definition der einzelnen Layer.
 ``groups``: Liste von Gruppen. Jeder Gruppe können ein oder mehrere Layer zugeordnet werden.

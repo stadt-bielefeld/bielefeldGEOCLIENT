@@ -98,6 +98,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#wmts"><code class="docutils literal notranslate"><span class="pre">wmts</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#postgis"><code class="docutils literal notranslate"><span class="pre">postgis</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#digitize"><code class="docutils literal notranslate"><span class="pre">digitize</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sensorthings"><code class="docutils literal notranslate"><span class="pre">sensorthings</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -212,7 +213,7 @@
 </section>
 <section id="type">
 <h3><code class="docutils literal notranslate"><span class="pre">type</span></code><a class="headerlink" href="#type" title="Link to this heading"></a></h3>
-<p>Mögliche Typen sind <cite>wms</cite>, <cite>tiledwms</cite>, <cite>wmts</cite>, <cite>postgis</cite> und <cite>digitize</cite>. Je nach angegebenen <cite>type</cite> wird eine entsprechende <cite>source</cite> erwartet.</p>
+<p>Mögliche Typen sind <cite>wms</cite>, <cite>tiledwms</cite>, <cite>wmts</cite>, <cite>postgis</cite>, <cite>digitize</cite> und <cite>sensorthings</cite>. Je nach angegebenen <cite>type</cite> wird eine entsprechende <cite>source</cite> erwartet.</p>
 </section>
 <section id="create-index">
 <h3><code class="docutils literal notranslate"><span class="pre">create_index</span></code><a class="headerlink" href="#create-index" title="Link to this heading"></a></h3>
@@ -657,6 +658,60 @@ Siehe dazu auch <a class="reference internal" href="selectionlists-config.html#s
 </pre></div>
 </div>
 </section>
+<section id="sensorthings">
+<h3><code class="docutils literal notranslate"><span class="pre">sensorthings</span></code><a class="headerlink" href="#sensorthings" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>Hinweis1: SensorThings Layer verwenden als Stilformat OpenLayers Flat Styles, und unterstützen
+dadurch auch attributives Styling. Die genaue Syntax kann der offiziellen
+<a class="reference external" href="https://openlayers.org/en/latest/apidoc/module-ol_style_flat.html">OpenLayers Dokumentation</a>
+entnommen werden.</p>
+<p>Hinweis2: Aktuell gibt es noch kein gesondertes Handling für Icons. Dementsprechend muss hier der
+vollständige Pfad angegeben werden. Bei Icons, die von der Anwendung selbst gehostet werden, kann
+der Domainname ausgelassen werden, bspw. <cite>/icons/bus-18.svg</cite> anstatt
+<cite>https://stadtplan.bielefeld.de/icons/bus-18.svg</cite>. Im Druck können aktuell noch keine Icons verwendet werden.</p>
+<dl>
+<dt>url</dt><dd><p>URL des Dienstes.</p>
+</dd>
+<dt>urlParameters</dt><dd><p>Weitere Parameter, die für die Integration eines SensorThings Layers nötig sind.</p>
+<dl class="simple">
+<dt>filter</dt><dd><p>String. SensorThings API Filter.</p>
+</dd>
+<dt>expand</dt><dd><p>String. Zusätzliche Attribute, die dem Request via SensorThingsAPI expand mit abgefragt werden sollen. Sollen Werte aus den <cite>„Observations“</cite> in der Feature Info-Anzeige dargestellt werden, so müssen die <cite>„Observations“</cite> auch hier angegeben werden. <cite>„Datastreams“</cite> werden als <cite>root</cite> verwendet, wodurch die Pfade relativ zu dieser Quelle angegeben werden müssen.</p>
+</dd>
+</dl>
+</dd>
+<dt>refreshInterval</dt><dd><p>Angabe der Abstände (in Sekunden), in denen die Anfrage erneut abgeschickt werden soll. Per Default beträgt dieser Wert 5 Sekunden.</p>
+</dd>
+</dl>
+</div></blockquote>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">layers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lufttemperatur_sta</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Lufttemperatur</span><span class="nv"> </span><span class="s">STA&quot;</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sensorthings</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;https://geoportal.kreis-herford.de/iot&#39;</span>
+<span class="w">      </span><span class="nt">urlParameters</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">filter</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;substringof(&#39;Temperaturmessungen&#39;,</span><span class="nv"> </span><span class="s">name)&quot;</span>
+<span class="w">        </span><span class="nt">expand</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Thing/Locations($filter=properties/kleinraeumig</span><span class="nv"> </span><span class="s">eq</span><span class="nv"> </span><span class="s">null),Sensor,Observations($orderby=phenomenonTime</span><span class="nv"> </span><span class="s">desc;$top=1)&#39;</span>
+<span class="w">      </span><span class="nt">refreshInterval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">    </span><span class="nt">style</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">circle-radius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">      </span><span class="nt">circle-fill-color</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">204</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">102</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">204</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.2</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">circle-stroke-color</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;#c3c&#39;</span>
+<span class="w">      </span><span class="nt">circle-stroke-width</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">featureinfo</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;_popup&#39;</span>
+<span class="w">      </span><span class="nt">width</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">150</span>
+<span class="w">      </span><span class="nt">height</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span>
+<span class="w">      </span><span class="nt">properties</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;name&#39;</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;description&#39;</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;Observations.0.result&#39;</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;unitOfMeasurement.symbol&#39;</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;Observations.0.phenomenonTime&#39;</span>
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 
@@ -672,7 +727,7 @@ Siehe dazu auch <a class="reference internal" href="selectionlists-config.html#s
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021, Stadt Bielefeld.
-      <span class="lastupdated">Zuletzt aktualisiert am 2025-03-05.
+      <span class="lastupdated">Zuletzt aktualisiert am 2025-07-11.
       </span></p>
   </div>
 
@@ -688,7 +743,7 @@ Siehe dazu auch <a class="reference internal" href="selectionlists-config.html#s
   </div>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
-    Version: v1.4.5
+    Version: v1.6.0
     <span class="fa fa-caret-down"></span>
   </span>
     <div class="rst-other-versions">
