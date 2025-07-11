@@ -4,7 +4,7 @@ on:
     inputs:
       tag_name:
         type: string
-        description: The current tag (include the v prefix)
+        description: The current tag
         required: true
 
 jobs:
