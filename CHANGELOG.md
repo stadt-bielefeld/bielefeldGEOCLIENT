@@ -1,3 +1,13 @@
+# [1.6.0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/v1.5.2...v1.6.0) (2025-07-11)
+
+
+### Features
+
+* add initial sensorthings layer configuration/validation ([bcccad5](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/bcccad573a91df5c6fd51337c9f97b3ab64f5b69))
+* add proxy for sensorthings layers ([7b9d854](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/7b9d8549913a635bca83736c081c899df03538e7))
+* sensorthings layer ([84032aa](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/84032aa44a0297782019880e2bd993bf5b54776b))
+* **sensorthings:** add attributive styling ([955c46b](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/955c46b8f827d4ec3402d567462afc6e516d575c))
+
 ## [1.5.2](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/v1.5.1...v1.5.2) (2025-06-13)
 
 
