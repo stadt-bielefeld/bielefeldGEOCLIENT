@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/v1.6.0...1.6.1) (2025-07-11)
+
+
+### Bug Fixes
+
+* set tag format for semantic-release ([af8fe87](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/af8fe875673bd3f0155a3da415aa1ae97e28c8a6))
+
 # [1.6.0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/v1.5.2...v1.6.0) (2025-07-11)
 
 
