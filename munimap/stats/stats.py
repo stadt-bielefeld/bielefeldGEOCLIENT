@@ -5,9 +5,6 @@ from urllib3.util import parse_url
 from flask import current_app
 
 log = logging.getLogger('munimap.stats')
-handler = logging.StreamHandler()
-handler.setFormatter(logging.Formatter('%(asctime)s|%(name)s|%(message)s'))
-log.addHandler(handler)
 
 
 def log_stats(request, current_user, use_referrer=False, route_name='munimap.index', app_attr='config', url_from_response=False):
