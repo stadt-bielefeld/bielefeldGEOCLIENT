@@ -157,6 +157,9 @@
         const backgroundLayers = LayersServiceProvider.initBackgroundLayers({$ layers_def['backgroundLayer'] | tojson | safe $});
         const overlayLayers = LayersServiceProvider.initOverlayLayers({$ layers_def['overlays'] | tojson | safe $});
         const drawLayers = LayersServiceProvider.initDrawLayers({$ draw_layers | tojson | safe $});
+        if (drawLayers.length > 0) {
+          DrawServiceProvider.setActiveLayer(drawLayers.at(-1));
+        }
         const layers = backgroundLayers.concat(overlayLayers, drawLayers);
         LayersServiceProvider.setLayers(layers);
         CatalogServiceProvider.setLoadUrl('{$ url_for("munimap.catalog_names", config=project_name) $}');
