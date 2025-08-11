@@ -1,3 +1,23 @@
+# [1.7.0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.6.1...1.7.0) (2025-08-11)
+
+
+### Bug Fixes
+
+* adjust stats logging ([0817b5b](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/0817b5b6e33643623a565e6e3c8b11846e86fa0c))
+* allow selecting text in anol-feature-properties ([960a5a4](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/960a5a4e2fd8d285f737207b82a890de3604dda8))
+* digitize ([1667bf3](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/1667bf3385d4d19a9854e3a82e321d0f1b1a8df8))
+* improve css of feature-properties popup ([27bdbcb](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/27bdbcb3862c9417e147185fafed11f41abb9cb0))
+* improved formatting of the stats logger ([a094a90](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/a094a908538dce3066844f88accfd8207f31820d))
+* **logging:** improve formatting of the stats logger ([79beab3](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/79beab32d17862ccd198a7f67841215c5963b0f7))
+* ng-required ([f8c5069](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/f8c50695c3f7a10572994b7fa1caa45333583f3a))
+* set defaultVisibleLayers not visible at start ([9a7b75b](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/9a7b75b9bee5e0dcd602d9e989826a81528c2d84))
+
+
+### Features
+
+* allow custom labels for featureinfo ([bf3ff41](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/bf3ff41ee7a95d9e7916ee0011f36efb3b7d2225))
+* support formatting dates in feature-properties ([65465ac](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/65465accac07b074bf9ff3082f2fffa729e10392))
+
 ## [1.6.1](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/v1.6.0...1.6.1) (2025-07-11)
 
 
