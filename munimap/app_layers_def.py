@@ -89,7 +89,7 @@ def prepare_background_layers(app_config, layers_config):
     return background_layers
 
 
-def prepare_group_layers(app_config, layers, group_active, layers_config, visibles_in_group):
+def prepare_group_layers(app_config, layers, group_active, layers_config):
     group_layers = []
     includes = (app_config['layers']['include']
                 if 'layers' in app_config and
@@ -125,8 +125,7 @@ def prepare_group_layers(app_config, layers, group_active, layers_config, visibl
         layer['searchConfig'] = layer.get('searchConfig', [])
         layer['visible'] = (
             'map' in app_config and
-            (layer['name'] in app_config['map'].get('defaultOverlays', []) or
-             layer['name'] in visibles_in_group))
+            (layer['name'] in app_config['map'].get('defaultOverlays', [])))
 
         layer['olLayer']['source']['url'] = hash_url_if_needed(layer, layers_config)
 
@@ -183,7 +182,7 @@ def prepare_overlays(app_config, layers_config):
         group_active = is_active(group['name'], group['status'] == 'active',
                                  includes, excludes, explicits)
         group_layers = prepare_group_layers(app_config, group['layers'],
-                                            group_active, layers_config, group['defaultVisibleLayers'])
+                                            group_active, layers_config)
 
         single_select_group = False
         for s in single_select:
