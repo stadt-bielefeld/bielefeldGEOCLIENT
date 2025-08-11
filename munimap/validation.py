@@ -227,16 +227,17 @@ legend_spec = {
     'showLayerTitle': bool,
 }
 
-key_label_pair = {
-    'key': string_type,
+feature_info_item = {
+    required('key'): string_type,
     'label': string_type,
+    'format': one_of('date')
 }
 
 featureinfo_spec = {
     'target': string_type,
     'width': number(),
     'height': number(),
-    'properties': [one_of(string_type, key_label_pair)],
+    'properties': [one_of(string_type, feature_info_item)],
     'featureCount': number(),
     'gml': bool,
     'gmlGroup': bool,
