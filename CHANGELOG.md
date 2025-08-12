@@ -1,3 +1,12 @@
+## [1.7.1](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.7.0...1.7.1) (2025-08-12)
+
+
+### Bug Fixes
+
+* improve validation of ol-flat style colors ([0b594c9](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/0b594c99bcc5b474b2fb0138f220405111f3ad83))
+* provide url for postgis/dynamic_geojson layers ([4c663be](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/4c663be0bb5391d591f1f9e936085a91ec56db53))
+* update anol to 5acfbfd4ffac71efcd96e38476d61e10a57543c5 ([dae0fa2](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/dae0fa237def5f4e17bde8059e27254a8e08c6e1))
+
 # [1.7.0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.6.1...1.7.0) (2025-08-11)
 
 
