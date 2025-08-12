@@ -105,7 +105,8 @@ style_spec = {
 
 expression_spec = [anything()]
 
-color_spec = one_of([number()], string_type)
+color_string = string_type
+color_array = [number()]
 
 line_cap_spec = one_of('butt', 'round', 'square')
 
@@ -127,8 +128,8 @@ flat_style_spec = {
     # TODO add support for shape (also in anol)
     # TODO check how to properly use nested one_of types
     'circle-radius': one_of(number(), expression_spec),
-    'circle-fill-color': one_of(color_spec, expression_spec),
-    'circle-stroke-color': one_of(color_spec, string_type, expression_spec),
+    'circle-fill-color': one_of(color_string, color_array, expression_spec),
+    'circle-stroke-color': one_of(color_string, color_array, expression_spec),
     'circle-stroke-width': one_of(number(), expression_spec),
     'circle-stroke-line-cap':  one_of(line_cap_spec, expression_spec),
     'circle-stroke-line-join': one_of(line_join_spec, expression_spec),
@@ -141,7 +142,7 @@ flat_style_spec = {
     'circle-rotation': one_of(number(), expression_spec),
     'circle-rotate-with-view': one_of(bool(), expression_spec),
     'circle-declutter-mode': declutter_mode_spec,
-    'fill-color': one_of(color_spec, expression_spec),
+    'fill-color': one_of(color_string, color_array, expression_spec),
     'fill-pattern-src': one_of(string_type, expression_spec),
     'fill-pattern-size': one_of([number()], expression_spec),
     'fill-pattern-offset': one_of([number()], expression_spec),
@@ -151,7 +152,7 @@ flat_style_spec = {
     'icon-anchor-origin': origin_spec,
     'icon-anchor-x-units': anchor_units_spec,
     'icon-anchor-y-units': anchor_units_spec,
-    'icon-color': one_of(color_spec, expression_spec),
+    'icon-color': one_of(color_string, color_array, expression_spec),
     'icon-cross-origin': string_type,
     'icon-offset': one_of([number()], expression_spec),
     'icon-displacement': one_of([number()], expression_spec),
@@ -164,7 +165,7 @@ flat_style_spec = {
     'icon-rotate-with-view': one_of(bool(), expression_spec),
     'icon-size': one_of([number()], expression_spec),
     'icon-declutter-mode': declutter_mode_spec,
-    'stroke-color': one_of(color_spec, expression_spec),
+    'stroke-color': one_of(color_string, color_array, expression_spec),
     'stroke-width': one_of(number(), expression_spec),
     'stroke-line-cap': one_of(line_cap_spec, expression_spec),
     'stroke-line-join': one_of(line_join_spec, expression_spec),
@@ -192,16 +193,16 @@ flat_style_spec = {
     'text-justify': one_of(justify_spec, expression_spec),
     'text-baseline': one_of(baseline_spec, expression_spec),
     'text-padding': one_of([number()], expression_spec),
-    'text-fill-color': one_of(color_spec, expression_spec),
-    'text-background-fill-color': one_of(color_spec, expression_spec),
-    'text-stroke-color': one_of(color_spec, expression_spec),
+    'text-fill-color': one_of(color_string, color_array, expression_spec),
+    'text-background-fill-color': one_of(color_string, color_array, expression_spec),
+    'text-stroke-color': one_of(color_string, color_array, expression_spec),
     'text-stroke-line-cap': one_of(line_cap_spec, expression_spec),
     'text-stroke-line-join': one_of(line_join_spec, expression_spec),
     'text-stroke-line-dash': one_of([number()], expression_spec),
     'text-stroke-line-dash-offset': one_of(number(), expression_spec),
     'text-stroke-miter-limit': one_of(number(), expression_spec),
     'text-stroke-width': one_of(number(), expression_spec),
-    'text-background-stroke-color': one_of(color_spec, expression_spec),
+    'text-background-stroke-color': one_of(color_string, color_array, expression_spec),
     'text-background-stroke-line-cap': one_of(line_cap_spec, expression_spec),
     'text-background-stroke-line-join': one_of(line_join_spec, expression_spec),
     'text-background-stroke-line-dash': one_of([number()], expression_spec),
