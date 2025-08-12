@@ -14,7 +14,11 @@
             {{ group.catalog.title }}
           </span>
         </div>
-        <i title="Layer entfernen" class="glyphicon glyphicon-remove float-right pointer" ng-click="removeLayer(group)"></i>
+        <div>
+           <div anol-transparencysettings group="group"></div>
+            <!-- TODO: test if it works -->
+           <i title="Layer entfernen" class="glyphicon glyphicon-remove float-right pointer" ng-click="removeLayer(group)"></i>
+        </div>
       </div> 
 
       <div class="group-item" ng-show="group.groupLayer == true && group.options.showGroup === true"
@@ -36,24 +40,25 @@
             </span>
           </div>
           <div>
-            <i title="Transparenz einstellen" ng-click="group.toggleConfig()" 
-                class="toggle-layer-conf glyphicon glyphicon-adjust pointer {{ group.showConfig ? 'active' : '' }}">
-            </i>
+<!--            <i title="Transparenz einstellen" ng-click="group.toggleConfig()" -->
+<!--                class="toggle-layer-conf glyphicon glyphicon-adjust pointer {{ group.showConfig ? 'active' : '' }}">-->
+<!--            </i>-->
+            <div anol-transparencysettings group="group"></div>
             <i title="Gruppe entfernen" class="glyphicon glyphicon-remove pointer" 
                 ng-if="removeLayerEnabled" ng-click="removeLayer(group)"></i>
-            <dialog ng-if="group.showConfig" class="layer-conf slide-top" ng-blur="group.toggleConfig()">
-              <header>
-                {{ group.title }}
-                <button title="Schließen" class="glyphicon glyphicon-remove pointer" ng-click="group.toggleConfig()"></button>
-              </header>
-              <div class="transparency-slider">
-                <label for="transparency-slider">
-                  Transparenz: {{ (group.transparency() * 100).toFixed(0) }}%
-                </label>
-                <input id="transparency-slider" type="range" min="0" max="1" step="0.01"
-                    ng-model="group.transparency" ng-model-options="{getterSetter: true}"/>
-              </div>
-            </dialog>
+<!--            <dialog ng-if="group.showConfig" class="layer-conf slide-top" ng-blur="group.toggleConfig()">-->
+<!--              <header>-->
+<!--                {{ group.title }}-->
+<!--                <button title="Schließen" class="glyphicon glyphicon-remove pointer" ng-click="group.toggleConfig()"></button>-->
+<!--              </header>-->
+<!--              <div class="transparency-slider">-->
+<!--                <label for="transparency-slider">-->
+<!--                  Transparenz: {{ (group.transparency() * 100).toFixed(0) }}%-->
+<!--                </label>-->
+<!--                <input id="transparency-slider" type="range" min="0" max="1" step="0.01"-->
+<!--                    ng-model="group.transparency" ng-model-options="{getterSetter: true}"/>-->
+<!--              </div>-->
+<!--            </dialog>-->
           </div>
         </div>
         <div ui-sortable="sortableLayer" ng-model=group.layers>
@@ -76,21 +81,24 @@
 
       <div class="group-item no-group-layer-title" ng-show="group.groupLayer == true && group.options.showGroup === false"
          ng-class="{'inactive': !groupIsVisibleByName(group.name)}">
-          <div class="no-group-layers-container" ng-repeat="layer in group.layers" 
+          <div class="no-group-layers-container layer-line" ng-repeat="layer in group.layers"
             ng-if="layer.displayInLayerswitcher !== false" 
             ng-class="{'inactive': !layerIsVisibleByName(layer.name)}">
-
-            <a class="float-left" ng-if="group.options.metadataUrl && hideMetadata == false" target="_blank" ng-href="{{ group.options.metadataUrl }}">
-              <span class="glyphicon glyphicon-info-sign"></span>                    
-            </a>
-            <span ng-if="!group.options.metadataUrl && hideMetadata == false" class="glyphicon glyphicon-none float-left"></span>    
             <div>
-              <span class="layer-title"
-                ng-click="toggleLayerVisibleByName(layer.name)">
-                  {{ layer.title }}
-              </span>
-              <i class="glyphicon glyphicon-remove float-right pointer" ng-if="removeLayerEnabled"
-                  ng-click="removeLayer(layer)"></i>
+                <a class="float-left" ng-if="group.options.metadataUrl && hideMetadata == false" target="_blank" ng-href="{{ group.options.metadataUrl }}">
+                    <span class="glyphicon glyphicon-info-sign"></span>
+                </a>
+                <span ng-if="!group.options.metadataUrl && hideMetadata == false" class="glyphicon glyphicon-none float-left"></span>
+                <span class="layer-title"
+                      ng-click="toggleLayerVisibleByName(layer.name)">
+                    {{ layer.title }}
+                </span>
+            </div>
+            <div>
+                <div anol-transparencysettings group="group"></div>
+                <!-- TODO: show layer.title in transparency settings popup-->
+                <i class="glyphicon glyphicon-remove float-right pointer" ng-if="removeLayerEnabled"
+                   ng-click="removeLayer(layer)"></i>
             </div>
           </div>
       </div>
