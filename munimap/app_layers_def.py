@@ -354,14 +354,15 @@ def prepare_catalog_layers_def(app_layers_def, layers_config, selected_group=Non
 
             if layer['name'] in used_layer_names:
                 layer['predefined'] = True
-            if layer['type'] == 'dynamic_geojson':
-                layer['olLayer']['source']['url'] = url_for('vector.geojson') + '?'
             layer['olLayer']['source']['url'] = hash_url_if_needed(layer, layers_config)
 
             # set to default icon location if not specified
             if 'externalGraphicPrefix' not in layer:
                 layer['externalGraphicPrefix'] = url_for('munimap.icons',
                                                          filename='')
+            if layer['type'] == 'dynamic_geojson':
+                layer['olLayer']['source']['url'] = url_for('vector.geojson') + '?'
+
             if layer['type'] == 'static_geojson':
                 layer['olLayer']['source']['url'] = url_for(
                     'munimap.static_geojson', filename=layer['olLayer']['source']['file'])
