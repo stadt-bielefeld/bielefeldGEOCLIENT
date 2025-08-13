@@ -125,6 +125,9 @@ canvas.anol-legend-item-image {
     min-width: 30px;
     .anol-feature-properties-wrapper {
       overflow-y: auto;
+      hr {
+        border-top: 1px solid rgba(0, 0, 0, 0.45);
+      }
       .anol-feature-properties-table {
         white-space: normal;
         .anol-feature-properties-table-key-col {
