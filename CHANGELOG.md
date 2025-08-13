@@ -1,3 +1,15 @@
+# [1.8.0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.7.1...1.8.0) (2025-08-13)
+
+
+### Bug Fixes
+
+* set style of feature-properties separator ([9a561c7](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/9a561c7a4cdaa204d13f475a985cf8fc2c1e8118))
+
+
+### Features
+
+* update anol to 738e6b5d04e8b57c2738479e42b8c8b062c18165 ([5ad7895](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/5ad789551021aaff7245512e738d3da582ae8f5e))
+
 ## [1.7.1](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.7.0...1.7.1) (2025-08-12)
 
 
