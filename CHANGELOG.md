@@ -1,3 +1,10 @@
+## [1.8.2](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.8.1...1.8.2) (2025-08-14)
+
+
+### Bug Fixes
+
+* update anol to 7b1c3437a0160dda7272c377018d599817d846db ([96bd8f6](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/96bd8f6f8d6a1e2d81a6138e6c7c1d2681eb4211))
+
 ## [1.8.1](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.8.0...1.8.1) (2025-08-14)
 
 
