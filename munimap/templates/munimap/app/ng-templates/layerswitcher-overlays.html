@@ -14,9 +14,8 @@
             {{ group.catalog.title }}
           </span>
         </div>
-        <div>
-           <div anol-transparencysettings group="group"></div>
-            <!-- TODO: test if it works -->
+        <div class="settings-line">
+           <div anol-transparencysettings group="group" title="{{ group.catalog.title }}"></div>
            <i title="Layer entfernen" class="glyphicon glyphicon-remove float-right pointer" ng-click="removeLayer(group)"></i>
         </div>
       </div> 
@@ -39,11 +38,11 @@
               {{ group.title }}
             </span>
           </div>
-          <div>
+          <div class="settings-line">
 <!--            <i title="Transparenz einstellen" ng-click="group.toggleConfig()" -->
 <!--                class="toggle-layer-conf glyphicon glyphicon-adjust pointer {{ group.showConfig ? 'active' : '' }}">-->
 <!--            </i>-->
-            <div anol-transparencysettings group="group"></div>
+            <div anol-transparencysettings group="group" title="{{ group.title }}"></div>
             <i title="Gruppe entfernen" class="glyphicon glyphicon-remove pointer" 
                 ng-if="removeLayerEnabled" ng-click="removeLayer(group)"></i>
 <!--            <dialog ng-if="group.showConfig" class="layer-conf slide-top" ng-blur="group.toggleConfig()">-->
@@ -94,9 +93,8 @@
                     {{ layer.title }}
                 </span>
             </div>
-            <div>
-                <div anol-transparencysettings group="group"></div>
-                <!-- TODO: show layer.title in transparency settings popup-->
+            <div class="settings-line">
+                <div anol-transparencysettings group="group" title="{{ layer.title }}"></div>
                 <i class="glyphicon glyphicon-remove float-right pointer" ng-if="removeLayerEnabled"
                    ng-click="removeLayer(layer)"></i>
             </div>
