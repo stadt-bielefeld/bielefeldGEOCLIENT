@@ -1,0 +1,7 @@
+.slide-top
+  &.ng-enter, &.ng-leave
+    transition: height 0.5s ease
+  &.ng-enter, &.ng-leave.ng-leave-active 
+    height: 0
+  &.ng-leave, &.ng-enter.ng-enter-active 
+    height: 100%

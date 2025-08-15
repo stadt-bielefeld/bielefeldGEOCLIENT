@@ -1,0 +1,59 @@
+meta:
+  description:  'WMS Zuständigkeiten Bauamt (600.3 | 600.4)'
+
+groups:
+  #WMS Zuständigkeiten Bauamt ----------------------------------------------------------------------
+  - name: wms_bauamt_zustaendigk
+    title: Zuständigkeiten Bauamt (600.3 | 600.4)
+    abstract: Regionale Zuständigkeit des Bauamtes (600.3 | 600.4) in Bielefeld
+    status: inactive
+    catalog: true
+    singleSelect: true
+    #metadataUrl: https://www.bielefeld01.de/mdOLKD/WMS/zustaendigkeiten_bauamt?FORMAT=HTML_WMS
+    layers:
+      - zust_bauordner_pl
+      - zust_baukontrolle_pl
+      - zust_planung_pl
+   #WMS Zuständigkeiten Bauamt ---------------------------------------------------------------------
+
+layers:
+
+  #Zuständigkeiten Bauamt --------------------------------------------------------------------------
+  - name: zust_baukontrolle_pl
+    title: Baukontrolle
+    metadataUrl: https://www.bielefeld01.de/mdOLKD/DATEN/zust_bauamt_baukontrolle_pl?FORMAT=HTML_DATEN
+    abstract: Zuständigkeit des Bauamtes in Bielefeld
+    attribution: Zuständigkeit des Bauamtes in Bielefeld © Stadt Bielefeld
+    type: wms
+    opacity: 0.99
+    source:
+      url: http://172.22.100.139/test_umn2/ms761/mapserv.exe?map=mapfiles/bauamt_zustaendigk/bauamt_zustaendigkeit_v05.map&
+      layers:
+        - zust_baukontrolle_pl
+      srs: 'EPSG:25832'
+      format: image/png
+    legend:
+      type: GetLegendGraphic
+  - name: zust_bauordner_pl
+    title: Bauordnung
+    metadataUrl: https://www.bielefeld01.de/mdOLKD/DATEN/zust_bauamt_bauordnung_pl?FORMAT=HTML_DATEN
+    base: zust_baukontrolle_pl
+    source:
+      layers:
+        - zust_bauordner_pl
+      srs: 'EPSG:25832'
+      format: image/png
+    legend:
+      type: GetLegendGraphic
+  - name: zust_planung_pl
+    title: Bauleitplanung
+    base: zust_baukontrolle_pl
+    metadataUrl: https://www.bielefeld01.de/mdOLKD/DATEN/zust_bauamt_bauleitplanung_pl?FORMAT=HTML_DATEN
+    source:
+      layers:
+        - zust_planung_pl
+      srs: 'EPSG:25832'
+      format: image/png
+    legend:
+      type: GetLegendGraphic
+  #Zuständigkeiten Bauamt --------------------------------------------------------------------------

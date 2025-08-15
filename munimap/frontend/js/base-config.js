@@ -45,6 +45,7 @@ require('anol/src/modules/print/printpage-service.js');
 require('anol/src/modules/rotate/rotate-directive.js');
 require('anol/src/modules/savemanager/savemanager-directive.js');
 require('anol/src/modules/savemanager/savemanager-service.js');
+require('anol/src/modules/transparencysettings/transparencysettings-directive.js');
 
 require('anol/src/modules/savesettings/savesettings-directive.js');
 require('anol/src/modules/savesettings/savesettings-service.js');
@@ -89,6 +90,7 @@ angular.module('munimapBase', [
     'anol.featurestyleeditor',
     'anol.catalog',
     'anol.mouseposition',
+    'anol.transparencysettings',
     'munimapBase.notification',
     'munimapBase.sidebar',
     'munimapBase.servicebutton',

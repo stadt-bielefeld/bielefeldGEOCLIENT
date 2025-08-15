@@ -109,6 +109,11 @@ var deDETranslation = {
             'max': 'Wert muss kleiner {{ max }} oder leer sein',
             'color': 'Ungültige Farbangabe',
             'number': 'Keine gültige Zahl'
+        },
+        'transparencySettings': {
+            'SET_TRANSPARENCY': 'Transparenz einstellen',
+            'CLOSE': 'Schließen',
+            'TRANSPARENCY_LABEL': 'Transparenz'
         }
     }
 };
