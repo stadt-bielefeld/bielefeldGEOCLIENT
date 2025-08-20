@@ -1,6 +1,6 @@
 app:
     title: 'geoEDITOR'
-    headerLogoLink: 'https://bielefeld01.de/geo/portal/geoportal.php'
+    headerLogoLink: 'https://www.bielefeld01.de/geo/portal/geoportal.php'
     tooltipDelay: 50
     showNoBackground: true
     showLogin: true
