@@ -8,7 +8,7 @@ groups:
     title: Bodenrichtwerte 2023
     catalog: true
     abstract: Zonale Bodenrichtwerte 2023 auf Basis der Digitalen Liegenschaftskarte
-    metadataUrl: https://www.bielefeld01.de/md/WMS/bodenrichtwerte_2023?FORMAT=HTML_WMS
+    metadataUrl: https://bielefeld01.de/md/WMS/bodenrichtwerte_2023?FORMAT=HTML_WMS
     status: inactive
     layers:
       - bodenrichtwerte_2023_t
@@ -25,7 +25,7 @@ layers:
     title: Bodenrichtwerte 2023
     abstract: Bodenrichtwerte 2023 in Bielefeld
     attribution: Bodenrichtwerte 2023 © Stadt Bielefeld
-    metadataUrl: https://www.bielefeld01.de/md/Daten/bodenrichtwertzonen_2023_texte_p?FORMAT=HTML_Daten
+    metadataUrl: https://bielefeld01.de/md/Daten/bodenrichtwertzonen_2023_texte_p?FORMAT=HTML_Daten
     source:
       layers:
         - brw_2023_t
@@ -33,11 +33,11 @@ layers:
   - name: brwznr_2023_t
     title: Bodenrichtwertzonennummern 2023
     attribution: Bodenrichtwertzonennummern 2023 © Stadt Bielefeld
-    metadataUrl: https://www.bielefeld01.de/md/Daten/bodenrichtwertzonen_2023_texte_p?FORMAT=HTML_Daten
+    metadataUrl: https://bielefeld01.de/md/Daten/bodenrichtwertzonen_2023_texte_p?FORMAT=HTML_Daten
     type: wms
     catalog: true
     source:
-      url: http://www.bielefeld01.de/md/WMS/bodenrichtwerte_2023/02?
+      url: http://bielefeld01.de/md/WMS/bodenrichtwerte_2023/02?
       layers:
         - brwznr_2023_t
       srs: 'EPSG:25832'
@@ -48,7 +48,7 @@ layers:
     title: Bodenrichtwertzonen 2023
     abstract: Bodenrichtwertzonen 2023 in Bielefeld.
     attribution: Bodenrichtwertzonen 2023 © Stadt Bielefeld
-    metadataUrl: https://www.bielefeld01.de/md/Daten/bodenrichtwertzonen_2023_pl?FORMAT=HTML_Daten
+    metadataUrl: https://bielefeld01.de/md/Daten/bodenrichtwertzonen_2023_pl?FORMAT=HTML_Daten
     searchConfig:
         - name: bodenrichtwertzonen2023
           title: Bodenrichtwertzonen 2023

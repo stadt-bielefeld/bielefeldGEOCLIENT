@@ -9,7 +9,7 @@ groups:
     status: inactive
     singleSelect: true
     catalog: true
-    metadataUrl: https://www.bielefeld01.de/md/WMS/bielefeld_karte_farbe_historie?FORMAT=HTML_WMS
+    metadataUrl: https://bielefeld01.de/md/WMS/bielefeld_karte_farbe_historie?FORMAT=HTML_WMS
     layers:
       - bielefeldkarte_2022_r
       - bielefeldkarte_2021_r
@@ -22,7 +22,7 @@ layers:
   - name: bielefeldkarte_2022_r
     attribution: 'bielefeldKARTE farbe 2022 © Stadt Bielefeld'
     title: bielefeldKARTE farbe 2022
-    metadataUrl: https://www.bielefeld01.de/md/Daten/bielefeld_karte_farbe_2022_r?FORMAT=HTML_Daten
+    metadataUrl: https://bielefeld01.de/md/Daten/bielefeld_karte_farbe_2022_r?FORMAT=HTML_Daten
     base: bielefeldkarte_2017_r
     source:
       layers:
@@ -32,7 +32,7 @@ layers:
   - name: bielefeldkarte_2021_r
     attribution: 'bielefeldKARTE farbe 2021 © Stadt Bielefeld'
     title: bielefeldKARTE farbe 2021
-    metadataUrl: https://www.bielefeld01.de/md/Daten/bielefeld_karte_farbe_2021_r?FORMAT=HTML_Daten
+    metadataUrl: https://bielefeld01.de/md/Daten/bielefeld_karte_farbe_2021_r?FORMAT=HTML_Daten
     base: bielefeldkarte_2017_r
     source:
       layers:
@@ -42,7 +42,7 @@ layers:
   - name: bielefeldkarte_2020_r
     attribution: 'bielefeldKARTE farbe 2020 © Stadt Bielefeld'
     title: bielefeldKARTE farbe 2020
-    metadataUrl: https://www.bielefeld01.de/md/Daten/bielefeld_karte_farbe_2020_r?FORMAT=HTML_Daten
+    metadataUrl: https://bielefeld01.de/md/Daten/bielefeld_karte_farbe_2020_r?FORMAT=HTML_Daten
     base: bielefeldkarte_2017_r
     source:
       layers:
@@ -52,7 +52,7 @@ layers:
   - name: bielefeldkarte_2019_r
     attribution: 'bielefeldKARTE farbe 2019 © Stadt Bielefeld'
     title: bielefeldKARTE farbe 2019
-    metadataUrl: https://www.bielefeld01.de/md/Daten/bielefeld_karte_farbe_2019_r?FORMAT=HTML_Daten
+    metadataUrl: https://bielefeld01.de/md/Daten/bielefeld_karte_farbe_2019_r?FORMAT=HTML_Daten
     base: bielefeldkarte_2017_r
     source:
       layers:
@@ -62,7 +62,7 @@ layers:
   - name: bielefeldkarte_2018_r
     attribution: 'bielefeldKARTE farbe 2018 © Stadt Bielefeld'
     title: bielefeldKARTE farbe 2018
-    metadataUrl: https://www.bielefeld01.de/md/Daten/bielefeld_karte_farbe_2018_r?FORMAT=HTML_Daten
+    metadataUrl: https://bielefeld01.de/md/Daten/bielefeld_karte_farbe_2018_r?FORMAT=HTML_Daten
     base: bielefeldkarte_2017_r
     source:
       layers:
@@ -72,17 +72,17 @@ layers:
   - name: bielefeldkarte_2017_r
     attribution: 'bielefeldKARTE farbe 2017 © Stadt Bielefeld'
     title: bielefeldKARTE farbe 2017
-    metadataUrl: https://www.bielefeld01.de/md/Daten/bielefeld_karte_farbe_2017_r?FORMAT=HTML_Daten
+    metadataUrl: https://bielefeld01.de/md/Daten/bielefeld_karte_farbe_2017_r?FORMAT=HTML_Daten
     type: tiledwms
     source:
-      url: http://www.bielefeld01.de/md/WMS/bielefeld_karte_farbe_historie/02?
+      url: http://bielefeld01.de/md/WMS/bielefeld_karte_farbe_historie/02?
       format: 'image/png'
       layers:
         - 'farbe_2017'
       srs: 'EPSG:25832'
     legend:
       type: link
-      href: https://www.bielefeld01.de/md/WMS/bielefeld_karte_farbe/02?REQUEST=GetFile&FILE=legende.pdf
+      href: https://bielefeld01.de/md/WMS/bielefeld_karte_farbe/02?REQUEST=GetFile&FILE=legende.pdf
       title: Legende der bielefeldKARTE farbe
       text: bielefeldKARTE farbe 2017
       
