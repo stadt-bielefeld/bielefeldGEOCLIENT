@@ -44,7 +44,7 @@
   </script>
 
   {$ super() $}
-  <script type="text/javascript" src="{$ url_for('static', filename='js/transport.bundle.js') $}"></script>
+  <script type="text/javascript" src="{$ url_for('static', filename=resolve_asset('transport.js')) $}"></script>
 
   <script type="text/javascript">
     angular.module('munimapBase')

@@ -1,8 +1,8 @@
 {% extends "munimap/base.html" %}
 
 {% block javascript %}
-    <script type="text/javascript" src="{$ url_for('static', filename='translations/de_DE.js') $}"></script>
-    <script type="text/javascript" src="{$ url_for('static', filename='translations/de_DE_feature_properties.js') $}"></script>
+    <script type="text/javascript" src="{$ url_for('static', filename=resolve_asset('translations/de_DE.js')) $}"></script>
+    <script type="text/javascript" src="{$ url_for('static', filename=resolve_asset('translations/de_DE_feature_properties.js')) $}"></script>
 
-    <script type="text/javascript" src="{$ url_for('static', filename='js/vendor.bundle.js') $}"></script>
+    <script type="text/javascript" src="{$ url_for('static', filename=resolve_asset('vendor.js')) $}"></script>
 {% endblock %}
