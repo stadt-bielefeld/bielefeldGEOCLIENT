@@ -1,6 +1,5 @@
 # -:- encoding: utf8 -:-
-
-
+import json
 import os
 import sys
 import locale
@@ -70,6 +69,29 @@ def create_app(config=None, config_file=None):
             return BaseJSONEncoder.default(self, o)
 
     app.json_encoder = LazyJSONEncoder
+
+
+    @app.context_processor
+    def custom_functions_context():
+        """
+        Custom functions that can be used in the jinja2 templates
+        """
+        manifest_path = os.path.join(app.static_folder, 'manifest.json')
+
+        with open(manifest_path) as f:
+            manifest = json.load(f)
+
+        def resolve_asset(asset):
+            """
+            Resolve assets for caching. On each build, we add
+            contenthashes to the built filenames. This resolves
+            the static filenames to the actual filenames by referencing
+            the manifest that contains the mappings.
+            """
+            return manifest.get(asset, asset)
+        return {
+            'resolve_asset': resolve_asset
+        }
 
     configure_extensions(app)
 
