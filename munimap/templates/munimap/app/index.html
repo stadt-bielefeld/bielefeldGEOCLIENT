@@ -107,7 +107,7 @@
   </script>
   {$ super() $}
 
-  <script type="text/javascript" src="{$ url_for('static', filename='js/app.bundle.js') $}"></script>
+  <script type="text/javascript" src="{$ url_for('static', filename=resolve_asset('app.js')) $}"></script>
 
   <script type="text/javascript">
     var selectedSettings = {$ settings|tojson $};
