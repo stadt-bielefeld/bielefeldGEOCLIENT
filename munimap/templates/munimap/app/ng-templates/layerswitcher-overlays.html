@@ -23,8 +23,7 @@
       <div class="group-item" ng-show="group.groupLayer == true && group.options.showGroup === true"
           ng-class="{'inactive': !groupIsVisibleByName(group.name)}">
         <span class="pointer float-left"
-            ng-class="{'open-layer-group': group.options.collapsed, 
-            'close-layer-group': !group.options.collapsed}"
+            ng-class="{'open-layer-group': group.options.collapsed, 'close-layer-group': !group.options.collapsed}"
             ng-click="group.options.collapsed=!group.options.collapsed">
         </span>
         <div class="layer-line" ng-class="{'title-wrapper-group': !group.options.metadataUrl && hideMetadata == false }">
@@ -39,25 +38,9 @@
             </span>
           </div>
           <div class="settings-line">
-<!--            <i title="Transparenz einstellen" ng-click="group.toggleConfig()" -->
-<!--                class="toggle-layer-conf glyphicon glyphicon-adjust pointer {{ group.showConfig ? 'active' : '' }}">-->
-<!--            </i>-->
             <div anol-transparencysettings group="group" title="{{ group.title }}"></div>
             <i title="Gruppe entfernen" class="glyphicon glyphicon-remove pointer" 
                 ng-if="removeLayerEnabled" ng-click="removeLayer(group)"></i>
-<!--            <dialog ng-if="group.showConfig" class="layer-conf slide-top" ng-blur="group.toggleConfig()">-->
-<!--              <header>-->
-<!--                {{ group.title }}-->
-<!--                <button title="Schließen" class="glyphicon glyphicon-remove pointer" ng-click="group.toggleConfig()"></button>-->
-<!--              </header>-->
-<!--              <div class="transparency-slider">-->
-<!--                <label for="transparency-slider">-->
-<!--                  Transparenz: {{ (group.transparency() * 100).toFixed(0) }}%-->
-<!--                </label>-->
-<!--                <input id="transparency-slider" type="range" min="0" max="1" step="0.01"-->
-<!--                    ng-model="group.transparency" ng-model-options="{getterSetter: true}"/>-->
-<!--              </div>-->
-<!--            </dialog>-->
           </div>
         </div>
         <div ui-sortable="sortableLayer" ng-model=group.layers>
@@ -72,8 +55,6 @@
             <div class="layer-title child-title" ng-click="toggleLayerVisibleByName(layer.name)">
               <span>{{ layer.title }}</span>
             </div>
-            <!-- <i title="Layer entfernen" class="glyphicon glyphicon-remove pull-right pointer" ng-if="removeLayerEnabled"
-                ng-click="removeLayer(layer)"></i> -->
           </div>
         </div>
       </div>
