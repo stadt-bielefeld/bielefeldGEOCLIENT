@@ -49,6 +49,7 @@ angular.module('munimap', [
                 var otherLayers = [];
                 var customLayers = [];
                 var fc_layer_payloads = {};
+                const opacities = {};
                 if(rawPrintArgs.templateValues.streetIndex === true) {
                     indexLayers.push(streetIndexLayer);
                 }
@@ -95,6 +96,12 @@ angular.module('munimap', [
                     if(layer instanceof anol.layer.DynamicGeoJSON && layer.options.createIndex === true) {
                         indexLayers.push(layer.name);
                     }
+
+                    const o = layer.getLayerOpacity();
+                    if (o !== 1) {
+                        // getting combined (pre-configured * user-defined) opacity here
+                        opacities[layer.name] = layer.getLayerOpacity();
+                    }
                 });
 
                 layers = backgroundLayers.concat(overlayLayers.reverse()).concat(otherLayers);
@@ -117,7 +124,8 @@ angular.module('munimap', [
                         rawPrintArgs.templateValues.cellsY
                     ],
                     custom_layers: customLayers,
-                    fc_layer_payloads: fc_layer_payloads
+                    fc_layer_payloads: fc_layer_payloads,
+                    opacities: opacities
                 };
                 if ('printMode' in rawPrintArgs) {
                     printArgs.printMode = rawPrintArgs.printMode

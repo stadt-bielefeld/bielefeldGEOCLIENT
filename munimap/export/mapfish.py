@@ -120,30 +120,30 @@ def prepare_flatstyle_for_mapfish(flatstyle, is_custom):
         replace_icon_src(flatstyle)
 
 
-def mapfish_layers(requested_layers, bbox=None, srs=None, dpi=None, scale=None, icons_dir='', fc_layer_payloads=None, is_custom=False):
+def mapfish_layers(requested_layers, bbox=None, srs=None, dpi=None, scale=None, icons_dir='', fc_layer_payloads=None, opacities=None, is_custom=False):
+    opacities = opacities or dict()
     if len(requested_layers) == 0:
         return []
-    # convert list of strings to needed format
-    if isinstance(requested_layers[0], str):
-        requested_layers = [[name, {}] for name in requested_layers]
     layers = []
 
     # TODO handle layer not found
     num_offset = 1
-    for name, params in reversed(requested_layers):
-        requested_opacity = 1
-        if 'opacity' in params:
-            requested_opacity = float(params['opacity'])
-
-        print_name = '%s_print' % name
+    for name in reversed(requested_layers):
+        print_name = f'{name}_print'
         if print_name in current_app.mapfish_layers:
             name = print_name
 
         layer = deepcopy(current_app.mapfish_layers[name])
 
+        requested_opacity = 1
+        if name in opacities:
+            requested_opacity = float(opacities[name])
+            layer['opacity'] = requested_opacity # overwriting here because requested_opacity is the already calculated opacity in the client
+
         log.debug(f'Adding layer {name} to print spec with config {str(layer)}')
 
         if layer['type'] == 'geojson' and layer['internal_type'] == 'sensorthings':
+            # TODO: add opacity to style
             fc = fc_layer_payloads.get(name, {'featureCollection': {}}).get('featureCollection', {})
             # we only add this layer, if it contains at least one feature
             if len(fc.get('features', [])) == 0:
@@ -226,9 +226,6 @@ def mapfish_layers(requested_layers, bbox=None, srs=None, dpi=None, scale=None, 
             if dpi is not None:
                 layer['customParams']['dpi'] = dpi
                 layer['customParams']['map_resolution'] = dpi
-
-            if 'opacity' in params:
-                layer['opacity'] = float(params['opacity'])
         # elif layer['type'] == 'WMTS':
             # TODO how to request wmts with current dpi?
         layers.append(layer)
@@ -245,7 +242,7 @@ def extract_opacity_from_rgba(rgba):
 
 
 def create_spec_json(req, is_custom=False, icons_dir=''):
-    print_layers = mapfish_layers(req.layers, req.bbox, req.srs, req.dpi, req.calc_scale, icons_dir, req.fc_layer_payloads, is_custom=is_custom)
+    print_layers = mapfish_layers(req.layers, req.bbox, req.srs, req.dpi, req.calc_scale, icons_dir, req.fc_layer_payloads, req.opacities, is_custom=is_custom)
 
     numeration_features = query_feature_collection(
         MapRequest(
