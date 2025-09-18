@@ -193,6 +193,7 @@ class PrintRequest(MapRequest):
         self.calc_scale = self.res / 0.00028
         self.name = kw.get('name')
         self.custom_layers = kw.get('custom_layers')
+        self.opacities = kw.get('opacities')
         self.fc_layer_payloads = kw.get('fc_layer_payloads')
 
     @classmethod
@@ -219,8 +220,9 @@ class PrintRequest(MapRequest):
 
         param['cellsx'] = param['cellsx'] or 0 # set to 0 in case of None
         param['cellsy'] = param['cellsy'] or 0 # set to 0 in case of None
-        param['fc_layer_payloads'] = check_dict(param, 'fc_layer_payloads', {})
+        param['fc_layer_payloads'] = check_dict(param, 'fc_layer_payloads', dict())
         param['custom_layers'] = check_list(param, 'custom_layers', [])
+        param['opacities'] = check_dict(param, 'opacities', dict())
         return cls(**param)
 
     @property
