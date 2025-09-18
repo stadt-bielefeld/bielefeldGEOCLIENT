@@ -1,3 +1,20 @@
+# [1.9.0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.8.2...1.9.0) (2025-09-18)
+
+
+### Bug Fixes
+
+* remove bielefeld internal layer ([f05916d](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/f05916d8f14dcc03a1dc21c013464ba2ac15025b))
+* styling ([1c4e864](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/1c4e8647c2fb8fd121bdd12e7ddd62883897afd8))
+* translation ([cd2b5aa](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/cd2b5aaedc0b0036bde8e38b64b11cb72e083e0f))
+* **TransparencySlider:** introduce transparency-settings module ([9b489cf](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/9b489cf7a5838970376bf35153a8c0acabd46e88))
+
+
+### Features
+
+* add cache-busting ([85e6f14](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/85e6f14328f49aa7a0b289fe6bc148e6b3762c54))
+* add opacities to print ([ffe8785](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/ffe8785b58e788ca27e82e447c3120a7d710d589))
+* improved style ([09ed94a](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/09ed94a348bf4569d54f6b83a210206ff3335dcc))
+
 ## [1.8.2](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.8.1...1.8.2) (2025-08-14)
 
 
