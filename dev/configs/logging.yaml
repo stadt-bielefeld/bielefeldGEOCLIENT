@@ -4,7 +4,7 @@ formatters:
   simple:
     format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
   stats:
-    format: '%(asctime)s - %(name)s - %(message)s'
+    format: '%(asctime)s|%(name)s|%(message)s'
 
 handlers:
   console:
@@ -14,13 +14,10 @@ handlers:
     stream: ext://sys.stdout
 
   stats:
-    class: logging.NullHandler
-#    class: logging.handlers.RotatingFileHandler
-#    level: DEBUG
-#    formatter: stats
-#    filename: dev/data/stats/stats.log
-#    maxBytes: 1000000
-#    backupCount: 5
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: stats
+    stream: ext://sys.stdout
 
 loggers:
   munimap:

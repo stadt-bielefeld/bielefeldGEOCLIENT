@@ -22,6 +22,7 @@ from flask import (
 
 from flask_login import current_user
 from urllib3.exceptions import InsecureRequestWarning
+from urllib.parse import urlparse
 
 from munimap import helper
 from munimap.app_layers_def import (
@@ -327,7 +328,6 @@ def draw_icons(filename):
         draw_icons_path,
         filename
     )
-
 
 @munimap.route('/proxy/featureinfo/', methods=['GET'])
 @munimap.route('/proxy/featureinfo/<layer_name>/', methods=['GET'])
@@ -684,6 +684,73 @@ def wmts_proxy(url_hash=None, layer=None, grid=None, zoom=None, x=None, y=None, 
         proxy_log.error('Request failed with status %s. url: %s',
                         service_response.status_code, service_response.request.url)
         raise NotFound()
+
+    response = make_response(
+        service_response.content
+    )
+    response.content_type = service_response.headers.get('content-type')
+    response.headers['Cache-Control'] = 'private'
+    return response
+
+
+@log_stats(request, current_user, use_referrer=True,  url_from_response=True)
+def handle_sensorthings(service_url, layer, request, api_version, root):
+    request_url = urlparse(request.url)
+    base_url = service_url
+    if not base_url.endswith('/'):
+        base_url += '/'
+    base_url = f'{base_url}{api_version}/{root}'
+    full_service_url = urlparse(base_url)._replace(query=request_url.query).geturl()
+    proxy_log.debug('munimap layer: %s; url: %s', layer['name'], full_service_url)
+
+    if not current_app.config.get('CERTIFICATE_VERIFY'):
+        requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+    service_response = requests.get(full_service_url, verify=current_app.config.get('CERTIFICATE_VERIFY'))
+
+    return service_response
+
+
+@munimap.route('/proxy/sensorthings/<url_hash>/<layer_name>/', methods=['GET'])
+@munimap.route('/proxy/sensorthings/<url_hash>/<layer_name>/<api_version>/<root>', methods=['GET'])
+def sensorthings_proxy(url_hash=None, layer_name=None, api_version='v1.1', root='Datastreams'):
+    if url_hash is None or url_hash not in current_app.hash_map:
+        proxy_log.error('proxy url hash unknown')
+        raise NotFound()
+
+    if layer_name is None:
+        proxy_log.error('proxy request is missing layer_name parameter')
+        raise BadRequest()
+
+    url = current_app.hash_map[url_hash]
+
+    if url is None:
+        proxy_log.error('proxy url not found by url_hash')
+        raise NotFound()
+
+    if layer_name not in current_app.layers or url_hash != current_app.layers[layer_name]['hash']:
+        proxy_log.error('layer is misconfigured')
+        raise NotFound()
+
+    layer = current_app.layers[layer_name]
+
+    if not helper.layer_allowed_for_user(layer):
+        raise Forbidden()
+
+    url = add_layers_base_url(
+        url,
+        current_app.config.get('LAYERS_BASE_URL'),
+        request.scheme
+    )
+
+    if url.startswith('/'):
+        url = request.url_root + url[1:]
+
+    service_response = handle_sensorthings(url, layer, request, api_version, root)
+
+    if not service_response.ok:
+        proxy_log.error('Request failed with status %s. url: %s',
+                        service_response.status_code, service_response.request.url)
+        raise BadGateway()
 
     response = make_response(
         service_response.content

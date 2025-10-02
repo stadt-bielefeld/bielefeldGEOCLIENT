@@ -2,6 +2,9 @@ import os
 import re
 import yaml
 import glob
+import subprocess
+import tempfile
+import json
 
 from flask import request, abort, current_app, url_for
 
@@ -365,3 +368,19 @@ def urlencode_params(params):
     for param in params:
         encoded_params += param + '=' + params[param] + '&'
     return encoded_params
+
+
+def flatstyle_to_sld(flat_style, geostyler_cli_cmd):
+    encoded_style = json.dumps(flat_style).encode()
+    with tempfile.NamedTemporaryFile(buffering=0) as style_file:
+        style_file.write(encoded_style)
+        # The current version of mapfish print expects a SLD 1.0.
+        # If we bump to a version that supports SLD 1.1, we can add
+        # add the `--targetOptions` flag in the command below, to
+        # specify the SLD version.
+        cmd = [geostyler_cli_cmd, '-s', 'ol-flat', '-t', 'sld', style_file.name]
+        result = subprocess.run(cmd, capture_output=True, text=True)
+        sld_style = result.stdout
+        # TODO handle printing of icons
+        #  (icon files need to be accessible from print container and paths might need to be adjusted)
+    return sld_style

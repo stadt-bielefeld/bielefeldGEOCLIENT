@@ -1,4 +1,4 @@
-ARG ANOL_COMMIT_HASH=8b73023afbe195846d9aedb4d09bec9c518eaafe
+ARG ANOL_COMMIT_HASH=9feab7cf350ee98bc6c6d9625206b9f139270cfa
 
 FROM node:22-alpine@sha256:6e80991f69cc7722c561e5d14d5e72ab47c0d6b6cfb3ae50fb9cf9a7b30fdf97 AS clientbuilder
 
@@ -105,6 +105,7 @@ RUN mkdir -p /opt/munimap \
     && mkdir -p /opt/pkgs \
     && mkdir -p /opt/var \
     && mkdir -p /opt/var/mapfish \
+    && mkdir -p /opt/var/geostyler-cli \
     && mkdir -p /opt/etc/munimap/data/stats \
     && mkdir -p /opt/etc/munimap/configs \
     && mkdir -p /opt/etc/munimap/bielefeld \
@@ -130,6 +131,11 @@ RUN add-apt-repository --yes https://packages.adoptium.net/artifactory/deb
 RUN apt update -y && apt install temurin-8-jre -y
 
 RUN wget -q -O- https://repo1.maven.org/maven2/org/mapfish/print/print-cli/3.9.0/print-cli-3.9.0-tar.tar | tar -x -C /opt/var/mapfish
+
+RUN wget -q -O /tmp/geostyler-linux.zip https://github.com/geostyler/geostyler-cli/releases/download/v5.0.0/geostyler-linux.zip \
+    && cd /opt/var/geostyler-cli \
+    && unzip /tmp/geostyler-linux.zip \
+    && rm /tmp/geostyler-linux.zip
 
 RUN pip install --upgrade pip && \
     pip install \

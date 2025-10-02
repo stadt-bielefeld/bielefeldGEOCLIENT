@@ -77,8 +77,8 @@ def _log_stats(url, req, res, user, use_referrer, route_name, app_attr):
     referrer = referrer if referrer else ''
     user_agent = user_agent if user_agent else ''
 
-    msg = f'{user_name};{user_department};{app};{ip};{url};{status_code};' \
-          f'{content_length};{host};{referrer};{user_agent}'
+    msg = f'{user_name}|{user_department}|{app}|{ip}|{url}|{status_code}|' \
+          f'{content_length}|{host}|{referrer}|{user_agent}'
     log.info(msg)
 
 

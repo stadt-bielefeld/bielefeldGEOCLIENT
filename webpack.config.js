@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const CopyPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
 
 module.exports  = {
     devtool: 'eval-source-map',
@@ -28,9 +29,9 @@ module.exports  = {
         }
     },
     output: {
-        filename: 'js/[name].bundle.js',
+        filename: 'js/[name].[contenthash].bundle.js',
         path: path.resolve(__dirname, './munimap/static'),
-        chunkFilename: 'js/[name].bundle.js',
+        chunkFilename: 'js/[name].[contenthash].bundle.js',
         publicPath: '/',
     },
     resolve: {
@@ -115,11 +116,11 @@ module.exports  = {
                     enforce: true
                 }
             }
-        }
+        },
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: 'css/[name].css'
+            filename: 'css/[name].[contenthash].css'
         }),
         new webpack.ProvidePlugin({
           'window.jQuery': 'jquery',
@@ -128,11 +129,14 @@ module.exports  = {
         }),
         new CopyPlugin({
             patterns: [
-                { from: "./munimap/frontend/css", to: path.resolve(__dirname, './munimap/static/css') },
+                { from: "./munimap/frontend/css", to: path.resolve(__dirname, './munimap/static/css/[path][name].[contenthash][ext]') },
                 { from: "./munimap/frontend/img", to: path.resolve(__dirname, './munimap/static/img') },
                 { from: "./munimap/frontend/fonts", to: path.resolve(__dirname, './munimap/static/fonts') },
-                { from: "./munimap/frontend/translations", to: path.resolve(__dirname, './munimap/static/translations') }
+                { from: "./munimap/frontend/translations", to: path.resolve(__dirname, './munimap/static/translations/[path][name].[contenthash][ext]') }
             ],
+        }),
+        new WebpackManifestPlugin({
+            publicPath: ''
         })
     ]
 };

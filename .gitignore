@@ -11,6 +11,7 @@ dev/configs/mapfish/*.yaml
 dev/configs/mapfish/*.jrxml
 dev/data/cache_data
 dev/mapfish
+dev/geostyler-cli
 dev/munimap
 dev/print-output
 dev/printqueue/

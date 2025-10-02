@@ -1,8 +1,11 @@
 name: Deploy Documentation to Github Pages
 on:
-  push:
-    tags:
-      - '*'
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        type: string
+        description: The current tag
+        required: true
 
 jobs:
   build-and-deploy:
@@ -15,7 +18,7 @@ jobs:
         run: pip install -r munimap_docs/requirements.txt
 
       - name: Build documentation
-        run: sphinx-build munimap_docs docs_build -D html_context.current_version=${{ github.ref_name }}
+        run: sphinx-build munimap_docs docs_build -D html_context.current_version=${{ github.event.inputs.tag_name }}
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.6.8
@@ -27,14 +30,14 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4.6.8
         with:
           folder: docs_build
-          target-folder: ${{ github.ref_name }}
+          target-folder: ${{ github.event.inputs.tag_name }}
 
       - name: Update versions config
         # read existing versions from gh-pages branch, add new version, sort, dedupe and write results to config/versions.json
         run: |
           mkdir config
           git show gh-pages:config/versions.json \
-          | jq -r '(. + ["${{ github.ref_name }}"])[]' \
+          | jq -r '(. + ["${{ github.event.inputs.tag_name }}"])[]' \
           | sort -V \
           | uniq \
           | jq -R -s -c 'split("\n")[:-1]' \

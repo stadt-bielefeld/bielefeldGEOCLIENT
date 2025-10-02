@@ -71,6 +71,6 @@
 
 {% block javascript %}
   {$ super() $}
-  <script type="text/javascript" src="{$ url_for('static', filename='js/vendor.bundle.js') $}"></script>
-  <script type="text/javascript" src="{$ url_for('static', filename='js/static_app.bundle.js') $}"></script>
+  <script type="text/javascript" src="{$ url_for('static', filename=resolve_asset('vendor.js')) $}"></script>
+  <script type="text/javascript" src="{$ url_for('static', filename=resolve_asset('static_app.js')) $}"></script>
 {% endblock %}

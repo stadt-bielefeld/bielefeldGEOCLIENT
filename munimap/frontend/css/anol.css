@@ -122,7 +122,21 @@ canvas.anol-legend-item-image {
       top: 0; }
   .anol-popup-container .anol-popup .anol-popup-content {
     white-space: nowrap;
-    min-width: 30px;}
+    min-width: 30px;
+    .anol-feature-properties-wrapper {
+      overflow-y: auto;
+      hr {
+        border-top: 1px solid rgba(0, 0, 0, 0.45);
+      }
+      .anol-feature-properties-table {
+        white-space: normal;
+        .anol-feature-properties-table-key-col {
+          vertical-align: top;
+          padding-right: 8px;
+        }
+      }
+    }
+  }
   .anol-popup-container .anol-popup .anol-popup-content a {
     cursor: pointer; }
   .anol-popup-container .anol-popup .anol-popup-closer {
