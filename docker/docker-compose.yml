@@ -17,7 +17,7 @@ services:
   munimap-nginx-dev:
     image: docker.terrestris.de/library/nginx:1.27.1-alpine
     ports:
-      - 80:80
+      - 2080:2080
       - 4000:4000
     volumes:
       - ./munimap-nginx/favicon.ico:/opt/etc/munimap/favicon.ico
