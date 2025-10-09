@@ -281,9 +281,9 @@ angular.module('munimapBase.alkisSelection', ['anol.map', 'ngStorage'])
                         );
                     };
 
-                    scope.requestPDFInfoPopup = function(url, feautre_id, alkis_id) {
+                    scope.requestPDFInfoPopup = function(url, alkis_fsk, alkis_id) {
                         let legParams = alkisLegimationService.model;
-                        legParams['feature_id'] = feautre_id;
+                        legParams['alkis_fsk'] = alkis_fsk;
                         legParams['alkis_id'] = alkis_id;
                         $http.get(url,  {params: legParams})
                             .then(function(response) {
@@ -293,8 +293,10 @@ angular.module('munimapBase.alkisSelection', ['anol.map', 'ngStorage'])
                             });
                     };
 
-                    scope.requestInfoPopup = function(url, id, alkToZoomTo) {
+                    scope.requestInfoPopup = function(url, alkis_fsk, alkis_id, alkToZoomTo) {
                         let legParams = alkisLegimationService.model;
+                        legParams['alkis_fsk'] = alkis_fsk;
+                        legParams['alkis_id'] = alkis_id;
                         if (alkToZoomTo) {
                             scope.showFeatureInMap(alkToZoomTo, undefined, undefined, false);
                             let source = scope.featureLayer.olLayer.getSource();
@@ -316,7 +318,7 @@ angular.module('munimapBase.alkisSelection', ['anol.map', 'ngStorage'])
                                     view.setZoom(zoom);
                                 }
 
-                                $http.get(url + '/' + id,  {params: legParams})
+                                $http.get(url + '/' + alkis_id,  {params: legParams})
                                     .then(function(response) {
                                         const loc = $window.location;
                                         const appUrl = loc.origin + loc.pathname;

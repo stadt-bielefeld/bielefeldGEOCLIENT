@@ -39,9 +39,10 @@ def parse_legitimation_request(request):
 
 # Informationen zum Flurstueck (Auskunft)
 @alkis.route("/info", methods=["GET"])
-@alkis.route("/info/<feature_id>", methods=["GET"])
-def info(feature_id=None):
-    if not feature_id:
+@alkis.route("/info/<alkis_id>", methods=["GET"])
+def info(alkis_id=None):
+    alkis_fsk = request.args.get('alkis_fsk', None)
+    if not alkis_id:
         ALKIS_GML_WMS = current_app.config.get('ALKIS_GML_WMS')
         params = {
             'BBOX': request.args.get('BBOX'),
@@ -50,14 +51,19 @@ def info(feature_id=None):
             'Y': request.args.get('Y'),
             'HEIGHT': request.args.get('HEIGHT'),
         }
-        feature_id = get_id_via_wms_get_feature_info(
+        alkis_id = get_id_via_wms_get_feature_info(
             ALKIS_GML_WMS,
             params,
             element='id'
         )
+        alkis_fsk = get_id_via_wms_get_feature_info(
+            ALKIS_GML_WMS,
+            params,
+            element='flurstueckskennzeichen'
+        )
 
-    if feature_id:
-        response = request_alkis_info(alkis_id=feature_id)
+    if alkis_id:
+        response = request_alkis_info(alkis_id)
         response = {
             'success': True,
             'url': '%s%s' % (current_app.config.get('ALKIS_BASE_URL'), response['getFlurstuecksinfoDocumentResponse'][0]['url'])
@@ -65,7 +71,7 @@ def info(feature_id=None):
 
         #if (current_app.config.get('ALKIS_LEGITIMATION_GROUP') in current_user.groups_list):
         company, reference, person, kind = parse_legitimation_request(request)
-        create_legitimation_log("info", feature_id, company, reference, person, kind)
+        create_legitimation_log("info", alkis_fsk, company, reference, person, kind)
         return jsonify(response)
 
     return jsonify(params)
@@ -74,9 +80,9 @@ def info(feature_id=None):
 @alkis.route("/pdf", methods=["GET"])
 def pdf():
     token = request_alkis_session()
-    feature_id = request.args.get('feature_id', None)
+    alkis_fsk = request.args.get('alkis_fsk', None)
     alkis_id = request.args.get('alkis_id', None)
-    if not feature_id:
+    if not alkis_fsk:
         ALKIS_GML_WMS = current_app.config.get('ALKIS_GML_WMS')
         params = {
             'BBOX': request.args.get('BBOX'),
@@ -90,7 +96,7 @@ def pdf():
             params,
             element='id'
         )
-        feature_id = get_id_via_wms_get_feature_info(
+        alkis_fsk = get_id_via_wms_get_feature_info(
             ALKIS_GML_WMS,
             params,
             element='flurstueckskennzeichen'
@@ -99,7 +105,7 @@ def pdf():
     ALKIS_PDF_URL = current_app.config.get('ALKIS_PDF_URL')
     params = {
         'ipconnectid': current_app.config.get('IP_CONNECT_ID'),
-        'fsk': '%s|%s' % (feature_id, alkis_id),
+        'fsk': '%s|%s' % (alkis_fsk, alkis_id),
         'token': token,
         'popup': 'true',
     }
@@ -108,7 +114,7 @@ def pdf():
 
     #if (current_app.config.get('ALKIS_LEGITIMATION_GROUP') in current_user.groups_list):
     company, reference, person, kind = parse_legitimation_request(request)
-    create_legitimation_log("pdf", feature_id, company, reference, person, kind)
+    create_legitimation_log("pdf", alkis_fsk, company, reference, person, kind)
 
     return jsonify({
         'success': True,
@@ -117,12 +123,12 @@ def pdf():
 
 # IBR ALKIS Produkte (Amtlich)
 @alkis.route("/official", methods=["GET"])
-@alkis.route("/official/<feature_id>", methods=["GET"])
+@alkis.route("/official/<alkis_id>", methods=["GET"])
 @login_required
-def official(feature_id=None):
+def official(alkis_id=None):
     token = request_alkis_session()
-
-    if not feature_id:
+    alkis_fsk = request.args.get('alkis_fsk', None)
+    if not alkis_id:
         ALKIS_GML_WMS = current_app.config.get('ALKIS_GML_WMS')
         params = {
             'BBOX': request.args.get('BBOX'),
@@ -131,21 +137,21 @@ def official(feature_id=None):
             'Y': request.args.get('Y'),
             'HEIGHT': request.args.get('HEIGHT'),
         }
-        feature_id = get_id_via_wms_get_feature_info(
-            ALKIS_GML_WMS,
-            params,
-            element='flurstueckskennzeichen'
-        )
         alkis_id = get_id_via_wms_get_feature_info(
             ALKIS_GML_WMS,
             params,
             element='id'
         )
+        alkis_fsk = get_id_via_wms_get_feature_info(
+            ALKIS_GML_WMS,
+            params,
+            element='flurstueckskennzeichen'
+        )
 
-    ALKIS_PDF_URL = current_app.config.get('ALKIS_OFFICIAL_URL')
+    ALKIS_OFFICIAL_URL = current_app.config.get('ALKIS_OFFICIAL_URL')
     params = {
         'ipconnectid': current_app.config.get('IP_CONNECT_ID'),
-        'fsk': feature_id,
+        'fsk': alkis_fsk,
         'token': token,
         'prdfilter': '',
         'popup': 'true',
@@ -155,11 +161,11 @@ def official(feature_id=None):
 
     #if (current_app.config.get('ALKIS_LEGITIMATION_GROUP') in current_user.groups_list):
     company, reference, person, kind = parse_legitimation_request(request)
-    create_legitimation_log("official", feature_id, company, reference, person, kind)
+    create_legitimation_log("official", alkis_fsk, company, reference, person, kind)
 
     return jsonify({
         'success': True,
-        'url': '%s%s' % (ALKIS_PDF_URL, url_params)
+        'url': '%s%s' % (ALKIS_OFFICIAL_URL, url_params)
     })
 
 

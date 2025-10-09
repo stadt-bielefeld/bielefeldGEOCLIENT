@@ -135,14 +135,14 @@
           <a ng-click="showFeatureInMap(item['flurstuecksnummer_alk'])" 
             class="btn btn-default btn-sm">{$ _('Map') $}</a>
 
-          <a ng-click="requestInfoPopup('/alkis/info', item['alkis_id'])" 
+          <a ng-click="requestInfoPopup('/alkis/info', item['flurstuecksnummer_alkis'], item['alkis_id'])" 
             class="btn btn-default btn-sm">{$ _('Info') $}</a>
 
-          <a ng-click="requestPDFInfoPopup('/alkis/pdf', item['flurstuecksnummer_alb'], item['alkis_id'])" 
+          <a ng-click="requestPDFInfoPopup('/alkis/pdf', item['flurstuecksnummer_alkis'], item['alkis_id'])" 
             class="btn btn-default btn-sm">{$ _('PDF') $}</a>
           
           {% if current_user.with_alkis_official %}
-          <a ng-click="requestInfoPopup('/alkis/official', item['flurstuecksnummer_alkis'], item['flurstuecksnummer_alk'])" 
+          <a ng-click="requestInfoPopup('/alkis/official', item['flurstuecksnummer_alkis'], item['alkis_id'], item['flurstuecksnummer_alk'])" 
             class="btn btn-default btn-sm">{$ _('Official') $}</a>
           {% endif %}
         </td>
