@@ -31,7 +31,7 @@ dependencies = [
     'Rtree==1.3.0',
     'Shapely==1.8.5.post1',
     'speaklater3==1.4',
-    'SQLAlchemy==1.4.54',
+    'SQLAlchemy==2.0.44',
     'WTForms==2.3.3',
     'WTForms-SQLAlchemy==0.3',
     'alembic==1.13.3',
