@@ -179,7 +179,7 @@ def prepare_flatstyle_for_mapfish(flatstyle, is_custom, opacity):
 
     def adjust_opacities(style):
         # for now, we only allow static values
-        attrs_to_adjust = filter(lambda k: k in color_props and not is_flatstyle_expression(style[k]), style.keys())
+        attrs_to_adjust = [k for k, v in style.items() if k in color_props and not is_flatstyle_expression(v)]
         # possible color values:
         #   - css name, e.g. 'blue'
         #   - hex, e.g. #ff0000
