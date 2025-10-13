@@ -105,19 +105,133 @@ def prepare_style_for_mapfish(style, requested_opacity, internal_type='postgis',
         style['pointRadius'] = style['radius']
 
 
-def prepare_flatstyle_for_mapfish(flatstyle, is_custom):
+def is_flatstyle_expression(value):
+    """
+    Check if a value is a flatstyle expression.
+
+    Flatstyle expression are always lists, where
+    the first argument is a string. There are no
+    other types, where the first argument may be a string.
+    """
+    return type(value) is list and len(value) > 0 and type(value[0]) is str
+
+
+def is_rgba_color(value):
+    return type(value) is list and len(value) == 4
+
+
+def is_rgb_color(value):
+    return type(value) is list and len(value) == 3
+
+
+def is_hex_color(value):
+    return type(value) is str and value.startswith('#') and len(value) == 7
+
+
+def is_short_hex_color(value):
+    return type(value) is str and value.startswith('#') and len(value) == 4
+
+
+def is_hex_alpha_color(value):
+    return type(value) is str and value.startswith('#') and len(value) == 9
+
+
+def is_named_color(value):
+    return type(value) is str and not (is_hex_color(value) or is_hex_alpha_color(value))
+
+
+def alpha_to_hex(alpha):
+    # Create a two digits hex number
+    return format(int(alpha * 255), '02X')
+
+
+def hex_to_alpha(hex_alpha):
+    return int(hex_alpha, 16) / 255
+
+
+def prepare_flatstyle_for_mapfish(flatstyle, is_custom, opacity):
+    color_props = {
+        # circle attrs
+        'circle-fill-color',
+        'circle-stroke-color',
+        # 'circle-opacity', # webgl only
+
+        # fill attrs
+        'fill-color',
+
+        # icon attrs
+        # 'icon-color', # already covered by 'icon-opacity'
+
+        # shape attrs
+        'shape-fill-color',
+        'shape-stroke-color',
+        # 'shape-opacity', # webgl only
+
+        # stroke attrs
+        'stroke-color',
+
+        # text attrs
+        'text-fill-color',
+        'text-background-fill-color',
+        'text-stroke-color',
+        'text-background-stroke-color',
+    }
+
+    def adjust_opacities(style):
+        # for now, we only allow static values
+        attrs_to_adjust = filter(lambda k: k in color_props and not is_flatstyle_expression(style[k]), style.keys())
+        # possible color values:
+        #   - css name, e.g. 'blue'
+        #   - hex, e.g. #ff0000
+        #   - hex-alpha, e.g. #ff000000
+        #   - short-hex, e.g. #f00
+        #   - rgb array, e.g. [0, 255, 0]
+        #   - rgba array, e.g. [0, 255, 0, 0.5]
+        for attr in attrs_to_adjust:
+            if is_hex_color(style[attr]):
+                style[attr] = style[attr] + alpha_to_hex(opacity)
+                continue
+            if is_hex_alpha_color(style[attr]):
+                style[attr] = style[attr][:-2] + alpha_to_hex(hex_to_alpha(style[attr][-2:]) * opacity)
+                continue
+            if is_rgb_color(style[attr]):
+                style[attr].append(opacity)
+            if is_rgba_color(style[attr]):
+                style[attr][3] = style[attr][3] * opacity
+                continue
+            if is_named_color(style[attr]):
+                continue
+
+        if 'icon-src' in style:
+            icon_opacity = style.get('icon-opacity')
+            if not is_flatstyle_expression(icon_opacity):
+                style['icon-opacity'] = opacity if icon_opacity is None else icon_opacity * opacity
+
+    def replace_short_hex_colors(style):
+        attrs_to_adjust = filter(lambda k: k in color_props and not is_flatstyle_expression(style[k]), style.keys())
+        for attr in attrs_to_adjust:
+            if is_short_hex_color(style[attr]):
+                # convert short hex colors to long hex colors for support in mapfish print
+                style[attr] = '#' + style[attr][1] + style[attr][1] + style[attr][2] + style[attr][2] + style[attr][3] + style[attr][3]
+
     def replace_icon_src(style):
         base_path = current_app.config.get('MAPFISH_ICONS_DIR')
         if is_custom:
             base_path = current_app.config.get('MAPFISH_CLI_ICONS_DIR')
-        if 'icon-src' in style:
+        if 'icon-src' in style and not is_flatstyle_expression(style['icon-src']):
             style['icon-src'] = os.path.abspath(os.path.join(base_path, style['icon-src']))
 
     if type(flatstyle) is list:
         for style_item in flatstyle:
             replace_icon_src(style_item['style'])
+            replace_short_hex_colors(style_item['style'])
+            if opacity is not None:
+                adjust_opacities(style_item['style'])
     else:
         replace_icon_src(flatstyle)
+        replace_short_hex_colors(flatstyle)
+        if opacity is not None:
+            adjust_opacities(flatstyle)
 
 
 def mapfish_layers(requested_layers, bbox=None, srs=None, dpi=None, scale=None, icons_dir='', fc_layer_payloads=None, opacities=None, is_custom=False):
@@ -138,6 +252,7 @@ def mapfish_layers(requested_layers, bbox=None, srs=None, dpi=None, scale=None, 
         requested_opacity = 1
         if name in opacities:
             requested_opacity = float(opacities[name])
+            # works only for tiles and images, not for vector layers, because of limitations in mapfish print
             layer['opacity'] = requested_opacity # overwriting here because requested_opacity is the already calculated opacity in the client
 
         log.debug(f'Adding layer {name} to print spec with config {str(layer)}')
@@ -149,7 +264,7 @@ def mapfish_layers(requested_layers, bbox=None, srs=None, dpi=None, scale=None, 
             if len(fc.get('features', [])) == 0:
                 continue
             layer['geoJson'] = fc
-            prepare_flatstyle_for_mapfish(layer['style'], is_custom)
+            prepare_flatstyle_for_mapfish(layer['style'], is_custom, layer.get('opacity'))
             layer['style'] = flatstyle_to_sld(layer['style'], current_app.config.get("GEOSTYLER_CLI_CMD"))
             del layer['internal_type']
 

@@ -621,12 +621,16 @@ Wie WMS, Karten werden jedoch in 256x256 Pixel große Kacheln abgerufen.
 ``sensorthings``
 """"""""""""""""
 
-  Hinweis1: SensorThings Layer verwenden als Stilformat OpenLayers Flat Styles, und unterstützen
+  Hinweis: SensorThings Layer verwenden als Stilformat OpenLayers Flat Styles, und unterstützen
   dadurch auch attributives Styling. Die genaue Syntax kann der offiziellen
   `OpenLayers Dokumentation <https://openlayers.org/en/latest/apidoc/module-ol_style_flat.html>`_
   entnommen werden.
 
-  Hinweis2: Aktuell gibt es noch kein gesondertes Handling für Icons. Dementsprechend muss hier der
+  Hinweis: Damit Transparenzen beim Druck von SensorThings Layern unterstützt werden können, dürfen
+  Stilattribute, die Farben festlegen, keine Expressions verwenden. Stattdessen müssen hier
+  einzelne Regeln erstellt werden, in denen wiederum unterschiedliche Farben verwendet werden können.
+
+  Hinweis: Aktuell gibt es noch kein gesondertes Handling für Icons. Dementsprechend muss hier der
   vollständige Pfad angegeben werden. Bei Icons, die von der Anwendung selbst gehostet werden, kann
   der Domainname ausgelassen werden, bspw. `/icons/bus-18.svg` anstatt
   `https://stadtplan.bielefeld.de/icons/bus-18.svg`. Im Druck können aktuell noch keine Icons verwendet werden.

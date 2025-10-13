@@ -31,7 +31,7 @@ wget -q -O- https://repo1.maven.org/maven2/org/mapfish/print/print-cli/3.9.0/pri
 * Download geostyler-cli
 
 ```
-wget -q -O /tmp/geostyler-linux.zip https://github.com/geostyler/geostyler-cli/releases/download/v5.0.0/geostyler-linux.zip
+wget -q -O /tmp/geostyler-linux.zip https://github.com/geostyler/geostyler-cli/releases/download/v5.0.2/geostyler-linux.zip
 cd ../dev/
 mkdir geostyler-cli
 cd geostyler-cli
