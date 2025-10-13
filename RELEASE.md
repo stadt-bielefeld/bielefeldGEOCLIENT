@@ -2,5 +2,6 @@ Release Workflow
 ----------------
 
 1. Update `ANOL_COMMIT_HASH` in the Dockerfile if needed
+1. Update `GEOSTYLER_CLI_VERSION` in the Dockerfile if needed
 1. Commit and Merge 
 1. Trigger release workflow manually via github actions
