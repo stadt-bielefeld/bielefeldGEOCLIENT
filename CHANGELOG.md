@@ -1,3 +1,11 @@
+# [1.10.0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.9.0...1.10.0) (2025-10-14)
+
+
+### Features
+
+* support basic transparency in print for STA layers ([c7808e8](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/c7808e8d2abf384786abebaac28b99ad8cf77985))
+* Vereinheitlichung des ALKIS Loggings ([94b4855](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/94b48552b5ed24524bcc75f1299a4fa027201e4e))
+
 # [1.9.0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.8.2...1.9.0) (2025-09-18)
 
 
