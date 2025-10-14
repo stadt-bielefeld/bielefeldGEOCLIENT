@@ -46,6 +46,7 @@ require('anol/src/modules/rotate/rotate-directive.js');
 require('anol/src/modules/savemanager/savemanager-directive.js');
 require('anol/src/modules/savemanager/savemanager-service.js');
 require('anol/src/modules/transparencysettings/transparencysettings-directive.js');
+require('anol/src/modules/transparencysettings/transparencydialog-directive.js');
 
 require('anol/src/modules/savesettings/savesettings-directive.js');
 require('anol/src/modules/savesettings/savesettings-service.js');

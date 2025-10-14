@@ -9,9 +9,10 @@ angular.module('munimapBase')
     .controller('baseController', ['$rootScope', '$scope', '$window', '$timeout', '$translate', '$location', '$uibModal',
         'munimapConfig', 'ControlsService', 'MapService', 'NotificationService', 'DrawService', 'ClusterSelectService',
         'Tour', 'ContextMenuItems', 'SaveSettingsService', 'GeocoderService', 'CatalogService', 'PostMessageService', 'ReadyService',
+        'TransparencyDialogService',
         function($rootScope, $scope, $window, $timeout, $translate, $location, $uibModal, munimapConfig, ControlsService,
                  MapService, NotificationService, DrawService, ClusterSelectService, Tour, ContextMenuItems, SaveSettingsService,
-                 GeocoderService, CatalogService, PostMessageService, ReadyService) {
+                 GeocoderService, CatalogService, PostMessageService, ReadyService, TransparencyDialogService) {
 
             $scope.printEnabled = munimapConfig.components.print === true;
             $scope.searchEnabled = munimapConfig.components.search === true;
@@ -269,6 +270,13 @@ angular.module('munimapBase')
                 var toolsControlContainerScope = angular.element('.tools-control-container').scope();
                 toolsControlContainerScope.toggle();
             };
+
+            $scope.transparencyDialogOpen = TransparencyDialogService.isOpen();
+            $scope.$watch(function() {
+                return TransparencyDialogService.isOpen();
+            }, function(newVal) {
+                $scope.transparencyDialogOpen = newVal;
+            })
 
             $scope.$watch(function() {
                 return CatalogService.getVariant();
