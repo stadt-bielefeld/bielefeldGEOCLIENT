@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const CopyPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports  = {
     devtool: 'eval-source-map',
@@ -137,6 +138,12 @@ module.exports  = {
         }),
         new WebpackManifestPlugin({
             publicPath: ''
+        }),
+        new CleanWebpackPlugin({
+            cleanOnceBeforeBuildPatterns: [
+                '**/*',
+                '!\.gitkeep'
+            ],
         })
     ]
 };
