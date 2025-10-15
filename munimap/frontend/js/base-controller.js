@@ -276,7 +276,7 @@ angular.module('munimapBase')
                 return TransparencyDialogService.isOpen();
             }, function(newVal) {
                 $scope.transparencyDialogOpen = newVal;
-            })
+            });
 
             $scope.$watch(function() {
                 return CatalogService.getVariant();
