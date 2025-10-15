@@ -661,11 +661,14 @@ Siehe dazu auch <a class="reference internal" href="selectionlists-config.html#s
 <section id="sensorthings">
 <h3><code class="docutils literal notranslate"><span class="pre">sensorthings</span></code><a class="headerlink" href="#sensorthings" title="Link to this heading"></a></h3>
 <blockquote>
-<div><p>Hinweis1: SensorThings Layer verwenden als Stilformat OpenLayers Flat Styles, und unterstützen
+<div><p>Hinweis: SensorThings Layer verwenden als Stilformat OpenLayers Flat Styles, und unterstützen
 dadurch auch attributives Styling. Die genaue Syntax kann der offiziellen
 <a class="reference external" href="https://openlayers.org/en/latest/apidoc/module-ol_style_flat.html">OpenLayers Dokumentation</a>
 entnommen werden.</p>
-<p>Hinweis2: Aktuell gibt es noch kein gesondertes Handling für Icons. Dementsprechend muss hier der
+<p>Hinweis: Damit Transparenzen beim Druck von SensorThings Layern unterstützt werden können, dürfen
+Stilattribute, die Farben festlegen, keine Expressions verwenden. Stattdessen müssen hier
+einzelne Regeln erstellt werden, in denen wiederum unterschiedliche Farben verwendet werden können.</p>
+<p>Hinweis: Aktuell gibt es noch kein gesondertes Handling für Icons. Dementsprechend muss hier der
 vollständige Pfad angegeben werden. Bei Icons, die von der Anwendung selbst gehostet werden, kann
 der Domainname ausgelassen werden, bspw. <cite>/icons/bus-18.svg</cite> anstatt
 <cite>https://stadtplan.bielefeld.de/icons/bus-18.svg</cite>. Im Druck können aktuell noch keine Icons verwendet werden.</p>
@@ -744,7 +747,7 @@ der Domainname ausgelassen werden, bspw. <cite>/icons/bus-18.svg</cite> anstatt
   </div>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
-    Version: 1.9.0
+    Version: 1.10.0
     <span class="fa fa-caret-down"></span>
   </span>
     <div class="rst-other-versions">
