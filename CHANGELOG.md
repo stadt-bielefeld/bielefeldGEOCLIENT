@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.10.0...1.11.0) (2025-10-15)
+
+
+### Features
+
+* hide sidebar on mobile when changing transparency ([bda637a](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/bda637ab092f8333d0985102d49feb5674544f0b))
+
 # [1.10.0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.9.0...1.10.0) (2025-10-14)
 
 
