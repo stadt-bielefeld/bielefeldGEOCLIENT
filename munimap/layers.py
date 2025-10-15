@@ -443,7 +443,7 @@ def mapfish_geojson_layer(layer_conf, is_background, layers_base_url='',
         }
     elif layer_conf['type'] == 'sensorthings':
         mapfish_layer['internal_type'] = 'sensorthings'
-        if layer_conf['style']:
+        if layer_conf.get('style'):
             mapfish_layer['style'] = layer_conf['style']
     elif layer_conf['type'] == 'postgis':
         mapfish_layer['internal_type'] = 'postgis'
