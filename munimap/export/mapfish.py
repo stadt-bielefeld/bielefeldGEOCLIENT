@@ -218,8 +218,8 @@ def prepare_flatstyle_for_mapfish(flatstyle, is_custom, opacity):
         base_path = current_app.config.get('MAPFISH_ICONS_DIR')
         if is_custom:
             base_path = current_app.config.get('MAPFISH_CLI_ICONS_DIR')
-        if 'icon-src' in style and not is_flatstyle_expression(style['icon-src']):
-            style['icon-src'] = os.path.abspath(os.path.join(base_path, style['icon-src']))
+        if 'icon-src' in style:
+            style['icon-src'] = 'file://' + os.path.abspath(os.path.join(base_path, style['icon-src']))
 
     if type(flatstyle) is list:
         for style_item in flatstyle:
