@@ -225,9 +225,9 @@
 </section>
 <section id="featureinfo">
 <h3><code class="docutils literal notranslate"><span class="pre">featureinfo</span></code><a class="headerlink" href="#featureinfo" title="Link to this heading"></a></h3>
-<p>Konfiguration der Informationsabfrage des Layers. Dies gilt nur für Layer mit dem <cite>type</cite> <cite>postgis</cite>, <cite>wms</cite> oder <cite>tiledwms</cite>. Fehlt dieses Attribut oder ist der Wert <cite>null</cite> gesetzt, erfolgt keine Informationsabfrage für diesen Layer.</p>
-<p>Konfiguriert, ob in der Kartenanwendung eine <cite>GetFeatureInfo</cite>-Abfrage für Layer vom <cite>type</cite> <cite>wms</cite> oder <cite>tiledwms</cite> durchgeführt bzw. Informationen zu einer Geometrie für Layer vom <cite>type</cite> <cite>postgis</cite> angezeigt werden soll.</p>
-<p>Für Layer vom <cite>type</cite> <cite>wms</cite> oder <cite>tiledwms</cite> ist das Attribut <cite>target</cite> zu verwenden. Es definiert, wie das Ergebnis der <cite>GetFeatureInfo</cite>-Abfrage durch die Anwendung dargestellt wird. Mögliche Werte sind:</p>
+<p>Konfiguration der Informationsabfrage des Layers. Dies gilt nur für Layer mit dem <cite>type</cite> <cite>postgis</cite>, <cite>wms</cite>, <cite>tiledwms</cite> oder <cite>sensorthings</cite>. Fehlt dieses Attribut oder ist der Wert <cite>null</cite> gesetzt, erfolgt keine Informationsabfrage für diesen Layer.</p>
+<p>Konfiguriert, ob in der Kartenanwendung eine <cite>GetFeatureInfo</cite>-Abfrage für Layer vom <cite>type</cite> <cite>wms</cite> oder <cite>tiledwms</cite> durchgeführt bzw. Informationen zu einer Geometrie für Layer vom <cite>type</cite> <cite>postgis</cite> bzw. <cite>sensorthings</cite> angezeigt werden soll.</p>
+<p>Für Layer vom <cite>type</cite> <cite>wms</cite>,`tiledwms` oder <cite>sensorthings</cite> ist das Attribut <cite>target</cite> zu verwenden. Es definiert, wie das Ergebnis der <cite>GetFeatureInfo</cite>-Abfrage durch die Anwendung dargestellt wird. Mögliche Werte sind:</p>
 <blockquote>
 <div><dl class="simple">
 <dt><cite>_popup</cite></dt><dd><p>Zeigt die Antwort der Anfrage in einem IFrame in einem, durch die Anwendung erzeugten, Popup. Zusätzlich können über die Attribute <cite>width</cite> und <cite>height</cite> die Breite bzw. Höhe des IFrames in Pixel eingestellt werden. Der Default-Wert für <cite>width</cite> beträgt 300, der Default-Wert für <cite>height</cite> beträgt 150. Diese werden verwendet, wenn das entsprechendne Attribut nicht gesetzt wurde.</p>
@@ -238,13 +238,13 @@
 </dd>
 </dl>
 </div></blockquote>
-<p>Für Layer vom <cite>type</cite> <cite>wms</cite> oder <cite>tiledwms</cite> steht das Attribut <cite>featureCount</cite> zur Verfügung. Hiermit wird festgelegt, für wie viele übereinander liegende Features Informationen angezeigt werden sollen. Der Default-Wert ist 1.</p>
+<p>Für Layer vom <cite>type</cite> <cite>wms</cite>, <cite>tiledwms</cite>, <cite>sensorthings</cite> steht das Attribut <cite>featureCount</cite> zur Verfügung. Hiermit wird festgelegt, für wie viele übereinander liegende Features Informationen angezeigt werden sollen. Der Default-Wert ist 1.</p>
 <p>Für Layer vom <cite>type</cite> <cite>wms</cite> oder <cite>tiledwms</cite>, deren <cite>GetFeatureInfo</cite>-Abfrage das <cite>INFO_FORAMT</cite> <cite>application/vnd.ogc.gml</cite>
 unterstützen kann das Attribut <cite>gml</cite> auf <cite>true</cite> gesetzt werden um die abgefragte Geometrie in der Karte hervorzuheben.
 Mit dem Attribut <cite>gmlStyle</cite> kann ein Styling für die zurückgelieferten Geometrien definiert werden. Wie ein Styling zu
 definieren ist, ist im Abschnitt <a class="reference internal" href="#style"><span class="std std-ref">Style</span></a> erläutert. Zusätzlich kann durch das Setzen des Attributs <cite>catalog</cite>
 auf <cite>true</cite> festgelegt werden, ob Nutzer im GML enthaltene Layer in die Anwendung hinzufügen können.</p>
-<p>Für Layer vom <cite>type</cite> <cite>postgis</cite> wird immer ein durch die Anwendung erzeugtes Popup verwendet. Die anzuzeigenden Eigenschaften einer Geometrie sind im Attribut <cite>properties</cite> als Liste zu definieren.</p>
+<p>Für Layer vom <cite>type</cite> <cite>postgis</cite> oder <cite>sensorthings</cite> wird immer ein durch die Anwendung erzeugtes Popup verwendet. Die anzuzeigenden Eigenschaften einer Geometrie sind im Attribut <cite>properties</cite> als Liste von Strings oder als Liste von Objekten der Struktur <cite>{key: string, label: string}</cite> zu definieren.</p>
 <p>Beispiel für WMS-GetFeatureInfo Ergebnis im Kartenpopup mit definierter Breite, Höhe und maximale Anzahl übereinander liegender Features, für die Informationen abgerufen werden sollen:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">layers</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wms_1</span>
@@ -706,7 +706,8 @@ der Domainname ausgelassen werden, bspw. <cite>/icons/bus-18.svg</cite> anstatt
 <span class="w">      </span><span class="nt">properties</span><span class="p">:</span>
 <span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;name&#39;</span>
 <span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;description&#39;</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;Observations.0.result&#39;</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Observations.0.result&#39;</span>
+<span class="w">          </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Messwert&#39;</span>
 <span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;unitOfMeasurement.symbol&#39;</span>
 <span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;Observations.0.phenomenonTime&#39;</span>
 </pre></div>
@@ -727,7 +728,7 @@ der Domainname ausgelassen werden, bspw. <cite>/icons/bus-18.svg</cite> anstatt
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021, Stadt Bielefeld.
-      <span class="lastupdated">Zuletzt aktualisiert am 2025-07-11.
+      <span class="lastupdated">Zuletzt aktualisiert am 2025-10-15.
       </span></p>
   </div>
 
@@ -743,7 +744,7 @@ der Domainname ausgelassen werden, bspw. <cite>/icons/bus-18.svg</cite> anstatt
   </div>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
-    Version: 1.6.1
+    Version: 1.7.0
     <span class="fa fa-caret-down"></span>
   </span>
     <div class="rst-other-versions">

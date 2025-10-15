@@ -95,11 +95,11 @@ Konfiguration der Datenquelle des Layers. Einzelheiten unter `source`_.
 
 ``featureinfo``
 """""""""""""""
-Konfiguration der Informationsabfrage des Layers. Dies gilt nur für Layer mit dem `type` `postgis`, `wms` oder `tiledwms`. Fehlt dieses Attribut oder ist der Wert `null` gesetzt, erfolgt keine Informationsabfrage für diesen Layer.
+Konfiguration der Informationsabfrage des Layers. Dies gilt nur für Layer mit dem `type` `postgis`, `wms`, `tiledwms` oder `sensorthings`. Fehlt dieses Attribut oder ist der Wert `null` gesetzt, erfolgt keine Informationsabfrage für diesen Layer.
 
-Konfiguriert, ob in der Kartenanwendung eine `GetFeatureInfo`-Abfrage für Layer vom `type` `wms` oder `tiledwms` durchgeführt bzw. Informationen zu einer Geometrie für Layer vom `type` `postgis` angezeigt werden soll.
+Konfiguriert, ob in der Kartenanwendung eine `GetFeatureInfo`-Abfrage für Layer vom `type` `wms` oder `tiledwms` durchgeführt bzw. Informationen zu einer Geometrie für Layer vom `type` `postgis` bzw. `sensorthings` angezeigt werden soll.
 
-Für Layer vom `type` `wms` oder `tiledwms` ist das Attribut `target` zu verwenden. Es definiert, wie das Ergebnis der `GetFeatureInfo`-Abfrage durch die Anwendung dargestellt wird. Mögliche Werte sind:
+Für Layer vom `type` `wms`,`tiledwms` oder `sensorthings` ist das Attribut `target` zu verwenden. Es definiert, wie das Ergebnis der `GetFeatureInfo`-Abfrage durch die Anwendung dargestellt wird. Mögliche Werte sind:
 
   `_popup`
       Zeigt die Antwort der Anfrage in einem IFrame in einem, durch die Anwendung erzeugten, Popup. Zusätzlich können über die Attribute `width` und `height` die Breite bzw. Höhe des IFrames in Pixel eingestellt werden. Der Default-Wert für `width` beträgt 300, der Default-Wert für `height` beträgt 150. Diese werden verwendet, wenn das entsprechendne Attribut nicht gesetzt wurde.
@@ -110,7 +110,7 @@ Für Layer vom `type` `wms` oder `tiledwms` ist das Attribut `target` zu verwend
   CSS-Identifikators (Klasse oder ID eines Elements)
       Zeigt die Antwort der Abfrage im angegebenen Element. Hierbei werden die der Antwort evtl. vorkommende HTML-Tags `meta`, `link`, `title` und `script` vor dem Anzeigen entfernt.
 
-Für Layer vom `type` `wms` oder `tiledwms` steht das Attribut `featureCount` zur Verfügung. Hiermit wird festgelegt, für wie viele übereinander liegende Features Informationen angezeigt werden sollen. Der Default-Wert ist 1.
+Für Layer vom `type` `wms`, `tiledwms`, `sensorthings` steht das Attribut `featureCount` zur Verfügung. Hiermit wird festgelegt, für wie viele übereinander liegende Features Informationen angezeigt werden sollen. Der Default-Wert ist 1.
 
 Für Layer vom `type` `wms` oder `tiledwms`, deren `GetFeatureInfo`-Abfrage das `INFO_FORAMT` `application/vnd.ogc.gml`
 unterstützen kann das Attribut `gml` auf `true` gesetzt werden um die abgefragte Geometrie in der Karte hervorzuheben.
@@ -118,7 +118,7 @@ Mit dem Attribut `gmlStyle` kann ein Styling für die zurückgelieferten Geometr
 definieren ist, ist im Abschnitt :ref:`Style <style>` erläutert. Zusätzlich kann durch das Setzen des Attributs `catalog`
 auf `true` festgelegt werden, ob Nutzer im GML enthaltene Layer in die Anwendung hinzufügen können.
 
-Für Layer vom `type` `postgis` wird immer ein durch die Anwendung erzeugtes Popup verwendet. Die anzuzeigenden Eigenschaften einer Geometrie sind im Attribut `properties` als Liste zu definieren.
+Für Layer vom `type` `postgis` oder `sensorthings` wird immer ein durch die Anwendung erzeugtes Popup verwendet. Die anzuzeigenden Eigenschaften einer Geometrie sind im Attribut `properties` als Liste von Strings oder als Liste von Objekten der Struktur `{key: string, label: string}` zu definieren.
 
 
 Beispiel für WMS-GetFeatureInfo Ergebnis im Kartenpopup mit definierter Breite, Höhe und maximale Anzahl übereinander liegender Features, für die Informationen abgerufen werden sollen:
@@ -671,6 +671,7 @@ Wie WMS, Karten werden jedoch in 256x256 Pixel große Kacheln abgerufen.
           properties:
             - 'name'
             - 'description'
-            - 'Observations.0.result'
+            - key: 'Observations.0.result'
+              label: 'Messwert'
             - 'unitOfMeasurement.symbol'
             - 'Observations.0.phenomenonTime'
