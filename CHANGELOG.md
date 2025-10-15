@@ -1,3 +1,10 @@
+## [1.11.1](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.11.0...1.11.1) (2025-10-15)
+
+
+### Bug Fixes
+
+* update gh-pages on release ([c3781b0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/c3781b0ac4b0aa0aab16c11f0cd81cf70e24ddb4))
+
 # [1.11.0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.10.0...1.11.0) (2025-10-15)
 
 
