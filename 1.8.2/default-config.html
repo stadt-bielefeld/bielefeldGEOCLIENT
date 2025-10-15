@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>App-Optionen &mdash; bielefeldGEOCLIENT / munimap  Dokumentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=245627df"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/translations.js?v=79cc9f76"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
+    <link rel="search" title="Suche" href="search.html" />
+    <link rel="next" title="Layer-Definition" href="layer.html" />
+    <link rel="prev" title="Anwendungen" href="app.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            bielefeldGEOCLIENT / munimap
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="app.html">Anwendungen</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">App-Optionen</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#app">app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#map">map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#groups">groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#layers">layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#components">components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#componentpositions">componentPositions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#communication">communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overviewmapconfig">overviewmapConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#printconfig">printConfig</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#availablepagelayouts"><code class="docutils literal notranslate"><span class="pre">availablePageLayouts</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#geolocationconfig">geolocationConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#searchconfig">searchConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#digitizeconfig">digitizeConfig</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#geocoder">Geocoder</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#nominatim">Nominatim</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#solr">Solr</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#catalog">Catalog</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#url-marker">Url Marker</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#konfiguration">Konfiguration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#alkis-informationen">ALKIS Informationen</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#benutzerberechtigung">Benutzerberechtigung</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#berechtigtes-interesse">Berechtigtes Interesse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#konfiguration-munimap-conf">Konfiguration munimap.conf</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#kontextmenu">Kontextmenü</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#geoeditorconfig">geoeditorConfig</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="layer.html">Layer-Definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layers-config.html">Layer-Optionen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="selectionlists-config.html">Auswahllisten-Definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javascript-plugins.html">JavaScript-Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example-config.html">Beispiel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="print-index.html">Straßenindex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tour.html">Tour</a></li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Administrationsbereich</a></li>
+<li class="toctree-l1"><a class="reference internal" href="url-parameter.html">URL-Parameter</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">bielefeldGEOCLIENT / munimap</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">App-Optionen</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/default-config.rst.txt" rel="nofollow"> Quelltext anzeigen</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="app-optionen">
+<span id="defaultconf"></span><h1>App-Optionen<a class="headerlink" href="#app-optionen" title="Link to this heading"></a></h1>
+<p>Basis-Konfiguration der Web-Anwendung. Alle <cite>App-Konfigurationen</cite> haben diese Konfiguration als Grundlage. Außerdem ist sie die Konfiguration der Hauptanwendung. In dieser Konfiguration wird festgelegt, welche Hintergrundlayer, Gruppen und Layer dem Benutzer angezeigt werden. Außerdem erfolgt hier die Konfiguration der einzelnen Komponenten der Webanwendung wie z.B. der Orts-Suche. Außerdem wird in dieser Konfiguration definiert, welche Komponenten in der Webanwendung aktiv sein sollen.</p>
+<p>Die Konfiguration ist in einzelne Abschnitte unterteilt die in der nachfolgenden Übersicht dargestellt und in den folgenden Unterpunkten näher beschrieben werden.</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">app</span></code></dt><dd><p>Konfigurationen zum Verhalten der Anwendung</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">map</span></code></dt><dd><p>Konfiguration der Kartenansicht</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">groups</span></code></dt><dd><p>Konfiguration der in der Anwendung zur Verfügung stehenden Layergruppen</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">layers</span></code></dt><dd><p>Konfiguration der in der Anwendung zur Verfügung stehenden Layer</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">components</span></code></dt><dd><p>Konfiguration und (De-)Aktivierung der einzelnen Komponenten der Anwendung</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">communication</span></code></dt><dd><p>Konfiguration der PostMessage Schnittstelle der Anwendung</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">overviewmapConfig</span></code></dt><dd><p>Konfiguration des OverviewMap-Moduls</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">printConfig</span></code></dt><dd><p>Konfiguration des Druck-Moduls</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">searchConfig</span></code></dt><dd><p>Konfiguration des Such-Moduls</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">geolocationConfig</span></code></dt><dd><p>Konfiguration des Geolocation-Moduls</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">urlMarkersConfig</span></code></dt><dd><p>Konfiguration des UrlMarkers-Moduls</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">digitizeConfig</span></code></dt><dd><p>Konfiguration des Digitize-Moduls</p>
+</dd>
+</dl>
+</div></blockquote>
+<section id="app">
+<h2>app<a class="headerlink" href="#app" title="Link to this heading"></a></h2>
+<p>Im Nachfolgenden werden die Konfigurationsattribute zum grundlegenden Verhalten der Webanwendung vorgestellt.</p>
+<blockquote>
+<div><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">tooltipDelay</span></code></dt><dd><p>Zeit die der Mauscursors über einem Element verweilen muss bis der entsprechende Tooltip angezeigt wird. Angabe in Millisekunden. Standardwert <cite>1000</cite>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sidebarOpen</span></code></dt><dd><p>Sidebar wird geöffnet angezeigt. Standardwert <cite>false</cite>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">preferredLanguage</span></code></dt><dd><p>Voreingestellte Sprache für JavaScript-seitige Übersetzungen. Standardwert <cite>de_DE</cite>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">headerLogo</span></code></dt><dd><p>URL zum Logo welches im Sitebar-Header angezeigt wird.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">headerLogoLink</span></code></dt><dd><p>Link der bei klick auf das Logo geöffnet werden soll.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">hideLink</span></code></dt><dd><p>Link in der Seitenleisten oben wird ausgeblendet.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">versionString</span></code></dt><dd><p>Versionsnummer die in der Anwendung angezeigt wird.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">showNoBackground</span></code></dt><dd><p>Legt fest, ob die Auswahl „Kein Hintergrundlayer“ im Layerswitcher verfügbar ist. Standardwert <cite>true</cite>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">title</span></code></dt><dd><p>Legt den Titel der Webseite fest, der für die Anwendung verwendet werden soll.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">tour</span></code></dt><dd><p>Verweis auf die zu nutzende Tour. Es ist nur die Datei, nicht der komplette Pfad anzugeben. Standardwert <cite>false</cite>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">disableMouseZoom</span></code></dt><dd><p>Schaltet das Zoomen per Mausrad ab. Standardwert <cite>false</cite>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">enableMouseZoomKey</span></code></dt><dd><p>Schaltet das Zoomen per Mausrad mit gedrückter [Strg]-Taste ein. Standardwert <cite>false</cite>. Für diesen Modus darf <code class="docutils literal notranslate"><span class="pre">disableMouseZoom</span></code> nicht <code class="docutils literal notranslate"><span class="pre">true</span></code> sein.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">disablePinchZoom</span></code></dt><dd><p>Schaltet das Zoomen per Geste ab. Standardwert <cite>false</cite>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">disablePinchMove</span></code></dt><dd><p>Schaltet das Verschieben der Karte per Geste ab. Standardwert <cite>false</cite>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">enableTwoFingersPinchMove</span></code></dt><dd><p>Schaltet das Verschieben der Karte mit 2 Finger Geste ein. Standardwert <cite>false</cite>. In diesem Modus kann nicht per Geste gezoomt oder die Karte rotiert werden.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">disableFeatureInfo</span></code></dt><dd><p>Schaltet das Feature Info Popup für WMS Layer ab. Standardwert: <cite>false</cite></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iframe</span></code></dt><dd><p>Ermöglicht eine App die auf eine externe Anwendung verlinkt. Als Wert muss der Link zur Zielseite angegeben werden.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">contextMenu</span></code></dt><dd><p>Wenn aktiviert, wird durch Rechtsklick das Kontextmenü aktiviert. Es kann der Name (ohne Pfad und ohne Dateiendung) der zu nutzenden Datei angegeben werden oder <cite>true</cite> (dann wird <cite>index.js</cite> verwendet). Standardwert <cite>false</cite>. Weitere Details im <a class="reference internal" href="#context-menu"><span class="std std-ref">Abschnitt Kontextmenü</span></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">showLogin</span></code></dt><dd><p>Der Login in der Sidebar wird nicht angezeigt. Standardwert <cite>false</cite>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">hideMetadata</span></code></dt><dd><p>Das Informaiton-i für die Metadaten wird ausgeblendet. Standardwert <cite>false</cite>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">metaDescription</span></code></dt><dd><p>Beschreibung die in der Anwendung im Meta-Tag Description angezeigt wird.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ogImage</span></code></dt><dd><p>Ermöglicht das hinterlegen eines Webseitenvorschaubildes durch Verwendung des og-image Tags.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">feedbackButton</span></code></dt><dd><p>Ermöglicht die Anzeige eines Feedback Buttons über den der User dann eine E-Mail via „mailto“ verschicken kann. Im Body der E-Mail wird immer automatisch die aktuelle URL der Anwendung hinzugefügt.</p>
+<p>Beispiel:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">feedbackButton</span><span class="p">:</span>
+  <span class="n">email</span><span class="p">:</span> <span class="n">somebody</span><span class="nd">@example</span><span class="o">.</span><span class="n">com</span> <span class="c1"># setzt die E-Mail-Adresse</span>
+  <span class="n">subject</span><span class="p">:</span> <span class="n">Feedback</span> <span class="n">bielefeldGEOCLIENT</span> <span class="c1"># Betreff der Email</span>
+  <span class="n">body</span><span class="p">:</span> <span class="n">Der</span> <span class="n">Body</span><span class="o">-</span><span class="n">Text</span> <span class="c1"># Text for der URL der Anwendung im Body</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+<p>Beispiel:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">:</span>
+  <span class="n">tooltipDelay</span><span class="p">:</span> <span class="mi">50</span>
+  <span class="n">sidebarOpen</span><span class="p">:</span> <span class="n">true</span>
+  <span class="n">headerLogo</span><span class="p">:</span> <span class="s1">&#39;img/logo-sitebar.png&#39;</span>
+  <span class="n">versionString</span><span class="p">:</span> <span class="s1">&#39;Vers. 0.9.322 (Beta-Version)&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="map">
+<h2>map<a class="headerlink" href="#map" title="Link to this heading"></a></h2>
+<p>Im Nachfolgenden wird die Konfiguration der Karte innerhalb der Webanwendung erläutert.</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">center</span></code></dt><dd><p>Startkoordinate für die Karte. Kann nicht mit <cite>bbox</cite> zusammen verwendet werden.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">centerProjection</span></code></dt><dd><p>Projektion, in der die Startkoordinate angegeben ist.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sidebar</span></code></dt><dd><p>Name des Tabs welcher beim Start geöffnet werden soll.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">defaultBackground</span></code></dt><dd><p>Name des Hintergrundlayers, der beim Aufruf der Karte angezeigt werden soll. Wenn nicht angegeben wird der erste definierte Hintergrundlayer angezeigt.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">defaultOverlays</span></code></dt><dd><p>Liste von Namen der Themenlayer, die beim Aufruf der Karte angezeigt werden sollen. Wenn nicht angegeben, sind alle Themenlayer nicht sichtbar.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">zoom</span></code></dt><dd><p>Detaillevel, dass beim Aufruf der Karte angezeigt wird. Kann nicht mit <cite>bbox</cite> zusammen verwendet werden.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">bbox</span></code></dt><dd><p>Startausdehnung der Karte. Kann nicht mit <cite>center</cite> zusammen verwendet werden.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">bboxProjection</span></code></dt><dd><p>Projektion, in der die Startausdehnung angegeben ist.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">projection</span></code></dt><dd><p>Projektion der Karte.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">projectionExtent</span></code></dt><dd><p>Gültigkeitsbereich der Projektion.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">maxExtent</span></code></dt><dd><p>Gültigkeitsbereich der Karte.
+Koordinaten sind in der Projektion der Karte anzugeben.
+Reihenfolge ist:
+- minimum Breitengrad
+- minimum Längengrad
+- maximum Breitengrad
+- maximum Längengrad</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">minZoom</span></code></dt><dd><p>Kleinste Detailstufe, die angezeigt wird.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">maxZoom</span></code></dt><dd><p>Größte Detailstufe, die angezeigt wird.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">cluster</span></code></dt><dd><p>Beinhaltet die Attribute <cite>distance</cite> und <cite>maxObjects</cite>.
+<cite>distance</cite> definiert die Entfernung in Pixel, innerhalb derer Features zu einem Cluster zusammengefasst werden.
+<cite>maxObjects</cite> definiert die maximale Anzahl an Objekten, die nach Klick auf einen Cluster angezeigt werden. Beinhaltet ein Cluster mehr Features als in <cite>maxObjects</cite> definiert, wird bei einem Klick auf den Cluster zum nächst höheren Zoomlevel gewechselt.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>Beispiel:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">map</span><span class="p">:</span>
+    <span class="n">sidebar</span><span class="p">:</span> <span class="s1">&#39;overlay&#39;</span>
+    <span class="n">center</span><span class="p">:</span>
+        <span class="o">-</span> <span class="mf">468152.5616</span>
+        <span class="o">-</span> <span class="mf">5764386.17546</span>
+    <span class="n">centerProjection</span><span class="p">:</span> <span class="s2">&quot;EPSG:25832&quot;</span>
+    <span class="n">zoom</span><span class="p">:</span> <span class="mi">8</span>
+    <span class="n">projection</span><span class="p">:</span> <span class="s2">&quot;EPSG:25832&quot;</span>
+    <span class="n">projectionExtent</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">46133.17</span><span class="p">,</span> <span class="mf">5048875.26857567</span><span class="p">,</span> <span class="mf">1206211.10142433</span><span class="p">,</span> <span class="mf">6301219.54</span><span class="p">]</span>
+    <span class="n">maxExtent</span><span class="p">:</span>
+        <span class="o">-</span> <span class="mi">243900</span>
+        <span class="o">-</span> <span class="mi">4427757</span>
+        <span class="o">-</span> <span class="mi">756099</span>
+        <span class="o">-</span> <span class="mi">6655205</span>
+    <span class="n">minZoom</span><span class="p">:</span> <span class="mi">7</span>
+    <span class="n">maxZoom</span><span class="p">:</span> <span class="mi">15</span>
+</pre></div>
+</div>
+</section>
+<section id="groups">
+<h2>groups<a class="headerlink" href="#groups" title="Link to this heading"></a></h2>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">include</span></code></dt><dd><p>Liste mit Elementen, die als <cite>inactive</cite> markiert sind, aber in die Anwendung eingebunden werden sollen.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">exclude</span></code></dt><dd><p>Liste mit Elementen, die nicht in die Anwendung eingebunden werden sollen.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">explicit</span></code></dt><dd><p>Ausschließlich die aufgeführten Elemente werden in die Anwendung eingebunden. Einträge in <cite>include</cite> und <cite>exclude</cite> werden ignoriert. Werden im Abschnitt <cite>layers</cite> mit <cite>explicit</cite> einzubindende Layer definiert überschreibt dies die <cite>explicit</cite>-Einträge im <cite>groups</cite> Abschnitt.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">singleSelect</span></code></dt><dd><p>Liste mit Gruppen. Wird die Gruppe sichtbar, werden alle anderen Gruppen nicht sichtbar.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>Beispiel:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">groups</span><span class="p">:</span>
+    <span class="n">include</span><span class="p">:</span>
+        <span class="o">-</span> <span class="n">food</span>
+        <span class="o">-</span> <span class="n">plz</span>
+</pre></div>
+</div>
+</section>
+<section id="layers">
+<h2>layers<a class="headerlink" href="#layers" title="Link to this heading"></a></h2>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">include</span></code></dt><dd><p>Liste mit Elementen, die als <cite>inactive</cite> markiert sind, aber in die Anwendung eingebunden werden sollen.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">exclude</span></code></dt><dd><p>Liste mit Elementen, die nicht in die Anwendung eingebunden werden sollen.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">explicit</span></code></dt><dd><p>Ausschließlich die aufgeführten Elemente werden in die Anwendung eingebunden. Einträge in <cite>include</cite> und <cite>exclude</cite> werden ignoriert. Ebenso werden die Einträge in <cite>include</cite> und <cite>explicit</cite> im <cite>groups</cite> Abschnitt ignoriert.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>Beispiel:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">layers</span><span class="p">:</span>
+    <span class="n">explicit</span><span class="p">:</span>
+        <span class="o">-</span> <span class="n">stations</span>
+        <span class="o">-</span> <span class="n">busstop</span>
+</pre></div>
+</div>
+</section>
+<section id="components">
+<h2>components<a class="headerlink" href="#components" title="Link to this heading"></a></h2>
+<p>In diesem Abschnitt werden die einzelne Komponenten der Anwendung aktiviert bzw. deaktiviert. Die Angabe von <cite>True</cite> aktiviert eine Komponente, die Angabe von <cite>False</cite> deaktiviert sie.</p>
+<p>Folgende Komponenten stehen zur Verfügung:</p>
+<blockquote>
+<div><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">geolocation</span></code></dt><dd><p>Zentriert die Karte auf die aktuelle Geoposition des Anwenders. Ist in der Anwendung als Schaltfläche sichtbar. Konfigurationen für diese Komponente werden im Abschnitt <a class="reference internal" href="#geolocationconfig">geolocationConfig</a> vorgenommen.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">layerswitcher</span></code></dt><dd><p>Erlaubt das Wechseln zwischen Hintergrundkarten und das Hinzufügen / Entfernen von Themenkarten.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">legend</span></code></dt><dd><p>Zeigt Erläuterungen zu den in den Themenkarten angezeigten Daten.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">print</span></code></dt><dd><p>Exportiert einen vom Benutzer bestimmten Ausschnitt der angezeigten Karte. Konfigurationen für diese Komponente werden im Abschnitt <a class="reference internal" href="#printconfig">printConfig</a> vorgenommen.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">scaleLine</span></code></dt><dd><p>Zeigt die aktuelle Skalierung der Karte in km bzw. m an.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">scaleText</span></code></dt><dd><p>Fügt der Anwendung eine 1: Maßstabsauswahl hinzu.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">search</span></code></dt><dd><p>Erlaubt das Suchen nach Straßen bzw. Orten und zentriert die Karte auf ein ausgewähltes Suchergebnis. Konfigurationen für diese Komponente werden im Abschnitt <a class="reference internal" href="#searchconfig">searchConfig</a> vorgenommen.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">overviewmap</span></code></dt><dd><p>Zeigt eine Übersichtskarte, in der der aktuelle Kartenausschnitt hervorgehoben ist.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">serviceButton</span></code></dt><dd><p>Fügt der Anwendung einen Button mit Untermenü hinzu. Standardwert: <cite>false</cite>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">homeButton</span></code></dt><dd><p>Fügt der Anwendung einen Button hinzu mit dem zurück zur initialen Position der Karte gesprungen werden kann. Standardwert: <cite>true</cite>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">menuButton</span></code></dt><dd><p>Fügt der Anwendung einen Button hinzu der das Seitenmenü öffnet. Standardwert: <cite>true</cite>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">draw</span></code></dt><dd><p>Fügt der Karte Zeichenfunktionen hinzu. Es können Punkte, Marker, Linien, Polygone und Texte eingezeichnet und bearbeitet werden. Standardwert: <cite>false</cite>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">measureLabelSegments</span></code></dt><dd><p>Zeigt, bei Verwendung der Messfunktion zwischenwerte an den Strecken bei Linien und Fläche an. Standardwert: <cite>false</cite>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">saveSettings</span></code></dt><dd><p>Ermöglicht angemeldeten Benutzer Konfigurationen zur Anwendung zu speichern und wieder zu laden. Die Funktion kann über den Werkzeug-Button aufgerufen werden. Standardwert: <cite>false</cite>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">timetable</span></code></dt><dd><p>Fügt der Karte die Fahrplanauskunft hinzu. Standardwert: <cite>false</cite>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">searchDropdown</span></code></dt><dd><p>Ermöglicht es dem Benutzer mehrere Suchdienst in der Anwendung zu verwenden. Ist die Komponente aktiv wird neben dem Suchfenster geschaffen, dass über eine Dropdown-Liste eine Suche ausgewählt werden kann. Standardwert: <cite>false</cite>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">alkis</span></code></dt><dd><p>Über die Alkis-Komponente können die verschiedenen ALKIS-Dienste von IP Syscon aktiviert werden. Hierbei ist zu beachten, dass auch die entsprechende Benutzerberechtigung vorliegen muss. Weitere Details im <a class="reference internal" href="#alkis-information"><span class="std std-ref">Abschnitt ALKIS</span></a>.</p>
+<p>Beispiel:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">alkis</span><span class="p">:</span>
+  <span class="n">simple</span><span class="p">:</span> <span class="n">true</span> <span class="c1"># IP-Flurstücksauskunft einfach</span>
+  <span class="n">selection</span><span class="p">:</span> <span class="n">true</span> <span class="c1"># IP-Flurstück nach Selektion</span>
+  <span class="n">pdf</span><span class="p">:</span> <span class="n">true</span> <span class="c1"># IP-Flurstücksauskunft PDF</span>
+  <span class="n">official</span><span class="p">:</span> <span class="n">true</span> <span class="c1"># IBR amtliche ALKIS-Produkte</span>
+</pre></div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">catalog</span></code></dt><dd><p>Fügt der Anwendung einen Button hinzu, der ein Popup mit zusätzlich einbindbaren Diensten öffnet. Standardwert: <cite>false</cite>.
+Außerdem kann definiert werden, ob neben den Gruppen die für den Katalog gekennzeichnet sind, auch Layer angezeigt werden soll. Au0erdem kann zwischen zwei Layoutvarianten gewählt werden. Der Standardwert für die Variante ist ‚abstract‘.</p>
+<p>Beispiel:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">catalog</span>
+  <span class="n">layer</span><span class="p">:</span> <span class="n">false</span>
+  <span class="n">variant</span><span class="p">:</span> <span class="s1">&#39;abstract&#39;</span> <span class="c1"># oder mouseover</span>
+</pre></div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">geoeditor</span></code></dt><dd><p>Fügt der Anwendung den geoEDITOR hinzu. Dieser erlaubt das Erstellen und Editieren von Geometrien und deren Attributen. Um den geoEDITOR in seiner Default Konfiguration zu verwenden, muss lediglich der Wert <cite>true</cite> angegeben werden.
+Konfigurationen für diese Komponente werden im Abschnitt <a class="reference internal" href="#geoeditorconfig">geoeditorConfig</a> vorgenommen. Standardwert: <cite>false</cite>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">digitize</span></code></dt><dd><p>Macht aus der Anwendung eine Digitalisierungsanwendung. Dies erlaubt das Erstellen und Editieren von vordefinierten
+Digitalisierungslayern. Sowohl Geometrien als auch Attribute können hier editiert werden. Um das digitize-Modul zu verwenden,
+muss sowohl der Wert <cite>true</cite> angegeben werden, als auch mindestens ein Digitalisierungslayer unter <a class="reference internal" href="#digitizeconfig">digitizeConfig</a>
+konfiguriert werden. Standardwert: <cite>false</cite>.</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="componentpositions">
+<h2>componentPositions<a class="headerlink" href="#componentpositions" title="Link to this heading"></a></h2>
+<p>In diesem Abschnitt können die in der Kartenanwendung als Buttons sichtbaren Element wie z.B. der <cite>homeButton</cite> positioniert werden.</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Die Angabe der Position sollte in <cite>em</cite> erfolgen, da die in der Anwendung verwendeten Default-Werte ebenfalls in <cite>em</cite> angegeben sind. Siehe <a class="reference external" href="https://wiki.selfhtml.org/wiki/CSS/Wertetypen/Zahlen,_Ma%C3%9Fe_und_Ma%C3%9Feinheiten/em">em-Einheit</a></p>
+</div>
+<p>Der Abschnitt unterteilt sich in die Bereiche <cite>mobile</cite> und <cite>desktop</cite> da die Elemente Mobil andere Positionen haben müssen als in der Desktop Variante.</p>
+<p>Für jedes Element kann der <cite>top</cite>- sowie der <cite>left</cite>-Wert überschrieben werden.</p>
+<p>Im Folgenden sind die positionierbaren Elemente sowie deren <cite>mobile</cite>- und <cite>desktop</cite>-Standardpositionen aufgeführt.</p>
+<blockquote>
+<div><dl class="simple">
+<dt><cite>desktop</cite></dt><dd><dl class="simple">
+<dt><cite>menuButton</cite></dt><dd><ul class="simple">
+<li><p>top: 0.5em</p></li>
+<li><p>left: 0.5em</p></li>
+</ul>
+</dd>
+<dt><cite>zoomButtons</cite></dt><dd><ul class="simple">
+<li><p>top: 2.7em</p></li>
+<li><p>left: 0.5em</p></li>
+</ul>
+</dd>
+<dt><cite>geolocationButton</cite></dt><dd><ul class="simple">
+<li><p>top: 6.5em</p></li>
+<li><p>left: 0.5em</p></li>
+</ul>
+</dd>
+<dt><cite>homeButton</cite></dt><dd><ul class="simple">
+<li><p>top: 8.5em</p></li>
+<li><p>left: 0.5em</p></li>
+</ul>
+</dd>
+<dt><cite>serviceButton</cite></dt><dd><ul class="simple">
+<li><p>top: 10.5em</p></li>
+<li><p>left: 0.5em</p></li>
+</ul>
+</dd>
+<dt><cite>serviceMenu</cite></dt><dd><ul class="simple">
+<li><p>top: 10.5em</p></li>
+<li><p>left: 3.5em</p></li>
+</ul>
+</dd>
+<dt><cite>rotationButton</cite></dt><dd><ul class="simple">
+<li><p>top: 12.5em</p></li>
+<li><p>left: 0.5em</p></li>
+</ul>
+</dd>
+<dt><cite>endMeasureButton</cite></dt><dd><ul class="simple">
+<li><p>top: 17.0em</p></li>
+<li><p>left: 4.0em</p></li>
+</ul>
+</dd>
+<dt><cite>pointMeasureResult</cite></dt><dd><ul class="simple">
+<li><p>top: 14.5em</p></li>
+<li><p>left: 3.5em</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt><cite>mobile</cite></dt><dd><dl class="simple">
+<dt><cite>menuButton</cite></dt><dd><ul class="simple">
+<li><p>top: 0.5em</p></li>
+<li><p>left: 0.5em</p></li>
+</ul>
+</dd>
+<dt><cite>zoomButtons</cite></dt><dd><ul class="simple">
+<li><p>top: 3.2em</p></li>
+<li><p>left: 0.5em</p></li>
+</ul>
+</dd>
+<dt><cite>geolocationButton</cite></dt><dd><ul class="simple">
+<li><p>top: 8.1em</p></li>
+<li><p>left: 0.5em</p></li>
+</ul>
+</dd>
+<dt><cite>homeButton</cite></dt><dd><ul class="simple">
+<li><p>top: 10.8em</p></li>
+<li><p>left: 0.5em</p></li>
+</ul>
+</dd>
+<dt><cite>serviceButton</cite></dt><dd><ul class="simple">
+<li><p>top: 13.5em</p></li>
+<li><p>left: 0.5em</p></li>
+</ul>
+</dd>
+<dt><cite>serviceMenu</cite></dt><dd><ul class="simple">
+<li><p>top: 13.5em</p></li>
+<li><p>left: 3.5em</p></li>
+</ul>
+</dd>
+<dt><cite>rotationButton</cite></dt><dd><ul class="simple">
+<li><p>top: 16.2em</p></li>
+<li><p>left: 0.5em</p></li>
+</ul>
+</dd>
+<dt><cite>endMeasureButton</cite></dt><dd><ul class="simple">
+<li><p>top: 17.0em</p></li>
+<li><p>left: 4.0em</p></li>
+</ul>
+</dd>
+<dt><cite>pointMeasureResult</cite></dt><dd><ul class="simple">
+<li><p>top: 14.5em</p></li>
+<li><p>left: 3.5em</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<p>Beispielhafte Positionierung des <cite>homeButton</cite>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">componentPositions</span><span class="p">:</span>
+  <span class="n">desktop</span><span class="p">:</span>
+    <span class="n">menuButton</span><span class="p">:</span>
+      <span class="n">top</span><span class="p">:</span> <span class="mi">1</span><span class="n">em</span>
+      <span class="n">left</span><span class="p">:</span> <span class="mi">1</span><span class="n">em</span>
+  <span class="n">mobile</span><span class="p">:</span>
+    <span class="n">menuButton</span><span class="p">:</span>
+      <span class="n">top</span><span class="p">:</span> <span class="mf">1.5</span><span class="n">em</span>
+      <span class="n">left</span><span class="p">:</span> <span class="mf">0.5</span><span class="n">em</span>
+</pre></div>
+</div>
+</section>
+<section id="communication">
+<span id="defaultconf-communication"></span><h2>communication<a class="headerlink" href="#communication" title="Link to this heading"></a></h2>
+<p>In diesem Abschnitt werden die Konfigurationen der PostMessage Schnittstelle mitsamt der Referenzierung der JavaScript
+Plugins vorgestellt.</p>
+<p>Munimap stellt eine Schnittstelle bereit, die mittels <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage">PostMessage</a>
+erlaubt, gewisse Teile der Anwendung von einer aufrufenden Anwendung heraus, zu steuern. Dies kann bspw. nützlich sein,
+wenn Munimap als IFrame in eine andere Anwendung eingebunden wurde, und diese Anwendung auf Ereignisse innerhalb von Munimap
+reagieren möchte.</p>
+<p>Folgende Konfigurationsoptionen werden unterstützt:</p>
+<blockquote>
+<div><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">allowedUrls</span></code></dt><dd><p>Liste von Urls die mittels PostMessage kommunizieren dürfen. Dabei folgt der Url-Abgleich anhand der Origins, wonach
+das Protokoll, die Domain und der Port der Url übereinstimmen müssen. Weitere Angaben zur Url (bspw. <code class="docutils literal notranslate"><span class="pre">/foo?bar=baz</span></code>)
+sind nicht zulässig. Diese Konfiguration ist verpflichtend.</p>
+<p>Beispiel:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">communication</span><span class="p">:</span>
+  <span class="n">allowedUrls</span><span class="p">:</span>
+    <span class="o">-</span> <span class="s1">&#39;http://www.foo.bar&#39;</span>
+    <span class="o">-</span> <span class="s1">&#39;http://www.foo.bar:80&#39;</span>
+    <span class="o">-</span> <span class="s1">&#39;https://www.foo.bar&#39;</span>
+    <span class="o">-</span> <span class="s1">&#39;https://www.foo.bar:443&#39;</span>
+    <span class="o">-</span> <span class="s1">&#39;https://www.foo.bar:8080&#39;</span>
+</pre></div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">plugins</span></code></dt><dd><p>Liste der JavaScript Plugins, die auf die erhaltenen PostMessage Events reagieren sollen. Die Referenz
+wird über den Namen des JavaScript Plugins hergestellt. Eine genaue Beschreibung zum Erstellen dieser Plugins
+findet sich unter <a class="reference internal" href="javascript-plugins.html#javascript-plugins"><span class="std std-ref">JavaScript Plugins</span></a>. Sollten mehrere Plugins auf das gleiche
+PostMessage-Event hören, wird ausschließlich das zuletzt registrierte Plugin für das jeweilige Event ausgeführt.</p>
+<p>Beispiel:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">communication</span><span class="p">:</span>
+  <span class="n">allowedUrls</span><span class="p">:</span>
+    <span class="o">-</span> <span class="s1">&#39;http://www.foo.bar&#39;</span>
+  <span class="n">plugins</span><span class="p">:</span>
+    <span class="o">-</span> <span class="s1">&#39;zoomToBbox&#39;</span> <span class="c1"># Referenziert JavaScript Plugin mit dem Namen &#39;zoomToBbox&#39;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="overviewmapconfig">
+<h2>overviewmapConfig<a class="headerlink" href="#overviewmapconfig" title="Link to this heading"></a></h2>
+<p>In diesem Abschnitt werden die Konfigurationen des OverviewMap-Moduls vorgestellt.</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">layerName</span></code></dt><dd><p>Name des Layers, der in der OverviewMap dargestellt werden soll.
+Wird kein Layer angegeben, werden alle in der Karte sichtbaren Layer verwendet.
+Wichtig: Der angegebene Layer muss als Backgroundlayer in der Anwendung vorhanden sein.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">collapsed</span></code></dt><dd><p>Legt fest, ob die OverviewMap bei Start der Anwendung eingeklappt ist oder nicht. Mögliche Werte sind <cite>true</cite> und <cite>false</cite>. Standardwert <cite>true</cite>.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>Beispiel:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">overviewmapConfig</span><span class="p">:</span>
+  <span class="n">layerName</span><span class="p">:</span> <span class="s1">&#39;mein-background-layer-name&#39;</span>
+  <span class="n">collapsed</span><span class="p">:</span> <span class="n">false</span>
+</pre></div>
+</div>
+</section>
+<section id="printconfig">
+<h2>printConfig<a class="headerlink" href="#printconfig" title="Link to this heading"></a></h2>
+<p>In diesem Abschnitt werden die Konfigurationen des Druck-Moduls vorgestellt.</p>
+<blockquote>
+<div><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">chooseCells</span></code></dt><dd><p>Erlaubt dem Benutzer die Gittergröße anzugeben.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">chooseStreetIndex</span></code></dt><dd><p>Erlaubt dem Benutzer, wahlweise einen Straßenindex mit zu exportieren.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">downloadPrefix</span></code></dt><dd><p>Text der dem Dateinamen des Resultats vorangestellt werden soll.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pageResize</span></code></dt><dd><p>Ändern der Größe des Druckbereichs in der Karte erlauben. Standardwert <cite>false</cite>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">outputFormats</span></code></dt><dd><p>Definiert die Liste mit Ausgabeformaten des Kartenbildes, die vom Benutzer ausgewählt werden können. Es können folgende Parameter angegeben werden:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">label</span></code></dt><dd><p>Angezeigter Name des Ausgabeformats in der Auswahlliste</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">value</span></code></dt><dd><p>Dateiendung des Ausgabeformats. Z.B. <cite>png</cite></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">mimetype</span></code></dt><dd><p>Internet Media Type des Ausgabeformates. Siehe <a class="reference external" href="https://wiki.selfhtml.org/wiki/Referenz:MIME-Typen">MIME-Typen</a></p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<p>Beispiel:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  outputFormats: [
+      {
+          &#39;label&#39;: &#39;PDF&#39;,
+          &#39;value&#39;: &#39;pdf&#39;,
+          &#39;fileEnding&#39;: &#39;pdf&#39;,
+          &#39;mimetype&#39;: &#39;application/pdf&#39;
+      },
+      {
+          &#39;label&#39;: &#39;PNG&#39;,
+          &#39;value&#39;: &#39;png&#39;,
+          &#39;fileEnding&#39;: &#39;png&#39;,
+          &#39;mimetype&#39;: &#39;image/png&#39;
+      }
+  ]
+
+``defaultScale``
+  Anfänglich ausgewählter Maßstab. Dieser muss in `availableScales` definiert worden sein.
+
+``availableScales``
+  Liste mit Maßstäben, in denen die Karte exportiert werden kann.
+
+``pageLayouts``
+  Liste von Seitenformaten, die dem Benutzer für den Export zur Verfügung stehen sollen. Seitenformate müssen im Abschnitt `availablePageLayouts` konfiguriert worden sein.
+</pre></div>
+</div>
+<section id="availablepagelayouts">
+<h3><code class="docutils literal notranslate"><span class="pre">availablePageLayouts</span></code><a class="headerlink" href="#availablepagelayouts" title="Link to this heading"></a></h3>
+<p>Definitionen der verfügbaren Seitengrößen für den Export. Anzugeben mit <cite>name</cite>: <cite>pageLayout</cite>. Der <cite>name</cite> eines <cite>pageLayouts</cite> muss der Definition in der <cite>mapfish.yaml</cite> entsprechen, wobei im <cite>name</cite> vorkommende <cite>-</cite> Zeichen durch <cite>_</cite> ersetzt werden.</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">label</span></code></dt><dd><p>Angezeigter Name des Seitenformats.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">icon</span></code></dt><dd><p>Icon, die für das Seitenformat angezeigt werden soll. Hierbei ist <cite>glyphicon-resize-vertical</cite> für Hochformate und <cite>glyphicon-resize-horizontal</cite> für Querformate zu wählen. Im Prinzip können aber alle <a class="reference external" href="http://getbootstrap.com/components/#glyphicons">Bootstrap Glyphicons</a> verwendet werden.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">mapSize</span></code></dt><dd><p>Breite und Höhe der Karte, die in das exportierte Dokument eingebettet wird. Entspricht den Werten für <cite>height</cite> und <cite>width</cite> im jeweiligen <cite>mapConfig</cite> Block der <cite>mapfish.yaml</cite>. Angabe in Pixel als liste.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>Beispiel:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">availablePageLayouts</span><span class="p">:</span>
+  <span class="s2">&quot;a0-portrait&quot;</span><span class="p">:</span>
+      <span class="n">label</span><span class="p">:</span> <span class="n">A0</span>
+      <span class="n">icon</span><span class="p">:</span> <span class="s2">&quot;glyphicon-resize-vertical&quot;</span>
+      <span class="n">mapSize</span><span class="p">:</span> <span class="p">[</span><span class="mi">2344</span><span class="p">,</span> <span class="mi">3310</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="geolocationconfig">
+<h2>geolocationConfig<a class="headerlink" href="#geolocationconfig" title="Link to this heading"></a></h2>
+<p>In diesem Abschnitt werden die Konfigurationen des Geolocation-Moduls vorgestellt.</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">tracking</span></code></dt><dd><p>Fragt die aktuelle Geoposition des Anwenders beim Aufruf der Anwendung ab und zentriert die Karte auf diese. Mögliche Werte sind <cite>True</cite> und <cite>False</cite>. Standard ist <cite>True</cite>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">zoom</span></code></dt><dd><p>Detailstufe, die nach erfolgreicher Ermittlung der Geoposition eingestellt wird. Ist <cite>zoom</cite> nicht angegeben, erfolgt keine Veränderung der Detailstufe.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">resultVisible</span></code></dt><dd><p>Zeit in Millisekunden, nach der der Ergebnismarker automatisch verschwindet. Wenn 0 angegeben wird, verschwindet der Marker erst durch Anklicken. Der Standardwert beträgt 5000 Millisekunden.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">resultMarker</span></code></dt><dd><p>Darstellungsoptionen des Ergebnismarkers. Mit <cite>graphicFile</cite> kann die zu verwendende Grafik angegeben werden. Außerdem stehen die Optionen <cite>graphicWidth</cite>, <cite>graphicHeight</cite>, <cite>graphicYAnchor</cite> und <cite>graphicScale</cite> zur Verfügung. Eine genauere Beschreibung dieser Optionen finden Sie unter <a class="reference internal" href="layers-config.html#style"><span class="std std-ref">Style</span></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">style</span></code></dt><dd><p>Darstellungsoptionen für den Abweichungsbereich der ermittelten Position. Es können alle Flächen- und Linienoptionen verwendet werden, die unter <a class="reference internal" href="layers-config.html#style"><span class="std std-ref">Style</span></a> beschrieben sind.</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="searchconfig">
+<h2>searchConfig<a class="headerlink" href="#searchconfig" title="Link to this heading"></a></h2>
+<p>In diesem Abschnitt werden die Konfigurationen des Such-Moduls vorgestellt.</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">selected</span></code></dt><dd><p>Definiert die Standardsuche. Wenn mehrere Suchen definiert sind, wird diese als erste, aktive Suche verwendet. Werte <cite>true</cite> oder <cite>false</cite>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">zoom</span></code></dt><dd><p>Detailstufe, die nach Auswahl eines Ergebnisses eingestellt wird. Ist <cite>zoom</cite> nicht angegeben, erfolgt keine Veränderung der Detailstufe.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">geocoder</span></code></dt><dd><p>Zu verwendender Geocoder. Eine Liste der zur Verfügung stehenden Geocoder finden Sie im Abschnitt <a class="reference internal" href="#geocoder">Geocoder</a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">geocoderOptions</span></code></dt><dd><p>Spezifische Optionen des ausgewählten Geocoders. Welche Optionen der ausgewählte Geocoder benötigt bzw. bereitstellt finden Sie im Abschnitt <a class="reference internal" href="#geocoder">Geocoder</a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">resultMarkerVisible</span></code></dt><dd><p>Zeit in Millisekunden, nach der der Ergebnismarker automatisch verschwindet. Wenn 0 angegeben wird, verschwindet der Marker erst durch Anklicken. Der Standardwert beträgt 5000 Millisekunden.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">resultMarker</span></code></dt><dd><p>Darstellungsoptionen des Ergebnismarkers. Mit <cite>graphicFile</cite> kann die zu verwendende Grafik angegeben werden. Außerdem stehen die Optionen <cite>graphicWidth</cite>, <cite>graphicHeight</cite>, <cite>graphicYAnchor</cite> und <cite>graphicScale</cite> zur Verfügung. Eine genauere Beschreibung dieser Optionen finden Sie unter <a class="reference internal" href="layers-config.html#style"><span class="std std-ref">Style</span></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">urlMarkerColor</span></code></dt><dd><p>Definiert die Farbe, mit der die Url-Marker Definition der Url hinzugefügt wird. Die Farbdefinition wird als Hex-Wert ohne führendes <cite>#</cite> angegeben. Weitere Informationen zur Konfiguration der Url-Marker finden sich im Abschnitt <a class="reference internal" href="#url-marker-config"><span class="std std-ref">Url-Marker Konfiguration</span></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">autoSearchChars</span></code></dt><dd><p>Definiert ab welchem Buchstaben die Autovervollständigung der Suche aktiviert wird. Wir der Wert auf 0 gesetzt, findet keine Autovervollständigung statt.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">availableInSearchBox</span></code></dt><dd><p>Wenn der Wert auf <cite>false</cite> gesetzt wird, ist die Konfiguration in der Suchbox nicht verfügbar. Default <cite>true</cite>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">availableInUrlGeocode</span></code></dt><dd><p>Wenn der Wert auf <cite>true</cite> gesetzt wird, ist die Konfiguration über das URL-Geocode verfügbar. Default <cite>false</cite>.</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="digitizeconfig">
+<h2>digitizeConfig<a class="headerlink" href="#digitizeconfig" title="Link to this heading"></a></h2>
+<p>In diesem Abschnitt werden die Konfigurationen des Digitize-Moduls vorgestellt.</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">layers</span></code></dt><dd><p>Eine Liste der Namen der für die Anwendung bereitzustellenden Digitalisierungslayer. Diese Layer können in der Anwendung editiert werden.
+Es sind ausschließlich Layer des Typs <cite>digitize</cite> erlaubt. Siehe dazu auch <a class="reference internal" href="layers-config.html#digitizesource"><span class="std std-ref">digitize</span></a>. Aktuell
+wird das Editieren von genau einem Digitalisierungslayer unterstützt. Dieser Wert ist verpflichtend, wenn <cite>components.digitize: True</cite> ist.</p>
+</dd>
+</dl>
+</div></blockquote>
+<section id="geocoder">
+<h3>Geocoder<a class="headerlink" href="#geocoder" title="Link to this heading"></a></h3>
+<p>Für die Suche nach Orten werden folgende Geocoder unterstützt</p>
+<section id="nominatim">
+<h4>Nominatim<a class="headerlink" href="#nominatim" title="Link to this heading"></a></h4>
+<p>Suche nach Orten über OpenStreetMap Daten. Siehe <a class="reference external" href="http://wiki.openstreetmap.org/wiki/DE:Nominatim">Nominatim</a>.</p>
+<section id="geocoderoptions">
+<h5><code class="docutils literal notranslate"><span class="pre">geocoderOptions</span></code><a class="headerlink" href="#geocoderoptions" title="Link to this heading"></a></h5>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">viewbox</span></code></dt><dd><p>Bereich, in dem gesucht werden soll. Koordinatenangabe in EPSG:4326</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">url</span></code></dt><dd><p>Url zum Geocoder.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">method</span></code></dt><dd><p>Anfrage-Methode des HTTP-Requests. Muss auf <cite>post</cite> stehen.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">key</span></code></dt><dd><p>API-Key, wenn vorhanden.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">limit</span></code></dt><dd><p>Anzahl zurückgelieferter Ergebnisse</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+</section>
+<section id="solr">
+<h4>Solr<a class="headerlink" href="#solr" title="Link to this heading"></a></h4>
+<p>Suche nach Orten über Apache Solr.</p>
+<section id="id2">
+<h5><code class="docutils literal notranslate"><span class="pre">geocoderOptions</span></code><a class="headerlink" href="#id2" title="Link to this heading"></a></h5>
+<blockquote>
+<div><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">url</span></code></dt><dd><p>Url zum Geocoder.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">method</span></code></dt><dd><p>Anfrage-Methode des HTTP-Requests. Muss auf <cite>post</cite> stehen.</p>
+<p>Beispiel:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">adress_search</span>
+  <span class="n">title</span><span class="p">:</span> <span class="n">Adresse</span>
+  <span class="n">availableInUrlGeocode</span><span class="p">:</span> <span class="n">true</span>
+  <span class="n">availableInSearchBox</span><span class="p">:</span> <span class="n">false</span>
+  <span class="n">geocoder</span><span class="p">:</span> <span class="n">Solr</span>
+  <span class="n">selected</span><span class="p">:</span> <span class="n">true</span>
+  <span class="n">geocoderOptions</span><span class="p">:</span>
+      <span class="n">viewbox</span><span class="p">:</span>
+          <span class="o">-</span> <span class="mf">8.34154267980772</span>
+          <span class="o">-</span> <span class="mf">51.905836372029</span>
+          <span class="o">-</span> <span class="mf">8.72247497339103</span>
+          <span class="o">-</span> <span class="mf">52.1276204795065</span>
+      <span class="n">url</span><span class="p">:</span> <span class="s2">&quot;/search/?maxresults=20&quot;</span>
+      <span class="n">method</span><span class="p">:</span> <span class="n">get</span>
+  <span class="n">zoom</span><span class="p">:</span> <span class="mi">14</span>
+  <span class="n">resultMarkerVisible</span><span class="p">:</span> <span class="mi">0</span>
+  <span class="n">urlMarkerColor</span><span class="p">:</span> <span class="n">E2001A</span>
+  <span class="n">autoSearchChars</span><span class="p">:</span> <span class="mi">3</span>
+  <span class="n">resultMarker</span><span class="p">:</span>
+      <span class="n">graphicFile</span><span class="p">:</span> <span class="s1">&#39;geocoder-marker.svg&#39;</span>
+      <span class="n">graphicWidth</span><span class="p">:</span> <span class="mi">32</span>
+      <span class="n">graphicHeight</span><span class="p">:</span> <span class="mi">50</span>
+      <span class="n">graphicYAnchor</span><span class="p">:</span> <span class="mi">50</span>
+      <span class="n">graphicScale</span><span class="p">:</span> <span class="mf">0.75</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+</section>
+<section id="catalog">
+<h4>Catalog<a class="headerlink" href="#catalog" title="Link to this heading"></a></h4>
+<p>Suche nach Orten über den Kunden eigenen Catalog-Dienst.</p>
+<section id="id3">
+<h5><code class="docutils literal notranslate"><span class="pre">geocoderOptions</span></code><a class="headerlink" href="#id3" title="Link to this heading"></a></h5>
+<blockquote>
+<div><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">url</span></code></dt><dd><p>Url zum Geocoder.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">method</span></code></dt><dd><p>Anfrage-Methode des HTTP-Requests. Muss auf <cite>post</cite> stehen.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">steps</span></code></dt><dd><p>Angabe einer Liste, welche Schritte nach und nach angefragt werden sollen.</p>
+<p>Beispiel:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">flr_search_catalog</span>
+  <span class="n">title</span><span class="p">:</span> <span class="n">Katalog</span><span class="o">-</span><span class="n">Suche</span> <span class="n">Flurstück</span>
+  <span class="n">geocoder</span><span class="p">:</span> <span class="n">Catalog</span>
+  <span class="n">selected</span><span class="p">:</span> <span class="n">false</span>
+  <span class="n">geocoderOptions</span><span class="p">:</span>
+      <span class="n">steps</span><span class="p">:</span>
+        <span class="o">-</span> <span class="n">getgemarkungen</span>
+        <span class="o">-</span> <span class="n">getflure</span>
+        <span class="o">-</span> <span class="n">getflurstuecke</span>
+      <span class="n">viewbox</span><span class="p">:</span>
+        <span class="o">-</span> <span class="mf">8.34154267980772</span>
+        <span class="o">-</span> <span class="mf">51.905836372029</span>
+        <span class="o">-</span> <span class="mf">8.72247497339103</span>
+        <span class="o">-</span> <span class="mf">52.1276204795065</span>
+      <span class="n">url</span><span class="p">:</span> <span class="s2">&quot;/search/&quot;</span>
+      <span class="n">method</span><span class="p">:</span> <span class="n">get</span>
+  <span class="n">zoom</span><span class="p">:</span> <span class="mi">14</span>
+  <span class="n">resultMarkerVisible</span><span class="p">:</span> <span class="mi">0</span>
+  <span class="n">urlMarkerColor</span><span class="p">:</span> <span class="n">E2001A</span>
+  <span class="n">autoSearchChars</span><span class="p">:</span> <span class="mi">1</span>
+  <span class="n">resultMarker</span><span class="p">:</span>
+      <span class="n">graphicFile</span><span class="p">:</span> <span class="s1">&#39;geocoder-marker.svg&#39;</span>
+      <span class="n">graphicWidth</span><span class="p">:</span> <span class="mi">32</span>
+      <span class="n">graphicHeight</span><span class="p">:</span> <span class="mi">50</span>
+      <span class="n">graphicYAnchor</span><span class="p">:</span> <span class="mi">50</span>
+      <span class="n">graphicScale</span><span class="p">:</span> <span class="mf">0.75</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+</section>
+</section>
+</section>
+<section id="url-marker">
+<h2>Url Marker<a class="headerlink" href="#url-marker" title="Link to this heading"></a></h2>
+<p>Es ist möglich Marker oder sichtbare BBOXen über die Url der Kartenanwendung hinzuzufügen. Dazu muss an die Url zur Anwendung <cite>#?marker=</cite> angehängt werden. Für jeden in der Url definierten Marker ist eine der beiden Eigenschaften <cite>coord</cite> oder <cite>bbox</cite> anzugeben. Optional können zur Option <cite>coord</cite> noch <cite>color</cite> und <cite>label</cite> angegeben werden. Die Optionen <cite>srs</cite> und <cite>fit</cite> können sowohl zu <cite>coord</cite>, als auch zu <cite>bbox</cite> angegeben werden.</p>
+<p>Beispiel Urls:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="o">/</span><span class="n">stadtplan</span><span class="o">/</span><span class="c1">#?marker=color:ff0000|label:foo|coord:8.53,52.01|srs:4326</span>
+<span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="o">/</span><span class="n">stadtplan</span><span class="o">/</span><span class="c1">#?marker=bbox:467157,5768602,467295,5768668|srs:25832|fit:true</span>
+</pre></div>
+</div>
+<p>Nachfolgend werden die einzelnen Url Parameter erläutert:</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">coord</span></code></dt><dd><p>Koordinate des Markers</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">bbox</span></code></dt><dd><p>Ausdehnung der anzuzeigenden BBOX in dem Format &lt;x-min&gt;,&lt;y-min&gt;,&lt;x-max&gt;,&lt;y-max&gt;</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">color</span></code></dt><dd><p>Farbe des Markers</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">label</span></code></dt><dd><p>Beschriftung des Markers</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">srs</span></code></dt><dd><p>Koordinatensystem der Koordinaten. Kann ausgelassen werden, wenn die Koordinate im <cite>defaultSrs</cite>, welches über die App-Konfiguration festgelegt werden kann, vorliegt.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">fit</span></code></dt><dd><p>Wenn diese Option auf <cite>true</cite> gesetzt wird, wird die Karte beim initialen Aufrufen auf den Marker gezoomt. Diese Option wird danach aus der URL entfernt.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>Es ist möglich mehrere Marker in der Karte über die Url zu platzieren. Hierzu werden einfach weitere <cite>marker</cite> in die Url geschrieben.</p>
+<p>Beispiel für Url mit mehreren Markern:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="o">/</span><span class="n">stadtplan</span><span class="o">/</span><span class="c1">#?marker=color:ff0000|label:foo|coord:8.53,52.01&amp;marker=color:0000ff|label:bar|coord:468152,5764386|srs:25832</span>
+</pre></div>
+</div>
+<p>Für das <code class="docutils literal notranslate"><span class="pre">label</span></code> stehen folgende Formatierungen zur Verfügung:</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">[b]Text[/b]</span></code></dt><dd><p>Text wird fett</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">[i]Text[/i]</span></code></dt><dd><p>Text wird kursiv</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">[u]Text[/u]</span></code></dt><dd><p>Text wird unterstrichen</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Text[br]Text</span></code></dt><dd><p>Fügt einen Zeilenumbruch ein</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>Alle Formatierungen sind kombinierbar, so führt <code class="docutils literal notranslate"><span class="pre">[b][i][u]Text[/u][/i][/b]</span></code> zu fetten, kursiven, unterstrichen Text.</p>
+<section id="konfiguration">
+<span id="url-marker-config"></span><h3>Konfiguration<a class="headerlink" href="#konfiguration" title="Link to this heading"></a></h3>
+<p>In diesem Abschnitt werden die Konfigurationen des UrlMarkers-Moduls vorgestellt.</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">defaultSrs</span></code></dt><dd><p>Definiert das Default-Koordinatensystem, in dem Marker-Koordinaten in der Url angegeben werden können. Liegen die Koordinaten in diesem System vor benötigt der Marker in der Url keinen <cite>srs</cite>-Parameter</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">propertiesDelimiter</span></code></dt><dd><p>Definiert das Trennzeichen zwischen den einzelnen Eigenschaften eines Markers. Defaultwert ist <cite>|</cite></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">keyValueDelimiter</span></code></dt><dd><p>Definiert das Trennzeichen zwischen Schlüssel und Wert einer Eigenschaft. Defaultwert ist <cite>:</cite></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">markerStyle</span></code></dt><dd><p>Darstellungsoptionen des Markers oder der BBOX. Mit <cite>graphicFile</cite> kann die zu verwendende Grafik angegeben werden. Damit das Einfärben des Markers über den Url-Parameter <cite>color</cite> funktioniert, muss es ein weißer (#ffffff) Marker sein. Sollte kein Popup für die Beschriftung des Markers verwendet werden, wird ein Label hinzugefügt. Dieses kann über die <cite>font</cite>-Optionen im Style angepasst werden. Eine genauere Beschreibung dieser Optionen finden Sie unter <a class="reference internal" href="layers-config.html#style"><span class="std std-ref">Style</span></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">usePopup</span></code></dt><dd><p>Definiert, ob ein Popup für die Darstellung des Marker-Labels verwendet werden soll. Wird kein Popup verwendet wird ein normaler Text zu dem Marker angezeigt. Das Aussehen des Textes kann über die <cite>font</cite>-Optionen im Style angepasst werden.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">popupOffset</span></code></dt><dd><p>Definiert den Offset des Popups zum Marker und ist als Liste anzugeben. Der erste Wert definiert den Offset in X-Richtung, der zweite Wert definiert den Offset in Y-Richtung</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+</section>
+<section id="alkis-informationen">
+<span id="alkis-information"></span><h2>ALKIS Informationen<a class="headerlink" href="#alkis-informationen" title="Link to this heading"></a></h2>
+<section id="benutzerberechtigung">
+<h3>Benutzerberechtigung<a class="headerlink" href="#benutzerberechtigung" title="Link to this heading"></a></h3>
+<p>Sind die ALKIS-Module simple, selection und pdf in einer App aktiviert, werden diese auch immer angezeigt und liefern grundsätzlich eine Auskunft ohne Eigentümer (Die Benutzer müssen nicht in der Gruppe ALKIS_OHNE_EIGENTUEMER sein). Zum Anfordern des Tokens soll hier immer der Benutzer guest verwendet werden.</p>
+<p>Ist der Benutzer in der Gruppe ALKIS_EIGENTUEMER eingetragen, liefern diese ALKIS-Module eine Auskunft mit Eigentümer.</p>
+<p>Ist das ALKIS-Modul official in einer App aktiviert, steht dieses jedoch nur zur Verfügung bzw. ist sichtbar, wenn der Benutzer in der Gruppe ALKIS_EIGENTUEMER_IBR eingetragen ist.</p>
+</section>
+<section id="berechtigtes-interesse">
+<h3>Berechtigtes Interesse<a class="headerlink" href="#berechtigtes-interesse" title="Link to this heading"></a></h3>
+<p>Manchmal ist es erforderlich, dass der Benutzer bei Verwendung der ALKIS-Module simple, selection und pdf sein berechtigte Interesse dokumentieren muss. Beim Aktivieren wird dafür ein Dialog angezeigt werden.</p>
+<p>Diese Funktionsweise soll jedem Benutzer zur Verfügung stehen, der in der Gruppe ALKIS_BERECHTIGTES_INTERESSE ist.</p>
+<p>Die letzten Eingabewerte des Dialogs zu Firma, Sachbearbeiter und Art des berechtigten Interesses werden im Local Storage des Browser gespeichert und beim Aufruf des Benutzers wieder geladen.</p>
+<p>Sobald von einem Modul „Informationen zum Flurstück“, „Liste der Produkte“ oder „ibR ALKIS-Produkte“ aufgerufen wird, ist ein Logdatensatz in einer Logdatei auf dem Server zu schreiben.</p>
+</section>
+<section id="konfiguration-munimap-conf">
+<h3>Konfiguration munimap.conf<a class="headerlink" href="#konfiguration-munimap-conf" title="Link to this heading"></a></h3>
+<p>Um ALKIS-Dienste nutzen zu können, müssen die IP Syscon ALKIS-Dienste vorliegen. In der munimap.conf Datei müssen die folgenden Parameter belegt werden.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ALKIS_SESSION_URL</span> <span class="o">=</span> <span class="s1">&#39;https://[alkis-session-url]?&#39;</span>
+<span class="n">ALKIS_INFO_URL</span> <span class="o">=</span> <span class="s1">&#39;https://[alkis-info-url]/&#39;</span>
+<span class="n">ALKIS_PDF_URL</span> <span class="o">=</span> <span class="s1">&#39;https://[alkis-pdf-url]?&#39;</span>
+
+<span class="n">ALKIS_BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://[alkis-base-url]&#39;</span>
+<span class="n">ALKIS_OFFICIAL_URL</span> <span class="o">=</span> <span class="s1">&#39;https://[alkis-official-url]?&#39;</span>
+
+<span class="n">ALKIS_GML_WMS</span> <span class="o">=</span> <span class="s1">&#39;[alkis-wms-url]&#39;</span>
+
+<span class="n">ALKIS_LEGITIMATION_GROUP</span> <span class="o">=</span> <span class="s1">&#39;ALKIS_BERECHTIGTES_INTERESSE&#39;</span>
+<span class="n">ALKIS_WITH_OWNER_GROUP</span> <span class="o">=</span> <span class="s1">&#39;ALKIS_EIGENTUEMER&#39;</span>
+<span class="n">ALKIS_WITH_OWNER_OFFICIAL</span> <span class="o">=</span> <span class="s1">&#39;ALKIS_EIGENTUEMER_IBR&#39;</span>
+
+<span class="n">ALKIS_WFS_URL</span> <span class="o">=</span> <span class="s1">&#39;https://[alkis-wfs-url]?&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="kontextmenu">
+<span id="context-menu"></span><h2>Kontextmenü<a class="headerlink" href="#kontextmenu" title="Link to this heading"></a></h2>
+<p>Das Kontextmenü wird ein einem eigenen Template definiert, das über die Konfigurationsoption <cite>contextMenu</cite> gesteuert wird.
+Es wird nur angezeigt, wenn die Komponente aktiviert ist. Für jedes Kontextmenü ist eine eigene JavaScript-Datei (.js)
+anzulegen. Das Kontextmenü wird innerhalb dieser als <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Glossary/IIFE">Immediately Invoked Function Expression (IIFE)</a> definiert.</p>
+<p>Beispiel:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">let</span> <span class="n">contextmenuItems</span> <span class="o">=</span> <span class="p">[{</span>
+      <span class="n">text</span><span class="p">:</span> <span class="s1">&#39;Starte OpenStreetMap&#39;</span><span class="p">,</span>
+      <span class="n">title</span><span class="p">:</span> <span class="s1">&#39;Startet OpenStreetMap an dieser Koordinate&#39;</span><span class="p">,</span>
+      <span class="n">link</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+      <span class="n">callback</span><span class="p">:</span> <span class="n">startOSM</span>
+    <span class="p">}</span>
+  <span class="p">];</span>
+
+  <span class="n">function</span> <span class="n">startOSM</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">let</span> <span class="n">zoom</span> <span class="o">=</span> <span class="n">obj</span><span class="p">[</span><span class="s1">&#39;zoom&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">4</span>
+    <span class="n">let</span> <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.openstreetmap.org/#map=&#39;</span> <span class="o">+</span> <span class="n">zoom</span> <span class="o">+</span>
+      <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">obj</span><span class="p">[</span><span class="s1">&#39;coordinates&#39;</span><span class="p">][</span><span class="s1">&#39;EPSG:4326&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span>
+      <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">obj</span><span class="p">[</span><span class="s1">&#39;coordinates&#39;</span><span class="p">][</span><span class="s1">&#39;EPSG:4326&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">url</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">angular</span><span class="o">.</span><span class="n">module</span><span class="p">(</span><span class="s1">&#39;munimap&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;ContextMenuItems&#39;</span><span class="p">,</span> <span class="n">contextmenuItems</span><span class="p">);</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+</section>
+<section id="geoeditorconfig">
+<h2>geoeditorConfig<a class="headerlink" href="#geoeditorconfig" title="Link to this heading"></a></h2>
+<p>In diesem Abschnitt werden die Konfigurationen des geoEDITOR-Moduls vorgestellt.</p>
+<blockquote>
+<div><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">geometries</span></code></dt><dd><p>Konfiguration der erlaubten Geometrien (<cite>point</cite>, <cite>line</cite>, <cite>poylgon</cite>). Für jeden Geometrietyp können folgende Subattribute konfiguriert werden:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">enabled</span></code></dt><dd><p>Definiert ob eine Geometrie erlaubt ist. Standardwert: <cite>true</cite>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">min</span></code></dt><dd><p>Minimale Anzahl erlaubter Geometrien. Standardwert: <cite>0</cite>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">max</span></code></dt><dd><p>Maximale Anzahl erlaubter Geometrien. Standardwert: unbegrenzt.</p>
+</dd>
+</dl>
+<p>Beispiel:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">geoeditor</span><span class="p">:</span>
+  <span class="n">geometries</span><span class="p">:</span>
+    <span class="n">point</span><span class="p">:</span>
+      <span class="n">enabled</span><span class="p">:</span> <span class="n">true</span>
+      <span class="nb">min</span><span class="p">:</span> <span class="mi">1</span>
+      <span class="nb">max</span><span class="p">:</span> <span class="mi">5</span>
+    <span class="n">line</span><span class="p">:</span>
+      <span class="n">enabled</span><span class="p">:</span> <span class="n">false</span>
+    <span class="n">polygon</span><span class="p">:</span>
+      <span class="nb">max</span><span class="p">:</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">style</span></code></dt><dd><p>Darstellungsoptionen für die verschiedenen Geometrietypen. Es können alle Flächen-, Linien- und Punktoptionen verwendet werden, die unter <a class="reference internal" href="layers-config.html#style"><span class="std std-ref">Style</span></a> beschrieben sind.
+Die hier angegebenen Darstellungsoptionen überschreiben lediglich die Standardwerte für die jeweilige Option, sodass andere Standardwerte weiterhin gelten.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">point</span></code></dt><dd><p>Darstellungsoptionen für Punkte.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">line</span></code></dt><dd><p>Darstellungsoptionen für Linien.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">polygon</span></code></dt><dd><p>Darstellungsoptionen für Polygone.</p>
+</dd>
+</dl>
+<p>Beispiel:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">geoeditor</span><span class="p">:</span>
+  <span class="n">style</span><span class="p">:</span>
+    <span class="n">point</span><span class="p">:</span>
+      <span class="n">radius</span><span class="p">:</span> <span class="mi">30</span>
+    <span class="n">line</span><span class="p">:</span>
+      <span class="n">strokeColor</span><span class="p">:</span> <span class="s1">&#39;green&#39;</span>
+    <span class="n">polygon</span><span class="p">:</span>
+      <span class="n">fillColor</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span>
+</pre></div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">formFields</span></code></dt><dd><p>Liste der Datenfelder und der dazugehörigen Datentypen für die unterschiedlichen Geometrietypen.
+Für jeden Geometrietyp (<code class="docutils literal notranslate"><span class="pre">point</span></code>, <code class="docutils literal notranslate"><span class="pre">line</span></code>, <code class="docutils literal notranslate"><span class="pre">polygon</span></code>) gibt es eine eigene Liste der Datenfelder.
+Folgende Subattribute müssen/können für ein Datenfeld konfiguriert werden:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">name</span></code></dt><dd><p>Der Name des Datenfelds. Dieser muss eindeutig sein und darf nicht mehrfach vergeben werden. Er sollte möglichst keine Leerzeichen und Sonderzeichen außer <code class="docutils literal notranslate"><span class="pre">-</span></code> oder <code class="docutils literal notranslate"><span class="pre">_</span></code> enthalten.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">label</span></code></dt><dd><p>Das Label des Datenfelds. Dies ist der Text, der neben/über dem Eingabefeld erscheint.
+Wenn kein Label angegeben ist, wird der <code class="docutils literal notranslate"><span class="pre">name</span></code> des Feldes verwendet.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">type</span></code></dt><dd><p>Der Datentyp des Datenfelds. Erlaubte Werte sind <cite>„text“</cite> für Texte, <cite>„int“</cite> für ganze Zahlen, <cite>„float“</cite> für Dezimalzahlen,
+<cite>„boolean“</cite> für boolesche Werte, <cite>„date“</cite> für Datumseinträge und <cite>„select“</cite> für Auswahllisten.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">select</span></code></dt><dd><p>Enthält die Auswahllistenkonfiguration. Dieser Wert wird nur berücksichtigt, wenn als <code class="docutils literal notranslate"><span class="pre">type</span></code> <cite>„select“</cite> angegeben wurde.
+Kann entweder eine Liste der verfügbaren Optionen mit den Eigenschaften <code class="docutils literal notranslate"><span class="pre">value</span></code> und <code class="docutils literal notranslate"><span class="pre">label</span></code> oder einen Verweis auf eine ausgelagerte Selektionskonfiguration enthalten.
+Weitere Details dazu sind unter <a class="reference internal" href="selectionlists-config.html#selectionlistconf"><span class="std std-ref">Auswahllisten-Definition</span></a> beschrieben.
+Wenn für eine Option kein <code class="docutils literal notranslate"><span class="pre">label</span></code> angegeben ist, wird der <code class="docutils literal notranslate"><span class="pre">value</span></code> der Option verwendet.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">required</span></code></dt><dd><p>Beschreibt, ob es sich um ein verpflichtendes Feld handelt. Standardwert: <cite>false</cite>.</p>
+</dd>
+</dl>
+<p>Beispiel:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">geoeditor</span><span class="p">:</span>
+  <span class="n">formFields</span><span class="p">:</span>
+    <span class="n">point</span><span class="p">:</span>
+      <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="s2">&quot;mein-textfeld&quot;</span>
+        <span class="n">label</span><span class="p">:</span> <span class="s2">&quot;Mein Textfeld&#39;</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="s2">&quot;text&quot;</span>
+        <span class="n">required</span><span class="p">:</span> <span class="n">true</span>
+      <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="s2">&quot;mein-ganzzahlfeld&quot;</span>
+        <span class="n">label</span><span class="p">:</span> <span class="s2">&quot;Mein Ganzzahlfeld&quot;</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span>
+      <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="s2">&quot;mein-dezimalzahlfeld&quot;</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span>
+      <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="s2">&quot;mein-auswahllistenfeld&quot;</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="s2">&quot;select&quot;</span>
+        <span class="n">select</span><span class="p">:</span>
+          <span class="o">-</span> <span class="n">value</span><span class="p">:</span> <span class="s2">&quot;first&quot;</span>
+            <span class="n">label</span><span class="p">:</span> <span class="s2">&quot;Erste Auswahl&quot;</span>
+          <span class="o">-</span> <span class="n">value</span><span class="p">:</span> <span class="s2">&quot;second&quot;</span>
+            <span class="n">label</span><span class="p">:</span> <span class="s2">&quot;Zweite Auswahl&quot;</span>
+    <span class="n">line</span><span class="p">:</span>
+      <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="s2">&quot;line-feld&quot;</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="s2">&quot;text&quot;</span>
+    <span class="n">polygon</span><span class="p">:</span>
+      <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="s2">&quot;auswahl-referenz&quot;</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="s2">&quot;select&quot;</span>
+        <span class="n">select</span><span class="p">:</span> <span class="s2">&quot;referenzierte_auswahl_konfiguration&quot;</span>
+</pre></div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">allowedUrls</span></code></dt><dd><p>Whitelist der URLs, die die PostMessage Schnittstelle des geoEDITORs verwenden dürfen. Standardwert: Leere Liste oder <code class="docutils literal notranslate"><span class="pre">communication.allowedUrls</span></code>, falls angegeben.</p>
+<p>Beispiel:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">geoeditor</span><span class="p">:</span>
+  <span class="n">allowedUrls</span><span class="p">:</span>
+    <span class="o">-</span> <span class="s2">&quot;www.example.com&quot;</span>
+    <span class="o">-</span> <span class="s2">&quot;www.my-domain.org:8080&quot;</span>
+</pre></div>
+</div>
+<p>Folgende PostMessage Schnittstellen stehen zur Zeit für den geoEDITOR zur Verfügung:</p>
+<blockquote>
+<div><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">finishGeoEditing</span></code></dt><dd><p>Validiert die eingezeichneten Geometrien und Formulareingaben, und gibt die entsprechenden Werte zurück.</p>
+<p>Folgende Eingabeparameter können der Methode angehängt werden:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">srs</span></code></dt><dd><p>Projektion in die das ausgelieferte GeoJSON transformiert wird. Das GeoJSON ist an dieser Stelle nicht mehr
+konform zur Spezifikation, dies muss ggf. in verarbeitender Software beachtet werden. Standardwert: <code class="docutils literal notranslate"><span class="pre">'EPSG:4326'</span></code></p>
+</dd>
+</dl>
+<p>Bei erfolgreicher Validierung antwortet die Schnittstelle mit einem <code class="docutils literal notranslate"><span class="pre">finishGeoEditing_response</span></code> Event, welches
+ein Objekt mit folgenden Attributen zurückliefert:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">success</span></code></dt><dd><p>Der Erfolgsstatus der Schnittstelle. Bei erfolgreicher Validierung ist dieser Wert immer <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">geoJSON</span></code></dt><dd><p>geoJSON Objekt, welches die gezeichneten Geometrien in EPSG:4326 enthält. Die eingetragenen Formulardaten
+sind der jeweiligen Geometrie unter dem Attribut <code class="docutils literal notranslate"><span class="pre">properties</span></code> angehängt. Der Style der jeweiligen
+Geometrie ist unter dem Attribut <code class="docutils literal notranslate"><span class="pre">properties.style</span></code> angehängt.</p>
+</dd>
+</dl>
+<p>Bei erfolgloser Validierung antwortet die Schnittstelle mit einem <code class="docutils literal notranslate"><span class="pre">finishGeoEditing_response</span></code> Event, welches
+ein Objekt mit folgenden Attributen zurückliefert:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">success</span></code></dt><dd><p>Der Erfolgsstatus der Schnittstelle. Bei erfolgloser Validierung ist dieser Wert immer <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">message</span></code></dt><dd><p>Eine Fehlernachricht mit konkreten Informationen, wieso die Methode nicht erfolgreich ausgeführt werden konnte.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">missing</span></code></dt><dd><p>Eine Übersicht über die fehlenden Geometrietypen, falls dies der Grund für die fehlgeschlagene Validierung war.</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">printGeoEditing</span></code></dt><dd><p>Triggert den Druck der gezeichneten Geometrien, falls diese valide sind.</p>
+<p>Folgende Eingabeparameter können der Methode angehängt werden:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">layout</span></code></dt><dd><p>String, der das Layout des Drucks beschreibt. Standardwert: <code class="docutils literal notranslate"><span class="pre">a4-portrait</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">margin</span></code></dt><dd><p>Der Abstand zwischen der äußersten Geometrie und dem Kartenrand. Standardwert: <code class="docutils literal notranslate"><span class="pre">20</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">outputFormat</span></code></dt><dd><p>Das Ausgabeformat des Drucks. Standardwert: <code class="docutils literal notranslate"><span class="pre">pdf</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">minScale</span></code></dt><dd><p>Der minimale Maßstab. Standardwert: <code class="docutils literal notranslate"><span class="pre">100</span></code>.</p>
+</dd>
+</dl>
+<p>Bei erfolgreicher Ausführung antwortet die Schnittstelle mit einem <code class="docutils literal notranslate"><span class="pre">printGeoEditing_response</span></code> Event, welches
+ein Objekt mit folgenden Attributen zurückliefert:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">success</span></code></dt><dd><p>Der Erfolgsstatus der Schnittstelle. Bei erfolgreichem Druck ist dieser Wert immer <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">statusURL</span></code></dt><dd><p>Unter dieser URL kann der Status des Drucks abgefragt werden. Liefert ein JSON Objekt. Wenn dort <code class="docutils literal notranslate"><span class="pre">status</span></code>
+den Wert <code class="docutils literal notranslate"><span class="pre">'finished'</span></code> hat, steht der Druck unter dem Attribut <code class="docutils literal notranslate"><span class="pre">downloadURL</span></code> zu Verfügung.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">downloadUrl</span></code></dt><dd><p>Die Url zum erstellten Dokument. Der Download ist erst fertig, wenn die <code class="docutils literal notranslate"><span class="pre">statusURL`</span> <span class="pre">den</span> <span class="pre">Status</span> <span class="pre">``finished</span></code> zurück gibt.
+Wenn in der App der Print Broker nicht aktiviert ist, wird das <code class="docutils literal notranslate"><span class="pre">printGeoEditing_response</span></code> Event immer
+erst gefeuert, wenn der Druck fertig ist.
+Der Download wird in munimap in einem Verzeichnis für temporäre Daten gespeichert, daher wird empfohlen die Datei
+zu persistieren sobald diese zu Verfügung steht.</p>
+</dd>
+</dl>
+<p>Bei erfolgloser Ausführung antwortet die Schnittstelle mit einem <code class="docutils literal notranslate"><span class="pre">printGeoEditing_response</span></code> Event, welches
+ein Objekt mit folgenden Attributen zurückliefert:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">success</span></code></dt><dd><p>Der Erfolgsstatus der Schnittstelle. Bei erfolglosem Druck ist dieser Wert immer <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">message</span></code></dt><dd><p>Eine Fehlernachricht mit konkreten Informationen, wieso der Druck nicht erfolgreich ausgeführt werden konnte.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">customStyling</span></code></dt><dd><p>Legt fest, ob Anwender die Geometrien eigenständig stylen dürfen. Erlaubte Werte sind <code class="docutils literal notranslate"><span class="pre">true</span></code> und <code class="docutils literal notranslate"><span class="pre">false</span></code>. Standardwert: <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
+<p>Beispiel:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">geoeditor</span><span class="p">:</span>
+  <span class="n">customStyling</span><span class="p">:</span> <span class="n">true</span>
+</pre></div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">displayMeasurements</span></code></dt><dd><p>Legt fest, ob die Echtzeitanzeige für Flächengröße und Linienlänge aktiviert werden soll. Erlaubte Werte sind <code class="docutils literal notranslate"><span class="pre">true</span></code> und <code class="docutils literal notranslate"><span class="pre">false</span></code>. Standardwert <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
+<p>Beispiel:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">geoeditor</span><span class="p">:</span>
+  <span class="n">displayMeasurements</span><span class="p">:</span> <span class="n">true</span>
+</pre></div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">drawTitle</span></code></dt><dd><p>Legt den Titel des Drawers fest.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">modifyLabel</span></code></dt><dd><p>Legt die Beschriftung des ‚Ändern‘-Buttons fest.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">removeLabel</span></code></dt><dd><p>Legt die Beschriftung des ‚Löschen‘-Buttons fest.</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="app.html" class="btn btn-neutral float-left" title="Anwendungen" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="layer.html" class="btn btn-neutral float-right" title="Layer-Definition" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Stadt Bielefeld.
+      <span class="lastupdated">Zuletzt aktualisiert am 2025-10-15.
+      </span></p>
+  </div>
+
+  Erstellt mit <a href="https://www.sphinx-doc.org/">Sphinx</a> mit einem
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    bereitgestellt von <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    Version: 1.8.2
+    <span class="fa fa-caret-down"></span>
+  </span>
+    <div class="rst-other-versions">
+        <dl id="versions-list">
+            <dt>Versionen</dt>
+            <dd><a href="/index.html"></a></dd>
+        </dl>
+    </div>
+    <script>
+        fetch('../config/versions.json')
+            .then(response => {
+                return response.json();
+            })
+            .then(versions => {
+                const list = document.querySelector('#versions-list');
+                for (const version of versions) {
+                    const a = document.createElement('a');
+                    a.href = `https://stadt-bielefeld.github.io/bielefeldGEOCLIENT/${version}/`;
+                    a.textContent = version;
+                    const dd = document.createElement('dd');
+                    dd.append(a);
+                    list.append(dd);
+                }
+            });
+    </script>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
