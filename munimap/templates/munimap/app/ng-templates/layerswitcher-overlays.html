@@ -15,7 +15,7 @@
           </span>
         </div>
         <div class="settings-line">
-           <div anol-transparencysettings group="group" title="{{ group.catalog.title }}"></div>
+           <div anol-transparencysettings group="group"></div>
            <i title="Layer entfernen" class="glyphicon glyphicon-remove float-right pointer" ng-click="removeLayer(group)"></i>
         </div>
       </div> 
@@ -38,7 +38,7 @@
             </span>
           </div>
           <div class="settings-line">
-            <div anol-transparencysettings group="group" title="{{ group.title }}"></div>
+            <div anol-transparencysettings group="group"></div>
             <i title="Gruppe entfernen" class="glyphicon glyphicon-remove pointer" 
                 ng-if="removeLayerEnabled" ng-click="removeLayer(group)"></i>
           </div>
@@ -75,7 +75,7 @@
                 </span>
             </div>
             <div class="settings-line">
-                <div anol-transparencysettings group="group" title="{{ layer.title }}"></div>
+                <div anol-transparencysettings group="group"></div>
                 <i class="glyphicon glyphicon-remove float-right pointer" ng-if="removeLayerEnabled"
                    ng-click="removeLayer(layer)"></i>
             </div>
