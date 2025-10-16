@@ -1,3 +1,10 @@
+## [1.11.2](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.11.1...1.11.2) (2025-10-16)
+
+
+### Bug Fixes
+
+* Benennung der Variable id zu alkis_id korrigiert ([7149b21](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/7149b21e5dcce490eb8662dc9e3bdfd9265966f2))
+
 ## [1.11.1](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.11.0...1.11.1) (2025-10-15)
 
 
