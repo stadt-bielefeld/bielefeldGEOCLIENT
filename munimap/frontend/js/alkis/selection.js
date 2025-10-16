@@ -329,7 +329,7 @@ angular.module('munimapBase.alkisSelection', ['anol.map', 'ngStorage'])
                                     });
                             });
                         } else {
-                            $http.get(url + '/' + id,  {params: legParams})
+                            $http.get(url + '/' + alkis_id,  {params: legParams})
                                 .then(function(response) {
                                     const loc = $window.location;
                                     const appUrl = loc.origin + loc.pathname;
