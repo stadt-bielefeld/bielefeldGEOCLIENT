@@ -65,7 +65,7 @@ def check_permission():
         current_app.config.get('ADMIN_GROUPS')
     )
     if not access_allowed:
-        if LocalProxyRequest.is_xhr:
+        if LocalProxyRequest.headers.get("X-Requested-With") == "XMLHttpRequest":
             return jsonify(message='Not allowed')
         return abort(403)
 

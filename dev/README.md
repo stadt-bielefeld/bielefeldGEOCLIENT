@@ -145,16 +145,12 @@ npm start
     ```
     cd ./bielefeldGEOCLIENT 
     source muni_venv/bin/activate
-    cd dev/
-    export FLASK_APP="manage.py"
     ```
-- `FLASK_DEBUG=1 flask run-munimap`
-  
-By default a configuration file located in the `dev/` folder is used. However you can use a custom file by providing `FLASK_MUNIMAP_CONFIG` environment variable:
-- `FLASK_DEBUG=1 FLASK_APP=manage.py FLASK_MUNIMAP_CONFIG='../path/to/your/custom/config/file.conf' flask run-munimap`
+- `FLASK_APP="munimap.application:create_app()" FLASK_RUN_HOST=0.0.0.0 FLASK_RUN_PORT=5000 flask run`
 
-If you want to use mapfish CLI instead of service and have not configured Java 8 as the default Java Version, you need to set the `JAVA_HOME` environment variable. i.e.:
-- `JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ FLASK_DEBUG=1 FLASK_APP=manage.py flask run-munimap`
+With different config and JAVA_HOME (for mapfish cli) set:
+- `FLASK_MUNIMAP_CONFIG=dev/configs/munimap.conf FLASK_APP="munimap.application:create_app()" JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ FLASK_DEBUG=0 FLASK_RUN_HOST=0.0.0.0 FLASK_RUN_PORT=5000 flask run`
+- `FLASK_MUNIMAP_CONFIG=../munimap-conf/munimap-app/configs/munimap-local-dev.conf FLASK_APP="munimap.application:create_app()" JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ FLASK_DEBUG=0 FLASK_RUN_HOST=0.0.0.0 FLASK_RUN_PORT=5000 flask run`
 
 ## Compile the frontend
 and finally the client (javascript) source can be watched via(ran in the root folder, i.e, bielefeldGEOCLIENT):

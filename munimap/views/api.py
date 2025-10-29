@@ -38,7 +38,7 @@ def check_permission():
 
     access_allowed = access_token == api_access_receive_token
     if not access_allowed:
-        if LocalProxyRequest.is_xhr:
+        if LocalProxyRequest.headers.get("X-Requested-With") == "XMLHttpRequest":
             return jsonify(message='Not allowed')
         return abort(403)
 
