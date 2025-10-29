@@ -37,7 +37,8 @@ dependencies = [
     'alembic==1.13.3',
     'blinker==1.8.2',
     'click==8.1.7',
-    'natsort==8.4.0'
+    'natsort==8.4.0',
+    'requests==2.32.5'
 ]
 classifiers = [
     "License :: OSI Approved :: BSD License",
