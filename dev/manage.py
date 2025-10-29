@@ -1,8 +1,8 @@
 import os
-from scriptine.shell import sh
 from munimap.application import create_app
 from munimap.extensions import db
 import click
+import subprocess
 
 config_file = os.getenv('FLASK_MUNIMAP_CONFIG', './configs/munimap.conf')
 debug = os.getenv('FLASK_DEBUG', '0') == '1'
@@ -12,6 +12,12 @@ port = os.getenv('FLASK_RUN_PORT', 5000)
 
 app = create_app(config_file=config_file)
 cli_manager = app.cli
+
+
+def sh(cmd):
+    result = subprocess.run(cmd, shell=True, check=True)
+    return result
+
 
 @cli_manager.command()
 def run_munimap():

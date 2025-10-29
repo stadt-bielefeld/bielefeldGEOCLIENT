@@ -151,9 +151,6 @@ COPY --from=builder /pkg/dist/munimap-*.whl /opt/pkgs
 
 RUN pip install /opt/pkgs/munimap-*.whl
 
-# Hack to disable https for following script.
-RUN PYTHONHTTPSVERIFY=0 python -c "import hyphen.dictools; hyphen.dictools.is_installed('de_DE') or hyphen.dictools.install('de_DE')"
-
 ENV JAVA_HOME=/usr/lib/jvm/temurin-8-jre-amd64
 
 WORKDIR /opt/etc/munimap

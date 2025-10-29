@@ -21,14 +21,14 @@
 
 The following steps are required once:
 
-* Download mapfish
+### Download mapfish
 
 ```
 cd ../dev/
 wget -q -O- https://repo1.maven.org/maven2/org/mapfish/print/print-cli/3.9.0/print-cli-3.9.0-tar.tar | tar -x -C ./mapfish
 ``` 
 
-* Download geostyler-cli
+### Download geostyler-cli
 
 ```
 wget -q -O /tmp/geostyler-linux.zip https://github.com/geostyler/geostyler-cli/releases/download/v5.0.2/geostyler-linux.zip
@@ -38,7 +38,7 @@ cd geostyler-cli
 unzip /tmp/geostyler-linux.zip
 ```
 
-* Clone and install anol
+### Clone and install anol
 
 ```
 cd ../../
@@ -47,7 +47,7 @@ cd anol/
 npm i --omit=dev
 ```
 
-* Install (and watch) the bielefeldGEOCLIENT frontend
+### Install (and watch) the bielefeldGEOCLIENT frontend
 
 ```
 cd ../bielefeldGEOCLIENT/
@@ -55,7 +55,7 @@ npm i
 npm start
 ```
 
-* Install the munimap backend using a Python 3.9 Virtual Environment
+### Install the munimap backend using a Python 3.13 Virtual Environment
 
   - Open new terminal
   - Install python 3.9 on your system (Assuming debian based linux distro):
@@ -198,6 +198,18 @@ sudo chown -R "$USER" munimap/alembic/versions/*.py
 alembic upgrade head
 ```
 
+
+## Working with the docker container
+
+```bash
+docker compose -f docker/docker-compose.yaml build munimap-app
+```
+
+Running the whole environment in docker (Current code changes might not be reflected).
+
+```bash
+docker compose -f docker/docker-compose.yaml --profile prod up
+```
 
 ## Debugging the application
 
