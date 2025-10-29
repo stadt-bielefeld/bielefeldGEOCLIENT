@@ -4,10 +4,11 @@ from copy import copy
 
 import io
 import collections
+from typing import Union
 
-import hyphen
-import hyphen.dictools
+import pyphen
 
+from reportlab.graphics.barcode.eanbc import words
 from reportlab.pdfgen import canvas
 from reportlab.pdfbase.pdfmetrics import stringWidth
 
@@ -25,13 +26,57 @@ from reportlab.platypus.doctemplate import _doNothing, FrameBreak
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import mm
 
-if not hyphen.dictools.is_installed('de_DE'):
-    hyphen.dictools.install('de_DE')
-hyphenator = hyphen.Hyphenator('de_DE')
-
-
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
+
+dic = pyphen.Pyphen(lang='de_DE')
+
+
+def wrap_hard(text: str, width: int) -> Union[tuple[str, str], None]:
+    wrapped = dic.wrap(text, width)
+    if wrapped is not None:
+        return wrapped
+    if len(text) > width:
+        return text[:width - 1] + '-', text[width - 1:]
+    return None
+
+
+def hyphenator(text: str, line_width: int = 15) -> str:
+    lines = []
+    words = text.replace(r'/\s/gm', ' ').split(' ')
+    current_line = ''
+
+    def add_to_line(line, next_word):
+        if line == '':
+            return next_word
+        else:
+            return line + ' ' + next_word
+
+    for word in words:
+        if len(word) + len(current_line) + 1 <= line_width:
+            # if word fits onto line, add it
+            current_line = add_to_line(current_line, word)
+        else:
+            wrapped = dic.wrap(word, line_width - len(current_line))
+            if wrapped is not None:
+                # the word can be hyphenated
+                lines.append(add_to_line(current_line, wrapped[0]))
+                current_line = wrapped[1]
+            else:
+                # the word can not be hyphenated. add it to the next line
+                lines.append(current_line)
+                current_line = word
+
+            if len(current_line) > line_width:
+                wrapped = wrap_hard(current_line, line_width)
+                while wrapped is not None and len(current_line) > line_width:
+                    lines.append(wrapped[0])
+                    current_line = wrapped[1]
+                    wrapped = wrap_hard(current_line, line_width)
+
+    lines.append(current_line)
+    return '\n'.join(lines)
+
 
 enc = 'UTF-8'
 
@@ -210,7 +255,7 @@ class DottedEntry(Paragraph):
                         text = self.text.decode('utf-8')
                     else:
                         text = self.text
-                    words = hyphenator.wrap(text, 15)
+                    words = hyphenator(text, 15)
                     lines = self._determine_lines(words, text_max_width,
                                                   max_width, '')
                 else:
