@@ -13,8 +13,6 @@
         "FLASK_APP": "./dev/manage.py",
         "FLASK_RUN_HOST": "localhost",
         "FLASK_RUN_PORT": "5000",
-        "FLASK_ENV": "development",
-        "FLASK_DEBUG": "1",
         "FLASK_MUNIMAP_CONFIG": "../munimap-conf/munimap-app/configs/munimap-local-dev.conf",
         "JAVA_HOME": "/usr/lib/jvm/java-8-openjdk-amd64/"
       },

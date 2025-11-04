@@ -21,7 +21,7 @@ from munimap.helper import layer_allowed_for_user
 vector = Blueprint('vector', __name__)
 
 
-@vector.route('/geojson', methods=['GET'])
+@vector.get('/geojson')
 def geojson():
     req = MapRequest.from_req(request)
 
@@ -38,14 +38,14 @@ def geojson():
     return jsonify(fc)
 
 
-@vector.route('/index.json', methods=['GET'])
+@vector.get('/index.json')
 def index_json():
     req = MapRequest.from_req(request)
     fc = query_feature_collection(req, current_app.pg_layers)
     return jsonify(features_to_index_data(fc, current_app.pg_layers))
 
 
-@vector.route('/index.pdf', methods=['GET'])
+@vector.get('/index.pdf')
 def index_pdf():
     req = MapRequest.from_req(request)
     fc = query_feature_collection(req, current_app.pg_layers)
@@ -55,7 +55,7 @@ def index_pdf():
         mimetype='application/pdf',
     )
 
-@vector.route('/index.csv', methods=['GET'])
+@vector.get('/index.csv')
 def index_csv():
     delimiter = request.args.get('delimiter', ';')[0]
     req = MapRequest.from_req(request)
@@ -71,7 +71,7 @@ def index_csv():
     resp.content_type = 'text/csv'
     return resp
 
-@vector.route('/export/grid.geojson', methods=['GET'])
+@vector.get('/export/grid.geojson')
 def grid_geojson():
     labels = request.args.get('labels', 'true').lower() in ('1', 'yes', 'true', 'on')
     lines = request.args.get('lines', 'true').lower() in ('1', 'yes', 'true', 'on')

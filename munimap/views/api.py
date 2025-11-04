@@ -43,7 +43,7 @@ def check_permission():
         return abort(403)
 
 
-@api.route('/update/map/config', methods=['POST'])
+@api.post('/update/map/config')
 def update_map_config(path=None):
     file = LocalProxyRequest.files.get('upload_file', None)
     if file:
@@ -57,7 +57,7 @@ def update_map_config(path=None):
     return jsonify({'success': False})
 
 
-@api.route('/update/project/config', methods=['POST'])
+@api.post('/update/project/config')
 def update_project_config(path=None):
     file = LocalProxyRequest.files.get('upload_file', None)
     if file:

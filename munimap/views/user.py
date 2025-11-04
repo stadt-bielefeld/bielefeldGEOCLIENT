@@ -68,7 +68,7 @@ def login():
     return render_template("munimap/user/login.html", form=form)
 
 
-@user.route("/logout")
+@user.get("/logout")
 @login_required
 def logout():
     logout_user()

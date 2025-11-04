@@ -180,7 +180,7 @@ def load_app_config(config=None, without_404=False):
         current_app.config.get('DEFAULT_APP_CONFIG')
     )
     if not os.path.exists(default_config_file):
-        current_app.logger.warn(
+        current_app.logger.warning(
             'Default app config not found. (%s)' % default_config_file)
         default_config = {}
     else:
@@ -206,7 +206,7 @@ def load_app_config(config=None, without_404=False):
         elif without_404:
             return None
         else:
-            current_app.logger.warn(
+            current_app.logger.warning(
                 'App config %s not found' % sub_app_config_file)
             # requested app config not available
             abort(404)

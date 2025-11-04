@@ -163,9 +163,6 @@ class DefaultConfig(object):
 
     COORD_TRANSFORM_URL = ''
 
-    # why use this? Answer here-> https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/pull/59#discussion_r885749224
-    JSON_SORT_KEYS = False
-
 
 class TestConfig(object):
     here = path.dirname(__file__)
@@ -191,7 +188,3 @@ class TestConfig(object):
     PRINT_USE_BROKER = False
     PRINT_QUEUEFILE = path.join(here, 'test/data/printqueue.sqlite')
     WTF_CSRF_ENABLED = False
-
-    # why use this? Answer here-> https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/pull/59#discussion_r885749224
-    JSON_SORT_KEYS = False
-

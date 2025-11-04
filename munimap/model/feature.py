@@ -1,5 +1,6 @@
-from datetime import datetime
 import json
+from datetime import timezone, datetime
+UTC = timezone.utc  # python3.9
 
 from sqlalchemy.orm import column_property
 from sqlalchemy.dialects.postgresql import JSONB
@@ -32,6 +33,9 @@ DEFAULT_STYLE = {
     'fontRotation': 0,
 }
 
+def utcnow():
+    return datetime.now(UTC)
+
 
 class Feature(db.Model):
     __tablename__ = 'digitize_features'
@@ -43,9 +47,9 @@ class Feature(db.Model):
     properties = db.Column(MutableDict.as_mutable(JSONB))
     geojson = column_property(ST_AsGeoJSON(geometry))
 
-    created = db.Column(db.DateTime, default=datetime.utcnow)
+    created = db.Column(db.DateTime, default=utcnow)
     created_by = db.Column(db.Integer)
-    modified = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    modified = db.Column(db.DateTime, default=utcnow, onupdate=utcnow)
     modified_by = db.Column(db.Integer)
 
     def __init__(self, geojson=None, prop_def=None):
