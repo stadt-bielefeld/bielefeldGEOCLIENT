@@ -1,7 +1,6 @@
 
 import json
-from datetime import timezone, datetime
-UTC = timezone.utc  # python3.9
+from datetime import UTC, datetime
 
 from flask import (
     render_template,

@@ -12,7 +12,7 @@
 * docker
 * docker-compose
 * Node (>= 10)
-* Python (>=3.9)
+* Python (>=3.12)
 * Java 8 (openjdk-8-jre)
 * virtualenv
 * geostyler-cli (>= 5.0.0)
@@ -55,20 +55,20 @@ npm i
 npm start
 ```
 
-### Install the munimap backend using a Python 3.13 Virtual Environment
+### Install the munimap backend using a Python 3.12 Virtual Environment
 
   - Open new terminal
-  - Install python 3.9 on your system (Assuming debian based linux distro):
-    - If Python3.9 is not available to install on your distro: 
+  - Install python 3.12 on your system (Assuming debian based linux distro):
+    - If Python3.12 is not available to install on your distro: 
       - `sudo add-apt-repository ppa:deadsnakes/ppa`
       - `sudo apt-get update`
-    - Install Python3.9 and other important dependencies:
+    - Install Python3.12 and other important dependencies: (NOTE: This list of dependencies might be )
   ```
   sudo apt install build-essential \
-      python3.9 \
-      python3-dev \
-      python3.9-venv \
-      libpython3.9-dev \
+      python3.12 \
+      python3.12-dev \
+      python3.12-venv \
+      libpython3.12-dev \
       python3-gdal \
       python3-pycurl \
       libgdal-dev \
@@ -97,7 +97,7 @@ npm start
   ```
 
   - create the virtual environment
-    - `python3.9 -m venv muni_venv` (or any other name you like)
+    - `python3.12 -m venv muni_venv` (or any other name you like)
   - Activate Virtual Environment
     - `source muni_venv/bin/activate`
   - Install requirements:

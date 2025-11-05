@@ -1,6 +1,5 @@
 import json
-from datetime import timezone, datetime
-UTC = timezone.utc  # python3.9
+from datetime import UTC, datetime
 
 from sqlalchemy.orm import column_property
 from sqlalchemy.dialects.postgresql import JSONB
