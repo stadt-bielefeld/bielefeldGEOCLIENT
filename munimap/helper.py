@@ -10,7 +10,7 @@ from flask import request, abort, current_app, url_for
 
 from flask_login import current_user
 from flask_babel import gettext as _, lazy_gettext as _l
-from sqlalchemy.orm import class_mapper
+from sqlalchemy import text
 
 from munimap.model import ProtectedLayer
 
@@ -97,7 +97,7 @@ def check_layers_permission(layers):
         ;
         """
 
-    result = db.session.execute(sqlTpl, {"userId": current_user.id, "layer_names": tuple(layer_names)}, mapper=class_mapper(ProtectedLayer))
+    result = db.session.execute(text(sqlTpl), {"userId": current_user.id, "layer_names": tuple(layer_names)})
 
     allowedLayerNames = [r for r, in result]
 

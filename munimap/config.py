@@ -75,7 +75,6 @@ class DefaultConfig(object):
     SQLALCHEMY_DATABASE_URI = ''
     SQLALCHEMY_ECHO = False
     SQLALCHEMY_DATABASE_SCHEMA = 'public'
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # TODO check if we can provide a local proxy here
     CORS_PROXY = {}
