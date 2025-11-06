@@ -245,9 +245,11 @@ def mapfish_layers(requested_layers, bbox=None, srs=None, dpi=None, scale=None, 
     for name in reversed(requested_layers):
         print_name = f'{name}_print'
         if print_name in current_app.mapfish_layers:
-            name = print_name
+            layer_name = print_name
+        else:
+            layer_name = name
 
-        layer = deepcopy(current_app.mapfish_layers[name])
+        layer = deepcopy(current_app.mapfish_layers[layer_name])
 
         requested_opacity = 1
         if name in opacities:
@@ -255,11 +257,11 @@ def mapfish_layers(requested_layers, bbox=None, srs=None, dpi=None, scale=None, 
             # works only for tiles and images, not for vector layers, because of limitations in mapfish print
             layer['opacity'] = requested_opacity # overwriting here because requested_opacity is the already calculated opacity in the client
 
-        log.debug(f'Adding layer {name} to print spec with config {str(layer)}')
+        log.debug(f'Adding layer {layer_name} to print spec with config {str(layer)}')
 
         if layer['type'] == 'geojson' and layer['internal_type'] == 'sensorthings':
             # TODO: add opacity to style
-            fc = fc_layer_payloads.get(name, {'featureCollection': {}}).get('featureCollection', {})
+            fc = fc_layer_payloads.get(layer_name, {'featureCollection': {}}).get('featureCollection', {})
             # we only add this layer, if it contains at least one feature
             if len(fc.get('features', [])) == 0:
                 continue
@@ -272,7 +274,7 @@ def mapfish_layers(requested_layers, bbox=None, srs=None, dpi=None, scale=None, 
             if 'internal_type' in layer and layer['internal_type'] in ('postgis', 'digitize'):
                 layer['geoJson'] = query_feature_collection(MapRequest(
                     bbox=bbox,
-                    layers=[name],
+                    layers=[layer_name],
                     srs=srs,
                     limit=1000,
                     ),
@@ -286,7 +288,7 @@ def mapfish_layers(requested_layers, bbox=None, srs=None, dpi=None, scale=None, 
                     layer['geoJson'] = json.loads(s.read())
                 for feature in layer['geoJson']['features']:
                     feature['properties']['mapfishStyleId'] = '1'
-                    feature['properties']['__layer__'] = name
+                    feature['properties']['__layer__'] = layer_name
             num_offset += len(layer['geoJson']['features'])
             # skip empty featureCollections, otherwise mapfish-print
             # raises "java.lang.NullPointerException"

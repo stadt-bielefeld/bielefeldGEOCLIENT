@@ -9,7 +9,6 @@
               target="_blank" ng-href="{{ group.metadataUrl }}">
             <span class="glyphicon glyphicon-info-sign"></span>                    
           </a>
-          <span ng-if="!group.metadataUrl && hideMetadata == false" class="glyphicon glyphicon-none float-left"></span>
           <span class="pointer layer-title" ng-click="toggleLayerVisibleByName(group.name)">
             {{ group.catalog.title }}
           </span>
@@ -26,10 +25,9 @@
             ng-class="{'open-layer-group': group.options.collapsed, 'close-layer-group': !group.options.collapsed}"
             ng-click="group.options.collapsed=!group.options.collapsed">
         </span>
-        <div class="layer-line" ng-class="{'title-wrapper-group': !group.options.metadataUrl && hideMetadata == false }">
+        <div class="layer-line" ng-class="{'title-wrapper-group': group.options.metadataUrl !== '' && hideMetadata == false }">
           <div>
-            <span ng-if="!group.options.metadataUrl && hideMetadata == false" class="glyphicon glyphicon-none float-left"></span>
-            <a title="Metadaten" ng-if="group.options.metadataUrl && hideMetadata == false" 
+            <a title="Metadaten" ng-if="group.options.metadataUrl !== '' && hideMetadata == false"
                 class="metadata float-left" target="_blank" ng-href="{{ group.options.metadataUrl }}">
               <span class="glyphicon glyphicon-info-sign"></span>
             </a>
@@ -51,7 +49,6 @@
             <a ng-if="layer.metadataUrl && hideMetadata == false" target="_blank" ng-href="{{ layer.metadataUrl }}" title="Metadaten">
                 <span class="glyphicon glyphicon-info-sign"></span>
             </a>
-            <span ng-if="!layer.metadataUrl && hideMetadata == false" class="glyphicon glyphicon-none"></span>                          
             <div class="layer-title child-title" ng-click="toggleLayerVisibleByName(layer.name)">
               <span>{{ layer.title }}</span>
             </div>
@@ -68,7 +65,6 @@
                 <a class="float-left" ng-if="group.options.metadataUrl && hideMetadata == false" target="_blank" ng-href="{{ group.options.metadataUrl }}">
                     <span class="glyphicon glyphicon-info-sign"></span>
                 </a>
-                <span ng-if="!group.options.metadataUrl && hideMetadata == false" class="glyphicon glyphicon-none float-left"></span>
                 <span class="layer-title"
                       ng-click="toggleLayerVisibleByName(layer.name)">
                     {{ layer.title }}
