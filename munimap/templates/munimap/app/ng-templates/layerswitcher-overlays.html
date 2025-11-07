@@ -1,8 +1,8 @@
 {% from "munimap/macros/layerswitcher.html" import layers_group_item, layer_group_item %}
 
 {% if layers_def['overlays'] | length > 0 %}
-  <div ui-sortable="sortableGroups" ng-model="overlayLayers">
-    <div class="overlay-item" ng-repeat="group in overlayLayers" ng-show="group.displayInLayerswitcher !== false && group !== undefined">
+  <div sv-root="sort" sv-part="overlayLayers" sv-on-sort="sortableGroups">
+    <div class="overlay-item" sv-element ng-repeat="group in overlayLayers" ng-show="group.displayInLayerswitcher !== false && group !== undefined">
 
         <!-- catalog layer that is no group layer -->
         <div class="group-item catalog-layer-title layer-line" ng-show="group.catalogLayer == true && group.groupLayer == false" ng-class="{'inactive': !group.getVisible()}">
@@ -44,10 +44,10 @@
                 ng-if="removeLayerEnabled" ng-click="removeLayer(group)"></i>
           </div>
         </div>
-        <div ui-sortable="sortableLayer" ng-model=group.layers>
+        <div sv-root="sort" sv-part=group.layers sv-on-sort="sortableLayer">
 
           <!-- child layer -->
-          <div class="group-layers-container layer-title-wrap" ng-repeat="layer in group.layers"  style="display: flex"
+          <div class="group-layers-container layer-title-wrap" sv-element ng-repeat="layer in group.layers"  style="display: flex"
               ng-if="layer.displayInLayerswitcher !== false"
               ng-show="!group.options.collapsed"
               ng-class="{'inactive': !layerIsVisibleByName(layer.name), 'child-no-metadata': !layer.metadataUrl && hideMetadata == false}">
