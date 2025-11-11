@@ -33,6 +33,7 @@ from munimap.helper import request_for_static, nl2br, touch_last_changes_file
 from munimap.model import DummyUser, MBUser
 from munimap.extensions import db, login_manager, mail
 
+config_file_from_env = os.getenv('FLASK_MUNIMAP_CONFIG', './configs/munimap.conf')
 
 def create_app(config=None, config_file=None):
     app = ReverseProxiedFlask(__name__)
@@ -46,7 +47,9 @@ def create_app(config=None, config_file=None):
     if app.testing:
         app.config.from_object(TestConfig())
 
-    if config_file is not None:
+    if config_file_from_env is not None:
+        app.config.from_pyfile(os.path.abspath(config_file_from_env))
+    elif config_file is not None:
         app.config.from_pyfile(os.path.abspath(config_file))
 
     if config is not None:
@@ -218,7 +221,7 @@ def configure_errorhandlers(app):
 
     @app.errorhandler(400)
     def bad_request(error):
-        if LocalProxyRequest.is_xhr:
+        if LocalProxyRequest.headers.get("X-Requested-With") == "XMLHttpRequest":
             response = jsonify(message='Bad Request')
             response.status_code = 400
             return response
@@ -227,7 +230,7 @@ def configure_errorhandlers(app):
 
     @app.errorhandler(401)
     def unauthorized(error):
-        if LocalProxyRequest.is_xhr:
+        if LocalProxyRequest.headers.get("X-Requested-With") == "XMLHttpRequest":
             response = jsonify(message="Login required")
             response.status_code = 401
             return response
@@ -236,7 +239,7 @@ def configure_errorhandlers(app):
 
     @app.errorhandler(403)
     def forbidden(error):
-        if LocalProxyRequest.is_xhr:
+        if LocalProxyRequest.headers.get("X-Requested-With") == "XMLHttpRequest":
             response = jsonify(message='Not allowed')
             response.status_code = 403
             return response
@@ -245,7 +248,7 @@ def configure_errorhandlers(app):
 
     @app.errorhandler(404)
     def page_not_found(error):
-        if LocalProxyRequest.is_xhr:
+        if LocalProxyRequest.headers.get("X-Requested-With") == "XMLHttpRequest":
             response = jsonify(message='Page not found')
             response.status_code = 404
             return response
@@ -254,7 +257,7 @@ def configure_errorhandlers(app):
 
     @app.errorhandler(500)
     def server_error(error):
-        if LocalProxyRequest.is_xhr:
+        if LocalProxyRequest.headers.get("X-Requested-With") == "XMLHttpRequest":
             response = jsonify(message='Internal Error')
             response.status_code = 500
             return response
