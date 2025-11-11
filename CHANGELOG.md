@@ -1,3 +1,16 @@
+# [1.12.0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.11.2...1.12.0) (2025-11-11)
+
+
+### Bug Fixes
+
+* from 01.11.2026 Bielefeld is represented by the new mayor Dr. Christiana Bauer ([#344](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/issues/344)) ([e2d23ff](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/e2d23ff7b3ab32520baf2c56f0f8b8883e128a15))
+* issues transparency ([b3a5ee6](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/b3a5ee612bd520851948c189bb3dd9dab621be6f))
+
+
+### Features
+
+* update anol ([413bf78](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/413bf788525bdc404002f952e7c29cfa50ba7f9a))
+
 ## [1.11.2](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.11.1...1.11.2) (2025-10-16)
 
 
