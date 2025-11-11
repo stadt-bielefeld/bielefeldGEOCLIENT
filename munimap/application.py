@@ -47,10 +47,10 @@ def create_app(config=None, config_file=None):
     if app.testing:
         app.config.from_object(TestConfig())
 
-    if config_file is not None:
-        app.config.from_pyfile(os.path.abspath(config_file))
-    elif config_file_from_env is not None:
+    if config_file_from_env is not None:
         app.config.from_pyfile(os.path.abspath(config_file_from_env))
+    elif config_file is not None:
+        app.config.from_pyfile(os.path.abspath(config_file))
 
     if config is not None:
         app.config.from_object(config)
