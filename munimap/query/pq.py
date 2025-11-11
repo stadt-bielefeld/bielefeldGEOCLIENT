@@ -29,7 +29,7 @@ def load_layers(config, default_db_uri, db_schema, db_echo=False):
                 def init_search_path(connection, conn_record):
                     cursor = connection.cursor()
                     try:
-                        cursor.execute('SET search_path TO %s, public' % db_schema)
+                        cursor.execute(sa.text('SET search_path TO %s, public' % db_schema))
                     finally:
                         cursor.close()
 
