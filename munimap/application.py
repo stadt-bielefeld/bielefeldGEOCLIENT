@@ -6,6 +6,8 @@ import locale
 import logging
 import logging.config
 import tempfile
+import typing as t
+
 import yaml
 
 import jinja2
@@ -17,8 +19,7 @@ from flask import Flask, send_from_directory, request as LocalProxyRequest, \
     current_app
 from flask_babel import Babel
 
-from flask.json import JSONEncoder as BaseJSONEncoder
-from speaklater import _LazyString
+from flask.json.provider import DefaultJSONProvider
 
 from munimap.config import DefaultConfig, TestConfig
 from munimap.layers import (
@@ -65,14 +66,11 @@ def create_app(config=None, config_file=None):
     app.jinja_loader = template_loader
 
     # configure json_encoder to handle lazy gettext
-    class LazyJSONEncoder(BaseJSONEncoder):
-        def default(self, o):
-            if isinstance(o, _LazyString):
-                return str(o)
-            return BaseJSONEncoder.default(self, o)
+    class LazyJSONProvider(DefaultJSONProvider):
+        def dumps(self, obj: t.Any, **kwargs: t.Any) -> str:
+            return super().dumps(obj, default=str, **kwargs)
 
-    app.json_encoder = LazyJSONEncoder
-
+    app.json = LazyJSONProvider(app)
 
     @app.context_processor
     def custom_functions_context():
@@ -296,7 +294,7 @@ def load_layers(app, config_folder, initial=False):
     except Exception as ex:
         if initial:
             raise
-        app.logger.warn(ex)
+        app.logger.warning(ex)
         return False
 
     pg_layers = pq.load_layers(

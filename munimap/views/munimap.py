@@ -71,14 +71,14 @@ def list_available_icons():
                 })
             else:
                 file_name = os.path.join(draw_icons_path, icon['name'])
-                current_app.logger.warn('A configured icon file does not exist on the filesystem! path to file: %s' %
+                current_app.logger.warning('A configured icon file does not exist on the filesystem! path to file: %s' %
                                         (file_name))
 
     return icons
 
 
-@munimap.route('/')
-@munimap.route('/app/<config>/')
+@munimap.get('/')
+@munimap.get('/app/<config>/')
 @log_stats(request, current_user, route_name='munimap.index')
 def index(config=None):
     if config:
@@ -156,6 +156,9 @@ def index(config=None):
         resp.headers['Pragma'] = pragma_header
         return resp
     else:
+        style_schema_form_options_json = json.dumps(draw_schema.style_schema_form_options, sort_keys=False, default=str)
+        label_schema_form_options_json = json.dumps(draw_schema.label_schema_form_options, sort_keys=False, default=str)
+
         rendered_index = render_template(
             '/munimap/app/index.html',
             app_config=app_config,
@@ -165,9 +168,9 @@ def index(config=None):
             settings=selected_settings,
             street_index_layer=current_app.config.get('PRINT_STREET_INDEX_LAYER'),
             style_schema=draw_schema.style_schema,
-            style_schema_form_options=draw_schema.style_schema_form_options,
+            style_schema_form_options_json=style_schema_form_options_json,
             label_schema=draw_schema.label_schema,
-            label_schema_form_options=draw_schema.label_schema_form_options,
+            label_schema_form_options_json=label_schema_form_options_json,
             available_icons=list_available_icons(),
             project_name=config,
             digitize_polling_interval=current_app.config.get('DIGITIZE_POLLING_INTERVAL')
@@ -178,7 +181,7 @@ def index(config=None):
         return resp
 
 
-@munimap.route('/app/<config>/catalog')
+@munimap.get('/app/<config>/catalog')
 @log_stats(request, current_user, route_name='munimap.catalog_names')
 def catalog_names(config=None):
     if config:
@@ -208,8 +211,8 @@ def catalog_names(config=None):
             groups= {},
         )
 
-    catalog_layers_def = {};
-    catalog_groups_def = {};
+    catalog_layers_def = {}
+    catalog_groups_def = {}
 
     layers_def = prepare_layers_def(app_config, current_app.layers)
     if app_config.get('components').get('catalog'):
@@ -222,7 +225,7 @@ def catalog_names(config=None):
         groups=catalog_groups_def,
     )
 
-@munimap.route('/app/<config>/catalog/load_names', methods=['POST'])
+@munimap.post('/app/<config>/catalog/load_names')
 @log_stats(request, current_user, route_name='munimap.gfi_catalog_names')
 def gfi_catalog_names(config=None):
     names = request.json.get('names', [])
@@ -247,8 +250,8 @@ def gfi_catalog_names(config=None):
     except helper.InvalidAppConfigError as ex:
         return render_template('munimap/errors/app_config_error.html',
                                error=ex)
-    layers = {};
-    groups = {};
+    layers = {}
+    groups = {}
 
     layers_def = prepare_layers_def(app_config, current_app.layers)
     if app_config.get('components').get('catalog'):
@@ -261,7 +264,7 @@ def gfi_catalog_names(config=None):
         groups=catalog_groups_def,
     )
 
-@munimap.route('/app/<config>/catalog/<_type>/<name>/')
+@munimap.get('/app/<config>/catalog/<_type>/<name>/')
 @log_stats(request, current_user, route_name='munimap.catalog_layer')
 def catalog_layer(config=None, _type=None, name=None):
     if config:
@@ -285,8 +288,8 @@ def catalog_layer(config=None, _type=None, name=None):
     except helper.InvalidAppConfigError as ex:
         return render_template('munimap/errors/app_config_error.html',
                                error=ex)
-    layers = {};
-    groups = {};
+    layers = {}
+    groups = {}
 
     layers_def = prepare_layers_def(app_config, current_app.layers)
     if not app_config.get('components').get('catalog'):
@@ -310,15 +313,15 @@ def catalog_layer(config=None, _type=None, name=None):
             groups=groups
         )
 
-@munimap.route('/icons/<path:filename>')
+@munimap.get('/icons/<path:filename>')
 def icons(filename):
     return send_from_directory(
         current_app.config.get('MAP_ICONS_DIR'),
-        filename
+        path=filename
     )
 
 
-@munimap.route('/draw/icons/<path:filename>')
+@munimap.get('/draw/icons/<path:filename>')
 def draw_icons(filename):
     draw_icons_path = os.path.join(
         current_app.config['MAP_ICONS_DIR'],
@@ -326,11 +329,11 @@ def draw_icons(filename):
     )
     return send_from_directory(
         draw_icons_path,
-        filename
+        path=filename
     )
 
-@munimap.route('/proxy/featureinfo/', methods=['GET'])
-@munimap.route('/proxy/featureinfo/<layer_name>/', methods=['GET'])
+@munimap.get('/proxy/featureinfo/')
+@munimap.get('/proxy/featureinfo/<layer_name>/')
 def featureinfo_proxy(layer_name=None):
     if layer_name is None:
         abort(404)
@@ -371,7 +374,7 @@ def featureinfo_proxy(layer_name=None):
     )
 
 
-@munimap.route('/proxy/cors/<service>/', methods=['GET'])
+@munimap.get('/proxy/cors/<service>/')
 def cors_proxy(service=None):
 
     if service is None:
@@ -552,7 +555,7 @@ def handle_wms_get_feature_info(service_url, layers, request):
 
     return response
 
-@munimap.route('/proxy/wms/<url_hash>/service', methods=['GET'])
+@munimap.get('/proxy/wms/<url_hash>/service')
 def wms_proxy(url_hash=None):
     if url_hash is None or url_hash not in current_app.hash_map:
         proxy_log.error('proxy url hash unknown')
@@ -652,8 +655,8 @@ def handle_wmts(service_url, layer, request, grid, zoom, x, y):
 
     return service_response
 
-@munimap.route('/proxy/wmts/<url_hash>/service/', methods=['GET'])
-@munimap.route('/proxy/wmts/<url_hash>/service/<layer>/<grid>/<int:zoom>/<int:x>/<int:y>.<__format>')
+@munimap.get('/proxy/wmts/<url_hash>/service/')
+@munimap.get('/proxy/wmts/<url_hash>/service/<layer>/<grid>/<int:zoom>/<int:x>/<int:y>.<__format>')
 def wmts_proxy(url_hash=None, layer=None, grid=None, zoom=None, x=None, y=None, __format=None):
     if url_hash is None or url_hash not in current_app.hash_map:
         proxy_log.error('proxy url hash unknown')
@@ -710,8 +713,8 @@ def handle_sensorthings(service_url, layer, request, api_version, root):
     return service_response
 
 
-@munimap.route('/proxy/sensorthings/<url_hash>/<layer_name>/', methods=['GET'])
-@munimap.route('/proxy/sensorthings/<url_hash>/<layer_name>/<api_version>/<root>', methods=['GET'])
+@munimap.get('/proxy/sensorthings/<url_hash>/<layer_name>/')
+@munimap.get('/proxy/sensorthings/<url_hash>/<layer_name>/<api_version>/<root>')
 def sensorthings_proxy(url_hash=None, layer_name=None, api_version='v1.1', root='Datastreams'):
     if url_hash is None or url_hash not in current_app.hash_map:
         proxy_log.error('proxy url hash unknown')
@@ -760,15 +763,15 @@ def sensorthings_proxy(url_hash=None, layer_name=None, api_version='v1.1', root=
     return response
 
 
-@munimap.route('/static_geojson/<path:filename>', methods=['GET'])
+@munimap.get('/static_geojson/<path:filename>')
 def static_geojson(filename):
     return send_from_directory(
         current_app.config.get('GEOJSON_DATA_PATH'),
-        filename
+        path=filename
     )
 
 
-@munimap.route('/health', methods=['GET'])
+@munimap.get('/health')
 def get_health():
     return jsonify({
         'healthy': True

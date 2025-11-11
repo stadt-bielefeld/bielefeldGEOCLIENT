@@ -1,7 +1,7 @@
 from flask import (
-    Blueprint, jsonify, abort, flash,
-    current_app, redirect,
-    request as LocalProxyRequest, url_for
+    Blueprint, jsonify, abort,
+    current_app,
+    request as LocalProxyRequest
 )
 
 from flask_login import current_user
@@ -27,7 +27,7 @@ def check_permission():
         abort(401)
 
 
-@digitize.route('/features', methods=['POST'])
+@digitize.post('/features')
 def features():
     if LocalProxyRequest.json is None:
         abort(400)
@@ -63,7 +63,7 @@ def features():
     return response
 
 
-@digitize.route('/features', methods=['PUT'])
+@digitize.put('/features')
 def update_features():
     if LocalProxyRequest.json is None:
         abort(400)
@@ -141,7 +141,7 @@ def update_features():
     return response
 
 
-@digitize.route('/features', methods=['DELETE'])
+@digitize.delete('/features')
 def remove_features():
     if LocalProxyRequest.json is None:
         abort(400)
@@ -218,7 +218,7 @@ def remove_features():
     return response
 
 
-@digitize.route('/features/modified_timestamps', methods=['GET'])
+@digitize.get('/features/modified_timestamps')
 def features_modified_timestamps():
     name = LocalProxyRequest.args.get('layer')
     if not name:
@@ -235,7 +235,7 @@ def features_modified_timestamps():
     return jsonify(modified_list)
 
 
-@digitize.route('/layer/<name>', methods=['GET'])
+@digitize.get('/layer/<name>')
 def layer(name):
     # checking layer permission
     lyr = current_app.layers.get(name)

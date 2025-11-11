@@ -1,11 +1,10 @@
 
 import json
-from datetime import datetime
+from datetime import timezone, datetime
+UTC = timezone.utc  # python3.9
 
 from flask import (
     render_template,
-    Blueprint,
-    flash,
     redirect,
     url_for,
     request,
@@ -17,14 +16,13 @@ from flask import (
 
 from werkzeug.exceptions import BadRequest, NotFound
 
-from flask_login import login_user, logout_user, login_required, current_user
+from flask_login import login_required, current_user
 from flask_babel import gettext as _, to_user_timezone
 from munimap.extensions import db
 
 # from munimap.extensions import db
 from munimap.model import MBUser, ProtectedProject, ProjectDefaultSettings
 from munimap.helper import load_app_config, check_group_permission
-from munimap.forms.user import LoginForm, UserChangePassword
 from munimap.forms.project_settings import ProjectSettingsForm
 from munimap.model import ProjectSettings
 from munimap.views.user import user
@@ -108,7 +106,7 @@ def projects():
     )
 
 
-@user.route("/settings/import", methods=["POST"])
+@user.post("/settings/import")
 def import_settings():
     uploaded_file = request.files.get('file')
     project_name = request.form.get('projectName')
@@ -169,7 +167,7 @@ def import_settings():
 def export_settings(project_settings):
     filename = '%s-%s.json' % (
         project_settings.name,
-        to_user_timezone(datetime.utcnow()).strftime('%Y%m%d-%H%M%S')
+        to_user_timezone(datetime.now(UTC)).strftime('%Y%m%d-%H%M%S')
     )
 
     project_settings_json = json.loads(project_settings.settings) 
@@ -187,7 +185,7 @@ def export_settings(project_settings):
     return resp 
 
 
-@user.route("/settings/save", methods=["POST"])
+@user.post("/settings/save")
 @login_required
 def save_settings():
     settings_json = request.get_json()
@@ -223,7 +221,7 @@ def save_settings():
     })
 
 
-@user.route("/settings/load", methods=["POST"])
+@user.post("/settings/load")
 @login_required
 def load_settings():
     settings_json = request.get_json()
@@ -255,7 +253,7 @@ def load_settings():
 
 
 
-@user.route("/settings/default/update", methods=["POST"])
+@user.post("/settings/default/update")
 @login_required
 def update_default_settings():
     settings_json = request.get_json()
@@ -296,7 +294,7 @@ def update_default_settings():
     })
 
 
-@user.route("/settings/delete", methods=["POST"])
+@user.post("/settings/delete")
 @login_required
 def delete_settings():
     settings_json = request.get_json()

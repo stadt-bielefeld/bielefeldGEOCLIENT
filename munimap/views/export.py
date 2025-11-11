@@ -23,7 +23,7 @@ export = Blueprint('export', __name__)
 import logging
 log = logging.getLogger('munimap.print')
 
-@export.route('/export/map/<id>/status', methods=['GET'])
+@export.get('/export/map/<id>/status')
 def print_check(id):
     q = SqliteQueue(current_app.config['PRINT_QUEUEFILE'])
     job = q.get(id)
@@ -54,7 +54,7 @@ def print_check(id):
     return resp
 
 
-@export.route('/export/map/<id>/download', methods=['GET'])
+@export.get('/export/map/<id>/download')
 def print_download(id):
     q = SqliteQueue(current_app.config['PRINT_QUEUEFILE'])
     job = q.get(id)
@@ -66,7 +66,7 @@ def print_download(id):
             job.result['output_file'],
             as_attachment=True,
             # TODO generate filename
-            # attachment_filename='output.' + print_request.output_format)
+            # download_name='output.' + print_request.output_format)
         )
 
     current_app.logger.error("unable to print: %s\n%s",
@@ -75,7 +75,7 @@ def print_download(id):
     return abort(500)
 
 
-@export.route('/export/map', methods=['POST'])
+@export.post('/export/map')
 def print_post():
     log.info('starting print job')
     params = request.get_json()

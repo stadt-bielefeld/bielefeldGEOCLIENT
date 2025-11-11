@@ -149,8 +149,8 @@ npm start
 - `FLASK_APP="munimap.application:create_app()" FLASK_RUN_HOST=0.0.0.0 FLASK_RUN_PORT=5000 flask run`
 
 With different config and JAVA_HOME (for mapfish cli) set:
-- `FLASK_MUNIMAP_CONFIG=dev/configs/munimap.conf FLASK_APP="munimap.application:create_app()" JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ FLASK_DEBUG=0 FLASK_RUN_HOST=0.0.0.0 FLASK_RUN_PORT=5000 flask run`
-- `FLASK_MUNIMAP_CONFIG=../munimap-conf/munimap-app/configs/munimap-local-dev.conf FLASK_APP="munimap.application:create_app()" JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ FLASK_DEBUG=0 FLASK_RUN_HOST=0.0.0.0 FLASK_RUN_PORT=5000 flask run`
+- `FLASK_MUNIMAP_CONFIG=dev/configs/munimap.conf FLASK_APP="munimap.application:create_app()" JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ FLASK_RUN_HOST=0.0.0.0 FLASK_RUN_PORT=5000 flask run --debug`
+- `FLASK_MUNIMAP_CONFIG=../munimap-conf/munimap-app/configs/munimap-local-dev.conf FLASK_APP="munimap.application:create_app()" JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ FLASK_RUN_HOST=0.0.0.0 FLASK_RUN_PORT=5000 flask run --debug`
 
 ## Compile the frontend
 and finally the client (javascript) source can be watched via(ran in the root folder, i.e, bielefeldGEOCLIENT):
