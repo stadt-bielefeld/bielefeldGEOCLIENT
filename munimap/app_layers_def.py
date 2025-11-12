@@ -151,6 +151,10 @@ def prepare_group_layers(app_config, layers, group_active, layers_config):
             if 'externalGraphicPrefix' not in layer:
                 layer['externalGraphicPrefix'] = url_for('munimap.icons',
                                                          filename='')
+        if layer['type'] == 'sensorthings':
+            if 'externalGraphicPrefix' not in layer:
+                layer['externalGraphicPrefix'] = url_for('munimap.icons',
+                                                         filename='')
 
         group_layers.append(layer)
 
