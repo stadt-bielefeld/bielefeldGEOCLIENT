@@ -25,7 +25,7 @@
             ng-class="{'open-layer-group': group.options.collapsed, 'close-layer-group': !group.options.collapsed}"
             ng-click="group.options.collapsed=!group.options.collapsed">
         </span>
-        <div class="layer-line">
+        <div class="layer-line" ng-class="{'no-metadata': group.options.metadataUrl === '' || hideMetadata == true }">
           <div>
             <a title="Metadaten" ng-if="group.options.metadataUrl !== '' && hideMetadata == false"
                 class="metadata float-left" target="_blank" ng-href="{{ group.options.metadataUrl }}">
