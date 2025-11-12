@@ -1,3 +1,10 @@
+## [1.12.3](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.12.2...1.12.3) (2025-11-12)
+
+
+### Bug Fixes
+
+* layer indent for no group without metadata ([11666c9](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/11666c944ab816a3e8c076871641cfa9d1ddddb7))
+
 ## [1.12.2](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.12.1...1.12.2) (2025-11-12)
 
 
