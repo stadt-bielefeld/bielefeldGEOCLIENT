@@ -250,8 +250,6 @@ def gfi_catalog_names(config=None):
     except helper.InvalidAppConfigError as ex:
         return render_template('munimap/errors/app_config_error.html',
                                error=ex)
-    layers = {}
-    groups = {}
 
     layers_def = prepare_layers_def(app_config, current_app.layers)
     if app_config.get('components').get('catalog'):
