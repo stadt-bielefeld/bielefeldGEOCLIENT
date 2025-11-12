@@ -60,7 +60,7 @@
          ng-class="{'inactive': !groupIsVisibleByName(group.name)}">
           <div class="no-group-layers-container layer-line" ng-repeat="layer in group.layers"
             ng-if="layer.displayInLayerswitcher !== false" 
-            ng-class="{'inactive': !layerIsVisibleByName(layer.name)}">
+            ng-class="{'inactive': !layerIsVisibleByName(layer.name), 'no-group-no-metadata': group.options.metadataUrl === '' || hideMetadata == true}">
             <div>
                 <a class="float-left" ng-if="group.options.metadataUrl && hideMetadata == false" target="_blank" ng-href="{{ group.options.metadataUrl }}">
                     <span class="glyphicon glyphicon-info-sign"></span>
