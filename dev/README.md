@@ -62,7 +62,8 @@ npm start
     - If Python3.12 is not available to install on your distro: 
       - `sudo add-apt-repository ppa:deadsnakes/ppa`
       - `sudo apt-get update`
-    - Install Python3.12 and other important dependencies: (NOTE: This list of dependencies might be )
+    - Install Python3.12 and other important dependencies: (NOTE: This list of dependencies might be out of date,
+      if you can correct it, please open a PR)
   ```
   sudo apt install build-essential \
       python3.12 \
