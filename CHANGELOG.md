@@ -1,3 +1,10 @@
+## [1.12.1](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.12.0...1.12.1) (2025-11-12)
+
+
+### Bug Fixes
+
+* remove indent for layer group title ([b2bb7ec](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/b2bb7ecb86e2a7a07c16c06b4fb0de1f0b4bcf25))
+
 # [1.12.0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.11.2...1.12.0) (2025-11-11)
 
 
