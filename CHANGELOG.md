@@ -1,3 +1,11 @@
+## [1.12.2](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.12.1...1.12.2) (2025-11-12)
+
+
+### Bug Fixes
+
+* print icons in STA layers ([#341](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/issues/341)) ([224d8ae](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/224d8ae7ef2565fdc3ad2a1232a8c2d6dc5a16e3))
+* show proper indentation ([714049d](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/714049d268bfc1c3d119ef8eda54d68d23f00c6c))
+
 ## [1.12.1](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.12.0...1.12.1) (2025-11-12)
 
 
