@@ -82,7 +82,15 @@
             event: action,
             callback: callback
         };
-        console.info('Plugin ' + pluginName + ' registered');
+        console.info('Plugin (Communication)' + pluginName + ' registered');
+    };
+
+    window.customControlPlugins = {};
+    window.registerCustomControlPlugin = function (callback) {
+        const pluginName = document.currentScript.dataset.plugin;
+
+        window.customControlPlugins[pluginName] = callback;
+        console.info('Plugin (CustomControl)' + pluginName + ' registered');
     };
   </script>
 
@@ -92,6 +100,14 @@
         <script type="text/javascript" src="{$ url_for('frontend.plugins', name=plugin) $}" data-plugin="{$ plugin $}"></script>
       {% elif plugin['name'] is defined %}
         <script type="text/javascript" src="{$ url_for('frontend.plugins', name=plugin['name']) $}" data-plugin="{$ plugin['name'] $}"></script>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+  {% if app_config.get('components', {}).get('customControls') %}
+    {% for plugin in app_config['components']['customControls'] %}
+      {% if plugin['callback'] is defined %}
+        <script type="text/javascript" src="{$ url_for('frontend.plugins', name=plugin['callback']) $}" data-plugin="{$ plugin['callback'] $}"></script>
       {% endif %}
     {% endfor %}
   {% endif %}

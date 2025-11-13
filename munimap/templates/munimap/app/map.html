@@ -281,6 +281,19 @@
   </div>
   {% include 'munimap_transport/timetable.html' %}
   {% endif %}
+
+  {% if app_config.get('components', []).get('customControls') %}
+    {% for customControl in app_config['components']['customControls'] %}
+      <custom-control
+           ng-style="hasTouch ? mobileCustomControlsPositions[{$ loop.index0 $}] : desktopCustomControlsPositions[{$ loop.index0 $}]"
+           control-text="{$ customControl.get('text') $}"
+           control-title="{$ customControl.get('title') $}"
+           control-callback="{$ customControl.get('callback') $}"
+           control-show-tooltip="showTooltip"
+      ></custom-control>
+    {% endfor %}
+  {% endif %}
+  <div></div>
 </div>
 
 <script type="text/ng-template" id="munimap/searchbox.html">
@@ -300,6 +313,9 @@
 </script>
 <script type="text/ng-template" id="munimap/feature-icons.html">
     {% include 'munimap/app/ng-templates/feature-icons.html' %}
+</script>
+<script type="text/ng-template" id="munimap/customcontrol.html">
+    {% include 'munimap/app/ng-templates/customcontrol.html' %}
 </script>
 <script type="text/ng-template" id="munimap/alkisbutton.html">
   {% include 'munimap/app/ng-templates/alkisbutton.html' %}
