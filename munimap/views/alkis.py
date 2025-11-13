@@ -8,7 +8,7 @@ from flask import (
     jsonify,
 )
 
-from flask_login import login_required, current_user
+from flask_login import login_required
 
 from munimap.alkis import (
     request_alkis_info,
@@ -38,8 +38,8 @@ def parse_legitimation_request(request):
     return company, reference, person, kind
 
 # Informationen zum Flurstueck (Auskunft)
-@alkis.route("/info", methods=["GET"])
-@alkis.route("/info/<alkis_id>", methods=["GET"])
+@alkis.get("/info")
+@alkis.get("/info/<alkis_id>")
 def info(alkis_id=None):
     alkis_fsk = request.args.get('alkis_fsk', None)
     if not alkis_id:
@@ -77,7 +77,7 @@ def info(alkis_id=None):
     return jsonify(params)
 
 # IBR ALKIS Produkte (PDF)
-@alkis.route("/pdf", methods=["GET"])
+@alkis.get("/pdf")
 def pdf():
     token = request_alkis_session()
     alkis_fsk = request.args.get('alkis_fsk', None)
@@ -122,8 +122,8 @@ def pdf():
     })
 
 # IBR ALKIS Produkte (Amtlich)
-@alkis.route("/official", methods=["GET"])
-@alkis.route("/official/<alkis_id>", methods=["GET"])
+@alkis.get("/official")
+@alkis.get("/official/<alkis_id>")
 @login_required
 def official(alkis_id=None):
     token = request_alkis_session()
@@ -169,7 +169,7 @@ def official(alkis_id=None):
     })
 
 
-@alkis.route("/selection", methods=["GET"])
+@alkis.get("/selection")
 def selection():
     token = request_alkis_session()
     gemarkungen = request_gemarkungen(token)
@@ -181,19 +181,19 @@ def selection():
     })
 
 
-@alkis.route("/selection/parcel", methods=["GET"])
+@alkis.get("/selection/parcel")
 def select_by_parcel():
     parcel = request_fs_via_fsk(request.args)
     return jsonify(parcel)
 
 
-@alkis.route("/selection/address", methods=["GET"])
+@alkis.get("/selection/address")
 def select_by_address():
     parcel = request_fs_via_address(request.args)
     return jsonify(parcel)
 
 
-@alkis.route("/selection/owner", methods=["GET"])
+@alkis.get("/selection/owner")
 def select_by_owner():
     parcel = request_fs_via_owner(request.args)
 
@@ -202,7 +202,7 @@ def select_by_owner():
 
     return jsonify(parcel)
 
-@alkis.route("/selection/search_owner", methods=["GET"])
+@alkis.get("/selection/search_owner")
 def search_owner():
     parcel = request_owner(request.args)
 

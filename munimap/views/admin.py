@@ -65,13 +65,13 @@ def check_permission():
         current_app.config.get('ADMIN_GROUPS')
     )
     if not access_allowed:
-        if LocalProxyRequest.is_xhr:
+        if LocalProxyRequest.headers.get("X-Requested-With") == "XMLHttpRequest":
             return jsonify(message='Not allowed')
         return abort(403)
 
 
-@admin.route('/')
-@admin.route('/<path:path>')
+@admin.get('/')
+@admin.get('/<path:path>')
 def index(path=None):
     layers = []
     for name, layer in list(current_app.layers.items()):
@@ -146,7 +146,7 @@ def index(path=None):
 #
 # forms endpoints
 #
-@admin.route('/groups/add', methods=['POST'])
+@admin.post('/groups/add')
 def add_group():
     form = MBGroupForm(LocalProxyRequest.form)
 
@@ -173,7 +173,7 @@ def add_group():
     return response
 
 
-@admin.route('/groups/edit', methods=['POST'])
+@admin.post('/groups/edit')
 def edit_group():
     group_id = LocalProxyRequest.form.get('id', None)
 
@@ -211,7 +211,7 @@ def edit_group():
 #
 # angular api endpoints
 #
-@admin.route('/users/load', methods=['POST'])
+@admin.post('/users/load')
 def load_user():
     r = LocalProxyRequest.json
     user = MBUser.by_id_without_404(r['userId'])
@@ -225,11 +225,10 @@ def load_user():
     return jsonify({
         'user': user_details,
         'message': _('user %(name)s load', name=user.mb_user_name)
-
     })
 
 
-@admin.route('/users/remove', methods=['POST'])
+@admin.post('/users/remove')
 def remove_user():
     r = LocalProxyRequest.json
     user = MBUser.by_id_without_404(r['userId'])
@@ -289,7 +288,7 @@ def update_user_parameters(user, data):
     return user
 
 
-@admin.route('/users/edit', methods=['POST'])
+@admin.post('/users/edit')
 def edit_user():
     form = EditUserForm(LocalProxyRequest.form, meta={'csrf': False})
     if form.validate_on_submit():
@@ -335,7 +334,7 @@ def edit_user():
     return response
 
 
-@admin.route('/users/add', methods=['POST'])
+@admin.post('/users/add')
 def add_user():
     form = NewUserForm(LocalProxyRequest.form, meta={'csrf':False})
 
@@ -375,7 +374,7 @@ def add_user():
     return response
 
 
-@admin.route('/groups/remove', methods=['POST'])
+@admin.post('/groups/remove')
 def remove_group():
     r = LocalProxyRequest.json
     group = MBGroup.by_id_without_404(r['groupId'])
@@ -396,7 +395,7 @@ def remove_group():
     })
 
 
-@admin.route('/groups/user/add', methods=['POST'])
+@admin.post('/groups/user/add')
 def group_add_user():
     r = LocalProxyRequest.json
     group = MBGroup.by_id_without_404(r['groupId'])
@@ -425,7 +424,7 @@ def group_add_user():
     })
 
 
-@admin.route('/groups/user/remove', methods=['POST'])
+@admin.post('/groups/user/remove')
 def group_remove_user():
     r = LocalProxyRequest.json
     group = MBGroup.by_id_without_404(r['groupId'])
@@ -454,7 +453,7 @@ def group_remove_user():
     })
 
 
-@admin.route('/groups/layer/add', methods=['POST'])
+@admin.post('/groups/layer/add')
 def group_add_layer():
     r = LocalProxyRequest.json
     group = MBGroup.by_id_without_404(r['groupId'])
@@ -483,7 +482,7 @@ def group_add_layer():
     })
 
 
-@admin.route('/groups/layer/remove', methods=['POST'])
+@admin.post('/groups/layer/remove')
 def group_remove_layer():
     r = LocalProxyRequest.json
     group = MBGroup.by_id_without_404(r['groupId'])
@@ -512,7 +511,7 @@ def group_remove_layer():
     })
 
 
-@admin.route('/groups/project/add', methods=['POST'])
+@admin.post('/groups/project/add')
 def group_add_project():
     r = LocalProxyRequest.json
     group = MBGroup.by_id_without_404(r['groupId'])
@@ -541,7 +540,7 @@ def group_add_project():
     })
 
 
-@admin.route('/groups/project/remove', methods=['POST'])
+@admin.post('/groups/project/remove')
 def group_remove_project():
     r = LocalProxyRequest.json
 
@@ -571,7 +570,7 @@ def group_remove_project():
     })
 
 
-@admin.route('/projects/protect', methods=['POST'])
+@admin.post('/projects/protect')
 def protect_project():
     r = LocalProxyRequest.json
     project = ProtectedProject.by_name_without_404(r['projectName'])
@@ -592,7 +591,7 @@ def protect_project():
     })
 
 
-@admin.route('/projects/unprotect', methods=['POST'])
+@admin.post('/projects/unprotect')
 def unprotect_project():
     r = LocalProxyRequest.json
     project = ProtectedProject.by_id_without_404(r['projectId'])
@@ -613,7 +612,7 @@ def unprotect_project():
     })
 
 
-@admin.route('/layers/load', methods=['GET'])
+@admin.get('/layers/load')
 def load_layers():
     layers = []
     for name, layer in list(current_app.layers.items()):
@@ -644,7 +643,7 @@ def load_layers():
     })
 
 
-@admin.route('/layers/protect', methods=['POST'])
+@admin.post('/layers/protect')
 def protect_layer():
     r = LocalProxyRequest.json
     layer = ProtectedLayer.by_name_without_404(r['layerName'])
@@ -667,7 +666,7 @@ def protect_layer():
     })
 
 
-@admin.route('/layers/unprotect', methods=['POST'])
+@admin.post('/layers/unprotect')
 def unprotect_layer():
     r = LocalProxyRequest.json
     layer = ProtectedLayer.by_id_without_404(r['layerId'])
@@ -689,7 +688,7 @@ def unprotect_layer():
     })
 
 
-@admin.route('/projects/load', methods=['POST'])
+@admin.post('/projects/load')
 def load_project():
     name = LocalProxyRequest.form.get('name', False)
     config_file = project_file_path(name)
@@ -710,7 +709,7 @@ def load_project():
     })
 
 
-@admin.route('/projects/add', methods=['POST'])
+@admin.post('/projects/add')
 def add_project():
     form = NewProjectForm(LocalProxyRequest.form, meta={'csrf': False})
 
@@ -757,7 +756,7 @@ def add_project():
     return response
 
 
-@admin.route('/projects/edit', methods=['POST'])
+@admin.post('/projects/edit')
 def edit_project():
     name = LocalProxyRequest.form.get('name')
 
@@ -810,7 +809,7 @@ def edit_project():
     return response
 
 
-@admin.route('/projects/rename', methods=['POST'])
+@admin.post('/projects/rename')
 def rename_project_config():
     name = '%s' % LocalProxyRequest.form.get('name')
     new_name = '%s' % LocalProxyRequest.form.get('newName')
@@ -858,7 +857,7 @@ def rename_project_config():
     })
 
 
-@admin.route('/projects/remove', methods=['POST'])
+@admin.post('/projects/remove')
 def remove_project():
     name = LocalProxyRequest.form.get('name')
     if name:
@@ -884,7 +883,7 @@ def remove_project():
     })
 
 
-@admin.route('/projects/transfer', methods=['POST'])
+@admin.post('/projects/transfer')
 def transfer_project_config():
     r = LocalProxyRequest.json
     name = r.get('projectName', False)
@@ -910,7 +909,7 @@ def transfer_project_config():
     })
 
 
-@admin.route('/map/config/load', methods=['POST'])
+@admin.post('/map/config/load')
 def load_map_config():
     name = LocalProxyRequest.form.get('name', False)
     config_file = config_file_path(name)
@@ -930,7 +929,7 @@ def load_map_config():
     })
 
 
-@admin.route('/map/config/add', methods=['POST'])
+@admin.post('/map/config/add')
 def add_map_config():
     form = NewProjectForm(LocalProxyRequest.form, meta={'csrf': False})
 
@@ -1010,7 +1009,7 @@ def add_map_config():
     return response
 
 
-@admin.route('/map/config/edit', methods=['POST'])
+@admin.post('/map/config/edit')
 def edit_map_config():
     name = LocalProxyRequest.form.get('name')
 
@@ -1094,7 +1093,7 @@ def edit_map_config():
     return response
 
 
-@admin.route('/map/config/remove', methods=['POST'])
+@admin.post('/map/config/remove')
 def remove_map_config():
     name = LocalProxyRequest.form.get('name')
     if name:
@@ -1116,7 +1115,7 @@ def remove_map_config():
     })
 
 
-@admin.route('/map/config/rename', methods=['POST'])
+@admin.post('/map/config/rename')
 def rename_map_config():
     name = LocalProxyRequest.form.get('name')
     new_name = LocalProxyRequest.form.get('newName')
@@ -1157,7 +1156,7 @@ def rename_map_config():
     })
 
 
-@admin.route('/map/config/transfer', methods=['POST'])
+@admin.post('/map/config/transfer')
 def transfer_map_config():
     r = LocalProxyRequest.json
     name = r.get('projectName', False)
@@ -1183,7 +1182,7 @@ def transfer_map_config():
     })
 
 
-@admin.route('/log/alkis/remove', methods=['POST'])
+@admin.post('/log/alkis/remove')
 def remove_alkis_log_config():
     name = LocalProxyRequest.form.get('name')
     if name:
@@ -1206,8 +1205,8 @@ def remove_alkis_log_config():
     })
 
 
-@admin.route('/log/alkis/download/')
-@admin.route('/log/alkis/download/<filename>')
+@admin.get('/log/alkis/download/')
+@admin.get('/log/alkis/download/<filename>')
 def download_alkis_log(filename):
     alkis_log_folder = os.path.join(
         current_app.root_path,
@@ -1215,12 +1214,13 @@ def download_alkis_log(filename):
     )
     return send_from_directory(
         alkis_log_folder,
-        filename,
-        as_attachment=True, cache_timeout=-1
+        path=filename,
+        as_attachment=True,
+        max_age=-1
     )
 
 
-@admin.route('/selectionlists/load', methods=['POST'])
+@admin.post('/selectionlists/load')
 def load_selectionlist():
     name = LocalProxyRequest.form.get('name', False)
     config_file = selectionlist_file_path(name)
@@ -1240,7 +1240,7 @@ def load_selectionlist():
     })
 
 
-@admin.route('/selectionlists/edit', methods=['POST'])
+@admin.post('/selectionlists/edit')
 def edit_selectionlist():
     name = LocalProxyRequest.form.get('name')
 
@@ -1293,7 +1293,7 @@ def edit_selectionlist():
     return response
 
 
-@admin.route('/selectionlists/add', methods=['POST'])
+@admin.post('/selectionlists/add')
 def add_selectionlist():
     form = NewSelectionlistForm(LocalProxyRequest.form, meta={'csrf': False})
 
@@ -1340,7 +1340,7 @@ def add_selectionlist():
     return response
 
 
-@admin.route('/selectionlists/remove', methods=['POST'])
+@admin.post('/selectionlists/remove')
 def remove_selectionlist():
     name = LocalProxyRequest.form.get('name')
     if name:
@@ -1360,7 +1360,7 @@ def remove_selectionlist():
     })
 
 
-@admin.route('/selectionlists/rename', methods=['POST'])
+@admin.post('/selectionlists/rename')
 def rename_selectionlist_config():
     name = '%s' % LocalProxyRequest.form.get('name')
     new_name = '%s' % LocalProxyRequest.form.get('newName')
@@ -1401,7 +1401,7 @@ def rename_selectionlist_config():
     })
 
 
-@admin.route('/plugins/load', methods=['POST'])
+@admin.post('/plugins/load')
 def load_plugin():
     name = LocalProxyRequest.form.get('name', False)
     config_file = plugin_file_path(name)
@@ -1421,7 +1421,7 @@ def load_plugin():
     })
 
 
-@admin.route('/plugins/edit', methods=['POST'])
+@admin.post('/plugins/edit')
 def edit_plugin():
     name = LocalProxyRequest.form.get('name')
 
@@ -1463,7 +1463,7 @@ def edit_plugin():
     return response
 
 
-@admin.route('/plugins/add', methods=['POST'])
+@admin.post('/plugins/add')
 def add_plugin():
     form = NewPluginForm(LocalProxyRequest.form, meta={'csrf': False})
 
@@ -1499,7 +1499,7 @@ def add_plugin():
     return response
 
 
-@admin.route('/plugins/remove', methods=['POST'])
+@admin.post('/plugins/remove')
 def remove_plugin():
     name = LocalProxyRequest.form.get('name')
     if name:
@@ -1519,7 +1519,7 @@ def remove_plugin():
     })
 
 
-@admin.route('/plugins/rename', methods=['POST'])
+@admin.post('/plugins/rename')
 def rename_plugin_config():
     name = '%s' % LocalProxyRequest.form.get('name')
     new_name = '%s' % LocalProxyRequest.form.get('newName')

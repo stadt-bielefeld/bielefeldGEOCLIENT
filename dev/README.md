@@ -12,7 +12,7 @@
 * docker
 * docker-compose
 * Node (>= 10)
-* Python (>=3.9)
+* Python (>=3.12)
 * Java 8 (openjdk-8-jre)
 * virtualenv
 * geostyler-cli (>= 5.0.0)
@@ -55,20 +55,21 @@ npm i
 npm start
 ```
 
-### Install the munimap backend using a Python 3.13 Virtual Environment
+### Install the munimap backend using a Python 3.12 Virtual Environment
 
   - Open new terminal
-  - Install python 3.9 on your system (Assuming debian based linux distro):
-    - If Python3.9 is not available to install on your distro: 
+  - Install python 3.12 on your system (Assuming debian based linux distro):
+    - If Python3.12 is not available to install on your distro: 
       - `sudo add-apt-repository ppa:deadsnakes/ppa`
       - `sudo apt-get update`
-    - Install Python3.9 and other important dependencies:
+    - Install Python3.12 and other important dependencies: (NOTE: This list of dependencies might be out of date,
+      if you can correct it, please open a PR)
   ```
   sudo apt install build-essential \
-      python3.9 \
-      python3-dev \
-      python3.9-venv \
-      libpython3.9-dev \
+      python3.12 \
+      python3.12-dev \
+      python3.12-venv \
+      libpython3.12-dev \
       python3-gdal \
       python3-pycurl \
       libgdal-dev \
@@ -97,7 +98,7 @@ npm start
   ```
 
   - create the virtual environment
-    - `python3.9 -m venv muni_venv` (or any other name you like)
+    - `python3.12 -m venv muni_venv` (or any other name you like)
   - Activate Virtual Environment
     - `source muni_venv/bin/activate`
   - Install requirements:
@@ -145,16 +146,12 @@ npm start
     ```
     cd ./bielefeldGEOCLIENT 
     source muni_venv/bin/activate
-    cd dev/
-    export FLASK_APP="manage.py"
     ```
-- `FLASK_DEBUG=1 flask run-munimap`
-  
-By default a configuration file located in the `dev/` folder is used. However you can use a custom file by providing `FLASK_MUNIMAP_CONFIG` environment variable:
-- `FLASK_DEBUG=1 FLASK_APP=manage.py FLASK_MUNIMAP_CONFIG='../path/to/your/custom/config/file.conf' flask run-munimap`
+- `FLASK_APP="munimap.application:create_app()" FLASK_RUN_HOST=0.0.0.0 FLASK_RUN_PORT=5000 flask run`
 
-If you want to use mapfish CLI instead of service and have not configured Java 8 as the default Java Version, you need to set the `JAVA_HOME` environment variable. i.e.:
-- `JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ FLASK_DEBUG=1 FLASK_APP=manage.py flask run-munimap`
+With different config and JAVA_HOME (for mapfish cli) set:
+- `FLASK_MUNIMAP_CONFIG=dev/configs/munimap.conf FLASK_APP="munimap.application:create_app()" JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ FLASK_RUN_HOST=0.0.0.0 FLASK_RUN_PORT=5000 flask run --debug`
+- `FLASK_MUNIMAP_CONFIG=../munimap-conf/munimap-app/configs/munimap-local-dev.conf FLASK_APP="munimap.application:create_app()" JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ FLASK_RUN_HOST=0.0.0.0 FLASK_RUN_PORT=5000 flask run --debug`
 
 ## Compile the frontend
 and finally the client (javascript) source can be watched via(ran in the root folder, i.e, bielefeldGEOCLIENT):

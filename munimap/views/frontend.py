@@ -14,7 +14,7 @@ from munimap.helper import plugin_file_path, tour_file_path, contextmenu_file_pa
 frontend = Blueprint('frontend', __name__)
 
 
-@frontend.route('/pages/<name>')
+@frontend.get('/pages/<name>')
 def pages(name):
     try:
         app_version = importlib.metadata.version('munimap')
@@ -30,8 +30,8 @@ def pages(name):
         abort(404)
 
 
-@frontend.route('/plugins', defaults={'name': ''})
-@frontend.route('/plugins/<string:name>')
+@frontend.get('/plugins', defaults={'name': ''})
+@frontend.get('/plugins/<string:name>')
 def plugins(name):
     try:
         # name cannot contain a '/' so the following is ok:
@@ -40,8 +40,8 @@ def plugins(name):
         abort(404)
 
 
-@frontend.route('/tours', defaults={'name': ''})
-@frontend.route('/tours/<string:name>')
+@frontend.get('/tours', defaults={'name': ''})
+@frontend.get('/tours/<string:name>')
 def tours(name):
     try:
         # name cannot contain a '/' so the following is ok:
@@ -50,8 +50,8 @@ def tours(name):
         abort(404)
 
 
-@frontend.route('/contextmenus', defaults={'name': ''})
-@frontend.route('/contextmenus/<string:name>')
+@frontend.get('/contextmenus', defaults={'name': ''})
+@frontend.get('/contextmenus/<string:name>')
 def contextmenus(name):
     try:
         # name cannot contain a '/' so the following is ok:

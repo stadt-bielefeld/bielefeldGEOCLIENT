@@ -233,7 +233,7 @@ class EmailVerification(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('mb_user.mb_user_id'))
     valid_till = db.Column(
         db.DateTime,
-        default=lambda: datetime.datetime.utcnow() + RECOVER_VALID_FOR
+        default=lambda: datetime.datetime.now(datetime.UTC) + RECOVER_VALID_FOR
     )
 
     @classmethod
@@ -252,7 +252,7 @@ class EmailVerification(db.Model):
 
     @property
     def expired(self):
-        if datetime.datetime.utcnow() < self.valid_till:
+        if datetime.datetime.now(datetime.UTC) < self.valid_till:
             return False
         return True
 
