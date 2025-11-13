@@ -45,7 +45,7 @@
           <div class="group-layers-container" ng-repeat="layer in group.layers" 
               ng-if="layer.displayInLayerswitcher !== false" 
               ng-show="!group.options.collapsed"
-              ng-class="{'inactive': !layerIsVisibleByName(layer.name)}">
+              ng-class="{'inactive': !layerIsVisibleByName(layer.name), 'child-no-metadata': !layer.metadataUrl || hideMetadata == true}">
             <a ng-if="layer.metadataUrl && hideMetadata == false" target="_blank" ng-href="{{ layer.metadataUrl }}" title="Metadaten">
                 <span class="glyphicon glyphicon-info-sign"></span>
             </a>
