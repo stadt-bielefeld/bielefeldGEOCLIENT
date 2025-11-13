@@ -1,3 +1,10 @@
+## [1.12.5](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.12.4...1.12.5) (2025-11-13)
+
+
+### Bug Fixes
+
+* position close button at top and properly indent child layers without metadata button ([50e992e](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/50e992e315c4946039c1773286d970aae073a900))
+
 ## [1.12.4](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.12.3...1.12.4) (2025-11-13)
 
 
