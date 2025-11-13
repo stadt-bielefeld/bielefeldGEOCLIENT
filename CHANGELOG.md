@@ -1,3 +1,10 @@
+## [1.12.4](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.12.3...1.12.4) (2025-11-13)
+
+
+### Bug Fixes
+
+* update anol to b5c31d16a71d0c005c423cf847d7a5e8c48e9d8c ([#357](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/issues/357)) ([97a31b8](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/97a31b81ae9b04bc257444778e0cf60ad2691a27))
+
 ## [1.12.3](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.12.2...1.12.3) (2025-11-12)
 
 
