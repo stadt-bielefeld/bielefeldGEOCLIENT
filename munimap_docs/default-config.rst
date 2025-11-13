@@ -340,6 +340,18 @@ Folgende Komponenten stehen zur Verfügung:
     muss sowohl der Wert `true` angegeben werden, als auch mindestens ein Digitalisierungslayer unter `digitizeConfig`_
     konfiguriert werden. Standardwert: `false`.
 
+  ``customControls``
+    Fügt der Anwendung zusätzliche Controls hinzu, die über CustomControl Plugins eigens konfigurierbare Funktionen ausführen können.
+    Sollte mehr als ein Custom Control hinzugefügt werden, müssen alle Custom Controls explizit via `componentPositions`_ positioniert
+    werden. Funktionen können über den Pluginnamen im `callback`-Attribut referenziert werden.
+
+    Beispiel::
+
+      customControls:
+        - text: '3D' # Anzeigetext des Controls
+          title: 'Starte 3D Ansicht' # Titel bei Mouseover
+          callback: 'start_3d' # Referenz auf CustomControl Plugin
+
 componentPositions
 ------------------
 
@@ -351,7 +363,7 @@ In diesem Abschnitt können die in der Kartenanwendung als Buttons sichtbaren El
 
 Der Abschnitt unterteilt sich in die Bereiche `mobile` und `desktop` da die Elemente Mobil andere Positionen haben müssen als in der Desktop Variante.
 
-Für jedes Element kann der `top`- sowie der `left`-Wert überschrieben werden.
+Für jedes Element kann der `top`- sowie der `left`-Wert überschrieben werden. `customControls` erwartet eine Liste mit `top`/`left`-Werten.
 
 Im Folgenden sind die positionierbaren Elemente sowie deren `mobile`- und `desktop`-Standardpositionen aufgeführt.
 
@@ -376,6 +388,9 @@ Im Folgenden sind die positionierbaren Elemente sowie deren `mobile`- und `deskt
       - left: 3.5em
     `rotationButton`
       - top: 12.5em
+      - left: 0.5em
+    `customControls`
+      - top: 14.5em
       - left: 0.5em
     `endMeasureButton`
       - top: 17.0em
@@ -405,6 +420,9 @@ Im Folgenden sind die positionierbaren Elemente sowie deren `mobile`- und `deskt
     `rotationButton`
       - top: 16.2em
       - left: 0.5em
+    `customControls`
+      - top: 20.6em
+      - left: 0.5em
     `endMeasureButton`
       - top: 17.0em
       - left: 4.0em
@@ -412,17 +430,27 @@ Im Folgenden sind die positionierbaren Elemente sowie deren `mobile`- und `deskt
       - top: 14.5em
       - left: 3.5em
 
-Beispielhafte Positionierung des `homeButton`::
+Beispielhafte Positionierung von `homeButton` und `customControls`::
 
   componentPositions:
     desktop:
       menuButton:
         top: 1em
         left: 1em
+      customControls:
+        - top: 2em
+          left: 1em
+        - top: 3em
+          left: 1em
     mobile:
       menuButton:
         top: 1.5em
         left: 0.5em
+      customControls:
+        - top: 3em
+          left: 0.5em
+        - top: 4.5em
+          left: 0.5em
 
 
 .. _defaultconf_communication:

@@ -118,6 +118,7 @@ angular.module('munimapBase')
                 $scope.mobileServiceMenuPosition = munimapConfig.componentPositions.mobile.serviceMenu || {};
                 $scope.mobilePointMeasureResultPosition = munimapConfig.componentPositions.mobile.pointMeasureResult || {};
                 $scope.mobileEndMeasurePosition = munimapConfig.componentPositions.mobile.endMeasureButton || {};
+                $scope.mobileCustomControlsPositions = munimapConfig.componentPositions.mobile.customControls || [];
             } else {
                 $scope.mobileMenuButtonPosition = {};
                 $scope.mobileZoomButtonsPosition = {};
@@ -128,6 +129,7 @@ angular.module('munimapBase')
                 $scope.mobileServiceMenuPosition = {};
                 $scope.mobilePointMeasureResultPosition = {};
                 $scope.mobileEndMeasurePosition = {};
+                $scope.mobileCustomControlsPositions = [];
             }
 
             // assign positions for desktop buttons
@@ -141,6 +143,7 @@ angular.module('munimapBase')
                 $scope.desktopServiceMenuPosition = munimapConfig.componentPositions.desktop.serviceMenu || {};
                 $scope.desktopPointMeasureResultPosition = munimapConfig.componentPositions.desktop.pointMeasureResult || {};
                 $scope.desktopEndMeasurePosition = munimapConfig.componentPositions.desktop.endMeasureButton || {};
+                $scope.desktopCustomControlsPositions = munimapConfig.componentPositions.desktop.customControls || [];
             } else {
                 $scope.desktopMenuButtonPosition = {};
                 $scope.desktopZoomButtonsPosition = {};
@@ -151,6 +154,7 @@ angular.module('munimapBase')
                 $scope.desktopServiceMenuPosition = {};
                 $scope.desktopPointMeasureResultPosition = {};
                 $scope.desktopEndMeasurePosition = {};
+                $scope.desktopCustomControlsPositions = [];
             }
 
             $scope.components = munimapConfig.components;

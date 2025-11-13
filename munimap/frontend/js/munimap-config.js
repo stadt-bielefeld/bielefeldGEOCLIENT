@@ -18,6 +18,7 @@ angular.module('munimap', [
     'munimapGeoeditor',
     'munimapDigitize',
     'munimapBase.moveableModal',
+    'munimapBase.customControl',
     'munimapBase.alkisButton',
     'munimapBase.alkisSimple',
     'munimapBase.alkisPdf',
