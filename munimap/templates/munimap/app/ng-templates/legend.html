@@ -1,5 +1,5 @@
 <div class="anol-legend-container">
-    <div class="anol-legend-items">
+    <div class="anol-legend-items" ng-if="$parent.sidebar.openItems.includes('legend')">
         <div ng-repeat="layer in legendLayers">
             <!-- Groups with legend - show group legend only -->
             <div ng-if="layer.group.legend && layer.group.getVisible()">
