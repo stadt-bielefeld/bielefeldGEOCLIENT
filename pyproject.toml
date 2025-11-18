@@ -21,7 +21,7 @@ dependencies = [
     'Flask-SQLAlchemy==2.5.1',
     'Flask-WTF==0.15.1',
     'GeoAlchemy2==0.15.2',
-    'itsdangerous==2.0.1',
+    'itsdangerous==2.2.0',
     'Jinja2==3.0.3',
     'markupsafe==2.1.5',
     'psycopg2==2.9.9',
