@@ -1,3 +1,19 @@
+# [1.13.0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.12.5...1.13.0) (2025-11-26)
+
+
+### Bug Fixes
+
+* render legends only if legends are visible ([a12f6ad](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/a12f6adf9445ee92a97fff2e83180be62b944ed4))
+* use env before parameter ([b79d267](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/b79d267e0f3c754251b06535cce4012d03ced521))
+
+
+### Features
+
+* update to flask 2 ([841dbc3](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/841dbc330e24c9860230ed5b509b529a07166ae3))
+* update to flask 3 ([8e08c0b](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/8e08c0bb7cb241cbdbaf057a80cae778bfab26e2))
+* update to python3.12 ([c511b8a](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/c511b8a451076227abe15f4c2f6ab30ee8ee7786))
+* updating flask to 1.1.4 ([a78e9c7](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/a78e9c72fa7c241435cd13f43fb2e886d98bc0e4))
+
 ## [1.12.5](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.12.4...1.12.5) (2025-11-13)
 
 
