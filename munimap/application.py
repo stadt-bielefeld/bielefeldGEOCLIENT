@@ -6,6 +6,8 @@ import locale
 import logging
 import logging.config
 import tempfile
+import typing as t
+
 import yaml
 
 import jinja2
@@ -17,8 +19,7 @@ from flask import Flask, send_from_directory, request as LocalProxyRequest, \
     current_app
 from flask_babel import Babel
 
-from flask.json import JSONEncoder as BaseJSONEncoder
-from speaklater import _LazyString
+from flask.json.provider import DefaultJSONProvider
 
 from munimap.config import DefaultConfig, TestConfig
 from munimap.layers import (
@@ -33,6 +34,7 @@ from munimap.helper import request_for_static, nl2br, touch_last_changes_file
 from munimap.model import DummyUser, MBUser
 from munimap.extensions import db, login_manager, mail
 
+config_file_from_env = os.getenv('FLASK_MUNIMAP_CONFIG', './configs/munimap.conf')
 
 def create_app(config=None, config_file=None):
     app = ReverseProxiedFlask(__name__)
@@ -46,7 +48,9 @@ def create_app(config=None, config_file=None):
     if app.testing:
         app.config.from_object(TestConfig())
 
-    if config_file is not None:
+    if config_file_from_env is not None:
+        app.config.from_pyfile(os.path.abspath(config_file_from_env))
+    elif config_file is not None:
         app.config.from_pyfile(os.path.abspath(config_file))
 
     if config is not None:
@@ -62,14 +66,11 @@ def create_app(config=None, config_file=None):
     app.jinja_loader = template_loader
 
     # configure json_encoder to handle lazy gettext
-    class LazyJSONEncoder(BaseJSONEncoder):
-        def default(self, o):
-            if isinstance(o, _LazyString):
-                return str(o)
-            return BaseJSONEncoder.default(self, o)
+    class LazyJSONProvider(DefaultJSONProvider):
+        def dumps(self, obj: t.Any, **kwargs: t.Any) -> str:
+            return super().dumps(obj, default=str, **kwargs)
 
-    app.json_encoder = LazyJSONEncoder
-
+    app.json = LazyJSONProvider(app)
 
     @app.context_processor
     def custom_functions_context():
@@ -218,7 +219,7 @@ def configure_errorhandlers(app):
 
     @app.errorhandler(400)
     def bad_request(error):
-        if LocalProxyRequest.is_xhr:
+        if LocalProxyRequest.headers.get("X-Requested-With") == "XMLHttpRequest":
             response = jsonify(message='Bad Request')
             response.status_code = 400
             return response
@@ -227,7 +228,7 @@ def configure_errorhandlers(app):
 
     @app.errorhandler(401)
     def unauthorized(error):
-        if LocalProxyRequest.is_xhr:
+        if LocalProxyRequest.headers.get("X-Requested-With") == "XMLHttpRequest":
             response = jsonify(message="Login required")
             response.status_code = 401
             return response
@@ -236,7 +237,7 @@ def configure_errorhandlers(app):
 
     @app.errorhandler(403)
     def forbidden(error):
-        if LocalProxyRequest.is_xhr:
+        if LocalProxyRequest.headers.get("X-Requested-With") == "XMLHttpRequest":
             response = jsonify(message='Not allowed')
             response.status_code = 403
             return response
@@ -245,7 +246,7 @@ def configure_errorhandlers(app):
 
     @app.errorhandler(404)
     def page_not_found(error):
-        if LocalProxyRequest.is_xhr:
+        if LocalProxyRequest.headers.get("X-Requested-With") == "XMLHttpRequest":
             response = jsonify(message='Page not found')
             response.status_code = 404
             return response
@@ -254,7 +255,7 @@ def configure_errorhandlers(app):
 
     @app.errorhandler(500)
     def server_error(error):
-        if LocalProxyRequest.is_xhr:
+        if LocalProxyRequest.headers.get("X-Requested-With") == "XMLHttpRequest":
             response = jsonify(message='Internal Error')
             response.status_code = 500
             return response
@@ -293,7 +294,7 @@ def load_layers(app, config_folder, initial=False):
     except Exception as ex:
         if initial:
             raise
-        app.logger.warn(ex)
+        app.logger.warning(ex)
         return False
 
     pg_layers = pq.load_layers(

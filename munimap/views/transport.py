@@ -25,7 +25,7 @@ transport = Blueprint(
 )
 
 
-@transport.route('/')
+@transport.get('/')
 def app():
     app_config = load_app_config('transport')
     layers_def = prepare_layers_def(app_config, current_app.layers)
@@ -37,7 +37,7 @@ def app():
     )
 
 
-@transport.route('/stations.geojson')
+@transport.get('/stations.geojson')
 def stations():
     if 'layer' not in request.args:
         abort(404)
@@ -57,7 +57,7 @@ def stations():
     )
 
 
-@transport.route('/station_points.geojson')
+@transport.get('/station_points.geojson')
 def station_points():
     if 'layer' not in request.args:
         abort(404)
@@ -77,7 +77,7 @@ def station_points():
     )
 
 
-@transport.route('/timetable_documents.json')
+@transport.get('/timetable_documents.json')
 def timetable_documents():
     if not current_app.config['TIMETABLE_DOCUMENTS_CSV']:
         return {}
@@ -110,8 +110,8 @@ def timetable_documents():
     return timetable_json
 
 
-@transport.route('/route/')
-@transport.route('/route/<osm_id>')
+@transport.get('/route/')
+@transport.get('/route/<osm_id>')
 def route(osm_id=None):
     if osm_id is None:
         abort(404)

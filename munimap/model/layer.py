@@ -1,6 +1,6 @@
-from munimap.extensions import db
+from sqlalchemy import text
 
-from sqlalchemy.orm import class_mapper
+from munimap.extensions import db
 
 __all__ = ['ProtectedLayer']
 
@@ -61,7 +61,7 @@ class ProtectedLayer(db.Model):
             lg.mm_layer_id = :layerId
             AND ug.fkey_mb_user_id = :userId;
         """
-        result = db.session.execute(sqlTpl, {"userId": user.id, "layerId": layer.id}, mapper=class_mapper(ProtectedLayer))
+        result = db.session.execute(text(sqlTpl), {"userId": user.id, "layerId": layer.id})
 
         return result.fetchone()[0] > 0
 

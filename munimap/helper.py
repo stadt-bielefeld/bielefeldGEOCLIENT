@@ -10,7 +10,7 @@ from flask import request, abort, current_app, url_for
 
 from flask_login import current_user
 from flask_babel import gettext as _, lazy_gettext as _l
-from sqlalchemy.orm import class_mapper
+from sqlalchemy import text
 
 from munimap.model import ProtectedLayer
 
@@ -97,7 +97,7 @@ def check_layers_permission(layers):
         ;
         """
 
-    result = db.session.execute(sqlTpl, {"userId": current_user.id, "layer_names": tuple(layer_names)}, mapper=class_mapper(ProtectedLayer))
+    result = db.session.execute(text(sqlTpl), {"userId": current_user.id, "layer_names": tuple(layer_names)})
 
     allowedLayerNames = [r for r, in result]
 
@@ -180,7 +180,7 @@ def load_app_config(config=None, without_404=False):
         current_app.config.get('DEFAULT_APP_CONFIG')
     )
     if not os.path.exists(default_config_file):
-        current_app.logger.warn(
+        current_app.logger.warning(
             'Default app config not found. (%s)' % default_config_file)
         default_config = {}
     else:
@@ -206,7 +206,7 @@ def load_app_config(config=None, without_404=False):
         elif without_404:
             return None
         else:
-            current_app.logger.warn(
+            current_app.logger.warning(
                 'App config %s not found' % sub_app_config_file)
             # requested app config not available
             abort(404)

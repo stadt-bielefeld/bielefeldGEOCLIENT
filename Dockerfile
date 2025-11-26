@@ -1,7 +1,7 @@
 ARG ANOL_COMMIT_HASH=b5c31d16a71d0c005c423cf847d7a5e8c48e9d8c
 ARG GEOSTYLER_CLI_VERSION=5.0.3
 
-FROM node:22-alpine@sha256:6e80991f69cc7722c561e5d14d5e72ab47c0d6b6cfb3ae50fb9cf9a7b30fdf97 AS clientbuilder
+FROM node:24-alpine AS clientbuilder
 
 ARG ANOL_COMMIT_HASH
 RUN apk add --no-cache wget unzip
@@ -28,7 +28,7 @@ RUN npm run build
 
 
 
-FROM python:3.9.13-bullseye AS builder
+FROM python:3.12-bookworm AS builder
 
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -50,7 +50,7 @@ RUN python -m build
 
 
 
-FROM python:3.9.13-bullseye AS runner
+FROM python:3.12-bookworm AS runner
 
 ARG GEOSTYLER_CLI_VERSION
 
@@ -129,8 +129,8 @@ RUN touch /opt/etc/munimap/configs/munimap.conf \
 # Get and install openjdk-8-jre. Not available in Debian Buster
 # TODO: Check for a possible mapfish print update, so version 11 can be used. Then this is not needed anymore.
 # openjdk-11-jre can be easily installed by apt#
-RUN wget -qO - https://packages.adoptium.net/artifactory/api/security/keypair/default-gpg-key/public | apt-key add -
-RUN add-apt-repository --yes https://packages.adoptium.net/artifactory/deb
+RUN wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | tee /etc/apt/keyrings/adoptium.asc
+RUN echo "deb [signed-by=/etc/apt/keyrings/adoptium.asc] https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | tee /etc/apt/sources.list.d/adoptium.list
 RUN apt update -y && apt install temurin-8-jre -y
 
 RUN wget -q -O- https://repo1.maven.org/maven2/org/mapfish/print/print-cli/3.9.0/print-cli-3.9.0-tar.tar | tar -x -C /opt/var/mapfish
@@ -140,13 +140,11 @@ RUN wget -q -O /tmp/geostyler-linux.zip https://github.com/geostyler/geostyler-c
     && unzip /tmp/geostyler-linux.zip \
     && rm /tmp/geostyler-linux.zip
 
+COPY ./docker/build/requirements.txt /opt/etc/munimap/requirements.txt
 RUN pip install --upgrade pip && \
-    pip install \
-    gunicorn==21.2.0 \
-    eventlet==0.33.3 \
-    dnspython==2.3.0
+    pip install -r /opt/etc/munimap/requirements.txt
 
-COPY ./gunicorn.conf /opt/etc/munimap/gunicorn.conf
+COPY ./docker/build/gunicorn.conf /opt/etc/munimap/gunicorn.conf
 COPY --from=builder /pkg/dist/munimap-*.whl /opt/pkgs
 
 RUN pip install /opt/pkgs/munimap-*.whl
@@ -163,7 +161,7 @@ RUN mkdir -p /certs
 
 COPY ./munimap/logging.yaml /opt/etc/munimap/configs/logging.yaml
 
-COPY ./entrypoint.sh /entrypoint.sh
+COPY ./docker/build/entrypoint.sh /entrypoint.sh
 
 # Flag to decide if alembic should be run before starting the application
 ENV RUN_ALEMBIC="true"

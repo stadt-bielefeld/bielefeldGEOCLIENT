@@ -148,9 +148,9 @@
 
     angular.module('munimapDraw')
     .value('StyleSchema', {$ style_schema | tojson $})
-    .value('StyleSchemaFormOptions', {$ style_schema_form_options | tojson $})
+    .value('StyleSchemaFormOptions', {$ style_schema_form_options_json | safe $})
     .value('LabelSchema', {$ label_schema | tojson $})
-    .value('LabelSchemaFormOptions', {$ label_schema_form_options | tojson $})
+    .value('LabelSchemaFormOptions', {$ label_schema_form_options_json | safe $})
     .value('DrawIconsPrefix', '{$ url_for("munimap.draw_icons", filename="") $}');
 
     angular.module('munimap')

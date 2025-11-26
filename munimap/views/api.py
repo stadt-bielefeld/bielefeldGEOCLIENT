@@ -38,12 +38,12 @@ def check_permission():
 
     access_allowed = access_token == api_access_receive_token
     if not access_allowed:
-        if LocalProxyRequest.is_xhr:
+        if LocalProxyRequest.headers.get("X-Requested-With") == "XMLHttpRequest":
             return jsonify(message='Not allowed')
         return abort(403)
 
 
-@api.route('/update/map/config', methods=['POST'])
+@api.post('/update/map/config')
 def update_map_config(path=None):
     file = LocalProxyRequest.files.get('upload_file', None)
     if file:
@@ -57,7 +57,7 @@ def update_map_config(path=None):
     return jsonify({'success': False})
 
 
-@api.route('/update/project/config', methods=['POST'])
+@api.post('/update/project/config')
 def update_project_config(path=None):
     file = LocalProxyRequest.files.get('upload_file', None)
     if file:
