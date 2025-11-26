@@ -47,7 +47,7 @@ jobs:
 
       - name: Build and push Docker image
         if: steps.semantic.outputs.new_release_published == 'true'
-        uses: docker/build-push-action@4f58ea79222b3b9dc2c8bbdd6debcef730109a75
+        uses: docker/build-push-action@9e436ba9f2d7bcd1d038c8e55d039d37896ddc5d
         with:
           context: .
           push: true
