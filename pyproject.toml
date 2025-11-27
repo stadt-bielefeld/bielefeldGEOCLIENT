@@ -31,8 +31,8 @@ dependencies = [
     'Shapely==2.1.2',
     'speaklater3==1.4',
     'SQLAlchemy==2.0.44',
-    'WTForms-SQLAlchemy==0.3',
-    'WTForms==2.3.3'
+    'WTForms-SQLAlchemy==0.4.2',
+    'WTForms==3.2.1'
 ]
 classifiers = [
     "License :: OSI Approved :: BSD License",
