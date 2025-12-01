@@ -29,6 +29,7 @@ require('./modules/notifications.js');
 require('./modules/sidebar.js');
 require('./modules/servicebutton.js');
 require('./modules/alkisbutton.js');
+require('./modules/customcontrol.js');
 require('./modules/slider-directive.js');
 require('./modules/slider.js');
 require('./modules/moveablemodal.js');
