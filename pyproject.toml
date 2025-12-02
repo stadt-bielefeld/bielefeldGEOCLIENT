@@ -10,7 +10,7 @@ maintainers = [
 ]
 description = 'Municipality map with street index, search grid, etc.'
 dependencies = [
-    'alembic==1.16.5',
+    'alembic==1.17.2',
     'Babel==2.16.0',
     'bcrypt==3.2.2',
     'dictspec==0.2.1',
