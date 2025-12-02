@@ -352,7 +352,7 @@ def mapfish_layers(requested_layers, bbox=None, srs=None, dpi=None, scale=None, 
 
 def extract_opacity_from_rgba(rgba):
     opacity = 1.0
-    values = re.findall("rgba\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d?\.?\d*)\s*\)$", rgba)
+    values = re.findall(r"rgba\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d?\.?\d*)\s*\)$", rgba)
     if len(values) == 1 and len(values[0]) == 4:
         return float(values[0][3])
     return opacity
