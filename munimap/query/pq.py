@@ -98,7 +98,7 @@ def row_to_feature(row, layername=None):
         },
         'geometry': {}
     }
-    for k, v in row.items():
+    for k, v in row._mapping.items():
         if k == 'geometry':
             continue
         elif k == '__transformed_geom__':
