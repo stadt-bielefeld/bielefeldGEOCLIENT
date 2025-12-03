@@ -11,7 +11,7 @@ maintainers = [
 description = 'Municipality map with street index, search grid, etc.'
 dependencies = [
     'alembic==1.17.2',
-    'Babel==2.16.0',
+    'Babel==2.17.0',
     'bcrypt==3.2.2',
     'dictspec==0.2.1',
     'Flask-Babel==1.0.0',
