@@ -5,7 +5,13 @@ angular.module('schemaForm').run(['$templateCache',
     function($templateCache) {
         $templateCache.put(
             'directives/decorators/bootstrap/plaintext/plaintext.html',
-            '<div sf-field-model ng-if="$$value$$" class="form-group munimap-plaintext"><label class="control-label">{{form.title}}</label><div class="input-group"><span ng-if="form.format !== \'date\'">{{$$value$$}}</span><span ng-if="form.format === \'date\'">{{$$value$$ + "Z" | date : "dd.MM.yyyy, HH:mm:ss" }}</span></div></div>'
+            `<div sf-field-model ng-if="$$value$$" class="form-group munimap-plaintext">
+                <label class="control-label">{{form.title}}</label>
+                <div class="input-group">
+                    <span ng-if="form.format !== 'date'">{{$$value$$}}</span>
+                    <span ng-if="form.format === 'date'">{{$$value$$ | date : "dd.MM.yyyy, HH:mm:ss" }}</span>
+                </div>
+            </div>`
         );
     }
 ]);
