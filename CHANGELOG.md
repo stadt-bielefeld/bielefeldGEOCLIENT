@@ -1,3 +1,10 @@
+## [1.14.1](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.14.0...1.14.1) (2025-12-03)
+
+
+### Bug Fixes
+
+* rows are no dicts anymore ([6b02ea7](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/6b02ea7f6663ea73358991a547e26b32a0fabd2e))
+
 # [1.14.0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.13.0...1.14.0) (2025-12-03)
 
 
