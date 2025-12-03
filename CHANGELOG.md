@@ -1,3 +1,17 @@
+# [1.14.0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.13.0...1.14.0) (2025-12-03)
+
+
+### Bug Fixes
+
+* create connection instead of using engine directly ([61c45e5](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/61c45e585fbde9f7f71957bd3a3d8173895ff013))
+* legend sidebar content panel visibility for big legends ([82b09d2](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/82b09d2ce8a95564247b15c3d57bbb08171dc4d1))
+* make datetime columns timestamp aware ([75bdb5f](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/75bdb5f8e157872ce3eaa216f9c6bf54960db0c2))
+
+
+### Features
+
+* **deps:** Update WTForms + corrected regexp that was causing a warning on startup ([2201f2a](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/2201f2a13842839e2502fc77f1d4325a7e7e18e0))
+
 # [1.13.0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.12.5...1.13.0) (2025-11-26)
 
 
