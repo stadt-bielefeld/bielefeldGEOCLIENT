@@ -232,7 +232,7 @@ class EmailVerification(db.Model):
     hash = db.Column(db.String, unique=True, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('mb_user.mb_user_id'))
     valid_till = db.Column(
-        db.DateTime,
+        db.DateTime(timezone=True),
         default=lambda: datetime.datetime.now(datetime.UTC) + RECOVER_VALID_FOR
     )
 

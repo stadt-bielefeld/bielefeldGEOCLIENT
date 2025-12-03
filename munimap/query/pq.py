@@ -26,15 +26,12 @@ def load_layers(config, default_db_uri, db_schema, db_echo=False):
             if uri in engines:
                 engine = engines[uri]
             else:
-                def init_search_path(connection, conn_record):
-                    cursor = connection.cursor()
-                    try:
-                        cursor.execute(sa.text('SET search_path TO %s, public' % db_schema))
-                    finally:
-                        cursor.close()
-
                 engine = sa.create_engine(uri, echo=db_echo)
                 if db_schema != 'public':
+                    def init_search_path(connection, conn_record):
+                        with connection.cursor() as cursor:
+                            cursor.execute(sa.text('SET search_path TO %s, public' % db_schema))
+
                     sa.event.listen(engine, 'connect', init_search_path)
 
                 engines[uri] = engine
@@ -70,22 +67,21 @@ def query(q, queryable_layers):
             else:
                 where = 'WHERE geometry && ST_Transform(ST_MakeEnvelope(:minx, :miny, :maxx, :maxy, :bbox_srs), :db_srs)'
 
-            sql = 'SELECT *, ST_Transform(geometry, :bbox_srs) AS __transformed_geom__ FROM (%s) AS data %s limit :limit;' % (
-                sql,
-                where
-            )
-            rows = queryable_layers[layer]['source']['db_engine'].execute(sa.text(sql), {
-                'minx': q.bbox[0],
-                'miny': q.bbox[1],
-                'maxx': q.bbox[2],
-                'maxy': q.bbox[3],
-                'bbox_srs': q.srs,
-                'db_srs': queryable_layers[layer]['source'].get('srid', 3857),
-                'limit': q.limit,
-            }).fetchall()
+            sql = f'SELECT *, ST_Transform(geometry, :bbox_srs) AS __transformed_geom__ FROM ({sql}) AS data {where} limit :limit;'
+            engine = queryable_layers[layer]['source']['db_engine']
+            with engine.connect() as conn:
+                rows = conn.execute(sa.text(sql), {
+                    'minx': q.bbox[0],
+                    'miny': q.bbox[1],
+                    'maxx': q.bbox[2],
+                    'maxy': q.bbox[3],
+                    'bbox_srs': q.srs,
+                    'db_srs': queryable_layers[layer]['source'].get('srid', 3857),
+                    'limit': q.limit,
+                }).fetchall()
 
-            for row in rows:
-                features.append(row_to_feature(row, layername=layer))
+                for row in rows:
+                    features.append(row_to_feature(row, layername=layer))
 
     return {
         'type': 'FeatureCollection',
