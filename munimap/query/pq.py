@@ -70,7 +70,7 @@ def query(q, queryable_layers):
             sql = f'SELECT *, ST_Transform(geometry, :bbox_srs) AS __transformed_geom__ FROM ({sql}) AS data {where} limit :limit;'
             engine = queryable_layers[layer]['source']['db_engine']
             with engine.connect() as conn:
-                rows = conn.execute(sa.text(sql), {
+                result = conn.execute(sa.text(sql), {
                     'minx': q.bbox[0],
                     'miny': q.bbox[1],
                     'maxx': q.bbox[2],
@@ -78,9 +78,9 @@ def query(q, queryable_layers):
                     'bbox_srs': q.srs,
                     'db_srs': queryable_layers[layer]['source'].get('srid', 3857),
                     'limit': q.limit,
-                }).fetchall()
+                })
 
-                for row in rows:
+                for row in result.mappings():
                     features.append(row_to_feature(row, layername=layer))
 
     return {
@@ -98,7 +98,7 @@ def row_to_feature(row, layername=None):
         },
         'geometry': {}
     }
-    for k, v in row._mapping.items():
+    for k, v in row.items():
         if k == 'geometry':
             continue
         elif k == '__transformed_geom__':

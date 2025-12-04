@@ -74,16 +74,17 @@ def query_stations(layer=None, operator=None, bbox=[-180, -90, 180, 90], with_hu
     else:
         sql_query = QUERY_STATIONS
 
-    rows = engine.execute(sa.text(sql_query), {
-        'ref_expression': ref_expression,
-        'minx': bbox[0],
-        'miny': bbox[1],
-        'maxx': bbox[2],
-        'maxy': bbox[3],
-    }).fetchall()
     features = []
-    for row in rows:
-        features.append(stations_to_feature(row, operator=operator, ref_expression=ref_expression))
+    with engine.connect() as conn:
+        result = conn.execute(sa.text(sql_query), {
+            'ref_expression': ref_expression,
+            'minx': bbox[0],
+            'miny': bbox[1],
+            'maxx': bbox[2],
+            'maxy': bbox[3],
+        })
+        for row in result.mappings():
+            features.append(stations_to_feature(row, operator=operator, ref_expression=ref_expression))
 
     return {
         'type': 'FeatureCollection',
@@ -175,13 +176,14 @@ def stations_to_feature(row, operator=None, ref_expression=None):
 def query_route(osm_id):
     engine = create_engine()
 
-    rows = engine.execute(sa.text(QUERY_SEGMENTS), {
-        'osm_id': osm_id,
-    }).fetchall()
     features = []
-    for row in rows:
-        feature = row_to_feature(row)
-        features.append(feature)
+    with engine.connect() as conn:
+        result = conn.execute(sa.text(QUERY_SEGMENTS), {
+            'osm_id': osm_id,
+        })
+        for row in result.mappings():
+            feature = row_to_feature(row)
+            features.append(feature)
 
     return {
         'type': 'FeatureCollection',
