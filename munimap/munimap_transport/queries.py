@@ -76,14 +76,14 @@ def query_stations(layer=None, operator=None, bbox=[-180, -90, 180, 90], with_hu
 
     features = []
     with engine.connect() as conn:
-        rows = conn.execute(sa.text(sql_query), {
+        result = conn.execute(sa.text(sql_query), {
             'ref_expression': ref_expression,
             'minx': bbox[0],
             'miny': bbox[1],
             'maxx': bbox[2],
             'maxy': bbox[3],
-        }).fetchall()
-        for row in rows:
+        })
+        for row in result.mappings():
             features.append(stations_to_feature(row, operator=operator, ref_expression=ref_expression))
 
     return {
@@ -178,10 +178,10 @@ def query_route(osm_id):
 
     features = []
     with engine.connect() as conn:
-        rows = conn.execute(sa.text(QUERY_SEGMENTS), {
+        result = conn.execute(sa.text(QUERY_SEGMENTS), {
             'osm_id': osm_id,
-        }).fetchall()
-        for row in rows:
+        })
+        for row in result.mappings():
             feature = row_to_feature(row)
             features.append(feature)
 
