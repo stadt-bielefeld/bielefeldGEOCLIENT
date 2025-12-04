@@ -1,3 +1,10 @@
+## [1.14.2](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.14.1...1.14.2) (2025-12-04)
+
+
+### Bug Fixes
+
+* use correct interface for check if function is callable ([5462672](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/54626723f6ba8e3160a071dd08c0f042123ca55c))
+
 ## [1.14.1](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.14.0...1.14.1) (2025-12-03)
 
 
