@@ -121,7 +121,7 @@ class PageNumCanvas(canvas.Canvas):
         """
         # at this point, template has initialized canvas so
         # we can add the footer function to it if set
-        if hasattr(self, 'draw_footer') and isinstance(self.draw_footer, collections.Callable):
+        if hasattr(self, 'draw_footer') and isinstance(self.draw_footer, collections.abc.Callable):
             self.draw_footer(self, page_count)
 
 class IndexTemplate(SimpleDocTemplate):
