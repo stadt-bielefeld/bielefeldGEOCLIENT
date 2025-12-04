@@ -1,3 +1,11 @@
+## [1.14.3](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.14.2...1.14.3) (2025-12-04)
+
+
+### Bug Fixes
+
+* convert result to dictionary ([bdab6b7](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/bdab6b7d439668f1a9dac62943cfa236ecc439ca))
+* open a connection before using execute ([77875c8](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/77875c8ff0e46317e15ddb238ae921060e14c67b))
+
 ## [1.14.2](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.14.1...1.14.2) (2025-12-04)
 
 
