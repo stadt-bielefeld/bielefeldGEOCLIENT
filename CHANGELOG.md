@@ -1,3 +1,13 @@
+## [1.14.4](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.14.3...1.14.4) (2025-12-16)
+
+
+### Bug Fixes
+
+* **deps:** update anol ([392fe64](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/392fe6487a584b2c3d5a4178f471f55564aae0f1))
+* ensure that legends are loaded only once ([16b04d1](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/16b04d13d6753bdb443aa4937ee79381c288457f))
+* set constrainResolution to true ([532b2de](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/532b2debea6539471545b9033801a2b83958d186))
+* update anol ([6c8e046](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/6c8e046447916820731681fb6b94744a30e032b4))
+
 ## [1.14.3](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.14.2...1.14.3) (2025-12-04)
 
 
