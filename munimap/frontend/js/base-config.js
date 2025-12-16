@@ -122,6 +122,7 @@ angular.module('munimapBase', [
                     munimapConfig.map.centerProjection || 'EPSG:4326',
                     munimapConfig.map.projection
                 ),
+                constrainResolution: true,
                 zoom: munimapConfig.map.zoom || 0,
                 minZoom: munimapConfig.map.minZoom,
                 maxZoom: munimapConfig.map.maxZoom,
