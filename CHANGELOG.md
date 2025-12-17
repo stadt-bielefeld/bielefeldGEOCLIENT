@@ -1,3 +1,10 @@
+## [1.14.5](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.14.4...1.14.5) (2025-12-17)
+
+
+### Bug Fixes
+
+* add transparency settings directive to mobiel index.html ([a8bd314](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/a8bd314efe639c8e22f2bb439f6a4bd0f8a7d746))
+
 ## [1.14.4](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.14.3...1.14.4) (2025-12-16)
 
 
