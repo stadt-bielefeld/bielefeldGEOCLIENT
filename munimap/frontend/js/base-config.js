@@ -3,7 +3,8 @@ require('angular');
 require('jquery-ui');
 require('jquery-ui/ui/widgets/sortable');
 require('jquery-ui/ui/disable-selection');
-require('angular-ui-sortable');
+require('sortablejs');
+require('angular-sortable-view');
 
 require('anol/src/modules/module.js');
 require('anol/src/modules/map/map-service.js');
@@ -96,7 +97,7 @@ angular.module('munimapBase', [
     'munimapBase.sidebar',
     'munimapBase.servicebutton',
     'munimapBase.postMessage',
-    'ui.sortable',
+    'angular-sortable-view'
 ])
 
     .value('Tour', false)
