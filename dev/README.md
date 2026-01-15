@@ -7,15 +7,91 @@
 
 ## Requirements
 
-* git
-* wget
-* docker
-* docker-compose
-* Node (>= 10)
-* Python (>=3.12)
-* Java 8 (openjdk-8-jre)
-* virtualenv
-* geostyler-cli (>= 5.0.0)
+- If Python3.12 is not available to install on your distro:
+  ```bash
+  sudo add-apt-repository ppa:deadsnakes/ppa
+  sudo apt-get update
+  ```
+- Install Python3.12 and other important dependencies, : \
+  (NOTE: This list of dependencies might be out of date, if you can correct it, please open a PR)
+
+### Requirements for Debian-based systems
+
+```bash
+sudo apt install build-essential \
+    git \
+    wget \
+    docker \
+    docker-compose \
+    npm \
+    nvm \
+    openjdk-8-jre \
+    geostyler-cli \
+    python3.12 \
+    python3.12-dev \
+    python3.12-venv \
+    libpython3.12-dev \
+    python3-gdal \
+    python3-pycurl \
+    libgdal-dev \
+    libspatialindex-dev \
+    libgeos-dev \
+    libssl-dev \
+    libffi-dev \
+    libjpeg-dev \
+    zlib1g-dev \
+    libfreetype6-dev \
+    libproj-dev \
+    gdal-bin \
+    fcgiwrap \
+    libgif-dev \
+    libcurl4-openssl-dev \
+    libcairo2-dev \
+    libfribidi-dev \
+    libharfbuzz-dev \
+    librsvg2-dev \
+    libfcgi-dev \
+    fonts-dejavu-extra \
+    fonts-unifont \
+    postgresql \
+    locales
+```
+
+### Requirements for Arch Linux-based systems
+
+```bash
+sudo pacman -Syu --needed \
+    git \
+    wget \
+    docker \
+    docker-compose \
+    npm \
+    nvm \
+    openjdk-8-jre \
+    base-devel \
+    python312 \
+    python-gdal \
+    python-pycurl \
+    gdal \
+    spatialindex \
+    geos \
+    openssl \
+    libffi \
+    libjpeg-turbo \
+    zlib \
+    freetype2 \
+    proj \
+    fcgiwrap \
+    giflib \
+    curl \
+    cairo \
+    fribidi \
+    harfbuzz \
+    librsvg \
+    fcgi \
+    ttf-dejavu \
+    postgresql
+```
 
 ## Initial development setup
 
@@ -55,47 +131,7 @@ npm i
 npm start
 ```
 
-### Install the munimap backend using a Python 3.12 Virtual Environment
-
-  - Open new terminal
-  - Install python 3.12 on your system (Assuming debian based linux distro):
-    - If Python3.12 is not available to install on your distro: 
-      - `sudo add-apt-repository ppa:deadsnakes/ppa`
-      - `sudo apt-get update`
-    - Install Python3.12 and other important dependencies: (NOTE: This list of dependencies might be out of date,
-      if you can correct it, please open a PR)
-  ```
-  sudo apt install build-essential \
-      python3.12 \
-      python3.12-dev \
-      python3.12-venv \
-      libpython3.12-dev \
-      python3-gdal \
-      python3-pycurl \
-      libgdal-dev \
-      libspatialindex-dev \
-      libgeos-dev \
-      libssl-dev \
-      libffi-dev \
-      libjpeg-dev \
-      zlib1g-dev \
-      libfreetype6-dev \
-      libproj-dev \
-      gdal-bin \
-      fcgiwrap \
-      libgif-dev \
-      libcurl4-openssl-dev \
-      libproj-dev \
-      libcairo2-dev \
-      libfribidi-dev \
-      libharfbuzz-dev \
-      librsvg2-dev \
-      libfcgi-dev \
-      fonts-dejavu-extra \
-      fonts-unifont \
-      postgresql \
-      locales 
-  ```
+### Install the munimap backend
 
   - create the virtual environment
     - `python3.12 -m venv muni_venv` (or any other name you like)
