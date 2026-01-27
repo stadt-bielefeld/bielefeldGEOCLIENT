@@ -1,3 +1,10 @@
+## [1.14.6](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.14.5...1.14.6) (2026-01-27)
+
+
+### Bug Fixes
+
+* **layerswitcher:** indents ([e891d3c](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/e891d3c0ae02a0340ba04ed82fa96d43c186be96))
+
 ## [1.14.5](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.14.4...1.14.5) (2025-12-17)
 
 
