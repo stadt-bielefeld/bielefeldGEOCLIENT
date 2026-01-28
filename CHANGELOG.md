@@ -1,3 +1,16 @@
+# [1.15.0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.14.6...1.15.0) (2026-01-28)
+
+
+### Bug Fixes
+
+* **deps:** update anol ([e1dfa01](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/e1dfa019647620a55b84093cbf6f379adc808e37))
+* introduce touch punch lib ([7d58a45](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/7d58a45c87806aef8c8ee6c448083f3999fda68b))
+
+
+### Features
+
+* add customControls ([d659110](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/d6591106339c83944b4b04dc13e4440a5b792018))
+
 ## [1.14.6](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.14.5...1.14.6) (2026-01-27)
 
 
