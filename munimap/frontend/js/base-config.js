@@ -1,8 +1,16 @@
 require('angular');
 
 require('jquery-ui');
+require('jquery-ui/ui/widgets/mouse');
 require('jquery-ui/ui/widgets/sortable');
 require('jquery-ui/ui/disable-selection');
+/*!
+ * jQuery UI Touch Punch
+ * https://github.com/furf/jquery-ui-touch-punch
+ * Copyright (c) Dave Furfero
+ * Released under the MIT license
+ */
+require('jquery-ui-touch-punch');
 require('angular-ui-sortable');
 
 require('anol/src/modules/module.js');
