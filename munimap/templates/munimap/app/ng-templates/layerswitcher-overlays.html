@@ -47,7 +47,7 @@
         <div ui-sortable="sortableLayer" ng-model=group.layers>
 
           <!-- child layer -->
-          <div class="group-layers-container layer-title-wrap" ng-repeat="layer in group.layers"  style="display: flex"
+          <div class="group-layers-container layer-title-wrap" ng-repeat="layer in group.layers"
               ng-if="layer.displayInLayerswitcher !== false"
               ng-show="!group.options.collapsed"
               ng-class="{'inactive': !layerIsVisibleByName(layer.name), 'child-no-metadata': !layer.metadataUrl && hideMetadata == false}">
