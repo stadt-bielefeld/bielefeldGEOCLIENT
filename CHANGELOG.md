@@ -1,3 +1,10 @@
+## [1.15.2](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.15.1...1.15.2) (2026-01-29)
+
+
+### Bug Fixes
+
+* semantic release triggers  event ([0806890](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/08068908793a6f7c50a170cea6b67081f126239d))
+
 ## [1.15.1](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.15.0...1.15.1) (2026-01-28)
 
 
