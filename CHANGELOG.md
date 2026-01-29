@@ -1,3 +1,10 @@
+## [1.15.3](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.15.2...1.15.3) (2026-01-29)
+
+
+### Bug Fixes
+
+* deploy documentation to github pages when git tag is created ([bed6876](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/bed6876e15560de52f3ecd800594178098b689b0))
+
 ## [1.15.2](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.15.1...1.15.2) (2026-01-29)
 
 
