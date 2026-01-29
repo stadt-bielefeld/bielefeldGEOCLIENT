@@ -1,14 +1,14 @@
 name: Deploy Documentation to Github Pages
 on:
   release:
-    types: [published]
+    types: [created, published]
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Install dependencies
         run: pip install -r munimap_docs/requirements.txt
@@ -17,13 +17,13 @@ jobs:
         run: sphinx-build munimap_docs docs_build -D html_context.current_version=${{ github.ref }}
 
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.6.8
+        uses: JamesIves/github-pages-deploy-action@v4.8.0
         with:
           folder: docs_build
           target-folder: latest
 
       - name: Deploy docs to a folder named after the new tag to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4.6.8
+        uses: JamesIves/github-pages-deploy-action@v4.8.0
         with:
           folder: docs_build
           target-folder: ${{ github.ref }}
@@ -40,7 +40,7 @@ jobs:
           > config/versions.json
 
       - name: Deploy config folder to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4.6.8
+        uses: JamesIves/github-pages-deploy-action@v4.8.0
         with:
           folder: config
           target-folder: config
