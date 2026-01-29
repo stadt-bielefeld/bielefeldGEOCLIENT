@@ -1,7 +1,7 @@
 name: Deploy Documentation to Github Pages
 on:
   release:
-    types: [published]
+    types: [created, published]
 
 jobs:
   build-and-deploy:
