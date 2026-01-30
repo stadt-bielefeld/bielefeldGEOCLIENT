@@ -1,3 +1,10 @@
+## [1.15.8](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.15.7...1.15.8) (2026-01-30)
+
+
+### Bug Fixes
+
+* revert [#342](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/issues/342) ([8a228b6](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/8a228b6b38d6f590b1dce1b9ab8cda14487e179c))
+
 ## [1.15.7](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.15.6...1.15.7) (2026-01-30)
 
 
