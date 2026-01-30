@@ -1,3 +1,10 @@
+## [1.15.4](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.15.3...1.15.4) (2026-01-30)
+
+
+### Bug Fixes
+
+* update permissions for contents and pages ([0f550d9](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/0f550d98676d07bff6270193c6161bb22d285464))
+
 ## [1.15.3](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.15.2...1.15.3) (2026-01-29)
 
 
