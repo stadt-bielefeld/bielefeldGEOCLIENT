@@ -1,3 +1,10 @@
+## [1.15.6](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.15.5...1.15.6) (2026-01-30)
+
+
+### Bug Fixes
+
+* use PAT to enable triggering of gh-pages build on release ([#342](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/issues/342)) ([58e29f4](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/58e29f4169e3ce9762f9e3dcb78cc282390964f8))
+
 ## [1.15.5](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.15.4...1.15.5) (2026-01-30)
 
 
