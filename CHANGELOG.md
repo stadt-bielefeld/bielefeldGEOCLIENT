@@ -1,3 +1,10 @@
+## [1.15.7](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.15.6...1.15.7) (2026-01-30)
+
+
+### Bug Fixes
+
+* pin version docker login ([49a93d2](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/49a93d2c9c31fc4b611699aaa1315bf9972c3741))
+
 ## [1.15.6](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.15.5...1.15.6) (2026-01-30)
 
 
