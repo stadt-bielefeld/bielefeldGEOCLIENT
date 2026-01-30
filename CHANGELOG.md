@@ -1,3 +1,11 @@
+## [1.15.5](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.15.4...1.15.5) (2026-01-30)
+
+
+### Bug Fixes
+
+* add id-token permission for ghpages release ([d4e07b6](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/d4e07b699edde831116e62a332e6232c76d64dce))
+* use more general pattern for semver tags ([cea41f1](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/cea41f1b2ce34af3e16fa63ca9f3e15e32bde512))
+
 ## [1.15.4](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.15.3...1.15.4) (2026-01-30)
 
 
