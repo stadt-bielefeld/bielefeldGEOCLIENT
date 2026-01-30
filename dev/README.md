@@ -97,27 +97,35 @@ sudo pacman -Syu --needed \
 
 The following steps are required once:
 
+###
+
+Create a parent dir with any name for the bielefeldGEOCLIENT and clone the client from GitHub. 
+
+```shell
+mkdir <any-name>
+cd <any-name>
+git clone https://github.com/stadt-bielefeld/bielefeldGEOCLIENT
+cd bielefeldGEOCLIENT
+```
+
 ### Download mapfish
 
 ```
-cd ../dev/
-wget -q -O- https://repo1.maven.org/maven2/org/mapfish/print/print-cli/3.9.0/print-cli-3.9.0-tar.tar | tar -x -C ./mapfish
+wget -q -O- https://repo1.maven.org/maven2/org/mapfish/print/print-cli/3.9.0/print-cli-3.9.0-tar.tar | tar -x -C dev/mapfish
 ``` 
 
 ### Download geostyler-cli
 
 ```
 wget -q -O /tmp/geostyler-linux.zip https://github.com/geostyler/geostyler-cli/releases/download/v5.0.3/geostyler-linux.zip
-cd ../dev/
-mkdir geostyler-cli
-cd geostyler-cli
-unzip /tmp/geostyler-linux.zip
+mkdir -p dev/geostyler-cli
+unzip /tmp/geostyler-linux.zip -d dev/geostyler-cli
 ```
 
 ### Clone and install anol
 
 ```
-cd ../../
+cd ../
 git clone git@github.com:terrestris/anol.git
 cd anol/
 npm i --omit=dev
@@ -134,9 +142,9 @@ npm start
 ### Install the munimap backend
 
   - create the virtual environment
-    - `python3.12 -m venv muni_venv` (or any other name you like)
+    - `python3.12 -m venv ../muni_venv` (or any other location or name you like)
   - Activate Virtual Environment
-    - `source muni_venv/bin/activate`
+    - `source ../muni_venv/bin/activate`
   - Install requirements:
       ```
       cd dev/
@@ -149,10 +157,9 @@ npm start
       ```
   - As long as the custom print layouts are still using the mapfish cli, we need to copy the icons to the mapfish config dir:
       ```
-       cp -r ../munimap/frontend/img/icons/* configs/mapfish/icons/
+      mkdir -p configs/mapfish/icons/
+      cp -r ../munimap/frontend/img/icons/* configs/mapfish/icons/
       ```
-  - Install language support
-    - `python -c "import hyphen.dictools; hyphen.dictools.install('de')"`
     
 ## Update translations (optional)
   - Install locales. Run the command and then use the arrow key to search for "de_DE.UTF-8 UTF-8" and "de_DE ISO 8859-1" and select with the space bar. Tab to OK and confirm with Enter. Select "de_DE.UTF-8" as standard.

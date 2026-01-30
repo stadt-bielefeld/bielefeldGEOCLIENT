@@ -39,6 +39,7 @@
     "feiertagejs": "^1.2.2",
     "jquery": "^3.6.0",
     "jquery-ui": "^1.12.1",
+    "jquery-ui-touch-punch": "^0.2.3",
     "ngstorage": "^0.3.11",
     "ol": "^10.2.1",
     "ol-ext": "^4.0.24",

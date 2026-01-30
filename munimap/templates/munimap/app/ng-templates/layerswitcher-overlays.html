@@ -3,11 +3,13 @@
 {% if layers_def['overlays'] | length > 0 %}
   <div ui-sortable="sortableGroups" ng-model="overlayLayers">
     <div class="overlay-item" ng-repeat="group in overlayLayers" ng-show="group.displayInLayerswitcher !== false && group !== undefined">
-      <div class="group-item catalog-layer-title layer-line" ng-show="group.catalogLayer == true && group.groupLayer == false" ng-class="{'inactive': !group.getVisible()}">
-        <div>
-          <a title="Metadaten" ng-if="group.metadataUrl && hideMetadata == false" 
+
+        <!-- catalog layer that is no group layer -->
+        <div class="group-item catalog-layer-title layer-line" ng-show="group.catalogLayer == true && group.groupLayer == false" ng-class="{'inactive': !group.getVisible()}">
+        <div class="layer-title-wrap">
+          <a title="Metadaten" ng-if="group.metadataUrl && hideMetadata == false"
               target="_blank" ng-href="{{ group.metadataUrl }}">
-            <span class="glyphicon glyphicon-info-sign"></span>                    
+            <span class="glyphicon glyphicon-info-sign"></span>
           </a>
           <span class="pointer layer-title" ng-click="toggleLayerVisibleByName(group.name)">
             {{ group.catalog.title }}
@@ -17,16 +19,17 @@
            <div anol-transparencysettings group="group"></div>
            <i title="Layer entfernen" class="glyphicon glyphicon-remove float-right pointer" ng-click="removeLayer(group)"></i>
         </div>
-      </div> 
+      </div>
 
+      <!-- group layer -->
       <div class="group-item" ng-show="group.groupLayer == true && group.options.showGroup === true"
           ng-class="{'inactive': !groupIsVisibleByName(group.name)}">
         <span class="pointer float-left"
             ng-class="{'open-layer-group': group.options.collapsed, 'close-layer-group': !group.options.collapsed}"
             ng-click="group.options.collapsed=!group.options.collapsed">
         </span>
-        <div class="layer-line" ng-class="{'no-metadata': group.options.metadataUrl === '' || hideMetadata == true }">
-          <div>
+        <div class="layer-line" ng-class="{'no-metadata': group.options.metadataUrl === '' && hideMetadata == false }">
+          <div class="layer-title-wrap">
             <a title="Metadaten" ng-if="group.options.metadataUrl !== '' && hideMetadata == false"
                 class="metadata float-left" target="_blank" ng-href="{{ group.options.metadataUrl }}">
               <span class="glyphicon glyphicon-info-sign"></span>
@@ -37,15 +40,17 @@
           </div>
           <div class="settings-line">
             <div anol-transparencysettings group="group"></div>
-            <i title="Gruppe entfernen" class="glyphicon glyphicon-remove pointer" 
+            <i title="Gruppe entfernen" class="glyphicon glyphicon-remove pointer"
                 ng-if="removeLayerEnabled" ng-click="removeLayer(group)"></i>
           </div>
         </div>
         <div ui-sortable="sortableLayer" ng-model=group.layers>
-          <div class="group-layers-container" ng-repeat="layer in group.layers" 
-              ng-if="layer.displayInLayerswitcher !== false" 
+
+          <!-- child layer -->
+          <div class="group-layers-container layer-title-wrap" ng-repeat="layer in group.layers"
+              ng-if="layer.displayInLayerswitcher !== false"
               ng-show="!group.options.collapsed"
-              ng-class="{'inactive': !layerIsVisibleByName(layer.name), 'child-no-metadata': !layer.metadataUrl || hideMetadata == true}">
+              ng-class="{'inactive': !layerIsVisibleByName(layer.name), 'child-no-metadata': !layer.metadataUrl && hideMetadata == false}">
             <a ng-if="layer.metadataUrl && hideMetadata == false" target="_blank" ng-href="{{ layer.metadataUrl }}" title="Metadaten">
                 <span class="glyphicon glyphicon-info-sign"></span>
             </a>
@@ -56,12 +61,13 @@
         </div>
       </div>
 
+      <!-- group layer, but don't show children -->
       <div class="group-item no-group-layer-title" ng-show="group.groupLayer == true && group.options.showGroup === false"
-         ng-class="{'inactive': !groupIsVisibleByName(group.name)}">
+         ng-class="{'inactive': !groupIsVisibleByName(group.name)}" >
           <div class="no-group-layers-container layer-line" ng-repeat="layer in group.layers"
-            ng-if="layer.displayInLayerswitcher !== false" 
-            ng-class="{'inactive': !layerIsVisibleByName(layer.name), 'no-group-no-metadata': group.options.metadataUrl === '' || hideMetadata == true}">
-            <div>
+            ng-if="layer.displayInLayerswitcher !== false"
+            ng-class="{'inactive': !layerIsVisibleByName(layer.name), 'no-group-no-metadata': group.options.metadataUrl === '' && hideMetadata == false}">
+            <div class="layer-title-wrap">
                 <a class="float-left" ng-if="group.options.metadataUrl && hideMetadata == false" target="_blank" ng-href="{{ group.options.metadataUrl }}">
                     <span class="glyphicon glyphicon-info-sign"></span>
                 </a>

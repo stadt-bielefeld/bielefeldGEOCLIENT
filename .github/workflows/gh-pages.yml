@@ -1,46 +1,64 @@
 name: Deploy Documentation to Github Pages
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - '*.*.*'
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
+
+      - name: Extract version from tag
+        id: version
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/}
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+          echo "Extracted version: $VERSION"
 
       - name: Install dependencies
         run: pip install -r munimap_docs/requirements.txt
 
       - name: Build documentation
-        run: sphinx-build munimap_docs docs_build -D html_context.current_version=${{ github.ref }}
+        run: sphinx-build munimap_docs docs_build -D html_context.current_version=${{ steps.version.outputs.VERSION }}
 
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.6.8
+      - name: Deploy to 'latest' folder 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.8.0
         with:
           folder: docs_build
           target-folder: latest
 
-      - name: Deploy docs to a folder named after the new tag to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4.6.8
+      - name: Deploy docs to version folder
+        uses: JamesIves/github-pages-deploy-action@v4.8.0
         with:
           folder: docs_build
-          target-folder: ${{ github.ref }}
+          target-folder: ${{ steps.version.outputs.VERSION }}
 
       - name: Update versions config
-        # read existing versions from gh-pages branch, add new version, sort, dedupe and write results to config/versions.json
         run: |
-          mkdir config
-          git show gh-pages:config/versions.json \
-          | jq -r '(. + ["${{ github.ref }}"])[]' \
-          | sort -V \
-          | uniq \
-          | jq -R -s -c 'split("\n")[:-1]' \
-          > config/versions.json
+          mkdir -p config
+          git fetch origin gh-pages:gh-pages || true
+          if git show gh-pages:config/versions.json 2>/dev/null; then
+            git show gh-pages:config/versions.json \
+            | jq -r '(. + ["${{ steps.version.outputs.VERSION }}"])[]' \
+            | sort -V \
+            | uniq \
+            | jq -R -s -c 'split("\n")[:-1]' \
+            > config/versions.json
+          else
+            echo '["${{ steps.version.outputs.VERSION }}"]' | jq -c '.' > config/versions.json
+          fi
+          echo "Versions config:"
+          cat config/versions.json
 
       - name: Deploy config folder to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4.6.8
+        uses: JamesIves/github-pages-deploy-action@v4.8.0
         with:
           folder: config
           target-folder: config

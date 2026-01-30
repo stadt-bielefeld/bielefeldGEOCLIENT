@@ -5,17 +5,20 @@ JavaScript-Plugins
 
 JavaScript Plugins ermöglichen das Erweitern der Munimap Anwendung um nutzergenerierte Funktionalität.
 Hierdurch wird Administratoren die Möglichkeit gegeben, eigene JavaScript Funktionen zu erstellen und in Munimap einzubinden.
-Die erzeugten Funktionen können ausschließlich mittels PostMessage getriggert werden.
+Aktuell werden zwei Arten von Plugins unterstützt:
 
-Neues Plugin erstellen
-----------------------
+* Funktionen die mittels PostMessage getriggert werden
+* Funktionen die via Klick auf ein CustomControl getriggert werden
+
+Neues PostMessage Plugin erstellen
+----------------------------------
 
 .. note::
 
-  JavaScript Plugins können im Administrationsbereich erstellt werden. Dazu in der Seitennavigation auf den Reiter
+  PostMessage Plugins können im Administrationsbereich erstellt werden. Dazu in der Seitennavigation auf den Reiter
   ``Plugins`` klicken.
 
-Jedes Plugin muss folgende Konventionen einhalten:
+Jedes PostMessage Plugin muss folgende Konventionen einhalten:
 
 * Ein Plugin muss immer die Funktion ``registerCommunicationPlugin('<eventName>', <PluginFunktion>)`` genau ein Mal aufrufen.
   Weitere Funktionsaufrufe sind nicht gestattet.
@@ -112,8 +115,53 @@ ausschließlich den Aufruf zu ``registerCommunicationPlugin()`` enthalten.
             Ein Objekt mit beliebigem Inhalt, welches die Antwortdaten enthält
 
 
-Plugins referenzieren
--------------------------------
+PostMessage Plugins referenzieren
+"""""""""""""""""""""""""""""""""
 
-JavaScript Plugins können in den App-Optionen unter ``communication`` durch ihren Pluginnamen referenziert werden.
+PostMessage Plugins können in den App-Optionen unter ``communication`` durch ihren Pluginnamen referenziert werden.
 Genaue Details dazu finden sich unter :ref:`Communication <defaultconf_communication>`.
+
+
+Neues CustomControl Plugin erstellen
+------------------------------------
+
+.. note::
+
+  CustomControl Plugins können im Administrationsbereich erstellt werden. Dazu in der Seitennavigation auf den Reiter
+  ``Plugins`` klicken.
+
+Jedes CustomControl Plugin muss folgende Konventionen einhalten:
+
+* Ein Plugin muss immer die Funktion ``registerCustomControlPlugin(<PluginFunktion>)`` genau ein Mal aufrufen.
+  Weitere Funktionsaufrufe sind nicht gestattet.
+* Die Logik eines Plugins muss innerhalb der ``<PluginFunktion>`` definiert werden.
+
+Soll bspw. ein Plugin für ein Hello Word-Alert erstellt werden, könnte dies folgendermaßen aussehen:
+
+.. code-block:: javascript
+
+  registerCustomControlPlugin(function() {
+    alert('Hello World');
+  });
+
+registerCustomControlPlugin()
+"""""""""""""""""""""""""""""
+
+Diese Funktion registriert das Plugin. Jedes JavaScript Plugin darf
+ausschließlich den Aufruf zu ``registerCustomControlPlugin()`` enthalten.
+
+``registerCustomControlPlugin()`` hat folgende Funktionssignatur:
+
+``registerCustomControlPlugin(eventFunction())``.
+
+  ``eventFunction``
+    Die Funktion, die ausgeführt wird, wenn das CustomControl angeklickt wird.
+
+    Der Funktion werden keine Argumente mitgegeben.
+
+
+CustomControl Plugins referenzieren
+"""""""""""""""""""""""""""""""""""
+
+CustomControl Plugins können in den App-Optionen unter ``components.customControls`` durch ihren Pluginnamen referenziert werden.
+Genaue Details dazu finden sich unter :ref:`Components <defaultconf_components>` im Bereich ``CustomControls``.

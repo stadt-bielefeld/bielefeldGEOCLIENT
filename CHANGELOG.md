@@ -1,3 +1,81 @@
+## [1.15.8](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.15.7...1.15.8) (2026-01-30)
+
+
+### Bug Fixes
+
+* revert [#342](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/issues/342) ([8a228b6](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/8a228b6b38d6f590b1dce1b9ab8cda14487e179c))
+
+## [1.15.7](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.15.6...1.15.7) (2026-01-30)
+
+
+### Bug Fixes
+
+* pin version docker login ([49a93d2](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/49a93d2c9c31fc4b611699aaa1315bf9972c3741))
+
+## [1.15.6](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.15.5...1.15.6) (2026-01-30)
+
+
+### Bug Fixes
+
+* use PAT to enable triggering of gh-pages build on release ([#342](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/issues/342)) ([58e29f4](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/58e29f4169e3ce9762f9e3dcb78cc282390964f8))
+
+## [1.15.5](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.15.4...1.15.5) (2026-01-30)
+
+
+### Bug Fixes
+
+* add id-token permission for ghpages release ([d4e07b6](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/d4e07b699edde831116e62a332e6232c76d64dce))
+* use more general pattern for semver tags ([cea41f1](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/cea41f1b2ce34af3e16fa63ca9f3e15e32bde512))
+
+## [1.15.4](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.15.3...1.15.4) (2026-01-30)
+
+
+### Bug Fixes
+
+* update permissions for contents and pages ([0f550d9](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/0f550d98676d07bff6270193c6161bb22d285464))
+
+## [1.15.3](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.15.2...1.15.3) (2026-01-29)
+
+
+### Bug Fixes
+
+* deploy documentation to github pages when git tag is created ([bed6876](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/bed6876e15560de52f3ecd800594178098b689b0))
+
+## [1.15.2](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.15.1...1.15.2) (2026-01-29)
+
+
+### Bug Fixes
+
+* semantic release triggers  event ([0806890](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/08068908793a6f7c50a170cea6b67081f126239d))
+
+## [1.15.1](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.15.0...1.15.1) (2026-01-28)
+
+
+### Bug Fixes
+
+* documentation link ([8b4ff99](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/8b4ff99a1f58b77225fe2f7b0d6fa932a6d58c39))
+* **layerswitcher:** adjust indent ([f402542](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/f4025421c84d9f9dace335a05d8b11226ac0694b))
+
+# [1.15.0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.14.6...1.15.0) (2026-01-28)
+
+
+### Bug Fixes
+
+* **deps:** update anol ([e1dfa01](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/e1dfa019647620a55b84093cbf6f379adc808e37))
+* introduce touch punch lib ([7d58a45](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/7d58a45c87806aef8c8ee6c448083f3999fda68b))
+
+
+### Features
+
+* add customControls ([d659110](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/d6591106339c83944b4b04dc13e4440a5b792018))
+
+## [1.14.6](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.14.5...1.14.6) (2026-01-27)
+
+
+### Bug Fixes
+
+* **layerswitcher:** indents ([e891d3c](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/e891d3c0ae02a0340ba04ed82fa96d43c186be96))
+
 ## [1.14.5](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.14.4...1.14.5) (2025-12-17)
 
 
