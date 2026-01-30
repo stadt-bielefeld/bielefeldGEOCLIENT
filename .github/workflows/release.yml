@@ -43,7 +43,9 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          # We use a PAT here since GITHUB_TOKEN does not
+          # trigger other workflows (e.g. updating gh-pages)
+          password: ${{ secrets.GH_RELEASE_TOKEN }}
 
       - name: Build and push Docker image
         if: steps.semantic.outputs.new_release_published == 'true'
