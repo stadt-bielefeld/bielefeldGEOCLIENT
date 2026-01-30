@@ -39,7 +39,7 @@ jobs:
 
       - name: Log in to the Container registry
         if: steps.semantic.outputs.new_release_published == 'true'
-        uses: docker/login-action@28fdb31ff34708d19615a74d67103ddc2ea9725c
+        uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
