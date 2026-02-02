@@ -1,6 +1,6 @@
-require('angular-ui-bootstrap');
-require('angular-schema-form');
-require('angular-schema-form-bootstrap');
+import 'angular-ui-bootstrap';
+import 'angular-schema-form';
+import 'angular-schema-form-bootstrap';
 
 angular.module('munimapDraw', [
     'schemaForm',

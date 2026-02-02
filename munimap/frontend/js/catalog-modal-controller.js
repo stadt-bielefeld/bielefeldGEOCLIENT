@@ -1,4 +1,4 @@
-require('angular-ui-bootstrap');
+import 'angular-ui-bootstrap';
 
 angular.module('munimapBase')
     .controller('catalogModalController', ['Variant', 'ShowLayers', '$scope', '$uibModalInstance',

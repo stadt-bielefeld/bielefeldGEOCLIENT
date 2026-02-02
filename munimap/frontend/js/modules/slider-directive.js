@@ -1,13 +1,7 @@
-(function(factory) {
-    if (typeof define === 'function' && define.amd) {
-        define(['bootstrap-slider', 'angular'], factory);
-    } else if (typeof module === 'object' && module.exports) {
-        module.exports = factory(require('bootstrap-slider'), require('angular'));
-    } else if (window) {
-        factory(window.Slider);
-    }
-})(function (Slider) {
-    angular.module('ui.bootstrap-slider', [])
+import Slider from 'bootstrap-slider';
+import 'angular';
+
+angular.module('ui.bootstrap-slider', [])
         .directive('slider', ['$parse', '$timeout', '$rootScope', function ($parse, $timeout, $rootScope) {
             return {
                 restrict: 'AE',
@@ -226,4 +220,3 @@
                 }
             };
         }]);
-});
