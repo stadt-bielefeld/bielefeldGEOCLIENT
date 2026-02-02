@@ -28,7 +28,7 @@ RUN npm run build
 
 
 
-FROM python:3.12-bookworm AS builder
+FROM python:3.14-bookworm AS builder
 
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -50,7 +50,7 @@ RUN python -m build
 
 
 
-FROM python:3.12-bookworm AS runner
+FROM python:3.14-bookworm AS runner
 
 ARG GEOSTYLER_CLI_VERSION
 
