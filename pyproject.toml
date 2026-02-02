@@ -14,7 +14,7 @@ dependencies = [
     'Babel==2.17.0',
     'bcrypt==3.2.2',
     'dictspec==0.2.1',
-    'Flask-Babel==1.0.0',
+    'Flask-Babel==4.0.0',
     'Flask-Login==0.6.3',
     'flask-mailman==1.1.1',
     'Flask-SQLAlchemy==3.1.1',
