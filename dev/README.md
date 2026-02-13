@@ -217,13 +217,27 @@ docker compose -f docker/docker-compose.yaml --profile prod up
 
 ## Debugging the application
 
-# With VSCODE
+### With VSCODE
 A debug configuration is provided and can be found in `.vscode/launch.json`.
 If you are using a custom config file for your application, you have to change it's path in `FLASK_MUNIMAP_CONFIG`.
 Then all you need to do is start debugging with vscode
 
-# With PyCharm
+### With PyCharm
 TODO
+
+### Coding advice / best practices
+* ES6 imports are hoisted and execute before other code, which breaks Angular 1.x module registration that depends on sequential execution. Therefore please use
+  - `require` for local modules and sub-modules
+  - `import` for external libraries
+  e.g. 
+  ```javascript
+  import 'bootstrap3/js/popover.js';
+  import 'angular-schema-form-bootstrap';
+  import 'anol/src/anol/anol.js';
+  require('./base-config.js');
+  require('./draw-popup-controller.js');
+  require('./modules/colorpicker.js');
+  ```
 
 ## Testing the application
 

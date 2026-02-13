@@ -1,0 +1,6 @@
+{
+    "conventionalCommits.scopes": [
+        "README",
+        "dev/README"
+    ]
+}
