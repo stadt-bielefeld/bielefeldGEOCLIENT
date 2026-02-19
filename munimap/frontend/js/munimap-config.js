@@ -1,4 +1,4 @@
-require('angular-ui-switch');
+import 'angular-ui-switch';
 
 import GeoJSON from 'ol/format/GeoJSON';
 

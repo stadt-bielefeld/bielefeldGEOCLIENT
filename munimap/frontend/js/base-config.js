@@ -1,73 +1,73 @@
-require('angular');
+import 'angular';
 
-require('jquery-ui');
-require('jquery-ui/ui/widgets/mouse');
-require('jquery-ui/ui/widgets/sortable');
-require('jquery-ui/ui/disable-selection');
+import 'jquery-ui';
+import 'jquery-ui/ui/widgets/mouse';
+import 'jquery-ui/ui/widgets/sortable';
+import 'jquery-ui/ui/disable-selection';
 /*!
  * jQuery UI Touch Punch
  * https://github.com/furf/jquery-ui-touch-punch
  * Copyright (c) Dave Furfero
  * Released under the MIT license
  */
-require('jquery-ui-touch-punch');
-require('angular-ui-sortable');
+import 'jquery-ui-touch-punch';
+import 'angular-ui-sortable';
 
-require('anol/src/modules/module.js');
-require('anol/src/modules/map/map-service.js');
-require('anol/src/modules/legend/legend-directive.js');
+import 'anol/src/modules/module.js';
+import 'anol/src/modules/map/map-service.js';
+import 'anol/src/modules/legend/legend-directive.js';
 
-require('anol/src/modules/attribution/attribution-directive.js');
-require('anol/src/modules/catalog/catalog-directive.js');
-require('anol/src/modules/catalog/catalog-service.js');
+import 'anol/src/modules/attribution/attribution-directive.js';
+import 'anol/src/modules/catalog/catalog-directive.js';
+import 'anol/src/modules/catalog/catalog-service.js';
 
-require('anol/src/modules/datepicker/datepicker-directive.js');
-require('anol/src/modules/featurepopup/dragpopup-directive.js');
-require('anol/src/modules/draw/draw-directive.js');
-require('anol/src/modules/draw/draw-service.js');
-require('anol/src/modules/featureexchange/featureexchange-directive.js');
+import 'anol/src/modules/datepicker/datepicker-directive.js';
+import 'anol/src/modules/featurepopup/dragpopup-directive.js';
+import 'anol/src/modules/draw/draw-directive.js';
+import 'anol/src/modules/draw/draw-service.js';
+import 'anol/src/modules/featureexchange/featureexchange-directive.js';
 
-require('anol/src/modules/featurepopup/featurepopup-directive.js');
-require('anol/src/modules/featurepopup/featurepopup-service.js');
+import 'anol/src/modules/featurepopup/featurepopup-directive.js';
+import 'anol/src/modules/featurepopup/featurepopup-service.js';
 
-require('anol/src/modules/featureform/featureform-directive.js');
+import 'anol/src/modules/featureform/featureform-directive.js';
 
-require('anol/src/modules/featurepropertieseditor/featurepropertieseditor-directive.js');
-require('anol/src/modules/featureproperties/featureproperties-directive.js');
-require('anol/src/modules/featurestyleeditor/featurestyleeditor-directive.js');
-require('anol/src/modules/geocoder/geocoder-directive.js');
-require('anol/src/modules/geocoder/geocoder-service.js');
+import 'anol/src/modules/featurepropertieseditor/featurepropertieseditor-directive.js';
+import 'anol/src/modules/featureproperties/featureproperties-directive.js';
+import 'anol/src/modules/featurestyleeditor/featurestyleeditor-directive.js';
+import 'anol/src/modules/geocoder/geocoder-directive.js';
+import 'anol/src/modules/geocoder/geocoder-service.js';
 
-require('anol/src/modules/geolocation/geolocation-directive.js');
-require('anol/src/modules/getfeatureinfo/getfeatureinfo-directive.js');
-require('anol/src/modules/layerswitcher/layerswitcher-directive.js');
-require('anol/src/modules/map/map-directive.js');
-require('anol/src/modules/measure/measure-directive.js');
-require('anol/src/modules/measure/measure-service.js');
-require('anol/src/modules/mouseposition/mouseposition-directive.js');
-require('anol/src/modules/overviewmap/overviewmap-directive.js');
-require('anol/src/modules/permalink/permalink-service.js');
-require('anol/src/modules/print/print-directive.js');
-require('anol/src/modules/print/print-service.js');
-require('anol/src/modules/print/printpage-service.js');
-require('anol/src/modules/rotate/rotate-directive.js');
-require('anol/src/modules/savemanager/savemanager-directive.js');
-require('anol/src/modules/savemanager/savemanager-service.js');
-require('anol/src/modules/transparencysettings/transparencysettings-directive.js');
-require('anol/src/modules/transparencysettings/transparencydialog-directive.js');
+import 'anol/src/modules/geolocation/geolocation-directive.js';
+import 'anol/src/modules/getfeatureinfo/getfeatureinfo-directive.js';
+import 'anol/src/modules/layerswitcher/layerswitcher-directive.js';
+import 'anol/src/modules/map/map-directive.js';
+import 'anol/src/modules/measure/measure-directive.js';
+import 'anol/src/modules/measure/measure-service.js';
+import 'anol/src/modules/mouseposition/mouseposition-directive.js';
+import 'anol/src/modules/overviewmap/overviewmap-directive.js';
+import 'anol/src/modules/permalink/permalink-service.js';
+import 'anol/src/modules/print/print-directive.js';
+import 'anol/src/modules/print/print-service.js';
+import 'anol/src/modules/print/printpage-service.js';
+import 'anol/src/modules/rotate/rotate-directive.js';
+import 'anol/src/modules/savemanager/savemanager-directive.js';
+import 'anol/src/modules/savemanager/savemanager-service.js';
+import 'anol/src/modules/transparencysettings/transparencysettings-directive.js';
+import 'anol/src/modules/transparencysettings/transparencydialog-directive.js';
 
-require('anol/src/modules/savesettings/savesettings-directive.js');
-require('anol/src/modules/savesettings/savesettings-service.js');
+import 'anol/src/modules/savesettings/savesettings-directive.js';
+import 'anol/src/modules/savesettings/savesettings-service.js';
 
-require('anol/src/modules/scale/scaleline-directive.js');
-require('anol/src/modules/scale/scaletext-directive.js');
+import 'anol/src/modules/scale/scaleline-directive.js';
+import 'anol/src/modules/scale/scaletext-directive.js';
 
-require('anol/src/modules/urlmarkers/urlmarker-directive.js');
-require('anol/src/modules/urlmarkers/urlmarker-service.js');
-require('anol/src/modules/urlmarkers/urlmarker-bbcode-directive.js');
-require('anol/src/modules/zoom/zoom-directive.js');
+import 'anol/src/modules/urlmarkers/urlmarker-directive.js';
+import 'anol/src/modules/urlmarkers/urlmarker-service.js';
+import 'anol/src/modules/urlmarkers/urlmarker-bbcode-directive.js';
+import 'anol/src/modules/zoom/zoom-directive.js';
 
-require('anol/src/modules/drawer/drawer-directive.js');
+import 'anol/src/modules/drawer/drawer-directive.js';
 
 import View from 'ol/View';
 import { transformExtent, transform } from 'ol/proj';

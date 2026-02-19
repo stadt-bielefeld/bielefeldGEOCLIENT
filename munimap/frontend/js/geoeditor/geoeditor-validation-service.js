@@ -216,3 +216,4 @@ function GeoeditorValidationServiceProvider() {
 
 angular.module('munimapGeoeditor')
     .provider('GeoeditorValidationService', GeoeditorValidationServiceProvider);
+

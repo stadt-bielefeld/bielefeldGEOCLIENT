@@ -1,6 +1,6 @@
 import 'bootstrap3/js/tooltip.js';
 import 'bootstrap3/js/popover.js';
-import './bootstrap-confirmation.js';
+require('./bootstrap-confirmation.js');
 
 angular.module('munimapBase.confirm', [])
 

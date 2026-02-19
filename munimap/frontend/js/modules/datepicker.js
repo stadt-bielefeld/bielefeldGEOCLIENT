@@ -1,5 +1,5 @@
-require('angular-ui-bootstrap');
-require('angular-schema-form');
+import 'angular-ui-bootstrap';
+import 'angular-schema-form';
 
 angular.module('schemaForm').run(['$templateCache',
     function($templateCache) {

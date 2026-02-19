@@ -1,4 +1,4 @@
-require('angular-ui-bootstrap');
+import 'angular-ui-bootstrap';
 
 angular.module('munimapBase')
     .controller('loadSettingsModalController', ['$scope', '$uibModalInstance',

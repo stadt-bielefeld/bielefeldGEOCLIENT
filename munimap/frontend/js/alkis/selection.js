@@ -1,4 +1,4 @@
-require('ngstorage');
+import 'ngstorage';
 
 import { unByKey } from 'ol/Observable.js';
 import { getCenter } from 'ol/extent';

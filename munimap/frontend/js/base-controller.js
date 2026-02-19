@@ -1,5 +1,5 @@
-require('angular-ui-bootstrap');
-require('bootstrap-tour');
+import 'angular-ui-bootstrap';
+import 'bootstrap-tour';
 import 'spectrum-colorpicker/spectrum';
 import 'spectrum-colorpicker/i18n/jquery.spectrum-de';
 

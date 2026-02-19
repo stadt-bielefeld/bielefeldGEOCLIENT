@@ -1,6 +1,6 @@
-require('spectrum-colorpicker');
-require('angular-spectrum-colorpicker');
-require('angular-schema-form');
+import 'spectrum-colorpicker';
+import 'angular-spectrum-colorpicker';
+import 'angular-schema-form';
 
 angular.module('schemaForm').run(['$templateCache',
     function($templateCache) {

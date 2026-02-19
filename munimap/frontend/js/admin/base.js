@@ -1,13 +1,13 @@
-require('angular-route');
-require('ace-builds/src-min-noconflict/ace.js');
-require('ace-builds/src-min-noconflict/ext-searchbox.js');
-require('ace-builds/src-min-noconflict/mode-yaml.js');
-require('ace-builds/src-min-noconflict/mode-javascript.js');
-require('ace-builds/src-min-noconflict/worker-javascript.js');
-require('ace-builds/src-min-noconflict/worker-yaml.js');
-require('ace-builds/src-min-noconflict/theme-textmate.js');
-require('angular-ui-ace');
-require('angular-ui-bootstrap');
+import 'angular-route';
+import 'ace-builds/src-min-noconflict/ace.js';
+import 'ace-builds/src-min-noconflict/ext-searchbox.js';
+import 'ace-builds/src-min-noconflict/mode-yaml.js';
+import 'ace-builds/src-min-noconflict/mode-javascript.js';
+import 'ace-builds/src-min-noconflict/worker-javascript.js';
+import 'ace-builds/src-min-noconflict/worker-yaml.js';
+import 'ace-builds/src-min-noconflict/theme-textmate.js';
+import 'angular-ui-ace';
+import 'angular-ui-bootstrap';
 require('./../modules/notifications.js');
 require('./../modules/confirm.js');
 
