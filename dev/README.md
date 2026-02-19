@@ -116,7 +116,6 @@ npm start
       ```
   - Continue installing requirements
       ```
-      pip install -r requirements.txt
       pip install -e ../
       ```
   - As long as the custom print layouts are still using the mapfish cli, we need to copy the icons to the mapfish config dir:
@@ -124,7 +123,7 @@ npm start
       mkdir -p configs/mapfish/icons/
       cp -r ../munimap/frontend/img/icons/* configs/mapfish/icons/
       ```
-    
+
 ## Update translations (optional)
   - Install locales. Run the command and then use the arrow key to search for "de_DE.UTF-8 UTF-8" and "de_DE ISO 8859-1" and select with the space bar. Tab to OK and confirm with Enter. Select "de_DE.UTF-8" as standard.
     ```
