@@ -250,7 +250,6 @@ Then, you will be able to run the tests
 **TODO**: Make creation and deletion of test DB automatic with test run
 **TODO**: Consider migrating tests and fixtures to `pytest` in the future
 
-
 ## About building or generating documentation
 
 If you need to work on changing the documentation, this is done using [Sphinx](https://www.sphinx-doc.org/en/master/).
