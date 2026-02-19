@@ -1,3 +1,10 @@
+## [1.15.10](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.15.9...1.15.10) (2026-02-19)
+
+
+### Bug Fixes
+
+* pin numpy ([464716a](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/464716a4744cba2597f271018fc4b1096e6f8e3e))
+
 ## [1.15.9](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.15.8...1.15.9) (2026-02-19)
 
 
