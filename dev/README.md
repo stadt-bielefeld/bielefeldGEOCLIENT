@@ -59,7 +59,7 @@ npm i --omit=dev
 
 ```
 cd ../bielefeldGEOCLIENT/
-npm i
+npm ci
 npm start
 ```
 
@@ -163,7 +163,7 @@ With different config and JAVA_HOME (for mapfish cli) set:
 and finally the client (javascript) source can be watched via(ran in the root folder, i.e, bielefeldGEOCLIENT):
 ```bash
 nvm use
-npm i
+npm ci
 npm start
 ``` 
 
