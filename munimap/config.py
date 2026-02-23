@@ -18,6 +18,20 @@ class DefaultConfig(object):
 
     ADMIN_PARTY = False
 
+    # Whitelist of urls that should be logged for statistics
+    # Items can be either a string or a dict. When using dict notation,
+    # an additional param 'queries' can be added that checks if the
+    # given query params also match. In order to match, all queries must match.
+    # E.g.
+    # [
+    #   # matches http://localhost, http://localhost/foo/bar, http://locahost?foo=bar, http://localhost?foo=foo, ...
+    #   'http://localhost',
+    #   # matches http://localhost, http://localhost/foo/bar, http://locahost?foo=bar, http://localhost?foo=foo, ...
+    #   {'url': 'http://localhost'},
+    #   # matches http://locahost?foo=bar, ...
+    #   # does not match http://localhost, http://localhost/foo/bar, http://localhost?foo=foo
+    #   {'url': 'http://localhost', 'queries': [{'name': foo, 'value': 'bar'}]},
+    # ]
     LOG_STATS_WHITELIST = ['http://localhost']
 
     # Access token of the target server.
