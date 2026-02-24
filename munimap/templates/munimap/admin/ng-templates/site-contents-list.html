@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-xs-12">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th colspan="2">{$ _('name') $}</th>
+                <th>{$ _('Site content') $}</th>
+                <th colspan="2"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr id="{{ site_content }}"
+                ng-repeat="site_content in site_contents">
+                <td>
+                    <span>
+                     {{ site_content }}
+                   </span>
+                </td>
+                <td></td>
+                <td>
+                    <a ng-href="/admin/site_contents/edit/{{ site_content }}"
+                       class="btn btn-default btn-xs">{$ _('Edit') $}</a>
+                </td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
