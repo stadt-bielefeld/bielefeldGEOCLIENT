@@ -177,6 +177,12 @@ class DefaultConfig(object):
 
     COORD_TRANSFORM_URL = ''
 
+    # Meta information for the html title tag of the different pages. This is used in the templates to set the title tag.
+    DEFAULT_TITLE='onlineKARTENdienst Bielefeld'
+    TERMS_OF_USE_TITLE='Nutzungsbedingungen - onlineKARTENdienst'
+    IMPRINT_TITLE='Impressum - onlineKARTENdienst'
+    COPYRIGHT_HOLDER='Stadt Bielefeld, Amt für Geoinformation und Kataster'
+
 
 class TestConfig(object):
     here = path.dirname(__file__)
