@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-xs-12">
+        <form name="form" ng-submit="submit()" ng-keydown="submitViaKeypress($event)" novalidate>
+            <h3 ng-if="site_content.name">{{ site_content.name }}</h3>
+            <div ng-show="loading">
+                {$ _('Loading ...') $}
+            </div>
+            <div ng-show="!loading">
+                <input type="hidden" name="id" id="id" ng-model="site_content.name" ng-if="site_content.name"/>
+
+                <div class="form-group" ng-class="{'has-error': form.descripton.$invalid && form.desciption.$dirty}">
+                    <label for="code">{$ _('Code') $}</label>
+                    <div ng-style="{height: hgt+ 'px'}" required ng-model="site_content.code"
+                         ui-ace="{
+                      workerPath: '../static/js/ace-builds/',
+                      useWrapMode : false,
+                      showPrintMargin: false,
+                      showGutter: true,
+                      theme:'textmate',
+                      mode: 'html',
+                      firstLineNumber: 1,
+                      onLoad: aceLoaded,
+                      onChange: aceChanged
+                    }">
+                    </div>
+                </div>
+                <div class="button-bar">
+                    <div ng-show="errors" class="alert alert-warning" role="alert">
+                  <pre>
+  {{ errors }}
+                  </pre>
+                    </div>
+                    <div class="pull-right">
+                        <a class="btn btn-default btn-sm" href="/admin/site_contents/list">
+                            {$ _('back') $}
+                        </a>
+                        <button class="btn btn-sm btn-success" type="submit"
+                                ng-disabled="form.$invalid">
+                            {$ _('Save') $}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
