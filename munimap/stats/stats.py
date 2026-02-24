@@ -2,9 +2,18 @@ import functools
 import logging
 
 from urllib3.util import parse_url
+from urllib.parse import parse_qs
 from flask import current_app
 
 log = logging.getLogger('munimap.stats')
+
+
+def preprocess_whitelist(whitelist):
+    """ Create consistent whitelist
+    """
+    processed_strings = [{"url": item, "queries": []} for item in whitelist if isinstance(item, str)]
+    processed_dicts = [{"queries": [], **item} for item in whitelist if isinstance(item, dict)]
+    return processed_strings + processed_dicts
 
 
 def log_stats(request, current_user, use_referrer=False, route_name='munimap.index', app_attr='config', url_from_response=False):
@@ -38,7 +47,8 @@ def log_stats(request, current_user, use_referrer=False, route_name='munimap.ind
 def _log_stats(url, req, res, user, use_referrer, route_name, app_attr):
     """ Log the stat.
     """
-    url_in_whitelist = _is_url_in_whitelist(url, current_app.config.get('LOG_STATS_WHITELIST', []))
+    whitelist = preprocess_whitelist(current_app.config.get('LOG_STATS_WHITELIST', []))
+    url_in_whitelist = _is_url_in_whitelist(url, whitelist)
     if not url_in_whitelist:
         return
 
@@ -108,4 +118,19 @@ def _is_url_in_whitelist(url, accepted_urls):
     at least one URL from the list of accepted URLs.
     Returns False otherwise.
     """
-    return any([url.startswith(u) for u in accepted_urls])
+    parsed_url = parse_url(url)
+    query_params = parse_qs(parsed_url.query)
+
+    for item in accepted_urls:
+        url_matches = url.startswith(item.get('url'))
+        if not url_matches:
+            continue
+        # If no queries were configured, we count this as a match
+        queries_match = True
+        item_queries = item.get('queries')
+        if item_queries:
+            # query_param always creates lists for each param, respectively
+            queries_match = all([qp.get('value') in query_params.get(qp.get('name'), []) for qp in item_queries])
+        if queries_match:
+            return True
+    return False
