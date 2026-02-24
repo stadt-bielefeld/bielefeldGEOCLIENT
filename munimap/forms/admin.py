@@ -1,6 +1,8 @@
+import re
+
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, TextAreaField, BooleanField, DateField
-from wtforms.validators import InputRequired, Optional, ValidationError
+from wtforms.validators import InputRequired, Optional, ValidationError, Regexp
 from sqlalchemy import func
 
 from munimap.helper import _l, _
@@ -39,6 +41,21 @@ class PluginForm(FlaskForm):
 
 
 class NewPluginForm(FlaskForm):
+    new = StringField(_l('name'), validators=[InputRequired()])
+    code = TextAreaField(_l('code'))
+
+
+class SiteContentForm(FlaskForm):
+    name = StringField(_l('name'), validators=[InputRequired()])
+    code = TextAreaField(_l('code'), validators=[
+        Regexp(r'^(?!.*<\s*/?(?:script|input|button|form|checkbox|select|textarea)\s*>).*$',
+               flags=re.IGNORECASE | re.DOTALL,
+               message=_l('The text must not contain interactive HTML elements.')
+               )
+    ])
+
+
+class NewSiteContentForm(FlaskForm):
     new = StringField(_l('name'), validators=[InputRequired()])
     code = TextAreaField(_l('code'))
 

@@ -34,7 +34,10 @@ from munimap.helper import (
     list_selectionlists,
     selectionlist_file_path,
     list_plugins,
-    plugin_file_path
+    plugin_file_path,
+    list_site_contents,
+    site_content_file_path,
+    load_site_contents
 )
 
 from munimap.transfer import transfer_config
@@ -48,7 +51,9 @@ from munimap.forms.admin import (
     SelectionlistForm,
     NewSelectionlistForm,
     PluginForm,
-    NewPluginForm
+    NewPluginForm,
+    SiteContentForm,
+    NewSiteContentForm
 )
 from munimap.model import MBUser, MBGroup, ProtectedLayer, ProtectedProject
 
@@ -105,6 +110,8 @@ def index(path=None):
 
     plugins = list_plugins()
 
+    site_contents = list_site_contents()
+
     groups = [g.to_dict() for g in MBGroup.query.all()]
     users = [u.to_dict() for u in MBUser.query.all()]
 
@@ -139,7 +146,8 @@ def index(path=None):
         logs=logs,
         enviroment=enviroment,
         selectionlists=selectionlists,
-        plugins=plugins
+        plugins=plugins,
+        site_contents=site_contents
     )
 
 
@@ -1558,3 +1566,68 @@ def rename_plugin_config():
         'message': _('Plugin %(name)s renamed to %(new_name)s', name=name,
                      new_name=new_name)
     })
+
+
+@admin.post('/site_contents/load')
+def load_site_content():
+    name = LocalProxyRequest.form.get('name', False)
+    config_file = site_content_file_path(name)
+
+    if not os.path.exists(config_file):
+        response = jsonify({
+            'message': _('Site content does not exist'),
+            'code': 400
+        })
+        response.status_code = 400
+        return response
+
+    app_code = open(config_file, 'r').read()
+    return jsonify({
+        'code': app_code,
+        'message': _('Site content %(name)s loaded', name=name)
+    })
+
+
+@admin.post('/site_contents/edit')
+def edit_site_content():
+    name = LocalProxyRequest.form.get('name')
+
+    if name is None:
+        response = jsonify({
+            'code': 404,
+            'message': _('Site content does not exist')
+        })
+        response.status_code = 404
+        return response
+
+    form = SiteContentForm(LocalProxyRequest.form, meta={'csrf': False})
+    if form.validate_on_submit():
+        config_file = site_content_file_path(name)
+        if not os.path.exists(config_file):
+            response = jsonify({
+                'message': _('Site content does not exist'),
+                'code': 400
+            })
+            response.status_code = 400
+            return response
+
+        with open(config_file, 'w') as file:
+            file.write(form.code.data)
+
+        load_site_contents(current_app)
+
+        return jsonify({
+            'site_content': name,
+            'success': True,
+            'message': _('Site content %(name)s updated', name=name)
+        })
+
+    response = jsonify({
+        'errors': form.errors,
+        'message': _('Invalid form'),
+        'code': 400
+    })
+    response.status_code = 400
+
+    return response
+

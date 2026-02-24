@@ -30,7 +30,8 @@ from munimap.layers import (
 )
 from munimap import model
 from munimap.query import pq
-from munimap.helper import request_for_static, nl2br, touch_last_changes_file
+from munimap.helper import request_for_static, nl2br, touch_last_changes_file, \
+    ensure_site_contents_exist, load_site_contents
 from munimap.model import DummyUser, MBUser
 from munimap.extensions import db, login_manager, mail
 
@@ -134,6 +135,9 @@ def create_app(config=None, config_file=None):
 
     with app.app_context():
         load_layers(app, app.config.get('LAYERS_CONF_DIR'), True)
+        ensure_site_contents_exist(app)
+        load_site_contents(app)
+
     configure_layers_conf_reload(app, app.config.get('LAYERS_CONF_DIR'))
 
     # set global LC_COLLATE locale for sort order

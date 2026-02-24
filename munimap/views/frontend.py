@@ -8,6 +8,7 @@ from flask import (
     render_template,
     abort,
     send_file,
+    current_app
 )
 from munimap.helper import plugin_file_path, tour_file_path, contextmenu_file_path
 
@@ -20,11 +21,15 @@ def pages(name):
         app_version = importlib.metadata.version('munimap')
         release_link = f'https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/releases/tag/{app_version}'
         documentation_link = f'https://stadt-bielefeld.github.io/bielefeldGEOCLIENT/latest/'
+
+        site_content = current_app.site_contents.get(name)
+
         return render_template(
             '/munimap/pages/%s.html' % (name),
             app_version=app_version,
             release_link=release_link,
-            documentation_link=documentation_link
+            documentation_link=documentation_link,
+            custom_content=site_content
         )
     except jinja2.TemplateNotFound:
         abort(404)

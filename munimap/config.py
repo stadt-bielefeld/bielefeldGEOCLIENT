@@ -42,6 +42,7 @@ class DefaultConfig(object):
     APP_CONFIG_DIR = '/opt/etc/munimap/app-configs'
     SELECTIONLISTS_CONFIG_DIR = '/opt/etc/munimap/selectionlists-configs'
     PLUGIN_DIR = '/opt/etc/munimap/plugins'
+    SITE_CONTENT_DIR = '/opt/etc/munimap/site-contents'
     TOUR_DIR = '/opt/etc/munimap/tours'
     CONTEXTMENU_DIR = '/opt/etc/munimap/contextmenus'
     # Directory that serves static files. When requesting static
