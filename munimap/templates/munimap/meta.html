@@ -15,14 +15,17 @@
 <meta name="theme-color" content="#E30014">
 <meta name="mobile-web-app-capable" content="yes">
 
-{% set title = 'onlineKARTENdienst Bielefeld' %}
+{% set title = 'bielefeldGEOCLIENT' %}
+{% if base_config.get('DEFAULT_TITLE') %}
+    {% set title = base_config.get('DEFAULT_TITLE') %}
+{% endif %}
 {% if app_config and app_config['app'] and app_config['app']['title'] %}
     {% set title = app_config['app']['title'] %}
 {% endif %}
-{% if '/pages/nutzungsbedingungen' in request.base_url %}
-    {% set title = 'Nutzungsbedingungen - onlineKARTENdienst' %}
+{% if '/pages/nutzungsbedingungen' in request.base_url and base_config.get('TERMS_OF_USE_TITLE') %}
+    {% set title = base_config.get('TERMS_OF_USE_TITLE') %}
 {% endif %}
-{% if '/pages/about' in request.base_url %}
-    {% set title = 'Impressum - onlineKARTENdienst' %}
+{% if '/pages/about' in request.base_url and base_config.get('IMPRINT_TITLE') %}
+    {% set title = base_config.get('IMPRINT_TITLE') %}
 {% endif %}
 <title>{$ title $}</title>
