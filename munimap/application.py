@@ -98,15 +98,16 @@ def create_app(config=None, config_file=None):
     configure_extensions(app)
 
     # Overwrite application static function
-    # now it searches first in default static folder.
+    # now it searches first in custom static folder.
     # If requested file is not found there, it will be delivered
-    # from custom static folder. This ensures that files
-    # in default static folder cannot be overwritten.
+    # from default static folder. This ensures that files
+    # in default static folder can be overwritten.
     def _static(filename):
         folder = app.static_folder
-        default_static_file = os.path.join(folder, filename)
-        if not os.path.exists(default_static_file):
-            folder = app.config.get('CUSTOM_STATIC_DIR', folder)
+        custom_static_folder = app.config.get('CUSTOM_STATIC_DIR', folder)
+        custom_static_file = os.path.join(custom_static_folder, filename)
+        if os.path.exists(custom_static_file):
+            folder = custom_static_folder
         return send_from_directory(folder, filename)
 
     app.view_functions['static'] = _static
