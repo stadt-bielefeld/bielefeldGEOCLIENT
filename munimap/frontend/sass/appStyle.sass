@@ -164,8 +164,8 @@
     width: variables.$background-logo-width
     top: 50%
     left: 50%
-    margin-top: math.div(-1 * variables.$background-logo-height, 2)
-    margin-left: math.div(-1 * variables.$background-logo-width, 2)
+    margin-top: calc(-1 * var(--background-logo-height) / 2)
+    margin-left: calc(-1 * var(--background-logo-width) / 2)
 
 .ol-control
   &.tour-step-backdrop
@@ -348,7 +348,7 @@ $panel-heading-color: #eee
         margin: 5px
       &.top-logo
         width: auto
-        height: 43px
+        height: var(--top-logo-height)
         display: inline-block
         vertical-align: top
       &.app-link-logo
