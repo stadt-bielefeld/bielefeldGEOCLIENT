@@ -865,7 +865,7 @@ ALKIS Informationen
 Benutzerberechtigung
 """"""""""""""""""""
 
-Sind die ALKIS-Module simple, selection und pdf in einer App aktiviert, werden diese auch immer angezeigt und liefern grundsätzlich eine Auskunft ohne Eigentümer (Die Benutzer müssen nicht in der Gruppe ALKIS_OHNE_EIGENTUEMER sein). Zum Anfordern des Tokens soll hier immer der Benutzer guest verwendet werden.
+Sind die ALKIS-Module simple, selection und pdf in einer App aktiviert, werden diese auch immer angezeigt und liefern grundsätzlich eine Auskunft ohne Eigentümer (Die Benutzer müssen nicht in der Gruppe ALKIS_OHNE_EIGENTUEMER sein). Zum Anfordern des Tokens soll hier immer der Benutzer `"guest"` verwendet werden. Hinweis! Es handelt sich hierbei um keinen echten bielefeldGEOCLIENT-Benutzer, sondern um den String `"guest"`.
 
 Ist der Benutzer in der Gruppe ALKIS_EIGENTUEMER eingetragen, liefern diese ALKIS-Module eine Auskunft mit Eigentümer.
 
