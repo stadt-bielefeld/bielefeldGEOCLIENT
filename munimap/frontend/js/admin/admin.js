@@ -31,3 +31,6 @@ require('./selectionlist-edit-controller.js');
 
 require('./plugins-list-controller.js');
 require('./plugins-edit-controller.js');
+
+require('./site-contents-list-controller.js');
+require('./site-contents-edit-controller.js');

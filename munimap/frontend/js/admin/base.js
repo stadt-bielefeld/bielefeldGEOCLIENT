@@ -3,8 +3,10 @@ import 'ace-builds/src-min-noconflict/ace.js';
 import 'ace-builds/src-min-noconflict/ext-searchbox.js';
 import 'ace-builds/src-min-noconflict/mode-yaml.js';
 import 'ace-builds/src-min-noconflict/mode-javascript.js';
+import 'ace-builds/src-min-noconflict/mode-html.js';
 import 'ace-builds/src-min-noconflict/worker-javascript.js';
 import 'ace-builds/src-min-noconflict/worker-yaml.js';
+import 'ace-builds/src-min-noconflict/worker-html.js';
 import 'ace-builds/src-min-noconflict/theme-textmate.js';
 import 'angular-ui-ace';
 import 'angular-ui-bootstrap';
@@ -154,6 +156,16 @@ angular.module('munimapAdmin', ['ngRoute', 'munimapBase.notification', 'munimapB
             .when('/plugins/edit/:configName', {
                 templateUrl: 'plugins-edit.html',
                 controller: 'PluginEditController',
+                reloadOnSearch: false
+            })
+            .when('/site_contents/list', {
+                templateUrl: 'site-contents-list.html',
+                controller: 'SiteContentsListController',
+                reloadOnSearch: false
+            })
+            .when('/site_contents/edit/:configName', {
+                templateUrl: 'site-contents-edit.html',
+                controller: 'SiteContentsEditController',
                 reloadOnSearch: false
             })
             .otherwise('/groups');

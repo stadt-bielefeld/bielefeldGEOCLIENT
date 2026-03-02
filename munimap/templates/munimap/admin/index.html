@@ -50,6 +50,8 @@
         .constant('AddPluginUrl', '{$ url_for('admin.add_plugin') $}')
         .constant('RemovePluginUrl', '{$ url_for('admin.remove_plugin') $}')
         .constant('RenamePluginConfigUrl', '{$ url_for('admin.rename_plugin_config') $}')
+        .constant('LoadSiteContentUrl', '{$ url_for('admin.load_site_content') $}')
+        .constant('EditSiteContentUrl', '{$ url_for('admin.edit_site_content') $}')
         .config(['ModelServiceProvider', function(ModelServiceProvider) {
             ModelServiceProvider.initModel({
                 layers: {$ layers | tojson $},
@@ -62,7 +64,8 @@
                 logs: {$ logs | tojson $},
                 enviroment: '{$ enviroment $}',
                 selectionlists: {$ selectionlists | tojson $},
-                plugins: {$ plugins | tojson $}
+                plugins: {$ plugins | tojson $},
+                site_contents: {$ site_contents | tojson $}
             });
         }]);
     </script>
@@ -105,6 +108,9 @@
                 <li ng-class="{'active': path.indexOf('/logs') === 0}">
                     <a href="/admin/logs/alkis">{$ _('Logs') $}</a>
                 </li>
+                <li ng-class="{'active': path.indexOf('/site_content') === 0}">
+                    <a href="/admin/site_contents/list">{$ _('Site contents') $}</a>
+                </li>
             </ul>
             <div class="sidebar-footer">
                 <div>{$ _('Logged in as:') $} {$ current_user.name $}</div>
@@ -127,6 +133,7 @@
                 <span class="navbar-brand" ng-show="path.indexOf('/logs') === 0">{$ _('Logs') $}</span>
                 <span class="navbar-brand" ng-show="path.indexOf('/selectionlists') === 0">{$ _('Selectionlists') $}</span>
                 <span class="navbar-brand" ng-show="path.indexOf('/plugins') === 0">{$ _('Plugins') $}</span>
+                <span class="navbar-brand" ng-show="path.indexOf('/site_contents') === 0">{$ _('Site contents') $}</span>
                 <i class="navbar-brand glyphicon glyphicon-arrow-right" ng-show="path.indexOf('/list') === -1"></i>
                 <span class="navbar-brand" ng-show="path.indexOf('/list') === -1 && subpage === 'group-users.html'">{$ _('Users') $}</span>
                 <span class="navbar-brand" ng-show="path.indexOf('/list') === -1 && subpage === 'group-layers.html'">{$ _('Layers') $}</span>
@@ -147,6 +154,7 @@
                 <span class="navbar-brand" ng-show="path.indexOf('/selectionlists/edit') === 0">{$ _('Edit') $}</span>
                 <span class="navbar-brand" ng-show="path.indexOf('/plugins/add') === 0">{$ _('Add') $}</span>
                 <span class="navbar-brand" ng-show="path.indexOf('/plugins/edit') === 0">{$ _('Edit') $}</span>
+                <span class="navbar-brand" ng-show="path.indexOf('/site_contents/edit') === 0">{$ _('Edit') $}</span>
             </div>
             <ul class="nav navbar-nav pull-right" ng-show="showSubpageNav">
                 <li ng-class="{'active': subpage === 'group-users.html'}">
@@ -250,6 +258,12 @@
     </script>
     <script type="text/ng-template" id="plugins-edit.html">
         {% include 'munimap/admin/ng-templates/plugins-edit.html' %}
+    </script>
+    <script type="text/ng-template" id="site-contents-list.html">
+        {% include 'munimap/admin/ng-templates/site-contents-list.html' %}
+    </script>
+    <script type="text/ng-template" id="site-contents-edit.html">
+        {% include 'munimap/admin/ng-templates/site-contents-edit.html' %}
     </script>
 {% endblock %}
 

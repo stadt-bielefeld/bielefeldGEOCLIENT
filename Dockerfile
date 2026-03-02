@@ -110,6 +110,7 @@ RUN mkdir -p /opt/munimap \
     && mkdir -p /opt/var/mapfish \
     && mkdir -p /opt/var/geostyler-cli \
     && mkdir -p /opt/etc/munimap/data/stats \
+    && mkdir -p /opt/etc/munimap/data/site_contents \
     && mkdir -p /opt/etc/munimap/configs \
     && mkdir -p /opt/etc/munimap/bielefeld \
     && mkdir -p /opt/etc/munimap/printqueue \

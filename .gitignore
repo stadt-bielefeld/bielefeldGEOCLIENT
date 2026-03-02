@@ -2,6 +2,7 @@
 *.pyc
 *.egg-info
 .DS_Store
+*.iml
 .idea/
 .vagrant
 dev/anol
@@ -31,3 +32,4 @@ node_modules
 *.code-workspace
 /docker/munimap-mapproxy/mapproxy_cache_data/
 /munimap/static/
+docs_build/

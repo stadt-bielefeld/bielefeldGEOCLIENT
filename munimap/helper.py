@@ -297,6 +297,14 @@ def plugin_file_path(name):
         name + '.js'
     )
 
+
+def site_content_file_path(name):
+    return os.path.join(os.path.abspath(
+        current_app.config.get('SITE_CONTENT_DIR')),
+        name + '.html'
+    )
+
+
 def tour_file_path(name):
     return os.path.join(os.path.abspath(
         current_app.config.get('TOUR_DIR')),
@@ -335,6 +343,16 @@ def list_plugins():
     configs = glob.glob(os.path.join(os.path.abspath(
         current_app.config.get('PLUGIN_DIR')),
         '*.js'
+    ))
+    configs = [os.path.basename(c) for c in configs]
+    configs = [os.path.splitext(c)[0] for c in configs]
+    return configs
+
+
+def list_site_contents():
+    configs = glob.glob(os.path.join(os.path.abspath(
+        current_app.config.get('SITE_CONTENT_DIR')),
+        '*.html'
     ))
     configs = [os.path.basename(c) for c in configs]
     configs = [os.path.splitext(c)[0] for c in configs]
@@ -384,3 +402,30 @@ def flatstyle_to_sld(flat_style, geostyler_cli_cmd):
         # TODO handle printing of icons
         #  (icon files need to be accessible from print container and paths might need to be adjusted)
     return sld_style
+
+
+def ensure_site_contents_exist(app):
+    site_content_dir = app.config.get("SITE_CONTENT_DIR")
+    app.logger.info(f'Ensuring site content files exist in "{site_content_dir}"')
+    files = ['nutzungsbedingungen', 'about', 'info']
+    content = '<div>hello world</div>\n'
+
+    for file in files:
+        file_path = os.path.join(os.path.abspath(site_content_dir), f'{file}.html')
+        if not os.path.exists(file_path):
+            app.logger.debug(f'Creating site content file {file_path} with default content')
+            with open(file_path, 'x') as f:
+                f.write(content)
+
+
+def load_site_contents(app):
+    app.site_contents = {}
+    site_content_dir = app.config.get("SITE_CONTENT_DIR")
+    app.logger.info(f'Loading site content files in "{site_content_dir}"')
+    for file in list_site_contents():
+        file_path = site_content_file_path(file)
+        try:
+            with open(file_path, 'r') as f:
+                app.site_contents[file] = f.read()
+        except IOError:
+            app.logger.warning(f'Could not read site content file {file_path}')
