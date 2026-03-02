@@ -92,13 +92,8 @@ def create_app(config=None, config_file=None):
             """
             return manifest.get(asset, asset)
 
-        logo_header_file = app.config.get('LOGO_HEADER_FILE', 'img/logo-header.svg')
-        logo_top_file = app.config.get('LOGO_TOP_FILE', 'img/logo-top.svg')
-
         return {
-            'resolve_asset': resolve_asset,
-            'logo_header_file': logo_header_file,
-            'logo_top_file': logo_top_file
+            'resolve_asset': resolve_asset
         }
 
     configure_extensions(app)

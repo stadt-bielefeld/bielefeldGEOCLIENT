@@ -177,6 +177,10 @@ class DefaultConfig(object):
 
     COORD_TRANSFORM_URL = ''
 
+    # specify the files for the logo header (used in the admin) and top (used in the sidebar header)
+    LOGO_HEADER_FILE = 'img/logo-header.svg'
+    LOGO_TOP_FILE = 'img/logo-top.svg'
+
 
 class TestConfig(object):
     here = path.dirname(__file__)
