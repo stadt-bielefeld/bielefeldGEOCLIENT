@@ -11,6 +11,8 @@ dev/configs/mapfish/*.yaml
 !dev/configs/mapfish/config.yaml
 dev/configs/mapfish/*.jrxml
 dev/data/cache_data
+dev/data/site-contents/*
+!dev/data/site-contents/.gitkeep
 dev/mapfish
 dev/geostyler-cli
 dev/munimap
