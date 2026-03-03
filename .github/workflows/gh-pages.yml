@@ -3,6 +3,9 @@ on:
   push:
     tags:
       - '*.*.*'
+  release:
+    types:
+      - published
 
 jobs:
   build-and-deploy:
