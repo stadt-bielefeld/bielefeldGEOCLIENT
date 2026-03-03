@@ -147,7 +147,8 @@ def index(path=None):
         enviroment=enviroment,
         selectionlists=selectionlists,
         plugins=plugins,
-        site_contents=site_contents
+        site_contents=site_contents,
+        logo_header_file = current_app.config.get('LOGO_HEADER_FILE')
     )
 
 
