@@ -15,10 +15,7 @@
 <meta name="theme-color" content="#E30014">
 <meta name="mobile-web-app-capable" content="yes">
 
-{% set title = 'bielefeldGEOCLIENT' %}
-{% if base_config.get('DEFAULT_TITLE') %}
-    {% set title = base_config.get('DEFAULT_TITLE') %}
-{% endif %}
+{% set title = base_config.get('DEFAULT_TITLE') %}
 {% if app_config and app_config['app'] and app_config['app']['title'] %}
     {% set title = app_config['app']['title'] %}
 {% endif %}
