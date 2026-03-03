@@ -26,7 +26,7 @@ describe('Default config test', function() {
 
         // base settings
         expect($scope.tooltipDelay).toBe(1000);
-        expect($scope.headerLogoURL).toBe('/static/img/logo.png');
+        expect($scope.headerLogoURL).toBe('/static/img/logo-background.png');
         expect($scope.versionString).toBe('');
         expect($scope.sidebar.open).toBe(false);
 
