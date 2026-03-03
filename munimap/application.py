@@ -91,7 +91,6 @@ def create_app(config=None, config_file=None):
             the manifest that contains the mappings.
             """
             return manifest.get(asset, asset)
-
         return {
             'resolve_asset': resolve_asset
         }
@@ -104,12 +103,20 @@ def create_app(config=None, config_file=None):
     # from default static folder. This ensures that files
     # in default static folder can be overwritten.
     def _static(filename):
-        folder = app.static_folder
-        custom_static_folder = app.config.get('CUSTOM_STATIC_DIR', folder)
-        custom_static_file = os.path.join(custom_static_folder, filename)
+        # ignore salt for variables.css in order to overwrite this with a custom file
+        # remove salt in filename, see webpack.config.js for structure
+        filename_without_salt = filename
+        if filename.startswith('css/variables') and filename.endswith('.css') :
+            base, _salt, ending = filename.rsplit('.',2)
+            filename_without_salt = f"{base}.{ending}"
+
+        default_static_folder = app.static_folder
+        custom_static_folder = app.config.get('CUSTOM_STATIC_DIR', default_static_folder)
+        custom_static_file = os.path.join(custom_static_folder, filename_without_salt)
         if os.path.exists(custom_static_file):
-            folder = custom_static_folder
-        return send_from_directory(folder, filename)
+            return send_from_directory(custom_static_folder, filename_without_salt)
+
+        return send_from_directory(default_static_folder, filename)
 
     app.view_functions['static'] = _static
 
