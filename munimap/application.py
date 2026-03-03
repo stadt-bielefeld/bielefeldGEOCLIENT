@@ -157,6 +157,8 @@ def create_app(config=None, config_file=None):
         locale.setlocale(
             locale.LC_COLLATE, app.config.get('COLLATE_LOCALE', 'de_DE.UTF-8'))
 
+    app.logger.info('Application bielefeldGEOCLIENT successfully created.')
+
     return app
 
 
