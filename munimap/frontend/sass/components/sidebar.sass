@@ -84,6 +84,19 @@
           hr
             margin-top: 10px
 
+          @media screen and (max-width: media_queries.$screen-sm)
+
+            &::-webkit-scrollbar
+              width: 20px
+
+            &::-webkit-scrollbar-track
+              background: variables.$sidebar-item-highlight-color
+
+            &::-webkit-scrollbar-thumb
+              background-color: variables.$sidebar-text-color
+              border-radius: 5px
+              border: 2px solid variables.$sidebar-item-highlight-color
+
     .panel-default.panel-open
       .panel-heading
         background-color: variables.$sidebar-item-highlight-color
