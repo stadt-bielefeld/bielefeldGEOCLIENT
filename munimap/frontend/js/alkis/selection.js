@@ -112,7 +112,7 @@ angular.module('munimapBase.alkisSelection', ['anol.map', 'ngStorage'])
                                 }
                             }).result.then(function(){}, function(){});
 
-                            var toolsControlContainerScope = angular.element('.tools-control-container').scope();
+                            var toolsControlContainerScope = angular.element('.tools-control').scope();
                             toolsControlContainerScope.toolsContainerVisible = false;
 
                             scope.deactivate();
