@@ -107,54 +107,21 @@ angular.module('munimapBase')
                 }
             }
 
-            // assign positions for mobile buttons
+            // assign positions for measure result and end-measure (not part of flex left column)
             if(angular.isDefined(munimapConfig.componentPositions) && angular.isDefined(munimapConfig.componentPositions.mobile)) {
-                $scope.mobileMenuButtonPosition = munimapConfig.componentPositions.mobile.menuButton || {};
-                $scope.mobileZoomButtonsPosition = munimapConfig.componentPositions.mobile.zoomButtons || {};
-                $scope.mobileGeolocationButtonPosition = munimapConfig.componentPositions.mobile.geolocationButton || {};
-                $scope.mobileHomeButtonPosition = munimapConfig.componentPositions.mobile.homeButton || {};
-                $scope.mobileRotationButtonPosition = munimapConfig.componentPositions.mobile.rotationButton || {};
-                $scope.mobileServiceButtonPosition = munimapConfig.componentPositions.mobile.serviceButton || {};
-                $scope.mobileServiceMenuPosition = munimapConfig.componentPositions.mobile.serviceMenu || {};
                 $scope.mobilePointMeasureResultPosition = munimapConfig.componentPositions.mobile.pointMeasureResult || {};
                 $scope.mobileEndMeasurePosition = munimapConfig.componentPositions.mobile.endMeasureButton || {};
-                $scope.mobileCustomControlsPositions = munimapConfig.componentPositions.mobile.customControls || [];
             } else {
-                $scope.mobileMenuButtonPosition = {};
-                $scope.mobileZoomButtonsPosition = {};
-                $scope.mobileGeolocationButtonPosition = {};
-                $scope.mobileHomeButtonPosition = {};
-                $scope.mobileRotationButtonPosition = {};
-                $scope.mobileServiceButtonPosition = {};
-                $scope.mobileServiceMenuPosition = {};
                 $scope.mobilePointMeasureResultPosition = {};
                 $scope.mobileEndMeasurePosition = {};
-                $scope.mobileCustomControlsPositions = [];
             }
 
-            // assign positions for desktop buttons
             if(angular.isDefined(munimapConfig.componentPositions) && angular.isDefined(munimapConfig.componentPositions.desktop)) {
-                $scope.desktopMenuButtonPosition = munimapConfig.componentPositions.desktop.menuButton || {};
-                $scope.desktopZoomButtonsPosition = munimapConfig.componentPositions.desktop.zoomButtons || {};
-                $scope.desktopGeolocationButtonPosition = munimapConfig.componentPositions.desktop.geolocationButton || {};
-                $scope.desktopHomeButtonPosition = munimapConfig.componentPositions.desktop.homeButton || {};
-                $scope.desktopRotationButtonPosition = munimapConfig.componentPositions.desktop.rotationButton || {};
-                $scope.desktopServiceButtonPosition = munimapConfig.componentPositions.desktop.serviceButton || {};
-                $scope.desktopServiceMenuPosition = munimapConfig.componentPositions.desktop.serviceMenu || {};
                 $scope.desktopPointMeasureResultPosition = munimapConfig.componentPositions.desktop.pointMeasureResult || {};
                 $scope.desktopEndMeasurePosition = munimapConfig.componentPositions.desktop.endMeasureButton || {};
-                $scope.desktopCustomControlsPositions = munimapConfig.componentPositions.desktop.customControls || [];
             } else {
-                $scope.desktopMenuButtonPosition = {};
-                $scope.desktopZoomButtonsPosition = {};
-                $scope.desktopGeolocationButtonPosition = {};
-                $scope.desktopHomeButtonPosition = {};
-                $scope.desktopRotationButtonPosition = {};
-                $scope.desktopServiceButtonPosition = {};
-                $scope.desktopServiceMenuPosition = {};
                 $scope.desktopPointMeasureResultPosition = {};
                 $scope.desktopEndMeasurePosition = {};
-                $scope.desktopCustomControlsPositions = [];
             }
 
             $scope.components = munimapConfig.components;
@@ -235,6 +202,22 @@ angular.module('munimapBase')
                 }
             };
 
+            $scope.zoomIn = function() {
+                const view = MapService.getMap().getView();
+                view.animate({
+                    zoom: view.getZoom() + 1,
+                    duration: 250
+                });
+            };
+
+            $scope.zoomOut = function() {
+                const view = MapService.getMap().getView();
+                view.animate({
+                    zoom: view.getZoom() - 1,
+                    duration: 250
+                });
+            };
+
             $scope.openCatalog = function() {
                 $uibModal.open({
                     windowClass: 'catalog-modal',
@@ -260,7 +243,7 @@ angular.module('munimapBase')
                     size: 'md',
                     controller: 'saveSettingsModalController'
                 }).result.then(function(){}, function(){});
-                var toolsControlContainerScope = angular.element('.tools-control-container').scope();
+                var toolsControlContainerScope = angular.element('.tools-control').scope();
                 toolsControlContainerScope.toggle();
             };
 
@@ -271,7 +254,7 @@ angular.module('munimapBase')
                     size: 'md',
                     controller: 'loadSettingsModalController'
                 }).result.then(function(){}, function(){});
-                var toolsControlContainerScope = angular.element('.tools-control-container').scope();
+                var toolsControlContainerScope = angular.element('.tools-control').scope();
                 toolsControlContainerScope.toggle();
             };
 
@@ -534,7 +517,7 @@ angular.module('munimapBase')
                 if(Tour === false) {
                     return;
                 }
-                var toolsControlContainerScope = angular.element('.tools-control-container').scope();
+                var toolsControlContainerScope = angular.element('.tools-control').scope();
                 toolsControlContainerScope.toggle();
                 Tour.restart();
             };
@@ -550,32 +533,44 @@ angular.module('munimapBase')
             });
 
             var initAdditionalMapElements = function() {
+                var wrapper = angular.element('.left-controls-wrapper');
+
+                // Register wrapper as OL control → moves wrapper (with its children)
+                // into .ol-overlaycontainer-stopevent
+                var wrapperControl = new anol.control.Control({ element: wrapper });
+                ControlsService.addControl(wrapperControl);
+
+                // Register menu and home controls with target → appended into wrapper
                 var menuControlElement = angular.element('.menu-control');
                 if(menuControlElement.length > 0) {
-                    var menuControl = new anol.control.Control({
-                        element: menuControlElement
-                    });
-                    ControlsService.addControl(menuControl);
+                    ControlsService.addControl(new anol.control.Control({
+                        element: menuControlElement,
+                        target: wrapper
+                    }));
                 }
                 var homeControlElement = angular.element('.home-control');
                 if(homeControlElement.length > 0) {
-                    var homeControl = new anol.control.Control({
-                        element: homeControlElement
-                    });
-                    ControlsService.addControl(homeControl);
+                    ControlsService.addControl(new anol.control.Control({
+                        element: homeControlElement,
+                        target: wrapper
+                    }));
                 }
-                var toolsControlElement = angular.element('.tools-control');
-                var toolsContainerControlElement = angular.element('.tools-container-control');
-                if(toolsControlElement.length > 0 && toolsContainerControlElement.length > 0) {
-                    var toolsControl = new anol.control.Control({
-                        element: toolsControlElement
-                    });
-                    ControlsService.addControl(toolsControl);
-                    var toolsContainerControl = new anol.control.Control({
-                        element: toolsContainerControlElement
-                    });
-                    ControlsService.addControl(toolsContainerControl);
-                }
+
+                // anol-geolocation and anol-rotation register without a target, so OL places
+                // them in the overlay container during ControlsService.registerMap().
+                // registerMap fires in a $timeout queued BEFORE this function runs,
+                // so it fires AFTER this function. A nested $timeout here fires AFTER
+                // registerMap, letting us move those elements into the wrapper safely.
+                $timeout(function() {
+                    var geolocationEl = angular.element('.anol-geolocation');
+                    if(geolocationEl.length > 0) {
+                        wrapper.append(geolocationEl);
+                    }
+                    var rotationEl = angular.element('.ol-rotate');
+                    if(rotationEl.length > 0) {
+                        wrapper.append(rotationEl);
+                    }
+                });
 
                 /** if we don´t add this as control the eventPropagation is no longer handled by openlayers.
                 * so we can rightclick on this element to get the default contextmenu. this is useful to copy the coordinates.

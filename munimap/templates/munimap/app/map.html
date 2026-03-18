@@ -36,6 +36,22 @@
     </div>
 </div>
 <div anol-map class="map" style="position: relative;">
+  <div class="left-controls-wrapper">
+    <div class="ol-control zoom-control">
+      <button ng-click="zoomIn()"
+              uib-tooltip="{{ 'anol.zoom.TOOLTIP_ZOOM_IN' | translate }}"
+              tooltip-placement="right" tooltip-popup-delay="{{ tooltipDelay }}"
+              tooltip-trigger="mouseenter" tooltip-enable="showTooltip">
+        <span class="glyphicon glyphicon-plus"></span>
+      </button>
+      <button ng-click="zoomOut()"
+              uib-tooltip="{{ 'anol.zoom.TOOLTIP_ZOOM_OUT' | translate }}"
+              tooltip-placement="right" tooltip-popup-delay="{{ tooltipDelay }}"
+              tooltip-trigger="mouseenter" tooltip-enable="showTooltip">
+        <span class="glyphicon glyphicon-minus"></span>
+      </button>
+    </div>
+  </div>
   <div anol-url-markers></div>
   <div anol-attribution
        tooltip-delay="{{ tooltipDelay}}">
@@ -43,12 +59,7 @@
   {% include 'munimap/app/draw-popup.html' %}
   {% include 'munimap/app/geoeditor-popup.html' %}
   {% include 'munimap/app/digitize-popup.html' %}
-  <div anol-zoom
-       ng-style="hasTouch ? mobileZoomButtonsPosition : desktopZoomButtonsPosition"
-       tooltip-delay="{{ tooltipDelay}}">
-  </div>
   <div anol-rotation
-       ng-style="hasTouch ? mobileRotationButtonPosition : desktopRotationButtonPosition"
        tooltip-delay="{{ tooltipDelay }}">
   </div>
 
@@ -86,7 +97,6 @@
   {% endif %}
 
   <div ng-if="geolocationEnabled"
-       ng-style="hasTouch ? mobileGeolocationButtonPosition : desktopGeolocationButtonPosition"
        anol-geolocation="{{geolocationConfig.tracking}}"
        highlight="{{geolocationConfig.resultVisible}}"
        result-style="{
@@ -113,7 +123,6 @@
        ng-if="scaleLineEnabled">
   </div>
   <div ng-if="menuButtonEnabled"
-       ng-style="hasTouch ? mobileMenuButtonPosition : desktopMenuButtonPosition"
        class="ol-control menu-control">
     <button ng-click="toggleMenu()"
             uib-tooltip="{{ sidebar.open ? '{$ _('Close menu') $}' : '{$ _('Open menu') $}' }}"
@@ -125,7 +134,6 @@
     </button>
   </div>
   <div ng-if="homeButtonEnabled"
-       ng-style="hasTouch ? mobileHomeButtonPosition : desktopHomeButtonPosition"
        class="ol-control home-control">
     <button ng-click="goHome()"
             uib-tooltip="{$ _('Startposition') $}"
@@ -137,8 +145,6 @@
     </button>
   </div>
   <service-button ng-if="serviceButtonEnabled"
-                  ng-style="hasTouch ? mobileServiceButtonPosition : desktopServiceButtonPosition"
-                  menu-style="hasTouch ? mobileServiceMenuPosition : desktopServiceMenuPosition"
                   >
     <a anol-measure="point"
        geodesic="false"
@@ -196,8 +202,7 @@
     </a>
   </service-button>
   <alkis-button ng-if="alkisButtonEnabled"
-      ng-style="hasTouch ? mobileServiceButtonPosition : desktopServiceButtonPosition"
-      menu-style="hasTouch ? mobileServiceMenuPosition : desktopServiceMenuPosition">
+      >
 
     {% if app_config.get('components').get('alkis') and  app_config.get('components').get('alkis').get('simple') %}
     <a alkis-simple
@@ -285,7 +290,6 @@
   {% if app_config.get('components', []).get('customControls') %}
     {% for customControl in app_config['components']['customControls'] %}
       <custom-control
-           ng-style="hasTouch ? mobileCustomControlsPositions[{$ loop.index0 $}] : desktopCustomControlsPositions[{$ loop.index0 $}]"
            control-text="{$ customControl.get('text') $}"
            control-title="{$ customControl.get('title') $}"
            control-callback="{$ customControl.get('callback') $}"

@@ -4,39 +4,35 @@ angular.module('munimapBase.servicebutton', ['anol.map'])
         return {
             templateUrl: 'munimap/servicebutton.html',
             transclude: true,
-            replace: true,
+            replace: false,
             link: function(scope, element, attributes) {
-                scope.ngStyle = scope.$eval(attributes.ngStyle);
-                scope.menuStyle = scope.$eval(attributes.menuStyle);
                 scope.toolsContainerVisible = false;
 
                 scope.hideToolsContainer = function() {
                     scope.toolsContainerVisible = false;
                 };
 
+                var toolsControl = new anol.control.Control({
+                    element: element.find('.tools-control'),
+                    exclusive: true,
+                    target: angular.element('.left-controls-wrapper')
+                });
+
+                toolsControl.onDeactivate(function() {
+                    scope.toolsContainerVisible = false;
+                    scope.$apply();
+                });
+
                 scope.toggle = function() {
-                    if (toolsContainerControl.active) {
-                        toolsContainerControl.deactivate(); 
-                        // toggle alkis control to deactiave all other controls
+                    if (scope.toolsContainerVisible) {
+                        scope.toolsContainerVisible = false;
                         toolsControl.activate();
                         toolsControl.deactivate();
                     } else {
-                        toolsContainerControl.activate();        
+                        scope.toolsContainerVisible = true;
                     }
                 };
-                // button on openlayers
-                var toolsControl = new anol.control.Control({
-                    element: element.find('.tools-control'),
-                    exclusive: true
-                });
 
-                // container from the button - menu to toggle menus
-                var toolsContainerControl = new anol.control.Control({
-                    element: element.find('.tools-container-control'),
-                    menu: true
-                });
-
-                ControlsService.addControl(toolsContainerControl);
                 ControlsService.addControl(toolsControl);
             }
         };

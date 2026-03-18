@@ -177,7 +177,8 @@
         color: variables.$map-button-color
 
 /*
- * Map button positions
+ * Map button fallback positions (used by non-flex map templates, e.g. transport map)
+ * These are overridden inside .left-controls-wrapper by position: relative / top: auto
  */
 .menu-control
   top: 0.5em
@@ -226,9 +227,75 @@
   left: 3.5em
 
 .custom-control
-  z-index: 3
   top: 14.5em
   left: 0.5em
+
+.ol-rotate
+  top: 12.5em
+  left: 0.5em
+  right: inherit
+
+/* Left controls flex column */
+.left-controls-wrapper
+  position: absolute
+  top: 0.5em
+  left: 0.5em
+  display: flex
+  flex-direction: column
+  align-items: flex-start
+  gap: 0.1em
+  pointer-events: none
+
+  // Override OL's absolute positioning for flex items
+  .ol-control
+    position: relative
+    left: auto
+    right: auto
+    top: auto
+    pointer-events: auto
+
+  // Dropdown menus: positioned right of their button (taken out of flex flow)
+  .tools-container-control,
+  .alkis-container-control
+    position: absolute
+    left: 100%
+    top: 0
+    background-color: white
+    border-radius: 0
+    padding: 0
+    border: 1px solid #adadad
+    z-index: 3
+    &:hover
+      background-color: white
+    .list-group-item
+      border: 0
+      &.active
+        background-color: #337ab7
+        color: white
+        opacity: 0.8
+        border-radius: 0
+        font-weight: 600
+
+  // Flex order — enforces visual ordering regardless of DOM append order
+  .menu-control
+    order: 1
+  .zoom-control
+    order: 2
+  .anol-geolocation
+    order: 3
+  .home-control
+    order: 4
+  .tools-control
+    order: 5
+  .alkis-control
+    order: 6
+  .custom-control
+    order: 7
+  .ol-rotate
+    order: 8
+
+.custom-control
+  z-index: 3
 
   span
     color: #fff
@@ -276,44 +343,6 @@
   background: white
   padding: 4px
   border-radius: 4px
-
-.ol-rotate
-  top: 12.5em
-  left: 0.5em
-  right: inherit
-
-.ol-touch
-  .ol-zoom
-    top: 3.2em
-
-  .anol-geolocation
-    top: 8.1em
-
-  .home-control
-    top: 10.6em
-
-  .tools-control
-    top: 13.1em
-
-  .tools-container-control
-    top: 13.1em
-
-  .alkis-control
-    top: 15.6em
-    .glyphicon
-      line-height: 1em
-
-  .timetable-control
-    top: 15.6em !important
-
-  .alkis-container-control
-    top: 15.6em
-
-  .ol-rotate
-    top: 18.1em
-
-  .custom-control
-    top: 20.6em
 
 /*
  * Popup Styling
