@@ -1,7 +1,7 @@
 {% from "munimap/macros/layerswitcher.html" import layers_group_item, layer_group_item %}
 
 {% if layers_def['overlays'] | length > 0 %}
-  <div ui-sortable="sortableGroups" ng-model="overlayLayers">
+  <div anol-sortable="sortableGroups" ng-model="overlayLayers">
     <div class="overlay-item" ng-repeat="group in overlayLayers" ng-show="group.displayInLayerswitcher !== false && group !== undefined">
 
         <!-- catalog layer that is no group layer -->
@@ -44,7 +44,7 @@
                 ng-if="removeLayerEnabled" ng-click="removeLayer(group)"></i>
           </div>
         </div>
-        <div ui-sortable="sortableLayer" ng-model=group.layers>
+        <div anol-sortable="sortableLayer" ng-model=group.layers>
 
           <!-- child layer -->
           <div class="group-layers-container layer-title-wrap" ng-repeat="layer in group.layers"

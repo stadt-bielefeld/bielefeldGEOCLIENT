@@ -1,17 +1,5 @@
 import 'angular';
 
-import 'jquery-ui';
-import 'jquery-ui/ui/widgets/mouse';
-import 'jquery-ui/ui/widgets/sortable';
-import 'jquery-ui/ui/disable-selection';
-/*!
- * jQuery UI Touch Punch
- * https://github.com/furf/jquery-ui-touch-punch
- * Copyright (c) Dave Furfero
- * Released under the MIT license
- */
-import 'jquery-ui-touch-punch';
-import 'angular-ui-sortable';
 
 import 'anol/src/modules/module.js';
 import 'anol/src/modules/map/map-service.js';
@@ -104,7 +92,6 @@ angular.module('munimapBase', [
     'munimapBase.sidebar',
     'munimapBase.servicebutton',
     'munimapBase.postMessage',
-    'ui.sortable',
 ])
 
     .value('Tour', false)

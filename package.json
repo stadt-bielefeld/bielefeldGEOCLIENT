@@ -30,7 +30,6 @@
     "angular-translate": "^2.18.1",
     "angular-ui-ace": "^0.2.3",
     "angular-ui-bootstrap": "^2.5.6",
-    "angular-ui-sortable": "^0.19.0",
     "angular-ui-switch": "^0.1.1",
     "anol": "file:../anol",
     "bootstrap-slider": "^10.2.0",
@@ -38,12 +37,11 @@
     "bootstrap3": "^3.3.5",
     "feiertagejs": "^1.2.2",
     "jquery": "^3.6.0",
-    "jquery-ui": "^1.12.1",
-    "jquery-ui-touch-punch": "^0.2.3",
     "ngstorage": "^0.3.11",
     "ol": "^10.2.1",
     "ol-ext": "^4.0.24",
     "proj4": "^2.4.4",
+    "sortablejs": "^1.15.7",
     "spectrum-colorpicker": "^1.8.0"
   },
   "devDependencies": {
