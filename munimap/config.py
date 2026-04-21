@@ -151,7 +151,14 @@ class DefaultConfig(object):
     TIMETABLE_STOPFINDER_PRIORITIES = ['bielefeld', 'bi-']
     TIMETABLE_TRIP_API = '/nwlsl3+/trip?lng=de&sharedLink=true'
 
-    TIMETABLE_DEFAULT_CTIY = 'Bielefeld'
+    # True, if the Mängelmelder Button should be shown, false otherwise
+    MAENGELMELDER_VISIBLE = True
+    # The url to the Mängelmelder
+    MAENGELMELDER_URL = 'https://beteiligung.nrw.de/portal/bielefeld/beteiligung/themen/1001101'
+    # The text of the button
+    MAENGELMELDER_TEXT = 'Mängelmelder BI'
+    # The title of the button
+    MAENGELMELDER_TITLE = 'Aufruf des Bielefelder Mängelmelders'
 
     TIMETABLE_DOCUMENTS_CSV = False
     TIMETABLE_DOCUMENTS_BASE_URL = ''
