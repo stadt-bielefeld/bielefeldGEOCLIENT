@@ -18,6 +18,20 @@ class DefaultConfig(object):
 
     ADMIN_PARTY = False
 
+    # Whitelist of urls that should be logged for statistics
+    # Items can be either a string or a dict. When using dict notation,
+    # an additional param 'queries' can be added that checks if the
+    # given query params also match. In order to match, all queries must match.
+    # E.g.
+    # [
+    #   # matches http://localhost, http://localhost/foo/bar, http://locahost?foo=bar, http://localhost?foo=foo, ...
+    #   'http://localhost',
+    #   # matches http://localhost, http://localhost/foo/bar, http://locahost?foo=bar, http://localhost?foo=foo, ...
+    #   {'url': 'http://localhost'},
+    #   # matches http://locahost?foo=bar, ...
+    #   # does not match http://localhost, http://localhost/foo/bar, http://localhost?foo=foo
+    #   {'url': 'http://localhost', 'queries': [{'name': foo, 'value': 'bar'}]},
+    # ]
     LOG_STATS_WHITELIST = ['http://localhost']
 
     # Access token of the target server.
@@ -42,6 +56,7 @@ class DefaultConfig(object):
     APP_CONFIG_DIR = '/opt/etc/munimap/app-configs'
     SELECTIONLISTS_CONFIG_DIR = '/opt/etc/munimap/selectionlists-configs'
     PLUGIN_DIR = '/opt/etc/munimap/plugins'
+    SITE_CONTENT_DIR = '/opt/etc/munimap/site-contents'
     TOUR_DIR = '/opt/etc/munimap/tours'
     CONTEXTMENU_DIR = '/opt/etc/munimap/contextmenus'
     # Directory that serves static files. When requesting static
@@ -136,7 +151,14 @@ class DefaultConfig(object):
     TIMETABLE_STOPFINDER_PRIORITIES = ['bielefeld', 'bi-']
     TIMETABLE_TRIP_API = '/nwlsl3+/trip?lng=de&sharedLink=true'
 
-    TIMETABLE_DEFAULT_CTIY = 'Bielefeld'
+    # True, if the Mängelmelder Button should be shown, false otherwise
+    MAENGELMELDER_VISIBLE = True
+    # The url to the Mängelmelder
+    MAENGELMELDER_URL = 'https://beteiligung.nrw.de/portal/bielefeld/beteiligung/themen/1001101'
+    # The text of the button
+    MAENGELMELDER_TEXT = 'Mängelmelder BI'
+    # The title of the button
+    MAENGELMELDER_TITLE = 'Aufruf des Bielefelder Mängelmelders'
 
     TIMETABLE_DOCUMENTS_CSV = False
     TIMETABLE_DOCUMENTS_BASE_URL = ''
@@ -161,6 +183,16 @@ class DefaultConfig(object):
     MAIL_DEBUG = False
 
     COORD_TRANSFORM_URL = ''
+
+    # specify the files for the logo header (used in the admin) and top (used in the sidebar header)
+    LOGO_HEADER_FILE = 'img/logo-header.svg'
+    LOGO_TOP_FILE = 'img/logo-top.svg'
+
+    # Meta information for the html title tag of the different pages. This is used in the templates to set the title tag.
+    DEFAULT_TITLE='onlineKARTENdienst Bielefeld'
+    TERMS_OF_USE_TITLE='Nutzungsbedingungen - onlineKARTENdienst'
+    IMPRINT_TITLE='Impressum - onlineKARTENdienst'
+    COPYRIGHT_HOLDER='Stadt Bielefeld, Amt für Geoinformation und Kataster'
 
 
 class TestConfig(object):

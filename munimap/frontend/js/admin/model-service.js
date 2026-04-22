@@ -17,7 +17,8 @@ angular.module('munimapAdmin')
             logs: undefined,
             enviroment: undefined,
             selectionlists: undefined,
-            plugins: undefined
+            plugins: undefined,
+            site_contents: undefined
         };
 
         this.initModel = function(model) {
@@ -36,6 +37,7 @@ angular.module('munimapAdmin')
             'LoadSelectionlistUrl', 'EditSelectionlistUrl', 'AddSelectionlistUrl', 'RemoveSelectionlistUrl',
             'RenameSelectionlistConfigUrl',
             'LoadPluginUrl', 'EditPluginUrl', 'AddPluginUrl', 'RemovePluginUrl', 'RenamePluginConfigUrl',
+            'LoadSiteContentUrl', 'EditSiteContentUrl',
             function($location, $http, $httpParamSerializer, NotificationService, GroupAddUserUrl, GroupRemoveUserUrl,
                 GroupAddLayerUrl, GroupRemoveLayerUrl, GroupAddProjectUrl, GroupRemoveProjectUrl,
                 ProtectProjectUrl, UnprotectProjectUrl, ProtectLayerUrl, UnprotectLayerUrl,
@@ -46,7 +48,8 @@ angular.module('munimapAdmin')
                 RenameProjectConfigUrl, AddUserUrl, EditUserUrl, LoadUserUrl, RemoveUserUrl,
                 LoadSelectionlistUrl, EditSelectionlistUrl, AddSelectionlistUrl, RemoveSelectionlistUrl,
                 RenameSelectionlistConfigUrl,
-                LoadPluginUrl, EditPluginUrl, AddPluginUrl, RemovePluginUrl, RenamePluginConfigUrl
+                LoadPluginUrl, EditPluginUrl, AddPluginUrl, RemovePluginUrl, RenamePluginConfigUrl,
+                LoadSiteContentUrl, EditSiteContentUrl
             ) {
 
                 var Model = function(model) {
@@ -1454,6 +1457,50 @@ angular.module('munimapAdmin')
                         function(response) {
                             self.removeWaiting();
                             NotificationService.addError(response.data.message);
+                        }
+                    );
+                };
+
+                Model.prototype.loadSiteContent = function(site_content) {
+                    var self = this;
+                    var headers = {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    };
+                    self.addWaiting();
+                    return $http.post(LoadSiteContentUrl, $httpParamSerializer(site_content), {headers: headers}).then(
+                        function(response) {
+                            self.removeWaiting();
+                            if(angular.isDefined(response.data.code)) {
+                                NotificationService.addSuccess(response.data.message);
+                                return response.data.code;
+                            }
+                        },
+                        function(response) {
+                            self.removeWaiting();
+                            NotificationService.addError(response.data.message);
+                        }
+                    );
+                };
+
+                Model.prototype.updateSiteContent = function(site_content) {
+                    var self = this;
+                    var headers = {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    };
+                    angular.extend(site_content, {'csrf_token': CSRFToken});
+                    self.addWaiting();
+                    return $http.post(EditSiteContentUrl, $httpParamSerializer(site_content), {headers: headers}).then(
+                        function(response) {
+                            self.removeWaiting();
+                            if(angular.isDefined(response.data.site_content)) {
+                                NotificationService.addSuccess(response.data.message);
+                                return response.data;
+                            }
+                        },
+                        function(response) {
+                            self.removeWaiting();
+                            NotificationService.addError(response.data.message);
+                            return response.data;
                         }
                     );
                 };

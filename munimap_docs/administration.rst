@@ -85,3 +85,18 @@ Auswahllisten
 """""""""""""
 
 In der Verwaltungsansicht für Auswahllisten können Listen zur Auswahl von Sachdaten angelegt werden. Diese können als Sachattribute für den geoEDITOR verwendet werden, um Eingaben für den Anwender zu erleichtern und Schreibfehler zu verhindern.
+
+
+Seiteninhalte
+"""""""""""""
+
+In der Verwaltungsansicht für Seiteninhalte können Inhalte für statische Seiteninhalte des geoEDITOR Kartenclients bearbeitet werden.
+Innerhalb der Bearbeitungsmaske können beliebige HTML-Inhalte angelegt werden, um beispielsweise Informationen für die Anwender bereitzustellen.
+Interaktive HTML-Elemente (wie bspw. Formulare, Scripts, etc.) werden nicht unterstützt bzw. können nicht gespeichert werden.
+Es ist lediglich die Bearbeitung der folgenden drei Seiteninhalte möglich:
+
+1. **about**: Inhalt des Impressums
+
+2. **nutzungsbedingungen**: Inhalt der Seite "Allgemeine Informationen . Nutzungsbedingungen . Haftungsbeschränkung"
+
+3. **info**: Inhalt der Seite "Informationen zur bielefeldKARTE"
