@@ -16,7 +16,7 @@ angular.module('munimapBase.alkisButton', ['anol.map'])
 
                 alkisControl.onDeactivate(function() {
                     scope.alkisContainerVisible = false;
-                    scope.$apply();
+                    scope.$applyAsync();
                 });
 
                 scope.toggle = function() {

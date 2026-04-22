@@ -20,7 +20,7 @@ angular.module('munimapBase.servicebutton', ['anol.map'])
 
                 toolsControl.onDeactivate(function() {
                     scope.toolsContainerVisible = false;
-                    scope.$apply();
+                    scope.$applyAsync();
                 });
 
                 scope.toggle = function() {
