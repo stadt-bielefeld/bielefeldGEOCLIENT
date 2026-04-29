@@ -1,3 +1,11 @@
+## [1.15.11](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.15.10...1.15.11) (2026-04-29)
+
+
+### Bug Fixes
+
+* **docs:** trigger gh-pages action on published release as well ([5f49261](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/5f49261dc917cf93bca8d85f62c32cc7bb4cc166))
+* **release:** allow commenting on pull requests ([f10bb3a](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/f10bb3abd4b819474cd2d232733bb68e3dc0f963))
+
 ## [1.15.10](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.15.9...1.15.10) (2026-02-19)
 
 
