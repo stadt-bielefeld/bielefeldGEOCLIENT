@@ -6,31 +6,29 @@ angular.module('munimapBase.alkisButton', ['anol.map'])
             transclude: true,
             replace: false,
             link: function(scope, element, attributes) {
-                scope.ngStyle = scope.$eval(attributes.ngStyle);
-                scope.menuStyle = scope.$eval(attributes.menuStyle);
+                scope.alkisContainerVisible = false;
+
+                var alkisControl = new anol.control.Control({
+                    element: element.find('.alkis-control'),
+                    exclusive: true,
+                    target: angular.element('.left-controls-wrapper')
+                });
+
+                alkisControl.onDeactivate(function() {
+                    scope.alkisContainerVisible = false;
+                    scope.$apply();
+                });
 
                 scope.toggle = function() {
-                    if (alkisContainerControl.active) {
-                        alkisContainerControl.deactivate();
-                        // toggle alkis control to deactiave all other controls
+                    if (scope.alkisContainerVisible) {
+                        scope.alkisContainerVisible = false;
                         alkisControl.activate();
                         alkisControl.deactivate();
                     } else {
-                        alkisContainerControl.activate();                         
+                        scope.alkisContainerVisible = true;
                     }
                 };
-                // button on openlayers
-                var alkisControl = new anol.control.Control({
-                    element: element.find('.alkis-control'),
-                    exclusive: true
-                });
-                // container from the button - menu to toggle menus
-                var alkisContainerControl = new anol.control.Control({
-                    element: element.find('.alkis-container-control'),
-                    menu: true
-                });
 
-                ControlsService.addControl(alkisContainerControl);
                 ControlsService.addControl(alkisControl);
             }
         };

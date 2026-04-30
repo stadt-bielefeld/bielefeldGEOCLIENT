@@ -12,8 +12,6 @@ angular.module('munimapBase.customControl', ['anol.map'])
                 'controlShowTooltip': '='
             },
             link: function(scope, element, attributes) {
-                scope.ngStyle = scope.$eval(attributes.ngStyle);
-
                 scope.click = function() {
                     const callback = $window.customControlPlugins[scope.controlCallback];
                     if (!callback) {
@@ -24,7 +22,8 @@ angular.module('munimapBase.customControl', ['anol.map'])
                 // button on openlayers
                 var customControl = new anol.control.Control({
                     element: element.find('.custom-control'),
-                    exclusive: false
+                    exclusive: false,
+                    target: angular.element('.left-controls-wrapper')
                 });
 
                 ControlsService.addControl(customControl);
