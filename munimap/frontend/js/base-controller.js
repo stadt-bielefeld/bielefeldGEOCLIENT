@@ -558,10 +558,9 @@ angular.module('munimapBase')
 
                 // anol-geolocation and anol-rotation register without a target, so OL places
                 // them in the overlay container during ControlsService.registerMap().
-                // registerMap fires in a $timeout queued BEFORE this function runs,
-                // so it fires AFTER this function. A nested $timeout here fires AFTER
-                // registerMap, letting us move those elements into the wrapper safely.
-                $timeout(function() {
+                // Wait for registerMap to complete before moving them into the wrapper.
+                var deregister = $rootScope.$on('anol.controls.registered', function() {
+                    deregister();
                     var geolocationEl = angular.element('.anol-geolocation');
                     if(geolocationEl.length > 0) {
                         wrapper.append(geolocationEl);
