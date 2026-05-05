@@ -23,7 +23,7 @@ angular.module('munimapBase.servicebutton', ['anol.map'])
                     scope.$applyAsync();
                 });
 
-                scope.toggle = function() {
+                scope.toggleToolsContainer = function() {
                     if (scope.toolsContainerVisible) {
                         scope.toolsContainerVisible = false;
                         toolsControl.activate();
