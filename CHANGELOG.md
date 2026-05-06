@@ -1,3 +1,10 @@
+## [1.15.12](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.15.11...1.15.12) (2026-05-06)
+
+
+### Bug Fixes
+
+* use webhook event  for documentation update ([30fc411](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/30fc411df395d66c900adf1026a776a839dc4388))
+
 ## [1.15.11](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.15.10...1.15.11) (2026-04-29)
 
 
