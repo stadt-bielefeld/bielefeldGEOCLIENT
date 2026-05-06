@@ -668,10 +668,8 @@ entnommen werden.</p>
 <p>Hinweis: Damit Transparenzen beim Druck von SensorThings Layern unterstützt werden können, dürfen
 Stilattribute, die Farben festlegen, keine Expressions verwenden. Stattdessen müssen hier
 einzelne Regeln erstellt werden, in denen wiederum unterschiedliche Farben verwendet werden können.</p>
-<p>Hinweis: Aktuell gibt es noch kein gesondertes Handling für Icons. Dementsprechend muss hier der
-vollständige Pfad angegeben werden. Bei Icons, die von der Anwendung selbst gehostet werden, kann
-der Domainname ausgelassen werden, bspw. <cite>/icons/bus-18.svg</cite> anstatt
-<cite>https://stadtplan.bielefeld.de/icons/bus-18.svg</cite>. Im Druck können aktuell noch keine Icons verwendet werden.</p>
+<p>Hinweis: Damit Icons im Druck die gleiche Größe wie im Browser haben, müssen <cite>icon-width</cite> und <cite>icon-height</cite>
+gesetzt sein. Die Werte der beiden Attribute müssen identisch sein.</p>
 <dl>
 <dt>url</dt><dd><p>URL des Dienstes.</p>
 </dd>
@@ -731,7 +729,7 @@ der Domainname ausgelassen werden, bspw. <cite>/icons/bus-18.svg</cite> anstatt
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021, Stadt Bielefeld.
-      <span class="lastupdated">Zuletzt aktualisiert am 2025-10-15.
+      <span class="lastupdated">Zuletzt aktualisiert am 2026-05-06.
       </span></p>
   </div>
 
@@ -747,7 +745,7 @@ der Domainname ausgelassen werden, bspw. <cite>/icons/bus-18.svg</cite> anstatt
   </div>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
-    Version: 1.11.0
+    Version: 1.15.12
     <span class="fa fa-caret-down"></span>
   </span>
     <div class="rst-other-versions">

@@ -391,6 +391,17 @@ Digitalisierungslayern. Sowohl Geometrien als auch Attribute können hier editie
 muss sowohl der Wert <cite>true</cite> angegeben werden, als auch mindestens ein Digitalisierungslayer unter <a class="reference internal" href="#digitizeconfig">digitizeConfig</a>
 konfiguriert werden. Standardwert: <cite>false</cite>.</p>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">customControls</span></code></dt><dd><p>Fügt der Anwendung zusätzliche Controls hinzu, die über CustomControl Plugins eigens konfigurierbare Funktionen ausführen können.
+Sollte mehr als ein Custom Control hinzugefügt werden, müssen alle Custom Controls explizit via <a class="reference internal" href="#componentpositions">componentPositions</a> positioniert
+werden. Funktionen können über den Pluginnamen im <cite>callback</cite>-Attribut referenziert werden.</p>
+<p>Beispiel:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">customControls</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">text</span><span class="p">:</span> <span class="s1">&#39;3D&#39;</span> <span class="c1"># Anzeigetext des Controls</span>
+    <span class="n">title</span><span class="p">:</span> <span class="s1">&#39;Starte 3D Ansicht&#39;</span> <span class="c1"># Titel bei Mouseover</span>
+    <span class="n">callback</span><span class="p">:</span> <span class="s1">&#39;start_3d&#39;</span> <span class="c1"># Referenz auf CustomControl Plugin</span>
+</pre></div>
+</div>
+</dd>
 </dl>
 </div></blockquote>
 </section>
@@ -402,7 +413,7 @@ konfiguriert werden. Standardwert: <cite>false</cite>.</p>
 <p>Die Angabe der Position sollte in <cite>em</cite> erfolgen, da die in der Anwendung verwendeten Default-Werte ebenfalls in <cite>em</cite> angegeben sind. Siehe <a class="reference external" href="https://wiki.selfhtml.org/wiki/CSS/Wertetypen/Zahlen,_Ma%C3%9Fe_und_Ma%C3%9Feinheiten/em">em-Einheit</a></p>
 </div>
 <p>Der Abschnitt unterteilt sich in die Bereiche <cite>mobile</cite> und <cite>desktop</cite> da die Elemente Mobil andere Positionen haben müssen als in der Desktop Variante.</p>
-<p>Für jedes Element kann der <cite>top</cite>- sowie der <cite>left</cite>-Wert überschrieben werden.</p>
+<p>Für jedes Element kann der <cite>top</cite>- sowie der <cite>left</cite>-Wert überschrieben werden. <cite>customControls</cite> erwartet eine Liste mit <cite>top</cite>/<cite>left</cite>-Werten.</p>
 <p>Im Folgenden sind die positionierbaren Elemente sowie deren <cite>mobile</cite>- und <cite>desktop</cite>-Standardpositionen aufgeführt.</p>
 <blockquote>
 <div><dl class="simple">
@@ -439,6 +450,11 @@ konfiguriert werden. Standardwert: <cite>false</cite>.</p>
 </dd>
 <dt><cite>rotationButton</cite></dt><dd><ul class="simple">
 <li><p>top: 12.5em</p></li>
+<li><p>left: 0.5em</p></li>
+</ul>
+</dd>
+<dt><cite>customControls</cite></dt><dd><ul class="simple">
+<li><p>top: 14.5em</p></li>
 <li><p>left: 0.5em</p></li>
 </ul>
 </dd>
@@ -490,6 +506,11 @@ konfiguriert werden. Standardwert: <cite>false</cite>.</p>
 <li><p>left: 0.5em</p></li>
 </ul>
 </dd>
+<dt><cite>customControls</cite></dt><dd><ul class="simple">
+<li><p>top: 20.6em</p></li>
+<li><p>left: 0.5em</p></li>
+</ul>
+</dd>
 <dt><cite>endMeasureButton</cite></dt><dd><ul class="simple">
 <li><p>top: 17.0em</p></li>
 <li><p>left: 4.0em</p></li>
@@ -504,16 +525,26 @@ konfiguriert werden. Standardwert: <cite>false</cite>.</p>
 </dd>
 </dl>
 </div></blockquote>
-<p>Beispielhafte Positionierung des <cite>homeButton</cite>:</p>
+<p>Beispielhafte Positionierung von <cite>homeButton</cite> und <cite>customControls</cite>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">componentPositions</span><span class="p">:</span>
   <span class="n">desktop</span><span class="p">:</span>
     <span class="n">menuButton</span><span class="p">:</span>
       <span class="n">top</span><span class="p">:</span> <span class="mi">1</span><span class="n">em</span>
       <span class="n">left</span><span class="p">:</span> <span class="mi">1</span><span class="n">em</span>
+    <span class="n">customControls</span><span class="p">:</span>
+      <span class="o">-</span> <span class="n">top</span><span class="p">:</span> <span class="mi">2</span><span class="n">em</span>
+        <span class="n">left</span><span class="p">:</span> <span class="mi">1</span><span class="n">em</span>
+      <span class="o">-</span> <span class="n">top</span><span class="p">:</span> <span class="mi">3</span><span class="n">em</span>
+        <span class="n">left</span><span class="p">:</span> <span class="mi">1</span><span class="n">em</span>
   <span class="n">mobile</span><span class="p">:</span>
     <span class="n">menuButton</span><span class="p">:</span>
       <span class="n">top</span><span class="p">:</span> <span class="mf">1.5</span><span class="n">em</span>
       <span class="n">left</span><span class="p">:</span> <span class="mf">0.5</span><span class="n">em</span>
+    <span class="n">customControls</span><span class="p">:</span>
+      <span class="o">-</span> <span class="n">top</span><span class="p">:</span> <span class="mi">3</span><span class="n">em</span>
+        <span class="n">left</span><span class="p">:</span> <span class="mf">0.5</span><span class="n">em</span>
+      <span class="o">-</span> <span class="n">top</span><span class="p">:</span> <span class="mf">4.5</span><span class="n">em</span>
+        <span class="n">left</span><span class="p">:</span> <span class="mf">0.5</span><span class="n">em</span>
 </pre></div>
 </div>
 </section>
@@ -892,7 +923,7 @@ wird das Editieren von genau einem Digitalisierungslayer unterstützt. Dieser We
 <span id="alkis-information"></span><h2>ALKIS Informationen<a class="headerlink" href="#alkis-informationen" title="Link to this heading"></a></h2>
 <section id="benutzerberechtigung">
 <h3>Benutzerberechtigung<a class="headerlink" href="#benutzerberechtigung" title="Link to this heading"></a></h3>
-<p>Sind die ALKIS-Module simple, selection und pdf in einer App aktiviert, werden diese auch immer angezeigt und liefern grundsätzlich eine Auskunft ohne Eigentümer (Die Benutzer müssen nicht in der Gruppe ALKIS_OHNE_EIGENTUEMER sein). Zum Anfordern des Tokens soll hier immer der Benutzer guest verwendet werden.</p>
+<p>Sind die ALKIS-Module simple, selection und pdf in einer App aktiviert, werden diese auch immer angezeigt und liefern grundsätzlich eine Auskunft ohne Eigentümer (Die Benutzer müssen nicht in der Gruppe ALKIS_OHNE_EIGENTUEMER sein). Zum Anfordern des Tokens soll hier immer der Benutzer <cite>„guest“</cite> verwendet werden. Hinweis! Es handelt sich hierbei um keinen echten bielefeldGEOCLIENT-Benutzer, sondern um den String <cite>„guest“</cite>.</p>
 <p>Ist der Benutzer in der Gruppe ALKIS_EIGENTUEMER eingetragen, liefern diese ALKIS-Module eine Auskunft mit Eigentümer.</p>
 <p>Ist das ALKIS-Modul official in einer App aktiviert, steht dieses jedoch nur zur Verfügung bzw. ist sichtbar, wenn der Benutzer in der Gruppe ALKIS_EIGENTUEMER_IBR eingetragen ist.</p>
 </section>
@@ -1167,7 +1198,7 @@ ein Objekt mit folgenden Attributen zurückliefert:</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021, Stadt Bielefeld.
-      <span class="lastupdated">Zuletzt aktualisiert am 2025-10-15.
+      <span class="lastupdated">Zuletzt aktualisiert am 2026-05-06.
       </span></p>
   </div>
 
@@ -1183,7 +1214,7 @@ ein Objekt mit folgenden Attributen zurückliefert:</p>
   </div>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
-    Version: 1.11.0
+    Version: 1.15.12
     <span class="fa fa-caret-down"></span>
   </span>
     <div class="rst-other-versions">

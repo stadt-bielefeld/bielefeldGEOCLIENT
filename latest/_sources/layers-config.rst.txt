@@ -630,10 +630,8 @@ Wie WMS, Karten werden jedoch in 256x256 Pixel große Kacheln abgerufen.
   Stilattribute, die Farben festlegen, keine Expressions verwenden. Stattdessen müssen hier
   einzelne Regeln erstellt werden, in denen wiederum unterschiedliche Farben verwendet werden können.
 
-  Hinweis: Aktuell gibt es noch kein gesondertes Handling für Icons. Dementsprechend muss hier der
-  vollständige Pfad angegeben werden. Bei Icons, die von der Anwendung selbst gehostet werden, kann
-  der Domainname ausgelassen werden, bspw. `/icons/bus-18.svg` anstatt
-  `https://stadtplan.bielefeld.de/icons/bus-18.svg`. Im Druck können aktuell noch keine Icons verwendet werden.
+  Hinweis: Damit Icons im Druck die gleiche Größe wie im Browser haben, müssen `icon-width` und `icon-height`
+  gesetzt sein. Die Werte der beiden Attribute müssen identisch sein.
 
   url
       URL des Dienstes.
