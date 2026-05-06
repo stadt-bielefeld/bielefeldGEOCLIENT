@@ -193,6 +193,7 @@ class DefaultConfig(object):
     TERMS_OF_USE_TITLE='Nutzungsbedingungen - onlineKARTENdienst'
     IMPRINT_TITLE='Impressum - onlineKARTENdienst'
     COPYRIGHT_HOLDER='Stadt Bielefeld, Amt für Geoinformation und Kataster'
+    INFO_PAGE_TITLE='Informationen zur bielefeldKARTE'
 
 
 class TestConfig(object):

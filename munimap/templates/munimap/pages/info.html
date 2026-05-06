@@ -1,6 +1,9 @@
 {% extends "munimap/pages/base.html" %}
 
 {% set pagetitle = 'Informationen zur bielefeldKARTE' %}
+{% if '/pages/info' in request.base_url and base_config.get('INFO_PAGE_TITLE') %}
+    {% set pagetitle = base_config.get('INFO_PAGE_TITLE') %}
+{% endif %}
 
 {% block container %}
 
@@ -12,4 +15,3 @@
   </div>
 </section>
 {% endblock %}
-
