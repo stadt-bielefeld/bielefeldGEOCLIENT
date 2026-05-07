@@ -129,14 +129,13 @@ npm start
     ```
     sudo dpkg-reconfigure locales
     ```
-  - In another terminal the docker dev environment needs to be started
-    - `cd ../docker/`
-    - `docker compose --profile dev up`
-  - Update translations
+  - Update translations (in project root, i.e., bielefeldGEOCLIENT):
     ```
-    export FLASK_APP="manage.py"
-    flask babel-refresh
-    flask babel-compile
+    pybabel extract -F ./munimap/babel.cfg -k lazy_gettext -k _l -o ./munimap/translations/messages.pot ./munimap
+    # update catalog
+    pybabel update -i ./munimap/translations/messages.pot -d ./munimap/translations
+    # Manually add / update missing translations here and compile catalog afterwards
+    pybabel compile -d ./munimap/translations
     ```
 
 ## Start databases and other background services

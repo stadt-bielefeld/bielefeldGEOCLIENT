@@ -1,1906 +1,1943 @@
 # Translations template for PROJECT.
-# Copyright (C) 2024 ORGANIZATION
+# Copyright (C) 2026 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-05 16:41+0100\n"
+"POT-Creation-Date: 2026-02-24 12:35+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.11.0\n"
+"Generated-By: Babel 2.17.0\n"
 
-#: ../munimap/layers.py:129 ../munimap/layers.py:226
+#: munimap/layers.py:129 munimap/layers.py:241
 #, python-format
 msgid "%(name)s [edited %(last_update)s]"
 msgstr ""
 
-#: ../munimap/layers.py:131 ../munimap/layers.py:228
+#: munimap/layers.py:131 munimap/layers.py:243
 #, python-format
 msgid "%(name)s [last update %(last_update)s]"
 msgstr ""
 
-#: ../munimap/export/mapfish.py:258
+#: munimap/export/mapfish.py:404
 #, python-format
 msgid "Scale 1 : %(scale)s"
 msgstr ""
 
-#: ../munimap/forms/admin.py:11 ../munimap/forms/admin.py:17
-#: ../munimap/forms/admin.py:22 ../munimap/forms/admin.py:27
-#: ../munimap/forms/admin.py:32 ../munimap/forms/admin.py:37
-#: ../munimap/forms/admin.py:42 ../munimap/model/feature.py:131
-#: ../munimap/templates/munimap/admin/ng-templates/group-form.html:6
-#: ../munimap/templates/munimap/admin/ng-templates/group-list.html:6
-#: ../munimap/templates/munimap/admin/ng-templates/layer-list.html:6
-#: ../munimap/templates/munimap/admin/ng-templates/maps-edit.html:13
-#: ../munimap/templates/munimap/admin/ng-templates/maps-list.html:6
-#: ../munimap/templates/munimap/admin/ng-templates/plugins-edit.html:12
-#: ../munimap/templates/munimap/admin/ng-templates/plugins-list.html:6
-#: ../munimap/templates/munimap/admin/ng-templates/project-edit.html:12
-#: ../munimap/templates/munimap/admin/ng-templates/project-list.html:6
-#: ../munimap/templates/munimap/admin/ng-templates/selectionlists-edit.html:12
-#: ../munimap/templates/munimap/admin/ng-templates/selectionlists-list.html:6
-#: ../munimap/templates/munimap/admin/ng-templates/user-list.html:7
+#: munimap/forms/admin.py:13 munimap/forms/admin.py:19
+#: munimap/forms/admin.py:24 munimap/forms/admin.py:29
+#: munimap/forms/admin.py:34 munimap/forms/admin.py:39
+#: munimap/forms/admin.py:44 munimap/forms/admin.py:49
+#: munimap/forms/admin.py:59 munimap/model/feature.py:138
+#: munimap/templates/munimap/admin/ng-templates/group-form.html:6
+#: munimap/templates/munimap/admin/ng-templates/group-list.html:6
+#: munimap/templates/munimap/admin/ng-templates/layer-list.html:6
+#: munimap/templates/munimap/admin/ng-templates/maps-edit.html:13
+#: munimap/templates/munimap/admin/ng-templates/maps-list.html:6
+#: munimap/templates/munimap/admin/ng-templates/plugins-edit.html:12
+#: munimap/templates/munimap/admin/ng-templates/plugins-list.html:6
+#: munimap/templates/munimap/admin/ng-templates/project-edit.html:12
+#: munimap/templates/munimap/admin/ng-templates/project-list.html:6
+#: munimap/templates/munimap/admin/ng-templates/selectionlists-edit.html:12
+#: munimap/templates/munimap/admin/ng-templates/selectionlists-list.html:6
+#: munimap/templates/munimap/admin/ng-templates/site-contents-edit.html:12
+#: munimap/templates/munimap/admin/ng-templates/site-contents-list.html:6
+#: munimap/templates/munimap/admin/ng-templates/user-list.html:7
 msgid "name"
 msgstr ""
 
-#: ../munimap/forms/admin.py:12
-#: ../munimap/templates/munimap/admin/ng-templates/group-form.html:16
-#: ../munimap/templates/munimap/admin/ng-templates/group-list.html:7
-#: ../munimap/templates/munimap/admin/ng-templates/layer-list.html:7
+#: munimap/forms/admin.py:14
+#: munimap/templates/munimap/admin/ng-templates/group-form.html:16
+#: munimap/templates/munimap/admin/ng-templates/group-list.html:7
+#: munimap/templates/munimap/admin/ng-templates/layer-list.html:7
 msgid "title"
 msgstr ""
 
-#: ../munimap/forms/admin.py:13
-#: ../munimap/templates/munimap/admin/ng-templates/group-form.html:26
-#: ../munimap/templates/munimap/admin/ng-templates/group-list.html:8
-#: ../munimap/templates/munimap/admin/ng-templates/maps-list.html:7
+#: munimap/forms/admin.py:15
+#: munimap/templates/munimap/admin/ng-templates/group-form.html:26
+#: munimap/templates/munimap/admin/ng-templates/group-list.html:8
+#: munimap/templates/munimap/admin/ng-templates/maps-list.html:7
 msgid "description"
 msgstr ""
 
-#: ../munimap/forms/admin.py:18 ../munimap/forms/admin.py:23
-#: ../munimap/forms/admin.py:28 ../munimap/forms/admin.py:33
-#: ../munimap/forms/admin.py:38 ../munimap/forms/admin.py:43
+#: munimap/forms/admin.py:20 munimap/forms/admin.py:25
+#: munimap/forms/admin.py:30 munimap/forms/admin.py:35
+#: munimap/forms/admin.py:40 munimap/forms/admin.py:45
+#: munimap/forms/admin.py:50 munimap/forms/admin.py:60
 msgid "code"
 msgstr ""
 
-#: ../munimap/forms/admin.py:50
+#: munimap/forms/admin.py:53
+msgid "The text must not contain interactive HTML elements."
+msgstr ""
+
+#: munimap/forms/admin.py:67
 #, python-format
 msgid "Username %(name)s already exist"
 msgstr ""
 
-#: ../munimap/forms/project_settings.py:14
+#: munimap/forms/project_settings.py:14
 msgid "Settings"
 msgstr ""
 
-#: ../munimap/forms/project_settings.py:17
+#: munimap/forms/project_settings.py:17
 msgid "Standard"
 msgstr ""
 
-#: ../munimap/forms/project_settings.py:19
-#: ../munimap/templates/munimap/user/ng-templates/upload-modal.html:4
+#: munimap/forms/project_settings.py:19
+#: munimap/templates/munimap/user/ng-templates/upload-modal.html:4
 msgid "Import Settings"
 msgstr ""
 
-#: ../munimap/forms/project_settings.py:20
+#: munimap/forms/project_settings.py:20
 msgid "Import Project"
 msgstr ""
 
-#: ../munimap/forms/project_settings.py:21
+#: munimap/forms/project_settings.py:21
 msgid "Export Project"
 msgstr ""
 
-#: ../munimap/forms/project_settings.py:22
-#: ../munimap/templates/munimap/user/projects.html:39
+#: munimap/forms/project_settings.py:22
+#: munimap/templates/munimap/user/projects.html:39
 msgid "Start Project"
 msgstr ""
 
-#: ../munimap/forms/user.py:15
+#: munimap/forms/user.py:15
 msgid "Username does not exist"
 msgstr ""
 
-#: ../munimap/forms/user.py:18 ../munimap/forms/user.py:36
-#: ../munimap/templates/munimap/admin/ng-templates/user-add.html:7
-#: ../munimap/templates/munimap/admin/ng-templates/user-duplicate.html:8
-#: ../munimap/templates/munimap/admin/ng-templates/user-edit.html:8
-#: ../munimap/templates/munimap/user/login.html:14
-#: ../munimap/templates/munimap/user/password_recover.html:14
+#: munimap/forms/user.py:18 munimap/forms/user.py:36
+#: munimap/templates/munimap/admin/ng-templates/user-add.html:7
+#: munimap/templates/munimap/admin/ng-templates/user-duplicate.html:8
+#: munimap/templates/munimap/admin/ng-templates/user-edit.html:8
+#: munimap/templates/munimap/user/login.html:14
+#: munimap/templates/munimap/user/password_recover.html:14
 msgid "Username"
 msgstr ""
 
-#: ../munimap/forms/user.py:21
-#: ../munimap/templates/munimap/admin/ng-templates/user-add.html:14
-#: ../munimap/templates/munimap/admin/ng-templates/user-duplicate.html:15
-#: ../munimap/templates/munimap/admin/ng-templates/user-edit.html:15
-#: ../munimap/templates/munimap/user/login.html:15
+#: munimap/forms/user.py:21
+#: munimap/templates/munimap/admin/ng-templates/user-add.html:14
+#: munimap/templates/munimap/admin/ng-templates/user-duplicate.html:15
+#: munimap/templates/munimap/admin/ng-templates/user-edit.html:15
+#: munimap/templates/munimap/user/login.html:15
 msgid "Password"
 msgstr ""
 
-#: ../munimap/forms/user.py:27
-#: ../munimap/templates/munimap/user/password.html:14
+#: munimap/forms/user.py:27 munimap/templates/munimap/user/password.html:14
 msgid "Old Password"
 msgstr ""
 
-#: ../munimap/forms/user.py:29 ../munimap/forms/user.py:39
-#: ../munimap/templates/munimap/user/password.html:15
-#: ../munimap/templates/munimap/user/password_recover_set.html:14
+#: munimap/forms/user.py:29 munimap/forms/user.py:39
+#: munimap/templates/munimap/user/password.html:15
+#: munimap/templates/munimap/user/password_recover_set.html:14
 msgid "New Password"
 msgstr ""
 
-#: ../munimap/forms/user.py:31 ../munimap/forms/user.py:41
+#: munimap/forms/user.py:31 munimap/forms/user.py:41
 msgid "Passwords must match"
 msgstr ""
 
-#: ../munimap/forms/user.py:32 ../munimap/forms/user.py:42
-#: ../munimap/templates/munimap/user/password.html:16
-#: ../munimap/templates/munimap/user/password_recover_set.html:15
+#: munimap/forms/user.py:32 munimap/forms/user.py:42
+#: munimap/templates/munimap/user/password.html:16
+#: munimap/templates/munimap/user/password_recover_set.html:15
 msgid "New Password repeat"
 msgstr ""
 
-#: ../munimap/forms/validator.py:9
+#: munimap/forms/validator.py:9
 msgid "email or password not correct"
 msgstr ""
 
-#: ../munimap/model/draw_schema.py:47
-#: ../munimap/templates/munimap/app/draw-popup.html:12
-#: ../munimap/templates/munimap/app/draw-popup.html:32
-#: ../munimap/templates/munimap/app/geoeditor-popup.html:14
-#: ../munimap/templates/munimap/app/geoeditor-popup.html:35
+#: munimap/model/draw_schema.py:47
+#: munimap/templates/munimap/app/draw-popup.html:12
+#: munimap/templates/munimap/app/draw-popup.html:32
+#: munimap/templates/munimap/app/geoeditor-popup.html:14
+#: munimap/templates/munimap/app/geoeditor-popup.html:35
 msgid "Style"
 msgstr ""
 
-#: ../munimap/model/draw_schema.py:50
+#: munimap/model/draw_schema.py:50
 msgid "Radius"
 msgstr ""
 
-#: ../munimap/model/draw_schema.py:57 ../munimap/model/draw_schema.py:346
-#: ../munimap/templates/munimap/app/ng-templates/feature-icons.html:19
+#: munimap/model/draw_schema.py:57 munimap/model/draw_schema.py:346
+#: munimap/templates/munimap/app/ng-templates/feature-icons.html:19
 msgid "rotation"
 msgstr ""
 
-#: ../munimap/model/draw_schema.py:64
+#: munimap/model/draw_schema.py:64
 msgid "strokeWidth"
 msgstr ""
 
-#: ../munimap/model/draw_schema.py:71
+#: munimap/model/draw_schema.py:71
 msgid "strokeColor"
 msgstr ""
 
-#: ../munimap/model/draw_schema.py:77 ../munimap/model/draw_schema.py:96
+#: munimap/model/draw_schema.py:77 munimap/model/draw_schema.py:96
 msgid "opacity"
 msgstr ""
 
-#: ../munimap/model/draw_schema.py:85
+#: munimap/model/draw_schema.py:85
 msgid "strokeDashstyle"
 msgstr ""
 
-#: ../munimap/model/draw_schema.py:90
+#: munimap/model/draw_schema.py:90
 msgid "fillColor"
 msgstr ""
 
-#: ../munimap/model/draw_schema.py:110
+#: munimap/model/draw_schema.py:110
 msgid "Point styling"
 msgstr ""
 
-#: ../munimap/model/draw_schema.py:122 ../munimap/model/draw_schema.py:145
-#: ../munimap/model/draw_schema.py:201 ../munimap/model/draw_schema.py:241
-#: ../munimap/model/draw_schema.py:297 ../munimap/model/draw_schema.py:444
+#: munimap/model/draw_schema.py:122 munimap/model/draw_schema.py:145
+#: munimap/model/draw_schema.py:201 munimap/model/draw_schema.py:241
+#: munimap/model/draw_schema.py:297 munimap/model/draw_schema.py:444
 msgid "Value is not a valid number"
 msgstr ""
 
-#: ../munimap/model/draw_schema.py:123 ../munimap/model/draw_schema.py:146
-#: ../munimap/model/draw_schema.py:202 ../munimap/model/draw_schema.py:242
-#: ../munimap/model/draw_schema.py:298 ../munimap/model/draw_schema.py:445
+#: munimap/model/draw_schema.py:123 munimap/model/draw_schema.py:146
+#: munimap/model/draw_schema.py:202 munimap/model/draw_schema.py:242
+#: munimap/model/draw_schema.py:298 munimap/model/draw_schema.py:445
 msgid "Value must be greater or equal than {{schema.minimum}}"
 msgstr ""
 
-#: ../munimap/model/draw_schema.py:124 ../munimap/model/draw_schema.py:147
-#: ../munimap/model/draw_schema.py:203 ../munimap/model/draw_schema.py:243
-#: ../munimap/model/draw_schema.py:299
+#: munimap/model/draw_schema.py:124 munimap/model/draw_schema.py:147
+#: munimap/model/draw_schema.py:203 munimap/model/draw_schema.py:243
+#: munimap/model/draw_schema.py:299
 msgid "Value must be lower or equal than {{schema.maximum}})"
 msgstr ""
 
-#: ../munimap/model/draw_schema.py:162
+#: munimap/model/draw_schema.py:162
 msgid "Stroke styling"
 msgstr ""
 
-#: ../munimap/model/draw_schema.py:222
+#: munimap/model/draw_schema.py:222
 msgid "solid"
 msgstr ""
 
-#: ../munimap/model/draw_schema.py:223
+#: munimap/model/draw_schema.py:223
 msgid "dot"
 msgstr ""
 
-#: ../munimap/model/draw_schema.py:224
+#: munimap/model/draw_schema.py:224
 msgid "dash"
 msgstr ""
 
-#: ../munimap/model/draw_schema.py:225
+#: munimap/model/draw_schema.py:225
 msgid "dashdot"
 msgstr ""
 
-#: ../munimap/model/draw_schema.py:226
+#: munimap/model/draw_schema.py:226
 msgid "longdash"
 msgstr ""
 
-#: ../munimap/model/draw_schema.py:227
+#: munimap/model/draw_schema.py:227
 msgid "longdashdot"
 msgstr ""
 
-#: ../munimap/model/draw_schema.py:260
+#: munimap/model/draw_schema.py:260
 msgid "Fill styling"
 msgstr ""
 
-#: ../munimap/model/draw_schema.py:313
+#: munimap/model/draw_schema.py:313
 msgid "Update"
 msgstr ""
 
-#: ../munimap/model/draw_schema.py:323
-#: ../munimap/templates/munimap/app/draw-popup.html:13
-#: ../munimap/templates/munimap/app/draw-popup.html:44
-#: ../munimap/templates/munimap/app/geoeditor-popup.html:15
-#: ../munimap/templates/munimap/app/geoeditor-popup.html:47
+#: munimap/model/draw_schema.py:323
+#: munimap/templates/munimap/app/draw-popup.html:13
+#: munimap/templates/munimap/app/draw-popup.html:44
+#: munimap/templates/munimap/app/geoeditor-popup.html:15
+#: munimap/templates/munimap/app/geoeditor-popup.html:47
 msgid "Labeling"
 msgstr ""
 
-#: ../munimap/model/draw_schema.py:326
+#: munimap/model/draw_schema.py:326
 msgid "Label"
 msgstr ""
 
-#: ../munimap/model/draw_schema.py:330
+#: munimap/model/draw_schema.py:330
 msgid "Font weight"
 msgstr ""
 
-#: ../munimap/model/draw_schema.py:335
+#: munimap/model/draw_schema.py:335
 msgid "Font size"
 msgstr ""
 
-#: ../munimap/model/draw_schema.py:340
+#: munimap/model/draw_schema.py:340
 msgid "Font color"
 msgstr ""
 
-#: ../munimap/model/draw_schema.py:370
+#: munimap/model/draw_schema.py:370
 msgid "Text styling"
 msgstr ""
 
-#: ../munimap/model/draw_schema.py:428
+#: munimap/model/draw_schema.py:428
 msgid "Normal"
 msgstr ""
 
-#: ../munimap/model/draw_schema.py:429
+#: munimap/model/draw_schema.py:429
 msgid "Italic"
 msgstr ""
 
-#: ../munimap/model/draw_schema.py:430
+#: munimap/model/draw_schema.py:430
 msgid "Bold"
 msgstr ""
 
-#: ../munimap/model/draw_schema.py:446
+#: munimap/model/draw_schema.py:446
 msgid "Value must be lower or equal than {{schema.maximum}}"
 msgstr ""
 
-#: ../munimap/model/feature.py:131 ../munimap/model/feature.py:141
+#: munimap/model/feature.py:138 munimap/model/feature.py:148
 msgid "label"
 msgstr ""
 
-#: ../munimap/model/feature.py:156
+#: munimap/model/feature.py:163
 msgid "Created on"
 msgstr ""
 
-#: ../munimap/model/feature.py:160
+#: munimap/model/feature.py:167
 msgid "Created by"
 msgstr ""
 
-#: ../munimap/model/feature.py:164
+#: munimap/model/feature.py:171
 msgid "Last modified on"
 msgstr ""
 
-#: ../munimap/model/feature.py:168
+#: munimap/model/feature.py:175
 msgid "Last modified by"
 msgstr ""
 
-#: ../munimap/model/feature.py:174
+#: munimap/model/feature.py:181
 msgid "Attributes"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/index.html:88
-#: ../munimap/templates/munimap/admin/index.html:125
-#: ../munimap/templates/munimap/admin/index.html:138
-#: ../munimap/templates/munimap/admin/ng-templates/user-duplicate.html:43
-#: ../munimap/templates/munimap/app/ng-templates/catalog.html:10
+#: munimap/munimap_transport/queries.py:143
+#, python-format
+msgid "From %(_from)s via %(via)s to %(to)s"
+msgstr ""
+
+#: munimap/munimap_transport/queries.py:150
+#, python-format
+msgid "From %(_from)s to %(to)s"
+msgstr ""
+
+#: munimap/templates/munimap/admin/index.html:88
+#: munimap/templates/munimap/admin/index.html:128
+#: munimap/templates/munimap/admin/index.html:142
+#: munimap/templates/munimap/admin/ng-templates/user-duplicate.html:43
+#: munimap/templates/munimap/app/ng-templates/catalog.html:10
 msgid "Groups"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/index.html:91
-#: ../munimap/templates/munimap/admin/index.html:126
-#: ../munimap/templates/munimap/admin/index.html:135
-#: ../munimap/templates/munimap/admin/index.html:159
-#: ../munimap/templates/munimap/app/ng-templates/catalog.html:96
+#: munimap/templates/munimap/admin/index.html:91
+#: munimap/templates/munimap/admin/index.html:129
+#: munimap/templates/munimap/admin/index.html:139
+#: munimap/templates/munimap/admin/index.html:164
+#: munimap/templates/munimap/app/ng-templates/catalog.html:97
 msgid "Layers"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/index.html:94
-#: ../munimap/templates/munimap/admin/index.html:127
-#: ../munimap/templates/munimap/admin/index.html:136
-#: ../munimap/templates/munimap/admin/index.html:162
-#: ../munimap/templates/munimap/admin/ng-templates/projects.html:5
-#: ../munimap/templates/munimap/user/projects.html:3
-#: ../munimap/templates/munimap/user/projects.html:13
+#: munimap/templates/munimap/admin/index.html:94
+#: munimap/templates/munimap/admin/index.html:130
+#: munimap/templates/munimap/admin/index.html:140
+#: munimap/templates/munimap/admin/index.html:167
+#: munimap/templates/munimap/admin/ng-templates/projects.html:5
+#: munimap/templates/munimap/user/projects.html:3
+#: munimap/templates/munimap/user/projects.html:13
 msgid "Projects"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/index.html:97
-#: ../munimap/templates/munimap/admin/index.html:128
-#: ../munimap/templates/munimap/admin/index.html:134
-#: ../munimap/templates/munimap/admin/index.html:156
-#: ../munimap/templates/munimap/admin/ng-templates/users.html:5
+#: munimap/templates/munimap/admin/index.html:97
+#: munimap/templates/munimap/admin/index.html:131
+#: munimap/templates/munimap/admin/index.html:138
+#: munimap/templates/munimap/admin/index.html:161
+#: munimap/templates/munimap/admin/ng-templates/users.html:5
 msgid "Users"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/index.html:100
-#: ../munimap/templates/munimap/admin/index.html:129
+#: munimap/templates/munimap/admin/index.html:100
+#: munimap/templates/munimap/admin/index.html:132
 msgid "Maps"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/index.html:103
-#: ../munimap/templates/munimap/admin/index.html:131
+#: munimap/templates/munimap/admin/index.html:103
+#: munimap/templates/munimap/admin/index.html:134
 msgid "Selectionlists"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/index.html:106
-#: ../munimap/templates/munimap/admin/index.html:132
+#: munimap/templates/munimap/admin/index.html:106
+#: munimap/templates/munimap/admin/index.html:135
 msgid "Plugins"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/index.html:109
-#: ../munimap/templates/munimap/admin/index.html:130
+#: munimap/templates/munimap/admin/index.html:109
+#: munimap/templates/munimap/admin/index.html:133
 msgid "Logs"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/index.html:113
-#: ../munimap/templates/munimap/app/ng-templates/sidebar-footer.html:28
+#: munimap/templates/munimap/admin/index.html:112
+#: munimap/templates/munimap/admin/index.html:136
+msgid "Site contents"
+msgstr ""
+
+#: munimap/templates/munimap/admin/index.html:116
+#: munimap/templates/munimap/app/ng-templates/sidebar-footer.html:28
 msgid "Logged in as:"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/index.html:115
-#: ../munimap/templates/munimap/app/ng-templates/sidebar-footer.html:30
-#: ../munimap/templates/munimap/pages/base.html:49
+#: munimap/templates/munimap/admin/index.html:118
+#: munimap/templates/munimap/app/ng-templates/sidebar-footer.html:30
+#: munimap/templates/munimap/pages/base.html:49
 msgid "Logout"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/index.html:116
-#: ../munimap/templates/munimap/app/iframe.html:27
-#: ../munimap/templates/munimap/app/ng-templates/sidebar-footer.html:31
+#: munimap/templates/munimap/admin/index.html:119
+#: munimap/templates/munimap/app/iframe.html:28
+#: munimap/templates/munimap/app/ng-templates/sidebar-footer.html:31
 msgid "Project list"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/index.html:140
-#: ../munimap/templates/munimap/admin/index.html:143
-#: ../munimap/templates/munimap/admin/index.html:144
-#: ../munimap/templates/munimap/admin/index.html:145
-#: ../munimap/templates/munimap/admin/index.html:149
-#: ../munimap/templates/munimap/admin/index.html:151
+#: munimap/templates/munimap/admin/index.html:144
+#: munimap/templates/munimap/admin/index.html:147
+#: munimap/templates/munimap/admin/index.html:148
+#: munimap/templates/munimap/admin/index.html:149
+#: munimap/templates/munimap/admin/index.html:153
+#: munimap/templates/munimap/admin/index.html:155
 msgid "Add"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/index.html:141
-#: ../munimap/templates/munimap/admin/index.html:142
-#: ../munimap/templates/munimap/admin/index.html:146
-#: ../munimap/templates/munimap/admin/index.html:150
-#: ../munimap/templates/munimap/admin/index.html:152
-#: ../munimap/templates/munimap/admin/ng-templates/group-list.html:24
-#: ../munimap/templates/munimap/admin/ng-templates/maps-list.html:37
-#: ../munimap/templates/munimap/admin/ng-templates/plugins-list.html:31
-#: ../munimap/templates/munimap/admin/ng-templates/project-list.html:50
-#: ../munimap/templates/munimap/admin/ng-templates/selectionlists-list.html:31
-#: ../munimap/templates/munimap/admin/ng-templates/user-list.html:67
+#: munimap/templates/munimap/admin/index.html:145
+#: munimap/templates/munimap/admin/index.html:146
+#: munimap/templates/munimap/admin/index.html:150
+#: munimap/templates/munimap/admin/index.html:154
+#: munimap/templates/munimap/admin/index.html:156
+#: munimap/templates/munimap/admin/index.html:157
+#: munimap/templates/munimap/admin/ng-templates/group-list.html:24
+#: munimap/templates/munimap/admin/ng-templates/maps-list.html:37
+#: munimap/templates/munimap/admin/ng-templates/plugins-list.html:31
+#: munimap/templates/munimap/admin/ng-templates/project-list.html:50
+#: munimap/templates/munimap/admin/ng-templates/selectionlists-list.html:31
+#: munimap/templates/munimap/admin/ng-templates/site-contents-list.html:22
+#: munimap/templates/munimap/admin/ng-templates/user-list.html:67
 msgid "Edit"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/index.html:147
-#: ../munimap/templates/munimap/admin/ng-templates/user-list.html:66
+#: munimap/templates/munimap/admin/index.html:151
+#: munimap/templates/munimap/admin/ng-templates/user-list.html:66
 msgid "Duplicate"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/index.html:148
+#: munimap/templates/munimap/admin/index.html:152
 msgid "Alkis"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/index.html:169
-#: ../munimap/templates/munimap/admin/macros/list.html:7
-#: ../munimap/templates/munimap/admin/ng-templates/_-groups.html:8
-#: ../munimap/templates/munimap/admin/ng-templates/_-groups.html:37
-#: ../munimap/templates/munimap/admin/ng-templates/group-layers.html:8
-#: ../munimap/templates/munimap/admin/ng-templates/group-layers.html:37
-#: ../munimap/templates/munimap/admin/ng-templates/group-projects.html:8
-#: ../munimap/templates/munimap/admin/ng-templates/group-projects.html:37
-#: ../munimap/templates/munimap/admin/ng-templates/group-users.html:8
-#: ../munimap/templates/munimap/admin/ng-templates/group-users.html:41
+#: munimap/templates/munimap/admin/index.html:174
+#: munimap/templates/munimap/admin/macros/list.html:7
+#: munimap/templates/munimap/admin/ng-templates/_-groups.html:8
+#: munimap/templates/munimap/admin/ng-templates/_-groups.html:37
+#: munimap/templates/munimap/admin/ng-templates/group-layers.html:8
+#: munimap/templates/munimap/admin/ng-templates/group-layers.html:37
+#: munimap/templates/munimap/admin/ng-templates/group-projects.html:8
+#: munimap/templates/munimap/admin/ng-templates/group-projects.html:37
+#: munimap/templates/munimap/admin/ng-templates/group-users.html:8
+#: munimap/templates/munimap/admin/ng-templates/group-users.html:41
 msgid "search"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/macros/forms.html:23
-#: ../munimap/templates/munimap/admin/macros/forms.html:65
-#: ../munimap/templates/munimap/admin/ng-templates/group-form.html:9
-#: ../munimap/templates/munimap/admin/ng-templates/group-form.html:19
-#: ../munimap/templates/munimap/admin/ng-templates/maps-edit.html:17
-#: ../munimap/templates/munimap/admin/ng-templates/plugins-edit.html:16
-#: ../munimap/templates/munimap/admin/ng-templates/project-edit.html:16
-#: ../munimap/templates/munimap/admin/ng-templates/selectionlists-edit.html:16
+#: munimap/templates/munimap/admin/macros/forms.html:23
+#: munimap/templates/munimap/admin/macros/forms.html:65
+#: munimap/templates/munimap/admin/ng-templates/group-form.html:9
+#: munimap/templates/munimap/admin/ng-templates/group-form.html:19
+#: munimap/templates/munimap/admin/ng-templates/maps-edit.html:17
+#: munimap/templates/munimap/admin/ng-templates/plugins-edit.html:16
+#: munimap/templates/munimap/admin/ng-templates/project-edit.html:16
+#: munimap/templates/munimap/admin/ng-templates/selectionlists-edit.html:16
+#: munimap/templates/munimap/admin/ng-templates/site-contents-edit.html:16
 msgid "This field is required"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/macros/forms.html:27
-#: ../munimap/templates/munimap/admin/macros/forms.html:69
-#: ../munimap/templates/munimap/admin/ng-templates/group-form.html:12
+#: munimap/templates/munimap/admin/macros/forms.html:27
+#: munimap/templates/munimap/admin/macros/forms.html:69
+#: munimap/templates/munimap/admin/ng-templates/group-form.html:12
 msgid "Max Length of 50 Chars"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/macros/list.html:22
-#: ../munimap/templates/munimap/admin/ng-templates/_-groups.html:18
-#: ../munimap/templates/munimap/admin/ng-templates/_-groups.html:51
-#: ../munimap/templates/munimap/admin/ng-templates/group-layers.html:18
-#: ../munimap/templates/munimap/admin/ng-templates/group-layers.html:51
-#: ../munimap/templates/munimap/admin/ng-templates/group-projects.html:18
-#: ../munimap/templates/munimap/admin/ng-templates/group-projects.html:51
-#: ../munimap/templates/munimap/admin/ng-templates/group-users.html:18
-#: ../munimap/templates/munimap/admin/ng-templates/group-users.html:61
+#: munimap/templates/munimap/admin/macros/list.html:22
+#: munimap/templates/munimap/admin/ng-templates/_-groups.html:18
+#: munimap/templates/munimap/admin/ng-templates/_-groups.html:51
+#: munimap/templates/munimap/admin/ng-templates/group-layers.html:18
+#: munimap/templates/munimap/admin/ng-templates/group-layers.html:51
+#: munimap/templates/munimap/admin/ng-templates/group-projects.html:18
+#: munimap/templates/munimap/admin/ng-templates/group-projects.html:51
+#: munimap/templates/munimap/admin/ng-templates/group-users.html:18
+#: munimap/templates/munimap/admin/ng-templates/group-users.html:61
 msgid "Configuration missing"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/macros/list.html:29
+#: munimap/templates/munimap/admin/macros/list.html:29
 msgid "Manage"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/_-groups.html:5
+#: munimap/templates/munimap/admin/ng-templates/_-groups.html:5
 msgid "Assigned groups"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/_-groups.html:34
+#: munimap/templates/munimap/admin/ng-templates/_-groups.html:34
 msgid "Available groups"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/alkis-logs.html:3
+#: munimap/templates/munimap/admin/ng-templates/alkis-logs.html:3
 msgid "Legitimate interest"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/alkis-logs.html:12
+#: munimap/templates/munimap/admin/ng-templates/alkis-logs.html:12
 msgid "Delete Log?"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/alkis-logs.html:13
-#: ../munimap/templates/munimap/admin/ng-templates/alkis-logs.html:16
-#: ../munimap/templates/munimap/admin/ng-templates/plugins-list.html:35
-#: ../munimap/templates/munimap/admin/ng-templates/plugins-list.html:38
-#: ../munimap/templates/munimap/admin/ng-templates/project-list.html:54
-#: ../munimap/templates/munimap/admin/ng-templates/project-list.html:57
-#: ../munimap/templates/munimap/admin/ng-templates/selectionlists-list.html:35
-#: ../munimap/templates/munimap/admin/ng-templates/selectionlists-list.html:38
+#: munimap/templates/munimap/admin/ng-templates/alkis-logs.html:13
+#: munimap/templates/munimap/admin/ng-templates/alkis-logs.html:16
+#: munimap/templates/munimap/admin/ng-templates/plugins-list.html:35
+#: munimap/templates/munimap/admin/ng-templates/plugins-list.html:38
+#: munimap/templates/munimap/admin/ng-templates/project-list.html:54
+#: munimap/templates/munimap/admin/ng-templates/project-list.html:57
+#: munimap/templates/munimap/admin/ng-templates/selectionlists-list.html:35
+#: munimap/templates/munimap/admin/ng-templates/selectionlists-list.html:38
 msgid "Delete"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/alkis-logs.html:14
-#: ../munimap/templates/munimap/admin/ng-templates/group-list.html:29
-#: ../munimap/templates/munimap/admin/ng-templates/layer-list.html:30
-#: ../munimap/templates/munimap/admin/ng-templates/layer-list.html:40
-#: ../munimap/templates/munimap/admin/ng-templates/layer-list.html:50
-#: ../munimap/templates/munimap/admin/ng-templates/maps-list.html:32
-#: ../munimap/templates/munimap/admin/ng-templates/maps-list.html:43
-#: ../munimap/templates/munimap/admin/ng-templates/plugins-list.html:36
-#: ../munimap/templates/munimap/admin/ng-templates/project-list.html:55
-#: ../munimap/templates/munimap/admin/ng-templates/project-list.html:66
-#: ../munimap/templates/munimap/admin/ng-templates/project-list.html:76
-#: ../munimap/templates/munimap/admin/ng-templates/project-list.html:86
-#: ../munimap/templates/munimap/admin/ng-templates/project-list.html:97
-#: ../munimap/templates/munimap/admin/ng-templates/selectionlists-list.html:36
-#: ../munimap/templates/munimap/admin/ng-templates/user-list.html:72
-#: ../munimap/templates/munimap/app/draw-popup.html:117
-#: ../munimap/templates/munimap/app/ng-templates/settings-load.html:28
-#: ../munimap/templates/munimap/user/ng-templates/upload-modal.html:20
+#: munimap/templates/munimap/admin/ng-templates/alkis-logs.html:14
+#: munimap/templates/munimap/admin/ng-templates/group-list.html:29
+#: munimap/templates/munimap/admin/ng-templates/layer-list.html:30
+#: munimap/templates/munimap/admin/ng-templates/layer-list.html:40
+#: munimap/templates/munimap/admin/ng-templates/layer-list.html:50
+#: munimap/templates/munimap/admin/ng-templates/maps-list.html:32
+#: munimap/templates/munimap/admin/ng-templates/maps-list.html:43
+#: munimap/templates/munimap/admin/ng-templates/plugins-list.html:36
+#: munimap/templates/munimap/admin/ng-templates/project-list.html:55
+#: munimap/templates/munimap/admin/ng-templates/project-list.html:66
+#: munimap/templates/munimap/admin/ng-templates/project-list.html:76
+#: munimap/templates/munimap/admin/ng-templates/project-list.html:86
+#: munimap/templates/munimap/admin/ng-templates/project-list.html:97
+#: munimap/templates/munimap/admin/ng-templates/selectionlists-list.html:36
+#: munimap/templates/munimap/admin/ng-templates/user-list.html:72
+#: munimap/templates/munimap/app/draw-popup.html:117
+#: munimap/templates/munimap/app/ng-templates/settings-load.html:28
+#: munimap/templates/munimap/user/ng-templates/upload-modal.html:20
 msgid "Cancel"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/group-form.html:22
-#: ../munimap/templates/munimap/admin/ng-templates/group-form.html:30
+#: munimap/templates/munimap/admin/ng-templates/group-form.html:22
+#: munimap/templates/munimap/admin/ng-templates/group-form.html:30
 msgid "Max Length of 255 Chars"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/group-form.html:33
+#: munimap/templates/munimap/admin/ng-templates/group-form.html:33
 msgid "submit"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/group-form.html:34
-#: ../munimap/templates/munimap/admin/ng-templates/maps-edit.html:53
-#: ../munimap/templates/munimap/admin/ng-templates/plugins-edit.html:44
-#: ../munimap/templates/munimap/admin/ng-templates/project-edit.html:42
-#: ../munimap/templates/munimap/admin/ng-templates/selectionlists-edit.html:42
-#: ../munimap/templates/munimap/admin/ng-templates/user-add.html:43
-#: ../munimap/templates/munimap/admin/ng-templates/user-edit.html:44
+#: munimap/templates/munimap/admin/ng-templates/group-form.html:34
+#: munimap/templates/munimap/admin/ng-templates/maps-edit.html:53
+#: munimap/templates/munimap/admin/ng-templates/plugins-edit.html:44
+#: munimap/templates/munimap/admin/ng-templates/project-edit.html:42
+#: munimap/templates/munimap/admin/ng-templates/selectionlists-edit.html:42
+#: munimap/templates/munimap/admin/ng-templates/site-contents-edit.html:44
+#: munimap/templates/munimap/admin/ng-templates/user-add.html:43
+#: munimap/templates/munimap/admin/ng-templates/user-edit.html:44
 msgid "back"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/group-layers.html:5
+#: munimap/templates/munimap/admin/ng-templates/group-layers.html:5
 msgid "Assigned layers"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/group-layers.html:34
+#: munimap/templates/munimap/admin/ng-templates/group-layers.html:34
 msgid "Available layers"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/group-list.html:10
+#: munimap/templates/munimap/admin/ng-templates/group-list.html:10
 msgid "Add group"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/group-list.html:27
+#: munimap/templates/munimap/admin/ng-templates/group-list.html:27
 msgid "Realy remove group?"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/group-list.html:28
-#: ../munimap/templates/munimap/admin/ng-templates/group-list.html:31
-#: ../munimap/templates/munimap/admin/ng-templates/layer-list.html:39
-#: ../munimap/templates/munimap/admin/ng-templates/layer-list.html:42
-#: ../munimap/templates/munimap/admin/ng-templates/maps-list.html:42
-#: ../munimap/templates/munimap/admin/ng-templates/maps-list.html:45
-#: ../munimap/templates/munimap/admin/ng-templates/project-list.html:75
-#: ../munimap/templates/munimap/admin/ng-templates/project-list.html:78
-#: ../munimap/templates/munimap/admin/ng-templates/user-list.html:71
-#: ../munimap/templates/munimap/admin/ng-templates/user-list.html:74
-#: ../munimap/templates/munimap/app/draw-popup.html:116
-#: ../munimap/templates/munimap/app/map.html:27
-#: ../munimap/templates/munimap/app/ng-templates/settings-load.html:27
+#: munimap/templates/munimap/admin/ng-templates/group-list.html:28
+#: munimap/templates/munimap/admin/ng-templates/group-list.html:31
+#: munimap/templates/munimap/admin/ng-templates/layer-list.html:39
+#: munimap/templates/munimap/admin/ng-templates/layer-list.html:42
+#: munimap/templates/munimap/admin/ng-templates/maps-list.html:42
+#: munimap/templates/munimap/admin/ng-templates/maps-list.html:45
+#: munimap/templates/munimap/admin/ng-templates/project-list.html:75
+#: munimap/templates/munimap/admin/ng-templates/project-list.html:78
+#: munimap/templates/munimap/admin/ng-templates/user-list.html:71
+#: munimap/templates/munimap/admin/ng-templates/user-list.html:74
+#: munimap/templates/munimap/app/draw-popup.html:116
+#: munimap/templates/munimap/app/map.html:27
+#: munimap/templates/munimap/app/ng-templates/settings-load.html:27
 msgid "Remove"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/group-projects.html:5
+#: munimap/templates/munimap/admin/ng-templates/group-projects.html:5
 msgid "Assigned projects"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/group-projects.html:34
+#: munimap/templates/munimap/admin/ng-templates/group-projects.html:34
 msgid "Available projects"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/group-users.html:5
+#: munimap/templates/munimap/admin/ng-templates/group-users.html:5
 msgid "Assigned users"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/group-users.html:38
+#: munimap/templates/munimap/admin/ng-templates/group-users.html:38
 msgid "Available users"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/groups.html:5
-#: ../munimap/templates/munimap/admin/ng-templates/user-list.html:19
+#: munimap/templates/munimap/admin/ng-templates/groups.html:5
+#: munimap/templates/munimap/admin/ng-templates/user-list.html:19
 msgid "groups"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/layer-list.html:28
+#: munimap/templates/munimap/admin/ng-templates/layer-list.html:28
 msgid "When layer is unprotected all assignments of this layer will be lost?"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/layer-list.html:29
-#: ../munimap/templates/munimap/admin/ng-templates/layer-list.html:32
-#: ../munimap/templates/munimap/admin/ng-templates/project-list.html:65
-#: ../munimap/templates/munimap/admin/ng-templates/project-list.html:68
+#: munimap/templates/munimap/admin/ng-templates/layer-list.html:29
+#: munimap/templates/munimap/admin/ng-templates/layer-list.html:32
+#: munimap/templates/munimap/admin/ng-templates/project-list.html:65
+#: munimap/templates/munimap/admin/ng-templates/project-list.html:68
 msgid "Unprotect"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/layer-list.html:38
+#: munimap/templates/munimap/admin/ng-templates/layer-list.html:38
 msgid "When layer is removed all assignments of this layer will be lost"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/layer-list.html:48
+#: munimap/templates/munimap/admin/ng-templates/layer-list.html:48
 msgid "Protect layer?"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/layer-list.html:49
-#: ../munimap/templates/munimap/admin/ng-templates/layer-list.html:52
-#: ../munimap/templates/munimap/admin/ng-templates/project-list.html:85
-#: ../munimap/templates/munimap/admin/ng-templates/project-list.html:88
+#: munimap/templates/munimap/admin/ng-templates/layer-list.html:49
+#: munimap/templates/munimap/admin/ng-templates/layer-list.html:52
+#: munimap/templates/munimap/admin/ng-templates/project-list.html:85
+#: munimap/templates/munimap/admin/ng-templates/project-list.html:88
 msgid "protect"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/layer-list.html:65
+#: munimap/templates/munimap/admin/ng-templates/layer-list.html:65
 msgid "Type"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/layer-list.html:67
+#: munimap/templates/munimap/admin/ng-templates/layer-list.html:67
 msgid "Format"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/layer-list.html:71
+#: munimap/templates/munimap/admin/ng-templates/layer-list.html:71
 msgid "Status"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/layer-list.html:73
+#: munimap/templates/munimap/admin/ng-templates/layer-list.html:73
 msgid "Layer"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/layer-list.html:81
+#: munimap/templates/munimap/admin/ng-templates/layer-list.html:81
 msgid "Url"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/maps-edit.html:7
-#: ../munimap/templates/munimap/admin/ng-templates/plugins-edit.html:6
-#: ../munimap/templates/munimap/admin/ng-templates/project-edit.html:6
-#: ../munimap/templates/munimap/admin/ng-templates/selectionlists-edit.html:6
-#: ../munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:2
-#: ../munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:122
+#: munimap/templates/munimap/admin/ng-templates/maps-edit.html:7
+#: munimap/templates/munimap/admin/ng-templates/plugins-edit.html:6
+#: munimap/templates/munimap/admin/ng-templates/project-edit.html:6
+#: munimap/templates/munimap/admin/ng-templates/selectionlists-edit.html:6
+#: munimap/templates/munimap/admin/ng-templates/site-contents-edit.html:6
+#: munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:2
+#: munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:122
 msgid "Loading ..."
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/maps-edit.html:22
-#: ../munimap/templates/munimap/admin/ng-templates/plugins-edit.html:21
-#: ../munimap/templates/munimap/admin/ng-templates/project-edit.html:21
-#: ../munimap/templates/munimap/admin/ng-templates/selectionlists-edit.html:21
+#: munimap/templates/munimap/admin/ng-templates/maps-edit.html:22
+#: munimap/templates/munimap/admin/ng-templates/plugins-edit.html:21
+#: munimap/templates/munimap/admin/ng-templates/project-edit.html:21
+#: munimap/templates/munimap/admin/ng-templates/selectionlists-edit.html:21
+#: munimap/templates/munimap/admin/ng-templates/site-contents-edit.html:21
 msgid "Code"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/maps-edit.html:38
+#: munimap/templates/munimap/admin/ng-templates/maps-edit.html:38
 msgid "Local errors"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/maps-edit.html:45
+#: munimap/templates/munimap/admin/ng-templates/maps-edit.html:45
 msgid "Global Project Errors"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/maps-edit.html:60
+#: munimap/templates/munimap/admin/ng-templates/maps-edit.html:60
 msgid "submit despite error"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/maps-edit.html:65
-#: ../munimap/templates/munimap/admin/ng-templates/plugins-edit.html:48
-#: ../munimap/templates/munimap/admin/ng-templates/project-edit.html:46
-#: ../munimap/templates/munimap/admin/ng-templates/selectionlists-edit.html:46
-#: ../munimap/templates/munimap/app/ng-templates/digitize-draw.html:74
-#: ../munimap/templates/munimap/user/password.html:17
-#: ../munimap/templates/munimap/user/password_recover_set.html:17
+#: munimap/templates/munimap/admin/ng-templates/maps-edit.html:65
+#: munimap/templates/munimap/admin/ng-templates/plugins-edit.html:48
+#: munimap/templates/munimap/admin/ng-templates/project-edit.html:46
+#: munimap/templates/munimap/admin/ng-templates/selectionlists-edit.html:46
+#: munimap/templates/munimap/admin/ng-templates/site-contents-edit.html:48
+#: munimap/templates/munimap/app/ng-templates/digitize-draw.html:74
+#: munimap/templates/munimap/user/password.html:17
+#: munimap/templates/munimap/user/password_recover_set.html:17
 msgid "Save"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/maps-list.html:9
+#: munimap/templates/munimap/admin/ng-templates/maps-list.html:9
 msgid "Add config"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/maps-list.html:20
-#: ../munimap/templates/munimap/admin/ng-templates/plugins-list.html:24
-#: ../munimap/templates/munimap/admin/ng-templates/project-list.html:30
-#: ../munimap/templates/munimap/admin/ng-templates/selectionlists-list.html:24
+#: munimap/templates/munimap/admin/ng-templates/maps-list.html:20
+#: munimap/templates/munimap/admin/ng-templates/plugins-list.html:24
+#: munimap/templates/munimap/admin/ng-templates/project-list.html:30
+#: munimap/templates/munimap/admin/ng-templates/selectionlists-list.html:24
 msgid "rename"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/maps-list.html:30
+#: munimap/templates/munimap/admin/ng-templates/maps-list.html:30
 msgid "transfer file"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/maps-list.html:31
-#: ../munimap/templates/munimap/admin/ng-templates/maps-list.html:34
-#: ../munimap/templates/munimap/admin/ng-templates/project-list.html:96
-#: ../munimap/templates/munimap/admin/ng-templates/project-list.html:99
+#: munimap/templates/munimap/admin/ng-templates/maps-list.html:31
+#: munimap/templates/munimap/admin/ng-templates/maps-list.html:34
+#: munimap/templates/munimap/admin/ng-templates/project-list.html:96
+#: munimap/templates/munimap/admin/ng-templates/project-list.html:99
 msgid "transfer"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/maps-list.html:41
+#: munimap/templates/munimap/admin/ng-templates/maps-list.html:41
 msgid "Realy remove config file?"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/plugins-list.html:7
-#: ../munimap/templates/munimap/admin/ng-templates/project-list.html:7
-#: ../munimap/templates/munimap/admin/ng-templates/selectionlists-list.html:7
+#: munimap/templates/munimap/admin/ng-templates/plugins-list.html:7
+#: munimap/templates/munimap/admin/ng-templates/project-list.html:7
+#: munimap/templates/munimap/admin/ng-templates/selectionlists-list.html:7
 msgid "Functions"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/plugins-list.html:9
+#: munimap/templates/munimap/admin/ng-templates/plugins-list.html:9
 msgid "Add plugin"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/plugins-list.html:34
+#: munimap/templates/munimap/admin/ng-templates/plugins-list.html:34
 msgid "Delete Plugin?"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/project-list.html:9
+#: munimap/templates/munimap/admin/ng-templates/project-list.html:9
 msgid "Add project"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/project-list.html:39
-#: ../munimap/templates/munimap/admin/ng-templates/project-list.html:45
+#: munimap/templates/munimap/admin/ng-templates/project-list.html:39
+#: munimap/templates/munimap/admin/ng-templates/project-list.html:45
 msgid "show app"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/project-list.html:53
+#: munimap/templates/munimap/admin/ng-templates/project-list.html:53
 msgid "Delete Project?"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/project-list.html:64
+#: munimap/templates/munimap/admin/ng-templates/project-list.html:64
 msgid "When project is unprotected all assignments of this project will be lost?"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/project-list.html:74
+#: munimap/templates/munimap/admin/ng-templates/project-list.html:74
 msgid "When project is removed all assignments of this project will be lost"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/project-list.html:84
+#: munimap/templates/munimap/admin/ng-templates/project-list.html:84
 msgid "Protect project?"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/project-list.html:95
+#: munimap/templates/munimap/admin/ng-templates/project-list.html:95
 msgid "transfer project file"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/selectionlists-list.html:9
+#: munimap/templates/munimap/admin/ng-templates/selectionlists-list.html:9
 msgid "Add selectionlist"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/selectionlists-list.html:34
+#: munimap/templates/munimap/admin/ng-templates/selectionlists-list.html:34
 msgid "Delete Selectionlist?"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/user-add.html:8
-#: ../munimap/templates/munimap/admin/ng-templates/user-duplicate.html:9
-#: ../munimap/templates/munimap/admin/ng-templates/user-edit.html:9
-#: ../munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:83
+#: munimap/templates/munimap/admin/ng-templates/site-contents-list.html:7
+msgid "Site content"
+msgstr ""
+
+#: munimap/templates/munimap/admin/ng-templates/user-add.html:8
+#: munimap/templates/munimap/admin/ng-templates/user-duplicate.html:9
+#: munimap/templates/munimap/admin/ng-templates/user-edit.html:9
+#: munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:83
 msgid "Firstname"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/user-add.html:9
-#: ../munimap/templates/munimap/admin/ng-templates/user-duplicate.html:10
-#: ../munimap/templates/munimap/admin/ng-templates/user-edit.html:10
+#: munimap/templates/munimap/admin/ng-templates/user-add.html:9
+#: munimap/templates/munimap/admin/ng-templates/user-duplicate.html:10
+#: munimap/templates/munimap/admin/ng-templates/user-edit.html:10
 msgid "Lastname"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/user-add.html:10
-#: ../munimap/templates/munimap/admin/ng-templates/user-duplicate.html:11
-#: ../munimap/templates/munimap/admin/ng-templates/user-edit.html:11
+#: munimap/templates/munimap/admin/ng-templates/user-add.html:10
+#: munimap/templates/munimap/admin/ng-templates/user-duplicate.html:11
+#: munimap/templates/munimap/admin/ng-templates/user-edit.html:11
 msgid "Academictitle"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/user-add.html:15
-#: ../munimap/templates/munimap/admin/ng-templates/user-duplicate.html:16
-#: ../munimap/templates/munimap/admin/ng-templates/user-edit.html:16
+#: munimap/templates/munimap/admin/ng-templates/user-add.html:15
+#: munimap/templates/munimap/admin/ng-templates/user-duplicate.html:16
+#: munimap/templates/munimap/admin/ng-templates/user-edit.html:16
 msgid "E-Mail"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/user-add.html:16
-#: ../munimap/templates/munimap/admin/ng-templates/user-duplicate.html:17
-#: ../munimap/templates/munimap/admin/ng-templates/user-edit.html:17
+#: munimap/templates/munimap/admin/ng-templates/user-add.html:16
+#: munimap/templates/munimap/admin/ng-templates/user-duplicate.html:17
+#: munimap/templates/munimap/admin/ng-templates/user-edit.html:17
 msgid "Description"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/user-add.html:17
-#: ../munimap/templates/munimap/admin/ng-templates/user-duplicate.html:18
-#: ../munimap/templates/munimap/admin/ng-templates/user-edit.html:18
+#: munimap/templates/munimap/admin/ng-templates/user-add.html:17
+#: munimap/templates/munimap/admin/ng-templates/user-duplicate.html:18
+#: munimap/templates/munimap/admin/ng-templates/user-edit.html:18
 msgid "Phone"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/user-add.html:18
-#: ../munimap/templates/munimap/admin/ng-templates/user-duplicate.html:19
-#: ../munimap/templates/munimap/admin/ng-templates/user-edit.html:19
+#: munimap/templates/munimap/admin/ng-templates/user-add.html:18
+#: munimap/templates/munimap/admin/ng-templates/user-duplicate.html:19
+#: munimap/templates/munimap/admin/ng-templates/user-edit.html:19
 msgid "Facsimile"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/user-add.html:22
-#: ../munimap/templates/munimap/admin/ng-templates/user-duplicate.html:23
-#: ../munimap/templates/munimap/admin/ng-templates/user-edit.html:23
-#: ../munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:44
+#: munimap/templates/munimap/admin/ng-templates/user-add.html:22
+#: munimap/templates/munimap/admin/ng-templates/user-duplicate.html:23
+#: munimap/templates/munimap/admin/ng-templates/user-edit.html:23
+#: munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:44
 msgid "Street"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/user-add.html:23
-#: ../munimap/templates/munimap/admin/ng-templates/user-duplicate.html:24
-#: ../munimap/templates/munimap/admin/ng-templates/user-edit.html:24
-#: ../munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:55
+#: munimap/templates/munimap/admin/ng-templates/user-add.html:23
+#: munimap/templates/munimap/admin/ng-templates/user-duplicate.html:24
+#: munimap/templates/munimap/admin/ng-templates/user-edit.html:24
+#: munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:55
 msgid "Housenumber"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/user-add.html:24
-#: ../munimap/templates/munimap/admin/ng-templates/user-duplicate.html:25
-#: ../munimap/templates/munimap/admin/ng-templates/user-edit.html:25
+#: munimap/templates/munimap/admin/ng-templates/user-add.html:24
+#: munimap/templates/munimap/admin/ng-templates/user-duplicate.html:25
+#: munimap/templates/munimap/admin/ng-templates/user-edit.html:25
 msgid "Delivery Point"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/user-add.html:25
-#: ../munimap/templates/munimap/admin/ng-templates/user-duplicate.html:26
-#: ../munimap/templates/munimap/admin/ng-templates/user-edit.html:26
+#: munimap/templates/munimap/admin/ng-templates/user-add.html:25
+#: munimap/templates/munimap/admin/ng-templates/user-duplicate.html:26
+#: munimap/templates/munimap/admin/ng-templates/user-edit.html:26
 msgid "Postal Code"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/user-add.html:26
-#: ../munimap/templates/munimap/admin/ng-templates/user-duplicate.html:27
-#: ../munimap/templates/munimap/admin/ng-templates/user-edit.html:27
+#: munimap/templates/munimap/admin/ng-templates/user-add.html:26
+#: munimap/templates/munimap/admin/ng-templates/user-duplicate.html:27
+#: munimap/templates/munimap/admin/ng-templates/user-edit.html:27
 msgid "City"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/user-add.html:27
-#: ../munimap/templates/munimap/admin/ng-templates/user-duplicate.html:28
-#: ../munimap/templates/munimap/admin/ng-templates/user-edit.html:28
+#: munimap/templates/munimap/admin/ng-templates/user-add.html:27
+#: munimap/templates/munimap/admin/ng-templates/user-duplicate.html:28
+#: munimap/templates/munimap/admin/ng-templates/user-edit.html:28
 msgid "Kundennummer"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/user-add.html:28
-#: ../munimap/templates/munimap/admin/ng-templates/user-duplicate.html:29
-#: ../munimap/templates/munimap/admin/ng-templates/user-edit.html:29
+#: munimap/templates/munimap/admin/ng-templates/user-add.html:28
+#: munimap/templates/munimap/admin/ng-templates/user-duplicate.html:29
+#: munimap/templates/munimap/admin/ng-templates/user-edit.html:29
 msgid "Department"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/user-add.html:29
-#: ../munimap/templates/munimap/admin/ng-templates/user-duplicate.html:30
-#: ../munimap/templates/munimap/admin/ng-templates/user-edit.html:30
+#: munimap/templates/munimap/admin/ng-templates/user-add.html:29
+#: munimap/templates/munimap/admin/ng-templates/user-duplicate.html:30
+#: munimap/templates/munimap/admin/ng-templates/user-edit.html:30
 msgid "Position"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/user-add.html:30
-#: ../munimap/templates/munimap/admin/ng-templates/user-duplicate.html:31
-#: ../munimap/templates/munimap/admin/ng-templates/user-edit.html:31
+#: munimap/templates/munimap/admin/ng-templates/user-add.html:30
+#: munimap/templates/munimap/admin/ng-templates/user-duplicate.html:31
+#: munimap/templates/munimap/admin/ng-templates/user-edit.html:31
 msgid "Country"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/user-add.html:31
-#: ../munimap/templates/munimap/admin/ng-templates/user-duplicate.html:32
-#: ../munimap/templates/munimap/admin/ng-templates/user-edit.html:32
+#: munimap/templates/munimap/admin/ng-templates/user-add.html:31
+#: munimap/templates/munimap/admin/ng-templates/user-duplicate.html:32
+#: munimap/templates/munimap/admin/ng-templates/user-edit.html:32
 msgid "Dienstkey"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/user-add.html:35
-#: ../munimap/templates/munimap/admin/ng-templates/user-duplicate.html:36
-#: ../munimap/templates/munimap/admin/ng-templates/user-edit.html:36
+#: munimap/templates/munimap/admin/ng-templates/user-add.html:35
+#: munimap/templates/munimap/admin/ng-templates/user-duplicate.html:36
+#: munimap/templates/munimap/admin/ng-templates/user-edit.html:36
 msgid "Active"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/user-add.html:36
-#: ../munimap/templates/munimap/admin/ng-templates/user-duplicate.html:37
-#: ../munimap/templates/munimap/admin/ng-templates/user-edit.html:37
+#: munimap/templates/munimap/admin/ng-templates/user-add.html:36
+#: munimap/templates/munimap/admin/ng-templates/user-duplicate.html:37
+#: munimap/templates/munimap/admin/ng-templates/user-edit.html:37
 msgid "IDM Managed"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/user-add.html:37
-#: ../munimap/templates/munimap/admin/ng-templates/user-duplicate.html:38
-#: ../munimap/templates/munimap/admin/ng-templates/user-edit.html:38
+#: munimap/templates/munimap/admin/ng-templates/user-add.html:37
+#: munimap/templates/munimap/admin/ng-templates/user-duplicate.html:38
+#: munimap/templates/munimap/admin/ng-templates/user-edit.html:38
 msgid "Valid to"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/user-add.html:44
-#: ../munimap/templates/munimap/admin/ng-templates/user-duplicate.html:53
-#: ../munimap/templates/munimap/admin/ng-templates/user-edit.html:45
+#: munimap/templates/munimap/admin/ng-templates/user-add.html:44
+#: munimap/templates/munimap/admin/ng-templates/user-duplicate.html:53
+#: munimap/templates/munimap/admin/ng-templates/user-edit.html:45
 msgid "save"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/user-duplicate.html:52
-#: ../munimap/templates/munimap/user/password.html:19
-#: ../munimap/templates/munimap/user/password_recover.html:17
-#: ../munimap/templates/munimap/user/password_recover_set.html:20
+#: munimap/templates/munimap/admin/ng-templates/user-duplicate.html:52
+#: munimap/templates/munimap/user/password.html:19
+#: munimap/templates/munimap/user/password_recover.html:17
+#: munimap/templates/munimap/user/password_recover_set.html:20
 msgid "Abort"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/user-edit.html:39
+#: munimap/templates/munimap/admin/ng-templates/user-edit.html:39
 msgid "Login Count"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/user-list.html:13
+#: munimap/templates/munimap/admin/ng-templates/user-list.html:13
 msgid "email"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/user-list.html:25
+#: munimap/templates/munimap/admin/ng-templates/user-list.html:25
 msgid "status"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/user-list.html:31
+#: munimap/templates/munimap/admin/ng-templates/user-list.html:31
 msgid "valid_to"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/user-list.html:38
+#: munimap/templates/munimap/admin/ng-templates/user-list.html:38
 msgid "department"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/user-list.html:44
+#: munimap/templates/munimap/admin/ng-templates/user-list.html:44
 msgid "Add user"
 msgstr ""
 
-#: ../munimap/templates/munimap/admin/ng-templates/user-list.html:70
+#: munimap/templates/munimap/admin/ng-templates/user-list.html:70
 msgid "Realy remove user?"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/digitize-popup.html:15
+#: munimap/templates/munimap/app/digitize-popup.html:15
 msgid "Properties"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/digitize-popup.html:31
+#: munimap/templates/munimap/app/digitize-popup.html:31
 msgid "Feature was updated by others. Please refresh before editing."
 msgstr ""
 
-#: ../munimap/templates/munimap/app/digitize-popup.html:36
-#: ../munimap/templates/munimap/app/draw-popup.html:123
-#: ../munimap/templates/munimap/app/geoeditor-popup.html:111
-#: ../munimap/templates/munimap/app/ng-templates/settings-load.html:40
-#: ../munimap/templates/munimap/app/ng-templates/settings-save.html:24
-#: ../munimap/templates/munimap/modals/alkis-legitimate.html:50
+#: munimap/templates/munimap/app/digitize-popup.html:36
+#: munimap/templates/munimap/app/draw-popup.html:123
+#: munimap/templates/munimap/app/geoeditor-popup.html:111
+#: munimap/templates/munimap/app/ng-templates/settings-load.html:40
+#: munimap/templates/munimap/app/ng-templates/settings-save.html:24
+#: munimap/templates/munimap/modals/alkis-legitimate.html:50
 msgid "Close"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/draw-popup.html:11
-#: ../munimap/templates/munimap/app/geoeditor-popup.html:13
-#: ../munimap/templates/munimap/app/geoeditor-popup.html:23
+#: munimap/templates/munimap/app/draw-popup.html:11
+#: munimap/templates/munimap/app/geoeditor-popup.html:13
+#: munimap/templates/munimap/app/geoeditor-popup.html:23
 msgid "GeoEditor"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/draw-popup.html:14
-#: ../munimap/templates/munimap/app/draw-popup.html:56
-#: ../munimap/templates/munimap/app/geoeditor-popup.html:16
-#: ../munimap/templates/munimap/app/geoeditor-popup.html:59
+#: munimap/templates/munimap/app/draw-popup.html:14
+#: munimap/templates/munimap/app/draw-popup.html:56
+#: munimap/templates/munimap/app/geoeditor-popup.html:16
+#: munimap/templates/munimap/app/geoeditor-popup.html:59
 msgid "Marker"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/draw-popup.html:20
+#: munimap/templates/munimap/app/draw-popup.html:20
 msgid "Factual Data"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/draw-popup.html:73
+#: munimap/templates/munimap/app/draw-popup.html:73
 msgid "Attribute"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/draw-popup.html:74
+#: munimap/templates/munimap/app/draw-popup.html:74
 msgid "Value"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/draw-popup.html:92
-#: ../munimap/templates/munimap/app/geoeditor-popup.html:88
+#: munimap/templates/munimap/app/draw-popup.html:92
+#: munimap/templates/munimap/app/geoeditor-popup.html:88
 msgid "While a marker is selected, feature cannot be styled"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/draw-popup.html:115
+#: munimap/templates/munimap/app/draw-popup.html:115
 msgid "Realy remove feature?"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/draw-popup.html:119
+#: munimap/templates/munimap/app/draw-popup.html:119
 msgid "Remove feature"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/index.html:124
-#: ../munimap/templates/munimap_transport/index.html:53
+#: munimap/templates/munimap/app/index.html:134
+#: munimap/templates/munimap_transport/index.html:53
 msgid "Use ctrl + wheel to zoom"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/index.html:125
-#: ../munimap/templates/munimap_transport/index.html:54
+#: munimap/templates/munimap/app/index.html:135
+#: munimap/templates/munimap_transport/index.html:54
 msgid "Use two fingers to move the map"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/map.html:6
+#: munimap/templates/munimap/app/map.html:6
 msgid "Add or edit geometry"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/map.html:7
-#: ../munimap/templates/munimap/app/ng-templates/draw.html:50
+#: munimap/templates/munimap/app/map.html:7
+#: munimap/templates/munimap/app/ng-templates/draw.html:50
 msgid "Modify or shift geometry"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/map.html:8
+#: munimap/templates/munimap/app/map.html:8
 msgid "Remove geometry"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/map.html:22
-#: ../munimap/templates/munimap/app/map.html:25
+#: munimap/templates/munimap/app/map.html:22
+#: munimap/templates/munimap/app/map.html:25
 msgid "Digitize"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/map.html:26
-#: ../munimap/templates/munimap/app/ng-templates/digitize-draw.html:48
+#: munimap/templates/munimap/app/map.html:26
+#: munimap/templates/munimap/app/ng-templates/digitize-draw.html:48
 msgid "Modify"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/map.html:117
-#: ../munimap/templates/munimap/app/ng-templates/sidebar-header.html:3
-#: ../munimap/templates/munimap_transport/map.html:74
-#: ../munimap/templates/munimap_transport/ng-templates/sidebar-header.html:3
+#: munimap/templates/munimap/app/map.html:119
+#: munimap/templates/munimap/app/ng-templates/sidebar-header.html:3
+#: munimap/templates/munimap_transport/map.html:74
+#: munimap/templates/munimap_transport/ng-templates/sidebar-header.html:3
 msgid "Close menu"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/map.html:117
-#: ../munimap/templates/munimap_transport/map.html:74
+#: munimap/templates/munimap/app/map.html:119
+#: munimap/templates/munimap_transport/map.html:74
 msgid "Open menu"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/map.html:129
-#: ../munimap/templates/munimap_transport/map.html:86
+#: munimap/templates/munimap/app/map.html:131
+#: munimap/templates/munimap_transport/map.html:86
 msgid "Startposition"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/map.html:250
-#: ../munimap/templates/munimap_transport/map.html:148
+#: munimap/templates/munimap/app/map.html:258
+#: munimap/templates/munimap_transport/map.html:148
 msgid "UTM 32"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/map.html:251
-#: ../munimap/templates/munimap_transport/map.html:147
+#: munimap/templates/munimap/app/map.html:259
+#: munimap/templates/munimap_transport/map.html:147
 msgid "WGS 84"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/map.html:252
-#: ../munimap/templates/munimap_transport/map.html:149
+#: munimap/templates/munimap/app/map.html:260
+#: munimap/templates/munimap_transport/map.html:149
 msgid "Web Mercator"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/map.html:266
-#: ../munimap/templates/munimap_transport/map.html:171
+#: munimap/templates/munimap/app/map.html:274
+#: munimap/templates/munimap_transport/map.html:171
 msgid "Open Timetable"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/sidebar.html:15
-#: ../munimap/templates/munimap/modals/base-catalog-modal.html:5
+#: munimap/templates/munimap/app/sidebar.html:15
+#: munimap/templates/munimap/modals/base-catalog-modal.html:5
 msgid "Catalog"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/sidebar.html:26
+#: munimap/templates/munimap/app/sidebar.html:26
 msgid "Draw controls"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/sidebar.html:55
+#: munimap/templates/munimap/app/sidebar.html:55
 msgid "CellsX"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/sidebar.html:62
+#: munimap/templates/munimap/app/sidebar.html:62
 msgid "CellsY"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/alkisbutton.html:4
+#: munimap/templates/munimap/app/ng-templates/alkisbutton.html:4
 msgid "Alkis Tools"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/catalog.html:13
-#: ../munimap/templates/munimap/app/ng-templates/catalog.html:99
+#: munimap/templates/munimap/app/ng-templates/catalog.html:13
+#: munimap/templates/munimap/app/ng-templates/catalog.html:100
 msgid "Filter"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/digitize-draw.html:5
+#: munimap/templates/munimap/app/ng-templates/digitize-draw.html:5
 msgid "Topic"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/digitize-draw.html:15
-#: ../munimap/templates/munimap/app/ng-templates/digitize-draw.html:21
-#: ../munimap/templates/munimap/app/ng-templates/digitize-draw.html:26
-#: ../munimap/templates/munimap/app/ng-templates/digitize-draw.html:32
-#: ../munimap/templates/munimap/app/ng-templates/digitize-draw.html:37
-#: ../munimap/templates/munimap/app/ng-templates/digitize-draw.html:43
+#: munimap/templates/munimap/app/ng-templates/digitize-draw.html:15
+#: munimap/templates/munimap/app/ng-templates/digitize-draw.html:21
+#: munimap/templates/munimap/app/ng-templates/digitize-draw.html:26
+#: munimap/templates/munimap/app/ng-templates/digitize-draw.html:32
+#: munimap/templates/munimap/app/ng-templates/digitize-draw.html:37
+#: munimap/templates/munimap/app/ng-templates/digitize-draw.html:43
 msgid "Draw"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/digitize-draw.html:78
+#: munimap/templates/munimap/app/ng-templates/digitize-draw.html:78
 msgid "Layer was updated by others. Click to refresh data."
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/digitize-draw.html:81
+#: munimap/templates/munimap/app/ng-templates/digitize-draw.html:81
 msgid ""
 "Changes on edited/removed features that were also modified by others, "
 "will be reset. Other changes will be kept."
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/digitize-draw.html:92
+#: munimap/templates/munimap/app/ng-templates/digitize-draw.html:92
 msgid "Refresh"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/digitize-draw.html:98
+#: munimap/templates/munimap/app/ng-templates/digitize-draw.html:98
 msgid "Could not connect to server. Saving disabled until reconnected."
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/draw.html:1
+#: munimap/templates/munimap/app/ng-templates/draw.html:1
 msgid "Add geometry"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/draw.html:5
+#: munimap/templates/munimap/app/ng-templates/draw.html:5
 msgid "anol.draw.TOOLTIP_POINT"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/draw.html:12
+#: munimap/templates/munimap/app/ng-templates/draw.html:12
 msgid "Draw point"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/draw.html:16
+#: munimap/templates/munimap/app/ng-templates/draw.html:16
 msgid "anol.draw.TOOLTIP_LINE"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/draw.html:23
+#: munimap/templates/munimap/app/ng-templates/draw.html:23
 msgid "Draw line"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/draw.html:27
+#: munimap/templates/munimap/app/ng-templates/draw.html:27
 msgid "anol.draw.TOOLTIP_POLYGON"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/draw.html:34
+#: munimap/templates/munimap/app/ng-templates/draw.html:34
 msgid "Draw polygon"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/draw.html:39
+#: munimap/templates/munimap/app/ng-templates/draw.html:39
 msgid "anol.draw.TOOLTIP_TEXT"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/draw.html:46
+#: munimap/templates/munimap/app/ng-templates/draw.html:46
 msgid "Draw text"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/draw.html:66
+#: munimap/templates/munimap/app/ng-templates/draw.html:66
 msgid "Delete all geometries"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/feature-icons.html:29
+#: munimap/templates/munimap/app/ng-templates/feature-icons.html:29
 msgid "Unselect"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/feature-properties-editor.html:9
+#: munimap/templates/munimap/app/ng-templates/feature-properties-editor.html:9
 msgid "No feature properties"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/featureexchange.html:4
+#: munimap/templates/munimap/app/ng-templates/featureexchange.html:4
 msgid "Download"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/featureexchange.html:7
+#: munimap/templates/munimap/app/ng-templates/featureexchange.html:7
 msgid "Upload"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/geoeditor-draw.html:63
+#: munimap/templates/munimap/app/ng-templates/geoeditor-draw.html:63
 msgid "Modify geometry"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/layerswitcher-backgrounds.html:14
+#: munimap/templates/munimap/app/ng-templates/layerswitcher-backgrounds.html:14
 msgid "No background layer"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/layerswitcher-backgrounds.html:20
+#: munimap/templates/munimap/app/ng-templates/layerswitcher-backgrounds.html:20
 msgid "No background layers available"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/layerswitcher-overlays.html:79
+#: munimap/templates/munimap/app/ng-templates/layerswitcher-overlays.html:90
 msgid "No overlay layers available"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/legend.html:52
+#: munimap/templates/munimap/app/ng-templates/legend.html:52
 msgid "No overlay with legend active."
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/servicebutton.html:4
+#: munimap/templates/munimap/app/ng-templates/servicebutton.html:4
 msgid "Tools"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/settings-load.html:6
+#: munimap/templates/munimap/app/ng-templates/settings-load.html:6
 msgid "No settings for project saved."
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/settings-load.html:13
+#: munimap/templates/munimap/app/ng-templates/settings-load.html:13
 msgid "Name"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/settings-load.html:26
+#: munimap/templates/munimap/app/ng-templates/settings-load.html:26
 msgid "Realy remove project settings?"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/settings-save.html:4
+#: munimap/templates/munimap/app/ng-templates/settings-save.html:4
 msgid "Select project"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/settings-save.html:6
+#: munimap/templates/munimap/app/ng-templates/settings-save.html:6
 msgid "New project..."
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/settings-save.html:16
+#: munimap/templates/munimap/app/ng-templates/settings-save.html:16
 msgid "Project Title"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/settings-save.html:23
+#: munimap/templates/munimap/app/ng-templates/settings-save.html:23
 msgid "Speichern"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/sidebar-footer.html:35
-#: ../munimap/templates/munimap/user/login.html:5
-#: ../munimap/templates/munimap/user/login.html:16
+#: munimap/templates/munimap/app/ng-templates/sidebar-footer.html:35
+#: munimap/templates/munimap/user/login.html:5
+#: munimap/templates/munimap/user/login.html:16
 msgid "Login"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/alkis/official.html:1
-#: ../munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:146
+#: munimap/templates/munimap/app/ng-templates/alkis/official.html:1
+#: munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:146
 msgid "Official"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/alkis/pdf.html:1
-#: ../munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:142
+#: munimap/templates/munimap/app/ng-templates/alkis/pdf.html:1
+#: munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:142
 msgid "PDF"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:6
-#: ../munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:28
+#: munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:6
+#: munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:28
 msgid "Parcel"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:11
+#: munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:11
 msgid "District"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:22
+#: munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:22
 msgid "Flur"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:34
-#: ../munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:66
-#: ../munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:112
+#: munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:34
+#: munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:66
+#: munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:112
 msgid "Search parcels"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:35
-#: ../munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:67
-#: ../munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:95
+#: munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:35
+#: munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:67
+#: munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:95
 msgid "Reset"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:39
+#: munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:39
 msgid "Address"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:61
+#: munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:61
 msgid "Additional"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:72
+#: munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:72
 msgid "Owner"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:77
+#: munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:77
 msgid "Name / Company"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:89
+#: munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:89
 msgid "Name component"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:94
+#: munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:94
 msgid "Search owner"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:103
-#: ../munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:127
+#: munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:103
+#: munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:127
 msgid "Number"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:129
+#: munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:129
 msgid "Show all parcels"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:136
+#: munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:136
 msgid "Map"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:139
-#: ../munimap/templates/munimap/app/ng-templates/alkis/simple.html:2
+#: munimap/templates/munimap/app/ng-templates/alkis/selection-content.html:139
+#: munimap/templates/munimap/app/ng-templates/alkis/simple.html:2
 msgid "Info"
 msgstr ""
 
-#: ../munimap/templates/munimap/app/ng-templates/alkis/selection.html:1
+#: munimap/templates/munimap/app/ng-templates/alkis/selection.html:1
 msgid "Selection"
 msgstr ""
 
-#: ../munimap/templates/munimap/modals/alkis-legitimate.html:5
+#: munimap/templates/munimap/modals/alkis-legitimate.html:5
 msgid "Alkis Legitimate"
 msgstr ""
 
-#: ../munimap/templates/munimap/modals/alkis-legitimate.html:13
+#: munimap/templates/munimap/modals/alkis-legitimate.html:13
 msgid "Company"
 msgstr ""
 
-#: ../munimap/templates/munimap/modals/alkis-legitimate.html:20
+#: munimap/templates/munimap/modals/alkis-legitimate.html:20
 msgid "reference"
 msgstr ""
 
-#: ../munimap/templates/munimap/modals/alkis-legitimate.html:27
+#: munimap/templates/munimap/modals/alkis-legitimate.html:27
 msgid "person"
 msgstr ""
 
-#: ../munimap/templates/munimap/modals/alkis-legitimate.html:34
+#: munimap/templates/munimap/modals/alkis-legitimate.html:34
 msgid "kind"
 msgstr ""
 
-#: ../munimap/templates/munimap/modals/alkis-legitimate.html:36
+#: munimap/templates/munimap/modals/alkis-legitimate.html:36
 msgid "Please select option"
 msgstr ""
 
-#: ../munimap/templates/munimap/modals/alkis-legitimate.html:48
+#: munimap/templates/munimap/modals/alkis-legitimate.html:48
 msgid "Next"
 msgstr ""
 
-#: ../munimap/templates/munimap/modals/alkis-selection.html:6
+#: munimap/templates/munimap/modals/alkis-selection.html:6
 msgid "Alkis Selection Settings"
 msgstr ""
 
-#: ../munimap/templates/munimap/modals/base-load-settings-modal.html:5
+#: munimap/templates/munimap/modals/base-load-settings-modal.html:5
 msgid "Load Settings"
 msgstr ""
 
-#: ../munimap/templates/munimap/modals/base-save-settings-modal.html:5
+#: munimap/templates/munimap/modals/base-save-settings-modal.html:5
 msgid "Save Settings"
 msgstr ""
 
-#: ../munimap/templates/munimap/pages/base.html:56
+#: munimap/templates/munimap/pages/base.html:56
 msgid "About"
 msgstr ""
 
-#: ../munimap/templates/munimap/pages/base.html:61
+#: munimap/templates/munimap/pages/base.html:61
 msgid "Terms of Use"
 msgstr ""
 
-#: ../munimap/templates/munimap/user/login.html:18
+#: munimap/templates/munimap/user/login.html:18
 msgid "Forgot Password"
 msgstr ""
 
-#: ../munimap/templates/munimap/user/password.html:5
+#: munimap/templates/munimap/user/password.html:5
 msgid "Change Password"
 msgstr ""
 
-#: ../munimap/templates/munimap/user/password_recover.html:5
-#: ../munimap/templates/munimap/user/password_recover.html:15
+#: munimap/templates/munimap/user/password_recover.html:5
+#: munimap/templates/munimap/user/password_recover.html:15
 msgid "Recover password"
 msgstr ""
 
-#: ../munimap/templates/munimap/user/password_recover_set.html:5
+#: munimap/templates/munimap/user/password_recover_set.html:5
 msgid "Please add new Password"
 msgstr ""
 
-#: ../munimap/templates/munimap/user/projects.html:9
+#: munimap/templates/munimap/user/projects.html:9
 msgid "to admin area"
 msgstr ""
 
-#: ../munimap/templates/munimap/user/projects.html:20
+#: munimap/templates/munimap/user/projects.html:20
 #, python-format
 msgid "project \"%(name)s\" missing"
 msgstr ""
 
-#: ../munimap/templates/munimap/user/projects.html:26
+#: munimap/templates/munimap/user/projects.html:26
 msgid "Digitize Application"
 msgstr ""
 
-#: ../munimap/templates/munimap/user/projects.html:48
+#: munimap/templates/munimap/user/projects.html:48
 msgid "Start project with selected settings"
 msgstr ""
 
-#: ../munimap/templates/munimap/user/projects.html:68
+#: munimap/templates/munimap/user/projects.html:68
 msgid "Export selected project settings"
 msgstr ""
 
-#: ../munimap/templates/munimap/user/projects.html:76
+#: munimap/templates/munimap/user/projects.html:76
 msgid "Import settings"
 msgstr ""
 
-#: ../munimap/templates/munimap/user/projects.html:77
+#: munimap/templates/munimap/user/projects.html:77
 msgid "Import selected project settings"
 msgstr ""
 
-#: ../munimap/templates/munimap/user/ng-templates/upload-modal.html:16
+#: munimap/templates/munimap/user/ng-templates/upload-modal.html:16
 msgid "Import Config"
 msgstr ""
 
-#: ../munimap/views/admin.py:61
+#: munimap/templates/munimap_transport/map.html:134
+msgid "Restart tour"
+msgstr ""
+
+#: munimap/templates/munimap_transport/map.html:160
+msgid "Menu"
+msgstr ""
+
+#: munimap/templates/munimap_transport/map.html:160
+msgid "close"
+msgstr ""
+
+#: munimap/templates/munimap_transport/map.html:160
+msgid "open"
+msgstr ""
+
+#: munimap/templates/munimap_transport/sidebar.html:4
+msgid "Overlay layers"
+msgstr ""
+
+#: munimap/templates/munimap_transport/sidebar.html:10
+msgid "Search"
+msgstr ""
+
+#: munimap/templates/munimap_transport/timetable.html:4
+msgid "Timetable"
+msgstr ""
+
+#: munimap/templates/munimap_transport/timetable.html:31
+msgid "From"
+msgstr ""
+
+#: munimap/templates/munimap_transport/timetable.html:34
+#: munimap/templates/munimap_transport/timetable.html:47
+msgid "Station"
+msgstr ""
+
+#: munimap/templates/munimap_transport/timetable.html:43
+msgid "To"
+msgstr ""
+
+#: munimap/templates/munimap_transport/timetable.html:55
+msgid "Date"
+msgstr ""
+
+#: munimap/templates/munimap_transport/timetable.html:64
+msgid "Time"
+msgstr ""
+
+#: munimap/templates/munimap_transport/timetable.html:76
+msgid "Search connection"
+msgstr ""
+
+#: munimap/templates/munimap_transport/ng-templates/station-properties.html:11
+msgid "Select station as start"
+msgstr ""
+
+#: munimap/templates/munimap_transport/ng-templates/station-properties.html:18
+msgid "Select station as stop"
+msgstr ""
+
+#: munimap/views/admin.py:66
 msgid "You are not allowed to administrate the app"
 msgstr ""
 
-#: ../munimap/views/admin.py:163
+#: munimap/views/admin.py:171
 #, python-format
 msgid "Group %(name)s created"
 msgstr ""
 
-#: ../munimap/views/admin.py:168 ../munimap/views/admin.py:203
-#: ../munimap/views/admin.py:312 ../munimap/views/admin.py:330
-#: ../munimap/views/admin.py:370 ../munimap/views/admin.py:752
-#: ../munimap/views/admin.py:805 ../munimap/views/admin.py:1005
-#: ../munimap/views/admin.py:1089 ../munimap/views/admin.py:1288
-#: ../munimap/views/admin.py:1335 ../munimap/views/admin.py:1458
-#: ../munimap/views/admin.py:1494
+#: munimap/views/admin.py:176 munimap/views/admin.py:211
+#: munimap/views/admin.py:319 munimap/views/admin.py:337
+#: munimap/views/admin.py:377 munimap/views/admin.py:759
+#: munimap/views/admin.py:812 munimap/views/admin.py:1012
+#: munimap/views/admin.py:1096 munimap/views/admin.py:1296
+#: munimap/views/admin.py:1343 munimap/views/admin.py:1466
+#: munimap/views/admin.py:1502 munimap/views/admin.py:1627
 msgid "Invalid form"
 msgstr ""
 
-#: ../munimap/views/admin.py:185
+#: munimap/views/admin.py:193
 msgid "Group not exists"
 msgstr ""
 
-#: ../munimap/views/admin.py:198
+#: munimap/views/admin.py:206
 #, python-format
 msgid "Group %(name)s updated"
 msgstr ""
 
-#: ../munimap/views/admin.py:227
+#: munimap/views/admin.py:235
 #, python-format
 msgid "user %(name)s load"
 msgstr ""
 
-#: ../munimap/views/admin.py:238
+#: munimap/views/admin.py:245
 msgid "own user cannot be removed"
 msgstr ""
 
-#: ../munimap/views/admin.py:246
+#: munimap/views/admin.py:253
 msgid "user removed"
 msgstr ""
 
-#: ../munimap/views/admin.py:253
+#: munimap/views/admin.py:260
 #, python-format
 msgid "user %(name)s removed"
 msgstr ""
 
-#: ../munimap/views/admin.py:306
+#: munimap/views/admin.py:313
 #, python-format
 msgid "Username %(name)s already exists"
 msgstr ""
 
-#: ../munimap/views/admin.py:324
+#: munimap/views/admin.py:331
 #, python-format
 msgid "User %(name)s updated"
 msgstr ""
 
-#: ../munimap/views/admin.py:364
+#: munimap/views/admin.py:371
 #, python-format
 msgid "User %(name)s created"
 msgstr ""
 
-#: ../munimap/views/admin.py:388
+#: munimap/views/admin.py:395
 msgid "group removed"
 msgstr ""
 
-#: ../munimap/views/admin.py:395
+#: munimap/views/admin.py:402
 #, python-format
 msgid "group %(name)s removed"
 msgstr ""
 
-#: ../munimap/views/admin.py:406 ../munimap/views/admin.py:435
+#: munimap/views/admin.py:413 munimap/views/admin.py:442
 msgid "User or group does not exist"
 msgstr ""
 
-#: ../munimap/views/admin.py:414 ../munimap/views/admin.py:423
+#: munimap/views/admin.py:421 munimap/views/admin.py:430
 #, python-format
 msgid "\"%(user_name)s\" added to \"%(group_name)s\""
 msgstr ""
 
-#: ../munimap/views/admin.py:443 ../munimap/views/admin.py:452
+#: munimap/views/admin.py:450 munimap/views/admin.py:459
 #, python-format
 msgid "\"%(user_name)s\" removed from \"%(group_name)s\""
 msgstr ""
 
-#: ../munimap/views/admin.py:464 ../munimap/views/admin.py:493
+#: munimap/views/admin.py:471 munimap/views/admin.py:500
 msgid "Layer or group does not exist"
 msgstr ""
 
-#: ../munimap/views/admin.py:472 ../munimap/views/admin.py:481
+#: munimap/views/admin.py:479 munimap/views/admin.py:488
 #, python-format
 msgid "\"%(layer_name)s added to \"%(group_name)s\""
 msgstr ""
 
-#: ../munimap/views/admin.py:501 ../munimap/views/admin.py:510
+#: munimap/views/admin.py:508 munimap/views/admin.py:517
 #, python-format
 msgid "\"%(layer_name)s removed from \"%(group_name)s\""
 msgstr ""
 
-#: ../munimap/views/admin.py:522 ../munimap/views/admin.py:552
+#: munimap/views/admin.py:529 munimap/views/admin.py:559
 msgid "Project or group does not exist"
 msgstr ""
 
-#: ../munimap/views/admin.py:530 ../munimap/views/admin.py:539
+#: munimap/views/admin.py:537 munimap/views/admin.py:546
 #, python-format
 msgid "\"%(project_name)s\" added to \"%(group_name)s\""
 msgstr ""
 
-#: ../munimap/views/admin.py:560 ../munimap/views/admin.py:569
+#: munimap/views/admin.py:567 munimap/views/admin.py:576
 #, python-format
 msgid "\"%(project_name)s\" removed from \"%(group_name)s\""
 msgstr ""
 
-#: ../munimap/views/admin.py:582 ../munimap/views/admin.py:591
+#: munimap/views/admin.py:589 munimap/views/admin.py:598
 #, python-format
 msgid "Project \"%(project)s protected"
 msgstr ""
 
-#: ../munimap/views/admin.py:605 ../munimap/views/admin.py:612
+#: munimap/views/admin.py:612 munimap/views/admin.py:619
 #, python-format
 msgid "Project \"%(project)s unprotected"
 msgstr ""
 
-#: ../munimap/views/admin.py:655 ../munimap/views/admin.py:666
+#: munimap/views/admin.py:662 munimap/views/admin.py:673
 #, python-format
 msgid "layer \"%(layer)s protected"
 msgstr ""
 
-#: ../munimap/views/admin.py:680 ../munimap/views/admin.py:688
+#: munimap/views/admin.py:687 munimap/views/admin.py:695
 #, python-format
 msgid "layer \"%(layer)s unprotected"
 msgstr ""
 
-#: ../munimap/views/admin.py:699
+#: munimap/views/admin.py:706
 msgid "Project do not exist"
 msgstr ""
 
-#: ../munimap/views/admin.py:709
+#: munimap/views/admin.py:716
 #, python-format
 msgid "project \"%(name)s loaded"
 msgstr ""
 
-#: ../munimap/views/admin.py:724 ../munimap/views/admin.py:788
-#: ../munimap/views/admin.py:968 ../munimap/views/admin.py:1061
-#: ../munimap/views/admin.py:1271 ../munimap/views/admin.py:1307
+#: munimap/views/admin.py:731 munimap/views/admin.py:795
+#: munimap/views/admin.py:975 munimap/views/admin.py:1068
+#: munimap/views/admin.py:1279 munimap/views/admin.py:1315
 msgid "Invalid JSON"
 msgstr ""
 
-#: ../munimap/views/admin.py:735
+#: munimap/views/admin.py:742
 #, python-format
 msgid "Project with name \"%(name)s\" already exists"
 msgstr ""
 
-#: ../munimap/views/admin.py:747
+#: munimap/views/admin.py:754
 #, python-format
 msgid "Project %(name)s created"
 msgstr ""
 
-#: ../munimap/views/admin.py:767
+#: munimap/views/admin.py:774
 msgid "Project not exists"
 msgstr ""
 
-#: ../munimap/views/admin.py:777 ../munimap/views/admin.py:1020
+#: munimap/views/admin.py:784 munimap/views/admin.py:1027
 msgid "Project does not exist"
 msgstr ""
 
-#: ../munimap/views/admin.py:800
+#: munimap/views/admin.py:807
 #, python-format
 msgid "Project %(name)s updated"
 msgstr ""
 
-#: ../munimap/views/admin.py:820 ../munimap/views/admin.py:828
+#: munimap/views/admin.py:827 munimap/views/admin.py:835
 msgid "Project config does not exist"
 msgstr ""
 
-#: ../munimap/views/admin.py:837
+#: munimap/views/admin.py:844
 msgid "Project config already exists"
 msgstr ""
 
-#: ../munimap/views/admin.py:857
+#: munimap/views/admin.py:864
 #, python-format
 msgid "Project %(name)s renamed to %(new_name)s"
 msgstr ""
 
-#: ../munimap/views/admin.py:878
+#: munimap/views/admin.py:885
 #, python-format
 msgid "Project %(name)s removed"
 msgstr ""
 
-#: ../munimap/views/admin.py:883 ../munimap/views/admin.py:909
+#: munimap/views/admin.py:890 munimap/views/admin.py:916
 #, python-format
 msgid "Project %(name)s not found"
 msgstr ""
 
-#: ../munimap/views/admin.py:898
+#: munimap/views/admin.py:905
 #, python-format
 msgid "Project %(name)s was transferred"
 msgstr ""
 
-#: ../munimap/views/admin.py:904 ../munimap/views/admin.py:1177
+#: munimap/views/admin.py:911 munimap/views/admin.py:1184
 msgid "No project selected"
 msgstr ""
 
-#: ../munimap/views/admin.py:920 ../munimap/views/admin.py:1030
-#: ../munimap/views/admin.py:1126 ../munimap/views/admin.py:1134
+#: munimap/views/admin.py:927 munimap/views/admin.py:1037
+#: munimap/views/admin.py:1133 munimap/views/admin.py:1141
 msgid "Map config does not exist"
 msgstr ""
 
-#: ../munimap/views/admin.py:929
+#: munimap/views/admin.py:936
 #, python-format
 msgid "Map config \"%(name)s loaded"
 msgstr ""
 
-#: ../munimap/views/admin.py:959 ../munimap/views/admin.py:1052
+#: munimap/views/admin.py:966 munimap/views/admin.py:1059
 msgid "Config has some errors"
 msgstr ""
 
-#: ../munimap/views/admin.py:977
+#: munimap/views/admin.py:984
 msgid "Map config already exists"
 msgstr ""
 
-#: ../munimap/views/admin.py:1000
+#: munimap/views/admin.py:1007
 #, python-format
 msgid "Map config %(name)s created"
 msgstr ""
 
-#: ../munimap/views/admin.py:1084
+#: munimap/views/admin.py:1091
 #, python-format
 msgid "Map config %(name)s updated"
 msgstr ""
 
-#: ../munimap/views/admin.py:1110
+#: munimap/views/admin.py:1117
 #, python-format
 msgid "Map config %(name)s removed"
 msgstr ""
 
-#: ../munimap/views/admin.py:1115
+#: munimap/views/admin.py:1122
 #, python-format
 msgid "Map config %(name)s not found"
 msgstr ""
 
-#: ../munimap/views/admin.py:1143
+#: munimap/views/admin.py:1150
 msgid "Map config already exist"
 msgstr ""
 
-#: ../munimap/views/admin.py:1156
+#: munimap/views/admin.py:1163
 #, python-format
 msgid "map %(name)s renamed to %(new_name)s"
 msgstr ""
 
-
-#: ../munimap/views/admin.py:1171
+#: munimap/views/admin.py:1178
 #, python-format
 msgid "Map config %(name)s was transferred"
 msgstr ""
 
-#: ../munimap/views/admin.py:1182
+#: munimap/views/admin.py:1189
 #, python-format
 msgid "Project %(name)s not successfully transferred"
 msgstr ""
 
-#: ../munimap/views/admin.py:1200
+#: munimap/views/admin.py:1207
 #, python-format
 msgid "alkis.log %(name)s removed"
 msgstr ""
 
-#: ../munimap/views/admin.py:1205
+#: munimap/views/admin.py:1212
 #, python-format
 msgid "alkis.log %(name)s not found"
 msgstr ""
 
-#: ../munimap/views/admin.py:1230 ../munimap/views/admin.py:1250
-#: ../munimap/views/admin.py:1260
+#: munimap/views/admin.py:1238 munimap/views/admin.py:1258
+#: munimap/views/admin.py:1268
 msgid "Selectionlist does not exist"
 msgstr ""
 
-#: ../munimap/views/admin.py:1239
+#: munimap/views/admin.py:1247
 #, python-format
 msgid "Selectionlist %(name)s loaded"
 msgstr ""
 
-#: ../munimap/views/admin.py:1283
+#: munimap/views/admin.py:1291
 #, python-format
 msgid "Selectionlist %(name)s updated"
 msgstr ""
 
-#: ../munimap/views/admin.py:1318
+#: munimap/views/admin.py:1326
 #, python-format
 msgid "Selectionlist with name \"%(name)s\" already exists"
 msgstr ""
 
-#: ../munimap/views/admin.py:1330
+#: munimap/views/admin.py:1338
 #, python-format
 msgid "Selectionlist %(name)s created"
 msgstr ""
 
-#: ../munimap/views/admin.py:1354
+#: munimap/views/admin.py:1362
 #, python-format
 msgid "Selectionlist %(name)s removed"
 msgstr ""
 
-#: ../munimap/views/admin.py:1359
+#: munimap/views/admin.py:1367
 #, python-format
 msgid "Selectionlist %(name)s not found"
 msgstr ""
 
-#: ../munimap/views/admin.py:1370 ../munimap/views/admin.py:1378
+#: munimap/views/admin.py:1378 munimap/views/admin.py:1386
 msgid "Selectionlist config does not exist"
 msgstr ""
 
-#: ../munimap/views/admin.py:1387
+#: munimap/views/admin.py:1395
 msgid "Selectionlist config already exists"
 msgstr ""
 
-#: ../munimap/views/admin.py:1399
+#: munimap/views/admin.py:1407
 #, python-format
 msgid "Selectionlist %(name)s renamed to %(new_name)s"
 msgstr ""
 
-#: ../munimap/views/admin.py:1411 ../munimap/views/admin.py:1431
-#: ../munimap/views/admin.py:1441 ../munimap/views/admin.py:1529
-#: ../munimap/views/admin.py:1537
+#: munimap/views/admin.py:1419 munimap/views/admin.py:1439
+#: munimap/views/admin.py:1449 munimap/views/admin.py:1537
+#: munimap/views/admin.py:1545
 msgid "Plugin does not exist"
 msgstr ""
 
-#: ../munimap/views/admin.py:1420
+#: munimap/views/admin.py:1428
 #, python-format
 msgid "Plugin %(name)s loaded"
 msgstr ""
 
-#: ../munimap/views/admin.py:1453
+#: munimap/views/admin.py:1461
 #, python-format
 msgid "Plugin %(name)s updated"
 msgstr ""
 
-#: ../munimap/views/admin.py:1477
+#: munimap/views/admin.py:1485
 #, python-format
 msgid "Plugin with name \"%(name)s\" already exists"
 msgstr ""
 
-#: ../munimap/views/admin.py:1489
+#: munimap/views/admin.py:1497
 #, python-format
 msgid "Plugin %(name)s created"
 msgstr ""
 
-#: ../munimap/views/admin.py:1513
+#: munimap/views/admin.py:1521
 #, python-format
 msgid "Plugin %(name)s removed"
 msgstr ""
 
-#: ../munimap/views/admin.py:1518
+#: munimap/views/admin.py:1526
 #, python-format
 msgid "Plugin %(name)s not found"
 msgstr ""
 
-#: ../munimap/views/admin.py:1546
+#: munimap/views/admin.py:1554
 msgid "Plugin already exists"
 msgstr ""
 
-#: ../munimap/views/admin.py:1558
+#: munimap/views/admin.py:1566
 #, python-format
 msgid "Plugin %(name)s renamed to %(new_name)s"
 msgstr ""
 
-#: ../munimap/views/digitize.py:60
+#: munimap/views/admin.py:1578 munimap/views/admin.py:1598
+#: munimap/views/admin.py:1608
+msgid "Site content does not exist"
+msgstr ""
+
+#: munimap/views/admin.py:1587
+#, python-format
+msgid "Site content %(name)s loaded"
+msgstr ""
+
+#: munimap/views/admin.py:1622
+#, python-format
+msgid "Site content %(name)s updated"
+msgstr ""
+
+#: munimap/views/digitize.py:60
 #, python-format
 msgid "Features for %(title)s added successfully"
 msgstr ""
 
-#: ../munimap/views/digitize.py:131
+#: munimap/views/digitize.py:131
 #, python-format
 msgid "Features for %(title)s updated successfully"
 msgstr ""
 
-#: ../munimap/views/digitize.py:137
+#: munimap/views/digitize.py:137
 #, python-format
 msgid "Not all changed features for %(title)s updated"
 msgstr ""
 
-#: ../munimap/views/digitize.py:208
+#: munimap/views/digitize.py:208
 #, python-format
 msgid "Features for %(title)s deleted successfully"
 msgstr ""
 
-#: ../munimap/views/digitize.py:214
+#: munimap/views/digitize.py:214
 #, python-format
 msgid "Not all provided features for %(title)s deleted"
 msgstr ""
 
-#: ../munimap/views/munimap.py:92 ../munimap/views/munimap.py:192
-#: ../munimap/views/munimap.py:237 ../munimap/views/munimap.py:275
+#: munimap/views/munimap.py:89 munimap/views/munimap.py:192
+#: munimap/views/munimap.py:237 munimap/views/munimap.py:273
 msgid "You are not allowed to open this app."
 msgstr ""
 
-#: ../munimap/views/user.py:53 ../munimap/views/user.py:62
+#: munimap/views/user.py:44 munimap/views/user.py:53
 msgid "username or password not correct"
 msgstr ""
 
-#: ../munimap/views/user.py:55
+#: munimap/views/user.py:46
 msgid "User not active. Please contact us."
 msgstr ""
 
-#: ../munimap/views/user.py:57
+#: munimap/views/user.py:48
 msgid "Useraccount is expired. Please contact us."
 msgstr ""
 
-#: ../munimap/views/user.py:59 ../munimap/views/user.py:60
+#: munimap/views/user.py:50 munimap/views/user.py:51
 msgid "Too many invalid attempts. Please contact us."
 msgstr ""
 
-#: ../munimap/views/user.py:70
+#: munimap/views/user.py:61
 msgid "Logged in successfully"
 msgstr ""
 
-#: ../munimap/views/user.py:95 ../munimap/views/user.py:146
+#: munimap/views/user.py:86 munimap/views/user.py:137
 msgid "Change password successfully"
 msgstr ""
 
-#: ../munimap/views/user.py:98
+#: munimap/views/user.py:89
 msgid "Old Password is not correct"
 msgstr ""
 
-#: ../munimap/views/user.py:112
+#: munimap/views/user.py:103
 msgid "Password recover mail subject"
 msgstr ""
 
-#: ../munimap/views/user.py:122
+#: munimap/views/user.py:113
 msgid "Mail with instructions will be send"
 msgstr ""
 
-#: ../munimap/views/user.py:135
+#: munimap/views/user.py:126
 msgid "Recovery link is not valid anymore. Please request a new one"
 msgstr ""
 
-#: ../munimap/views/user_settings.py:123
+#: munimap/views/user_settings.py:120
 msgid "Error project successfully"
 msgstr ""
 
-#: ../munimap/views/user_settings.py:165
+#: munimap/views/user_settings.py:162
 msgid "Import project successfully"
 msgstr ""
 
-#: ../munimap/views/user_settings.py:222
+#: munimap/views/user_settings.py:219
 msgid "Save project successfully"
 msgstr ""
 
-#: ../munimap/views/user_settings.py:245 ../munimap/views/user_settings.py:253
+#: munimap/views/user_settings.py:242 munimap/views/user_settings.py:250
 msgid "Load project successfully"
 msgstr ""
 
-#: ../munimap/views/user_settings.py:320
+#: munimap/views/user_settings.py:317
 msgid "Delete project successfully"
-msgstr ""
-
-#: ../munimap_transport/munimap_transport/queries.py:141
-#, python-format
-msgid "From %(_from)s via %(via)s to %(to)s"
-msgstr ""
-
-#: ../munimap_transport/munimap_transport/queries.py:148
-#, python-format
-msgid "From %(_from)s to %(to)s"
-msgstr ""
-
-#: ../munimap/templates/munimap_transport/map.html:134
-msgid "Restart tour"
-msgstr ""
-
-#: ../munimap/templates/munimap_transport/map.html:160
-msgid "Menu"
-msgstr ""
-
-#: ../munimap/templates/munimap_transport/map.html:160
-msgid "close"
-msgstr ""
-
-#: ../munimap/templates/munimap_transport/map.html:160
-msgid "open"
-msgstr ""
-
-#: ../munimap/templates/munimap_transport/sidebar.html:4
-msgid "Overlay layers"
-msgstr ""
-
-#: ../munimap/templates/munimap_transport/sidebar.html:10
-msgid "Search"
-msgstr ""
-
-#: ../munimap/templates/munimap_transport/timetable.html:4
-msgid "Timetable"
-msgstr ""
-
-#: ../munimap/templates/munimap_transport/timetable.html:36
-msgid "From"
-msgstr ""
-
-#: ../munimap/templates/munimap_transport/timetable.html:39
-#: ../munimap/templates/munimap_transport/timetable.html:52
-msgid "Station"
-msgstr ""
-
-#: ../munimap/templates/munimap_transport/timetable.html:48
-msgid "To"
-msgstr ""
-
-#: ../munimap/templates/munimap_transport/timetable.html:60
-msgid "Date"
-msgstr ""
-
-#: ../munimap/templates/munimap_transport/timetable.html:69
-msgid "Time"
-msgstr ""
-
-#: ../munimap/templates/munimap_transport/timetable.html:81
-msgid "Search connection"
-msgstr ""
-
-#: ../munimap/templates/munimap_transport/ng-templates/station-properties.html:11
-msgid "Select station as start"
-msgstr ""
-
-#: ../munimap/templates/munimap_transport/ng-templates/station-properties.html:18
-msgid "Select station as stop"
 msgstr ""
 

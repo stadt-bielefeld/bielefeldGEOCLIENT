@@ -4,6 +4,9 @@ const CopyPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { randomBytes } = require('crypto');
+
+const salt = randomBytes(8).toString('hex');
 
 module.exports  = {
     devtool: 'eval-source-map',
@@ -130,7 +133,17 @@ module.exports  = {
         }),
         new CopyPlugin({
             patterns: [
-                { from: "./munimap/frontend/css", to: path.resolve(__dirname, './munimap/static/css/[path][name].[contenthash][ext]') },
+                {
+                  from: "./munimap/frontend/css",
+                  to: path.resolve(__dirname, './munimap/static/css/[path][name].[contenthash][ext]'),
+                  globOptions: {
+                    // variables.css will be processed separately
+                    ignore: ['**/variables.css']
+                  }
+                },
+                // Create new salt for variables.css in every build process, in order
+                // to prevent caching for variables.css overwrite mechanism
+                { from: "./munimap/frontend/css/variables.css", to: path.resolve(__dirname, `./munimap/static/css/[path][name].${salt}[ext]`) },
                 { from: "./munimap/frontend/img", to: path.resolve(__dirname, './munimap/static/img') },
                 { from: "./munimap/frontend/fonts", to: path.resolve(__dirname, './munimap/static/fonts') },
                 { from: "./munimap/frontend/translations", to: path.resolve(__dirname, './munimap/static/translations/[path][name].[contenthash][ext]') }
