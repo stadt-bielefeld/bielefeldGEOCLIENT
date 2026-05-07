@@ -1,3 +1,57 @@
+# [2.0.0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.15.12...2.0.0) (2026-05-07)
+
+
+* Merge pull request [#413](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/issues/413) from stadt-bielefeld/harmonisation ([d6e992e](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/d6e992ed14274f3bb19cda736e863c1c558d5913))
+
+
+### Bug Fixes
+
+* adds info page title to dev config as well ([0f1b465](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/0f1b46520521527ae1fda640ce4d094398787e53))
+* default env for site_content_dir variable in test ([8a69ef8](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/8a69ef8c58ec6cc51fa00cec2d30a029f54763b1))
+* remove default title ([3dfdc28](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/3dfdc286c5a9e2bb802ed1387f31efc7aee2d191))
+* remove unneeded fallbacks and 'safe' text filter ([f248bbc](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/f248bbc63b29784fec43f2be8c0f9ab3e34f8e6c))
+* simplify determination of info page title ([fdd8ae7](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/fdd8ae76391518987c1a3cea8dbe5a31fa1d0d22))
+* use webhook event  for documentation update ([6ee0be6](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/6ee0be646750c72934a8663afef18078d2a15d33))
+
+
+### Features
+
+* allow configuring the maengelmelder ([#420](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/issues/420)) ([d157cab](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/d157cabd767cdb32ed740c06240709833ec6e2a4))
+* configurable site contents e.g. for imprint or about ([b019129](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/b01912974889820b59f11c0f30b99dcb1fb514ef))
+* configurable site contents e.g. for imprint or about ([e2e7992](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/e2e7992b4157b866dfd66c86e9b08c7d8740b37b))
+* configurable title and copyright holder ([843a0f8](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/843a0f81d2e28fb8008476ea620fafdc3c7891b1))
+* configurable title of info page ([a22d2c9](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/a22d2c9169f36306eb50ad4791fbfc87997e754b))
+* make css vars configurable ([#412](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/issues/412)) ([832fa03](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/832fa037aec2711ffddcdddd4bebe1f16b4e9e1c))
+* make icons configurable ([#410](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/issues/410)) ([06161e6](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/06161e6f636bc258bc9abbe38102ac4023a6153f))
+* specify query params in LOG_STATS_WHITELIST ([10c6800](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/10c68009ce56ef72061667d69d23fc47fc1611ca))
+
+
+### BREAKING CHANGES
+
+* Harmonisation:  several generalizations and optimizations that improve the re-usability of the "bielefeldGEOCLIENT".
+* content for nutzungbedingungen, about and info
+have to be set in data/site_contents before application start
+
+Co-authored-by: jansule <suleiman@terrestris.de>
+* The previously used config option
+TIMETABLE_DEFAULT_CTIY was deprecated and can be removed from any
+configuration. Instead use MAENGELMELDER_VISIBLE, MAENGELMELDER_URL,
+MAENGELMELDER_TITLE, MAENGELMELDER_TEXT.
+* change names of icon files
+  * logo-sitebar-stadtplan.svg -> logo-header.svg
+  * logo.png -> logo-background.png
+  * logo_bielefeld.svg -> logo-top.svg
+
+* fix: allow custom static files to overwrite default static files
+
+* fix: introduce variables
+
+* fix: variable handling
+* content for nutzungbedingungen, about and info
+have to be set in data/site_contents before application start
+
+Co-authored-by: jansule <suleiman@terrestris.de>
+
 ## [1.15.12](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.15.11...1.15.12) (2026-05-06)
 
 
