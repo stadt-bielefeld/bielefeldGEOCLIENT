@@ -41,7 +41,6 @@
     "ol": "^10.2.1",
     "ol-ext": "^4.0.24",
     "proj4": "^2.4.4",
-    "sortablejs": "^1.15.7",
     "spectrum-colorpicker": "^1.8.0"
   },
   "devDependencies": {
