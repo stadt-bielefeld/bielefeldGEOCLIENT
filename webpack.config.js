@@ -44,7 +44,8 @@ module.exports  = {
         'ol-ext': path.resolve('./node_modules/ol-ext'),
         'bootstrap': path.resolve('./node_modules/bootstrap'),
         'angular-ui-bootstrap': path.resolve('./node_modules/angular-ui-bootstrap'),
-        'jquery': path.resolve('./node_modules/jquery/src/jquery')
+        'jquery': path.resolve('./node_modules/jquery/src/jquery'),
+        'sortablejs': path.resolve('../anol/node_modules/sortablejs/Sortable.js')
       }
     },
     module: {
