@@ -5,6 +5,7 @@ app:
     showNoBackground: false
     showLogin: false
     hideMetadata: true
+    tour: 'test-tour'
     
 map:
     center:
