@@ -1,3 +1,18 @@
+# [2.1.0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/2.0.0...2.1.0) (2026-05-18)
+
+
+### Bug Fixes
+
+* remove layer-level sorting, keep group-level only ([66e3371](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/66e3371728de50d6334317eb5e510940a9008d9b))
+* rename toggle to toggleToolsContainer and call via $scope directly ([5445566](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/5445566071590501098f605426c66448d4a8b8d1))
+* replace jQuery UI Sortable with SortableJS for mobile compatibility ([518b07e](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/518b07e226e5da8fcc69f5c2f6a7f3532e244a2b))
+* use $applyAsync in servicebutton/alkisbutton onDeactivate callbacks ([622118a](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/622118ad7fb37c55b6b04dc84e9bbcef9f46fd77))
+
+
+### Features
+
+* replace absolute-positioned controls with CSS flex column ([afbc7c7](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/afbc7c7971acbd16e38853b7c55d6f1a273e31a2))
+
 # [2.0.0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/1.15.12...2.0.0) (2026-05-07)
 
 
