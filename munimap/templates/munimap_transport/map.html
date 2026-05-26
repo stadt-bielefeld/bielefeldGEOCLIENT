@@ -1,14 +1,29 @@
 <div anol-map class="map transport-map" style="position: relative;">
+  <div class="left-controls-wrapper">
+    <div class="ol-control zoom-control">
+      <button ng-click="zoomIn()"
+              uib-tooltip="{{ 'anol.zoom.TOOLTIP_ZOOM_IN' | translate }}"
+              tooltip-placement="right"
+              tooltip-popup-delay="{{ tooltipDelay }}"
+              tooltip-trigger="mouseenter"
+              tooltip-enable="showTooltip">
+        <span class="glyphicon glyphicon-plus"></span>
+      </button>
+      <button ng-click="zoomOut()"
+              uib-tooltip="{{ 'anol.zoom.TOOLTIP_ZOOM_OUT' | translate }}"
+              tooltip-placement="right"
+              tooltip-popup-delay="{{ tooltipDelay }}"
+              tooltip-trigger="mouseenter"
+              tooltip-enable="showTooltip">
+        <span class="glyphicon glyphicon-minus"></span>
+      </button>
+    </div>
+  </div>
   <div anol-attribution
        tooltip-delay="{{ tooltipDelay}}">
   </div>
-  <div anol-zoom
-       ng-style="hasTouch ? mobileZoomButtonsPosition : desktopZoomButtonsPosition"
-       tooltip-delay="{{ tooltipDelay}}">
-  </div>
   <div anol-rotation
-     ng-style="hasTouch ? mobileRotationButtonPosition : desktopRotationButtonPosition"
-     tooltip-delay="{{ tooltipDelay }}">
+       tooltip-delay="{{ tooltipDelay }}">
   </div>
 
   <div ng-if="searchEnabled"
@@ -42,8 +57,7 @@
        waiting-marker-offset="[-14, -14]">
   </div>
 
-   <div ng-if="geolocationEnabled"
-       ng-style="hasTouch ? mobileGeolocationButtonPosition : desktopGeolocationButtonPosition"
+  <div ng-if="geolocationEnabled"
        anol-geolocation="{{geolocationConfig.tracking}}"
        highlight="{{geolocationConfig.resultVisible}}"
        result-style="{
@@ -61,6 +75,8 @@
   </div>
   <div ng-if="overviewMapEnabled"
        anol-overview-map
+       overview-map-collapsed="overviewMapCollapsed"
+       overview-map-layer-name="{{overviewMapLayer}}"
        tooltip-placement="right"
        tooltip-delay="{{tooltipDelay}}">
   </div>
@@ -68,7 +84,6 @@
        ng-if="scaleLineEnabled">
   </div>
   <div ng-if="menuButtonEnabled"
-       ng-style="hasTouch ? mobileMenuButtonPosition : desktopMenuButtonPosition"
        class="ol-control menu-control">
     <button ng-click="toggleMenu()"
             uib-tooltip="{{ sidebar.open ? '{$ _('Close menu') $}' : '{$ _('Open menu') $}' }}"
@@ -80,7 +95,6 @@
     </button>
   </div>
   <div ng-if="homeButtonEnabled"
-       ng-style="hasTouch ? mobileHomeButtonPosition : desktopHomeButtonPosition"
        class="ol-control home-control">
     <button ng-click="goHome()"
             uib-tooltip="{$ _('Startposition') $}"
@@ -91,10 +105,7 @@
       <span class="glyphicon glyphicon-home"></span>
     </button>
   </div>
-  <service-button ng-if="serviceButtonEnabled"
-                  ng-style="hasTouch ? mobileServiceButtonPosition : desktopServiceButtonPosition"
-                  menu-style="hasTouch ? mobileServiceMenuPosition : desktopServiceMenuPosition"
-                  >
+  <service-button ng-if="serviceButtonEnabled">
     <a anol-measure="point"
        geodesic="false"
        title="Koordinate"
@@ -153,17 +164,6 @@
     <div class="selectable mt-0-5">
       <span ng-bind="pointMeasureResult.lon"></span>, <span ng-bind="pointMeasureResult.lat"></span>
     </div>
-  </div>
-
-   <div class="ol-control menu-control">
-    <button ng-click="toggleMenu()"
-            uib-tooltip="{$ _('Menu') $} {{ sidebar.open ? '{$ _('close') $}' : '{$ _('open') $}' }}"
-            tooltip-placement="right"
-            tooltip-popup-delay="{{tooltipDelay}}"
-            tooltip-trigger="mouseenter"
-            tooltip-enable="showTooltip">
-      <span class="glyphicon glyphicon-menu-hamburger"></span>
-    </button>
   </div>
 
   <div class="ol-control timetable-control visible-xs">

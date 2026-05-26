@@ -534,8 +534,10 @@ angular.module('munimapBase')
 
                 // Register wrapper as OL control → moves wrapper (with its children)
                 // into .ol-overlaycontainer-stopevent
-                var wrapperControl = new anol.control.Control({ element: wrapper });
-                ControlsService.addControl(wrapperControl);
+                if (wrapper.length > 0) {
+                    var wrapperControl = new anol.control.Control({ element: wrapper });
+                    ControlsService.addControl(wrapperControl);
+                }
 
                 // Register menu and home controls with target → appended into wrapper
                 var menuControlElement = angular.element('.menu-control');
