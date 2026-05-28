@@ -26,6 +26,7 @@ angular.module('munimapBase.alkisButton', ['anol.map'])
                         alkisControl.deactivate();
                     } else {
                         scope.alkisContainerVisible = true;
+                        alkisControl.activate();
                     }
                 };
 

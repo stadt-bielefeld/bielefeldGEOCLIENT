@@ -30,6 +30,7 @@ angular.module('munimapBase.servicebutton', ['anol.map'])
                         toolsControl.deactivate();
                     } else {
                         scope.toolsContainerVisible = true;
+                        toolsControl.activate();
                     }
                 };
 
