@@ -1,3 +1,17 @@
+# [2.2.0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/2.1.0...2.2.0) (2026-06-10)
+
+
+### Bug Fixes
+
+* resolve sortablejs via anol's installed node_modules ([#425](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/issues/425)) ([90be18f](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/90be18f860d354fd00bc4d29b579954ce0c9ed26))
+* restore mutual exclusion and item wrapping in left-controls dropdowns ([85ff735](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/85ff7356c6465b47eaa472ef93a79c590bf9dcf1))
+* **transport:** align map template with left_map_controls_column architecture ([02aa15a](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/02aa15a1c75f5adad5bf88476e680a76b3c3280e))
+
+
+### Features
+
+* **transport:** add transport.yaml for public transport app ([1990b66](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/1990b66367bac17ec549f866d9e69c606c080476))
+
 # [2.1.0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/2.0.0...2.1.0) (2026-05-18)
 
 
