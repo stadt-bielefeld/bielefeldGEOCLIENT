@@ -20,8 +20,7 @@ def pages(name):
     try:
         app_version = importlib.metadata.version('munimap')
         release_link = f'https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/releases/tag/{app_version}'
-        documentation_link = f'https://stadt-bielefeld.github.io/bielefeldGEOCLIENT/latest/'
-
+        documentation_link = f'https://stadt-bielefeld.github.io/bielefeldGEOCLIENT/{app_version}/index.html'
         site_content = current_app.site_contents.get(name)
 
         return render_template(
