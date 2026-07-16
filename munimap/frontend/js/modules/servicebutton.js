@@ -1,16 +1,12 @@
 angular.module('munimapBase.servicebutton', ['anol.map'])
 
-    .directive('serviceButton', ['ControlsService', '$rootScope', function(ControlsService) {
+    .directive('serviceButton', ['ControlsService', function(ControlsService) {
         return {
             templateUrl: 'munimap/servicebutton.html',
             transclude: true,
             replace: false,
             link: function(scope, element, attributes) {
                 scope.toolsContainerVisible = false;
-
-                scope.hideToolsContainer = function() {
-                    scope.toolsContainerVisible = false;
-                };
 
                 var toolsControl = new anol.control.Control({
                     element: element.find('.tools-control'),
@@ -33,6 +29,10 @@ angular.module('munimapBase.servicebutton', ['anol.map'])
                         toolsControl.activate();
                     }
                 };
+
+                scope.$on('toolsContainer:close', function() {
+                    toolsControl.deactivate();
+                });
 
                 ControlsService.addControl(toolsControl);
             }
