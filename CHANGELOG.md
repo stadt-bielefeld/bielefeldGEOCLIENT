@@ -1,3 +1,18 @@
+# [2.3.0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/2.2.0...2.3.0) (2026-07-17)
+
+
+### Bug Fixes
+
+* close tools menu via event broadcast instead of scope lookup ([ab0c5bd](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/ab0c5bd93052b3526ee0756c895f7a01cf2929d8))
+* restore mutual exclusion and item wrapping in left-controls dropdowns ([5274c43](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/5274c43d31784f7b966b5dd7849eb15c57ddd520))
+* revert "fix: documentation link" ([71d3561](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/71d3561d89f2786774bab4dce38e2ecd49f76082))
+* **transport:** align map template with left_map_controls_column architecture ([c46e098](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/c46e09833de3f35790ea2d1ab25491ccd29b57ef))
+
+
+### Features
+
+* **transport:** add transport.yaml for public transport app ([97dee32](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/97dee3261b93044d47d7f640d1a2c00a7fb9bbc2))
+
 # [2.2.0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/2.1.0...2.2.0) (2026-06-10)
 
 
