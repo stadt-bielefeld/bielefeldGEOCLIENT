@@ -1,0 +1,85 @@
+meta:
+  description:  'WMS ÖPNV Netz'
+
+groups:
+  # ÖPNV --------------------------------------------------------------------------
+  - name: mobile_overlay
+    title: 'ÖPNV'
+    abstract: Stadtbahn/Bus am Tag und Nachtbus in Bielefeld und Umgebung
+    catalog: true
+    status: inactive
+    singleSelect: true
+    metadataUrl: https://bielefeld01.de/mdOLKD/WMS/oepnv_netz_bi_karte?FORMAT=HTML_WMS
+    layers:
+      - oepnv_tag
+      - oepnv_nacht
+  # ÖPNV --------------------------------------------------------------------------
+
+layers:
+
+  # Tag
+  - name: oepnv_tag
+    title: 'Stadtbahn | Bus am Tag'
+    type: wms # tiledwms
+    metadataUrl: https://bielefeld01.de/mdOLKD/Daten/oepnv_tag_cas?FORMAT=HTML_Daten
+    attribution: 'ÖPNV Kartenbild © Stadt Bielefeld (<a href="https://creativecommons.org/licenses/by/4.0/deed.de" target="_blank">CC BY 4.0</a>), ÖPNV Kartendaten © Stadt Bielefeld und <a href="http://www.openstreetmap.org/#map=15/52.0189/8.5338" target="_blank">OpenStreetMap</a> (<a href="http://opendatacommons.org/licenses/odbl/" target="_blank">ODbL</a>)'
+    source:
+      url: "http://munimap-mapserver?map=/opt/etc/styles/bielefeld/map/mobiel-tag.map&map_resolution=72&"
+      format: "image/png"
+      layers:
+        - route_stations_hull
+        - route_segments
+        - route_segment_refs
+        - route_stations-marker
+        - route_stations-text
+        - route_stations_centroid-marker
+        - route_stations_centroid-text
+        - stations-text
+        - stations-marker
+      srs: "EPSG:25832"
+    legend:
+      type: link
+      href: https://bielefeld01.de/fachdaten/oepnv/mobiel%20legende.pdf
+      title: Legende
+      text: ÖPNV Tag
+
+  - name: oepnv_tag_print
+    base: oepnv_tag
+    metadataUrl: https://bielefeld01.de/mdOLKD/Daten/oepnv_tag_cas_druck?FORMAT=HTML_Daten
+    source:
+      url: "http://munimap-mapserver?map=/opt/etc/styles/bielefeld/map/mobiel-tag.map&map_resolution=216&"
+  # Tag
+  
+  
+  # Nacht
+  - name: oepnv_nacht
+    title: 'Nachtbus'
+    type: wms # tiledwms
+    metadataUrl: https://bielefeld01.de/mdOLKD/Daten/oepnv_nacht_cas?FORMAT=HTML_Daten
+    attribution: 'ÖPNV Kartenbild © Stadt Bielefeld (<a href="https://creativecommons.org/licenses/by/4.0/deed.de" target="_blank">CC BY 4.0</a>), ÖPNV Kartendaten © Stadt Bielefeld und <a href="http://www.openstreetmap.org/#map=15/52.0189/8.5338" target="_blank">OpenStreetMap</a> (<a href="http://opendatacommons.org/licenses/odbl/" target="_blank">ODbL</a>)'
+    source:
+      url: "http://munimap-mapserver?map=/opt/etc/styles/bielefeld/map/mobiel-nacht.map&map_resolution=72&"
+      format: "image/png"
+      layers:
+        - route_stations_hull
+        - route_segments
+        - route_segment_refs
+        - route_stations-marker
+        - route_stations-text
+        - route_stations_centroid-marker
+        - route_stations_centroid-text
+        - stations-text
+        - stations-marker
+      srs: "EPSG:25832"
+    legend:
+      type: link
+      href: https://bielefeld01.de/fachdaten/oepnv/mobiel%20legende.pdf
+      title: Legende
+      text: ÖPNV Nacht
+      
+  - name: oepnv_nacht_print
+    base: oepnv_nacht
+    metadataUrl: https://bielefeld01.de/mdOLKD/Daten/oepnv_nacht_cas_druck?FORMAT=HTML_Daten
+    source:
+      url: "http://munimap-mapserver?map=/opt/etc/styles/bielefeld/map/mobiel-nacht.map&map_resolution=216&"
+  # Nacht

@@ -64,8 +64,8 @@ angular.module('munimapBase.alkisSelection', ['anol.map', 'ngStorage'])
             }
         ])
 
-    .directive('alkisSelection', ['$uibModal', '$sessionStorage', 'ControlsService', 'MapService',
-        function($uibModal, $sessionStorage, ControlsService, MapService) {
+    .directive('alkisSelection', ['$uibModal', '$sessionStorage', '$rootScope', 'ControlsService', 'MapService',
+        function($uibModal, $sessionStorage, $rootScope, ControlsService, MapService) {
             return {
                 restrict: 'A',
                 replace: true,
@@ -112,8 +112,7 @@ angular.module('munimapBase.alkisSelection', ['anol.map', 'ngStorage'])
                                 }
                             }).result.then(function(){}, function(){});
 
-                            var toolsControlContainerScope = angular.element('.tools-control').scope();
-                            toolsControlContainerScope.toolsContainerVisible = false;
+                            $rootScope.$broadcast('toolsContainer:close');
 
                             scope.deactivate();
                         };

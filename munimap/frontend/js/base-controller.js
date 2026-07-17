@@ -243,7 +243,7 @@ angular.module('munimapBase')
                     size: 'md',
                     controller: 'saveSettingsModalController'
                 }).result.then(function(){}, function(){});
-                $scope.toggleToolsContainer && $scope.toggleToolsContainer();
+                $rootScope.$broadcast('toolsContainer:close');
             };
 
             $scope.openLoadSettingsModal = function() {
@@ -253,7 +253,7 @@ angular.module('munimapBase')
                     size: 'md',
                     controller: 'loadSettingsModalController'
                 }).result.then(function(){}, function(){});
-                $scope.toggleToolsContainer && $scope.toggleToolsContainer();
+                $rootScope.$broadcast('toolsContainer:close');
             };
 
             $scope.transparencyDialogOpen = TransparencyDialogService.isOpen();
@@ -515,7 +515,7 @@ angular.module('munimapBase')
                 if(Tour === false) {
                     return;
                 }
-                $scope.toggleToolsContainer && $scope.toggleToolsContainer();
+                $rootScope.$broadcast('toolsContainer:close');
                 Tour.restart();
             };
 
