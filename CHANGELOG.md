@@ -1,3 +1,10 @@
+## [2.3.1](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/2.3.0...2.3.1) (2026-08-07)
+
+
+### Bug Fixes
+
+* use node 22 to be in sync with nvmrc ([683a5c3](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/683a5c3eaaa4bdfa98e31544a7a4dcc66077fcc3))
+
 # [2.3.0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/2.2.0...2.3.0) (2026-07-17)
 
 
