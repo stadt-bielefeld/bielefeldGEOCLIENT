@@ -1,7 +1,7 @@
 ARG ANOL_COMMIT_HASH=2d9a6836d22b7ebb9f131611b8a67baa7931f299
 ARG GEOSTYLER_CLI_VERSION=5.0.3
 
-FROM node:24-alpine AS clientbuilder
+FROM node:22-alpine AS clientbuilder
 
 ARG ANOL_COMMIT_HASH
 RUN apk add --no-cache wget unzip
@@ -26,8 +26,6 @@ WORKDIR /app
 RUN npm ci
 RUN npm run build
 
-
-
 FROM python:3.12-bookworm AS builder
 
 RUN apt-get update && apt-get install -y \
@@ -47,8 +45,6 @@ COPY ./pyproject.toml /pkg/pyproject.toml
 WORKDIR /pkg
 
 RUN python -m build
-
-
 
 FROM python:3.12-bookworm AS runner
 
