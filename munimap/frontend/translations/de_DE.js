@@ -114,6 +114,20 @@ var deDETranslation = {
             'SET_TRANSPARENCY': 'Transparenz einstellen',
             'CLOSE': 'Schließen',
             'TRANSPARENCY_LABEL': 'Transparenz'
+        },
+        'timeseries': {
+            'SET_TIME': 'Zeitpunkt wählen',
+            'CLOSE': 'Schließen',
+            'TIME': 'Zeit',
+            'SELECTABLE_TIMES': 'Auswählbare Zeiten',
+            'UTC_HINT': '(UTC)',
+            'LATEST_VALUE': 'Aktuellster Wert',
+            'FROM': 'Von',
+            'TO': 'Bis',
+            'CALENDAR_WEEK': 'KW',
+            'ALL_AVAILABLE': 'Alle verfügbaren',
+            'VIEWPORT_AVAILABLE': 'Nur im Kartenausschnitt verfügbare',
+            'NO_SENSORS_IN_VIEW': 'Keine Sensoren im Kartenausschnitt - es werden alle verfügbaren Zeiten angeboten.'
         }
     }
 };

@@ -1,6 +1,26 @@
+import re
+
 from dictspec.validator import validate, ValidationError
 from dictspec.spec import one_of, number, required, type_spec, combined, anything
 from dictspec.compat import string_type
+
+
+class iso_duration(object):
+    """
+    A single-unit ISO 8601 duration (``PT10M``, ``PT1H``, ``P1D``, ``P1W``,
+    ``P1M``, ``P1Y``) or one of the plain word aliases.
+
+    A time series bucket is always one unit times a multiple, so compound
+    durations such as ``P1DT2H`` are rejected. Note ``PT1M`` (minute) versus
+    ``P1M`` (month) - the ``T`` is what tells them apart.
+    """
+    pattern = re.compile(r'^P(?:\d+[YMWD]|T\d+[HMS])$')
+    aliases = ('minute', 'hour', 'day', 'week', 'month', 'year')
+
+    def compare_type(self, data):
+        if not isinstance(data, string_type):
+            return False
+        return data in self.aliases or bool(self.pattern.match(data))
 
 
 def validate_layers_conf(layers_conf):
@@ -76,6 +96,19 @@ sensorthings_source_spec = {
     required('url'): string_type,
     required('urlParameters'): sensorthings_url_parameters_spec,
     'refreshInterval': number()
+}
+
+time_series_spec = {
+    required('granularity'): iso_duration(),
+    'mode': one_of('instant', 'range'),
+    'default': string_type,
+    'min': string_type,
+    'max': string_type,
+}
+
+viewport_filter_spec = {
+    'enabled': bool,
+    'default': one_of('off', 'viewport'),
 }
 
 style_spec = {
@@ -304,6 +337,8 @@ layer_commons = {
     'legend': one_of(legend_spec, 'GetLegendGraphic'),
     'featureinfo': featureinfo_spec,
     'searchConfig': [search_config_spec],
+    'timeSeries': time_series_spec,
+    'viewportFilter': viewport_filter_spec,
 }
 
 group_spec = {

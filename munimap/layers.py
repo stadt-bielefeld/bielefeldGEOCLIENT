@@ -180,8 +180,8 @@ def anol_overlay_layer(layer_conf, layers_base_url=''):
         source = {
             'url': layer_conf['source']['url'],
             'urlParameters': {
-                'filter': layer_conf['source']['urlParameters']['filter'],
-                'expand': layer_conf['source']['urlParameters']['expand']
+                'filter': layer_conf['source']['urlParameters'].get('filter'),
+                'expand': layer_conf['source']['urlParameters'].get('expand')
             },
             'refreshInterval': layer_conf['source']['refreshInterval']
         }
@@ -205,6 +205,12 @@ def anol_overlay_layer(layer_conf, layers_base_url=''):
         'status': layer_conf.get('status', 'active'),
         'olLayer': ol_layer
     }
+
+    if 'timeSeries' in layer_conf:
+        anol_layer['timeSeries'] = layer_conf['timeSeries']
+
+    if 'viewportFilter' in layer_conf:
+        anol_layer['viewportFilter'] = layer_conf['viewportFilter']
 
     if 'opacity' in layer_conf:
         ol_layer['opacity'] = layer_conf['opacity']

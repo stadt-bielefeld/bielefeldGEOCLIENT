@@ -160,6 +160,30 @@
           display: flex
           gap: 5px
 
+        // the filter line sits inside the flex rows of the child-layer
+        // branches, so it has to claim a full row of its own
+        .no-group-layers-container, .group-layers-container
+          flex-wrap: wrap
+
+        .filter-line
+          display: flex
+          align-items: center
+          gap: 5px
+          flex-basis: 100%
+          margin-left: 20px
+          font-size: 12px
+          color: #666
+          .time-series
+            display: flex
+            align-items: center
+            gap: 5px
+          .toggle-layer-conf
+            border: unset
+            background: unset
+            padding: 0
+          .time-series-label
+            white-space: nowrap
+
         .catalog-layer-title, .no-group-layer-title
           margin-left: 20px
         .inactive
@@ -331,6 +355,66 @@
       height: 1.2em
     input
       width: auto
+  .close-btn
+    border: unset
+    background: unset
+
+.timeseries-dialog
+  position: absolute
+  left: 20px
+  top: 0
+  z-index: 110
+  background: white
+  border: none
+  box-shadow: 2px 2px 6px 3px rgba(0, 0, 0, 0.2)
+  max-width: 300px
+  padding: 10px
+  display: flex
+  flex-direction: column
+  gap: 10px
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+  .timeseries-header
+    display: flex
+    align-items: flex-start
+    justify-content: space-between
+    border-bottom: solid 1px #eee
+    padding-bottom: 10px
+    font-weight: bold
+  .timeseries-section-title
+    font-weight: bold
+    margin-bottom: 5px
+  .timeseries-hint
+    font-weight: normal
+    font-size: 11px
+    color: #999
+  .timeseries-latest, .timeseries-radio
+    display: flex
+    align-items: baseline
+    gap: 5px
+    font-weight: normal
+    margin-bottom: 0
+  .timeseries-time-controls
+    &.disabled
+      opacity: 0.5
+      pointer-events: none
+  .timeseries-instant-label
+    font-weight: normal
+    font-size: 12px
+    color: #666
+  .timeseries-time-of-day
+    display: flex
+    align-items: center
+    gap: 3px
+    margin-top: 5px
+  .timeseries-select
+    width: auto
+    display: inline-block
+    option:disabled
+      color: #bbb
+  .timeseries-warning
+    font-size: 11px
+    color: #a94442
+    margin-top: 5px
   .close-btn
     border: unset
     background: unset
