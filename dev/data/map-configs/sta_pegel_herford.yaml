@@ -22,7 +22,7 @@ layers:
       urlParameters:
         filter: "substringof('Flusspegel', name)"
         expand: 'Thing/Locations,Observations({timeFilter}$orderby=phenomenonTime desc;$top=1)'
-      refreshInterval: 30
+      refreshInterval: 600
     timeSeries:
       granularity: PT10M
       mode: instant

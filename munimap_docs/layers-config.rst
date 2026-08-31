@@ -722,7 +722,14 @@ Wie WMS, Karten werden jedoch in 256x256 Pixel große Kacheln abgerufen.
           String. Zusätzliche Attribute, die dem Request via SensorThingsAPI expand mit abgefragt werden sollen. Sollen Werte aus den `"Observations"` in der Feature Info-Anzeige dargestellt werden, so müssen die `"Observations"` auch hier angegeben werden. `"Datastreams"` werden als `root` verwendet, wodurch die Pfade relativ zu dieser Quelle angegeben werden müssen.
 
   refreshInterval
-      Angabe der Abstände (in Sekunden), in denen die Anfrage erneut abgeschickt werden soll. Per Default beträgt dieser Wert 5 Sekunden.
+      Angabe der Abstände (in Sekunden), in denen die Anfrage erneut abgeschickt werden soll. Per Default beträgt dieser Wert 60 Sekunden.
+
+      Sinnvoll ist ein Wert, der zur Messfrequenz der Daten passt: häufiger abzufragen als
+      die Daten veröffentlicht werden, liefert nur identische Antworten. Bei einer
+      Zeitreihe mit `granularity: PT10M` etwa ist ein Wert von `600` angemessen.
+
+      Die Aktualisierung fragt nur die Messwerte ab, nicht erneut die Geometrien der
+      Sensoren - diese ändern sich nicht und machen den Großteil der Antwort aus.
 
       Ist ein Zeitpunkt in der Vergangenheit gewählt (siehe `timeSeries`), pausiert die
       Aktualisierung, da sich an einem festen Zeitfenster nichts mehr ändert. Sie wird
@@ -754,7 +761,7 @@ Wie WMS, Karten werden jedoch in 256x256 Pixel große Kacheln abgerufen.
           urlParameters:
             filter: "substringof('Temperaturmessungen', name)"
             expand: 'Thing/Locations($filter=properties/kleinraeumig eq null),Sensor,Observations({timeFilter}$orderby=phenomenonTime desc;$top=1)'
-          refreshInterval: 3
+          refreshInterval: 600
         timeSeries:
           granularity: PT10M
           mode: instant
