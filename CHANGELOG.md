@@ -1,3 +1,10 @@
+## [2.3.2](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/2.3.1...2.3.2) (2026-09-01)
+
+
+### Bug Fixes
+
+* **styles:** hide focus ring on mouse-clicked metadata links ([73fa71c](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/73fa71ca79a854ae58220ffe33bfe169e76f27c2))
+
 ## [2.3.1](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/2.3.0...2.3.1) (2026-08-07)
 
 
