@@ -116,7 +116,8 @@ var deDETranslation = {
             'TRANSPARENCY_LABEL': 'Transparenz'
         },
         'timeseries': {
-            'SET_TIME': 'Zeitpunkt wählen',
+            'SET_TIME_LIVE': 'Zeitpunkt wählen - zeigt laufend den aktuellsten Wert',
+            'SET_TIME_FIXED': 'Zeitpunkt wählen - feste Auswahl, keine Aktualisierung',
             'CLOSE': 'Schließen',
             'TIME': 'Zeit',
             'SELECTABLE_TIMES': 'Auswählbare Zeiten',
