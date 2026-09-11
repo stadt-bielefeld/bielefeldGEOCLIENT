@@ -1,3 +1,10 @@
+## [2.3.3](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/2.3.2...2.3.3) (2026-09-11)
+
+
+### Bug Fixes
+
+* update anol ([6ab305c](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/6ab305c9588cf96e80af3e3c648966cf52fe85c9))
+
 ## [2.3.2](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/2.3.1...2.3.2) (2026-09-01)
 
 
