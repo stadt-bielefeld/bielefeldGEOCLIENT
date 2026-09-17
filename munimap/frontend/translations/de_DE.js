@@ -128,6 +128,8 @@ var deDETranslation = {
             'CALENDAR_WEEK': 'KW',
             'ALL_AVAILABLE': 'Alle verfügbaren',
             'VIEWPORT_AVAILABLE': 'Nur im Kartenausschnitt verfügbare',
+            'ALL_SHORT': 'alle',
+            'VIEWPORT_SHORT': 'Kartenausschnitt',
             'NO_SENSORS_IN_VIEW': 'Keine Sensoren im Kartenausschnitt - es werden alle verfügbaren Zeiten angeboten.'
         }
     }

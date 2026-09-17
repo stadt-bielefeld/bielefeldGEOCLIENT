@@ -373,6 +373,8 @@
   flex-direction: column
   gap: 10px
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+  // the directive sets max-height to the room below (or above) the anchor
+  overflow-y: auto
   .timeseries-header
     display: flex
     align-items: flex-start
@@ -383,6 +385,18 @@
   .timeseries-section-title
     font-weight: bold
     margin-bottom: 5px
+  .timeseries-section-toggle
+    display: flex
+    align-items: center
+    gap: 5px
+    padding: 0
+    border: unset
+    background: unset
+    font-weight: bold
+    .glyphicon
+      font-size: 10px
+    .timeseries-hint
+      margin-left: auto
   .timeseries-hint
     font-weight: normal
     font-size: 11px
