@@ -196,6 +196,13 @@ default
     Zeitfilterung - es wird der jeweils aktuellste Wert geladen), `now`, ein ISO-Zeitstempel
     oder ein relativer Versatz wie `-1h`, `-30m`, `-7d`.
 
+    Bei `mode: range` zusätzlich `start/end`, wobei beide Seiten wie ein einzelner Wert
+    angegeben werden, z. B. `-7d/now`, `-2d/-1d` oder
+    `2026-08-01T00:00Z/2026-09-01T00:00Z`. Der Bereich reicht vom Fenster des Starts bis
+    einschließlich des Fensters, in das das Ende fällt; liegt das Ende genau auf einer
+    Fenstergrenze, ist es exklusiv. `latest` ist als Seite eines Bereichs nicht erlaubt.
+    Ein einzelner Wert bei `mode: range` wählt nur ein Fenster.
+
 min, max
     Optionale Grenzen der Auswahl als ISO-Zeitstempel oder relativer Versatz. Sie
     schränken den aus den Daten ermittelten Zeitraum weiter ein, erweitern ihn aber nie
