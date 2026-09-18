@@ -130,6 +130,10 @@ var deDETranslation = {
             'VIEWPORT_AVAILABLE': 'Nur im Kartenausschnitt verfügbare',
             'ALL_SHORT': 'alle',
             'VIEWPORT_SHORT': 'Kartenausschnitt',
+            'PREVIOUS': 'Zurück',
+            'NEXT': 'Vor',
+            'ZOOM_OUT': 'Zeitraum wechseln',
+            'PICK_END': 'Jetzt das Ende des Bereichs wählen.',
             'NO_SENSORS_IN_VIEW': 'Keine Sensoren im Kartenausschnitt - es werden alle verfügbaren Zeiten angeboten.'
         }
     }

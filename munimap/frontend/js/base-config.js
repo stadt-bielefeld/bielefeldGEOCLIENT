@@ -45,6 +45,7 @@ import 'anol/src/modules/transparencysettings/transparencysettings-directive.js'
 import 'anol/src/modules/transparencysettings/transparencydialog-directive.js';
 import 'anol/src/modules/timeseries/timeseriessettings-directive.js';
 import 'anol/src/modules/timeseries/timeseriesdialog-directive.js';
+import 'anol/src/modules/timeseries/monthgrid-directive.js';
 
 import 'anol/src/modules/savesettings/savesettings-directive.js';
 import 'anol/src/modules/savesettings/savesettings-service.js';
