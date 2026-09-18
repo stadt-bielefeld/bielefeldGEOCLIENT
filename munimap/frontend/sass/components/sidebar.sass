@@ -473,15 +473,23 @@
     &:disabled
       color: #ddd
       text-decoration: line-through
-  .timeseries-instant-label
-    font-weight: normal
+  // Von / Bis rows: label, date, time selects
+  .timeseries-instant
+    display: flex
+    align-items: center
+    gap: 6px
+    margin-top: 5px
     font-size: 12px
+  .timeseries-instant-label
+    font-weight: bold
     color: #666
+    flex: 0 0 2em
+  .timeseries-date
+    white-space: nowrap
   .timeseries-time-of-day
     display: flex
     align-items: center
     gap: 3px
-    margin-top: 5px
   .timeseries-select
     width: auto
     display: inline-block
