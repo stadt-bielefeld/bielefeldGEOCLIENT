@@ -208,6 +208,31 @@ min, max
     schränken den aus den Daten ermittelten Zeitraum weiter ein, erweitern ihn aber nie
     über das hinaus, was tatsächlich vorhanden ist.
 
+aggregate
+    Ein Wert oder eine Liste aus `count`, `sum`, `mean`, `min`, `max`. Jeder wird über
+    die numerischen `result`-Werte der geladenen `Observations` eines Datastreams
+    berechnet und als Eigenschaft `Observations.<name>` an das Feature geschrieben,
+    z. B. `Observations.sum`. Stil und Featureinfo lesen sie wie jede andere
+    Eigenschaft::
+
+        timeSeries:
+          granularity: PT1H
+          mode: range
+          aggregate: [sum, count]
+        style:
+          - style:
+              text-value: ['to-string', ['get', 'Observations.sum']]
+
+    Ohne `aggregate` liefert `Observations.0.result` nur die jeweils neueste Messung des
+    Fensters - bei `mode: range` also nicht die Summe des Bereichs. Liegen keine
+    numerischen Werte vor, wird nur `count` (als 0) geschrieben; die übrigen Schlüssel
+    fehlen, so dass `['has', 'Observations.sum']` wie bei fehlender Messung `false` ist.
+
+    Die Aggregate umfassen nur die vom Dienst gelieferten Observations. Ist deren Zahl
+    durch `$top` im `expand` begrenzt (der Dienst meldet das mit einem
+    `Observations@iot.nextLink`), decken sie nur einen Teil des Bereichs ab; der Client
+    warnt dann in der Konsole. `$top` entsprechend hoch wählen.
+
 **Verfügbarkeitsprüfung.** Der Dialog bietet nur Zeitpunkte an, zu denen auch Messwerte
 vorliegen: Tage ohne Daten sind im Kalender ausgegraut, ebenso Uhrzeiten ohne Messwert
 innerhalb des gewählten Tages. Ermittelt wird das über die `Observations` des Dienstes -

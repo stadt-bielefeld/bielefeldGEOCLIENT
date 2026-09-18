@@ -23,6 +23,22 @@ class iso_duration(object):
         return data in self.aliases or bool(self.pattern.match(data))
 
 
+class aggregate_names(object):
+    """
+    One of the observation aggregates the client can compute over a time
+    series window, or a list of them. Mirrors ``AGGREGATES`` in anol's
+    ``sensorthingsClient.js``.
+    """
+    names = ('count', 'sum', 'mean', 'min', 'max')
+
+    def compare_type(self, data):
+        values = data if isinstance(data, list) else [data]
+        return len(values) > 0 and all(
+            isinstance(value, string_type) and value in self.names
+            for value in values
+        )
+
+
 def validate_layers_conf(layers_conf):
     try:
         validate(layers_conf_spec, layers_conf)
@@ -104,6 +120,7 @@ time_series_spec = {
     'default': string_type,
     'min': string_type,
     'max': string_type,
+    'aggregate': aggregate_names(),
 }
 
 viewport_filter_spec = {
