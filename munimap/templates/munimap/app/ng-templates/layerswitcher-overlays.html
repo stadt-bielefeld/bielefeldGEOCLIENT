@@ -47,9 +47,6 @@
                 ng-if="removeLayerEnabled" ng-click="removeLayer(group)"></i>
           </div>
         </div>
-        <div class="filter-line" ng-if="filterLayerForGroup(group)">
-          <div anol-timeseriessettings layer="filterLayerForGroup(group)"></div>
-        </div>
         <div ng-model=group.layers>
 
           <!-- child layer -->
@@ -63,7 +60,7 @@
             <div class="layer-title child-title" ng-click="toggleLayerVisibleByName(layer.name)">
               <span>{{ layer.title }}</span>
             </div>
-            <div class="filter-line" ng-if="group.singleSelect !== true && layerIsVisibleByName(layer.name) && (layer.hasTimeSeries() || layer.hasViewportFilter())">
+            <div class="filter-line" ng-if="layerIsVisibleByName(layer.name) && (layer.hasTimeSeries() || layer.hasViewportFilter())">
               <div anol-timeseriessettings layer="layer"></div>
             </div>
           </div>
