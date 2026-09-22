@@ -114,6 +114,31 @@ var deDETranslation = {
             'SET_TRANSPARENCY': 'Transparenz einstellen',
             'CLOSE': 'Schließen',
             'TRANSPARENCY_LABEL': 'Transparenz'
+        },
+        'timeseries': {
+            'SET_TIME_LIVE': 'Zeitpunkt wählen - zeigt laufend den aktuellsten Wert',
+            'SET_TIME_FIXED': 'Zeitpunkt wählen - feste Auswahl, keine Aktualisierung',
+            'CLOSE': 'Schließen',
+            'TIME': 'Zeit',
+            'SELECTABLE_TIMES': 'Auswählbare Zeiten',
+            'UTC_HINT': '(UTC)',
+            'LATEST_VALUE': 'Aktuellster Wert',
+            'FROM': 'Von',
+            'TO': 'Bis',
+            'CALENDAR_WEEK': 'KW',
+            'ALL_AVAILABLE': 'Alle verfügbaren',
+            'VIEWPORT_AVAILABLE': 'Nur im Kartenausschnitt verfügbare',
+            'ALL_SHORT': 'alle',
+            'VIEWPORT_SHORT': 'Kartenausschnitt',
+            'PREVIOUS': 'Zurück',
+            'NEXT': 'Vor',
+            'ZOOM_OUT': 'Zeitraum wechseln',
+            'PICK_END': 'Jetzt das Ende des Bereichs wählen.',
+            'PRESET_LAST_24H': 'Letzte 24 h',
+            'PRESET_TODAY': 'Heute',
+            'PRESET_YESTERDAY': 'Gestern',
+            'PRESET_LAST_7D': 'Letzte 7 Tage',
+            'NO_SENSORS_IN_VIEW': 'Keine Sensoren im Kartenausschnitt - es werden alle verfügbaren Zeiten angeboten.'
         }
     }
 };

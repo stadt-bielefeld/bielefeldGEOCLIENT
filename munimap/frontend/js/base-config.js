@@ -43,6 +43,9 @@ import 'anol/src/modules/savemanager/savemanager-directive.js';
 import 'anol/src/modules/savemanager/savemanager-service.js';
 import 'anol/src/modules/transparencysettings/transparencysettings-directive.js';
 import 'anol/src/modules/transparencysettings/transparencydialog-directive.js';
+import 'anol/src/modules/timeseries/timeseriessettings-directive.js';
+import 'anol/src/modules/timeseries/timeseriesdialog-directive.js';
+import 'anol/src/modules/timeseries/monthgrid-directive.js';
 
 import 'anol/src/modules/savesettings/savesettings-directive.js';
 import 'anol/src/modules/savesettings/savesettings-service.js';
@@ -88,6 +91,7 @@ angular.module('munimapBase', [
     'anol.catalog',
     'anol.mouseposition',
     'anol.transparencysettings',
+    'anol.timeseries',
     'munimapBase.notification',
     'munimapBase.sidebar',
     'munimapBase.servicebutton',
