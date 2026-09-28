@@ -1,0 +1,43 @@
+app:
+  title: 'mobiel'
+  headerLogo: 'img/logo_transport.png'
+  headerLogoLink: 'https://bielefeld01.de/geo/portal/onlinekarten.php'
+  tooltipDelay: 50
+  showNoBackground: false
+  tour: 'mobiel'
+
+map:
+  defaultOverlays:
+    - ticket_shops_p
+    - ticketautomaten_p
+
+backgrounds:
+  explicit:
+    - mobiel_day
+    - mobiel_night
+
+groups:
+  explicit:
+    # - accomodation
+    # - food
+    # - mobiel
+    - parken_verkehr
+    - wms_ticket_verkaufsstellen
+    - wms_carsharing
+
+# layers:
+#   explicit:
+#     - baustellen
+
+components:
+  serviceButton: true
+  search: true
+  print: true
+  layerswitcher: true
+  legend: true
+  geolocation: true
+  scaleLine: false
+  overviewmap: false
+  timetable: true
+  draw: false
+  catalog: false
