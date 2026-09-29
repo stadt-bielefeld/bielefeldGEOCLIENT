@@ -37,7 +37,7 @@ dependencies = [
     'speaklater3==1.4',
     'SQLAlchemy==2.0.44',
     'WTForms-SQLAlchemy==0.4.2',
-    'WTForms==3.2.1'
+    'WTForms==3.2.2'
 ]
 classifiers = [
     "License :: OSI Approved :: BSD License",
