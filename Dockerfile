@@ -26,7 +26,7 @@ WORKDIR /app
 RUN npm ci
 RUN npm run build
 
-FROM python:3.12-bookworm AS builder
+FROM python:3.12-trixie AS builder
 
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -46,12 +46,12 @@ WORKDIR /pkg
 
 RUN python -m build
 
-FROM python:3.12-bookworm AS runner
+FROM python:3.12-trixie AS runner
 
 ARG GEOSTYLER_CLI_VERSION
 
 # TODO check which libs are actually needed
-RUN apt-get update && apt-get upgrade -y && apt-get install -y \
+RUN apt-get update && apt-get install -y \
     build-essential \
     ca-certificates \
     python3-dev \
@@ -59,7 +59,6 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     python3-gdal \
     python3-pycurl \
     libgdal-dev \
-    # openjdk-11-jre-headless \
     libspatialindex-dev \
     libgeos-dev \
     libssl-dev \
@@ -82,7 +81,6 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     fonts-dejavu-extra \
     fonts-unifont \
     locales \
-    software-properties-common \
     jq \
     && rm -rf /var/lib/apt/lists/*
 
@@ -126,9 +124,20 @@ RUN touch /opt/etc/munimap/configs/munimap.conf \
 # Get and install openjdk-8-jre. Not available in Debian Buster
 # TODO: Check for a possible mapfish print update, so version 11 can be used. Then this is not needed anymore.
 # openjdk-11-jre can be easily installed by apt#
-RUN wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | tee /etc/apt/keyrings/adoptium.asc
-RUN echo "deb [signed-by=/etc/apt/keyrings/adoptium.asc] https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | tee /etc/apt/sources.list.d/adoptium.list
-RUN apt update -y && apt install temurin-8-jre -y
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        ca-certificates \
+        wget \
+        gnupg \
+    && mkdir -p /etc/apt/keyrings \
+    && wget -qO- https://packages.adoptium.net/artifactory/api/gpg/key/public \
+        | gpg --dearmor -o /etc/apt/keyrings/adoptium.gpg \
+    && . /etc/os-release \
+    && echo "deb [signed-by=/etc/apt/keyrings/adoptium.gpg] https://packages.adoptium.net/artifactory/deb ${VERSION_CODENAME} main" \
+        > /etc/apt/sources.list.d/adoptium.list \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends temurin-8-jre \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN wget -q -O- https://repo1.maven.org/maven2/org/mapfish/print/print-cli/3.9.0/print-cli-3.9.0-tar.tar | tar -x -C /opt/var/mapfish
 
