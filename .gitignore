@@ -24,8 +24,7 @@ dev/muni_venv/
 muni_venv/
 /dist/
 /build/
-docker/munimap-postgis-mapbender/postgresql_data
-docker/munimap-postgis/postgresql_data
+docker/munimap-db/postgresql_data
 docker/munimap-mapserver/logs
 docker/munimap-docs/build/
 munimap/frontend/build

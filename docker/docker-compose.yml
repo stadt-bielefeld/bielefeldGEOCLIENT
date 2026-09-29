@@ -42,9 +42,7 @@ services:
       - ../dev/data:/opt/etc/munimap/data
       - ../dev/printqueue:/opt/etc/munimap/printqueue
     depends_on:
-      munimap-postgis:
-        condition: service_healthy
-      munimap-postgis-mapbender:
+      munimap-db:
         condition: service_healthy
     profiles:
       - prod
@@ -66,44 +64,26 @@ services:
       JAVA_OPTS: -Xmx4096m -Djava.awt.headless=true
       RUN_ALEMBIC: false
     depends_on:
-      munimap-postgis:
-        condition: service_healthy
-      munimap-postgis-mapbender:
+      munimap-db:
         condition: service_healthy
     profiles:
       - prod
 
-  munimap-postgis:
-    image: *munimap-db-image
-    ports:
-      - "5555:5432"
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-    volumes:
-      - ./munimap-postgis/postgresql_init_data:/docker-entrypoint-initdb.d
-      - ./munimap-postgis/postgresql_data:/var/lib/postgresql/:Z
-    healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U postgres -d stadtplan"]
-      interval: 10s
-      timeout: 3s
-      retries: 10
-
-  munimap-postgis-mapbender:
+  munimap-db:
     image: *munimap-db-image
     ports:
       - "5556:5432"
     environment:
-      POSTGRES_USER: mapbender
-      POSTGRES_PASSWORD: mapbender
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     volumes:
-      - ./munimap-postgis-mapbender/postgresql_init_data:/docker-entrypoint-initdb.d
-      - ./munimap-postgis-mapbender/postgresql_data:/var/lib/postgresql/:Z
+      - ./munimap-db/postgresql_init_data:/docker-entrypoint-initdb.d
+      - ./munimap-db/postgresql_data:/var/lib/postgresql/:Z
     profiles:
       - dev
       - prod
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U mapbender -d mapbender"]
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d postgres"]
       interval: 10s
       timeout: 3s
       retries: 10
