@@ -1,4 +1,4 @@
-x-munimap-db-image: &munimap-db-image docker.terrestris.de/postgis/postgis:18-3.6-alpine
+x-munimap-db-image: &munimap-db-image postgis/postgis:18-3.6-alpine
 
 services:
   munimap-nginx:
@@ -42,7 +42,7 @@ services:
       - ../dev/data:/opt/etc/munimap/data
       - ../dev/printqueue:/opt/etc/munimap/printqueue
     depends_on:
-      munimap-db:
+      munimap-postgis:
         condition: service_healthy
     profiles:
       - prod
@@ -64,21 +64,21 @@ services:
       JAVA_OPTS: -Xmx4096m -Djava.awt.headless=true
       RUN_ALEMBIC: false
     depends_on:
-      munimap-db:
+      munimap-postgis:
         condition: service_healthy
     profiles:
       - prod
 
-  munimap-db:
+  munimap-postgis:
     image: *munimap-db-image
     ports:
-      - "5556:5432"
+      - "5555:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     volumes:
-      - ./munimap-db/postgresql_init_data:/docker-entrypoint-initdb.d
-      - ./munimap-db/postgresql_data:/var/lib/postgresql/:Z
+      - ./munimap-postgis/postgresql_init_data:/docker-entrypoint-initdb.d
+      - ./munimap-postgis/postgresql_data:/var/lib/postgresql/:Z
     profiles:
       - dev
       - prod
