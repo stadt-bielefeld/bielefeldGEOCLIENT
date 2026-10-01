@@ -15,7 +15,7 @@ jobs:
 #        uses: docker/setup-buildx-action@v3
 
       - name: Run Docker Compose
-        uses: hoverkraft-tech/compose-action@v2.0.2
+        uses: hoverkraft-tech/compose-action@v2.6.0
         with:
           cwd: docker
           compose-flags: --profile prod
