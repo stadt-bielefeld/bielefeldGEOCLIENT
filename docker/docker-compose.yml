@@ -1,5 +1,3 @@
-x-munimap-db-image: &munimap-db-image postgis/postgis:18-3.6-alpine
-
 services:
   munimap-nginx:
     image: nginx:1.27.1-alpine
@@ -70,7 +68,7 @@ services:
       - prod
 
   munimap-postgis:
-    image: *munimap-db-image
+    image: postgis/postgis:18-3.6-alpine
     ports:
       - "5555:5432"
     environment:
