@@ -108,7 +108,7 @@ services:
 
   munimap-print:
     restart: unless-stopped
-    image: camptocamp/mapfish_print:3.30.11
+    image: camptocamp/mapfish_print:3.33.18
     ports:
       - "8888:8080"
     environment:
