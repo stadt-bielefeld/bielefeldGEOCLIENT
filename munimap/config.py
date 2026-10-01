@@ -203,9 +203,9 @@ class TestConfig(object):
 
     LAYERS_CONF = path.join(here, 'test/data/test_layers_conf.yaml')
 
-    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres@localhost:5556/mapbender_test'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres@localhost:5555/mapbender_test'
 
-    SQLALCHEMY_LAYER_DATABASE_URI = 'postgresql://postgres:postgres@localhost:5556/osmdata_test'
+    SQLALCHEMY_LAYER_DATABASE_URI = 'postgresql://postgres:postgres@localhost:5555/osmdata_test'
     SQLALCHEMY_DATABASE_SCHEMA = 'munimaptest'
 
     MAP_ICONS_DIR = path.join(here, 'test/data/mapfish/icons')
