@@ -9,10 +9,11 @@ angular.module('munimapBase')
     .controller('baseController', ['$rootScope', '$scope', '$window', '$timeout', '$translate', '$location', '$uibModal',
         'munimapConfig', 'ControlsService', 'MapService', 'NotificationService', 'DrawService', 'ClusterSelectService',
         'Tour', 'ContextMenuItems', 'SaveSettingsService', 'GeocoderService', 'CatalogService', 'PostMessageService', 'ReadyService',
-        'TransparencyDialogService',
+        'TransparencyDialogService', 'TimeSeriesDialogService',
         function($rootScope, $scope, $window, $timeout, $translate, $location, $uibModal, munimapConfig, ControlsService,
                  MapService, NotificationService, DrawService, ClusterSelectService, Tour, ContextMenuItems, SaveSettingsService,
-                 GeocoderService, CatalogService, PostMessageService, ReadyService, TransparencyDialogService) {
+                 GeocoderService, CatalogService, PostMessageService, ReadyService, TransparencyDialogService,
+                 TimeSeriesDialogService) {
 
             $scope.printEnabled = munimapConfig.components.print === true;
             $scope.searchEnabled = munimapConfig.components.search === true;
@@ -261,6 +262,13 @@ angular.module('munimapBase')
                 return TransparencyDialogService.isOpen();
             }, function(newVal) {
                 $scope.transparencyDialogOpen = newVal;
+            });
+
+            $scope.timeSeriesDialogOpen = TimeSeriesDialogService.isOpen();
+            $scope.$watch(function() {
+                return TimeSeriesDialogService.isOpen();
+            }, function(newVal) {
+                $scope.timeSeriesDialogOpen = newVal;
             });
 
             $scope.$watch(function() {

@@ -160,6 +160,114 @@ Für alle Arten von Layern kann das Attribut `url` verwendet werden. Hierbei mus
 Pro Layer kann auch eine eigene Suche definiert werden,
 
 
+``timeSeries``
+""""""""""""""
+Kennzeichnet den Layer als Zeitreihe. In der Layerliste erscheint darunter eine Zeile mit
+dem Zeitpunkt der aktuell dargestellten Daten - also dem jüngsten `phenomenonTime` der
+geladenen Messwerte, nicht der angefragten Fenstergrenze. Über diese Zeile lässt sich ein
+Dialog zur Zeitauswahl öffnen. Alle Zeitangaben werden in UTC interpretiert und angezeigt.
+
+Damit die Auswahl Wirkung zeigt, muss die Abfrage einen der Platzhalter enthalten (siehe
+`sensorthings`). Fehlt der Platzhalter, wird beim Laden eine Warnung in der Browser-Konsole
+ausgegeben.
+
+granularity
+    Pflichtangabe. Größe eines Zeitfensters als einteilige ISO-8601-Dauer, also eine Einheit
+    mit einem Vielfachen: `PT10M`, `PT1H`, `P1D`, `P1W`, `P1M`, `P1Y`. Zusammengesetzte
+    Dauern wie `P1DT2H` sind nicht zulässig. Zu beachten ist der Unterschied zwischen `PT1M`
+    (Minute) und `P1M` (Monat) - das `T` unterscheidet beide.
+
+    Alternativ sind die Wörter `minute`, `hour`, `day`, `week`, `month` und `year` erlaubt,
+    die jeweils dem einfachen Vielfachen entsprechen.
+
+    Die Fenster werden am Beginn der übergeordneten Einheit ausgerichtet und dann in
+    Schritten des Vielfachen gesetzt: `PT10M` also bei :00, :10, :20 ... innerhalb der
+    Stunde, `PT6H` bei 00/06/12/18 innerhalb des Tages, `P<n>M` ab Januar, `P1W` auf den
+    Montag der ISO-Woche. Teilt das Vielfache die übergeordnete Einheit nicht glatt
+    (z. B. `PT7M`), ist das letzte Fenster jeder Einheit kürzer; in diesem Fall wird eine
+    Warnung ausgegeben.
+
+mode
+    `instant` (Standard) für einen einzelnen Zeitpunkt oder `range` für einen Von-Bis-Bereich.
+    Bei `range` zeigt der Dialog zwei Auswahlfelder.
+
+default
+    Beim Start ausgewählter Zeitpunkt. Mögliche Werte: `latest` (Standard, keine
+    Zeitfilterung - es wird der jeweils aktuellste Wert geladen), `now`, ein ISO-Zeitstempel
+    oder ein relativer Versatz wie `-1h`, `-30m`, `-7d`.
+
+    Bei `mode: range` zusätzlich `start/end`, wobei beide Seiten wie ein einzelner Wert
+    angegeben werden, z. B. `-7d/now`, `-2d/-1d` oder
+    `2026-08-01T00:00Z/2026-09-01T00:00Z`. Der Bereich reicht vom Fenster des Starts bis
+    einschließlich des Fensters, in das das Ende fällt; liegt das Ende genau auf einer
+    Fenstergrenze, ist es exklusiv. `latest` ist als Seite eines Bereichs nicht erlaubt.
+    Ein einzelner Wert bei `mode: range` wählt nur ein Fenster.
+
+min, max
+    Optionale Grenzen der Auswahl als ISO-Zeitstempel oder relativer Versatz. Sie
+    schränken den aus den Daten ermittelten Zeitraum weiter ein, erweitern ihn aber nie
+    über das hinaus, was tatsächlich vorhanden ist.
+
+aggregate
+    Ein Wert oder eine Liste aus `count`, `sum`, `mean`, `min`, `max`. Jeder wird über
+    die numerischen `result`-Werte der geladenen `Observations` eines Datastreams
+    berechnet und als Eigenschaft `Observations.<name>` an das Feature geschrieben,
+    z. B. `Observations.sum`. Stil und Featureinfo lesen sie wie jede andere
+    Eigenschaft::
+
+        timeSeries:
+          granularity: PT1H
+          mode: range
+          aggregate: [sum, count]
+        style:
+          - style:
+              text-value: ['to-string', ['get', 'Observations.sum']]
+
+    Ohne `aggregate` liefert `Observations.0.result` nur die jeweils neueste Messung des
+    Fensters - bei `mode: range` also nicht die Summe des Bereichs. Liegen keine
+    numerischen Werte vor, wird nur `count` (als 0) geschrieben; die übrigen Schlüssel
+    fehlen, so dass `['has', 'Observations.sum']` wie bei fehlender Messung `false` ist.
+
+    Die Aggregate umfassen nur die vom Dienst gelieferten Observations. Ist deren Zahl
+    durch `$top` im `expand` begrenzt (der Dienst meldet das mit einem
+    `Observations@iot.nextLink`), decken sie nur einen Teil des Bereichs ab; der Client
+    warnt dann in der Konsole. `$top` entsprechend hoch wählen.
+
+**Verfügbarkeitsprüfung.** Der Dialog bietet nur Zeitpunkte an, zu denen auch Messwerte
+vorliegen: Tage ohne Daten sind im Kalender ausgegraut, ebenso Uhrzeiten ohne Messwert
+innerhalb des gewählten Tages. Ermittelt wird das über die `Observations` des Dienstes -
+ein `$count` je Tag des angezeigten Monats sowie eine Abfrage der Zeitstempel des gewählten
+Tages.
+
+Diese Abfragen laufen bewusst nachrangig: Sie werden erst gestartet, nachdem die Karte neu
+gezeichnet wurde, und sind in ihrer Anzahl begrenzt, damit sie die Kartendarstellung nicht
+ausbremsen. Solange eine Prüfung noch läuft, bleibt die Auswahl uneingeschränkt bedienbar.
+
+``viewportFilter``
+""""""""""""""""""
+Ergänzt den Dialog um den Abschnitt `Auswählbare Zeiten` mit der Auswahl
+`Alle verfügbaren` / `Nur im Kartenausschnitt verfügbare`.
+
+Sie steuert, **welche Sensoren bei der Verfügbarkeitsprüfung berücksichtigt werden** - nicht,
+welche Features gezeichnet werden. Mit `Nur im Kartenausschnitt verfügbare` gelten nur die
+Sensoren innerhalb des aktuellen Ausschnitts, so dass ein Zeitpunkt, zu dem ausschließlich
+anderswo gemessen wurde, gar nicht erst auswählbar ist. Die Karte selbst ändert sich dadurch
+nicht, und es wird auch nichts neu geladen.
+
+Sinnvoll ist die Auswahl nur, wenn sich die Messzeitpunkte der Sensoren tatsächlich
+unterscheiden - sei es durch abweichende Messzeiträume oder dadurch, dass die Sensoren in
+unterschiedlichem Takt messen. Messen alle Sensoren zu denselben Zeitpunkten, bleibt die
+Auswahl wirkungslos und kann weggelassen werden.
+
+Befindet sich kein Sensor im Ausschnitt, weist der Dialog darauf hin und zeigt weiterhin
+alle verfügbaren Zeiten an, statt die Auswahl zu sperren.
+
+enabled
+    `true`, um die Auswahl im Dialog anzubieten. Standard ist `false`.
+
+default
+    `off` (Standard) oder `viewport` für eine beim Start aktive Einschränkung.
+
 ``printTileSize``
 """""""""""""""""
 Für WMS-Layer (type `wms` oder `tiledwms`) kann eine `printTileSize` eingestellt werden. Wenn diese gesetzt ist, dann fragt mapfish print den WMS als Kacheln ab. Der Parameter muss ein Array mit zwei ganzzahligen Pixel-Angaben sein.
@@ -646,7 +754,32 @@ Wie WMS, Karten werden jedoch in 256x256 Pixel große Kacheln abgerufen.
           String. Zusätzliche Attribute, die dem Request via SensorThingsAPI expand mit abgefragt werden sollen. Sollen Werte aus den `"Observations"` in der Feature Info-Anzeige dargestellt werden, so müssen die `"Observations"` auch hier angegeben werden. `"Datastreams"` werden als `root` verwendet, wodurch die Pfade relativ zu dieser Quelle angegeben werden müssen.
 
   refreshInterval
-      Angabe der Abstände (in Sekunden), in denen die Anfrage erneut abgeschickt werden soll. Per Default beträgt dieser Wert 5 Sekunden.
+      Angabe der Abstände (in Sekunden), in denen die Anfrage erneut abgeschickt werden soll. Per Default beträgt dieser Wert 60 Sekunden.
+
+      Sinnvoll ist ein Wert, der zur Messfrequenz der Daten passt: häufiger abzufragen als
+      die Daten veröffentlicht werden, liefert nur identische Antworten. Bei einer
+      Zeitreihe mit `granularity: PT10M` etwa ist ein Wert von `600` angemessen.
+
+      Die Aktualisierung fragt nur die Messwerte ab, nicht erneut die Geometrien der
+      Sensoren - diese ändern sich nicht und machen den Großteil der Antwort aus.
+
+      Ist ein Zeitpunkt in der Vergangenheit gewählt (siehe `timeSeries`), pausiert die
+      Aktualisierung, da sich an einem festen Zeitfenster nichts mehr ändert. Sie wird
+      fortgesetzt, sobald wieder `Aktuellster Wert` gewählt ist.
+
+  Zeit-Platzhalter
+      In `filter` und `expand` können die folgenden Platzhalter verwendet werden. Sie werden
+      durch den im Dialog gewählten Zeitpunkt ersetzt und sind leer, solange
+      `Aktuellster Wert` gewählt ist - dadurch entspricht die Abfrage dann wieder der
+      ungefilterten Form.
+
+      ``{timeFilter}``
+          Die vollständige Bedingung inklusive Semikolon, gedacht für die Verwendung
+          innerhalb einer `Observations(...)`-Klausel in `expand`:
+          ``$filter=phenomenonTime ge <von> and phenomenonTime lt <bis>;``
+
+      ``{timeStart}``, ``{timeEnd}``
+          Nur die beiden Zeitstempel, für selbst formulierte Bedingungen.
 
 
 .. code-block:: yaml
@@ -659,8 +792,15 @@ Wie WMS, Karten werden jedoch in 256x256 Pixel große Kacheln abgerufen.
           url: 'https://geoportal.kreis-herford.de/iot'
           urlParameters:
             filter: "substringof('Temperaturmessungen', name)"
-            expand: 'Thing/Locations($filter=properties/kleinraeumig eq null),Sensor,Observations($orderby=phenomenonTime desc;$top=1)'
-          refreshInterval: 3
+            expand: 'Thing/Locations($filter=properties/kleinraeumig eq null),Sensor,Observations({timeFilter}$orderby=phenomenonTime desc;$top=1)'
+          refreshInterval: 600
+        timeSeries:
+          granularity: PT10M
+          mode: instant
+          default: latest
+        viewportFilter:
+          enabled: true
+          default: 'off'
         style:
           circle-radius: 10
           circle-fill-color: [204, 102, 204, 0.2]

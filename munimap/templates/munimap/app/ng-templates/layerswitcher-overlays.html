@@ -20,6 +20,9 @@
            <i title="Layer entfernen" class="glyphicon glyphicon-remove float-right pointer" ng-click="removeLayer(group)"></i>
         </div>
       </div>
+      <div class="filter-line" ng-if="group.getVisible() && (group.hasTimeSeries() || group.hasViewportFilter())">
+        <div anol-timeseriessettings layer="group"></div>
+      </div>
 
       <!-- group layer -->
       <div class="group-item" ng-show="group.groupLayer == true && group.options.showGroup === true"
@@ -57,6 +60,9 @@
             <div class="layer-title child-title" ng-click="toggleLayerVisibleByName(layer.name)">
               <span>{{ layer.title }}</span>
             </div>
+            <div class="filter-line" ng-if="layerIsVisibleByName(layer.name) && (layer.hasTimeSeries() || layer.hasViewportFilter())">
+              <div anol-timeseriessettings layer="layer"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -80,6 +86,9 @@
                 <div anol-transparencysettings group="group"></div>
                 <i class="glyphicon glyphicon-remove float-right pointer" ng-if="removeLayerEnabled"
                    ng-click="removeLayer(layer)"></i>
+            </div>
+            <div class="filter-line" ng-if="layerIsVisibleByName(layer.name) && (layer.hasTimeSeries() || layer.hasViewportFilter())">
+              <div anol-timeseriessettings layer="layer"></div>
             </div>
           </div>
       </div>
