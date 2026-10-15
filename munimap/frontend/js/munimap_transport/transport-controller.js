@@ -181,7 +181,8 @@ angular.module('munimapBase')
             };
 
             var timetableControl = new anol.control.Control({
-                element: angular.element('.timetable-control')
+                element: angular.element('.timetable-control'),
+                target: angular.element('.left-controls-wrapper')
             });
             ControlsService.addControl(timetableControl);
 
