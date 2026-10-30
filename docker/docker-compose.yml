@@ -1,6 +1,6 @@
 services:
   munimap-nginx:
-    image: nginx:1.31.1-alpine
+    image: nginx:1.31.8-alpine
     ports:
       - "80:80"
       - "4000:4000"
@@ -15,7 +15,7 @@ services:
       - prod
 
   munimap-nginx-dev:
-    image: nginx:1.31.1-alpine
+    image: nginx:1.31.8-alpine
     ports:
       - "80:80"
       - "4000:4000"
