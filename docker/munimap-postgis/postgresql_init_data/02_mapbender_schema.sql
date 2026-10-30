@@ -1,3 +1,6 @@
+CREATE USER mapbender WITH LOGIN SUPERUSER PASSWORD 'mapbender';
+CREATE DATABASE mapbender OWNER mapbender;
+
 \connect mapbender;
 
 CREATE EXTENSION IF NOT EXISTS postgis;
@@ -12,9 +15,7 @@ CREATE EXTENSION IF NOT EXISTS hstore;
 CREATE TABLE public.alembic_version (
 	version_num varchar(32) NOT NULL
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.cat definition
@@ -48,9 +49,7 @@ CREATE TABLE public.cat (
 	cat_timestamp int4 NULL,
 	CONSTRAINT cat_pkey PRIMARY KEY (cat_id)
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.conformity definition
@@ -70,9 +69,7 @@ CREATE TABLE public.conformity (
 	conformity_description_de text NULL,
 	CONSTRAINT conformity_pkey PRIMARY KEY (conformity_id)
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.custom_category definition
@@ -92,9 +89,7 @@ CREATE TABLE public.custom_category (
 	custom_category_hidden int4 NULL,
 	CONSTRAINT custom_category_pkey PRIMARY KEY (custom_category_id)
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.gui definition
@@ -110,9 +105,7 @@ CREATE TABLE public.gui (
 	gui_public int4 NOT NULL DEFAULT 1,
 	CONSTRAINT pk_gui_id PRIMARY KEY (gui_id)
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.gui_category definition
@@ -127,9 +120,7 @@ CREATE TABLE public.gui_category (
 	category_description varchar(255) NULL,
 	CONSTRAINT pk_category_id PRIMARY KEY (category_id)
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.inspire_category definition
@@ -148,9 +139,7 @@ CREATE TABLE public.inspire_category (
 	inspire_category_description_de text NULL,
 	CONSTRAINT inspire_category_pkey PRIMARY KEY (inspire_category_id)
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.inspire_md_data definition
@@ -168,9 +157,7 @@ CREATE TABLE public.inspire_md_data (
 	data_spatial_res_type int4 NULL,
 	CONSTRAINT data_id_pkey PRIMARY KEY (data_id)
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.keyword definition
@@ -185,9 +172,7 @@ CREATE TABLE public.keyword (
 	CONSTRAINT keyword_keyword_key UNIQUE (keyword),
 	CONSTRAINT pk_keyword_id PRIMARY KEY (keyword_id)
 )
-WITH (
-	OIDS=TRUE
-);
+;
 CREATE INDEX ind_keyword ON public.keyword USING btree (keyword);
 
 
@@ -216,9 +201,7 @@ CREATE TABLE public.mb_group (
 	mb_group_homepage varchar(255) NULL,
 	CONSTRAINT pk_group_id PRIMARY KEY (mb_group_id)
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.mb_log definition
@@ -241,9 +224,7 @@ CREATE TABLE public.mb_log (
 	request text NULL,
 	CONSTRAINT pk_mb_log PRIMARY KEY (id)
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.mb_proxy_log definition
@@ -260,9 +241,7 @@ CREATE TABLE public.mb_proxy_log (
 	pixel int8 NULL,
 	price float4 NULL
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.mb_role definition
@@ -278,9 +257,7 @@ CREATE TABLE public.mb_role (
 	role_exclude_auth int4 NOT NULL DEFAULT 0,
 	CONSTRAINT role_id PRIMARY KEY (role_id)
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.mb_user definition
@@ -327,9 +304,7 @@ CREATE TABLE public.mb_user (
 	mb_user_idm_managed bool NULL,
 	CONSTRAINT pk_mb_user_id PRIMARY KEY (mb_user_id)
 )
-WITH (
-	OIDS=TRUE
-);
+;
 CREATE INDEX idx_mb_user_id ON public.mb_user USING btree (mb_user_id);
 CREATE INDEX idx_mb_user_name ON public.mb_user USING btree (mb_user_name);
 
@@ -346,9 +321,7 @@ CREATE TABLE public.md_topic_category (
 	md_topic_category_code_de varchar(255) NULL,
 	CONSTRAINT md_topic_category_pkey PRIMARY KEY (md_topic_category_id)
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.mm_layers definition
@@ -364,9 +337,7 @@ CREATE TABLE public.mm_layers (
 	CONSTRAINT mm_layers_name_key UNIQUE (name),
 	CONSTRAINT mm_layers_pkey PRIMARY KEY (id)
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.mm_project_default_settings definition
@@ -382,9 +353,7 @@ CREATE TABLE public.mm_project_default_settings (
 	mb_user_id int4 NULL,
 	CONSTRAINT mm_project_default_settings_pkey PRIMARY KEY (id)
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.mm_project_settings definition
@@ -400,9 +369,7 @@ CREATE TABLE public.mm_project_settings (
 	settings varchar NULL,
 	CONSTRAINT mm_project_settings_pkey PRIMARY KEY (id)
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.mm_projects definition
@@ -417,9 +384,7 @@ CREATE TABLE public.mm_projects (
 	CONSTRAINT mm_projects_name_key UNIQUE (name),
 	CONSTRAINT mm_projects_pkey PRIMARY KEY (id)
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.spec_classification definition
@@ -441,9 +406,7 @@ CREATE TABLE public.spec_classification (
 	CONSTRAINT spec_class_id_pkey PRIMARY KEY (spec_class_id),
 	CONSTRAINT spec_classification_spec_class_key_key UNIQUE (spec_class_key)
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.termsofuse definition
@@ -460,9 +423,7 @@ CREATE TABLE public.termsofuse (
 	descriptionlink varchar(255) NULL,
 	CONSTRAINT termsofuse_pkey PRIMARY KEY (termsofuse_id)
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.translations definition
@@ -478,9 +439,7 @@ CREATE TABLE public.translations (
 	msgstr varchar(512) NULL,
 	CONSTRAINT translations_pkey PRIMARY KEY (trs_id)
 )
-WITH (
-	OIDS=TRUE
-);
+;
 CREATE INDEX msgid_idx ON public.translations USING btree (msgid);
 
 
@@ -525,9 +484,7 @@ CREATE TABLE public.wfs (
 	uuid uuid NULL,
 	CONSTRAINT pk_wfs_id PRIMARY KEY (wfs_id)
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.wms definition
@@ -580,9 +537,7 @@ CREATE TABLE public.wms (
 	uuid uuid NULL,
 	CONSTRAINT pk_wms_id PRIMARY KEY (wms_id)
 )
-WITH (
-	OIDS=TRUE
-);
+;
 CREATE INDEX idx_wms_id ON public.wms USING btree (wms_id);
 
 
@@ -599,9 +554,7 @@ CREATE TABLE public.cat_keyword (
 	CONSTRAINT fkey_cat_id_fkey_keyword_id FOREIGN KEY (fkey_cat_id) REFERENCES public.cat(cat_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT fkey_keyword_id_fkey_cat_id FOREIGN KEY (fkey_keyword_id) REFERENCES public.keyword(keyword_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.cat_op_conf definition
@@ -618,9 +571,7 @@ CREATE TABLE public.cat_op_conf (
 	CONSTRAINT pk_con_cat_op PRIMARY KEY (fk_cat_id, param_type, param_name, param_value),
 	CONSTRAINT fk_cat_conf_to_cat FOREIGN KEY (fk_cat_id) REFERENCES public.cat(cat_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.datalink definition
@@ -653,9 +604,7 @@ CREATE TABLE public.datalink (
 	CONSTRAINT pk_datalink_id PRIMARY KEY (datalink_id),
 	CONSTRAINT datalink_owner_fkey FOREIGN KEY (datalink_owner) REFERENCES public.mb_user(mb_user_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.datalink_keyword definition
@@ -671,9 +620,7 @@ CREATE TABLE public.datalink_keyword (
 	CONSTRAINT fkey_datalink_id_fkey_keyword_id FOREIGN KEY (fkey_datalink_id) REFERENCES public.datalink(datalink_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT fkey_keyword_id_fkey_datalink_id FOREIGN KEY (fkey_keyword_id) REFERENCES public.keyword(keyword_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.datalink_md_topic_category definition
@@ -688,9 +635,7 @@ CREATE TABLE public.datalink_md_topic_category (
 	CONSTRAINT datalink_md_topic_category_fkey_datalink_id_fkey FOREIGN KEY (fkey_datalink_id) REFERENCES public.datalink(datalink_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT datalink_md_topic_category_fkey_md_topic_category_id_fkey FOREIGN KEY (fkey_md_topic_category_id) REFERENCES public.md_topic_category(md_topic_category_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.gui_cat definition
@@ -705,9 +650,7 @@ CREATE TABLE public.gui_cat (
 	CONSTRAINT fkey_cat_cat_id FOREIGN KEY (fkey_cat_id) REFERENCES public.cat(cat_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT fkey_cat_gui_id FOREIGN KEY (fkey_gui_id) REFERENCES public.gui(gui_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.gui_element definition
@@ -742,9 +685,7 @@ CREATE TABLE public.gui_element (
 	CONSTRAINT pk_fkey_gui_id PRIMARY KEY (fkey_gui_id, e_id),
 	CONSTRAINT gui_element_ibfk1 FOREIGN KEY (fkey_gui_id) REFERENCES public.gui(gui_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.gui_element_vars definition
@@ -763,9 +704,7 @@ CREATE TABLE public.gui_element_vars (
 	CONSTRAINT pk_fkey_gui_id_fkey_e_id_var_name PRIMARY KEY (fkey_gui_id, fkey_e_id, var_name),
 	CONSTRAINT gui_element_vars_ibfk1 FOREIGN KEY (fkey_gui_id,fkey_e_id) REFERENCES public.gui_element(fkey_gui_id,e_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.gui_gui_category definition
@@ -781,9 +720,7 @@ CREATE TABLE public.gui_gui_category (
 	CONSTRAINT gui_gui_category_ibfk_1 FOREIGN KEY (fkey_gui_category_id) REFERENCES public.gui_category(category_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT gui_gui_category_ibfk_2 FOREIGN KEY (fkey_gui_id) REFERENCES public.gui(gui_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.gui_kml definition
@@ -804,9 +741,7 @@ CREATE TABLE public.gui_kml (
 	CONSTRAINT gui_kml_fkey_mb_user_id FOREIGN KEY (fkey_mb_user_id) REFERENCES public.mb_user(mb_user_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT gui_kml_id_fkey_gui_id FOREIGN KEY (fkey_gui_id) REFERENCES public.gui(gui_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.gui_mb_group definition
@@ -823,9 +758,7 @@ CREATE TABLE public.gui_mb_group (
 	CONSTRAINT gui_mb_group_ibfk_1 FOREIGN KEY (fkey_gui_id) REFERENCES public.gui(gui_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT gui_mb_group_ibfk_2 FOREIGN KEY (fkey_mb_group_id) REFERENCES public.mb_group(mb_group_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.gui_mb_user definition
@@ -842,9 +775,7 @@ CREATE TABLE public.gui_mb_user (
 	CONSTRAINT gui_mb_user_ibfk_1 FOREIGN KEY (fkey_gui_id) REFERENCES public.gui(gui_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT gui_mb_user_ibfk_2 FOREIGN KEY (fkey_mb_user_id) REFERENCES public.mb_user(mb_user_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.gui_treegde definition
@@ -865,9 +796,7 @@ CREATE TABLE public.gui_treegde (
 	CONSTRAINT pk_fkey_treegde_id PRIMARY KEY (fkey_gui_id, id, lft, rgt),
 	CONSTRAINT gui_treegde_ibfk_1 FOREIGN KEY (fkey_gui_id) REFERENCES public.gui(gui_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.gui_wfs definition
@@ -882,9 +811,7 @@ CREATE TABLE public.gui_wfs (
 	CONSTRAINT gui_wfs_ibfk_3 FOREIGN KEY (fkey_gui_id) REFERENCES public.gui(gui_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT gui_wfs_ibfk_4 FOREIGN KEY (fkey_wfs_id) REFERENCES public.wfs(wfs_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.gui_wms definition
@@ -908,9 +835,7 @@ CREATE TABLE public.gui_wms (
 	CONSTRAINT gui_wms_ibfk_3 FOREIGN KEY (fkey_gui_id) REFERENCES public.gui(gui_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT gui_wms_ibfk_4 FOREIGN KEY (fkey_wms_id) REFERENCES public.wms(wms_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.layer definition
@@ -937,9 +862,7 @@ CREATE TABLE public.layer (
 	CONSTRAINT pk_layer_id PRIMARY KEY (layer_id),
 	CONSTRAINT layer_ibfk_1 FOREIGN KEY (fkey_wms_id) REFERENCES public.wms(wms_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.layer_custom_category definition
@@ -954,9 +877,7 @@ CREATE TABLE public.layer_custom_category (
 	CONSTRAINT layer_custom_category_fkey_custom_category_id_fkey FOREIGN KEY (fkey_custom_category_id) REFERENCES public.custom_category(custom_category_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT layer_custom_category_fkey_layer_id_fkey FOREIGN KEY (fkey_layer_id) REFERENCES public.layer(layer_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.layer_epsg definition
@@ -974,9 +895,7 @@ CREATE TABLE public.layer_epsg (
 	maxy float8 NULL DEFAULT 0,
 	CONSTRAINT layer_epsg_ibfk_1 FOREIGN KEY (fkey_layer_id) REFERENCES public.layer(layer_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.layer_inspire_category definition
@@ -991,9 +910,7 @@ CREATE TABLE public.layer_inspire_category (
 	CONSTRAINT layer_inspire_category_fkey_inspire_category_id_fkey FOREIGN KEY (fkey_inspire_category_id) REFERENCES public.inspire_category(inspire_category_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT layer_inspire_category_fkey_layer_id_fkey FOREIGN KEY (fkey_layer_id) REFERENCES public.layer(layer_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.layer_keyword definition
@@ -1009,9 +926,7 @@ CREATE TABLE public.layer_keyword (
 	CONSTRAINT fkey_keyword_id_fkey_layer_id FOREIGN KEY (fkey_keyword_id) REFERENCES public.keyword(keyword_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT fkey_layer_id_fkey_keyword_id FOREIGN KEY (fkey_layer_id) REFERENCES public.layer(layer_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.layer_load_count definition
@@ -1025,9 +940,7 @@ CREATE TABLE public.layer_load_count (
 	load_count int8 NULL,
 	CONSTRAINT layer_load_count_fkey_layer_id_fkey FOREIGN KEY (fkey_layer_id) REFERENCES public.layer(layer_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.layer_md_topic_category definition
@@ -1042,9 +955,7 @@ CREATE TABLE public.layer_md_topic_category (
 	CONSTRAINT layer_md_topic_category_fkey_layer_id_fkey FOREIGN KEY (fkey_layer_id) REFERENCES public.layer(layer_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT layer_md_topic_category_fkey_md_topic_category_id_fkey FOREIGN KEY (fkey_md_topic_category_id) REFERENCES public.md_topic_category(md_topic_category_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.layer_preview definition
@@ -1061,9 +972,7 @@ CREATE TABLE public.layer_preview (
 	CONSTRAINT layer_preview_fkey_layer_id_key UNIQUE (fkey_layer_id),
 	CONSTRAINT fkey_layer_id FOREIGN KEY (fkey_layer_id) REFERENCES public.layer(layer_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.layer_style definition
@@ -1080,9 +989,7 @@ CREATE TABLE public.layer_style (
 	legendurlformat varchar(50) NULL,
 	CONSTRAINT layer_style_ibfk_1 FOREIGN KEY (fkey_layer_id) REFERENCES public.layer(layer_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.mb_monitor definition
@@ -1106,9 +1013,7 @@ CREATE TABLE public.mb_monitor (
 	CONSTRAINT pk_mb_monitor PRIMARY KEY (upload_id, fkey_wms_id),
 	CONSTRAINT fkey_monitor_wms_id_wms_id FOREIGN KEY (fkey_wms_id) REFERENCES public.wms(wms_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 CREATE INDEX idx_mb_monitor_status ON public.mb_monitor USING btree (status);
 CREATE INDEX idx_mb_monitor_upload_id ON public.mb_monitor USING btree (upload_id);
 
@@ -1126,9 +1031,7 @@ CREATE TABLE public.mb_user_abo_ows (
 	CONSTRAINT mb_user_abo_ows_wfs_fkey FOREIGN KEY (fkey_wfs_id) REFERENCES public.wfs(wfs_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT mb_user_abo_ows_wms_fkey FOREIGN KEY (fkey_wms_id) REFERENCES public.wms(wms_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.mb_user_mb_group definition
@@ -1146,9 +1049,7 @@ CREATE TABLE public.mb_user_mb_group (
 	CONSTRAINT fkey_mb_user_mb_group_role_id FOREIGN KEY (mb_user_mb_group_type) REFERENCES public.mb_role(role_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT mb_user_mb_group_ibfk_1 FOREIGN KEY (fkey_mb_group_id) REFERENCES public.mb_group(mb_group_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.mb_user_wmc definition
@@ -1175,9 +1076,7 @@ CREATE TABLE public.mb_user_wmc (
 	CONSTRAINT pk_user_wmc PRIMARY KEY (wmc_serial_id),
 	CONSTRAINT mb_user_wmc_ibfk_1 FOREIGN KEY (fkey_user_id) REFERENCES public.mb_user(mb_user_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 CREATE INDEX idx_mb_user_wmc_id ON public.mb_user_wmc USING btree (wmc_id);
 CREATE INDEX idx_mb_user_wmc_user_id ON public.mb_user_wmc USING btree (fkey_user_id);
 
@@ -1201,9 +1100,7 @@ CREATE TABLE public.mb_wms_availability (
 	cap_diff text NULL DEFAULT ''::text,
 	CONSTRAINT mb_wms_availability_fkey_wms_id_wms_id FOREIGN KEY (fkey_wms_id) REFERENCES public.wms(wms_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.mm_layer_group definition
@@ -1218,9 +1115,7 @@ CREATE TABLE public.mm_layer_group (
 	CONSTRAINT mm_layer_group_mb_group_id_fkey FOREIGN KEY (mb_group_id) REFERENCES public.mb_group(mb_group_id),
 	CONSTRAINT mm_layer_group_mm_layer_id_fkey FOREIGN KEY (mm_layer_id) REFERENCES public.mm_layers(id)
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.mm_project_group definition
@@ -1235,9 +1130,7 @@ CREATE TABLE public.mm_project_group (
 	CONSTRAINT mm_project_group_mb_group_id_fkey FOREIGN KEY (mb_group_id) REFERENCES public.mb_group(mb_group_id),
 	CONSTRAINT mm_project_group_mm_project_id_fkey FOREIGN KEY (mm_project_id) REFERENCES public.mm_projects(id)
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.mm_project_settings_user definition
@@ -1252,9 +1145,7 @@ CREATE TABLE public.mm_project_settings_user (
 	CONSTRAINT mm_project_settings_user_mb_user_id_fkey FOREIGN KEY (mb_user_id) REFERENCES public.mb_user(mb_user_id),
 	CONSTRAINT mm_project_settings_user_mm_project_settings_id_fkey FOREIGN KEY (mm_project_settings_id) REFERENCES public.mm_project_settings(id)
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.password_recovery definition
@@ -1272,9 +1163,7 @@ CREATE TABLE public.password_recovery (
 	CONSTRAINT password_recovery_pkey PRIMARY KEY (id),
 	CONSTRAINT password_recovery_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.mb_user(mb_user_id)
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.sld_user_layer definition
@@ -1295,9 +1184,7 @@ CREATE TABLE public.sld_user_layer (
 	CONSTRAINT sld_user_layer_ibfk_2 FOREIGN KEY (fkey_layer_id) REFERENCES public.layer(layer_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT sld_user_layer_ibfk_3 FOREIGN KEY (fkey_gui_id) REFERENCES public.gui(gui_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.spec definition
@@ -1323,9 +1210,7 @@ CREATE TABLE public.spec (
 	CONSTRAINT spec_id_pkey PRIMARY KEY (spec_id),
 	CONSTRAINT spec_spec_class_fkey FOREIGN KEY (fkey_spec_class_key) REFERENCES public.spec_classification(spec_class_key) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.wfs_featuretype definition
@@ -1346,9 +1231,7 @@ CREATE TABLE public.wfs_featuretype (
 	CONSTRAINT pk_featuretype_id PRIMARY KEY (featuretype_id),
 	CONSTRAINT wfs_featuretype_ibfk_1 FOREIGN KEY (fkey_wfs_id) REFERENCES public.wfs(wfs_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.wfs_featuretype_custom_category definition
@@ -1363,9 +1246,7 @@ CREATE TABLE public.wfs_featuretype_custom_category (
 	CONSTRAINT wfs_featuretype_custom_category_fkey_custom_category_id_fkey FOREIGN KEY (fkey_custom_category_id) REFERENCES public.custom_category(custom_category_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT wfs_featuretype_custom_category_fkey_featuretype_id_fkey FOREIGN KEY (fkey_featuretype_id) REFERENCES public.wfs_featuretype(featuretype_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.wfs_featuretype_inspire_category definition
@@ -1380,9 +1261,7 @@ CREATE TABLE public.wfs_featuretype_inspire_category (
 	CONSTRAINT wfs_featuretype_inspire_category_fkey_featuretype_id_fkey FOREIGN KEY (fkey_featuretype_id) REFERENCES public.wfs_featuretype(featuretype_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT wfs_featuretype_inspire_category_fkey_inspire_category_id_fkey FOREIGN KEY (fkey_inspire_category_id) REFERENCES public.inspire_category(inspire_category_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.wfs_featuretype_keyword definition
@@ -1397,9 +1276,7 @@ CREATE TABLE public.wfs_featuretype_keyword (
 	CONSTRAINT fkey_featuretype_id_fkey_keyword_id FOREIGN KEY (fkey_featuretype_id) REFERENCES public.wfs_featuretype(featuretype_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT fkey_keyword_id_fkey_featuretype_id FOREIGN KEY (fkey_keyword_id) REFERENCES public.keyword(keyword_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.wfs_featuretype_md_topic_category definition
@@ -1414,9 +1291,7 @@ CREATE TABLE public.wfs_featuretype_md_topic_category (
 	CONSTRAINT wfs_featuretype_md_topic_category_fkey_featuretype_id_fkey FOREIGN KEY (fkey_featuretype_id) REFERENCES public.wfs_featuretype(featuretype_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT wfs_featuretype_md_topic_category_fkey_md_topic_cat_id_fkey FOREIGN KEY (fkey_md_topic_category_id) REFERENCES public.md_topic_category(md_topic_category_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.wfs_featuretype_namespace definition
@@ -1434,9 +1309,7 @@ CREATE TABLE public.wfs_featuretype_namespace (
 	CONSTRAINT wfs_featuretype_namespace_ibfk_1 FOREIGN KEY (fkey_featuretype_id) REFERENCES public.wfs_featuretype(featuretype_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT wfs_featuretype_namespace_ibfk_2 FOREIGN KEY (fkey_wfs_id) REFERENCES public.wfs(wfs_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.wfs_termsofuse definition
@@ -1451,9 +1324,7 @@ CREATE TABLE public.wfs_termsofuse (
 	CONSTRAINT wfs_termsofuse_fkey_wfs_id_fkey FOREIGN KEY (fkey_wfs_id) REFERENCES public.wfs(wfs_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT wfs_termsofuse_termsofuse_fkey FOREIGN KEY (fkey_termsofuse_id) REFERENCES public.termsofuse(termsofuse_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.wmc_custom_category definition
@@ -1468,9 +1339,7 @@ CREATE TABLE public.wmc_custom_category (
 	CONSTRAINT wmc_custom_category_fkey_custom_category_id_fkey FOREIGN KEY (fkey_custom_category_id) REFERENCES public.custom_category(custom_category_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT wmc_custom_category_fkey_wmc_serial_id_fkey FOREIGN KEY (fkey_wmc_serial_id) REFERENCES public.mb_user_wmc(wmc_serial_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.wmc_inspire_category definition
@@ -1485,9 +1354,7 @@ CREATE TABLE public.wmc_inspire_category (
 	CONSTRAINT wmc_inspire_category_fkey_inspire_category_id_fkey FOREIGN KEY (fkey_inspire_category_id) REFERENCES public.inspire_category(inspire_category_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT wmc_inspire_category_fkey_wmc_serial_id_fkey FOREIGN KEY (fkey_wmc_serial_id) REFERENCES public.mb_user_wmc(wmc_serial_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.wmc_keyword definition
@@ -1503,9 +1370,7 @@ CREATE TABLE public.wmc_keyword (
 	CONSTRAINT wmc_keyword_fkey_keyword_id_fkey FOREIGN KEY (fkey_keyword_id) REFERENCES public.keyword(keyword_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT wmc_keyword_fkey_wmc_serial_id_fkey FOREIGN KEY (fkey_wmc_serial_id) REFERENCES public.mb_user_wmc(wmc_serial_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.wmc_load_count definition
@@ -1519,9 +1384,7 @@ CREATE TABLE public.wmc_load_count (
 	load_count int8 NULL,
 	CONSTRAINT wmc_load_count_fkey_wmc_serial_id_fkey FOREIGN KEY (fkey_wmc_serial_id) REFERENCES public.mb_user_wmc(wmc_serial_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 CREATE INDEX idx_fkey_wmc_serial_id ON public.wmc_load_count USING btree (fkey_wmc_serial_id);
 
 
@@ -1537,9 +1400,7 @@ CREATE TABLE public.wmc_md_topic_category (
 	CONSTRAINT wmc_topic_category_fkey_md_topic_category_id_fkey FOREIGN KEY (fkey_md_topic_category_id) REFERENCES public.md_topic_category(md_topic_category_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT wmc_topic_category_fkey_wmc_serial_id_fkey FOREIGN KEY (fkey_wmc_serial_id) REFERENCES public.mb_user_wmc(wmc_serial_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.wmc_preview definition
@@ -1554,9 +1415,7 @@ CREATE TABLE public.wmc_preview (
 	CONSTRAINT wmc_fkey_layer_id_key UNIQUE (fkey_wmc_serial_id),
 	CONSTRAINT c_fkey_wmc_serial_id FOREIGN KEY (fkey_wmc_serial_id) REFERENCES public.mb_user_wmc(wmc_serial_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.wms_format definition
@@ -1572,9 +1431,7 @@ CREATE TABLE public.wms_format (
 	CONSTRAINT pk_wms_format PRIMARY KEY (fkey_wms_id, data_type, data_format),
 	CONSTRAINT wms_format_ibfk_1 FOREIGN KEY (fkey_wms_id) REFERENCES public.wms(wms_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.wms_md_topic_category definition
@@ -1590,9 +1447,7 @@ CREATE TABLE public.wms_md_topic_category (
 	CONSTRAINT wms_md_topic_category_fkey_md_topic_category_id_fkey FOREIGN KEY (fkey_md_topic_category_id) REFERENCES public.md_topic_category(md_topic_category_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT wms_md_topic_category_fkey_wms_id_fkey FOREIGN KEY (fkey_wms_id) REFERENCES public.wms(wms_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.wms_srs definition
@@ -1607,9 +1462,7 @@ CREATE TABLE public.wms_srs (
 	CONSTRAINT pk_wms_srs PRIMARY KEY (fkey_wms_id, wms_srs),
 	CONSTRAINT wms_srs_ibfk_1 FOREIGN KEY (fkey_wms_id) REFERENCES public.wms(wms_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.wms_termsofuse definition
@@ -1624,9 +1477,7 @@ CREATE TABLE public.wms_termsofuse (
 	CONSTRAINT wms_termsofuse_termsofuse_fkey FOREIGN KEY (fkey_termsofuse_id) REFERENCES public.termsofuse(termsofuse_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT wms_termsofuse_wms_fkey FOREIGN KEY (fkey_wms_id) REFERENCES public.wms(wms_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.conformity_relation definition
@@ -1649,9 +1500,7 @@ CREATE TABLE public.conformity_relation (
 	CONSTRAINT conformity_relation_wfs_id_fkey FOREIGN KEY (fkey_wfs_id) REFERENCES public.wfs(wfs_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT conformity_relation_wms_id_fkey FOREIGN KEY (fkey_wms_id) REFERENCES public.wms(wms_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.gui_layer definition
@@ -1679,9 +1528,7 @@ CREATE TABLE public.gui_layer (
 	CONSTRAINT pk_gui_layer_ifbk3 FOREIGN KEY (fkey_gui_id) REFERENCES public.gui(gui_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT pk_gui_layer_ifbk4 FOREIGN KEY (fkey_layer_id) REFERENCES public.layer(layer_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.ows_relation_metadata definition
@@ -1697,9 +1544,7 @@ CREATE TABLE public.ows_relation_metadata (
 	CONSTRAINT ows_relation_metadata_fkey_featuretype_id_fkey FOREIGN KEY (fkey_featuretype_id) REFERENCES public.wfs_featuretype(featuretype_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT ows_relation_metadata_fkey_layer_id_fkey FOREIGN KEY (fkey_layer_id) REFERENCES public.layer(layer_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.wfs_conf definition
@@ -1727,9 +1572,7 @@ CREATE TABLE public.wfs_conf (
 	CONSTRAINT wfs_conf_ibfk_1 FOREIGN KEY (fkey_wfs_id) REFERENCES public.wfs(wfs_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT wfs_conf_ibfk_2 FOREIGN KEY (fkey_featuretype_id) REFERENCES public.wfs_featuretype(featuretype_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.wfs_element definition
@@ -1747,9 +1590,7 @@ CREATE TABLE public.wfs_element (
 	CONSTRAINT wfs_element_element_id_key UNIQUE (element_id),
 	CONSTRAINT wfs_element_ibfk_1 FOREIGN KEY (fkey_featuretype_id) REFERENCES public.wfs_featuretype(featuretype_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.gui_wfs_conf definition
@@ -1765,9 +1606,7 @@ CREATE TABLE public.gui_wfs_conf (
 	CONSTRAINT gui_wfs_conf_ibfk_1 FOREIGN KEY (fkey_gui_id) REFERENCES public.gui(gui_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT gui_wfs_conf_ibfk_2 FOREIGN KEY (fkey_wfs_conf_id) REFERENCES public.wfs_conf(wfs_conf_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
 
 
 -- public.wfs_conf_element definition
@@ -1804,6 +1643,4 @@ CREATE TABLE public.wfs_conf_element (
 	CONSTRAINT wfs_conf_element_ibfk_1 FOREIGN KEY (fkey_wfs_conf_id) REFERENCES public.wfs_conf(wfs_conf_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT wfs_conf_element_id_ibfk_1 FOREIGN KEY (f_id) REFERENCES public.wfs_element(element_id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-WITH (
-	OIDS=TRUE
-);
+;
