@@ -11,6 +11,7 @@ angular.module('munimapBase.servicebutton', ['anol.map'])
                 var toolsControl = new anol.control.Control({
                     element: element.find('.tools-control'),
                     exclusive: true,
+                    menuContainer: true,
                     target: angular.element('.left-controls-wrapper')
                 });
 
