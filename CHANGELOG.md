@@ -1,3 +1,30 @@
+# [3.0.0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/2.3.3...3.0.0) (2026-11-24)
+
+
+### Bug Fixes
+
+* **deps:** update dependency flask to v3.1.3 ([18a76df](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/18a76df97cb14349dd354f06a74dcf3f64057919))
+* **deps:** update dependency psycopg2 to v2.9.13 ([664d9b8](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/664d9b832e7506dbc9b5232a3954a1d0b44adf3f))
+* **deps:** update dependency wtforms to v3.2.2 ([77b95c7](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/77b95c7c5ef14110298cf4be5518379e47144cf0))
+* remove deprecated docker proxy nexus.terrestris.de ([957e871](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/957e8718570a1840ce33b4fabd239eb691139209))
+* set image name directly ([f146280](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/f1462803fca665f3e798d54e38517997e3a0c688))
+* store password_recovery.valid_till as timezone-aware timestamp ([32460a3](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/32460a3f4801938c70b2e44c4481f90f05c0d164))
+* **transport:** place timetable control inside left-controls-wrapper ([aeb2aa8](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/aeb2aa807f353773116ecbb328421a5cd67a8615))
+* use munimap-postgis as database service name ([a8cbd0c](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/a8cbd0c78cda339c68eabc185cf9d22ef1f7d0cc))
+
+
+### chore
+
+* **db:** consolidation of the databases into a single instance ([9186d74](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/9186d746dfd5e2c34c0319f2a10a0b0f6b7bcad1))
+* **PostGIS:** upgrade database to version postgis:18-3.6 ([5d9733c](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/5d9733cc4f7de9ccf213605ff0e03b196fbc1988))
+
+
+### BREAKING CHANGES
+
+* **db:** munimap-postres and munimap-postgis-mapbender have been
+replaced by single database service
+* **PostGIS:** Bump postgres to version 18 and Postgis to v3.6
+
 ## [2.3.3](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/2.3.2...2.3.3) (2026-09-11)
 
 
