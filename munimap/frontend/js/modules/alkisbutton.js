@@ -11,6 +11,7 @@ angular.module('munimapBase.alkisButton', ['anol.map'])
                 var alkisControl = new anol.control.Control({
                     element: element.find('.alkis-control'),
                     exclusive: true,
+                    menuContainer: true,
                     target: angular.element('.left-controls-wrapper')
                 });
 
