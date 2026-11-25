@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/3.0.0...3.0.1) (2026-11-25)
+
+
+### Bug Fixes
+
+* **menus:** keep tools and ALKIS menus open while a tool is active ([be6288d](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/commit/be6288d6363d28c1ef165c9992c12c37fdaa2754))
+
 # [3.0.0](https://github.com/stadt-bielefeld/bielefeldGEOCLIENT/compare/2.3.3...3.0.0) (2026-11-24)
 
 
